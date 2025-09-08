@@ -1,8 +1,13 @@
 {
   "name": "eslint-plugin-baseline-js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "ESLint plugin to check JS/TS syntax against Baseline",
-  "keywords": ["eslint", "eslintplugin", "baseline", "javascript"],
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "baseline",
+    "javascript"
+  ],
   "homepage": "https://github.com/3ru/eslint-plugin-baseline-js#readme",
   "bugs": {
     "url": "https://github.com/3ru/eslint-plugin-baseline-js/issues"
@@ -23,7 +28,12 @@
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.mts",
-  "files": ["dist/index.cjs", "dist/index.mjs", "dist/index.d.mts", "dist/index.d.cts"],
+  "files": [
+    "dist/index.cjs",
+    "dist/index.mjs",
+    "dist/index.d.mts",
+    "dist/index.d.cts"
+  ],
   "scripts": {
     "build": "tsdown",
     "check:mapping": "node scripts/check-mapping.mjs --out drift-report.json",
