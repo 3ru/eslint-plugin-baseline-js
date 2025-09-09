@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.3/schema.json",
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
@@ -14,11 +14,5 @@
         "noUnusedImports": "error"
       }
     }
-  },
-  "organizeImports": {
-    "enabled": true
-  },
-  "files": {
-    "ignore": ["dist/**", "coverage/**", "node_modules/**", "src/baseline/features.ts"]
   }
 }

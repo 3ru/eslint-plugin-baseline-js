@@ -1,6 +1,6 @@
 import type { Rule } from "eslint";
-import esx from "eslint-plugin-es-x";
 import { builtinRules } from "eslint/use-at-your-own-risk"; // Access ESLint builtin rules to delegate core rules
+import esx from "eslint-plugin-es-x";
 import mapping from "../baseline/mapping.mjs";
 import { parseDelegateRuleKey } from "../baseline/plugins";
 import { getFeatureRecord, isBeyondBaseline } from "../baseline/resolve";
@@ -102,7 +102,7 @@ const rule: Rule.RuleModule = {
     >;
     for (const [featureId, entry] of Object.entries(map)) {
       if (entry.kind !== "syntax") continue;
-      if (matchIgnoreFeature && matchIgnoreFeature(featureId)) continue;
+      if (matchIgnoreFeature?.(featureId)) continue;
       if (!isBeyondBaseline(featureId, baseline)) continue;
       for (const d of entry.delegates) {
         if (d.plugin === "es-x") entries.push({ featureId, delegateRule: d.rule });
