@@ -49,18 +49,18 @@
     "verify:features": "node scripts/verify-features.mjs"
   },
   "dependencies": {
-    "eslint-plugin-es-x": "^7.7.1"
+    "eslint-plugin-es-x": "^9.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.2.3",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/eslint": "^8.56.10",
-    "@types/node": "^20.11.0",
+    "@types/eslint": "^9.6.1",
+    "@types/node": "^24.3.1",
     "semantic-release": "^24.2.7",
     "tsdown": "v0.14.2",
     "typescript": "^5.4.0",
-    "vitest": "^1.5.0",
+    "vitest": "^3.2.4",
     "web-features": "^2.47.0"
   },
   "peerDependencies": {
