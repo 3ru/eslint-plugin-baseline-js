@@ -49,7 +49,7 @@
     "@types/node": "^24.3.1",
     "@typescript-eslint/parser": "^8.43.0",
     "semantic-release": "^24.2.7",
-    "tsdown": "v0.14.2",
+    "tsdown": "v0.15.1",
     "typescript": "^5.4.0",
     "vitest": "^3.2.4",
     "web-features": "^2.47.0"
