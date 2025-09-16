@@ -20,9 +20,9 @@ async function run(code: string) {
 // - spec: https://tc39.es/proposal-math-sum/
 
 describe("no-math-sum-precise", () => {
-  it("flags Math.sumPrecise() calls", async () => {
+  it("flags Math.sumPrecise() calls (no duplicates)", async () => {
     const msgs = await run("Math.sumPrecise(1,2)");
-    expect(msgs.length).toBeGreaterThan(0);
+    expect(msgs.length).toBe(1);
   });
 
   it("flags member access to sumPrecise", async () => {

@@ -328,6 +328,15 @@ describe("orchestrator (es-x delegates)", () => {
     ).toBe(true);
   });
 
+  it("[math-sum-precise] should not produce duplicate reports", async () => {
+    const code = "Math.sumPrecise(1,2)";
+    const msgs = await lintWithBaseline(code, "widely");
+    const count = msgs.filter((m) =>
+      m.includes("Feature 'math-sum-precise' is not a widely available Baseline feature."),
+    ).length;
+    expect(count).toBe(1);
+  });
+
   it("[temporal] (limited) should be flagged on widely", async () => {
     const code = "Temporal.Now.instant()";
     const msgs = await lintWithBaseline(code, "widely");

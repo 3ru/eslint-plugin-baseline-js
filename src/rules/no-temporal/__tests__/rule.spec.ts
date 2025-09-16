@@ -25,9 +25,19 @@ describe("no-temporal", () => {
     expect(msgs.length).toBeGreaterThan(0);
   });
 
+  it("does not duplicate on Temporal.Now.instant()", async () => {
+    const msgs = await run("Temporal.Now.instant()");
+    expect(msgs.length).toBe(1);
+  });
+
   it("flags new Temporal.PlainDate()", async () => {
     const msgs = await run("new Temporal.PlainDate(2020,1,1)");
     expect(msgs.length).toBeGreaterThan(0);
+  });
+
+  it("does not duplicate on new Temporal.PlainDate()", async () => {
+    const msgs = await run("new Temporal.PlainDate(2020,1,1)");
+    expect(msgs.length).toBe(1);
   });
 
   it("does not flag unrelated identifiers", async () => {

@@ -25,14 +25,29 @@ describe("no-bigint64array", () => {
     expect(msgs.length).toBeGreaterThan(0);
   });
 
+  it("does not duplicate on BigInt64Array constructor", async () => {
+    const msgs = await run("new BigInt64Array(8)");
+    expect(msgs.length).toBe(1);
+  });
+
   it("flags BigUint64Array constructor usage", async () => {
     const msgs = await run("new BigUint64Array(8)");
     expect(msgs.length).toBeGreaterThan(0);
   });
 
+  it("does not duplicate on BigUint64Array constructor", async () => {
+    const msgs = await run("new BigUint64Array(8)");
+    expect(msgs.length).toBe(1);
+  });
+
   it("flags static member access on BigInt64Array", async () => {
     const msgs = await run("const n = BigInt64Array.BYTES_PER_ELEMENT");
     expect(msgs.length).toBeGreaterThan(0);
+  });
+
+  it("does not duplicate on BigInt64Array member access", async () => {
+    const msgs = await run("const n = BigInt64Array.BYTES_PER_ELEMENT");
+    expect(msgs.length).toBe(1);
   });
 
   it("does not flag unrelated typed arrays", async () => {

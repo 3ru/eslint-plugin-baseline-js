@@ -34,4 +34,14 @@ describe("no-function-caller-arguments", () => {
     const msgs = await run("const o={}; o.color; o.args;");
     expect(msgs.length).toBe(0);
   });
+
+  it("does not duplicate on single .caller", async () => {
+    const msgs = await run("function f(){}; f.caller;");
+    expect(msgs.length).toBe(1);
+  });
+
+  it("does not duplicate on single .arguments", async () => {
+    const msgs = await run("function f(){}; f.arguments;");
+    expect(msgs.length).toBe(1);
+  });
 });

@@ -33,7 +33,10 @@ const rule: Rule.RuleModule = {
         }
       },
       MemberExpression(node: unknown) {
-        const m = node as Record<string, unknown>;
+        const m = node as Record<string, unknown> & { parent?: unknown };
+        // Avoid duplicate reports when this MemberExpression is the callee of a CallExpression
+        const parent = m.parent as { type?: string; callee?: unknown } | undefined;
+        if (parent?.type === "CallExpression" && parent.callee === node) return;
         if (
           m.computed === false &&
           (m.object as Record<string, unknown>)?.type === "Identifier" &&
