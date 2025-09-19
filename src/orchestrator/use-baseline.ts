@@ -11,6 +11,7 @@ import noBigint64array from "../rules/no-bigint64array";
 import noFunctionCallerArguments from "../rules/no-function-caller-arguments";
 import noMathSumPrecise from "../rules/no-math-sum-precise";
 import noTemporal from "../rules/no-temporal";
+import { getEsxRule, resolveEsxRulesFrom } from "../utils/rule-resolver";
 
 type ListenerMap = Rule.RuleListener;
 
@@ -202,8 +203,9 @@ const rule: Rule.RuleModule = {
         };
         impl = selfRules[selfName];
       } else {
-        const esxRules = (esx as unknown as { rules?: Record<string, Rule.RuleModule> }).rules;
-        impl = esxRules?.[name];
+        // Prefer ESM-imported module first; fall back to CJS require-based lookup
+        const rules = resolveEsxRulesFrom(esx);
+        impl = rules?.[name] ?? getEsxRule(name);
       }
       if (!impl?.create) continue;
 
