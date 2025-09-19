@@ -10,7 +10,7 @@ function parseTsObjectLiteral(tsPath) {
 }
 
 const root = resolve(process.cwd());
-const featuresTs = resolve(root, "src/baseline/features.ts");
+const featuresTs = resolve(root, "src/baseline/data/features.javascript.ts");
 const mappingTs = resolve(root, "src/baseline/mapping/syntax.ts");
 
 const features = parseTsObjectLiteral(featuresTs);
@@ -21,10 +21,9 @@ function extractMappingKeys(tsPath) {
   // This is robust enough for our mapping file shape.
   const bodyMatch = src.match(/export default\s*\{[\s\S]*\}\s*as const;\n?$/);
   const body = bodyMatch ? bodyMatch[0] : src;
-  const re = /^(?:\s*(?:\"([^\"]+)\"|'([^']+)'|([A-Za-z_$][\w$-]*))\s*:\s*\{)/gm;
+  const re = /^(?:\s*(?:"([^"]+)"|'([^']+)'|([A-Za-z_$][\w$-]*))\s*:\s*\{)/gm;
   const out = new Set();
-  let m;
-  while ((m = re.exec(body))) {
+  for (const m of body.matchAll(re)) {
     const key = m[1] || m[2] || m[3];
     if (key) out.add(key);
   }

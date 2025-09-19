@@ -1,6 +1,5 @@
 import type { Rule } from "eslint";
 import { builtinRules } from "eslint/use-at-your-own-risk"; // Access ESLint builtin rules to delegate core rules
-import esx from "eslint-plugin-es-x";
 import { getIncludedDescriptors } from "../baseline/loader";
 import mapping from "../baseline/mapping/syntax";
 import { parseDelegateRuleKey } from "../baseline/plugins";
@@ -11,7 +10,7 @@ import noBigint64array from "../rules/no-bigint64array";
 import noFunctionCallerArguments from "../rules/no-function-caller-arguments";
 import noMathSumPrecise from "../rules/no-math-sum-precise";
 import noTemporal from "../rules/no-temporal";
-import { getEsxRule, resolveEsxRulesFrom } from "../utils/rule-resolver";
+import { registerSelfRules, resolveDelegateRule } from "../utils/delegate-resolver";
 
 type ListenerMap = Rule.RuleListener;
 
@@ -213,19 +212,10 @@ const rule: Rule.RuleModule = {
           "no-math-sum-precise": noMathSumPrecise,
           "no-temporal": noTemporal,
         };
+        registerSelfRules(selfRules);
         impl = selfRules[selfName];
       } else {
-        // Prefer ESM-imported module first; fall back to CJS require-based lookup
-        const rules = resolveEsxRulesFrom(esx);
-        if (DEBUG) {
-          try {
-            // eslint-disable-next-line no-console
-            console.log(
-              `[baseline-js] es-x rules via import: ${rules ? Object.keys(rules).length : 0}`,
-            );
-          } catch {}
-        }
-        impl = rules?.[name] ?? getEsxRule(name);
+        impl = resolveDelegateRule(plugin, name);
       }
       if (!impl?.create) continue;
 

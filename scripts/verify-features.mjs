@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 function main() {
-  const featuresPath = resolve(process.cwd(), "src/baseline/features.ts");
+  const featuresPath = resolve(process.cwd(), "src/baseline/data/features.javascript.ts");
   const src = readFileSync(featuresPath, "utf8");
   const m = src.match(/export default (\{[\s\S]*\}) as const;\n?$/);
   if (!m) {

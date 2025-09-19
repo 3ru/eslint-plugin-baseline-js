@@ -119,8 +119,8 @@ export default [
 ## How It Works
 
 1. Data → `scripts/build-features.mjs`
-   - Extracts the minimal JavaScript subset from [`web‑features`](https://github.com/web-platform-dx/web-features) into `src/baseline/features.ts`.
-2. Mapping → `src/baseline/mapping.mjs`
+   - Extracts the minimal JavaScript subset from [`web‑features`](https://github.com/web-platform-dx/web-features) into `src/baseline/data/features.javascript.ts`.
+2. Mapping → `src/baseline/mapping/syntax.ts`
    - Maps web‑features IDs to underlying rules (prefer `eslint-plugin-es-x` / ESLint core; custom rules only when necessary).
 3. Resolution → `src/baseline/resolve.ts`
    - Classifies “beyond baseline” by bucket (`high/low/false → widely/newly/limited`) or year.
