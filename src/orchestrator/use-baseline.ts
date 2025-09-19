@@ -254,13 +254,20 @@ const rule: Rule.RuleModule = {
       for (const k of [
         "settings",
         "parserPath",
-        "parserOptions",
         "parserServices",
         "languageOptions",
         "sourceCode",
       ]) {
         const src = ctx as unknown as Record<string, unknown>;
         if (src[k] != null) delegateCtx[k] = src[k];
+      }
+      // Force es-x delegates to consider syntax as "unsupported" by lowering ecmaVersion.
+      // Many es-x rules gate on context.parserOptions.ecmaVersion to decide reporting.
+      // We want pure usage detection (Baseline governs the policy), so set a conservative value.
+      {
+        const src = ctx as unknown as { parserOptions?: Record<string, unknown> };
+        const orig = src.parserOptions ?? {};
+        delegateCtx.parserOptions = { ...orig, ecmaVersion: 3 };
       }
       // Provide options expected by the delegate rule
       delegateCtx.options = delegateOptions;
@@ -276,6 +283,15 @@ const rule: Rule.RuleModule = {
             | string
             | undefined;
           if (t && matchIgnoreNodeType(t)) return;
+        }
+        if (DEBUG) {
+          try {
+            const t = (node as Record<string, unknown> | null | undefined)?.type as
+              | string
+              | undefined;
+            // eslint-disable-next-line no-console
+            console.log(`[baseline-js] report delegate: ${featureId} (node=${t ?? "unknown"})`);
+          } catch {}
         }
         (ctx as unknown as { report: (d: { node: unknown; message: string }) => void }).report({
           node,
