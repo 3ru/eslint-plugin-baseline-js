@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node (LTS)
         uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 22.12.0
 
       - name: Install
         run: pnpm i --frozen-lockfile
@@ -63,7 +63,7 @@ jobs:
               const exists = issues.find(i => i.title === title);
               if (exists) continue;
 
-              const body = `Missing mapping for web-features ID:\n\n- id: \`${m.id}\`\n- name: \`${m.name}\`\n\nAdd a delegate entry to \`src/baseline/mapping.mjs\` that links this feature to an ESLint rule.\n\nAcceptance criteria\n- mapping.mjs updated\n- tests added (or updated)`;
+              const body = `Missing mapping for web-features ID:\n\n- id: \`${m.id}\`\n- name: \`${m.name}\`\n\nAdd a delegate entry to \`src/baseline/mapping/syntax.ts\` that links this feature to an ESLint rule.\n\nAcceptance criteria\n- mapping updated\n- tests added (or updated)`;
 
               await github.rest.issues.create({ owner, repo, title, body, labels });
             }

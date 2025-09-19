@@ -1,29 +1,38 @@
 #!/usr/bin/env node
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { pathToFileURL } from "node:url";
 
-function parseFeaturesTs(tsPath) {
+function parseTsObjectLiteral(tsPath) {
   const src = readFileSync(tsPath, "utf8");
   const m = src.match(/export default (\{[\s\S]*\}) as const;\n?$/);
   if (!m) throw new Error(`Failed to parse features from ${tsPath}`);
   return JSON.parse(m[1]);
 }
 
-async function importMapping(modulePath) {
-  const mod = await import(pathToFileURL(modulePath).href);
-  return mod.default || mod;
-}
-
 const root = resolve(process.cwd());
 const featuresTs = resolve(root, "src/baseline/features.ts");
-const mappingModule = resolve(root, "src/baseline/mapping.mjs");
+const mappingTs = resolve(root, "src/baseline/mapping/syntax.ts");
 
-const features = parseFeaturesTs(featuresTs);
-const mapping = await importMapping(mappingModule);
+const features = parseTsObjectLiteral(featuresTs);
+
+function extractMappingKeys(tsPath) {
+  const src = readFileSync(tsPath, "utf8");
+  // Capture top-level string keys followed by a colon and opening brace.
+  // This is robust enough for our mapping file shape.
+  const bodyMatch = src.match(/export default\s*\{[\s\S]*\}\s*as const;\n?$/);
+  const body = bodyMatch ? bodyMatch[0] : src;
+  const re = /^(?:\s*(?:\"([^\"]+)\"|'([^']+)'|([A-Za-z_$][\w$-]*))\s*:\s*\{)/gm;
+  const out = new Set();
+  let m;
+  while ((m = re.exec(body))) {
+    const key = m[1] || m[2] || m[3];
+    if (key) out.add(key);
+  }
+  return Array.from(out);
+}
 
 const featureIds = Object.keys(features);
-const mappedIds = Object.keys(mapping);
+const mappedIds = extractMappingKeys(mappingTs);
 
 const missing = featureIds
   .filter((id) => !mappedIds.includes(id))
