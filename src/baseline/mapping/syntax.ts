@@ -48,8 +48,8 @@ export default {
     ],
   },
 
-  // TODO: rename https://github.com/web-platform-dx/web-features/pull/2484
-  "numeric-seperators": {
+  // Numeric separators (web-features id uses 'separators')
+  "numeric-separators": {
     kind: "syntax",
     delegates: [
       {

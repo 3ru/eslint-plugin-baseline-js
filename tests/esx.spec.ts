@@ -82,12 +82,12 @@ describe("orchestrator (es-x delegates)", () => {
     ).toBe(true);
   });
 
-  it("[numeric-seperators] year: 2020 > 2018 should be flagged", async () => {
+  it("[numeric-separators] year: 2020 > 2018 should be flagged", async () => {
     const msgs = await lintWithBaseline("const n = 1_000_000;", 2018);
     expect(
       msgs.some((m) =>
         m.includes(
-          "Feature 'Numeric separators' (numeric-seperators) became Baseline in 2020 and exceeds 2018.",
+          "Feature 'Numeric separators' (numeric-separators) became Baseline in 2020 and exceeds 2018.",
         ),
       ),
     ).toBe(true);

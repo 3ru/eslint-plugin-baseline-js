@@ -6,7 +6,14 @@ import { features as wfFeatures } from "web-features";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const jsEntries = Object.entries(wfFeatures).filter(([_, f]) => f.group === "javascript");
+// Some versions expose `group` as a string or an array of strings.
+function isJsGroup(f) {
+  const g = f && f.group;
+  if (Array.isArray(g)) return g.includes("javascript");
+  return g === "javascript";
+}
+
+const jsEntries = Object.entries(wfFeatures).filter(([_, f]) => isJsGroup(f));
 
 const pick = (f) => ({
   id: undefined, // placeholder to be set by caller

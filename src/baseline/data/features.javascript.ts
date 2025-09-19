@@ -7,7 +7,7 @@ export default {
   "arguments-callee": {
     id: "arguments-callee",
     name: "arguments.callee",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
@@ -29,7 +29,7 @@ export default {
   "async-await": {
     id: "async-await",
     name: "Async functions",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2017-04-05",
@@ -48,7 +48,7 @@ export default {
   "async-generators": {
     id: "async-generators",
     name: "Async generators",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-01-15",
@@ -67,7 +67,7 @@ export default {
   "atomics-wait-async": {
     id: "atomics-wait-async",
     name: "Atomics.waitAsync",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
@@ -82,7 +82,7 @@ export default {
   bigint: {
     id: "bigint",
     name: "BigInt",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-09-16",
@@ -101,7 +101,7 @@ export default {
   bigint64array: {
     id: "bigint64array",
     name: "BigInt64Array",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2021-09-20",
@@ -120,7 +120,7 @@ export default {
   "class-syntax": {
     id: "class-syntax",
     name: "Classes",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2016-03-08",
@@ -139,7 +139,7 @@ export default {
   "date-get-year-set-year": {
     id: "date-get-year-set-year",
     name: "getYear() and setYear()",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
@@ -161,7 +161,7 @@ export default {
   destructuring: {
     id: "destructuring",
     name: "Destructuring",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-01-15",
@@ -180,7 +180,7 @@ export default {
   "escape-unescape": {
     id: "escape-unescape",
     name: "escape() and unescape()",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
@@ -202,7 +202,7 @@ export default {
   exponentiation: {
     id: "exponentiation",
     name: "Exponentiation operator",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2017-03-27",
@@ -221,7 +221,7 @@ export default {
   functions: {
     id: "functions",
     name: "Functions",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2015-07-29",
@@ -240,7 +240,7 @@ export default {
   "functions-caller-arguments": {
     id: "functions-caller-arguments",
     name: "Function caller and arguments",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
@@ -262,7 +262,7 @@ export default {
   generators: {
     id: "generators",
     name: "Generators",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2016-09-20",
@@ -281,7 +281,7 @@ export default {
   globalthis: {
     id: "globalthis",
     name: "globalThis",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-01-15",
@@ -300,7 +300,7 @@ export default {
   "hashbang-comments": {
     id: "hashbang-comments",
     name: "Hashbang comments",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-03-24",
@@ -319,7 +319,7 @@ export default {
   "html-wrapper-methods": {
     id: "html-wrapper-methods",
     name: "HTML wrapper methods",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
@@ -342,7 +342,7 @@ export default {
   javascript: {
     id: "javascript",
     name: "JavaScript (initial core language support)",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2015-07-29",
@@ -361,7 +361,7 @@ export default {
   "let-const": {
     id: "let-const",
     name: "Let and const",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2016-09-20",
@@ -380,7 +380,7 @@ export default {
   "logical-assignments": {
     id: "logical-assignments",
     name: "Logical assignments",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-09-16",
@@ -399,7 +399,7 @@ export default {
   "math-sum-precise": {
     id: "math-sum-precise",
     name: "Math.sumPrecise()",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
@@ -411,7 +411,7 @@ export default {
   "nullish-coalescing": {
     id: "nullish-coalescing",
     name: "Nullish coalescing",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-09-16",
@@ -427,10 +427,10 @@ export default {
       },
     },
   },
-  "numeric-seperators": {
-    id: "numeric-seperators",
+  "numeric-separators": {
+    id: "numeric-separators",
     name: "Numeric separators",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-07-28",
@@ -449,7 +449,7 @@ export default {
   "optional-catch-binding": {
     id: "optional-catch-binding",
     name: "Optional catch binding",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-01-15",
@@ -468,7 +468,7 @@ export default {
   "proxy-reflect": {
     id: "proxy-reflect",
     name: "Proxy and Reflect",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2016-09-20",
@@ -487,7 +487,7 @@ export default {
   "shared-memory": {
     id: "shared-memory",
     name: "SharedArrayBuffer and Atomics",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2021-12-13",
@@ -506,7 +506,7 @@ export default {
   spread: {
     id: "spread",
     name: "Spread syntax",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-01-15",
@@ -525,7 +525,7 @@ export default {
   "template-literals": {
     id: "template-literals",
     name: "Template literals",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2020-01-15",
@@ -544,7 +544,7 @@ export default {
   temporal: {
     id: "temporal",
     name: "Temporal",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
@@ -556,7 +556,7 @@ export default {
   "top-level-await": {
     id: "top-level-await",
     name: "Top-level await",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2021-09-20",
@@ -575,7 +575,7 @@ export default {
   "unicode-point-escapes": {
     id: "unicode-point-escapes",
     name: "Unicode point escapes",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2015-09-30",
@@ -594,7 +594,7 @@ export default {
   "weak-references": {
     id: "weak-references",
     name: "Weak references",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: "high",
       baseline_low_date: "2021-04-26",
@@ -613,7 +613,7 @@ export default {
   with: {
     id: "with",
     name: "with",
-    group: "javascript",
+    group: ["javascript"],
     status: {
       baseline: false,
       support: {
