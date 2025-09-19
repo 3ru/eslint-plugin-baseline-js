@@ -35,7 +35,8 @@ describe("orchestrator (es-x delegates)", () => {
   });
 
   it("[template-literals] widely: should not be flagged", async () => {
-    const msgs = await lintWithBaseline("const s = `a${'b'}`;", "widely");
+    const code = "const s = `a" + "$" + "{'b'}" + "`" + ";";
+    const msgs = await lintWithBaseline(code, "widely");
     expect(msgs.length).toBe(0);
   });
 
@@ -64,7 +65,8 @@ describe("orchestrator (es-x delegates)", () => {
   });
 
   it("[template-literals] newly: should not be flagged (high is allowed)", async () => {
-    const msgs = await lintWithBaseline("const s = `a${'b'}`;", "newly");
+    const code = "const s = `a" + "$" + "{'b'}" + "`" + ";";
+    const msgs = await lintWithBaseline(code, "newly");
     expect(msgs.length).toBe(0);
   });
 
@@ -290,7 +292,7 @@ describe("orchestrator (es-x delegates)", () => {
   });
 
   it("[template-literals] year: 2020 > 2018 should be flagged", async () => {
-    const code = "const s = `a${'b'}`;";
+    const code = "const s = `a" + "$" + "{'b'}" + "`" + ";";
     const msgs = await lintWithBaseline(code, 2018);
     expect(
       msgs.some((m) =>

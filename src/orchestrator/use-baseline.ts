@@ -391,7 +391,9 @@ const rule: Rule.RuleModule = {
             | undefined;
           if (t && matchIgnoreNodeType(t)) return;
         }
-        const msg = (isObj && (arg as any).message) || undefined;
+        let msg: string | undefined;
+        if (isObj && typeof (arg as { message?: unknown }).message === "string")
+          msg = (arg as { message?: string }).message;
 
         (ctx as unknown as { report: (d: { node: unknown; message?: string }) => void }).report({
           node,

@@ -4,7 +4,7 @@ import { baseOptions } from "@/lib/layout.shared";
 import { source } from "@/lib/source";
 import { DOCS_SIDEBAR } from "@/lib/ui";
 
-const DocsLayout = DocsLayoutUI as unknown as (props: any) => any;
+const DocsLayout: typeof DocsLayoutUI = DocsLayoutUI;
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

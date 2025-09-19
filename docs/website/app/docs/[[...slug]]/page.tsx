@@ -55,7 +55,7 @@ export async function generateMetadata(props: PageProps<"/docs/[[...slug]]">): P
     title: page.data.title,
     description: page.data.description,
     openGraph: {
-      images: (page.data as any).image || "/eslint-plugin-baseline-js.jpg",
+      images: (page.data as { image?: string }).image || "/eslint-plugin-baseline-js.jpg",
     },
   });
 }

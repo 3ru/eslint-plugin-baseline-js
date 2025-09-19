@@ -2,7 +2,7 @@ import { HomeLayout as HomeLayoutUI } from "fumadocs-ui/layouts/home";
 import type { ReactNode } from "react";
 import { baseOptions } from "@/lib/layout.shared";
 
-const HomeLayout = HomeLayoutUI as unknown as (props: any) => any;
+const HomeLayout: typeof HomeLayoutUI = HomeLayoutUI;
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
