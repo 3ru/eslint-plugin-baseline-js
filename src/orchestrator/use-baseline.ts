@@ -111,6 +111,7 @@ const rule: Rule.RuleModule = {
     ],
   },
   create(ctx) {
+    const DEBUG = process.env.BASELINE_DEBUG === "1";
     // Guard: run only for JS/TS files. This prevents initialization on non-JS
     // languages (e.g., CSS/HTML) where delegate rules may assume ESTree/TS services.
     const getFilename = (ctx as unknown as { getFilename?: () => string }).getFilename;
@@ -167,6 +168,17 @@ const rule: Rule.RuleModule = {
         else entries.push({ featureId, delegateRule: `${d.plugin}/${d.rule}` });
       }
     }
+    if (DEBUG) {
+      try {
+        const feats = Array.from(new Set(entries.map((e) => e.featureId))).sort();
+        // eslint-disable-next-line no-console
+        console.log(
+          `[baseline-js] syntax entries: ${entries.length} (features=${feats.length})\n` +
+            feats.slice(0, 20).join(", ") +
+            (feats.length > 20 ? ", ..." : ""),
+        );
+      } catch {}
+    }
 
     const listeners: ListenerMap = {};
     const mappedFeatureIds = new Set(entries.map((e) => e.featureId));
@@ -205,6 +217,14 @@ const rule: Rule.RuleModule = {
       } else {
         // Prefer ESM-imported module first; fall back to CJS require-based lookup
         const rules = resolveEsxRulesFrom(esx);
+        if (DEBUG) {
+          try {
+            // eslint-disable-next-line no-console
+            console.log(
+              `[baseline-js] es-x rules via import: ${rules ? Object.keys(rules).length : 0}`,
+            );
+          } catch {}
+        }
         impl = rules?.[name] ?? getEsxRule(name);
       }
       if (!impl?.create) continue;
