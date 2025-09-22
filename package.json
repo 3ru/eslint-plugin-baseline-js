@@ -48,7 +48,7 @@
     "@semantic-release/git": "^10.0.1",
     "@types/eslint": "^9.6.1",
     "@types/node": "^24.4.0",
-    "@typescript-eslint/parser": "^8.43.0",
+    "@typescript-eslint/parser": "^8.44.0",
     "semantic-release": "^24.2.7",
     "tsdown": "v0.15.1",
     "typescript": "^5.4.0",
