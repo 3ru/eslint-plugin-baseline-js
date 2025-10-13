@@ -38,7 +38,7 @@
     "verify:features": "node scripts/data/verify-features.mjs"
   },
   "dependencies": {
-    "eslint-plugin-es-x": "^9.1.0"
+    "eslint-plugin-es-x": "^9.1.1"
   },
   "devDependencies": {
     "eslint": "^9.12.0",
