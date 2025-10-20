@@ -19,7 +19,7 @@ jobs:
           corepack prepare pnpm@10.15.1 --activate
         
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22.12.0
           cache: 'pnpm'
@@ -43,7 +43,7 @@ jobs:
           corepack prepare pnpm@10.15.1 --activate
         
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22.12.0
           cache: 'pnpm'
