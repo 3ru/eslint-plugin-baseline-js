@@ -18,7 +18,7 @@ jobs:
           corepack prepare pnpm@10.15.1 --activate
 
       - name: Setup Node LTS (22)
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: pnpm
