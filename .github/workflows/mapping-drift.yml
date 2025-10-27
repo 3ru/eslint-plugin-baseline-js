@@ -37,7 +37,7 @@ jobs:
         run: node scripts/qa/check-mapping.mjs --out drift-report.json
 
       - name: Upload report artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: mapping-drift-report
           path: drift-report.json
