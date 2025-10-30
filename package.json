@@ -53,7 +53,7 @@
     "semantic-release": "^24.2.9",
     "tsdown": "0.15.1",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.5",
     "web-features": "3.5.0"
   },
   "peerDependencies": {
