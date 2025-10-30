@@ -1,5 +1,5 @@
-import { createRequire } from "node:module";
 import type { Rule } from "eslint";
+import { requireOptional } from "./optional-module";
 
 /**
  * Normalize ESM/CJS export shapes for ESLint plugins.
@@ -14,24 +14,13 @@ export function resolvePluginRules(mod: unknown): Record<string, Rule.RuleModule
   return undefined;
 }
 
-/**
- * Resolve rules for eslint-plugin-es-x in a robust way.
- * Why: In CI (Node 22 / ESLint 9), ESM interop may attach rules under
- * `default.rules` instead of `rules`. Only checking `esx.rules` meant no
- * delegates were created and tests failed.
- * Approach: Prefer loading the CommonJS entry via `createRequire` to avoid
- * interop variance, then normalize the export with `resolvePluginRules()`.
- */
+/** Resolve eslint-plugin-es-x rules, handling ESM/CJS export variance. */
 export function resolveEsxRules(): Record<string, Rule.RuleModule> | undefined {
-  // Prefer requiring the CJS entry directly to avoid ESM interop variance.
-  try {
-    const req = createRequire(import.meta.url);
-    const m = req("eslint-plugin-es-x");
-    const rules = resolvePluginRules(m);
-    if (rules) return rules;
-  } catch {
-    // ignore
-  }
+  const pluginName = "eslint-plugin-es-x";
+  const mod = requireOptional(pluginName);
+  if (mod === undefined) return undefined;
+  const rules = resolvePluginRules(mod);
+  if (rules) return rules;
   return undefined;
 }
 

@@ -31,6 +31,18 @@ export function addTypedInstanceMemberDetector(
   const checkerOk = checker; // non-null assertion helper for narrowing
   const tsMap = services.esTreeNodeToTSNodeMap; // non-null assertion helper
 
+  const tsMapGet = (tsMap as { get?: (node: unknown) => unknown }).get;
+  if (typeof tsMapGet !== "function") return {};
+  const getTsNode = tsMapGet.bind(tsMap);
+
+  const typeAtLocation = checkerOk.getTypeAtLocation;
+  if (typeof typeAtLocation !== "function") return {};
+  const getTypeAtLocation = typeAtLocation.bind(checkerOk);
+
+  const propertyOfType = checkerOk.getPropertyOfType;
+  if (typeof propertyOfType !== "function") return {};
+  const getPropertyOfType = propertyOfType.bind(checkerOk);
+
   function typeMatches(t: unknown): boolean {
     if (!t) return false;
     const withTypes = t as { types?: unknown[] };
@@ -64,19 +76,14 @@ export function addTypedInstanceMemberDetector(
 
   const handler: Rule.RuleListener["MemberExpression"] = (node) => {
     if (!isMemberWithProperty(node, prop)) return;
-    try {
-      const obj = (node as unknown as { object?: unknown }).object;
-      const tsNode = tsMap.get(obj);
-      if (!tsNode) return;
-      const type = checkerOk.getTypeAtLocation?.(tsNode);
-      if (!type) return;
-      const hasProp = !!checkerOk.getPropertyOfType?.(type, prop);
-      if (!hasProp) return;
-      if (typeMatches(type))
-        report((node as unknown as { property?: unknown }).property, featureId);
-    } catch {
-      // ignore
-    }
+    const obj = (node as unknown as { object?: unknown }).object;
+    const tsNode = getTsNode(obj);
+    if (!tsNode) return;
+    const type = getTypeAtLocation(tsNode);
+    if (!type) return;
+    const hasProp = !!getPropertyOfType(type, prop);
+    if (!hasProp) return;
+    if (typeMatches(type)) report((node as unknown as { property?: unknown }).property, featureId);
   };
   return { MemberExpression: handler };
 }

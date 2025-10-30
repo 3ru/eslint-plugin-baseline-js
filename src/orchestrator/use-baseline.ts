@@ -125,12 +125,11 @@ const rule: Rule.RuleModule = {
     const _DEBUG = process.env.BASELINE_DEBUG === "1";
     // Guard: run only for JS/TS files. This prevents initialization on non-JS
     // languages (e.g., CSS/HTML) where delegate rules may assume ESTree/TS services.
-    const getFilename = (ctx as unknown as { getFilename?: () => string }).getFilename;
+    const getFilename = (ctx as unknown as { getFilename?: () => unknown }).getFilename;
     let filename: string | null = null;
     if (typeof getFilename === "function") {
-      try {
-        filename = getFilename();
-      } catch {}
+      const value = getFilename.call(ctx as unknown as object);
+      if (typeof value === "string" && !value.startsWith("<")) filename = value;
     }
     if (filename) {
       // Accept common JS/TS extensions
@@ -148,11 +147,8 @@ const rule: Rule.RuleModule = {
       if (!patterns.length) return null;
       const compiled = patterns.map((p) => {
         if (p.startsWith("/") && p.endsWith("/") && p.length >= 2) {
-          try {
-            return new RegExp(p.slice(1, -1));
-          } catch {
-            return p;
-          }
+          const expr = p.slice(1, -1);
+          return new RegExp(expr);
         }
         return p;
       });
@@ -184,12 +180,10 @@ const rule: Rule.RuleModule = {
     const mappedFeatureIds = new Set(entries.map((e) => e.featureId));
 
     if (_DEBUG) {
-      try {
-        // eslint-disable-next-line no-console
-        console.log(
-          `[baseline-js] resolvers=${listResolverPlugins().join(",")} entries=${entries.length}`,
-        );
-      } catch {}
+      // eslint-disable-next-line no-console
+      console.log(
+        `[baseline-js] resolvers=${listResolverPlugins().join(",")} entries=${entries.length}`,
+      );
     }
 
     for (const { featureId, delegateRule } of entries) {
