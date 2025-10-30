@@ -14,6 +14,7 @@ import {
   registerSelfRules,
   resolveDelegateRule,
 } from "../utils/delegate-resolver";
+import { mergeRuleListeners } from "../utils/listeners";
 
 type ListenerMap = Rule.RuleListener;
 
@@ -25,24 +26,6 @@ const SELF_RULES: Record<string, Rule.RuleModule> = {
   "no-temporal": noTemporal,
 };
 registerSelfRules(SELF_RULES);
-
-function mergeListeners(target: ListenerMap, add: ListenerMap) {
-  type AnyFn = (...args: unknown[]) => void;
-  const tgt = target as unknown as Record<string, unknown>;
-  for (const [event, handler] of Object.entries(add)) {
-    const name = event as keyof ListenerMap;
-    const prev = target[name] as unknown as AnyFn | undefined;
-    if (!prev) {
-      tgt[event] = handler as unknown;
-    } else {
-      const next = handler as unknown as AnyFn;
-      tgt[event] = function merged(this: unknown, ...args: unknown[]) {
-        prev.apply(this as unknown as object, args);
-        next.apply(this as unknown as object, args);
-      } as unknown;
-    }
-  }
-}
 
 function baselineMessage(featureId: string, baseline: ReturnType<typeof getBaselineValue>) {
   const rec = getFeatureRecord(featureId);
@@ -265,7 +248,7 @@ const rule: Rule.RuleModule = {
       };
 
       const l = impl.create(delegateCtx as unknown as Rule.RuleContext);
-      mergeListeners(listeners, l);
+      mergeRuleListeners(listeners, l);
     }
     // Attach generic feature-usage detector (Web API / JS builtins) if enabled and we have descriptors.
     let descriptors = getIncludedDescriptors({
@@ -378,7 +361,7 @@ const rule: Rule.RuleModule = {
         });
       };
       const generic = featureUsage.create(delegateCtx as unknown as Rule.RuleContext);
-      mergeListeners(listeners, generic);
+      mergeRuleListeners(listeners, generic);
     }
 
     return listeners;

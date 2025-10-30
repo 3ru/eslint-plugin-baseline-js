@@ -9,6 +9,7 @@ import type {
   NewMemberDescriptor,
   NewWithOptionsDescriptor,
 } from "../../baseline/types";
+import { mergeRuleListeners } from "../../utils/listeners";
 import { addCallMemberWithArgsDetector, addNewWithOptionsDetector } from "./detectors/safe-args";
 import {
   addCallStaticDetector,
@@ -26,24 +27,6 @@ export interface BuildOptions {
 
 export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Rule.RuleListener {
   const listeners: Rule.RuleListener = {};
-
-  function merge(target: Rule.RuleListener, add: Rule.RuleListener) {
-    type AnyFn = (...args: unknown[]) => void;
-    const tgt = target as unknown as Record<string, unknown>;
-    for (const [event, handler] of Object.entries(add)) {
-      const name = event as keyof Rule.RuleListener;
-      const prev = target[name] as unknown as AnyFn | undefined;
-      if (!prev) {
-        tgt[event] = handler as unknown;
-      } else {
-        const next = handler as unknown as AnyFn;
-        tgt[event] = function merged(this: unknown, ...args: unknown[]) {
-          prev.apply(this as unknown as object, args);
-          next.apply(this as unknown as object, args);
-        } as unknown;
-      }
-    }
-  }
 
   function report(node: unknown, featureId: string) {
     const msg = opt.messages[featureId] ?? `Feature '${featureId}' exceeds configured Baseline.`;
@@ -67,32 +50,44 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
   for (const d of opt.descriptors) {
     switch (d.kind) {
       case "newIdent":
-        merge(listeners, addNewIdentDetector(context, d as NewIdentDescriptor, report));
+        mergeRuleListeners(
+          listeners,
+          addNewIdentDetector(context, d as NewIdentDescriptor, report),
+        );
         break;
       case "newMember":
-        merge(listeners, addNewMemberDetector(context, d as NewMemberDescriptor, report));
+        mergeRuleListeners(
+          listeners,
+          addNewMemberDetector(context, d as NewMemberDescriptor, report),
+        );
         break;
       case "callStatic":
-        merge(listeners, addCallStaticDetector(context, d as CallStaticDescriptor, report));
+        mergeRuleListeners(
+          listeners,
+          addCallStaticDetector(context, d as CallStaticDescriptor, report),
+        );
         break;
       case "member":
-        merge(listeners, addMemberDetector(context, d as MemberDescriptor, report));
+        mergeRuleListeners(listeners, addMemberDetector(context, d as MemberDescriptor, report));
         break;
       case "instanceMember":
         if (useTyped)
-          merge(
+          mergeRuleListeners(
             listeners,
             addTypedInstanceMemberDetector(context, d as InstanceMemberDescriptor, report),
           );
         break;
       case "callMemberWithArgs":
-        merge(
+        mergeRuleListeners(
           listeners,
           addCallMemberWithArgsDetector(context, d as CallMemberWithArgsDescriptor, report),
         );
         break;
       case "newWithOptions":
-        merge(listeners, addNewWithOptionsDetector(context, d as NewWithOptionsDescriptor, report));
+        mergeRuleListeners(
+          listeners,
+          addNewWithOptionsDetector(context, d as NewWithOptionsDescriptor, report),
+        );
         break;
       default:
         break;
