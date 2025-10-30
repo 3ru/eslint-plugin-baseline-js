@@ -54,35 +54,26 @@ jobs:
             --threshold-syntax "${{ env.THRESHOLD_SYNTAX }}" \
             --threshold-api "${{ env.THRESHOLD_API }}" \
             --threshold-jsbi "${{ env.THRESHOLD_JSBI }}" \
-            --out coverage-gate-output.json
-          echo "covSyntax=$(node -e \"process.stdout.write(String(JSON.parse(require('fs').readFileSync('coverage-gate-output.json','utf8')).covSyntax || ''))\")" >> $GITHUB_OUTPUT
-          echo "covApi=$(node -e \"process.stdout.write(String(JSON.parse(require('fs').readFileSync('coverage-gate-output.json','utf8')).covApi || ''))\")" >> $GITHUB_OUTPUT
-          echo "covJsbi=$(node -e \"process.stdout.write(String(JSON.parse(require('fs').readFileSync('coverage-gate-output.json','utf8')).covJsbi || ''))\")" >> $GITHUB_OUTPUT
-          echo "shouldComment=$(node -e \"process.stdout.write((JSON.parse(require('fs').readFileSync('coverage-gate-output.json','utf8')).shouldComment ? 'true' : 'false'))\")" >> $GITHUB_OUTPUT
-          {
-            echo 'commentBody<<EOF'
-            node -e "process.stdout.write(JSON.parse(require('fs').readFileSync('coverage-gate-output.json','utf8')).commentBody)"
-            echo 'EOF'
-          } >> $GITHUB_OUTPUT
+            --out coverage-gate-output.json \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Find existing coverage comment
+        if: ${{ github.event_name == 'pull_request' }}
+        id: find_coverage_comment
+        uses: peter-evans/find-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '<!-- baseline-coverage-gate -->'
 
       - name: Comment on PR (sticky)
         if: ${{ steps.eval.outputs.shouldComment == 'true' && github.event_name == 'pull_request' }}
-        uses: actions/github-script@v7
+        uses: peter-evans/create-or-update-comment@v5
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const body = `${{ steps.eval.outputs.commentBody }}`;
-            const { owner, repo } = context.repo;
-            const issue_number = context.payload.pull_request.number;
-            // Try to find existing sticky comment
-            const { data: comments } = await github.rest.issues.listComments({ owner, repo, issue_number, per_page: 100 });
-            const marker = '<!-- baseline-coverage-gate -->';
-            const mine = comments.find(c => c.body && c.body.includes(marker));
-            if (mine) {
-              await github.rest.issues.updateComment({ owner, repo, comment_id: mine.id, body });
-            } else {
-              await github.rest.issues.createComment({ owner, repo, issue_number, body });
-            }
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find_coverage_comment.outputs.comment-id }}
+          body: ${{ steps.eval.outputs.commentBody }}
+          edit-mode: replace
 
       - name: Summary
         run: |

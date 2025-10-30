@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 function parseArgs(argv) {
@@ -73,6 +73,22 @@ function main() {
     console.log(`wrote ${outPath}`);
   } else {
     console.log(JSON.stringify(out, null, 2));
+  }
+
+  const ghOutPath = args["github-output"] || process.env.GITHUB_OUTPUT;
+  if (ghOutPath) {
+    const toLine = (key, value) => `${key}=${value == null ? "" : String(value)}`;
+    const commentBody = String(out.commentBody ?? "");
+    const payload = [
+      toLine("covSyntax", out.covSyntax),
+      toLine("covApi", out.covApi),
+      toLine("covJsbi", out.covJsbi),
+      `shouldComment=${out.shouldComment ? "true" : "false"}`,
+      "commentBody<<__COVERAGE_COMMENT__",
+      commentBody,
+      "__COVERAGE_COMMENT__",
+    ].join("\n");
+    appendFileSync(ghOutPath, `${payload}\n`, "utf8");
   }
 }
 
