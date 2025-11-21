@@ -65,6 +65,7 @@ const rule: Rule.RuleModule = {
             anyOf: [{ enum: ["widely", "newly"] }, { type: "number" }],
             default: "widely",
           },
+          filePattern: { type: "object", instanceof: "RegExp" },
           ignoreFeatures: { type: "array", items: { type: "string" } },
           ignoreNodeTypes: { type: "array", items: { type: "string" } },
           includeWebApis: {
@@ -114,12 +115,12 @@ const rule: Rule.RuleModule = {
       const value = getFilename.call(ctx as unknown as object);
       if (typeof value === "string" && !value.startsWith("<")) filename = value;
     }
+    const opt = (ctx.options[0] ?? {}) as CommonRuleOptions;
     if (filename) {
       // Accept common JS/TS extensions
-      const isJsLike = /\.(?:[mc]?[jt]s|[jt]sx)$/i.test(filename);
+      const isJsLike = (opt.filePattern ?? /\.(?:[mc]?[jt]s|[jt]sx)$/i).test(filename);
       if (!isJsLike) return {};
     }
-    const opt = (ctx.options[0] ?? {}) as CommonRuleOptions;
     const baseline = getBaselineValue(opt);
     const ignoreFeaturePatterns = (opt.ignoreFeatures ?? []) as string[];
     const ignoreNodeTypePatterns = (opt.ignoreNodeTypes ?? []) as string[];

@@ -19,6 +19,7 @@ export interface CommonRuleOptions {
   baseline?: BaselineOption;
   available?: BaselineOption; // alias (optional)
   env?: EnvOption;
+  filePattern?: RegExp; // file name pattern to match, default: /\.(?:[mc]?[jt]s|[jt]sx)$/i
   tsAware?: boolean;
   failOn?: "limited" | "newly" | "all";
   // Ignore options (rule-specific). Strings beginning and ending with '/' are treated as regex.
