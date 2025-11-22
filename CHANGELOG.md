@@ -1,3 +1,13 @@
+## [0.4.1](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.4.0...v0.4.1) (2025-11-22)
+
+
+### Bug Fixes
+
+* **ci:** output parsing ([bffdcf5](https://github.com/3ru/eslint-plugin-baseline-js/commit/bffdcf50f5b20a55177851984b3eda406a22cc97))
+* **coverage:** improve markdown generation ([b57b6c9](https://github.com/3ru/eslint-plugin-baseline-js/commit/b57b6c9ff89ce6b0a41ff9a2e8483a12c9989807))
+* **docs:** ja to eng ([1ed8d38](https://github.com/3ru/eslint-plugin-baseline-js/commit/1ed8d3813c49e81d5128df56e9eb8e000fa248ee))
+* **website:** ogp ([dd1197f](https://github.com/3ru/eslint-plugin-baseline-js/commit/dd1197f2e4707d9d2a3c37388d469f5c46ef1f28))
+
 # [0.4.0](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.3.0...v0.4.0) (2025-10-17)
 
 

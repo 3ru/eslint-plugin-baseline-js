@@ -4,7 +4,7 @@
 -->
 # Baseline Coverage
 
-- web-features: [`v3.5.0`](https://github.com/web-platform-dx/web-features/releases/tag/v3.5.0)
+- web-features: [`v3.6.0`](https://github.com/web-platform-dx/web-features/releases/tag/v3.6.0)
 
 ## JavaScript Language (syntax)
 
