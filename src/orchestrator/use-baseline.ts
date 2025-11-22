@@ -106,19 +106,10 @@ const rule: Rule.RuleModule = {
   },
   create(ctx) {
     const _DEBUG = process.env.BASELINE_DEBUG === "1";
-    // Guard: run only for JS/TS files. This prevents initialization on non-JS
-    // languages (e.g., CSS/HTML) where delegate rules may assume ESTree/TS services.
-    const getFilename = (ctx as unknown as { getFilename?: () => unknown }).getFilename;
-    let filename: string | null = null;
-    if (typeof getFilename === "function") {
-      const value = getFilename.call(ctx as unknown as object);
-      if (typeof value === "string" && !value.startsWith("<")) filename = value;
-    }
-    if (filename) {
-      // Accept common JS/TS extensions
-      const isJsLike = /\.(?:[mc]?[jt]s|[jt]sx)$/i.test(filename);
-      if (!isJsLike) return {};
-    }
+    const sourceCode = ctx.getSourceCode?.();
+    const ast = sourceCode?.ast as { type?: string } | undefined;
+    // Avoid running when the parser did not produce a JS Program (eg, non-ESTree processors)
+    if (ast && ast.type && ast.type !== "Program") return {};
     const opt = (ctx.options[0] ?? {}) as CommonRuleOptions;
     const baseline = getBaselineValue(opt);
     const ignoreFeaturePatterns = (opt.ignoreFeatures ?? []) as string[];
