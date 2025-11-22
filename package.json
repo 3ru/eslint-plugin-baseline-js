@@ -54,6 +54,7 @@
     "tsdown": "0.15.12",
     "typescript": "^5.9.3",
     "vitest": "^4.0.5",
+    "vue-eslint-parser": "^9.4.3",
     "web-features": "3.6.0"
   },
   "peerDependencies": {
