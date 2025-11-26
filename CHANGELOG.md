@@ -1,3 +1,10 @@
+## [0.4.2](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.4.1...v0.4.2) (2025-11-26)
+
+
+### Bug Fixes
+
+* honor ignoreFeatures for web api/js builtins ([b65986e](https://github.com/3ru/eslint-plugin-baseline-js/commit/b65986ec35d8cbf9d03958af3fa0a53365b01912))
+
 ## [0.4.1](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.4.0...v0.4.1) (2025-11-22)
 
 
