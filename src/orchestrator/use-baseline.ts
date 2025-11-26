@@ -246,6 +246,9 @@ const rule: Rule.RuleModule = {
       webApis: includeWebApis,
       jsBuiltins: includeJsBuiltins,
     });
+    if (matchIgnoreFeature) {
+      descriptors = descriptors.filter((d) => !matchIgnoreFeature(d.featureId));
+    }
     // Filter to features that actually exceed the configured Baseline
     descriptors = descriptors
       .filter((d) => isBeyondBaseline(d.featureId, baseline))

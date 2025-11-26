@@ -141,7 +141,7 @@ and shows which ones are currently mapped by this plugin.
 | Option                 | Type                      | Default    | Description |
 | ---------------------- | ------------------------- | ---------- | ----------- |
 | `baseline`             | `widely`, `newly`, `number`, `widely` | Baseline level or year (alias: `available`). |
-| `ignoreFeatures`       | `string[]`                | —          | Skip specific web‑features by ID (supports regex `/.../`). |
+| `ignoreFeatures`       | `string[]`                | —          | Skip specific web‑features by ID (supports regex `/.../`) across syntax delegates and Web API/JS builtin detection. |
 | `ignoreNodeTypes`      | `string[]`                | —          | Suppress reports by ESTree `node.type` (supports regex `/.../`). |
 
 ## Baseline for HTML and CSS
