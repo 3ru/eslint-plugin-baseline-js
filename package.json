@@ -50,7 +50,7 @@
     "@types/node": "^24.9.2",
     "@typescript-eslint/parser": "^8.46.2",
     "eslint": "^9.39.1",
-    "semantic-release": "^24.2.9",
+    "semantic-release": "^25.0.2",
     "tsdown": "0.15.12",
     "typescript": "^5.9.3",
     "vitest": "^4.0.13",
