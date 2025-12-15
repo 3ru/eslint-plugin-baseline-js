@@ -60,7 +60,7 @@
   },
   "packageManager": "pnpm@10.15.1",
   "engines": {
-    "node": ">=20.19.0 <22 || >=22.12.0"
+    "node": "^20.19.0 || >=22.12.0"
   },
   "author": {
     "name": "Ryuya",
