@@ -2655,6 +2655,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "toArray"
   },
   {
+    "featureId": "iterator-concat",
+    "kind": "callStatic",
+    "base": "Iterator",
+    "prop": "concat"
+  },
+  {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",

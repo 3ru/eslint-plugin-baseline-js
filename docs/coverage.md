@@ -9,8 +9,8 @@
 ## JavaScript Language (syntax)
 
 - total: `43`
-- mapped: `42`
-- coverage: `97.7%`
+- mapped: `43`
+- coverage: `100.0%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Mechanism | Delegates |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -18,7 +18,7 @@
 | arguments-callee | ` arguments.callee ` | limited | - | ✅ | ` delegate ` | `core:no-caller` |
 | async-await | ` Async functions ` | widely | 2017 | ✅ | ` delegate ` | `es-x:no-async-functions` |
 | async-generators | ` Async generators ` | widely | 2020 | ✅ | ` delegate ` | `es-x:no-async-iteration` |
-| atomics-pause | ` Atomics.pause() ` | newly | 2025 | ❌ | ` - ` | - |
+| atomics-pause | ` Atomics.pause() ` | newly | 2025 | ✅ | ` self ` | `self:no-atomics-pause` |
 | atomics-wait-async | ` Atomics.waitAsync() ` | newly | 2025 | ✅ | ` delegate ` | `es-x:no-atomics-waitasync` |
 | bigint | ` BigInt ` | widely | 2020 | ✅ | ` delegate ` | `es-x:no-bigint` |
 | bigint64array | ` BigInt64Array ` | widely | 2021 | ✅ | ` self ` | `self:no-bigint64array` |
@@ -61,10 +61,10 @@
 ## Web APIs (api.*)
 
 - total: `505`
-- excluded (out-of-scope): `21`
-- included (in-scope): `484`
+- excluded (out-of-scope): `24`
+- included (in-scope): `481`
 - mapped: `481`
-- coverage: `99.4%`
+- coverage: `100.0%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Patterns | Descriptors | Memo |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -163,7 +163,7 @@
 | css-object-model-discouraged | ` CSS object model (DOM level 2) ` | limited | - | ✅ | ` typed ` | 19 | - |
 | css-supports | ` CSS.supports() ` | widely | 2020 | ✅ | ` safe ` | 1 | - |
 | css-typed-om | ` CSS typed object model ` | limited | - | ✅ | ` safe `, ` typed ` | 104 | - |
-| custom-media-queries | ` Custom media queries ` | limited | - | ❌ | - | - | - |
+| custom-media-queries | ` Custom media queries ` | limited | - | ❌ | - | - | CSS at-rule — use stylelint |
 | customized-built-in-elements | ` Customized built-in elements ` | limited | - | ✅ | ` typed ` | 1 | - |
 | data | ` <data> ` | widely | 2017 | ✅ | ` typed ` | 1 | - |
 | datalist | ` <datalist> ` | limited | - | ✅ | ` typed ` | 1 | - |
@@ -396,7 +396,7 @@
 | progress | ` <progress> ` | widely | 2015 | ✅ | ` typed ` | 4 | - |
 | push | ` Push messages ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 26 | - |
 | q | ` <q> ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
-| queuemicrotask | ` queueMicrotask() ` | widely | 2020 | ❌ | - | - | - |
+| queuemicrotask | ` queueMicrotask() ` | widely | 2020 | ❌ | - | - | Global function — no callIdent detection mechanism |
 | readable-byte-streams | ` Readable byte streams ` | limited | - | ✅ | ` safe `, ` typed ` | 13 | - |
 | readablestream-from | ` ReadableStream.from() ` | limited | - | ✅ | ` safe ` | 1 | - |
 | referrer-policy | ` Referrer policy ` | widely | 2021 | ✅ | ` typed ` | 6 | - |
@@ -429,7 +429,7 @@
 | scroll-driven-animations | ` Scroll-driven animations ` | limited | - | ✅ | ` safe `, ` typed ` | 7 | - |
 | scroll-elements | ` Scroll methods on elements ` | widely | 2020 | ✅ | ` safe `, ` typed ` | 15 | - |
 | scroll-into-view | ` scrollIntoView() ` | widely | 2020 | ✅ | ` typed ` | 1 | - |
-| scroll-into-view-container | ` scrollIntoView() container ` | limited | - | ❌ | - | - | - |
+| scroll-into-view-container | ` scrollIntoView() container ` | limited | - | ❌ | - | - | Option semantics — not static-detectable |
 | scroll-snap-events | ` Scroll snap events ` | limited | - | ✅ | ` safe `, ` typed ` | 9 | - |
 | scroll-to-text-fragment | ` Scroll to text fragment ` | newly | 2024 | ✅ | ` typed ` | 1 | - |
 | scrollend | ` scrollend ` | newly | 2025 | ✅ | ` typed ` | 2 | - |
@@ -579,8 +579,8 @@
 - total: `101`
 - excluded (out-of-scope): `9`
 - included (in-scope): `92`
-- mapped: `91`
-- coverage: `98.9%`
+- mapped: `92`
+- coverage: `100.0%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Patterns | Descriptors | Memo |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -632,7 +632,7 @@
 | intl-relative-time-format | ` Intl.RelativeTimeFormat ` | widely | 2020 | ✅ | ` safe ` | 1 | - |
 | intl-segmenter | ` Intl.Segmenter ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
 | is-error | ` Error.isError() ` | limited | - | ✅ | ` safe ` | 1 | - |
-| iterator-concat | ` Iterator.concat() ` | limited | - | ❌ | - | - | - |
+| iterator-concat | ` Iterator.concat() ` | limited | - | ✅ | ` safe ` | 1 | - |
 | iterator-methods | ` Iterator methods ` | newly | 2025 | ✅ | ` typed ` | 11 | - |
 | iterators | ` Iterators and the for...of loop ` | widely | 2015 | ❌ | - | - | Meta feature |
 | javascript | ` JavaScript (initial core language support) ` | widely | 2015 | ✅ | ` typed ` | 3 | - |
