@@ -277,6 +277,7 @@ const manualJsbi = [
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "flatMap" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "reduce" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "toArray" },
+  { featureId: "iterator-concat", kind: "callStatic", base: "Iterator", prop: "concat" },
 ];
 for (const d of manualJsbi) jsbiDescs.push(d);
 for (const prop of ["forEach", "some", "every", "find"]) {

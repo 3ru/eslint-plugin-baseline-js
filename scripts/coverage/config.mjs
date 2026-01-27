@@ -31,6 +31,7 @@ export default {
 
       // CSS domain — handled by stylelint or css-dedicated linters
       "starting-style": { memo: "CSS at-rule — use stylelint", exclude: true },
+      "custom-media-queries": { memo: "CSS at-rule — use stylelint", exclude: true },
 
       // Runtime/permission/context dependent — not robust for static AST detection
       "clipboard-unsanitized-formats": {
@@ -42,6 +43,18 @@ export default {
         exclude: true,
       },
       "webgl-sab": { memo: "SAB requires COOP/COEP — environment dependent", exclude: true },
+
+      // Global function — no callIdent descriptor kind available
+      queuemicrotask: {
+        memo: "Global function — no callIdent detection mechanism",
+        exclude: true,
+      },
+
+      // scrollIntoView() option semantics — not static-detectable
+      "scroll-into-view-container": {
+        memo: "Option semantics — not static-detectable",
+        exclude: true,
+      },
 
       // Avoid double counting: covered under JavaScript builtins
       "structured-clone": { memo: "Covered in JS builtins (structuredClone)", exclude: true },
