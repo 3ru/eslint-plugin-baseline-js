@@ -3409,6 +3409,23 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "type_image_svg_xml"
   },
   {
+    "featureId": "clipboardchange",
+    "kind": "newIdent",
+    "name": "ClipboardChangeEvent"
+  },
+  {
+    "featureId": "clipboardchange",
+    "kind": "instanceMember",
+    "iface": "ClipboardChangeEvent",
+    "prop": "changeId"
+  },
+  {
+    "featureId": "clipboardchange",
+    "kind": "instanceMember",
+    "iface": "ClipboardChangeEvent",
+    "prop": "types"
+  },
+  {
     "featureId": "closewatcher",
     "kind": "newIdent",
     "name": "CloseWatcher"
@@ -9690,6 +9707,42 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "fastSeek"
   },
   {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "Document",
+    "prop": "featurePolicy"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "FeaturePolicy",
+    "prop": "allowedFeatures"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "FeaturePolicy",
+    "prop": "allowsFeature"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "FeaturePolicy",
+    "prop": "features"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "FeaturePolicy",
+    "prop": "getAllowlistForFeature"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "HTMLIFrameElement",
+    "prop": "featurePolicy"
+  },
+  {
     "featureId": "fedcm",
     "kind": "instanceMember",
     "iface": "IdentityCredential",
@@ -11954,12 +12007,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "iframe",
     "kind": "instanceMember",
     "iface": "HTMLIFrameElement",
-    "prop": "allow"
-  },
-  {
-    "featureId": "iframe",
-    "kind": "instanceMember",
-    "iface": "HTMLIFrameElement",
     "prop": "contentDocument"
   },
   {
@@ -13003,12 +13050,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "input",
     "kind": "instanceMember",
     "iface": "HTMLInputElement",
-    "prop": "multiple"
-  },
-  {
-    "featureId": "input",
-    "kind": "instanceMember",
-    "iface": "HTMLInputElement",
     "prop": "name"
   },
   {
@@ -13185,6 +13226,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "files"
   },
   {
+    "featureId": "input-file-multiple",
+    "kind": "instanceMember",
+    "iface": "HTMLInputElement",
+    "prop": "multiple"
+  },
+  {
+    "featureId": "input-file-multiple",
+    "kind": "instanceMember",
+    "iface": "HTMLInputElement",
+    "prop": "webkitEntries"
+  },
+  {
+    "featureId": "input-file-webkitdirectory",
+    "kind": "instanceMember",
+    "iface": "File",
+    "prop": "webkitRelativePath"
+  },
+  {
+    "featureId": "input-file-webkitdirectory",
+    "kind": "instanceMember",
+    "iface": "HTMLInputElement",
+    "prop": "webkitdirectory"
+  },
+  {
     "featureId": "input-image",
     "kind": "instanceMember",
     "iface": "HTMLInputElement",
@@ -13265,6 +13330,53 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VideoTrackGenerator",
     "prop": "writable"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLAnchorElement",
+    "prop": "interestForElement"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLAreaElement",
+    "prop": "interestForElement"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLButtonElement",
+    "prop": "interestForElement"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "interest_event"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "loseinterest_event"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "newIdent",
+    "name": "InterestEvent"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "InterestEvent",
+    "prop": "source"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "SVGAElement",
+    "prop": "interestForElement"
   },
   {
     "featureId": "intersection-observer",
@@ -17689,6 +17801,35 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "error"
   },
   {
+    "featureId": "origin",
+    "kind": "newIdent",
+    "name": "Origin"
+  },
+  {
+    "featureId": "origin",
+    "kind": "callStatic",
+    "base": "Origin",
+    "prop": "from"
+  },
+  {
+    "featureId": "origin",
+    "kind": "instanceMember",
+    "iface": "Origin",
+    "prop": "isSameOrigin"
+  },
+  {
+    "featureId": "origin",
+    "kind": "instanceMember",
+    "iface": "Origin",
+    "prop": "isSameSite"
+  },
+  {
+    "featureId": "origin",
+    "kind": "instanceMember",
+    "iface": "Origin",
+    "prop": "opaque"
+  },
+  {
     "featureId": "origin-private-file-system",
     "kind": "instanceMember",
     "iface": "FileSystemDirectoryHandle",
@@ -18968,6 +19109,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "permissions"
   },
   {
+    "featureId": "permissions-policy",
+    "kind": "instanceMember",
+    "iface": "HTMLIFrameElement",
+    "prop": "allow"
+  },
+  {
     "featureId": "picture-in-picture",
     "kind": "instanceMember",
     "iface": "Document",
@@ -20017,6 +20164,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "unregisterProtocolHandler"
+  },
+  {
+    "featureId": "related-apps",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "getInstalledRelatedApps"
+  },
+  {
+    "featureId": "related-website-sets",
+    "kind": "instanceMember",
+    "iface": "Document",
+    "prop": "requestStorageAccessFor"
+  },
+  {
+    "featureId": "related-website-sets",
+    "kind": "instanceMember",
+    "iface": "Permissions",
+    "prop": "permission_top-level-storage-access"
   },
   {
     "featureId": "remote-playback",
@@ -23520,20 +23685,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   {
     "featureId": "storage-access",
     "kind": "instanceMember",
-    "iface": "Document",
-    "prop": "requestStorageAccessFor"
-  },
-  {
-    "featureId": "storage-access",
-    "kind": "instanceMember",
     "iface": "Permissions",
     "prop": "permission_storage-access"
-  },
-  {
-    "featureId": "storage-access",
-    "kind": "instanceMember",
-    "iface": "Permissions",
-    "prop": "permission_top-level-storage-access"
   },
   {
     "featureId": "storage-buckets",
@@ -27627,6 +27780,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLElement",
     "prop": "title"
+  },
+  {
+    "featureId": "toggleevent-source",
+    "kind": "instanceMember",
+    "iface": "ToggleEvent",
+    "prop": "source"
   },
   {
     "featureId": "topics",

@@ -25,6 +25,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason:
+        'TC39 included accessor methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
+      reason_html:
+        'TC39 included accessor methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
     },
   },
   array: {
@@ -70,8 +74,9 @@ export default {
     name: "Array by copy",
     group: ["arrays", "typed-arrays"],
     status: {
-      baseline: "low",
+      baseline: "high",
       baseline_low_date: "2023-07-04",
+      baseline_high_date: "2026-01-04",
       support: {
         chrome: "110",
         chrome_android: "110",
@@ -407,6 +412,7 @@ export default {
   "atomics-pause": {
     id: "atomics-pause",
     name: "Atomics.pause()",
+    group: ["javascript"],
     status: {
       baseline: "low",
       baseline_low_date: "2025-04-01",
@@ -423,14 +429,17 @@ export default {
   },
   "atomics-wait-async": {
     id: "atomics-wait-async",
-    name: "Atomics.waitAsync",
+    name: "Atomics.waitAsync()",
     group: ["javascript"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-11-11",
       support: {
-        chrome: "87",
-        chrome_android: "89",
-        edge: "87",
+        chrome: "90",
+        chrome_android: "90",
+        edge: "90",
+        firefox: "145",
+        firefox_android: "145",
         safari: "16.4",
         safari_ios: "16.4",
       },
@@ -513,6 +522,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason:
+        "The getYear() and setYear() methods use a truncated number instead of the actual year number, known as a year 2000 problem.",
+      reason_html:
+        "The <code>getYear()</code> and <code>setYear()</code> methods use a truncated number instead of the actual year number, known as a year 2000 problem.",
     },
   },
   "date-to-gmt-string": {
@@ -534,7 +547,10 @@ export default {
     discouraged: {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-date.prototype.togmtstring",
       ],
+      reason: 'The method exists "principally for compatibility with old code."',
+      reason_html: 'The method exists "principally for compatibility with old code."',
     },
   },
   "error-cause": {
@@ -576,6 +592,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason:
+        'TC39 included the escape() and unescape() methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
+      reason_html:
+        'TC39 included the <code>escape()</code> and <code>unescape()</code> methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
     },
   },
   "explicit-resource-management": {
@@ -649,6 +669,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/error-handling-and-language-extensions.html#sec-forbidden-extensions",
       ],
+      reason:
+        "JavaScript strict mode prohibits accessing the caller and arguments properties of a Function object.",
+      reason_html:
+        "JavaScript strict mode prohibits accessing the <code>caller</code> and <code>arguments</code> properties of a <code>Function</code> object.",
     },
   },
   generators: {
@@ -673,9 +697,15 @@ export default {
   getorinsert: {
     id: "getorinsert",
     name: "Map getOrInsert()",
+    group: ["maps"],
     status: {
       baseline: false,
-      support: {},
+      support: {
+        firefox: "144",
+        firefox_android: "144",
+        safari: "26.2",
+        safari_ios: "26.2",
+      },
     },
   },
   globalthis: {
@@ -718,6 +748,10 @@ export default {
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
       alternatives: ["dom"],
+      reason:
+        "HTML wrapper methods exist only for backwards compatibility. Use DOM APIs to create elements instead.",
+      reason_html:
+        "HTML wrapper methods exist only for backwards compatibility. Use DOM APIs to create elements instead.",
     },
   },
   intl: {
@@ -900,6 +934,18 @@ export default {
       },
     },
   },
+  "iterator-concat": {
+    id: "iterator-concat",
+    name: "Iterator.concat()",
+    group: ["iterators"],
+    status: {
+      baseline: false,
+      support: {
+        firefox: "147",
+        firefox_android: "147",
+      },
+    },
+  },
   "iterator-methods": {
     id: "iterator-methods",
     name: "Iterator methods",
@@ -1018,6 +1064,8 @@ export default {
       support: {
         firefox: "137",
         firefox_android: "137",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -1210,6 +1258,8 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason: "Changing __proto__ is slow and can cause surprising bugs.",
+      reason_html: "Changing <code>__proto__</code> is slow and can cause surprising bugs.",
     },
   },
   "proxy-reflect": {
@@ -1270,6 +1320,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason:
+        "The compile() method duplicates behavior of the RegExp() constructor and it exists only for backwards compatibility.",
+      reason_html:
+        "The <code>compile()</code> method duplicates behavior of the <code>RegExp()</code> constructor and it exists only for backwards compatibility.",
     },
   },
   "regexp-escape": {
@@ -1308,6 +1362,8 @@ export default {
     },
     discouraged: {
       according_to: ["https://github.com/tc39/proposal-regexp-legacy-features"],
+      reason: "The RegExp static properties may have unintended side effects.",
+      reason_html: "The <code>RegExp</code> static properties may have unintended side effects.",
     },
   },
   "resizable-buffers": {
@@ -1689,6 +1745,8 @@ export default {
     status: {
       baseline: false,
       support: {
+        chrome: "144",
+        chrome_android: "144",
         firefox: "139",
         firefox_android: "139",
       },
@@ -1865,6 +1923,8 @@ export default {
         "https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-with-statement",
       ],
       alternatives: ["destructuring"],
+      reason: "JavaScript strict mode prohibits the with statement.",
+      reason_html: "JavaScript strict mode prohibits the <code>with</code> statement.",
     },
   },
 } as const;

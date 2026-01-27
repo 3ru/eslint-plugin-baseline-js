@@ -4,13 +4,13 @@
 -->
 # Baseline Coverage
 
-- web-features: [`v3.6.0`](https://github.com/web-platform-dx/web-features/releases/tag/v3.6.0)
+- web-features: [`v3.14.0`](https://github.com/web-platform-dx/web-features/releases/tag/v3.14.0)
 
 ## JavaScript Language (syntax)
 
-- total: `42`
+- total: `43`
 - mapped: `42`
-- coverage: `100.0%`
+- coverage: `97.7%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Mechanism | Delegates |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -18,7 +18,8 @@
 | arguments-callee | ` arguments.callee ` | limited | - | ✅ | ` delegate ` | `core:no-caller` |
 | async-await | ` Async functions ` | widely | 2017 | ✅ | ` delegate ` | `es-x:no-async-functions` |
 | async-generators | ` Async generators ` | widely | 2020 | ✅ | ` delegate ` | `es-x:no-async-iteration` |
-| atomics-wait-async | ` Atomics.waitAsync ` | limited | - | ✅ | ` delegate ` | `es-x:no-atomics-waitasync` |
+| atomics-pause | ` Atomics.pause() ` | newly | 2025 | ❌ | ` - ` | - |
+| atomics-wait-async | ` Atomics.waitAsync() ` | newly | 2025 | ✅ | ` delegate ` | `es-x:no-atomics-waitasync` |
 | bigint | ` BigInt ` | widely | 2020 | ✅ | ` delegate ` | `es-x:no-bigint` |
 | bigint64array | ` BigInt64Array ` | widely | 2021 | ✅ | ` self ` | `self:no-bigint64array` |
 | class-syntax | ` Classes ` | widely | 2016 | ✅ | ` delegate ` | `es-x:no-classes` |
@@ -51,7 +52,7 @@
 | spread | ` Spread syntax ` | widely | 2020 | ✅ | ` delegate ` | `es-x:no-spread-elements`, `es-x:no-rest-spread-properties` |
 | template-literals | ` Template literals ` | widely | 2020 | ✅ | ` delegate ` | `es-x:no-template-literals` |
 | temporal | ` Temporal ` | limited | - | ✅ | ` self ` | `self:no-temporal` |
-| top-level-await | ` Top-level await ` | widely | 2021 | ✅ | ` delegate ` | `es-x:no-top-level-await` |
+| top-level-await | ` Top-level await ` | limited | - | ✅ | ` delegate ` | `es-x:no-top-level-await` |
 | transferable-arraybuffer | ` Transferable ArrayBuffer ` | newly | 2024 | ✅ | ` delegate ` | `es-x:no-arraybuffer-prototype-transfer` |
 | unicode-point-escapes | ` Unicode point escapes ` | widely | 2015 | ✅ | ` delegate ` | `es-x:no-unicode-codepoint-escapes` |
 | weak-references | ` Weak references ` | widely | 2021 | ✅ | ` delegate ` | `es-x:no-weakrefs` |
@@ -59,11 +60,11 @@
 
 ## Web APIs (api.*)
 
-- total: `493`
+- total: `505`
 - excluded (out-of-scope): `21`
-- included (in-scope): `472`
-- mapped: `471`
-- coverage: `99.8%`
+- included (in-scope): `484`
+- mapped: `481`
+- coverage: `99.4%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Patterns | Descriptors | Memo |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -73,7 +74,7 @@
 | abortsignal-any | ` AbortSignal.any() ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
 | accelerometer | ` Accelerometer ` | limited | - | ✅ | ` safe `, ` typed ` | 7 | - |
 | accesskey | ` accesskey ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
-| active-view-transition | ` Active view transition ` | limited | - | ✅ | ` typed ` | 11 | - |
+| active-view-transition | ` Active view transition ` | newly | 2026 | ✅ | ` typed ` | 11 | - |
 | alerts | ` Alerts ` | widely | 2015 | ✅ | ` safe ` | 3 | - |
 | ambient-light | ` Ambient light sensor ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
 | anchor-positioning | ` Anchor positioning ` | limited | - | ✅ | ` typed ` | 72 | - |
@@ -133,10 +134,11 @@
 | clipboard-supports | ` ClipboardItem.supports() ` | newly | 2025 | ✅ | ` safe ` | 1 | - |
 | clipboard-svg | ` SVG clipboard items ` | limited | - | ✅ | ` typed ` | 1 | - |
 | clipboard-unsanitized-formats | ` Read unsanitized clipboard data ` | limited | - | ❌ | - | - | Permissioned/unsanitized data — not static-detectable |
+| clipboardchange | ` clipboardchange ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
 | closewatcher | ` CloseWatcher ` | limited | - | ✅ | ` safe `, ` typed ` | 6 | - |
 | composed-ranges | ` Selection composed ranges ` | newly | 2025 | ✅ | ` typed ` | 1 | - |
 | composition-events | ` Composition events ` | widely | 2017 | ✅ | ` safe `, ` typed ` | 5 | - |
-| compression-streams | ` Compression streams ` | newly | 2023 | ✅ | ` safe `, ` typed ` | 6 | - |
+| compression-streams | ` Compression streams ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 6 | - |
 | compute-pressure | ` CPU compute pressure ` | limited | - | ✅ | ` safe `, ` typed ` | 10 | - |
 | console | ` Console ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 21 | - |
 | constraint-validation | ` Constraint validation API ` | widely | 2018 | ✅ | ` typed ` | 55 | - |
@@ -161,6 +163,7 @@
 | css-object-model-discouraged | ` CSS object model (DOM level 2) ` | limited | - | ✅ | ` typed ` | 19 | - |
 | css-supports | ` CSS.supports() ` | widely | 2020 | ✅ | ` safe ` | 1 | - |
 | css-typed-om | ` CSS typed object model ` | limited | - | ✅ | ` safe `, ` typed ` | 104 | - |
+| custom-media-queries | ` Custom media queries ` | limited | - | ❌ | - | - | - |
 | customized-built-in-elements | ` Customized built-in elements ` | limited | - | ✅ | ` typed ` | 1 | - |
 | data | ` <data> ` | widely | 2017 | ✅ | ` typed ` | 1 | - |
 | datalist | ` <datalist> ` | limited | - | ✅ | ` typed ` | 1 | - |
@@ -180,7 +183,7 @@
 | digital-goods | ` Digital goods ` | limited | - | ✅ | ` safe ` | 1 | - |
 | dirname | ` dirname ` | newly | 2023 | ✅ | ` typed ` | 2 | - |
 | div | ` <div> ` | widely | 2015 | ❌ | - | - | HTML element — use `html-eslint` |
-| document-caretpositionfrompoint | ` document.caretPositionFromPoint() ` | limited | - | ✅ | ` typed ` | 4 | - |
+| document-caretpositionfrompoint | ` document.caretPositionFromPoint() ` | newly | 2025 | ✅ | ` typed ` | 4 | - |
 | document-colors | ` Document colors ` | limited | - | ✅ | ` typed ` | 5 | - |
 | document-picture-in-picture | ` Document picture-in-picture ` | limited | - | ✅ | ` safe `, ` typed ` | 6 | - |
 | document-write | ` document.write() ` | limited | - | ✅ | ` typed ` | 4 | - |
@@ -196,7 +199,7 @@
 | embed | ` <embed> ` | widely | 2020 | ✅ | ` typed ` | 5 | - |
 | encrypted-media-extensions | ` Encrypted media extensions ` | widely | 2019 | ✅ | ` safe `, ` typed ` | 36 | - |
 | enterkeyhint | ` enterkeyhint ` | widely | 2021 | ✅ | ` typed ` | 1 | - |
-| event-timing | ` Event timing ` | limited | - | ✅ | ` typed ` | 15 | - |
+| event-timing | ` Event timing ` | newly | 2025 | ✅ | ` typed ` | 15 | - |
 | events | ` Events ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 20 | - |
 | execcommand | ` execCommand() ` | limited | - | ✅ | ` typed ` | 6 | - |
 | ext-blend-minmax | ` EXT_blend_minmax WebGL extension ` | widely | 2018 | ✅ | ` safe ` | 2 | - |
@@ -214,6 +217,7 @@
 | external | ` window.external ` | limited | - | ✅ | ` typed ` | 2 | - |
 | eyedropper | ` Eyedropper ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
 | fast-seek | ` fastSeek() ` | limited | - | ✅ | ` typed ` | 1 | - |
+| feature-policy | ` Feature policy ` | limited | - | ✅ | ` typed ` | 6 | - |
 | fedcm | ` Federated credential management ` | limited | - | ✅ | ` typed ` | 1 | - |
 | federated-credentials | ` Federated credentials ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
 | fencedframe | ` <fencedframe> ` | limited | - | ✅ | ` safe `, ` typed ` | 11 | - |
@@ -257,7 +261,7 @@
 | html | ` <html> ` | widely | 2015 | ❌ | - | - | HTML element — use `html-eslint` |
 | html-media-capture | ` HTML media capture ` | limited | - | ✅ | ` typed ` | 1 | - |
 | idle-detection | ` Idle detection ` | limited | - | ✅ | ` safe `, ` typed ` | 6 | - |
-| iframe | ` <iframe> ` | widely | 2015 | ✅ | ` typed ` | 8 | - |
+| iframe | ` <iframe> ` | widely | 2015 | ✅ | ` typed ` | 7 | - |
 | iframe-credentialless | ` Credentialless iframes ` | limited | - | ✅ | ` safe `, ` typed ` | 2 | - |
 | iframe-sandbox | ` Sandboxed iframes ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
 | iframe-srcdoc | ` srcdoc ` | widely | 2020 | ✅ | ` typed ` | 1 | - |
@@ -268,24 +272,27 @@
 | indexeddb | ` IndexedDB ` | widely | 2021 | ✅ | ` safe `, ` typed ` | 99 | - |
 | inert | ` inert ` | widely | 2023 | ✅ | ` typed ` | 1 | - |
 | ink | ` Ink ` | limited | - | ✅ | ` safe `, ` typed ` | 4 | - |
-| input | ` <input> ` | widely | 2015 | ✅ | ` typed ` | 36 | - |
+| input | ` <input> ` | widely | 2015 | ✅ | ` typed ` | 35 | - |
 | input-checkbox | ` input-checkbox ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
 | input-color-alpha | `` `alpha` and `colorspace` attributes for `<input type=color>` `` | limited | - | ✅ | ` typed ` | 2 | - |
 | input-date-time | ` Date and time <input> types ` | widely | 2021 | ✅ | ` typed ` | 1 | - |
 | input-event | ` input (event) ` | widely | 2020 | ✅ | ` safe `, ` typed ` | 8 | - |
 | input-file | ` input-file ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
+| input-file-multiple | ` input-file-multiple ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
+| input-file-webkitdirectory | ` input-file-webkitdirectory ` | newly | 2025 | ✅ | ` typed ` | 2 | - |
 | input-image | ` input-image ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
 | input-number | ` input-number ` | widely | 2015 | ✅ | ` typed ` | 6 | - |
 | inputmode | ` inputmode ` | widely | 2021 | ✅ | ` typed ` | 1 | - |
 | insertable-streams | ` Insertable streams for MediaStreamTrack ` | limited | - | ✅ | ` safe `, ` typed ` | 6 | - |
+| interest-invokers | ` Interest invokers ` | limited | - | ✅ | ` safe `, ` typed ` | 8 | - |
 | intersection-observer | ` Intersection observer ` | widely | 2019 | ✅ | ` safe `, ` typed ` | 20 | - |
-| invoker-commands | ` Invoker commands ` | limited | - | ✅ | ` safe `, ` typed ` | 6 | - |
+| invoker-commands | ` Invoker commands ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 6 | - |
 | is-input-pending | ` isInputPending() ` | limited | - | ✅ | ` safe `, ` typed ` | 2 | - |
 | is-secure-context | ` isSecureContext ` | widely | 2018 | ✅ | ` typed ` | 1 | - |
 | js-modules | ` JavaScript modules ` | widely | 2018 | ✅ | ` typed ` | 1 | - |
-| js-modules-service-workers | ` JavaScript modules in service workers ` | limited | - | ✅ | ` typed ` | 1 | - |
+| js-modules-service-workers | ` JavaScript modules in service workers ` | newly | 2026 | ✅ | ` typed ` | 1 | - |
 | js-modules-shared-workers | ` JavaScript modules in shared workers ` | limited | - | ✅ | ` safe ` | 1 | - |
-| js-modules-workers | ` JavaScript modules in workers ` | newly | 2023 | ✅ | ` safe ` | 1 | - |
+| js-modules-workers | ` JavaScript modules in workers ` | widely | 2023 | ✅ | ` safe ` | 1 | - |
 | keyboard-events | ` Keyboard events ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 13 | - |
 | keyboard-lock | ` Keyboard lock ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
 | keyboard-map | ` Keyboard map ` | limited | - | ✅ | ` typed ` | 9 | - |
@@ -293,7 +300,7 @@
 | label | ` <label> ` | widely | 2015 | ✅ | ` typed ` | 3 | - |
 | lang-attr | ` lang ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
 | language | ` Language ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 6 | - |
-| largest-contentful-paint | ` Largest contentful paint (LCP) ` | limited | - | ✅ | ` typed ` | 7 | - |
+| largest-contentful-paint | ` Largest contentful paint (LCP) ` | newly | 2025 | ✅ | ` typed ` | 7 | - |
 | layout-instability | ` Layout instability ` | limited | - | ✅ | ` typed ` | 9 | - |
 | link | ` <link> ` | widely | 2015 | ✅ | ` typed ` | 11 | - |
 | link-rel-prefetch | ` link-rel-prefetch ` | limited | - | ❌ | - | - | HTML link rel — use `html-eslint` |
@@ -326,7 +333,7 @@
 | mutation-events | ` Mutation events ` | limited | - | ✅ | ` typed ` | 6 | - |
 | mutationobserver | ` MutationObserver ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 13 | - |
 | namespace | ` @namespace ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
-| navigation | ` Navigation API ` | limited | - | ✅ | ` safe `, ` typed ` | 52 | - |
+| navigation | ` Navigation API ` | newly | 2026 | ✅ | ` safe `, ` typed ` | 52 | - |
 | navigation-timing | ` Navigation timing ` | widely | 2021 | ✅ | ` typed ` | 12 | - |
 | navigator | ` Navigator ` | widely | 2015 | ✅ | ` safe ` | 1 | - |
 | nesting | ` Nesting ` | newly | 2023 | ✅ | ` typed ` | 4 | - |
@@ -348,6 +355,7 @@
 | offscreen-canvas | ` Offscreen canvas ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 73 | - |
 | online | ` Online status ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 6 | - |
 | orientation-sensor | ` Orientation Sensor ` | limited | - | ✅ | ` safe `, ` typed ` | 14 | - |
+| origin | ` Origin ` | limited | - | ✅ | ` safe `, ` typed ` | 5 | - |
 | origin-private-file-system | ` Origin private file system ` | widely | 2023 | ✅ | ` typed ` | 19 | - |
 | output | ` <output> ` | widely | - | ✅ | ` safe `, ` typed ` | 8 | - |
 | ovr-multiview2 | ` OVR_multiview2 WebGL extension ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
@@ -368,6 +376,7 @@
 | performancetiming | ` PerformanceTiming and PerformanceNavigation ` | limited | - | ✅ | ` typed ` | 27 | - |
 | periodic-background-sync | ` Periodic background sync ` | limited | - | ✅ | ` safe `, ` typed ` | 7 | - |
 | permissions | ` Permissions ` | widely | 2022 | ✅ | ` safe `, ` typed ` | 7 | - |
+| permissions-policy | ` Permissions policy ` | limited | - | ✅ | ` typed ` | 1 | - |
 | picture | ` <picture> ` | widely | 2016 | ❌ | - | - | HTML element — use `html-eslint` |
 | picture-in-picture | ` Picture-in-picture (video) ` | limited | - | ✅ | ` safe `, ` typed ` | 13 | - |
 | ping | ` ping ` | limited | - | ✅ | ` typed ` | 3 | - |
@@ -380,7 +389,7 @@
 | preloading-responsive-images | ` Preloading responsive images ` | newly | 2023 | ✅ | ` typed ` | 2 | - |
 | presentation-api | ` Presentation API ` | limited | - | ✅ | ` safe `, ` typed ` | 30 | - |
 | preserves-pitch | ` preservesPitch ` | newly | 2023 | ✅ | ` typed ` | 1 | - |
-| print | ` window.print() ` | newly | 2023 | ✅ | ` safe ` | 1 | - |
+| print | ` window.print() ` | widely | 2023 | ✅ | ` safe ` | 1 | - |
 | print-events | ` Print events ` | widely | 2019 | ✅ | ` safe ` | 2 | - |
 | private-click-measurement | ` Private click measurement ` | limited | - | ✅ | ` typed ` | 1 | - |
 | profiler | ` Profiler ` | limited | - | ✅ | ` safe `, ` typed ` | 4 | - |
@@ -394,6 +403,8 @@
 | region-capture | ` Region capture ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
 | registered-custom-properties | ` Registered custom properties ` | newly | 2024 | ✅ | ` safe `, ` typed ` | 5 | - |
 | registerprotocolhandler | ` registerProtocolHandler ` | limited | - | ✅ | ` safe ` | 2 | - |
+| related-apps | ` Related apps ` | limited | - | ✅ | ` safe ` | 1 | - |
+| related-website-sets | ` Related website sets ` | limited | - | ✅ | ` typed ` | 2 | - |
 | remote-playback | ` Remote playback ` | limited | - | ✅ | ` typed ` | 9 | - |
 | reporting | ` Reporting API ` | limited | - | ✅ | ` safe `, ` typed ` | 18 | - |
 | request-animation-frame | ` requestAnimationFrame() ` | widely | 2015 | ✅ | ` safe ` | 2 | - |
@@ -407,7 +418,7 @@
 | sanitizer | ` Sanitizer API ` | limited | - | ✅ | ` safe `, ` typed ` | 13 | - |
 | savedata | ` Save-Data ` | limited | - | ✅ | ` typed ` | 1 | - |
 | scheduler | ` Scheduler API ` | limited | - | ✅ | ` safe `, ` typed ` | 9 | - |
-| scope | ` @scope ` | limited | - | ✅ | ` typed ` | 2 | - |
+| scope | ` @scope ` | newly | 2025 | ✅ | ` typed ` | 2 | - |
 | scoped-custom-element-registries | ` Scoped custom element registries ` | limited | - | ✅ | ` safe `, ` typed ` | 6 | - |
 | screen | ` Screen ` | widely | 2015 | ✅ | ` typed ` | 6 | - |
 | screen-capture | ` Screen capture ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
@@ -418,9 +429,10 @@
 | scroll-driven-animations | ` Scroll-driven animations ` | limited | - | ✅ | ` safe `, ` typed ` | 7 | - |
 | scroll-elements | ` Scroll methods on elements ` | widely | 2020 | ✅ | ` safe `, ` typed ` | 15 | - |
 | scroll-into-view | ` scrollIntoView() ` | widely | 2020 | ✅ | ` typed ` | 1 | - |
+| scroll-into-view-container | ` scrollIntoView() container ` | limited | - | ❌ | - | - | - |
 | scroll-snap-events | ` Scroll snap events ` | limited | - | ✅ | ` safe `, ` typed ` | 9 | - |
 | scroll-to-text-fragment | ` Scroll to text fragment ` | newly | 2024 | ✅ | ` typed ` | 1 | - |
-| scrollend | ` scrollend ` | limited | - | ✅ | ` typed ` | 2 | - |
+| scrollend | ` scrollend ` | newly | 2025 | ✅ | ` typed ` | 2 | - |
 | secure-payment-confirmation | ` Secure payment confirmation ` | limited | - | ✅ | ` safe ` | 1 | - |
 | select | ` <select> ` | widely | 2015 | ✅ | ` typed ` | 29 | - |
 | selection-api | ` Selection ` | widely | 2017 | ✅ | ` safe `, ` typed ` | 73 | - |
@@ -451,7 +463,7 @@
 | srcset | ` srcset and sizes ` | widely | 2017 | ✅ | ` typed ` | 4 | - |
 | starting-style | ` @starting-style ` | newly | 2024 | ❌ | - | - | CSS at-rule — use stylelint |
 | state | ` :state() ` | newly | 2024 | ✅ | ` typed ` | 11 | - |
-| storage-access | ` Storage access ` | newly | 2023 | ✅ | ` typed ` | 5 | - |
+| storage-access | ` Storage access ` | newly | 2023 | ✅ | ` typed ` | 3 | - |
 | storage-buckets | ` Storage buckets ` | limited | - | ✅ | ` safe `, ` typed ` | 14 | - |
 | storage-manager | ` Storage manager ` | newly | 2023 | ✅ | ` safe `, ` typed ` | 6 | - |
 | streams | ` Streams ` | widely | 2022 | ✅ | ` safe `, ` typed ` | 44 | - |
@@ -460,7 +472,7 @@
 | summarizer | ` Summarizer ` | limited | - | ✅ | ` safe `, ` typed ` | 14 | - |
 | supports | ` @supports ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
 | svg | ` SVG ` | widely | 2020 | ✅ | ` typed ` | 247 | - |
-| svg-discouraged | ` SVG 1.1 (discouraged) ` | limited | - | ✅ | ` typed ` | 33 | - |
+| svg-discouraged | ` SVG 1.1 ` | limited | - | ✅ | ` typed ` | 33 | - |
 | svg-filters | ` SVG filters ` | widely | 2015 | ✅ | ` typed ` | 176 | - |
 | tabindex | ` tabindex ` | widely | 2018 | ✅ | ` typed ` | 1 | - |
 | table | ` Tables ` | widely | 2015 | ✅ | ` typed ` | 29 | - |
@@ -472,6 +484,7 @@
 | time | ` <time> ` | widely | 2017 | ✅ | ` typed ` | 1 | - |
 | title | ` <title> ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
 | title-attr | ` title (attribute) ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
+| toggleevent-source | ` ToggleEvent source ` | limited | - | ✅ | ` typed ` | 1 | - |
 | topics | ` Topics ` | limited | - | ✅ | ` typed ` | 3 | - |
 | touch-events | ` Touch events ` | limited | - | ✅ | ` safe `, ` typed ` | 30 | - |
 | transferable-streams | ` Transferable streams ` | limited | - | ✅ | ` typed ` | 3 | - |
@@ -487,7 +500,7 @@
 | user-agent-sniffing | ` User agent sniffing ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 2 | - |
 | vibration | ` Vibration ` | limited | - | ✅ | ` safe ` | 1 | - |
 | video | ` <video> ` | widely | 2015 | ✅ | ` typed ` | 61 | - |
-| view-transitions | ` View transitions ` | limited | - | ✅ | ` safe `, ` typed ` | 12 | - |
+| view-transitions | ` View transitions ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 12 | - |
 | viewport-segments | ` Viewport segments ` | limited | - | ✅ | ` safe `, ` typed ` | 2 | - |
 | virtual-keyboard | ` Virtual keyboard ` | limited | - | ✅ | ` safe `, ` typed ` | 7 | - |
 | visual-viewport | ` Visual viewport API ` | widely | 2021 | ✅ | ` safe `, ` typed ` | 11 | - |
@@ -530,7 +543,7 @@
 | webnn | ` WebNN ` | limited | - | ✅ | ` safe `, ` typed ` | 98 | - |
 | webrtc | ` WebRTC ` | widely | 2020 | ✅ | ` safe `, ` typed ` | 155 | - |
 | webrtc-encoded-transform | ` WebRTC encoded transform ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 17 | - |
-| webrtc-sctp | ` WebRTC SCTP information ` | newly | 2023 | ✅ | ` typed ` | 6 | - |
+| webrtc-sctp | ` WebRTC SCTP information ` | widely | 2023 | ✅ | ` typed ` | 6 | - |
 | webrtc-stats | ` WebRTC statistics ` | widely | 2020 | ✅ | ` typed ` | 25 | - |
 | websockets | ` WebSockets ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 22 | - |
 | webtransport | ` WebTransport ` | limited | - | ✅ | ` safe `, ` typed ` | 29 | - |
@@ -563,18 +576,18 @@
 
 ## JavaScript Builtins (javascript.*)
 
-- total: `100`
+- total: `101`
 - excluded (out-of-scope): `9`
-- included (in-scope): `91`
+- included (in-scope): `92`
 - mapped: `91`
-- coverage: `100.0%`
+- coverage: `98.9%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Patterns | Descriptors | Memo |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | accessor-methods | ` Accessor methods ` | limited | - | ✅ | ` safe ` | 4 | - |
 | array | ` Array (initial support) ` | widely | 2015 | ✅ | ` typed ` | 12 | - |
 | array-at | ` Array at() ` | widely | 2022 | ✅ | ` typed ` | 1 | - |
-| array-by-copy | ` Array by copy ` | newly | 2023 | ✅ | ` typed ` | 4 | - |
+| array-by-copy | ` Array by copy ` | widely | 2023 | ✅ | ` typed ` | 4 | - |
 | array-copywithin | ` Array copyWithin() ` | widely | 2016 | ✅ | ` typed ` | 1 | - |
 | array-fill | ` Array fill() ` | widely | 2016 | ✅ | ` typed ` | 1 | - |
 | array-find | ` Array find() and findIndex() ` | widely | 2016 | ✅ | ` typed ` | 2 | - |
@@ -593,7 +606,7 @@
 | async-generators | ` Async generators ` | widely | 2020 | ✅ | - | 0 | Covered by JS Language (syntax); |
 | async-iterators | ` Async iterators and the for await..of loop ` | widely | 2020 | ✅ | - | 0 | Covered by JS Language (syntax); |
 | atomics-pause | ` Atomics.pause() ` | newly | 2025 | ✅ | ` safe ` | 1 | - |
-| atomics-wait-async | ` Atomics.waitAsync ` | limited | - | ✅ | ` safe ` | 1 | - |
+| atomics-wait-async | ` Atomics.waitAsync() ` | newly | 2025 | ✅ | ` safe ` | 1 | - |
 | bigint | ` BigInt ` | widely | 2020 | ✅ | - | 0 | - |
 | bigint64array | ` BigInt64Array ` | widely | 2021 | ✅ | ` typed ` | 2 | - |
 | date | ` Date ` | widely | 2015 | ✅ | ` typed ` | 45 | - |
@@ -619,6 +632,7 @@
 | intl-relative-time-format | ` Intl.RelativeTimeFormat ` | widely | 2020 | ✅ | ` safe ` | 1 | - |
 | intl-segmenter | ` Intl.Segmenter ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
 | is-error | ` Error.isError() ` | limited | - | ✅ | ` safe ` | 1 | - |
+| iterator-concat | ` Iterator.concat() ` | limited | - | ❌ | - | - | - |
 | iterator-methods | ` Iterator methods ` | newly | 2025 | ✅ | ` typed ` | 11 | - |
 | iterators | ` Iterators and the for...of loop ` | widely | 2015 | ❌ | - | - | Meta feature |
 | javascript | ` JavaScript (initial core language support) ` | widely | 2015 | ✅ | ` typed ` | 3 | - |
