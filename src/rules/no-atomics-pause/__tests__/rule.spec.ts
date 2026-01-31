@@ -34,4 +34,43 @@ describe("no-atomics-pause", () => {
     const msgs = await run("Atomics.wait(sab, 0, 0)");
     expect(msgs.length).toBe(0);
   });
+
+  // Edge case tests for global scope validation
+  it("does not flag shadowed Atomics variable", async () => {
+    const code = `
+      const Atomics = { pause: () => {} };
+      Atomics.pause();
+    `;
+    const msgs = await run(code);
+    expect(msgs.length).toBe(0);
+  });
+
+  it("does not flag shadowed Atomics in function scope", async () => {
+    const code = `
+      function test(Atomics) {
+        Atomics.pause();
+      }
+    `;
+    const msgs = await run(code);
+    expect(msgs.length).toBe(0);
+  });
+
+  it("does not flag shadowed Atomics member access", async () => {
+    const code = `
+      let Atomics = {};
+      Atomics.pause;
+    `;
+    const msgs = await run(code);
+    expect(msgs.length).toBe(0);
+  });
+
+  it("flags global Atomics.pause in nested scope", async () => {
+    const code = `
+      function test() {
+        Atomics.pause();
+      }
+    `;
+    const msgs = await run(code);
+    expect(msgs.length).toBe(1);
+  });
 });

@@ -1,9 +1,9 @@
 import type { Rule } from "eslint";
+import { isGlobalNotShadowed } from "../../util/ast";
 
 // TODO(spec-tracking)
 // - Track proposal status; adjust behavior when standardized/renamed.
 // - Consider alias detection (e.g., const s = Math.sumPrecise; s()).
-// - Ensure no conflicts with future Math APIs (guard by global Math).
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -14,8 +14,14 @@ const rule: Rule.RuleModule = {
   },
   create(context) {
     function report(node: unknown) {
-      context.report({ node: node as unknown as Rule.Node, messageId: "forbidden" });
+      context.report({ node: node as Rule.Node, messageId: "forbidden" });
     }
+
+    function isMathIdentifier(objectNode: unknown): boolean {
+      const obj = objectNode as { type?: string; name?: string } | undefined;
+      return obj?.type === "Identifier" && obj?.name === "Math";
+    }
+
     return {
       CallExpression(node: unknown) {
         const n = node as Record<string, unknown>;
@@ -24,12 +30,12 @@ const rule: Rule.RuleModule = {
           callee &&
           callee.type === "MemberExpression" &&
           callee.computed === false &&
-          (callee.object as Record<string, unknown>)?.type === "Identifier" &&
-          (callee.object as Record<string, unknown>)?.name === "Math" &&
+          isMathIdentifier(callee.object) &&
           (callee.property as Record<string, unknown>)?.type === "Identifier" &&
-          (callee.property as Record<string, unknown>)?.name === "sumPrecise"
+          (callee.property as Record<string, unknown>)?.name === "sumPrecise" &&
+          isGlobalNotShadowed(context, "Math", node)
         ) {
-          report(callee.property as Record<string, unknown> as unknown);
+          report(callee.property);
         }
       },
       MemberExpression(node: unknown) {
@@ -39,12 +45,12 @@ const rule: Rule.RuleModule = {
         if (parent?.type === "CallExpression" && parent.callee === node) return;
         if (
           m.computed === false &&
-          (m.object as Record<string, unknown>)?.type === "Identifier" &&
-          (m.object as Record<string, unknown>)?.name === "Math" &&
+          isMathIdentifier(m.object) &&
           (m.property as Record<string, unknown>)?.type === "Identifier" &&
-          (m.property as Record<string, unknown>)?.name === "sumPrecise"
+          (m.property as Record<string, unknown>)?.name === "sumPrecise" &&
+          isGlobalNotShadowed(context, "Math", node)
         ) {
-          report(m.property as Record<string, unknown> as unknown);
+          report(m.property);
         }
       },
     };

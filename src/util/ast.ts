@@ -20,6 +20,45 @@ export function isUnboundIdentifier(
   return true;
 }
 
+/**
+ * Checks if an identifier refers to the global (not shadowed by a local declaration).
+ * Unlike isUnboundIdentifier, this skips the global scope check since ESLint's globals
+ * (like Atomics, structuredClone) are in the global scope's variable set.
+ *
+ * @param context - The ESLint rule context
+ * @param name - The identifier name to check
+ * @param parentNode - The parent node (CallExpression or MemberExpression)
+ */
+export function isGlobalNotShadowed(
+  context: Rule.RuleContext,
+  name: string,
+  parentNode: unknown,
+): boolean {
+  // Use ESLint v9 standard API: context.sourceCode.getScope(node)
+  // We use the parent node because ESLint's getScope requires proper AST nodes
+  const sourceCode = context.sourceCode as { getScope?: (n: unknown) => unknown };
+  if (!sourceCode?.getScope) return true; // Conservative: treat as global if no scope API
+
+  try {
+    let scope: unknown = sourceCode.getScope(parentNode);
+    while (scope) {
+      const s = scope as {
+        set?: { has?: (k: string) => boolean };
+        upper?: unknown;
+        type?: string;
+      };
+      // Skip global scope - we only care about local variable shadowing
+      if (s.type === "global") break;
+      if (s.set?.has?.(name)) return false; // Shadowed by local declaration
+      scope = s.upper || null;
+    }
+    return true;
+  } catch {
+    // If getScope fails, conservatively treat as global
+    return true;
+  }
+}
+
 export function isGlobalBase(_context: Rule.RuleContext, node: unknown, baseName: string): boolean {
   if (!node) return false;
   const id = node as { type?: string; name?: string };
