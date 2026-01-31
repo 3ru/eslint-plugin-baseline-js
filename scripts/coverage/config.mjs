@@ -44,20 +44,11 @@ export default {
       },
       "webgl-sab": { memo: "SAB requires COOP/COEP — environment dependent", exclude: true },
 
-      // Global function — no callIdent descriptor kind available
-      queuemicrotask: {
-        memo: "Global function — no callIdent detection mechanism",
-        exclude: true,
-      },
-
-      // scrollIntoView() option semantics — not static-detectable
+      // scrollIntoView() option semantics — requires typed receiver validation
       "scroll-into-view-container": {
-        memo: "Option semantics — not static-detectable",
+        memo: "Option detection requires typed receiver validation (Element.scrollIntoView) — future enhancement",
         exclude: true,
       },
-
-      // Avoid double counting: covered under JavaScript builtins
-      "structured-clone": { memo: "Covered in JS builtins (structuredClone)", exclude: true },
     },
   },
   jsbi: {

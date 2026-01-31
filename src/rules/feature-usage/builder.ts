@@ -1,5 +1,6 @@
 import type { Rule } from "eslint";
 import type {
+  CallGlobalDescriptor,
   CallMemberWithArgsDescriptor,
   CallStaticDescriptor,
   Descriptor,
@@ -12,6 +13,7 @@ import type {
 import { mergeRuleListeners } from "../../utils/listeners";
 import { addCallMemberWithArgsDetector, addNewWithOptionsDetector } from "./detectors/safe-args";
 import {
+  addCallGlobalDetector,
   addCallStaticDetector,
   addMemberDetector,
   addNewIdentDetector,
@@ -65,6 +67,12 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
         mergeRuleListeners(
           listeners,
           addCallStaticDetector(context, d as CallStaticDescriptor, report),
+        );
+        break;
+      case "callGlobal":
+        mergeRuleListeners(
+          listeners,
+          addCallGlobalDetector(context, d as CallGlobalDescriptor, report),
         );
         break;
       case "member":

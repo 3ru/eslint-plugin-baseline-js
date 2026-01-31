@@ -30,6 +30,11 @@ for (const [id, f] of Object.entries(wfFeatures)) {
     for (const k of cfs) {
       if (!k.startsWith("api.")) continue;
       const parts = k.split(".");
+      // Global functions: api.functionName (e.g., api.structuredClone, api.queueMicrotask)
+      if (parts.length === 2) {
+        apiDescs.push({ featureId: id, kind: "callGlobal", name: parts[1] });
+        continue;
+      }
       if (parts.length === 3 && parts[1] === parts[2]) {
         apiDescs.push({ featureId: id, kind: "newIdent", name: parts[1] });
         continue;
