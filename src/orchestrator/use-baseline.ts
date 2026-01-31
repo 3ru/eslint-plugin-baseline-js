@@ -328,6 +328,14 @@ const rule: Rule.RuleModule = {
         const src = ctx as unknown as Record<string, unknown>;
         if (src[k] != null) delegateCtx[k] = src[k];
       }
+      if (
+        delegateCtx.sourceCode == null &&
+        typeof (ctx as unknown as { getSourceCode?: () => unknown }).getSourceCode === "function"
+      ) {
+        delegateCtx.sourceCode = (
+          ctx as unknown as { getSourceCode: () => unknown }
+        ).getSourceCode();
+      }
       delegateCtx.options = [
         typedEnabled ? { descriptors, messages, typed: true } : { descriptors, messages },
       ];

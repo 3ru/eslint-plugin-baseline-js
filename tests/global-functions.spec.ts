@@ -33,6 +33,17 @@ describe("global function detection (callGlobal)", () => {
           code: "structuredClone(obj);",
           options: [{ available: "widely", includeWebApis: { preset: "safe" } }],
         },
+        {
+          // Shadowed global in module scope should not report
+          code: "function structuredClone() { return 1; } structuredClone({ a: 1 });",
+          options: [{ available: 2015, includeWebApis: { preset: "safe" } }],
+        },
+        {
+          // Shadowed global in script scope should not report
+          code: "var structuredClone = () => {}; structuredClone({ a: 1 });",
+          options: [{ available: 2015, includeWebApis: { preset: "safe" } }],
+          languageOptions: { ecmaVersion: 2022, sourceType: "script" },
+        },
       ],
       invalid: [
         {
@@ -63,6 +74,17 @@ describe("global function detection (callGlobal)", () => {
           // 'widely' should not flag queueMicrotask (it's baseline high)
           code: "queueMicrotask(fn);",
           options: [{ available: "widely", includeWebApis: { preset: "safe" } }],
+        },
+        {
+          // Shadowed import should not report
+          code: "import { queueMicrotask } from 'x'; queueMicrotask(cb);",
+          options: [{ available: 2019, includeWebApis: { preset: "safe" } }],
+        },
+        {
+          // Shadowed global in script scope should not report
+          code: "var queueMicrotask = () => {}; queueMicrotask(cb);",
+          options: [{ available: 2019, includeWebApis: { preset: "safe" } }],
+          languageOptions: { ecmaVersion: 2022, sourceType: "script" },
         },
       ],
       invalid: [
