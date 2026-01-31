@@ -17,7 +17,7 @@ jobs:
       id-token: write  # OIDC for npm provenance
     steps:
       - name: Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -64,4 +64,4 @@ jobs:
         run: |
           if [ -n "${NPM_CONFIG_USERCONFIG}" ] && [ -f "${NPM_CONFIG_USERCONFIG}" ]; then rm -f "${NPM_CONFIG_USERCONFIG}" || true; fi
           unset NODE_AUTH_TOKEN || true
-          npx semantic-release@24.2.9
+          npx semantic-release@25.0.2
