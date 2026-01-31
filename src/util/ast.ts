@@ -22,8 +22,8 @@ export function isUnboundIdentifier(
 
 /**
  * Checks if an identifier refers to the global (not shadowed by a local declaration).
- * Unlike isUnboundIdentifier, this skips the global scope check since ESLint's globals
- * (like Atomics, structuredClone) are in the global scope's variable set.
+ * Unlike isUnboundIdentifier, this treats global built-ins (like Atomics, structuredClone)
+ * as allowed, while still respecting explicit global declarations that shadow them.
  *
  * @param context - The ESLint rule context
  * @param name - The identifier name to check
@@ -34,29 +34,56 @@ export function isGlobalNotShadowed(
   name: string,
   parentNode: unknown,
 ): boolean {
-  // Use ESLint v9 standard API: context.sourceCode.getScope(node)
-  // We use the parent node because ESLint's getScope requires proper AST nodes
-  const sourceCode = context.sourceCode as { getScope?: (n: unknown) => unknown };
-  if (!sourceCode?.getScope) return true; // Conservative: treat as global if no scope API
+  // These loose types mirror eslint-scope shapes without depending on private types.
+  type VariableLike = {
+    name?: string;
+    defs?: unknown[];
+    eslintExplicitGlobal?: boolean;
+  };
+  type ScopeLike = {
+    set?: { has?: (k: string) => boolean; get?: (k: string) => unknown };
+    variables?: VariableLike[];
+    upper?: unknown;
+    type?: string;
+  };
 
-  try {
-    let scope: unknown = sourceCode.getScope(parentNode);
-    while (scope) {
-      const s = scope as {
-        set?: { has?: (k: string) => boolean };
-        upper?: unknown;
-        type?: string;
-      };
-      // Skip global scope - we only care about local variable shadowing
-      if (s.type === "global") break;
-      if (s.set?.has?.(name)) return false; // Shadowed by local declaration
-      scope = s.upper || null;
+  function findVariable(
+    scope: ScopeLike,
+    varName: string,
+  ): {
+    found: boolean;
+    variable?: VariableLike;
+  } {
+    // Some scope containers fill only one of these; checking all reduces false positives.
+    const bySet = scope.set?.get?.(varName) as VariableLike | undefined;
+    if (bySet) return { found: true, variable: bySet };
+    if (Array.isArray(scope.variables)) {
+      const byVars = scope.variables.find((v) => v?.name === varName);
+      if (byVars) return { found: true, variable: byVars };
     }
-    return true;
-  } catch {
-    // If getScope fails, conservatively treat as global
-    return true;
+    if (scope.set?.has?.(varName)) return { found: true };
+    return { found: false };
   }
+
+  const sourceCode = context.sourceCode as { getScope?: (n: unknown) => unknown };
+  if (!sourceCode?.getScope) return true; // Conservative: avoid false positives when scope info is missing
+  const scope = sourceCode.getScope(parentNode);
+
+  let current: unknown = scope;
+  while (current) {
+    const s = current as ScopeLike;
+    const { found, variable } = findVariable(s, name);
+    if (found) {
+      if (s.type !== "global") return false; // Shadowed by local declaration
+      // In script files, top-level `var`/`function` live in global scope.
+      // Only treat them as shadowing when ESLint marks them with defs; built-ins have none.
+      const defs = variable?.defs;
+      if (Array.isArray(defs) && defs.length > 0) return false;
+      return true;
+    }
+    current = s.upper || null;
+  }
+  return true;
 }
 
 export function isGlobalBase(_context: Rule.RuleContext, node: unknown, baseName: string): boolean {

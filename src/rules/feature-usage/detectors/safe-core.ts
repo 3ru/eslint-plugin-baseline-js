@@ -6,7 +6,7 @@ import type {
   NewIdentDescriptor,
   NewMemberDescriptor,
 } from "../../../baseline/types";
-import { isGlobalBase, isMemberWithProperty } from "../../../util/ast";
+import { isGlobalBase, isGlobalNotShadowed, isMemberWithProperty } from "../../../util/ast";
 export type Reporter = (node: unknown, featureId: string) => void;
 
 export function addNewIdentDetector(
@@ -23,7 +23,8 @@ export function addNewIdentDetector(
     if (
       callee?.type === "Identifier" &&
       callee.name === name &&
-      isGlobalBase(context, callee, name)
+      isGlobalBase(context, callee, name) &&
+      isGlobalNotShadowed(context, name, node)
     ) {
       report(callee, featureId);
     }
@@ -80,7 +81,8 @@ export function addCallGlobalDetector(
     if (
       callee?.type === "Identifier" &&
       callee.name === name &&
-      isGlobalBase(context, callee, name)
+      isGlobalBase(context, callee, name) &&
+      isGlobalNotShadowed(context, name, node)
     ) {
       report(callee, featureId);
     }
