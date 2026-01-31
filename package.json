@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-baseline-js",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Enforce JavaScript Baseline (widely/newly/year) browser compatibility with a single ESLint rule. Prevent runtime errors by catching unsupported JavaScript features during development.",
   "license": "MIT",
   "type": "module",

@@ -1,3 +1,15 @@
+# [0.5.0](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.4.2...v0.5.0) (2026-01-31)
+
+
+### Bug Fixes
+
+* avoid false positives for shadowed global functions ([#85](https://github.com/3ru/eslint-plugin-baseline-js/issues/85)) ([7f25e27](https://github.com/3ru/eslint-plugin-baseline-js/commit/7f25e27595b87b8831707fadba97cc2561b12b03))
+
+
+### Features
+
+* upgrade web-features to `3.14.0` with global function detection ([#82](https://github.com/3ru/eslint-plugin-baseline-js/issues/82)) ([927bd77](https://github.com/3ru/eslint-plugin-baseline-js/commit/927bd775266896e62968f39a9fd83be2cd67a1c9))
+
 ## [0.4.2](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.4.1...v0.4.2) (2025-11-26)
 
 
