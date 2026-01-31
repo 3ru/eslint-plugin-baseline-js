@@ -25,6 +25,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason:
+        'TC39 included accessor methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
+      reason_html:
+        'TC39 included accessor methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
     },
   },
   "arguments-callee": {
@@ -47,6 +51,8 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/ordinary-and-exotic-objects-behaviours.html#sec-arguments-exotic-objects",
       ],
+      reason: "JavaScript strict mode prohibits accessing arguments.callee.",
+      reason_html: "JavaScript strict mode prohibits accessing <code>arguments.callee</code>.",
     },
   },
   "async-await": {
@@ -87,16 +93,37 @@ export default {
       },
     },
   },
-  "atomics-wait-async": {
-    id: "atomics-wait-async",
-    name: "Atomics.waitAsync",
+  "atomics-pause": {
+    id: "atomics-pause",
+    name: "Atomics.pause()",
     group: ["javascript"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-04-01",
       support: {
-        chrome: "87",
-        chrome_android: "89",
-        edge: "87",
+        chrome: "133",
+        chrome_android: "133",
+        edge: "133",
+        firefox: "137",
+        firefox_android: "137",
+        safari: "18.4",
+        safari_ios: "18.4",
+      },
+    },
+  },
+  "atomics-wait-async": {
+    id: "atomics-wait-async",
+    name: "Atomics.waitAsync()",
+    group: ["javascript"],
+    status: {
+      baseline: "low",
+      baseline_low_date: "2025-11-11",
+      support: {
+        chrome: "90",
+        chrome_android: "90",
+        edge: "90",
+        firefox: "145",
+        firefox_android: "145",
         safari: "16.4",
         safari_ios: "16.4",
       },
@@ -179,6 +206,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason:
+        "The getYear() and setYear() methods use a truncated number instead of the actual year number, known as a year 2000 problem.",
+      reason_html:
+        "The <code>getYear()</code> and <code>setYear()</code> methods use a truncated number instead of the actual year number, known as a year 2000 problem.",
     },
   },
   "date-to-gmt-string": {
@@ -200,7 +231,10 @@ export default {
     discouraged: {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-date.prototype.togmtstring",
       ],
+      reason: 'The method exists "principally for compatibility with old code."',
+      reason_html: 'The method exists "principally for compatibility with old code."',
     },
   },
   destructuring: {
@@ -261,6 +295,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason:
+        'TC39 included the escape() and unescape() methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
+      reason_html:
+        'TC39 included the <code>escape()</code> and <code>unescape()</code> methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
     },
   },
   exponentiation: {
@@ -321,6 +359,10 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/error-handling-and-language-extensions.html#sec-forbidden-extensions",
       ],
+      reason:
+        "JavaScript strict mode prohibits accessing the caller and arguments properties of a Function object.",
+      reason_html:
+        "JavaScript strict mode prohibits accessing the <code>caller</code> and <code>arguments</code> properties of a <code>Function</code> object.",
     },
   },
   generators: {
@@ -401,6 +443,10 @@ export default {
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
       alternatives: ["dom"],
+      reason:
+        "HTML wrapper methods exist only for backwards compatibility. Use DOM APIs to create elements instead.",
+      reason_html:
+        "HTML wrapper methods exist only for backwards compatibility. Use DOM APIs to create elements instead.",
     },
   },
   "is-error": {
@@ -484,6 +530,8 @@ export default {
       support: {
         firefox: "137",
         firefox_android: "137",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -602,6 +650,8 @@ export default {
       according_to: [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
       ],
+      reason: "Changing __proto__ is slow and can cause surprising bugs.",
+      reason_html: "Changing <code>__proto__</code> is slow and can cause surprising bugs.",
     },
   },
   "proxy-reflect": {
@@ -705,6 +755,8 @@ export default {
     status: {
       baseline: false,
       support: {
+        chrome: "144",
+        chrome_android: "144",
         firefox: "139",
         firefox_android: "139",
       },
@@ -715,17 +767,13 @@ export default {
     name: "Top-level await",
     group: ["javascript"],
     status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-20",
-      baseline_high_date: "2024-03-20",
+      baseline: false,
       support: {
         chrome: "89",
         chrome_android: "89",
         edge: "89",
         firefox: "89",
         firefox_android: "89",
-        safari: "15",
-        safari_ios: "15",
       },
     },
   },
@@ -806,6 +854,8 @@ export default {
         "https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-with-statement",
       ],
       alternatives: ["destructuring"],
+      reason: "JavaScript strict mode prohibits the with statement.",
+      reason_html: "JavaScript strict mode prohibits the <code>with</code> statement.",
     },
   },
 } as const;

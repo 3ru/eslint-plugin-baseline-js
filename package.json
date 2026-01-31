@@ -55,7 +55,7 @@
     "typescript": "^5.9.3",
     "vitest": "^4.0.13",
     "vue-eslint-parser": "^9.4.3",
-    "web-features": "3.6.0"
+    "web-features": "3.14.0"
   },
   "peerDependencies": {
     "eslint": ">=8.57.0 <10"

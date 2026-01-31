@@ -1,5 +1,6 @@
 import type { Rule } from "eslint";
 import type {
+  CallGlobalDescriptor,
   CallStaticDescriptor,
   MemberDescriptor,
   NewIdentDescriptor,
@@ -61,6 +62,27 @@ export function addCallStaticDetector(
       isGlobalBase(context, (callee as unknown as { object?: unknown }).object, base)
     ) {
       report((callee as unknown as { property?: unknown }).property, featureId);
+    }
+  };
+  return { CallExpression: handler };
+}
+
+export function addCallGlobalDetector(
+  context: Rule.RuleContext,
+  d: CallGlobalDescriptor,
+  report: Reporter,
+): Rule.RuleListener {
+  const { name, featureId } = d;
+  const handler: Rule.RuleListener["CallExpression"] = (node) => {
+    const callee = (node as unknown as { callee?: unknown }).callee as
+      | { type?: string; name?: string }
+      | undefined;
+    if (
+      callee?.type === "Identifier" &&
+      callee.name === name &&
+      isGlobalBase(context, callee, name)
+    ) {
+      report(callee, featureId);
     }
   };
   return { CallExpression: handler };

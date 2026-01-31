@@ -113,11 +113,14 @@ export default {
     name: "Active view transition",
     group: ["view-transitions", "selectors"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2026-01-13",
       support: {
         chrome: "125",
         chrome_android: "125",
         edge: "125",
+        firefox: "147",
+        firefox_android: "147",
         safari: "18.2",
         safari_ios: "18.2",
       },
@@ -155,13 +158,7 @@ export default {
     name: "Anchor positioning",
     status: {
       baseline: false,
-      support: {
-        chrome: "125",
-        chrome_android: "125",
-        edge: "125",
-        safari: "26",
-        safari_ios: "26",
-      },
+      support: {},
     },
   },
   "angle-instanced-arrays": {
@@ -295,6 +292,17 @@ export default {
         edge: "133",
       },
     },
+    discouraged: {
+      according_to: [
+        "https://groups.google.com/a/chromium.org/g/blink-dev/c/4K2RRt6VYCQ",
+        "https://chromestatus.com/feature/6320639375966208",
+      ],
+      reason:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the attribution reporting API.",
+      reason_html:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the attribution reporting API.",
+      removal_date: "2026-06-01",
+    },
   },
   audio: {
     id: "audio",
@@ -380,6 +388,8 @@ export default {
       support: {
         firefox: "136",
         firefox_android: "136",
+        safari: "14.1",
+        safari_ios: "14.5",
       },
     },
   },
@@ -1056,6 +1066,18 @@ export default {
       },
     },
   },
+  clipboardchange: {
+    id: "clipboardchange",
+    name: "clipboardchange",
+    group: ["clipboard"],
+    status: {
+      baseline: false,
+      support: {
+        chrome: "144",
+        chrome_android: "144",
+      },
+    },
+  },
   closewatcher: {
     id: "closewatcher",
     name: "CloseWatcher",
@@ -1108,8 +1130,9 @@ export default {
     id: "compression-streams",
     name: "Compression streams",
     status: {
-      baseline: "low",
+      baseline: "high",
       baseline_low_date: "2023-05-09",
+      baseline_high_date: "2025-11-09",
       support: {
         chrome: "80",
         chrome_android: "80",
@@ -1484,6 +1507,10 @@ export default {
     discouraged: {
       according_to: ["https://www.w3.org/TR/DOM-Level-2-Style/#Overview-status"],
       alternatives: ["css-object-model"],
+      reason:
+        "The DOM level 2 CSS object model was excluded from the later CSS object model (CSSOM) specification.",
+      reason_html:
+        "The DOM level 2 CSS object model was excluded from the later CSS object model (CSSOM) specification.",
     },
   },
   "css-supports": {
@@ -1518,6 +1545,15 @@ export default {
         safari: "16.4",
         safari_ios: "16.4",
       },
+    },
+  },
+  "custom-media-queries": {
+    id: "custom-media-queries",
+    name: "Custom media queries",
+    group: ["media-queries"],
+    status: {
+      baseline: false,
+      support: {},
     },
   },
   "customized-built-in-elements": {
@@ -1706,9 +1742,9 @@ export default {
     status: {
       baseline: false,
       support: {
-        chrome: "65",
-        chrome_android: "65",
-        edge: "79",
+        chrome: "97",
+        chrome_android: "97",
+        edge: "97",
       },
     },
   },
@@ -1841,13 +1877,16 @@ export default {
     id: "document-caretpositionfrompoint",
     name: "document.caretPositionFromPoint()",
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-12-12",
       support: {
         chrome: "128",
         chrome_android: "128",
         edge: "128",
         firefox: "20",
         firefox_android: "20",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -1869,6 +1908,8 @@ export default {
     discouraged: {
       according_to: ["https://html.spec.whatwg.org/multipage/obsolete.html"],
       alternatives: ["background-color", "color", "css-object-model", "get-computed-style"],
+      reason: "Document color attributes are superseded by CSS.",
+      reason_html: "Document color attributes are superseded by CSS.",
     },
   },
   "document-picture-in-picture": {
@@ -1902,6 +1943,10 @@ export default {
         "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#document.write()",
       ],
       alternatives: ["dom"],
+      reason:
+        'The dynamic markup insertion API, which includes document.write(), has "very idiosyncratic behavior" which can be difficult to debug.',
+      reason_html:
+        'The dynamic markup insertion API, which includes <code>document.write()</code>, has "very idiosyncratic behavior" which can be difficult to debug.',
     },
   },
   dom: {
@@ -2110,13 +2155,16 @@ export default {
     name: "Event timing",
     group: ["performance"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-12-12",
       support: {
         chrome: "76",
         chrome_android: "76",
         edge: "79",
         firefox: "89",
         firefox_android: "89",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -2157,6 +2205,10 @@ export default {
     discouraged: {
       according_to: ["https://w3c.github.io/editing/docs/execCommand/"],
       alternatives: ["async-clipboard", "contenteditable"],
+      reason:
+        'The execCommand() method is "not implemented consistently or fully by user agents, and it is not expected that this will change in the foreseeable future."',
+      reason_html:
+        'The <code>execCommand()</code> method is "not implemented consistently or fully by user agents, and it is not expected that this will change in the foreseeable future."',
     },
   },
   "ext-blend-minmax": {
@@ -2370,6 +2422,10 @@ export default {
     },
     discouraged: {
       according_to: ["https://html.spec.whatwg.org/multipage/obsolete.html#external"],
+      reason:
+        "The window.external.AddSearchProvider() and window.external.IsSearchProviderInstalled() methods do nothing, by specification.",
+      reason_html:
+        "The <code>window.external.AddSearchProvider()</code> and <code>window.external.IsSearchProviderInstalled()</code> methods do nothing, by specification.",
     },
   },
   eyedropper: {
@@ -2395,6 +2451,24 @@ export default {
         safari: "8",
         safari_ios: "8",
       },
+    },
+  },
+  "feature-policy": {
+    id: "feature-policy",
+    name: "Feature policy",
+    status: {
+      baseline: false,
+      support: {
+        chrome: "74",
+        chrome_android: "74",
+        edge: "79",
+      },
+    },
+    discouraged: {
+      according_to: ["https://github.com/w3c/webappsec-permissions-policy/pull/379"],
+      alternatives: ["permissions-policy"],
+      reason: "Feature policy is superseded by permissions policy.",
+      reason_html: "Feature policy is superseded by permissions policy.",
     },
   },
   fedcm: {
@@ -2456,6 +2530,7 @@ export default {
   "fetch-priority": {
     id: "fetch-priority",
     name: "Fetch priority",
+    group: ["resource-hints"],
     status: {
       baseline: "low",
       baseline_low_date: "2024-10-29",
@@ -2657,7 +2732,7 @@ export default {
   form: {
     id: "form",
     name: "<form>",
-    group: ["forms"],
+    group: ["forms", "landmark-elements"],
     status: {
       baseline: "high",
       baseline_low_date: "2015-07-29",
@@ -2964,8 +3039,6 @@ export default {
         chrome: "102",
         chrome_android: "102",
         edge: "102",
-        firefox: "139",
-        firefox_android: "139",
       },
     },
   },
@@ -3374,6 +3447,43 @@ export default {
       },
     },
   },
+  "input-file-multiple": {
+    id: "input-file-multiple",
+    name: '<input type="file" multiple>',
+    group: ["forms", "file-system"],
+    status: {
+      baseline: "high",
+      baseline_low_date: "2015-07-29",
+      baseline_high_date: "2018-01-29",
+      support: {
+        chrome: "2",
+        chrome_android: "18",
+        edge: "12",
+        firefox: "3.6",
+        firefox_android: "4",
+        safari: "4",
+        safari_ios: "3.2",
+      },
+    },
+  },
+  "input-file-webkitdirectory": {
+    id: "input-file-webkitdirectory",
+    name: '<input type="file" webkitdirectory>',
+    group: ["forms", "file-system"],
+    status: {
+      baseline: "low",
+      baseline_low_date: "2025-08-19",
+      support: {
+        chrome: "13",
+        chrome_android: "132",
+        edge: "13",
+        firefox: "50",
+        firefox_android: "142",
+        safari: "11.1",
+        safari_ios: "18.4",
+      },
+    },
+  },
   "input-image": {
     id: "input-image",
     name: '<input type="image">',
@@ -3441,6 +3551,19 @@ export default {
       },
     },
   },
+  "interest-invokers": {
+    id: "interest-invokers",
+    name: "Interest invokers",
+    group: ["html"],
+    status: {
+      baseline: false,
+      support: {
+        chrome: "142",
+        chrome_android: "142",
+        edge: "142",
+      },
+    },
+  },
   "intersection-observer": {
     id: "intersection-observer",
     name: "Intersection observer",
@@ -3463,11 +3586,16 @@ export default {
     id: "invoker-commands",
     name: "Invoker commands",
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-12-12",
       support: {
         chrome: "135",
         chrome_android: "135",
         edge: "135",
+        firefox: "144",
+        firefox_android: "144",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -3485,6 +3613,10 @@ export default {
     discouraged: {
       according_to: ["https://web.dev/articles/optimize-long-tasks#isinputpending"],
       alternatives: ["scheduler"],
+      reason:
+        "The navigator.scheduling.isInputPending() method may incorrectly return false and is not the only case where you might expect to yield.",
+      reason_html:
+        "The <code>navigator.scheduling.isInputPending()</code> method may incorrectly return <code>false</code> and is not the only case where you might expect to yield.",
     },
   },
   "is-secure-context": {
@@ -3529,11 +3661,14 @@ export default {
     name: "JavaScript modules in service workers",
     group: ["js-modules", "workers"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2026-01-13",
       support: {
         chrome: "91",
         chrome_android: "91",
         edge: "91",
+        firefox: "147",
+        firefox_android: "147",
         safari: "15",
         safari_ios: "15",
       },
@@ -3560,8 +3695,9 @@ export default {
     name: "JavaScript modules in workers",
     group: ["js-modules", "workers"],
     status: {
-      baseline: "low",
+      baseline: "high",
       baseline_low_date: "2023-06-06",
+      baseline_high_date: "2025-12-06",
       support: {
         chrome: "80",
         chrome_android: "80",
@@ -3690,13 +3826,16 @@ export default {
     name: "Largest contentful paint (LCP)",
     group: ["performance"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-12-12",
       support: {
         chrome: "77",
         chrome_android: "77",
         edge: "79",
         firefox: "122",
         firefox_android: "122",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -3735,6 +3874,7 @@ export default {
   "link-rel-prefetch": {
     id: "link-rel-prefetch",
     name: '<link rel="prefetch">',
+    group: ["resource-hints"],
     status: {
       baseline: false,
       support: {
@@ -4029,6 +4169,10 @@ export default {
     },
     discouraged: {
       according_to: ["https://github.com/w3c/html/issues/246"],
+      reason:
+        "The MediaController API was dropped from the specification due to lack of implementations.",
+      reason_html:
+        "The <code>MediaController</code> API was dropped from the specification due to lack of implementations.",
     },
   },
   "mediastream-recording": {
@@ -4153,6 +4297,8 @@ export default {
         chrome: "133",
         chrome_android: "133",
         edge: "133",
+        firefox: "144",
+        firefox_android: "144",
       },
     },
   },
@@ -4167,8 +4313,14 @@ export default {
     discouraged: {
       according_to: [
         "https://www.w3.org/TR/2024/WD-uievents-20240906/#legacy-mutationevent-events",
+        "https://github.com/web-platform-tests/interop/issues/784",
       ],
       alternatives: ["mutationobserver"],
+      reason:
+        "Mutation events negatively impact performance and they were selected for removal from the web as part of Interop 2025.",
+      reason_html:
+        "Mutation events negatively impact performance and they were selected for removal from the web as part of Interop 2025.",
+      removal_date: "2025-09-15",
     },
   },
   mutationobserver: {
@@ -4213,11 +4365,16 @@ export default {
     id: "navigation",
     name: "Navigation API",
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2026-01-13",
       support: {
         chrome: "102",
         chrome_android: "102",
         edge: "102",
+        firefox: "147",
+        firefox_android: "147",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -4576,6 +4733,14 @@ export default {
       },
     },
   },
+  origin: {
+    id: "origin",
+    name: "Origin",
+    status: {
+      baseline: false,
+      support: {},
+    },
+  },
   "origin-private-file-system": {
     id: "origin-private-file-system",
     name: "Origin private file system",
@@ -4864,6 +5029,9 @@ export default {
     discouraged: {
       according_to: ["https://w3c.github.io/navigation-timing/#obsolete"],
       alternatives: ["performance", "navigation-timing"],
+      reason: "This feature is supserseded by the PerformanceNavigationTiming API.",
+      reason_html:
+        "This feature is supserseded by the <code>PerformanceNavigationTiming</code> API.",
     },
   },
   "periodic-background-sync": {
@@ -4894,6 +5062,18 @@ export default {
         firefox_android: "46",
         safari: "16",
         safari_ios: "16",
+      },
+    },
+  },
+  "permissions-policy": {
+    id: "permissions-policy",
+    name: "Permissions policy",
+    status: {
+      baseline: false,
+      support: {
+        chrome: "108",
+        chrome_android: "108",
+        edge: "108",
       },
     },
   },
@@ -5097,8 +5277,9 @@ export default {
     name: "window.print()",
     group: ["print"],
     status: {
-      baseline: "low",
+      baseline: "high",
       baseline_low_date: "2023-06-06",
+      baseline_high_date: "2025-12-06",
       support: {
         chrome: "1",
         chrome_android: "18",
@@ -5312,6 +5493,42 @@ export default {
       },
     },
   },
+  "related-apps": {
+    id: "related-apps",
+    name: "Related apps",
+    group: ["progressive-web-app"],
+    status: {
+      baseline: false,
+      support: {
+        chrome_android: "84",
+        edge: "85",
+      },
+    },
+  },
+  "related-website-sets": {
+    id: "related-website-sets",
+    name: "Related website sets",
+    status: {
+      baseline: false,
+      support: {
+        chrome: "119",
+        chrome_android: "120",
+        edge: "119",
+      },
+    },
+    discouraged: {
+      according_to: [
+        "https://groups.google.com/a/chromium.org/g/blink-dev/c/V-wPXyoruac",
+        "https://chromestatus.com/feature/5162221567082496",
+        "https://chromestatus.com/feature/5194473869017088",
+      ],
+      reason:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the related website sets.",
+      reason_html:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the related website sets.",
+      removal_date: "2026-06-01",
+    },
+  },
   "remote-playback": {
     id: "remote-playback",
     name: "Remote playback",
@@ -5522,11 +5739,14 @@ export default {
     name: "@scope",
     group: ["css"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-12-09",
       support: {
         chrome: "118",
         chrome_android: "118",
         edge: "118",
+        firefox: "146",
+        firefox_android: "146",
         safari: "17.4",
         safari_ios: "17.4",
       },
@@ -5600,6 +5820,8 @@ export default {
       baseline: false,
       support: {
         chrome_android: "38",
+        firefox: "144",
+        firefox_android: "144",
       },
     },
   },
@@ -5691,6 +5913,19 @@ export default {
       },
     },
   },
+  "scroll-into-view-container": {
+    id: "scroll-into-view-container",
+    name: "scrollIntoView() container",
+    group: ["scrolling"],
+    status: {
+      baseline: false,
+      support: {
+        chrome: "140",
+        chrome_android: "140",
+        edge: "140",
+      },
+    },
+  },
   "scroll-snap-events": {
     id: "scroll-snap-events",
     name: "Scroll snap events",
@@ -5727,13 +5962,16 @@ export default {
     name: "scrollend",
     group: ["scrolling"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-12-12",
       support: {
         chrome: "114",
         chrome_android: "114",
         edge: "114",
         firefox: "109",
         firefox_android: "109",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -5971,6 +6209,17 @@ export default {
         edge: "126",
       },
     },
+    discouraged: {
+      according_to: [
+        "https://groups.google.com/a/chromium.org/g/blink-dev/c/uh5Ke6qyegc",
+        "https://chromestatus.com/feature/5076349064708096",
+      ],
+      reason:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the shared storage.",
+      reason_html:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the shared storage.",
+      removal_date: "2026-06-01",
+    },
   },
   "shared-storage-locks": {
     id: "shared-storage-locks",
@@ -5982,6 +6231,17 @@ export default {
         chrome_android: "134",
         edge: "134",
       },
+    },
+    discouraged: {
+      according_to: [
+        "https://groups.google.com/a/chromium.org/g/blink-dev/c/uh5Ke6qyegc",
+        "https://chromestatus.com/feature/5076349064708096",
+      ],
+      reason:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including shared storage locks.",
+      reason_html:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including shared storage locks.",
+      removal_date: "2026-06-01",
     },
   },
   "shared-workers": {
@@ -6142,6 +6402,10 @@ export default {
     },
     discouraged: {
       according_to: ["https://github.com/WebAudio/web-speech-api/pull/117"],
+      reason:
+        "Advancements in speech recognition mean that speech grammars are not needed to achieve low error rates.",
+      reason_html:
+        "Advancements in speech recognition mean that speech grammars are not needed to achieve low error rates.",
     },
   },
   "speech-synthesis": {
@@ -6391,7 +6655,7 @@ export default {
   },
   "svg-discouraged": {
     id: "svg-discouraged",
-    name: "SVG 1.1 (discouraged)",
+    name: "SVG 1.1",
     status: {
       baseline: false,
       support: {},
@@ -6399,6 +6663,10 @@ export default {
     discouraged: {
       according_to: ["https://svgwg.org/svg2-draft/changes.html#substantial"],
       alternatives: ["svg", "font-face"],
+      reason:
+        'SVG 2 omittted some parts of SVG 1.1 to "improv[e] the usability and precision of the language."',
+      reason_html:
+        'SVG 2 omittted some parts of SVG 1.1 to "improv[e] the usability and precision of the language."',
     },
   },
   "svg-filters": {
@@ -6468,6 +6736,8 @@ export default {
     },
     discouraged: {
       according_to: ["https://html.spec.whatwg.org/multipage/obsolete.html"],
+      reason: "Some table styling attributes have no effect. They are superseded by CSS.",
+      reason_html: "Some table styling attributes have no effect. They are superseded by CSS.",
     },
   },
   template: {
@@ -6601,6 +6871,21 @@ export default {
       },
     },
   },
+  "toggleevent-source": {
+    id: "toggleevent-source",
+    name: "ToggleEvent source",
+    group: ["html"],
+    status: {
+      baseline: false,
+      support: {
+        chrome: "140",
+        chrome_android: "140",
+        edge: "140",
+        firefox: "145",
+        firefox_android: "145",
+      },
+    },
+  },
   topics: {
     id: "topics",
     name: "Topics",
@@ -6611,6 +6896,17 @@ export default {
         chrome_android: "126",
         edge: "126",
       },
+    },
+    discouraged: {
+      according_to: [
+        "https://groups.google.com/a/chromium.org/g/blink-dev/c/_R85yctz4Rs",
+        "https://chromestatus.com/feature/5135370673061888",
+      ],
+      reason:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the topics API.",
+      reason_html:
+        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the topics API.",
+      removal_date: "2026-06-01",
     },
   },
   "touch-events": {
@@ -6840,11 +7136,14 @@ export default {
     name: "View transitions",
     group: ["view-transitions"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2025-10-14",
       support: {
         chrome: "111",
         chrome_android: "111",
         edge: "111",
+        firefox: "144",
+        firefox_android: "144",
         safari: "18",
         safari_ios: "18",
       },
@@ -7516,8 +7815,9 @@ export default {
     name: "WebRTC SCTP information",
     group: ["webrtc"],
     status: {
-      baseline: "low",
+      baseline: "high",
       baseline_low_date: "2023-05-09",
+      baseline_high_date: "2025-11-09",
       support: {
         chrome: "76",
         chrome_android: "76",
@@ -7602,6 +7902,8 @@ export default {
     discouraged: {
       according_to: ["https://immersive-web.github.io/webvr/spec/1.1/#abstract"],
       alternatives: ["webxr-device"],
+      reason: "Development of the WebVR API halted in favor of WebXR.",
+      reason_html: "Development of the WebVR API halted in favor of WebXR.",
     },
   },
   webvtt: {

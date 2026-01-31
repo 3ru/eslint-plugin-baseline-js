@@ -5,6 +5,7 @@ import { parseDelegateRuleKey } from "../baseline/plugins";
 import { getFeatureRecord, isBeyondBaseline } from "../baseline/resolve";
 import { type CommonRuleOptions, getBaselineValue } from "../config";
 import featureUsage from "../rules/feature-usage";
+import noAtomicsPause from "../rules/no-atomics-pause";
 import noBigint64array from "../rules/no-bigint64array";
 import noFunctionCallerArguments from "../rules/no-function-caller-arguments";
 import noMathSumPrecise from "../rules/no-math-sum-precise";
@@ -20,6 +21,7 @@ type ListenerMap = Rule.RuleListener;
 
 // Register project-local rules once so they can be resolved via the 'self' plugin.
 const SELF_RULES: Record<string, Rule.RuleModule> = {
+  "no-atomics-pause": noAtomicsPause,
   "no-bigint64array": noBigint64array,
   "no-function-caller-arguments": noFunctionCallerArguments,
   "no-math-sum-precise": noMathSumPrecise,

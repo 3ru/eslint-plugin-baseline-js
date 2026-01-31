@@ -9,16 +9,16 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
-    "next": "15.5.2",
+    "next": "15.5.9",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "lucide-react": "^0.460.0",
-    "fumadocs-ui": "15.7.11",
-    "fumadocs-core": "15.7.11",
+    "fumadocs-ui": "15.7.13",
+    "fumadocs-core": "15.7.13",
     "fumadocs-mdx": "11.9.0",
-    "fumadocs-twoslash": "^3.1.7",
+    "fumadocs-twoslash": "^3.1.12",
     "twoslash": "^0.3.4",
-    "@shikijs/transformers": "^3.12.2"
+    "@shikijs/transformers": "^3.22.0"
   },
   "devDependencies": {
     "@types/node": "24.3.1",

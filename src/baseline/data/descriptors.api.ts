@@ -9,6 +9,11 @@ import type { Descriptor } from "../types";
 const descriptors: ReadonlyArray<Descriptor> = [
   {
     "featureId": "a",
+    "kind": "callGlobal",
+    "name": "HTMLAnchorElement"
+  },
+  {
+    "featureId": "a",
     "kind": "instanceMember",
     "iface": "HTMLAnchorElement",
     "prop": "hash"
@@ -129,6 +134,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "aborting",
+    "kind": "callGlobal",
+    "name": "AbortController"
+  },
+  {
+    "featureId": "aborting",
     "kind": "newIdent",
     "name": "AbortController"
   },
@@ -143,6 +153,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "AbortController",
     "prop": "signal"
+  },
+  {
+    "featureId": "aborting",
+    "kind": "callGlobal",
+    "name": "AbortSignal"
   },
   {
     "featureId": "aborting",
@@ -188,6 +203,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "accelerometer",
+    "kind": "callGlobal",
+    "name": "Accelerometer"
+  },
+  {
+    "featureId": "accelerometer",
     "kind": "newIdent",
     "name": "Accelerometer"
   },
@@ -211,8 +231,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "accelerometer",
+    "kind": "callGlobal",
+    "name": "GravitySensor"
+  },
+  {
+    "featureId": "accelerometer",
     "kind": "newIdent",
     "name": "GravitySensor"
+  },
+  {
+    "featureId": "accelerometer",
+    "kind": "callGlobal",
+    "name": "LinearAccelerationSensor"
   },
   {
     "featureId": "accelerometer",
@@ -242,6 +272,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ViewTransition",
     "prop": "types"
+  },
+  {
+    "featureId": "active-view-transition",
+    "kind": "callGlobal",
+    "name": "ViewTransitionTypeSet"
   },
   {
     "featureId": "active-view-transition",
@@ -323,6 +358,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "ambient-light",
+    "kind": "callGlobal",
+    "name": "AmbientLightSensor"
+  },
+  {
+    "featureId": "ambient-light",
     "kind": "newIdent",
     "name": "AmbientLightSensor"
   },
@@ -337,6 +377,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Permissions",
     "prop": "permission_ambient-light-sensor"
+  },
+  {
+    "featureId": "anchor-positioning",
+    "kind": "callGlobal",
+    "name": "CSSPositionTryDescriptors"
   },
   {
     "featureId": "anchor-positioning",
@@ -760,6 +805,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "anchor-positioning",
+    "kind": "callGlobal",
+    "name": "CSSPositionTryRule"
+  },
+  {
+    "featureId": "anchor-positioning",
     "kind": "instanceMember",
     "iface": "CSSPositionTryRule",
     "prop": "name"
@@ -769,6 +819,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSPositionTryRule",
     "prop": "style"
+  },
+  {
+    "featureId": "angle-instanced-arrays",
+    "kind": "callGlobal",
+    "name": "ANGLE_instanced_arrays"
   },
   {
     "featureId": "angle-instanced-arrays",
@@ -787,6 +842,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ANGLE_instanced_arrays",
     "prop": "vertexAttribDivisorANGLE"
+  },
+  {
+    "featureId": "animations-css",
+    "kind": "callGlobal",
+    "name": "AnimationEvent"
   },
   {
     "featureId": "animations-css",
@@ -813,9 +873,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "animations-css",
+    "kind": "callGlobal",
+    "name": "CSSAnimation"
+  },
+  {
+    "featureId": "animations-css",
     "kind": "instanceMember",
     "iface": "CSSAnimation",
     "prop": "animationName"
+  },
+  {
+    "featureId": "animations-css",
+    "kind": "callGlobal",
+    "name": "CSSKeyframeRule"
   },
   {
     "featureId": "animations-css",
@@ -828,6 +898,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSKeyframeRule",
     "prop": "style"
+  },
+  {
+    "featureId": "animations-css",
+    "kind": "callGlobal",
+    "name": "CSSKeyframesRule"
   },
   {
     "featureId": "animations-css",
@@ -873,9 +948,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "app-launch-handler",
+    "kind": "callGlobal",
+    "name": "LaunchParams"
+  },
+  {
+    "featureId": "app-launch-handler",
     "kind": "instanceMember",
     "iface": "LaunchParams",
     "prop": "targetURL"
+  },
+  {
+    "featureId": "app-launch-handler",
+    "kind": "callGlobal",
+    "name": "LaunchQueue"
   },
   {
     "featureId": "app-launch-handler",
@@ -1521,6 +1606,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "async-clipboard",
+    "kind": "callGlobal",
+    "name": "Clipboard"
+  },
+  {
+    "featureId": "async-clipboard",
     "kind": "instanceMember",
     "iface": "Clipboard",
     "prop": "read"
@@ -1560,6 +1650,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Clipboard",
     "prop": "writeText"
+  },
+  {
+    "featureId": "async-clipboard",
+    "kind": "callGlobal",
+    "name": "ClipboardItem"
   },
   {
     "featureId": "async-clipboard",
@@ -1646,9 +1741,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "audio",
+    "kind": "callGlobal",
+    "name": "HTMLAudioElement"
+  },
+  {
+    "featureId": "audio",
     "kind": "instanceMember",
     "iface": "HTMLAudioElement",
     "prop": "Audio"
+  },
+  {
+    "featureId": "audio-session",
+    "kind": "callGlobal",
+    "name": "AudioSession"
   },
   {
     "featureId": "audio-session",
@@ -1661,6 +1766,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "audioSession"
+  },
+  {
+    "featureId": "audio-video-tracks",
+    "kind": "callGlobal",
+    "name": "AudioTrack"
   },
   {
     "featureId": "audio-video-tracks",
@@ -1691,6 +1801,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "AudioTrack",
     "prop": "language"
+  },
+  {
+    "featureId": "audio-video-tracks",
+    "kind": "callGlobal",
+    "name": "AudioTrackList"
   },
   {
     "featureId": "audio-video-tracks",
@@ -1736,6 +1851,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "audio-video-tracks",
+    "kind": "callGlobal",
+    "name": "VideoTrack"
+  },
+  {
+    "featureId": "audio-video-tracks",
     "kind": "instanceMember",
     "iface": "VideoTrack",
     "prop": "id"
@@ -1763,6 +1883,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VideoTrack",
     "prop": "selected"
+  },
+  {
+    "featureId": "audio-video-tracks",
+    "kind": "callGlobal",
+    "name": "VideoTrackList"
   },
   {
     "featureId": "audio-video-tracks",
@@ -1802,6 +1927,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "audio-worklet",
+    "kind": "callGlobal",
+    "name": "AudioWorklet"
+  },
+  {
+    "featureId": "audio-worklet",
+    "kind": "callGlobal",
+    "name": "AudioWorkletGlobalScope"
+  },
+  {
+    "featureId": "audio-worklet",
     "kind": "instanceMember",
     "iface": "AudioWorkletGlobalScope",
     "prop": "currentFrame"
@@ -1832,6 +1967,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "audio-worklet",
+    "kind": "callGlobal",
+    "name": "AudioWorkletNode"
+  },
+  {
+    "featureId": "audio-worklet",
     "kind": "newIdent",
     "name": "AudioWorkletNode"
   },
@@ -1855,6 +1995,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "audio-worklet",
+    "kind": "callGlobal",
+    "name": "AudioWorkletProcessor"
+  },
+  {
+    "featureId": "audio-worklet",
     "kind": "newIdent",
     "name": "AudioWorkletProcessor"
   },
@@ -1872,9 +2017,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "audio-worklet",
+    "kind": "callGlobal",
+    "name": "Worklet"
+  },
+  {
+    "featureId": "audio-worklet",
     "kind": "instanceMember",
     "iface": "Worklet",
     "prop": "addModule"
+  },
+  {
+    "featureId": "audio-worklet",
+    "kind": "callGlobal",
+    "name": "WorkletGlobalScope"
   },
   {
     "featureId": "autocapitalize",
@@ -1905,6 +2060,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGElement",
     "prop": "autofocus"
+  },
+  {
+    "featureId": "autonomous-custom-elements",
+    "kind": "callGlobal",
+    "name": "CustomElementRegistry"
   },
   {
     "featureId": "autonomous-custom-elements",
@@ -1944,6 +2104,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "background-fetch",
+    "kind": "callGlobal",
+    "name": "BackgroundFetchEvent"
+  },
+  {
+    "featureId": "background-fetch",
     "kind": "newIdent",
     "name": "BackgroundFetchEvent"
   },
@@ -1952,6 +2117,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "BackgroundFetchEvent",
     "prop": "registration"
+  },
+  {
+    "featureId": "background-fetch",
+    "kind": "callGlobal",
+    "name": "BackgroundFetchManager"
   },
   {
     "featureId": "background-fetch",
@@ -1973,6 +2143,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "background-fetch",
+    "kind": "callGlobal",
+    "name": "BackgroundFetchRecord"
+  },
+  {
+    "featureId": "background-fetch",
     "kind": "instanceMember",
     "iface": "BackgroundFetchRecord",
     "prop": "request"
@@ -1982,6 +2157,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "BackgroundFetchRecord",
     "prop": "responseReady"
+  },
+  {
+    "featureId": "background-fetch",
+    "kind": "callGlobal",
+    "name": "BackgroundFetchRegistration"
   },
   {
     "featureId": "background-fetch",
@@ -2057,6 +2237,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "background-fetch",
+    "kind": "callGlobal",
+    "name": "BackgroundFetchUpdateUIEvent"
+  },
+  {
+    "featureId": "background-fetch",
     "kind": "newIdent",
     "name": "BackgroundFetchUpdateUIEvent"
   },
@@ -2116,6 +2301,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "background-sync",
+    "kind": "callGlobal",
+    "name": "SyncEvent"
+  },
+  {
+    "featureId": "background-sync",
     "kind": "newIdent",
     "name": "SyncEvent"
   },
@@ -2130,6 +2320,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SyncEvent",
     "prop": "tag"
+  },
+  {
+    "featureId": "background-sync",
+    "kind": "callGlobal",
+    "name": "SyncManager"
   },
   {
     "featureId": "background-sync",
@@ -2163,6 +2358,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "barcode",
+    "kind": "callGlobal",
+    "name": "BarcodeDetector"
+  },
+  {
+    "featureId": "barcode",
     "kind": "newIdent",
     "name": "BarcodeDetector"
   },
@@ -2177,6 +2377,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "callStatic",
     "base": "BarcodeDetector",
     "prop": "getSupportedFormats"
+  },
+  {
+    "featureId": "barprop",
+    "kind": "callGlobal",
+    "name": "BarProp"
   },
   {
     "featureId": "barprop",
@@ -2222,6 +2427,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "base",
+    "kind": "callGlobal",
+    "name": "HTMLBaseElement"
+  },
+  {
+    "featureId": "base",
     "kind": "instanceMember",
     "iface": "HTMLBaseElement",
     "prop": "href"
@@ -2234,15 +2444,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "base64encodedecode",
+    "kind": "callGlobal",
+    "name": "atob"
+  },
+  {
+    "featureId": "base64encodedecode",
     "kind": "instanceMember",
     "iface": "atob",
     "prop": "worker_support"
   },
   {
     "featureId": "base64encodedecode",
+    "kind": "callGlobal",
+    "name": "btoa"
+  },
+  {
+    "featureId": "base64encodedecode",
     "kind": "instanceMember",
     "iface": "btoa",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "battery",
+    "kind": "callGlobal",
+    "name": "BatteryManager"
   },
   {
     "featureId": "battery",
@@ -2312,6 +2537,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "beforeinstallprompt",
+    "kind": "callGlobal",
+    "name": "BeforeInstallPromptEvent"
+  },
+  {
+    "featureId": "beforeinstallprompt",
     "kind": "newIdent",
     "name": "BeforeInstallPromptEvent"
   },
@@ -2347,6 +2577,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "beforeunload",
+    "kind": "callGlobal",
+    "name": "BeforeUnloadEvent"
+  },
+  {
+    "featureId": "beforeunload",
     "kind": "instanceMember",
     "iface": "BeforeUnloadEvent",
     "prop": "user_interaction"
@@ -2359,6 +2594,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "bfcache-blocking-reasons",
+    "kind": "callGlobal",
+    "name": "NotRestoredReasonDetails"
+  },
+  {
+    "featureId": "bfcache-blocking-reasons",
     "kind": "instanceMember",
     "iface": "NotRestoredReasonDetails",
     "prop": "reason"
@@ -2368,6 +2608,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "NotRestoredReasonDetails",
     "prop": "toJSON"
+  },
+  {
+    "featureId": "bfcache-blocking-reasons",
+    "kind": "callGlobal",
+    "name": "NotRestoredReasons"
   },
   {
     "featureId": "bfcache-blocking-reasons",
@@ -2436,6 +2681,21 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "blocking"
   },
   {
+    "featureId": "body",
+    "kind": "callGlobal",
+    "name": "HTMLBodyElement"
+  },
+  {
+    "featureId": "br",
+    "kind": "callGlobal",
+    "name": "HTMLBRElement"
+  },
+  {
+    "featureId": "broadcast-channel",
+    "kind": "callGlobal",
+    "name": "BroadcastChannel"
+  },
+  {
     "featureId": "broadcast-channel",
     "kind": "newIdent",
     "name": "BroadcastChannel"
@@ -2469,6 +2729,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "BroadcastChannel",
     "prop": "postMessage"
+  },
+  {
+    "featureId": "button",
+    "kind": "callGlobal",
+    "name": "HTMLButtonElement"
   },
   {
     "featureId": "button",
@@ -2538,6 +2803,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "canvas",
+    "kind": "callGlobal",
+    "name": "HTMLCanvasElement"
+  },
+  {
+    "featureId": "canvas",
     "kind": "instanceMember",
     "iface": "HTMLCanvasElement",
     "prop": "getContext"
@@ -2568,15 +2838,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "canvas-2d",
+    "kind": "callGlobal",
+    "name": "CanvasGradient"
+  },
+  {
+    "featureId": "canvas-2d",
     "kind": "instanceMember",
     "iface": "CanvasGradient",
     "prop": "addColorStop"
   },
   {
     "featureId": "canvas-2d",
+    "kind": "callGlobal",
+    "name": "CanvasPattern"
+  },
+  {
+    "featureId": "canvas-2d",
     "kind": "instanceMember",
     "iface": "CanvasPattern",
     "prop": "setTransform"
+  },
+  {
+    "featureId": "canvas-2d",
+    "kind": "callGlobal",
+    "name": "CanvasRenderingContext2D"
   },
   {
     "featureId": "canvas-2d",
@@ -2994,6 +3279,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "canvas-2d",
+    "kind": "callGlobal",
+    "name": "ImageData"
+  },
+  {
+    "featureId": "canvas-2d",
     "kind": "newIdent",
     "name": "ImageData"
   },
@@ -3026,6 +3316,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ImageData",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "canvas-2d",
+    "kind": "callGlobal",
+    "name": "Path2D"
   },
   {
     "featureId": "canvas-2d",
@@ -3097,6 +3392,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Path2D",
     "prop": "roundRect"
+  },
+  {
+    "featureId": "canvas-2d",
+    "kind": "callGlobal",
+    "name": "TextMetrics"
   },
   {
     "featureId": "canvas-2d",
@@ -3250,6 +3550,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "capture-stream-canvas",
+    "kind": "callGlobal",
+    "name": "CanvasCaptureMediaStreamTrack"
+  },
+  {
+    "featureId": "capture-stream-canvas",
     "kind": "instanceMember",
     "iface": "CanvasCaptureMediaStreamTrack",
     "prop": "canvas"
@@ -3274,9 +3579,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "cascade-layers",
+    "kind": "callGlobal",
+    "name": "CSSLayerBlockRule"
+  },
+  {
+    "featureId": "cascade-layers",
     "kind": "instanceMember",
     "iface": "CSSLayerBlockRule",
     "prop": "name"
+  },
+  {
+    "featureId": "cascade-layers",
+    "kind": "callGlobal",
+    "name": "CSSLayerStatementRule"
   },
   {
     "featureId": "cascade-layers",
@@ -3289,6 +3604,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLElement",
     "prop": "change_event"
+  },
+  {
+    "featureId": "channel-messaging",
+    "kind": "callGlobal",
+    "name": "MessageChannel"
   },
   {
     "featureId": "channel-messaging",
@@ -3312,6 +3632,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MessageEvent",
     "prop": "ports"
+  },
+  {
+    "featureId": "channel-messaging",
+    "kind": "callGlobal",
+    "name": "MessagePort"
   },
   {
     "featureId": "channel-messaging",
@@ -3351,6 +3676,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "clip-path",
+    "kind": "callGlobal",
+    "name": "SVGClipPathElement"
+  },
+  {
+    "featureId": "clip-path",
     "kind": "instanceMember",
     "iface": "SVGClipPathElement",
     "prop": "clipPathUnits"
@@ -3366,6 +3696,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ClipboardItem",
     "prop": "type_web"
+  },
+  {
+    "featureId": "clipboard-events",
+    "kind": "callGlobal",
+    "name": "ClipboardEvent"
   },
   {
     "featureId": "clipboard-events",
@@ -3407,6 +3742,33 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ClipboardItem",
     "prop": "type_image_svg_xml"
+  },
+  {
+    "featureId": "clipboardchange",
+    "kind": "callGlobal",
+    "name": "ClipboardChangeEvent"
+  },
+  {
+    "featureId": "clipboardchange",
+    "kind": "newIdent",
+    "name": "ClipboardChangeEvent"
+  },
+  {
+    "featureId": "clipboardchange",
+    "kind": "instanceMember",
+    "iface": "ClipboardChangeEvent",
+    "prop": "changeId"
+  },
+  {
+    "featureId": "clipboardchange",
+    "kind": "instanceMember",
+    "iface": "ClipboardChangeEvent",
+    "prop": "types"
+  },
+  {
+    "featureId": "closewatcher",
+    "kind": "callGlobal",
+    "name": "CloseWatcher"
   },
   {
     "featureId": "closewatcher",
@@ -3451,6 +3813,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "composition-events",
+    "kind": "callGlobal",
+    "name": "CompositionEvent"
+  },
+  {
+    "featureId": "composition-events",
     "kind": "newIdent",
     "name": "CompositionEvent"
   },
@@ -3480,6 +3847,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "compression-streams",
+    "kind": "callGlobal",
+    "name": "CompressionStream"
+  },
+  {
+    "featureId": "compression-streams",
     "kind": "newIdent",
     "name": "CompressionStream"
   },
@@ -3497,6 +3869,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "compression-streams",
+    "kind": "callGlobal",
+    "name": "DecompressionStream"
+  },
+  {
+    "featureId": "compression-streams",
     "kind": "newIdent",
     "name": "DecompressionStream"
   },
@@ -3511,6 +3888,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DecompressionStream",
     "prop": "writable"
+  },
+  {
+    "featureId": "compute-pressure",
+    "kind": "callGlobal",
+    "name": "PressureObserver"
   },
   {
     "featureId": "compute-pressure",
@@ -3549,6 +3931,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "compute-pressure",
+    "kind": "callGlobal",
+    "name": "PressureRecord"
+  },
+  {
+    "featureId": "compute-pressure",
     "kind": "instanceMember",
     "iface": "PressureRecord",
     "prop": "source"
@@ -3570,6 +3957,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PressureRecord",
     "prop": "toJSON"
+  },
+  {
+    "featureId": "console",
+    "kind": "callGlobal",
+    "name": "console"
   },
   {
     "featureId": "console",
@@ -3963,6 +4355,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "constraint-validation",
+    "kind": "callGlobal",
+    "name": "ValidityState"
+  },
+  {
+    "featureId": "constraint-validation",
     "kind": "instanceMember",
     "iface": "ValidityState",
     "prop": "badInput"
@@ -4058,6 +4455,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "contact-picker",
+    "kind": "callGlobal",
+    "name": "ContactAddress"
+  },
+  {
+    "featureId": "contact-picker",
     "kind": "instanceMember",
     "iface": "ContactAddress",
     "prop": "addressLine"
@@ -4124,6 +4526,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "contact-picker",
+    "kind": "callGlobal",
+    "name": "ContactsManager"
+  },
+  {
+    "featureId": "contact-picker",
     "kind": "instanceMember",
     "iface": "ContactsManager",
     "prop": "getProperties"
@@ -4142,6 +4549,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "container-queries",
+    "kind": "callGlobal",
+    "name": "CSSContainerRule"
+  },
+  {
+    "featureId": "container-queries",
     "kind": "instanceMember",
     "iface": "CSSContainerRule",
     "prop": "containerName"
@@ -4151,6 +4563,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSContainerRule",
     "prop": "containerQuery"
+  },
+  {
+    "featureId": "content-index",
+    "kind": "callGlobal",
+    "name": "ContentIndex"
   },
   {
     "featureId": "content-index",
@@ -4169,6 +4586,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ContentIndex",
     "prop": "getAll"
+  },
+  {
+    "featureId": "content-index",
+    "kind": "callGlobal",
+    "name": "ContentIndexEvent"
   },
   {
     "featureId": "content-index",
@@ -4192,6 +4614,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ServiceWorkerRegistration",
     "prop": "index"
+  },
+  {
+    "featureId": "content-visibility",
+    "kind": "callGlobal",
+    "name": "ContentVisibilityAutoStateChangeEvent"
   },
   {
     "featureId": "content-visibility",
@@ -4236,6 +4663,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "cookie-store",
+    "kind": "callGlobal",
+    "name": "CookieChangeEvent"
+  },
+  {
+    "featureId": "cookie-store",
     "kind": "newIdent",
     "name": "CookieChangeEvent"
   },
@@ -4250,6 +4682,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CookieChangeEvent",
     "prop": "deleted"
+  },
+  {
+    "featureId": "cookie-store",
+    "kind": "callGlobal",
+    "name": "CookieStore"
   },
   {
     "featureId": "cookie-store",
@@ -4283,6 +4720,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "cookie-store",
+    "kind": "callGlobal",
+    "name": "CookieStoreManager"
+  },
+  {
+    "featureId": "cookie-store",
     "kind": "instanceMember",
     "iface": "CookieStoreManager",
     "prop": "getSubscriptions"
@@ -4298,6 +4740,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CookieStoreManager",
     "prop": "unsubscribe"
+  },
+  {
+    "featureId": "cookie-store",
+    "kind": "callGlobal",
+    "name": "ExtendableCookieChangeEvent"
   },
   {
     "featureId": "cookie-store",
@@ -4345,6 +4792,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Document",
     "prop": "cookie"
+  },
+  {
+    "featureId": "counter-style",
+    "kind": "callGlobal",
+    "name": "CSSCounterStyleRule"
   },
   {
     "featureId": "counter-style",
@@ -4414,6 +4866,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "createimagebitmap",
+    "kind": "callGlobal",
+    "name": "ImageBitmap"
+  },
+  {
+    "featureId": "createimagebitmap",
     "kind": "instanceMember",
     "iface": "ImageBitmap",
     "prop": "close"
@@ -4429,6 +4886,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ImageBitmap",
     "prop": "width"
+  },
+  {
+    "featureId": "createimagebitmap",
+    "kind": "callGlobal",
+    "name": "createImageBitmap"
   },
   {
     "featureId": "createimagebitmap",
@@ -4474,6 +4936,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "credential-management",
+    "kind": "callGlobal",
+    "name": "Credential"
+  },
+  {
+    "featureId": "credential-management",
     "kind": "instanceMember",
     "iface": "Credential",
     "prop": "id"
@@ -4489,6 +4956,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Credential",
     "prop": "type"
+  },
+  {
+    "featureId": "credential-management",
+    "kind": "callGlobal",
+    "name": "CredentialsContainer"
   },
   {
     "featureId": "credential-management",
@@ -4519,6 +4991,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "credentials"
+  },
+  {
+    "featureId": "cross-document-view-transitions",
+    "kind": "callGlobal",
+    "name": "CSSViewTransitionRule"
   },
   {
     "featureId": "cross-document-view-transitions",
@@ -4555,6 +5032,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLIFrameElement",
     "prop": "csp"
+  },
+  {
+    "featureId": "csp",
+    "kind": "callGlobal",
+    "name": "SecurityPolicyViolationEvent"
   },
   {
     "featureId": "csp",
@@ -4653,9 +5135,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSS"
+  },
+  {
+    "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSConditionRule"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "CSSConditionRule",
     "prop": "conditionText"
+  },
+  {
+    "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSGroupingRule"
   },
   {
     "featureId": "css-object-model",
@@ -4677,6 +5174,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSMarginRule"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "CSSMarginRule",
     "prop": "name"
@@ -4689,9 +5191,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSMediaRule"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "CSSMediaRule",
     "prop": "media"
+  },
+  {
+    "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSPageDescriptors"
   },
   {
     "featureId": "css-object-model",
@@ -4767,6 +5279,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSPageRule"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "CSSPageRule",
     "prop": "selectorText"
@@ -4779,6 +5296,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSPseudoElement"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "CSSPseudoElement",
     "prop": "element"
@@ -4788,6 +5310,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSPseudoElement",
     "prop": "type"
+  },
+  {
+    "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSRule"
   },
   {
     "featureId": "css-object-model",
@@ -4809,6 +5336,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSRuleList"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "CSSRuleList",
     "prop": "item"
@@ -4818,6 +5350,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSRuleList",
     "prop": "length"
+  },
+  {
+    "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSStyleDeclaration"
   },
   {
     "featureId": "css-object-model",
@@ -4875,6 +5412,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSStyleRule"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "CSSStyleRule",
     "prop": "selectorText"
@@ -4884,6 +5426,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSStyleRule",
     "prop": "style"
+  },
+  {
+    "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "CSSStyleSheet"
   },
   {
     "featureId": "css-object-model",
@@ -4935,6 +5482,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "MediaList"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "MediaList",
     "prop": "appendMedium"
@@ -4983,6 +5535,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "StyleSheet"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "StyleSheet",
     "prop": "disabled"
@@ -5025,6 +5582,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model",
+    "kind": "callGlobal",
+    "name": "StyleSheetList"
+  },
+  {
+    "featureId": "css-object-model",
     "kind": "instanceMember",
     "iface": "StyleSheetList",
     "prop": "item"
@@ -5034,6 +5596,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "StyleSheetList",
     "prop": "length"
+  },
+  {
+    "featureId": "css-object-model-discouraged",
+    "kind": "callGlobal",
+    "name": "CSSPrimitiveValue"
   },
   {
     "featureId": "css-object-model-discouraged",
@@ -5085,6 +5652,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model-discouraged",
+    "kind": "callGlobal",
+    "name": "CSSValue"
+  },
+  {
+    "featureId": "css-object-model-discouraged",
     "kind": "instanceMember",
     "iface": "CSSValue",
     "prop": "cssText"
@@ -5097,6 +5669,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-object-model-discouraged",
+    "kind": "callGlobal",
+    "name": "CSSValueList"
+  },
+  {
+    "featureId": "css-object-model-discouraged",
     "kind": "instanceMember",
     "iface": "CSSValueList",
     "prop": "item"
@@ -5106,6 +5683,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSValueList",
     "prop": "length"
+  },
+  {
+    "featureId": "css-object-model-discouraged",
+    "kind": "callGlobal",
+    "name": "Counter"
   },
   {
     "featureId": "css-object-model-discouraged",
@@ -5124,6 +5706,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Counter",
     "prop": "separator"
+  },
+  {
+    "featureId": "css-object-model-discouraged",
+    "kind": "callGlobal",
+    "name": "Rect"
   },
   {
     "featureId": "css-object-model-discouraged",
@@ -5157,6 +5744,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSImageValue"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSKeywordValue"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSKeywordValue"
   },
@@ -5165,6 +5762,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSKeywordValue",
     "prop": "value"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMathClamp"
   },
   {
     "featureId": "css-typed-om",
@@ -5191,6 +5793,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMathInvert"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSMathInvert"
   },
@@ -5199,6 +5806,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSMathInvert",
     "prop": "value"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMathMax"
   },
   {
     "featureId": "css-typed-om",
@@ -5213,6 +5825,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMathMin"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSMathMin"
   },
@@ -5221,6 +5838,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSMathMin",
     "prop": "values"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMathNegate"
   },
   {
     "featureId": "css-typed-om",
@@ -5235,6 +5857,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMathProduct"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSMathProduct"
   },
@@ -5243,6 +5870,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSMathProduct",
     "prop": "values"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMathSum"
   },
   {
     "featureId": "css-typed-om",
@@ -5257,9 +5889,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMathValue"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "instanceMember",
     "iface": "CSSMathValue",
     "prop": "operator"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSMatrixComponent"
   },
   {
     "featureId": "css-typed-om",
@@ -5271,6 +5913,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSMatrixComponent",
     "prop": "matrix"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSNumericArray"
   },
   {
     "featureId": "css-typed-om",
@@ -5307,6 +5954,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSNumericArray",
     "prop": "values"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSNumericValue"
   },
   {
     "featureId": "css-typed-om",
@@ -5376,6 +6028,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSPerspective"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSPerspective"
   },
@@ -5384,6 +6041,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSPerspective",
     "prop": "length"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSRotate"
   },
   {
     "featureId": "css-typed-om",
@@ -5416,6 +6078,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSScale"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSScale"
   },
@@ -5439,6 +6106,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSSkew"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSSkew"
   },
@@ -5456,6 +6128,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSSkewX"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSSkewX"
   },
@@ -5464,6 +6141,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSSkewX",
     "prop": "ax"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSSkewY"
   },
   {
     "featureId": "css-typed-om",
@@ -5481,6 +6163,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSStyleRule",
     "prop": "styleMap"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSStyleValue"
   },
   {
     "featureId": "css-typed-om",
@@ -5502,6 +6189,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSTransformComponent"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "instanceMember",
     "iface": "CSSTransformComponent",
     "prop": "is2D"
@@ -5517,6 +6209,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSTransformComponent",
     "prop": "toString"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSTransformValue"
   },
   {
     "featureId": "css-typed-om",
@@ -5573,6 +6270,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSTranslate"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSTranslate"
   },
@@ -5596,6 +6298,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSUnitValue"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSUnitValue"
   },
@@ -5610,6 +6317,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSUnitValue",
     "prop": "value"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSUnparsedValue"
   },
   {
     "featureId": "css-typed-om",
@@ -5654,6 +6366,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "CSSVariableReferenceValue"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "newIdent",
     "name": "CSSVariableReferenceValue"
   },
@@ -5683,6 +6400,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "StylePropertyMap"
+  },
+  {
+    "featureId": "css-typed-om",
     "kind": "instanceMember",
     "iface": "StylePropertyMap",
     "prop": "append"
@@ -5704,6 +6426,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "StylePropertyMap",
     "prop": "set"
+  },
+  {
+    "featureId": "css-typed-om",
+    "kind": "callGlobal",
+    "name": "StylePropertyMapReadOnly"
   },
   {
     "featureId": "css-typed-om",
@@ -5760,10 +6487,20 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "values"
   },
   {
+    "featureId": "custom-media-queries",
+    "kind": "callGlobal",
+    "name": "CSSCustomMediaRule"
+  },
+  {
     "featureId": "customized-built-in-elements",
     "kind": "instanceMember",
     "iface": "CustomElementRegistry",
     "prop": "builtin_element_support"
+  },
+  {
+    "featureId": "data",
+    "kind": "callGlobal",
+    "name": "HTMLDataElement"
   },
   {
     "featureId": "data",
@@ -5773,9 +6510,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "datalist",
+    "kind": "callGlobal",
+    "name": "HTMLDataListElement"
+  },
+  {
+    "featureId": "datalist",
     "kind": "instanceMember",
     "iface": "HTMLDataListElement",
     "prop": "options"
+  },
+  {
+    "featureId": "dataset",
+    "kind": "callGlobal",
+    "name": "DOMStringMap"
   },
   {
     "featureId": "dataset",
@@ -5821,6 +6568,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dedicated-workers",
+    "kind": "callGlobal",
+    "name": "DedicatedWorkerGlobalScope"
+  },
+  {
+    "featureId": "dedicated-workers",
     "kind": "instanceMember",
     "iface": "DedicatedWorkerGlobalScope",
     "prop": "close"
@@ -5830,6 +6582,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DedicatedWorkerGlobalScope",
     "prop": "name"
+  },
+  {
+    "featureId": "dedicated-workers",
+    "kind": "callGlobal",
+    "name": "Worker"
   },
   {
     "featureId": "dedicated-workers",
@@ -5853,6 +6610,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Worker",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "dedicated-workers",
+    "kind": "callGlobal",
+    "name": "WorkerGlobalScope"
   },
   {
     "featureId": "dedicated-workers",
@@ -5895,6 +6657,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WorkerGlobalScope",
     "prop": "unhandledrejection_event"
+  },
+  {
+    "featureId": "dedicated-workers",
+    "kind": "callGlobal",
+    "name": "WorkerLocation"
   },
   {
     "featureId": "dedicated-workers",
@@ -5957,6 +6724,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "toString"
   },
   {
+    "featureId": "dedicated-workers",
+    "kind": "callGlobal",
+    "name": "WorkerNavigator"
+  },
+  {
+    "featureId": "del",
+    "kind": "callGlobal",
+    "name": "HTMLModElement"
+  },
+  {
     "featureId": "del",
     "kind": "instanceMember",
     "iface": "HTMLModElement",
@@ -5967,6 +6744,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLModElement",
     "prop": "dateTime"
+  },
+  {
+    "featureId": "description-list",
+    "kind": "callGlobal",
+    "name": "HTMLDListElement"
+  },
+  {
+    "featureId": "details",
+    "kind": "callGlobal",
+    "name": "HTMLDetailsElement"
   },
   {
     "featureId": "details",
@@ -5997,6 +6784,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WorkerNavigator",
     "prop": "deviceMemory"
+  },
+  {
+    "featureId": "device-orientation-events",
+    "kind": "callGlobal",
+    "name": "DeviceMotionEvent"
   },
   {
     "featureId": "device-orientation-events",
@@ -6035,6 +6827,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "device-orientation-events",
+    "kind": "callGlobal",
+    "name": "DeviceMotionEventAcceleration"
+  },
+  {
+    "featureId": "device-orientation-events",
     "kind": "instanceMember",
     "iface": "DeviceMotionEventAcceleration",
     "prop": "x"
@@ -6053,6 +6850,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "device-orientation-events",
+    "kind": "callGlobal",
+    "name": "DeviceMotionEventRotationRate"
+  },
+  {
+    "featureId": "device-orientation-events",
     "kind": "instanceMember",
     "iface": "DeviceMotionEventRotationRate",
     "prop": "alpha"
@@ -6068,6 +6870,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DeviceMotionEventRotationRate",
     "prop": "gamma"
+  },
+  {
+    "featureId": "device-orientation-events",
+    "kind": "callGlobal",
+    "name": "DeviceOrientationEvent"
   },
   {
     "featureId": "device-orientation-events",
@@ -6124,6 +6931,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "device-posture",
+    "kind": "callGlobal",
+    "name": "DevicePosture"
+  },
+  {
+    "featureId": "device-posture",
     "kind": "instanceMember",
     "iface": "DevicePosture",
     "prop": "change_event"
@@ -6145,6 +6957,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "devicePixelRatio"
+  },
+  {
+    "featureId": "dialog",
+    "kind": "callGlobal",
+    "name": "HTMLDialogElement"
   },
   {
     "featureId": "dialog",
@@ -6213,6 +7030,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "dirName"
   },
   {
+    "featureId": "div",
+    "kind": "callGlobal",
+    "name": "HTMLDivElement"
+  },
+  {
+    "featureId": "document-caretpositionfrompoint",
+    "kind": "callGlobal",
+    "name": "CaretPosition"
+  },
+  {
     "featureId": "document-caretpositionfrompoint",
     "kind": "instanceMember",
     "iface": "CaretPosition",
@@ -6268,6 +7095,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "document-picture-in-picture",
+    "kind": "callGlobal",
+    "name": "DocumentPictureInPicture"
+  },
+  {
+    "featureId": "document-picture-in-picture",
     "kind": "instanceMember",
     "iface": "DocumentPictureInPicture",
     "prop": "enter_event"
@@ -6283,6 +7115,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DocumentPictureInPicture",
     "prop": "window"
+  },
+  {
+    "featureId": "document-picture-in-picture",
+    "kind": "callGlobal",
+    "name": "DocumentPictureInPictureEvent"
   },
   {
     "featureId": "document-picture-in-picture",
@@ -6327,6 +7164,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "Attr"
+  },
+  {
+    "featureId": "dom",
     "kind": "instanceMember",
     "iface": "Attr",
     "prop": "localName"
@@ -6360,6 +7202,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Attr",
     "prop": "value"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "CDATASection"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "CharacterData"
   },
   {
     "featureId": "dom",
@@ -6441,8 +7293,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "Comment"
+  },
+  {
+    "featureId": "dom",
     "kind": "newIdent",
     "name": "Comment"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "DOMException"
   },
   {
     "featureId": "dom",
@@ -6460,6 +7322,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DOMException",
     "prop": "name"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "DOMImplementation"
   },
   {
     "featureId": "dom",
@@ -6481,6 +7348,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "DOMStringList"
+  },
+  {
+    "featureId": "dom",
     "kind": "instanceMember",
     "iface": "DOMStringList",
     "prop": "contains"
@@ -6496,6 +7368,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DOMStringList",
     "prop": "length"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "DOMTokenList"
   },
   {
     "featureId": "dom",
@@ -6598,6 +7475,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DOMTokenList",
     "prop": "values"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "Document"
   },
   {
     "featureId": "dom",
@@ -6930,6 +7812,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "DocumentFragment"
+  },
+  {
+    "featureId": "dom",
     "kind": "newIdent",
     "name": "DocumentFragment"
   },
@@ -6995,6 +7882,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "DocumentType"
+  },
+  {
+    "featureId": "dom",
     "kind": "instanceMember",
     "iface": "DocumentType",
     "prop": "after"
@@ -7034,6 +7926,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DocumentType",
     "prop": "systemId"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "Element"
   },
   {
     "featureId": "dom",
@@ -7373,6 +8270,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "HTMLCollection"
+  },
+  {
+    "featureId": "dom",
     "kind": "instanceMember",
     "iface": "HTMLCollection",
     "prop": "item"
@@ -7388,6 +8290,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLCollection",
     "prop": "namedItem"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "HTMLDocument"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "HTMLElement"
   },
   {
     "featureId": "dom",
@@ -7451,6 +8363,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "NamedNodeMap"
+  },
+  {
+    "featureId": "dom",
     "kind": "instanceMember",
     "iface": "NamedNodeMap",
     "prop": "getNamedItem"
@@ -7496,6 +8413,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "NamedNodeMap",
     "prop": "setNamedItemNS"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "Node"
   },
   {
     "featureId": "dom",
@@ -7661,6 +8583,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "NodeIterator"
+  },
+  {
+    "featureId": "dom",
     "kind": "instanceMember",
     "iface": "NodeIterator",
     "prop": "filter"
@@ -7700,6 +8627,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "NodeIterator",
     "prop": "whatToShow"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "NodeList"
   },
   {
     "featureId": "dom",
@@ -7745,9 +8677,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "ProcessingInstruction"
+  },
+  {
+    "featureId": "dom",
     "kind": "instanceMember",
     "iface": "ProcessingInstruction",
     "prop": "target"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "Text"
   },
   {
     "featureId": "dom",
@@ -7765,6 +8707,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Text",
     "prop": "wholeText"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "TreeWalker"
   },
   {
     "featureId": "dom",
@@ -7837,6 +8784,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "document"
+  },
+  {
+    "featureId": "dom",
+    "kind": "callGlobal",
+    "name": "XMLDocument"
+  },
+  {
+    "featureId": "dom-geometry",
+    "kind": "callGlobal",
+    "name": "DOMMatrix"
   },
   {
     "featureId": "dom-geometry",
@@ -8070,6 +9027,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DOMMatrix",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "dom-geometry",
+    "kind": "callGlobal",
+    "name": "DOMMatrixReadOnly"
   },
   {
     "featureId": "dom-geometry",
@@ -8348,6 +9310,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom-geometry",
+    "kind": "callGlobal",
+    "name": "DOMPoint"
+  },
+  {
+    "featureId": "dom-geometry",
     "kind": "newIdent",
     "name": "DOMPoint"
   },
@@ -8386,6 +9353,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DOMPoint",
     "prop": "z"
+  },
+  {
+    "featureId": "dom-geometry",
+    "kind": "callGlobal",
+    "name": "DOMPointReadOnly"
   },
   {
     "featureId": "dom-geometry",
@@ -8439,6 +9411,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DOMPointReadOnly",
     "prop": "z"
+  },
+  {
+    "featureId": "dom-geometry",
+    "kind": "callGlobal",
+    "name": "DOMQuad"
   },
   {
     "featureId": "dom-geometry",
@@ -8501,6 +9478,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom-geometry",
+    "kind": "callGlobal",
+    "name": "DOMRect"
+  },
+  {
+    "featureId": "dom-geometry",
     "kind": "newIdent",
     "name": "DOMRect"
   },
@@ -8542,6 +9524,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "dom-geometry",
+    "kind": "callGlobal",
+    "name": "DOMRectList"
+  },
+  {
+    "featureId": "dom-geometry",
     "kind": "instanceMember",
     "iface": "DOMRectList",
     "prop": "item"
@@ -8551,6 +9538,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DOMRectList",
     "prop": "length"
+  },
+  {
+    "featureId": "dom-geometry",
+    "kind": "callGlobal",
+    "name": "DOMRectReadOnly"
   },
   {
     "featureId": "dom-geometry",
@@ -8625,6 +9617,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "domparser",
+    "kind": "callGlobal",
+    "name": "DOMParser"
+  },
+  {
+    "featureId": "domparser",
     "kind": "newIdent",
     "name": "DOMParser"
   },
@@ -8651,6 +9648,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGAElement",
     "prop": "download"
+  },
+  {
+    "featureId": "draganddrop",
+    "kind": "callGlobal",
+    "name": "DataTransfer"
   },
   {
     "featureId": "draganddrop",
@@ -8713,6 +9715,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "draganddrop",
+    "kind": "callGlobal",
+    "name": "DataTransferItem"
+  },
+  {
+    "featureId": "draganddrop",
     "kind": "instanceMember",
     "iface": "DataTransferItem",
     "prop": "getAsFile"
@@ -8743,6 +9750,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "draganddrop",
+    "kind": "callGlobal",
+    "name": "DataTransferItemList"
+  },
+  {
+    "featureId": "draganddrop",
     "kind": "instanceMember",
     "iface": "DataTransferItemList",
     "prop": "add"
@@ -8764,6 +9776,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DataTransferItemList",
     "prop": "remove"
+  },
+  {
+    "featureId": "draganddrop",
+    "kind": "callGlobal",
+    "name": "DragEvent"
   },
   {
     "featureId": "draganddrop",
@@ -8826,6 +9843,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "edit-context",
+    "kind": "callGlobal",
+    "name": "CharacterBoundsUpdateEvent"
+  },
+  {
+    "featureId": "edit-context",
     "kind": "newIdent",
     "name": "CharacterBoundsUpdateEvent"
   },
@@ -8840,6 +9862,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CharacterBoundsUpdateEvent",
     "prop": "rangeStart"
+  },
+  {
+    "featureId": "edit-context",
+    "kind": "callGlobal",
+    "name": "EditContext"
   },
   {
     "featureId": "edit-context",
@@ -8950,6 +9977,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "edit-context",
+    "kind": "callGlobal",
+    "name": "TextFormat"
+  },
+  {
+    "featureId": "edit-context",
     "kind": "newIdent",
     "name": "TextFormat"
   },
@@ -8979,6 +10011,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "edit-context",
+    "kind": "callGlobal",
+    "name": "TextFormatUpdateEvent"
+  },
+  {
+    "featureId": "edit-context",
     "kind": "newIdent",
     "name": "TextFormatUpdateEvent"
   },
@@ -8987,6 +10024,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TextFormatUpdateEvent",
     "prop": "getTextFormats"
+  },
+  {
+    "featureId": "edit-context",
+    "kind": "callGlobal",
+    "name": "TextUpdateEvent"
   },
   {
     "featureId": "edit-context",
@@ -9031,6 +10073,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "element-capture",
+    "kind": "callGlobal",
+    "name": "RestrictionTarget"
+  },
+  {
+    "featureId": "element-capture",
     "kind": "callStatic",
     "base": "RestrictionTarget",
     "prop": "fromElement"
@@ -9052,6 +10099,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Element",
     "prop": "elementTiming"
+  },
+  {
+    "featureId": "element-timing",
+    "kind": "callGlobal",
+    "name": "PerformanceElementTiming"
   },
   {
     "featureId": "element-timing",
@@ -9115,6 +10167,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "embed",
+    "kind": "callGlobal",
+    "name": "HTMLEmbedElement"
+  },
+  {
+    "featureId": "embed",
     "kind": "instanceMember",
     "iface": "HTMLEmbedElement",
     "prop": "getSVGDocument"
@@ -9169,6 +10226,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "encrypted-media-extensions",
+    "kind": "callGlobal",
+    "name": "MediaEncryptedEvent"
+  },
+  {
+    "featureId": "encrypted-media-extensions",
     "kind": "newIdent",
     "name": "MediaEncryptedEvent"
   },
@@ -9186,6 +10248,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "encrypted-media-extensions",
+    "kind": "callGlobal",
+    "name": "MediaKeyMessageEvent"
+  },
+  {
+    "featureId": "encrypted-media-extensions",
     "kind": "newIdent",
     "name": "MediaKeyMessageEvent"
   },
@@ -9200,6 +10267,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaKeyMessageEvent",
     "prop": "messageType"
+  },
+  {
+    "featureId": "encrypted-media-extensions",
+    "kind": "callGlobal",
+    "name": "MediaKeySession"
   },
   {
     "featureId": "encrypted-media-extensions",
@@ -9269,6 +10341,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "encrypted-media-extensions",
+    "kind": "callGlobal",
+    "name": "MediaKeyStatusMap"
+  },
+  {
+    "featureId": "encrypted-media-extensions",
     "kind": "instanceMember",
     "iface": "MediaKeyStatusMap",
     "prop": "@@iterator"
@@ -9317,6 +10394,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "encrypted-media-extensions",
+    "kind": "callGlobal",
+    "name": "MediaKeySystemAccess"
+  },
+  {
+    "featureId": "encrypted-media-extensions",
     "kind": "instanceMember",
     "iface": "MediaKeySystemAccess",
     "prop": "createMediaKeys"
@@ -9332,6 +10414,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaKeySystemAccess",
     "prop": "keySystem"
+  },
+  {
+    "featureId": "encrypted-media-extensions",
+    "kind": "callGlobal",
+    "name": "MediaKeys"
   },
   {
     "featureId": "encrypted-media-extensions",
@@ -9362,6 +10449,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLElement",
     "prop": "enterKeyHint"
+  },
+  {
+    "featureId": "event-timing",
+    "kind": "callGlobal",
+    "name": "EventCounts"
   },
   {
     "featureId": "event-timing",
@@ -9419,6 +10511,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "event-timing",
+    "kind": "callGlobal",
+    "name": "PerformanceEventTiming"
+  },
+  {
+    "featureId": "event-timing",
     "kind": "instanceMember",
     "iface": "PerformanceEventTiming",
     "prop": "cancelable"
@@ -9455,6 +10552,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "events",
+    "kind": "callGlobal",
+    "name": "CustomEvent"
+  },
+  {
+    "featureId": "events",
     "kind": "newIdent",
     "name": "CustomEvent"
   },
@@ -9469,6 +10571,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CustomEvent",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "events",
+    "kind": "callGlobal",
+    "name": "Event"
   },
   {
     "featureId": "events",
@@ -9549,6 +10656,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "events",
+    "kind": "callGlobal",
+    "name": "EventTarget"
+  },
+  {
+    "featureId": "events",
     "kind": "newIdent",
     "name": "EventTarget"
   },
@@ -9607,6 +10719,26 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "queryCommandValue"
   },
   {
+    "featureId": "ext-blend-minmax",
+    "kind": "callGlobal",
+    "name": "EXT_blend_minmax"
+  },
+  {
+    "featureId": "ext-color-buffer-float",
+    "kind": "callGlobal",
+    "name": "EXT_color_buffer_float"
+  },
+  {
+    "featureId": "ext-color-buffer-half-float",
+    "kind": "callGlobal",
+    "name": "EXT_color_buffer_half_float"
+  },
+  {
+    "featureId": "ext-disjoint-timer-query",
+    "kind": "callGlobal",
+    "name": "EXT_disjoint_timer_query"
+  },
+  {
     "featureId": "ext-disjoint-timer-query",
     "kind": "instanceMember",
     "iface": "EXT_disjoint_timer_query",
@@ -9655,6 +10787,56 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "queryCounterEXT"
   },
   {
+    "featureId": "ext-disjoint-timer-query",
+    "kind": "callGlobal",
+    "name": "WebGLTimerQueryEXT"
+  },
+  {
+    "featureId": "ext-float-blend",
+    "kind": "callGlobal",
+    "name": "EXT_float_blend"
+  },
+  {
+    "featureId": "ext-frag-depth",
+    "kind": "callGlobal",
+    "name": "EXT_frag_depth"
+  },
+  {
+    "featureId": "ext-shader-texture-lod",
+    "kind": "callGlobal",
+    "name": "EXT_shader_texture_lod"
+  },
+  {
+    "featureId": "ext-srgb",
+    "kind": "callGlobal",
+    "name": "EXT_sRGB"
+  },
+  {
+    "featureId": "ext-texture-compression-bptc",
+    "kind": "callGlobal",
+    "name": "EXT_texture_compression_bptc"
+  },
+  {
+    "featureId": "ext-texture-compression-rgtc",
+    "kind": "callGlobal",
+    "name": "EXT_texture_compression_rgtc"
+  },
+  {
+    "featureId": "ext-texture-filter-anisotropic",
+    "kind": "callGlobal",
+    "name": "EXT_texture_filter_anisotropic"
+  },
+  {
+    "featureId": "ext-texture-norm16",
+    "kind": "callGlobal",
+    "name": "EXT_texture_norm16"
+  },
+  {
+    "featureId": "external",
+    "kind": "callGlobal",
+    "name": "External"
+  },
+  {
     "featureId": "external",
     "kind": "instanceMember",
     "iface": "External",
@@ -9665,6 +10847,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "External",
     "prop": "IsSearchProviderInstalled"
+  },
+  {
+    "featureId": "eyedropper",
+    "kind": "callGlobal",
+    "name": "EyeDropper"
   },
   {
     "featureId": "eyedropper",
@@ -9690,10 +10877,61 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "fastSeek"
   },
   {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "Document",
+    "prop": "featurePolicy"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "callGlobal",
+    "name": "FeaturePolicy"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "FeaturePolicy",
+    "prop": "allowedFeatures"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "FeaturePolicy",
+    "prop": "allowsFeature"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "FeaturePolicy",
+    "prop": "features"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "FeaturePolicy",
+    "prop": "getAllowlistForFeature"
+  },
+  {
+    "featureId": "feature-policy",
+    "kind": "instanceMember",
+    "iface": "HTMLIFrameElement",
+    "prop": "featurePolicy"
+  },
+  {
+    "featureId": "fedcm",
+    "kind": "callGlobal",
+    "name": "IdentityCredential"
+  },
+  {
     "featureId": "fedcm",
     "kind": "instanceMember",
     "iface": "IdentityCredential",
     "prop": "token"
+  },
+  {
+    "featureId": "federated-credentials",
+    "kind": "callGlobal",
+    "name": "FederatedCredential"
   },
   {
     "featureId": "federated-credentials",
@@ -9711,6 +10949,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "FederatedCredential",
     "prop": "provider"
+  },
+  {
+    "featureId": "fencedframe",
+    "kind": "callGlobal",
+    "name": "Fence"
   },
   {
     "featureId": "fencedframe",
@@ -9732,9 +10975,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "fencedframe",
+    "kind": "callGlobal",
+    "name": "FencedFrameConfig"
+  },
+  {
+    "featureId": "fencedframe",
     "kind": "instanceMember",
     "iface": "FencedFrameConfig",
     "prop": "setSharedStorageContext"
+  },
+  {
+    "featureId": "fencedframe",
+    "kind": "callGlobal",
+    "name": "HTMLFencedFrameElement"
   },
   {
     "featureId": "fencedframe",
@@ -9777,6 +11030,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "fence"
+  },
+  {
+    "featureId": "fetch",
+    "kind": "callGlobal",
+    "name": "Headers"
   },
   {
     "featureId": "fetch",
@@ -9860,6 +11118,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Headers",
     "prop": "values"
+  },
+  {
+    "featureId": "fetch",
+    "kind": "callGlobal",
+    "name": "Request"
   },
   {
     "featureId": "fetch",
@@ -10000,6 +11263,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "fetch",
+    "kind": "callGlobal",
+    "name": "Response"
+  },
+  {
+    "featureId": "fetch",
     "kind": "newIdent",
     "name": "Response"
   },
@@ -10119,6 +11387,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "fetch",
+    "kind": "callGlobal",
+    "name": "fetch"
+  },
+  {
+    "featureId": "fetch",
     "kind": "instanceMember",
     "iface": "fetch",
     "prop": "authorization_removed_cross_origin"
@@ -10173,6 +11446,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "fetchlater",
+    "kind": "callGlobal",
+    "name": "FetchLaterResult"
+  },
+  {
+    "featureId": "fetchlater",
     "kind": "instanceMember",
     "iface": "FetchLaterResult",
     "prop": "activated"
@@ -10182,6 +11460,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "fetchLater"
+  },
+  {
+    "featureId": "fieldset",
+    "kind": "callGlobal",
+    "name": "HTMLFieldSetElement"
   },
   {
     "featureId": "fieldset",
@@ -10215,9 +11498,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "fieldset",
+    "kind": "callGlobal",
+    "name": "HTMLLegendElement"
+  },
+  {
+    "featureId": "fieldset",
     "kind": "instanceMember",
     "iface": "HTMLLegendElement",
     "prop": "form"
+  },
+  {
+    "featureId": "file",
+    "kind": "callGlobal",
+    "name": "Blob"
   },
   {
     "featureId": "file",
@@ -10268,6 +11561,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "file",
+    "kind": "callGlobal",
+    "name": "File"
+  },
+  {
+    "featureId": "file",
     "kind": "newIdent",
     "name": "File"
   },
@@ -10285,6 +11583,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "file",
+    "kind": "callGlobal",
+    "name": "FileList"
+  },
+  {
+    "featureId": "file",
     "kind": "instanceMember",
     "iface": "FileList",
     "prop": "item"
@@ -10294,6 +11597,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "FileList",
     "prop": "length"
+  },
+  {
+    "featureId": "file",
+    "kind": "callGlobal",
+    "name": "FileReader"
   },
   {
     "featureId": "file",
@@ -10386,6 +11694,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "file",
+    "kind": "callGlobal",
+    "name": "FileReaderSync"
+  },
+  {
+    "featureId": "file",
     "kind": "newIdent",
     "name": "FileReaderSync"
   },
@@ -10451,6 +11764,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "file-system-access",
+    "kind": "callGlobal",
+    "name": "FileSystemWritableFileStream"
+  },
+  {
+    "featureId": "file-system-access",
     "kind": "instanceMember",
     "iface": "FileSystemWritableFileStream",
     "prop": "seek"
@@ -10511,6 +11829,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "focus-events",
+    "kind": "callGlobal",
+    "name": "FocusEvent"
+  },
+  {
+    "featureId": "focus-events",
     "kind": "newIdent",
     "name": "FocusEvent"
   },
@@ -10534,6 +11857,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "font-face",
+    "kind": "callGlobal",
+    "name": "CSSFontFaceRule"
+  },
+  {
+    "featureId": "font-face",
     "kind": "instanceMember",
     "iface": "CSSFontFaceRule",
     "prop": "style"
@@ -10543,6 +11871,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Document",
     "prop": "fonts"
+  },
+  {
+    "featureId": "font-loading",
+    "kind": "callGlobal",
+    "name": "FontFace"
   },
   {
     "featureId": "font-loading",
@@ -10626,6 +11959,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "FontFace",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "font-loading",
+    "kind": "callGlobal",
+    "name": "FontFaceSet"
   },
   {
     "featureId": "font-loading",
@@ -10737,6 +12075,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "font-loading",
+    "kind": "callGlobal",
+    "name": "FontFaceSetLoadEvent"
+  },
+  {
+    "featureId": "font-loading",
     "kind": "newIdent",
     "name": "FontFaceSetLoadEvent"
   },
@@ -10778,6 +12121,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "font-palette",
+    "kind": "callGlobal",
+    "name": "CSSFontPaletteValuesRule"
+  },
+  {
+    "featureId": "font-palette",
     "kind": "instanceMember",
     "iface": "CSSFontPaletteValuesRule",
     "prop": "basePalette"
@@ -10799,6 +12147,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSFontPaletteValuesRule",
     "prop": "overrideColors"
+  },
+  {
+    "featureId": "font-variant-alternates",
+    "kind": "callGlobal",
+    "name": "CSSFontFeatureValuesMap"
   },
   {
     "featureId": "font-variant-alternates",
@@ -10868,6 +12221,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "font-variant-alternates",
+    "kind": "callGlobal",
+    "name": "CSSFontFeatureValuesRule"
+  },
+  {
+    "featureId": "font-variant-alternates",
     "kind": "instanceMember",
     "iface": "CSSFontFeatureValuesRule",
     "prop": "annotation"
@@ -10910,6 +12268,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "form",
+    "kind": "callGlobal",
+    "name": "FormDataEvent"
+  },
+  {
+    "featureId": "form",
     "kind": "newIdent",
     "name": "FormDataEvent"
   },
@@ -10921,9 +12284,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "form",
+    "kind": "callGlobal",
+    "name": "HTMLFormControlsCollection"
+  },
+  {
+    "featureId": "form",
     "kind": "instanceMember",
     "iface": "HTMLFormControlsCollection",
     "prop": "namedItem"
+  },
+  {
+    "featureId": "form",
+    "kind": "callGlobal",
+    "name": "HTMLFormElement"
   },
   {
     "featureId": "form",
@@ -11041,6 +12414,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "form",
+    "kind": "callGlobal",
+    "name": "SubmitEvent"
+  },
+  {
+    "featureId": "form",
     "kind": "newIdent",
     "name": "SubmitEvent"
   },
@@ -11049,6 +12427,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SubmitEvent",
     "prop": "submitter"
+  },
+  {
+    "featureId": "form-associated-custom-elements",
+    "kind": "callGlobal",
+    "name": "ElementInternals"
   },
   {
     "featureId": "form-associated-custom-elements",
@@ -11172,15 +12555,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "function",
+    "kind": "callGlobal",
+    "name": "CSSFunctionDeclarations"
+  },
+  {
+    "featureId": "function",
     "kind": "instanceMember",
     "iface": "CSSFunctionDeclarations",
     "prop": "style"
   },
   {
     "featureId": "function",
+    "kind": "callGlobal",
+    "name": "CSSFunctionDescriptors"
+  },
+  {
+    "featureId": "function",
     "kind": "instanceMember",
     "iface": "CSSFunctionDescriptors",
     "prop": "result"
+  },
+  {
+    "featureId": "function",
+    "kind": "callGlobal",
+    "name": "CSSFunctionRule"
   },
   {
     "featureId": "function",
@@ -11199,6 +12597,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSFunctionRule",
     "prop": "returnType"
+  },
+  {
+    "featureId": "gamepad",
+    "kind": "callGlobal",
+    "name": "Gamepad"
   },
   {
     "featureId": "gamepad",
@@ -11250,6 +12653,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "gamepad",
+    "kind": "callGlobal",
+    "name": "GamepadButton"
+  },
+  {
+    "featureId": "gamepad",
     "kind": "instanceMember",
     "iface": "GamepadButton",
     "prop": "pressed"
@@ -11265,6 +12673,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GamepadButton",
     "prop": "value"
+  },
+  {
+    "featureId": "gamepad",
+    "kind": "callGlobal",
+    "name": "GamepadEvent"
   },
   {
     "featureId": "gamepad",
@@ -11315,6 +12728,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "gamepad-haptics",
+    "kind": "callGlobal",
+    "name": "GamepadHapticActuator"
+  },
+  {
+    "featureId": "gamepad-haptics",
     "kind": "instanceMember",
     "iface": "GamepadHapticActuator",
     "prop": "effects"
@@ -11360,6 +12778,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Gamepad",
     "prop": "pose"
+  },
+  {
+    "featureId": "gamepad-vr",
+    "kind": "callGlobal",
+    "name": "GamepadPose"
   },
   {
     "featureId": "gamepad-vr",
@@ -11417,6 +12840,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "geolocation",
+    "kind": "callGlobal",
+    "name": "Geolocation"
+  },
+  {
+    "featureId": "geolocation",
     "kind": "instanceMember",
     "iface": "Geolocation",
     "prop": "clearWatch"
@@ -11438,6 +12866,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Geolocation",
     "prop": "watchPosition"
+  },
+  {
+    "featureId": "geolocation",
+    "kind": "callGlobal",
+    "name": "GeolocationCoordinates"
   },
   {
     "featureId": "geolocation",
@@ -11495,6 +12928,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "geolocation",
+    "kind": "callGlobal",
+    "name": "GeolocationPosition"
+  },
+  {
+    "featureId": "geolocation",
     "kind": "instanceMember",
     "iface": "GeolocationPosition",
     "prop": "coords"
@@ -11516,6 +12954,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GeolocationPosition",
     "prop": "toJSON"
+  },
+  {
+    "featureId": "geolocation",
+    "kind": "callGlobal",
+    "name": "GeolocationPositionError"
   },
   {
     "featureId": "geolocation",
@@ -11609,6 +13052,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "gyroscope",
+    "kind": "callGlobal",
+    "name": "Gyroscope"
+  },
+  {
+    "featureId": "gyroscope",
     "kind": "newIdent",
     "name": "Gyroscope"
   },
@@ -11650,6 +13098,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "hashchange",
+    "kind": "callGlobal",
+    "name": "HashChangeEvent"
+  },
+  {
+    "featureId": "hashchange",
     "kind": "newIdent",
     "name": "HashChangeEvent"
   },
@@ -11672,6 +13125,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "hashchange_event"
   },
   {
+    "featureId": "head",
+    "kind": "callGlobal",
+    "name": "HTMLHeadElement"
+  },
+  {
+    "featureId": "headings",
+    "kind": "callGlobal",
+    "name": "HTMLHeadingElement"
+  },
+  {
     "featureId": "hidden-until-found",
     "kind": "instanceMember",
     "iface": "Element",
@@ -11682,6 +13145,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "callStatic",
     "base": "CSS",
     "prop": "highlights"
+  },
+  {
+    "featureId": "highlight",
+    "kind": "callGlobal",
+    "name": "Highlight"
   },
   {
     "featureId": "highlight",
@@ -11762,6 +13230,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "highlight",
+    "kind": "callGlobal",
+    "name": "HighlightRegistry"
+  },
+  {
+    "featureId": "highlight",
     "kind": "instanceMember",
     "iface": "HighlightRegistry",
     "prop": "@@iterator"
@@ -11834,6 +13307,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "history",
+    "kind": "callGlobal",
+    "name": "History"
+  },
+  {
+    "featureId": "history",
     "kind": "instanceMember",
     "iface": "History",
     "prop": "back"
@@ -11882,6 +13360,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "history",
+    "kind": "callGlobal",
+    "name": "PopStateEvent"
+  },
+  {
+    "featureId": "history",
     "kind": "newIdent",
     "name": "PopStateEvent"
   },
@@ -11910,10 +13393,25 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "popstate_event"
   },
   {
+    "featureId": "hr",
+    "kind": "callGlobal",
+    "name": "HTMLHRElement"
+  },
+  {
+    "featureId": "html",
+    "kind": "callGlobal",
+    "name": "HTMLHtmlElement"
+  },
+  {
     "featureId": "html-media-capture",
     "kind": "instanceMember",
     "iface": "HTMLInputElement",
     "prop": "capture"
+  },
+  {
+    "featureId": "idle-detection",
+    "kind": "callGlobal",
+    "name": "IdleDetector"
   },
   {
     "featureId": "idle-detection",
@@ -11952,9 +13450,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "iframe",
-    "kind": "instanceMember",
-    "iface": "HTMLIFrameElement",
-    "prop": "allow"
+    "kind": "callGlobal",
+    "name": "HTMLIFrameElement"
   },
   {
     "featureId": "iframe",
@@ -12021,6 +13518,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLIFrameElement",
     "prop": "srcdoc"
+  },
+  {
+    "featureId": "image-maps",
+    "kind": "callGlobal",
+    "name": "HTMLAreaElement"
   },
   {
     "featureId": "image-maps",
@@ -12144,6 +13646,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "image-maps",
+    "kind": "callGlobal",
+    "name": "HTMLMapElement"
+  },
+  {
+    "featureId": "image-maps",
     "kind": "instanceMember",
     "iface": "HTMLMapElement",
     "prop": "areas"
@@ -12156,6 +13663,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "imagebitmaprenderingcontext",
+    "kind": "callGlobal",
+    "name": "ImageBitmapRenderingContext"
+  },
+  {
+    "featureId": "imagebitmaprenderingcontext",
     "kind": "instanceMember",
     "iface": "ImageBitmapRenderingContext",
     "prop": "canvas"
@@ -12165,6 +13677,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ImageBitmapRenderingContext",
     "prop": "transferFromImageBitmap"
+  },
+  {
+    "featureId": "img",
+    "kind": "callGlobal",
+    "name": "HTMLImageElement"
   },
   {
     "featureId": "img",
@@ -12246,6 +13763,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "import",
+    "kind": "callGlobal",
+    "name": "CSSImportRule"
+  },
+  {
+    "featureId": "import",
     "kind": "instanceMember",
     "iface": "CSSImportRule",
     "prop": "href"
@@ -12261,6 +13783,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSImportRule",
     "prop": "styleSheet"
+  },
+  {
+    "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBCursor"
   },
   {
     "featureId": "indexeddb",
@@ -12330,6 +13857,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBCursorWithValue"
+  },
+  {
+    "featureId": "indexeddb",
     "kind": "instanceMember",
     "iface": "IDBCursorWithValue",
     "prop": "value"
@@ -12339,6 +13871,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "IDBCursorWithValue",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBDatabase"
   },
   {
     "featureId": "indexeddb",
@@ -12402,6 +13939,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBFactory"
+  },
+  {
+    "featureId": "indexeddb",
     "kind": "instanceMember",
     "iface": "IDBFactory",
     "prop": "cmp"
@@ -12429,6 +13971,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "IDBFactory",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBIndex"
   },
   {
     "featureId": "indexeddb",
@@ -12510,6 +14057,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBKeyRange"
+  },
+  {
+    "featureId": "indexeddb",
     "kind": "callStatic",
     "base": "IDBKeyRange",
     "prop": "bound"
@@ -12567,6 +14119,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "IDBKeyRange",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBObjectStore"
   },
   {
     "featureId": "indexeddb",
@@ -12690,6 +14247,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBOpenDBRequest"
+  },
+  {
+    "featureId": "indexeddb",
     "kind": "instanceMember",
     "iface": "IDBOpenDBRequest",
     "prop": "blocked_event"
@@ -12705,6 +14267,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "IDBOpenDBRequest",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBRequest"
   },
   {
     "featureId": "indexeddb",
@@ -12753,6 +14320,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "IDBRequest",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBTransaction"
   },
   {
     "featureId": "indexeddb",
@@ -12828,6 +14400,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "IDBVersionChangeEvent"
+  },
+  {
+    "featureId": "indexeddb",
     "kind": "newIdent",
     "name": "IDBVersionChangeEvent"
   },
@@ -12851,6 +14428,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "indexeddb",
+    "kind": "callGlobal",
+    "name": "indexedDB"
+  },
+  {
+    "featureId": "indexeddb",
     "kind": "instanceMember",
     "iface": "indexedDB",
     "prop": "worker_support"
@@ -12860,6 +14442,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLElement",
     "prop": "inert"
+  },
+  {
+    "featureId": "ink",
+    "kind": "callGlobal",
+    "name": "DelegatedInkTrailPresenter"
   },
   {
     "featureId": "ink",
@@ -12875,6 +14462,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "ink",
+    "kind": "callGlobal",
+    "name": "Ink"
+  },
+  {
+    "featureId": "ink",
     "kind": "instanceMember",
     "iface": "Ink",
     "prop": "requestPresenter"
@@ -12884,6 +14476,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "ink"
+  },
+  {
+    "featureId": "input",
+    "kind": "callGlobal",
+    "name": "HTMLInputElement"
   },
   {
     "featureId": "input",
@@ -12998,12 +14595,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLInputElement",
     "prop": "minLength"
-  },
-  {
-    "featureId": "input",
-    "kind": "instanceMember",
-    "iface": "HTMLInputElement",
-    "prop": "multiple"
   },
   {
     "featureId": "input",
@@ -13145,6 +14736,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "input-event",
+    "kind": "callGlobal",
+    "name": "InputEvent"
+  },
+  {
+    "featureId": "input-event",
     "kind": "newIdent",
     "name": "InputEvent"
   },
@@ -13183,6 +14779,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLInputElement",
     "prop": "files"
+  },
+  {
+    "featureId": "input-file-multiple",
+    "kind": "instanceMember",
+    "iface": "HTMLInputElement",
+    "prop": "multiple"
+  },
+  {
+    "featureId": "input-file-multiple",
+    "kind": "instanceMember",
+    "iface": "HTMLInputElement",
+    "prop": "webkitEntries"
+  },
+  {
+    "featureId": "input-file-webkitdirectory",
+    "kind": "instanceMember",
+    "iface": "File",
+    "prop": "webkitRelativePath"
+  },
+  {
+    "featureId": "input-file-webkitdirectory",
+    "kind": "instanceMember",
+    "iface": "HTMLInputElement",
+    "prop": "webkitdirectory"
   },
   {
     "featureId": "input-image",
@@ -13234,6 +14854,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "insertable-streams",
+    "kind": "callGlobal",
+    "name": "MediaStreamTrackProcessor"
+  },
+  {
+    "featureId": "insertable-streams",
     "kind": "newIdent",
     "name": "MediaStreamTrackProcessor"
   },
@@ -13242,6 +14867,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaStreamTrackProcessor",
     "prop": "readable"
+  },
+  {
+    "featureId": "insertable-streams",
+    "kind": "callGlobal",
+    "name": "VideoTrackGenerator"
   },
   {
     "featureId": "insertable-streams",
@@ -13265,6 +14895,63 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VideoTrackGenerator",
     "prop": "writable"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLAnchorElement",
+    "prop": "interestForElement"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLAreaElement",
+    "prop": "interestForElement"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLButtonElement",
+    "prop": "interestForElement"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "interest_event"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "loseinterest_event"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "callGlobal",
+    "name": "InterestEvent"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "newIdent",
+    "name": "InterestEvent"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "InterestEvent",
+    "prop": "source"
+  },
+  {
+    "featureId": "interest-invokers",
+    "kind": "instanceMember",
+    "iface": "SVGAElement",
+    "prop": "interestForElement"
+  },
+  {
+    "featureId": "intersection-observer",
+    "kind": "callGlobal",
+    "name": "IntersectionObserver"
   },
   {
     "featureId": "intersection-observer",
@@ -13333,6 +15020,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "intersection-observer",
+    "kind": "callGlobal",
+    "name": "IntersectionObserverEntry"
+  },
+  {
+    "featureId": "intersection-observer",
     "kind": "newIdent",
     "name": "IntersectionObserverEntry"
   },
@@ -13386,6 +15078,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "invoker-commands",
+    "kind": "callGlobal",
+    "name": "CommandEvent"
+  },
+  {
+    "featureId": "invoker-commands",
     "kind": "newIdent",
     "name": "CommandEvent"
   },
@@ -13427,9 +15124,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "is-input-pending",
+    "kind": "callGlobal",
+    "name": "Scheduling"
+  },
+  {
+    "featureId": "is-input-pending",
     "kind": "instanceMember",
     "iface": "Scheduling",
     "prop": "isInputPending"
+  },
+  {
+    "featureId": "is-secure-context",
+    "kind": "callGlobal",
+    "name": "isSecureContext"
   },
   {
     "featureId": "is-secure-context",
@@ -13460,6 +15167,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Element",
     "prop": "keyup_event"
+  },
+  {
+    "featureId": "keyboard-events",
+    "kind": "callGlobal",
+    "name": "KeyboardEvent"
   },
   {
     "featureId": "keyboard-events",
@@ -13528,6 +15240,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "keyboard-lock",
+    "kind": "callGlobal",
+    "name": "Keyboard"
+  },
+  {
+    "featureId": "keyboard-lock",
     "kind": "instanceMember",
     "iface": "Keyboard",
     "prop": "lock"
@@ -13549,6 +15266,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Keyboard",
     "prop": "getLayoutMap"
+  },
+  {
+    "featureId": "keyboard-map",
+    "kind": "callGlobal",
+    "name": "KeyboardLayoutMap"
   },
   {
     "featureId": "keyboard-map",
@@ -13597,6 +15319,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "KeyboardLayoutMap",
     "prop": "values"
+  },
+  {
+    "featureId": "khr-parallel-shader-compile",
+    "kind": "callGlobal",
+    "name": "KHR_parallel_shader_compile"
+  },
+  {
+    "featureId": "label",
+    "kind": "callGlobal",
+    "name": "HTMLLabelElement"
   },
   {
     "featureId": "label",
@@ -13660,6 +15392,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "largest-contentful-paint",
+    "kind": "callGlobal",
+    "name": "LargestContentfulPaint"
+  },
+  {
+    "featureId": "largest-contentful-paint",
     "kind": "instanceMember",
     "iface": "LargestContentfulPaint",
     "prop": "element"
@@ -13702,6 +15439,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "layout-instability",
+    "kind": "callGlobal",
+    "name": "LayoutShift"
+  },
+  {
+    "featureId": "layout-instability",
     "kind": "instanceMember",
     "iface": "LayoutShift",
     "prop": "hadRecentInput"
@@ -13732,6 +15474,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "layout-instability",
+    "kind": "callGlobal",
+    "name": "LayoutShiftAttribution"
+  },
+  {
+    "featureId": "layout-instability",
     "kind": "instanceMember",
     "iface": "LayoutShiftAttribution",
     "prop": "currentRect"
@@ -13753,6 +15500,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "LayoutShiftAttribution",
     "prop": "toJSON"
+  },
+  {
+    "featureId": "link",
+    "kind": "callGlobal",
+    "name": "HTMLLinkElement"
   },
   {
     "featureId": "link",
@@ -13822,9 +15574,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "list-elements",
+    "kind": "callGlobal",
+    "name": "HTMLLIElement"
+  },
+  {
+    "featureId": "list-elements",
     "kind": "instanceMember",
     "iface": "HTMLLIElement",
     "prop": "value"
+  },
+  {
+    "featureId": "list-elements",
+    "kind": "callGlobal",
+    "name": "HTMLOListElement"
   },
   {
     "featureId": "list-elements",
@@ -13845,6 +15607,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "type"
   },
   {
+    "featureId": "list-elements",
+    "kind": "callGlobal",
+    "name": "HTMLUListElement"
+  },
+  {
     "featureId": "loading-lazy",
     "kind": "instanceMember",
     "iface": "HTMLIFrameElement",
@@ -13855,6 +15622,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLImageElement",
     "prop": "loading"
+  },
+  {
+    "featureId": "local-fonts",
+    "kind": "callGlobal",
+    "name": "FontData"
   },
   {
     "featureId": "local-fonts",
@@ -13906,6 +15678,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "localstorage",
+    "kind": "callGlobal",
+    "name": "Storage"
+  },
+  {
+    "featureId": "localstorage",
     "kind": "instanceMember",
     "iface": "Storage",
     "prop": "clear"
@@ -13939,6 +15716,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Storage",
     "prop": "setItem"
+  },
+  {
+    "featureId": "localstorage",
+    "kind": "callGlobal",
+    "name": "StorageEvent"
   },
   {
     "featureId": "localstorage",
@@ -13998,6 +15780,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Document",
     "prop": "location"
+  },
+  {
+    "featureId": "location",
+    "kind": "callGlobal",
+    "name": "Location"
   },
   {
     "featureId": "location",
@@ -14091,6 +15878,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "long-animation-frames",
+    "kind": "callGlobal",
+    "name": "PerformanceLongAnimationFrameTiming"
+  },
+  {
+    "featureId": "long-animation-frames",
     "kind": "instanceMember",
     "iface": "PerformanceLongAnimationFrameTiming",
     "prop": "blockingDuration"
@@ -14124,6 +15916,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PerformanceLongAnimationFrameTiming",
     "prop": "toJSON"
+  },
+  {
+    "featureId": "long-animation-frames",
+    "kind": "callGlobal",
+    "name": "PerformanceScriptTiming"
   },
   {
     "featureId": "long-animation-frames",
@@ -14193,6 +15990,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "longtasks",
+    "kind": "callGlobal",
+    "name": "PerformanceLongTaskTiming"
+  },
+  {
+    "featureId": "longtasks",
     "kind": "instanceMember",
     "iface": "PerformanceLongTaskTiming",
     "prop": "attribution"
@@ -14202,6 +16004,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PerformanceLongTaskTiming",
     "prop": "toJSON"
+  },
+  {
+    "featureId": "longtasks",
+    "kind": "callGlobal",
+    "name": "TaskAttributionTiming"
   },
   {
     "featureId": "longtasks",
@@ -14235,6 +16042,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "magnetometer",
+    "kind": "callGlobal",
+    "name": "Magnetometer"
+  },
+  {
+    "featureId": "magnetometer",
     "kind": "newIdent",
     "name": "Magnetometer"
   },
@@ -14264,6 +16076,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "managed-media-source",
+    "kind": "callGlobal",
+    "name": "ManagedMediaSource"
+  },
+  {
+    "featureId": "managed-media-source",
     "kind": "newIdent",
     "name": "ManagedMediaSource"
   },
@@ -14287,9 +16104,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "managed-media-source",
+    "kind": "callGlobal",
+    "name": "ManagedSourceBuffer"
+  },
+  {
+    "featureId": "managed-media-source",
     "kind": "instanceMember",
     "iface": "ManagedSourceBuffer",
     "prop": "bufferedchange_event"
+  },
+  {
+    "featureId": "matchmedia",
+    "kind": "callGlobal",
+    "name": "MediaQueryList"
   },
   {
     "featureId": "matchmedia",
@@ -14317,6 +16144,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "matchmedia",
+    "kind": "callGlobal",
+    "name": "MediaQueryListEvent"
+  },
+  {
+    "featureId": "matchmedia",
     "kind": "newIdent",
     "name": "MediaQueryListEvent"
   },
@@ -14337,6 +16169,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "matchMedia"
+  },
+  {
+    "featureId": "mathml",
+    "kind": "callGlobal",
+    "name": "MathMLElement"
   },
   {
     "featureId": "mathml",
@@ -14382,6 +16219,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-capabilities",
+    "kind": "callGlobal",
+    "name": "MediaCapabilities"
+  },
+  {
+    "featureId": "media-capabilities",
     "kind": "instanceMember",
     "iface": "MediaCapabilities",
     "prop": "decodingInfo"
@@ -14406,9 +16248,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-capture",
+    "kind": "callGlobal",
+    "name": "InputDeviceInfo"
+  },
+  {
+    "featureId": "media-capture",
     "kind": "instanceMember",
     "iface": "InputDeviceInfo",
     "prop": "getCapabilities"
+  },
+  {
+    "featureId": "media-capture",
+    "kind": "callGlobal",
+    "name": "MediaDeviceInfo"
   },
   {
     "featureId": "media-capture",
@@ -14442,6 +16294,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-capture",
+    "kind": "callGlobal",
+    "name": "MediaDevices"
+  },
+  {
+    "featureId": "media-capture",
     "kind": "instanceMember",
     "iface": "MediaDevices",
     "prop": "devicechange_event"
@@ -14463,6 +16320,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaDevices",
     "prop": "getUserMedia"
+  },
+  {
+    "featureId": "media-capture",
+    "kind": "callGlobal",
+    "name": "MediaStream"
   },
   {
     "featureId": "media-capture",
@@ -14534,6 +16396,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaStream",
     "prop": "removetrack_event"
+  },
+  {
+    "featureId": "media-capture",
+    "kind": "callGlobal",
+    "name": "MediaStreamTrack"
   },
   {
     "featureId": "media-capture",
@@ -14627,6 +16494,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-capture",
+    "kind": "callGlobal",
+    "name": "MediaStreamTrackEvent"
+  },
+  {
+    "featureId": "media-capture",
     "kind": "newIdent",
     "name": "MediaStreamTrackEvent"
   },
@@ -14641,6 +16513,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "mediaDevices"
+  },
+  {
+    "featureId": "media-capture",
+    "kind": "callGlobal",
+    "name": "OverconstrainedError"
   },
   {
     "featureId": "media-capture",
@@ -14673,6 +16550,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-playback-quality",
+    "kind": "callGlobal",
+    "name": "VideoPlaybackQuality"
+  },
+  {
+    "featureId": "media-playback-quality",
     "kind": "instanceMember",
     "iface": "VideoPlaybackQuality",
     "prop": "creationTime"
@@ -14691,6 +16573,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-session",
+    "kind": "callGlobal",
+    "name": "ChapterInformation"
+  },
+  {
+    "featureId": "media-session",
     "kind": "instanceMember",
     "iface": "ChapterInformation",
     "prop": "artwork"
@@ -14706,6 +16593,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ChapterInformation",
     "prop": "title"
+  },
+  {
+    "featureId": "media-session",
+    "kind": "callGlobal",
+    "name": "MediaMetadata"
   },
   {
     "featureId": "media-session",
@@ -14741,6 +16633,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaMetadata",
     "prop": "title"
+  },
+  {
+    "featureId": "media-session",
+    "kind": "callGlobal",
+    "name": "MediaSession"
   },
   {
     "featureId": "media-session",
@@ -14798,6 +16695,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-source",
+    "kind": "callGlobal",
+    "name": "BufferedChangeEvent"
+  },
+  {
+    "featureId": "media-source",
     "kind": "newIdent",
     "name": "BufferedChangeEvent"
   },
@@ -14818,6 +16720,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLMediaElement",
     "prop": "srcObject"
+  },
+  {
+    "featureId": "media-source",
+    "kind": "callGlobal",
+    "name": "MediaSource"
   },
   {
     "featureId": "media-source",
@@ -14919,6 +16826,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaSource",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "media-source",
+    "kind": "callGlobal",
+    "name": "MediaSourceHandle"
+  },
+  {
+    "featureId": "media-source",
+    "kind": "callGlobal",
+    "name": "SourceBuffer"
   },
   {
     "featureId": "media-source",
@@ -15030,6 +16947,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-source",
+    "kind": "callGlobal",
+    "name": "SourceBufferList"
+  },
+  {
+    "featureId": "media-source",
     "kind": "instanceMember",
     "iface": "SourceBufferList",
     "prop": "addsourcebuffer_event"
@@ -15063,6 +16985,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLMediaElement",
     "prop": "controller"
+  },
+  {
+    "featureId": "mediacontroller",
+    "kind": "callGlobal",
+    "name": "MediaController"
   },
   {
     "featureId": "mediacontroller",
@@ -15155,6 +17082,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "mediastream-recording",
+    "kind": "callGlobal",
+    "name": "BlobEvent"
+  },
+  {
+    "featureId": "mediastream-recording",
     "kind": "newIdent",
     "name": "BlobEvent"
   },
@@ -15169,6 +17101,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "BlobEvent",
     "prop": "timecode"
+  },
+  {
+    "featureId": "mediastream-recording",
+    "kind": "callGlobal",
+    "name": "MediaRecorder"
   },
   {
     "featureId": "mediastream-recording",
@@ -15284,6 +17221,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "videoBitsPerSecond"
   },
   {
+    "featureId": "menu",
+    "kind": "callGlobal",
+    "name": "HTMLMenuElement"
+  },
+  {
     "featureId": "messageerror",
     "kind": "instanceMember",
     "iface": "DedicatedWorkerGlobalScope",
@@ -15321,6 +17263,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "meta",
+    "kind": "callGlobal",
+    "name": "HTMLMetaElement"
+  },
+  {
+    "featureId": "meta",
     "kind": "instanceMember",
     "iface": "HTMLMetaElement",
     "prop": "content"
@@ -15342,6 +17289,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLMetaElement",
     "prop": "name"
+  },
+  {
+    "featureId": "meter",
+    "kind": "callGlobal",
+    "name": "HTMLMeterElement"
   },
   {
     "featureId": "meter",
@@ -15456,6 +17408,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLElement",
     "prop": "click"
+  },
+  {
+    "featureId": "mouse-events",
+    "kind": "callGlobal",
+    "name": "MouseEvent"
   },
   {
     "featureId": "mouse-events",
@@ -15602,6 +17559,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "mutation-events",
+    "kind": "callGlobal",
+    "name": "MutationEvent"
+  },
+  {
+    "featureId": "mutation-events",
     "kind": "instanceMember",
     "iface": "MutationEvent",
     "prop": "attrChange"
@@ -15638,6 +17600,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "mutationobserver",
+    "kind": "callGlobal",
+    "name": "MutationObserver"
+  },
+  {
+    "featureId": "mutationobserver",
     "kind": "newIdent",
     "name": "MutationObserver"
   },
@@ -15658,6 +17625,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MutationObserver",
     "prop": "takeRecords"
+  },
+  {
+    "featureId": "mutationobserver",
+    "kind": "callGlobal",
+    "name": "MutationRecord"
   },
   {
     "featureId": "mutationobserver",
@@ -15715,6 +17687,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "namespace",
+    "kind": "callGlobal",
+    "name": "CSSNamespaceRule"
+  },
+  {
+    "featureId": "namespace",
     "kind": "instanceMember",
     "iface": "CSSNamespaceRule",
     "prop": "namespaceURI"
@@ -15724,6 +17701,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSNamespaceRule",
     "prop": "prefix"
+  },
+  {
+    "featureId": "navigation",
+    "kind": "callGlobal",
+    "name": "NavigateEvent"
   },
   {
     "featureId": "navigation",
@@ -15801,6 +17783,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "NavigateEvent",
     "prop": "userInitiated"
+  },
+  {
+    "featureId": "navigation",
+    "kind": "callGlobal",
+    "name": "Navigation"
   },
   {
     "featureId": "navigation",
@@ -15900,6 +17887,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "navigation",
+    "kind": "callGlobal",
+    "name": "NavigationActivation"
+  },
+  {
+    "featureId": "navigation",
     "kind": "instanceMember",
     "iface": "NavigationActivation",
     "prop": "entry"
@@ -15918,6 +17910,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "navigation",
+    "kind": "callGlobal",
+    "name": "NavigationCurrentEntryChangeEvent"
+  },
+  {
+    "featureId": "navigation",
     "kind": "newIdent",
     "name": "NavigationCurrentEntryChangeEvent"
   },
@@ -15932,6 +17929,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "NavigationCurrentEntryChangeEvent",
     "prop": "navigationType"
+  },
+  {
+    "featureId": "navigation",
+    "kind": "callGlobal",
+    "name": "NavigationDestination"
   },
   {
     "featureId": "navigation",
@@ -15968,6 +17970,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "NavigationDestination",
     "prop": "url"
+  },
+  {
+    "featureId": "navigation",
+    "kind": "callGlobal",
+    "name": "NavigationHistoryEntry"
   },
   {
     "featureId": "navigation",
@@ -16013,6 +18020,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "navigation",
+    "kind": "callGlobal",
+    "name": "NavigationTransition"
+  },
+  {
+    "featureId": "navigation",
     "kind": "instanceMember",
     "iface": "NavigationTransition",
     "prop": "finished"
@@ -16034,6 +18046,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "navigation"
+  },
+  {
+    "featureId": "navigation-timing",
+    "kind": "callGlobal",
+    "name": "PerformanceNavigationTiming"
   },
   {
     "featureId": "navigation-timing",
@@ -16109,9 +18126,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "navigator",
+    "kind": "callGlobal",
+    "name": "Navigator"
+  },
+  {
+    "featureId": "navigator",
     "kind": "member",
     "base": "window",
     "prop": "navigator"
+  },
+  {
+    "featureId": "nesting",
+    "kind": "callGlobal",
+    "name": "CSSNestedDeclarations"
   },
   {
     "featureId": "nesting",
@@ -16142,6 +18169,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "connection"
+  },
+  {
+    "featureId": "network-information",
+    "kind": "callGlobal",
+    "name": "NetworkInformation"
   },
   {
     "featureId": "network-information",
@@ -16196,6 +18228,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Document",
     "prop": "hasUnpartitionedCookieAccess"
+  },
+  {
+    "featureId": "non-cookie-storage-access",
+    "kind": "callGlobal",
+    "name": "StorageAccessHandle"
   },
   {
     "featureId": "non-cookie-storage-access",
@@ -16262,6 +18299,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "StorageAccessHandle",
     "prop": "sessionStorage"
+  },
+  {
+    "featureId": "notifications",
+    "kind": "callGlobal",
+    "name": "Notification"
   },
   {
     "featureId": "notifications",
@@ -16417,6 +18459,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Notification",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "notifications",
+    "kind": "callGlobal",
+    "name": "NotificationEvent"
   },
   {
     "featureId": "notifications",
@@ -16845,6 +18892,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "object",
+    "kind": "callGlobal",
+    "name": "HTMLObjectElement"
+  },
+  {
+    "featureId": "object",
     "kind": "instanceMember",
     "iface": "HTMLObjectElement",
     "prop": "contentDocument"
@@ -16902,6 +18954,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "EventTarget",
     "prop": "when"
+  },
+  {
+    "featureId": "observable",
+    "kind": "callGlobal",
+    "name": "Observable"
   },
   {
     "featureId": "observable",
@@ -17030,6 +19087,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "observable",
+    "kind": "callGlobal",
+    "name": "Subscriber"
+  },
+  {
+    "featureId": "observable",
     "kind": "instanceMember",
     "iface": "Subscriber",
     "prop": "active"
@@ -17065,6 +19127,46 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "signal"
   },
   {
+    "featureId": "oes-element-index-uint",
+    "kind": "callGlobal",
+    "name": "OES_element_index_uint"
+  },
+  {
+    "featureId": "oes-fbo-render-mipmap",
+    "kind": "callGlobal",
+    "name": "OES_fbo_render_mipmap"
+  },
+  {
+    "featureId": "oes-standard-derivatives",
+    "kind": "callGlobal",
+    "name": "OES_standard_derivatives"
+  },
+  {
+    "featureId": "oes-texture-float",
+    "kind": "callGlobal",
+    "name": "OES_texture_float"
+  },
+  {
+    "featureId": "oes-texture-float-linear",
+    "kind": "callGlobal",
+    "name": "OES_texture_float_linear"
+  },
+  {
+    "featureId": "oes-texture-half-float",
+    "kind": "callGlobal",
+    "name": "OES_texture_half_float"
+  },
+  {
+    "featureId": "oes-texture-half-float-linear",
+    "kind": "callGlobal",
+    "name": "OES_texture_half_float_linear"
+  },
+  {
+    "featureId": "oes-vertex-array-object",
+    "kind": "callGlobal",
+    "name": "OES_vertex_array_object"
+  },
+  {
     "featureId": "oes-vertex-array-object",
     "kind": "instanceMember",
     "iface": "OES_vertex_array_object",
@@ -17089,6 +19191,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "isVertexArrayOES"
   },
   {
+    "featureId": "oes-vertex-array-object",
+    "kind": "callGlobal",
+    "name": "WebGLVertexArrayObjectOES"
+  },
+  {
+    "featureId": "offline-audio-context",
+    "kind": "callGlobal",
+    "name": "OfflineAudioCompletionEvent"
+  },
+  {
     "featureId": "offline-audio-context",
     "kind": "newIdent",
     "name": "OfflineAudioCompletionEvent"
@@ -17098,6 +19210,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "OfflineAudioCompletionEvent",
     "prop": "renderedBuffer"
+  },
+  {
+    "featureId": "offline-audio-context",
+    "kind": "callGlobal",
+    "name": "OfflineAudioContext"
   },
   {
     "featureId": "offline-audio-context",
@@ -17142,6 +19259,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "offscreen-canvas",
+    "kind": "callGlobal",
+    "name": "OffscreenCanvas"
+  },
+  {
+    "featureId": "offscreen-canvas",
     "kind": "newIdent",
     "name": "OffscreenCanvas"
   },
@@ -17174,6 +19296,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "OffscreenCanvas",
     "prop": "width"
+  },
+  {
+    "featureId": "offscreen-canvas",
+    "kind": "callGlobal",
+    "name": "OffscreenCanvasRenderingContext2D"
   },
   {
     "featureId": "offscreen-canvas",
@@ -17609,8 +19736,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "orientation-sensor",
+    "kind": "callGlobal",
+    "name": "AbsoluteOrientationSensor"
+  },
+  {
+    "featureId": "orientation-sensor",
     "kind": "newIdent",
     "name": "AbsoluteOrientationSensor"
+  },
+  {
+    "featureId": "orientation-sensor",
+    "kind": "callGlobal",
+    "name": "OrientationSensor"
   },
   {
     "featureId": "orientation-sensor",
@@ -17626,8 +19763,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "orientation-sensor",
+    "kind": "callGlobal",
+    "name": "RelativeOrientationSensor"
+  },
+  {
+    "featureId": "orientation-sensor",
     "kind": "newIdent",
     "name": "RelativeOrientationSensor"
+  },
+  {
+    "featureId": "orientation-sensor",
+    "kind": "callGlobal",
+    "name": "Sensor"
   },
   {
     "featureId": "orientation-sensor",
@@ -17679,6 +19826,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "orientation-sensor",
+    "kind": "callGlobal",
+    "name": "SensorErrorEvent"
+  },
+  {
+    "featureId": "orientation-sensor",
     "kind": "newIdent",
     "name": "SensorErrorEvent"
   },
@@ -17687,6 +19839,45 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SensorErrorEvent",
     "prop": "error"
+  },
+  {
+    "featureId": "origin",
+    "kind": "callGlobal",
+    "name": "Origin"
+  },
+  {
+    "featureId": "origin",
+    "kind": "newIdent",
+    "name": "Origin"
+  },
+  {
+    "featureId": "origin",
+    "kind": "callStatic",
+    "base": "Origin",
+    "prop": "from"
+  },
+  {
+    "featureId": "origin",
+    "kind": "instanceMember",
+    "iface": "Origin",
+    "prop": "isSameOrigin"
+  },
+  {
+    "featureId": "origin",
+    "kind": "instanceMember",
+    "iface": "Origin",
+    "prop": "isSameSite"
+  },
+  {
+    "featureId": "origin",
+    "kind": "instanceMember",
+    "iface": "Origin",
+    "prop": "opaque"
+  },
+  {
+    "featureId": "origin-private-file-system",
+    "kind": "callGlobal",
+    "name": "FileSystemDirectoryHandle"
   },
   {
     "featureId": "origin-private-file-system",
@@ -17732,6 +19923,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "origin-private-file-system",
+    "kind": "callGlobal",
+    "name": "FileSystemFileHandle"
+  },
+  {
+    "featureId": "origin-private-file-system",
     "kind": "instanceMember",
     "iface": "FileSystemFileHandle",
     "prop": "createSyncAccessHandle"
@@ -17741,6 +19937,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "FileSystemFileHandle",
     "prop": "getFile"
+  },
+  {
+    "featureId": "origin-private-file-system",
+    "kind": "callGlobal",
+    "name": "FileSystemHandle"
   },
   {
     "featureId": "origin-private-file-system",
@@ -17759,6 +19960,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "FileSystemHandle",
     "prop": "name"
+  },
+  {
+    "featureId": "origin-private-file-system",
+    "kind": "callGlobal",
+    "name": "FileSystemSyncAccessHandle"
   },
   {
     "featureId": "origin-private-file-system",
@@ -17801,6 +20007,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "StorageManager",
     "prop": "getDirectory"
+  },
+  {
+    "featureId": "output",
+    "kind": "callGlobal",
+    "name": "HTMLOutputElement"
   },
   {
     "featureId": "output",
@@ -17851,9 +20062,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "ovr-multiview2",
+    "kind": "callGlobal",
+    "name": "OVR_multiview2"
+  },
+  {
+    "featureId": "ovr-multiview2",
     "kind": "instanceMember",
     "iface": "OVR_multiview2",
     "prop": "framebufferTextureMultiviewOVR"
+  },
+  {
+    "featureId": "p",
+    "kind": "callGlobal",
+    "name": "HTMLParagraphElement"
   },
   {
     "featureId": "page-lifecycle",
@@ -17872,6 +20093,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Document",
     "prop": "wasDiscarded"
+  },
+  {
+    "featureId": "page-transition-events",
+    "kind": "callGlobal",
+    "name": "PageTransitionEvent"
   },
   {
     "featureId": "page-transition-events",
@@ -17916,6 +20142,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "page-visibility-state",
+    "kind": "callGlobal",
+    "name": "VisibilityStateEntry"
+  },
+  {
+    "featureId": "page-visibility-state",
     "kind": "instanceMember",
     "iface": "VisibilityStateEntry",
     "prop": "duration"
@@ -17943,6 +20174,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "callStatic",
     "base": "CSS",
     "prop": "paintWorklet"
+  },
+  {
+    "featureId": "paint",
+    "kind": "callGlobal",
+    "name": "PaintRenderingContext2D"
   },
   {
     "featureId": "paint",
@@ -18186,6 +20422,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "paint",
+    "kind": "callGlobal",
+    "name": "PaintSize"
+  },
+  {
+    "featureId": "paint",
     "kind": "instanceMember",
     "iface": "PaintSize",
     "prop": "height"
@@ -18198,6 +20439,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "paint",
+    "kind": "callGlobal",
+    "name": "PaintWorkletGlobalScope"
+  },
+  {
+    "featureId": "paint",
     "kind": "instanceMember",
     "iface": "PaintWorkletGlobalScope",
     "prop": "devicePixelRatio"
@@ -18207,6 +20453,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PaintWorkletGlobalScope",
     "prop": "registerPaint"
+  },
+  {
+    "featureId": "paint-timing",
+    "kind": "callGlobal",
+    "name": "PerformancePaintTiming"
   },
   {
     "featureId": "paint-timing",
@@ -18246,6 +20497,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "password-credentials",
+    "kind": "callGlobal",
+    "name": "PasswordCredential"
+  },
+  {
+    "featureId": "password-credentials",
     "kind": "newIdent",
     "name": "PasswordCredential"
   },
@@ -18269,6 +20525,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "payment-handler",
+    "kind": "callGlobal",
+    "name": "CanMakePaymentEvent"
+  },
+  {
+    "featureId": "payment-handler",
     "kind": "newIdent",
     "name": "CanMakePaymentEvent"
   },
@@ -18277,6 +20538,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CanMakePaymentEvent",
     "prop": "respondWith"
+  },
+  {
+    "featureId": "payment-handler",
+    "kind": "callGlobal",
+    "name": "PaymentManager"
   },
   {
     "featureId": "payment-handler",
@@ -18295,6 +20561,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PaymentManager",
     "prop": "userHint"
+  },
+  {
+    "featureId": "payment-handler",
+    "kind": "callGlobal",
+    "name": "PaymentRequestEvent"
   },
   {
     "featureId": "payment-handler",
@@ -18405,6 +20676,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "payment-request",
+    "kind": "callGlobal",
+    "name": "PaymentMethodChangeEvent"
+  },
+  {
+    "featureId": "payment-request",
     "kind": "newIdent",
     "name": "PaymentMethodChangeEvent"
   },
@@ -18419,6 +20695,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PaymentMethodChangeEvent",
     "prop": "methodName"
+  },
+  {
+    "featureId": "payment-request",
+    "kind": "callGlobal",
+    "name": "PaymentRequest"
   },
   {
     "featureId": "payment-request",
@@ -18457,6 +20738,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "payment-request",
+    "kind": "callGlobal",
+    "name": "PaymentRequestUpdateEvent"
+  },
+  {
+    "featureId": "payment-request",
     "kind": "newIdent",
     "name": "PaymentRequestUpdateEvent"
   },
@@ -18471,6 +20757,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PaymentRequestUpdateEvent",
     "prop": "updateWith"
+  },
+  {
+    "featureId": "payment-request",
+    "kind": "callGlobal",
+    "name": "PaymentResponse"
   },
   {
     "featureId": "payment-request",
@@ -18552,6 +20843,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "performance",
+    "kind": "callGlobal",
+    "name": "Performance"
+  },
+  {
+    "featureId": "performance",
     "kind": "instanceMember",
     "iface": "Performance",
     "prop": "clearMarks"
@@ -18612,6 +20908,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "performance",
+    "kind": "callGlobal",
+    "name": "PerformanceEntry"
+  },
+  {
+    "featureId": "performance",
     "kind": "instanceMember",
     "iface": "PerformanceEntry",
     "prop": "duration"
@@ -18648,6 +20949,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "performance",
+    "kind": "callGlobal",
+    "name": "PerformanceMark"
+  },
+  {
+    "featureId": "performance",
     "kind": "newIdent",
     "name": "PerformanceMark"
   },
@@ -18659,9 +20965,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "performance",
+    "kind": "callGlobal",
+    "name": "PerformanceMeasure"
+  },
+  {
+    "featureId": "performance",
     "kind": "instanceMember",
     "iface": "PerformanceMeasure",
     "prop": "detail"
+  },
+  {
+    "featureId": "performance",
+    "kind": "callGlobal",
+    "name": "PerformanceObserver"
   },
   {
     "featureId": "performance",
@@ -18700,6 +21016,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "performance",
+    "kind": "callGlobal",
+    "name": "PerformanceObserverEntryList"
+  },
+  {
+    "featureId": "performance",
     "kind": "instanceMember",
     "iface": "PerformanceObserverEntryList",
     "prop": "getEntries"
@@ -18715,6 +21036,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PerformanceObserverEntryList",
     "prop": "getEntriesByType"
+  },
+  {
+    "featureId": "performance",
+    "kind": "callGlobal",
+    "name": "performance"
   },
   {
     "featureId": "performance",
@@ -18736,6 +21062,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "performancetiming",
+    "kind": "callGlobal",
+    "name": "PerformanceNavigation"
+  },
+  {
+    "featureId": "performancetiming",
     "kind": "instanceMember",
     "iface": "PerformanceNavigation",
     "prop": "redirectCount"
@@ -18751,6 +21082,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PerformanceNavigation",
     "prop": "type"
+  },
+  {
+    "featureId": "performancetiming",
+    "kind": "callGlobal",
+    "name": "PerformanceTiming"
   },
   {
     "featureId": "performancetiming",
@@ -18886,6 +21222,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "periodic-background-sync",
+    "kind": "callGlobal",
+    "name": "PeriodicSyncEvent"
+  },
+  {
+    "featureId": "periodic-background-sync",
     "kind": "newIdent",
     "name": "PeriodicSyncEvent"
   },
@@ -18894,6 +21235,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PeriodicSyncEvent",
     "prop": "tag"
+  },
+  {
+    "featureId": "periodic-background-sync",
+    "kind": "callGlobal",
+    "name": "PeriodicSyncManager"
   },
   {
     "featureId": "periodic-background-sync",
@@ -18933,6 +21279,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "permissions",
+    "kind": "callGlobal",
+    "name": "PermissionStatus"
+  },
+  {
+    "featureId": "permissions",
     "kind": "instanceMember",
     "iface": "PermissionStatus",
     "prop": "change_event"
@@ -18951,6 +21302,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "permissions",
+    "kind": "callGlobal",
+    "name": "Permissions"
+  },
+  {
+    "featureId": "permissions",
     "kind": "instanceMember",
     "iface": "Permissions",
     "prop": "query"
@@ -18966,6 +21322,17 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WorkerNavigator",
     "prop": "permissions"
+  },
+  {
+    "featureId": "permissions-policy",
+    "kind": "instanceMember",
+    "iface": "HTMLIFrameElement",
+    "prop": "allow"
+  },
+  {
+    "featureId": "picture",
+    "kind": "callGlobal",
+    "name": "HTMLPictureElement"
   },
   {
     "featureId": "picture-in-picture",
@@ -19011,6 +21378,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "picture-in-picture",
+    "kind": "callGlobal",
+    "name": "PictureInPictureEvent"
+  },
+  {
+    "featureId": "picture-in-picture",
     "kind": "newIdent",
     "name": "PictureInPictureEvent"
   },
@@ -19019,6 +21391,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PictureInPictureEvent",
     "prop": "pictureInPictureWindow"
+  },
+  {
+    "featureId": "picture-in-picture",
+    "kind": "callGlobal",
+    "name": "PictureInPictureWindow"
   },
   {
     "featureId": "picture-in-picture",
@@ -19151,6 +21528,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "maxTouchPoints"
+  },
+  {
+    "featureId": "pointer-events-api",
+    "kind": "callGlobal",
+    "name": "PointerEvent"
   },
   {
     "featureId": "pointer-events-api",
@@ -19333,6 +21715,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "popover",
+    "kind": "callGlobal",
+    "name": "ToggleEvent"
+  },
+  {
+    "featureId": "popover",
     "kind": "newIdent",
     "name": "ToggleEvent"
   },
@@ -19359,6 +21746,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DedicatedWorkerGlobalScope",
     "prop": "postMessage"
+  },
+  {
+    "featureId": "postmessage",
+    "kind": "callGlobal",
+    "name": "MessageEvent"
   },
   {
     "featureId": "postmessage",
@@ -19414,6 +21806,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "postMessage"
   },
   {
+    "featureId": "pre",
+    "kind": "callGlobal",
+    "name": "HTMLPreElement"
+  },
+  {
     "featureId": "preloading-responsive-images",
     "kind": "instanceMember",
     "iface": "HTMLLinkElement",
@@ -19433,6 +21830,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "presentation-api",
+    "kind": "callGlobal",
+    "name": "Presentation"
+  },
+  {
+    "featureId": "presentation-api",
     "kind": "instanceMember",
     "iface": "Presentation",
     "prop": "defaultRequest"
@@ -19445,6 +21847,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "presentation-api",
+    "kind": "callGlobal",
+    "name": "PresentationAvailability"
+  },
+  {
+    "featureId": "presentation-api",
     "kind": "instanceMember",
     "iface": "PresentationAvailability",
     "prop": "change_event"
@@ -19454,6 +21861,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PresentationAvailability",
     "prop": "value"
+  },
+  {
+    "featureId": "presentation-api",
+    "kind": "callGlobal",
+    "name": "PresentationConnection"
   },
   {
     "featureId": "presentation-api",
@@ -19523,6 +21935,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "presentation-api",
+    "kind": "callGlobal",
+    "name": "PresentationConnectionAvailableEvent"
+  },
+  {
+    "featureId": "presentation-api",
     "kind": "newIdent",
     "name": "PresentationConnectionAvailableEvent"
   },
@@ -19531,6 +21948,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PresentationConnectionAvailableEvent",
     "prop": "connection"
+  },
+  {
+    "featureId": "presentation-api",
+    "kind": "callGlobal",
+    "name": "PresentationConnectionCloseEvent"
   },
   {
     "featureId": "presentation-api",
@@ -19551,6 +21973,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "presentation-api",
+    "kind": "callGlobal",
+    "name": "PresentationConnectionList"
+  },
+  {
+    "featureId": "presentation-api",
     "kind": "instanceMember",
     "iface": "PresentationConnectionList",
     "prop": "connectionavailable_event"
@@ -19563,9 +21990,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "presentation-api",
+    "kind": "callGlobal",
+    "name": "PresentationReceiver"
+  },
+  {
+    "featureId": "presentation-api",
     "kind": "instanceMember",
     "iface": "PresentationReceiver",
     "prop": "connectionList"
+  },
+  {
+    "featureId": "presentation-api",
+    "kind": "callGlobal",
+    "name": "PresentationRequest"
   },
   {
     "featureId": "presentation-api",
@@ -19634,6 +22071,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "profiler",
+    "kind": "callGlobal",
+    "name": "Profiler"
+  },
+  {
+    "featureId": "profiler",
     "kind": "newIdent",
     "name": "Profiler"
   },
@@ -19654,6 +22096,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Profiler",
     "prop": "stopped"
+  },
+  {
+    "featureId": "progress",
+    "kind": "callGlobal",
+    "name": "HTMLProgressElement"
   },
   {
     "featureId": "progress",
@@ -19687,6 +22134,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "push",
+    "kind": "callGlobal",
+    "name": "PushEvent"
+  },
+  {
+    "featureId": "push",
     "kind": "newIdent",
     "name": "PushEvent"
   },
@@ -19695,6 +22147,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PushEvent",
     "prop": "data"
+  },
+  {
+    "featureId": "push",
+    "kind": "callGlobal",
+    "name": "PushManager"
   },
   {
     "featureId": "push",
@@ -19719,6 +22176,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "callStatic",
     "base": "PushManager",
     "prop": "supportedContentEncodings"
+  },
+  {
+    "featureId": "push",
+    "kind": "callGlobal",
+    "name": "PushMessageData"
   },
   {
     "featureId": "push",
@@ -19749,6 +22211,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PushMessageData",
     "prop": "text"
+  },
+  {
+    "featureId": "push",
+    "kind": "callGlobal",
+    "name": "PushSubscription"
   },
   {
     "featureId": "push",
@@ -19788,6 +22255,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "push",
+    "kind": "callGlobal",
+    "name": "PushSubscriptionChangeEvent"
+  },
+  {
+    "featureId": "push",
     "kind": "newIdent",
     "name": "PushSubscriptionChangeEvent"
   },
@@ -19802,6 +22274,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PushSubscriptionChangeEvent",
     "prop": "oldSubscription"
+  },
+  {
+    "featureId": "push",
+    "kind": "callGlobal",
+    "name": "PushSubscriptionOptions"
   },
   {
     "featureId": "push",
@@ -19829,15 +22306,35 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "push",
+    "kind": "callGlobal",
+    "name": "ServiceWorkerRegistration"
+  },
+  {
+    "featureId": "push",
     "kind": "instanceMember",
     "iface": "ServiceWorkerRegistration",
     "prop": "pushManager"
   },
   {
     "featureId": "q",
+    "kind": "callGlobal",
+    "name": "HTMLQuoteElement"
+  },
+  {
+    "featureId": "q",
     "kind": "instanceMember",
     "iface": "HTMLQuoteElement",
     "prop": "cite"
+  },
+  {
+    "featureId": "queuemicrotask",
+    "kind": "callGlobal",
+    "name": "queueMicrotask"
+  },
+  {
+    "featureId": "readable-byte-streams",
+    "kind": "callGlobal",
+    "name": "ReadableByteStreamController"
   },
   {
     "featureId": "readable-byte-streams",
@@ -19871,6 +22368,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "readable-byte-streams",
+    "kind": "callGlobal",
+    "name": "ReadableStreamBYOBReader"
+  },
+  {
+    "featureId": "readable-byte-streams",
     "kind": "newIdent",
     "name": "ReadableStreamBYOBReader"
   },
@@ -19897,6 +22399,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ReadableStreamBYOBReader",
     "prop": "releaseLock"
+  },
+  {
+    "featureId": "readable-byte-streams",
+    "kind": "callGlobal",
+    "name": "ReadableStreamBYOBRequest"
   },
   {
     "featureId": "readable-byte-streams",
@@ -19960,6 +22467,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "region-capture",
+    "kind": "callGlobal",
+    "name": "BrowserCaptureMediaStreamTrack"
+  },
+  {
+    "featureId": "region-capture",
     "kind": "instanceMember",
     "iface": "BrowserCaptureMediaStreamTrack",
     "prop": "clone"
@@ -19972,6 +22484,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "region-capture",
+    "kind": "callGlobal",
+    "name": "CropTarget"
+  },
+  {
+    "featureId": "region-capture",
     "kind": "callStatic",
     "base": "CropTarget",
     "prop": "fromElement"
@@ -19981,6 +22498,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "callStatic",
     "base": "CSS",
     "prop": "registerProperty"
+  },
+  {
+    "featureId": "registered-custom-properties",
+    "kind": "callGlobal",
+    "name": "CSSPropertyRule"
   },
   {
     "featureId": "registered-custom-properties",
@@ -20019,6 +22541,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "unregisterProtocolHandler"
   },
   {
+    "featureId": "related-apps",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "getInstalledRelatedApps"
+  },
+  {
+    "featureId": "related-website-sets",
+    "kind": "instanceMember",
+    "iface": "Document",
+    "prop": "requestStorageAccessFor"
+  },
+  {
+    "featureId": "related-website-sets",
+    "kind": "instanceMember",
+    "iface": "Permissions",
+    "prop": "permission_top-level-storage-access"
+  },
+  {
     "featureId": "remote-playback",
     "kind": "instanceMember",
     "iface": "HTMLMediaElement",
@@ -20029,6 +22569,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLMediaElement",
     "prop": "remote"
+  },
+  {
+    "featureId": "remote-playback",
+    "kind": "callGlobal",
+    "name": "RemotePlayback"
   },
   {
     "featureId": "remote-playback",
@@ -20074,6 +22619,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "reporting",
+    "kind": "callGlobal",
+    "name": "DeprecationReportBody"
+  },
+  {
+    "featureId": "reporting",
     "kind": "instanceMember",
     "iface": "DeprecationReportBody",
     "prop": "anticipatedRemoval"
@@ -20116,6 +22666,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "reporting",
+    "kind": "callGlobal",
+    "name": "InterventionReportBody"
+  },
+  {
+    "featureId": "reporting",
     "kind": "instanceMember",
     "iface": "InterventionReportBody",
     "prop": "columnNumber"
@@ -20149,6 +22704,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "InterventionReportBody",
     "prop": "toJSON"
+  },
+  {
+    "featureId": "reporting",
+    "kind": "callGlobal",
+    "name": "ReportingObserver"
   },
   {
     "featureId": "reporting",
@@ -20223,6 +22783,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "requestidlecallback",
+    "kind": "callGlobal",
+    "name": "IdleDeadline"
+  },
+  {
+    "featureId": "requestidlecallback",
     "kind": "instanceMember",
     "iface": "IdleDeadline",
     "prop": "didTimeout"
@@ -20247,6 +22812,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "resize-observer",
+    "kind": "callGlobal",
+    "name": "ResizeObserver"
+  },
+  {
+    "featureId": "resize-observer",
     "kind": "newIdent",
     "name": "ResizeObserver"
   },
@@ -20267,6 +22837,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ResizeObserver",
     "prop": "unobserve"
+  },
+  {
+    "featureId": "resize-observer",
+    "kind": "callGlobal",
+    "name": "ResizeObserverEntry"
   },
   {
     "featureId": "resize-observer",
@@ -20297,6 +22872,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ResizeObserverEntry",
     "prop": "target"
+  },
+  {
+    "featureId": "resize-observer",
+    "kind": "callGlobal",
+    "name": "ResizeObserverSize"
   },
   {
     "featureId": "resize-observer",
@@ -20345,6 +22925,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Performance",
     "prop": "setResourceTimingBufferSize"
+  },
+  {
+    "featureId": "resource-timing",
+    "kind": "callGlobal",
+    "name": "PerformanceResourceTiming"
   },
   {
     "featureId": "resource-timing",
@@ -20486,6 +23071,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "sanitizer",
+    "kind": "callGlobal",
+    "name": "Sanitizer"
+  },
+  {
+    "featureId": "sanitizer",
     "kind": "newIdent",
     "name": "Sanitizer"
   },
@@ -20557,6 +23147,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "scheduler",
+    "kind": "callGlobal",
+    "name": "Scheduler"
+  },
+  {
+    "featureId": "scheduler",
     "kind": "instanceMember",
     "iface": "Scheduler",
     "prop": "postTask"
@@ -20566,6 +23161,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Scheduler",
     "prop": "yield"
+  },
+  {
+    "featureId": "scheduler",
+    "kind": "callGlobal",
+    "name": "TaskController"
   },
   {
     "featureId": "scheduler",
@@ -20580,6 +23180,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "scheduler",
+    "kind": "callGlobal",
+    "name": "TaskPriorityChangeEvent"
+  },
+  {
+    "featureId": "scheduler",
     "kind": "newIdent",
     "name": "TaskPriorityChangeEvent"
   },
@@ -20588,6 +23193,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TaskPriorityChangeEvent",
     "prop": "previousPriority"
+  },
+  {
+    "featureId": "scheduler",
+    "kind": "callGlobal",
+    "name": "TaskSignal"
   },
   {
     "featureId": "scheduler",
@@ -20606,6 +23216,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TaskSignal",
     "prop": "prioritychange_event"
+  },
+  {
+    "featureId": "scheduler",
+    "kind": "callGlobal",
+    "name": "scheduler"
+  },
+  {
+    "featureId": "scope",
+    "kind": "callGlobal",
+    "name": "CSSScopeRule"
   },
   {
     "featureId": "scope",
@@ -20656,6 +23276,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "screen",
+    "kind": "callGlobal",
+    "name": "Screen"
+  },
+  {
+    "featureId": "screen",
     "kind": "instanceMember",
     "iface": "Screen",
     "prop": "availHeight"
@@ -20692,6 +23317,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "screen-capture",
+    "kind": "callGlobal",
+    "name": "CaptureController"
+  },
+  {
+    "featureId": "screen-capture",
     "kind": "newIdent",
     "name": "CaptureController"
   },
@@ -20712,6 +23342,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Screen",
     "prop": "orientation"
+  },
+  {
+    "featureId": "screen-orientation",
+    "kind": "callGlobal",
+    "name": "ScreenOrientation"
   },
   {
     "featureId": "screen-orientation",
@@ -20757,9 +23392,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "screen-wake-lock",
+    "kind": "callGlobal",
+    "name": "WakeLock"
+  },
+  {
+    "featureId": "screen-wake-lock",
     "kind": "instanceMember",
     "iface": "WakeLock",
     "prop": "request"
+  },
+  {
+    "featureId": "screen-wake-lock",
+    "kind": "callGlobal",
+    "name": "WakeLockSentinel"
   },
   {
     "featureId": "screen-wake-lock",
@@ -20784,6 +23429,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WakeLockSentinel",
     "prop": "type"
+  },
+  {
+    "featureId": "script",
+    "kind": "callGlobal",
+    "name": "HTMLScriptElement"
   },
   {
     "featureId": "script",
@@ -20835,6 +23485,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "scroll-driven-animations",
+    "kind": "callGlobal",
+    "name": "ScrollTimeline"
+  },
+  {
+    "featureId": "scroll-driven-animations",
     "kind": "newIdent",
     "name": "ScrollTimeline"
   },
@@ -20849,6 +23504,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ScrollTimeline",
     "prop": "source"
+  },
+  {
+    "featureId": "scroll-driven-animations",
+    "kind": "callGlobal",
+    "name": "ViewTimeline"
   },
   {
     "featureId": "scroll-driven-animations",
@@ -20995,6 +23655,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "scroll-snap-events",
+    "kind": "callGlobal",
+    "name": "SnapEvent"
+  },
+  {
+    "featureId": "scroll-snap-events",
     "kind": "newIdent",
     "name": "SnapEvent"
   },
@@ -21029,6 +23694,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "fragmentDirective"
   },
   {
+    "featureId": "scroll-to-text-fragment",
+    "kind": "callGlobal",
+    "name": "FragmentDirective"
+  },
+  {
     "featureId": "scrollend",
     "kind": "instanceMember",
     "iface": "Document",
@@ -21048,6 +23718,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "select",
+    "kind": "callGlobal",
+    "name": "HTMLOptGroupElement"
+  },
+  {
+    "featureId": "select",
     "kind": "instanceMember",
     "iface": "HTMLOptGroupElement",
     "prop": "disabled"
@@ -21057,6 +23732,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLOptGroupElement",
     "prop": "label"
+  },
+  {
+    "featureId": "select",
+    "kind": "callGlobal",
+    "name": "HTMLOptionElement"
   },
   {
     "featureId": "select",
@@ -21111,6 +23791,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLOptionElement",
     "prop": "value"
+  },
+  {
+    "featureId": "select",
+    "kind": "callGlobal",
+    "name": "HTMLSelectElement"
   },
   {
     "featureId": "select",
@@ -21222,6 +23907,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "selection-api",
+    "kind": "callGlobal",
+    "name": "AbstractRange"
+  },
+  {
+    "featureId": "selection-api",
     "kind": "instanceMember",
     "iface": "AbstractRange",
     "prop": "collapsed"
@@ -21285,6 +23975,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Node",
     "prop": "selectstart_event"
+  },
+  {
+    "featureId": "selection-api",
+    "kind": "callGlobal",
+    "name": "Range"
   },
   {
     "featureId": "selection-api",
@@ -21473,6 +24168,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "selection-api",
+    "kind": "callGlobal",
+    "name": "Selection"
+  },
+  {
+    "featureId": "selection-api",
     "kind": "instanceMember",
     "iface": "Selection",
     "prop": "addRange"
@@ -21617,6 +24317,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "selection-api",
+    "kind": "callGlobal",
+    "name": "StaticRange"
+  },
+  {
+    "featureId": "selection-api",
     "kind": "newIdent",
     "name": "StaticRange"
   },
@@ -21664,6 +24369,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "serial",
+    "kind": "callGlobal",
+    "name": "Serial"
+  },
+  {
+    "featureId": "serial",
     "kind": "instanceMember",
     "iface": "Serial",
     "prop": "getPorts"
@@ -21673,6 +24383,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Serial",
     "prop": "requestPort"
+  },
+  {
+    "featureId": "serial",
+    "kind": "callGlobal",
+    "name": "SerialPort"
   },
   {
     "featureId": "serial",
@@ -21754,6 +24469,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "server-sent-events",
+    "kind": "callGlobal",
+    "name": "EventSource"
+  },
+  {
+    "featureId": "server-sent-events",
     "kind": "newIdent",
     "name": "EventSource"
   },
@@ -21813,6 +24533,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "server-timing",
+    "kind": "callGlobal",
+    "name": "PerformanceServerTiming"
+  },
+  {
+    "featureId": "server-timing",
     "kind": "instanceMember",
     "iface": "PerformanceServerTiming",
     "prop": "description"
@@ -21834,6 +24559,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PerformanceServerTiming",
     "prop": "toJSON"
+  },
+  {
+    "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "Cache"
   },
   {
     "featureId": "service-workers",
@@ -21885,6 +24615,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "CacheStorage"
+  },
+  {
+    "featureId": "service-workers",
     "kind": "instanceMember",
     "iface": "CacheStorage",
     "prop": "delete"
@@ -21927,6 +24662,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "Client"
+  },
+  {
+    "featureId": "service-workers",
     "kind": "instanceMember",
     "iface": "Client",
     "prop": "frameType"
@@ -21957,6 +24697,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "Clients"
+  },
+  {
+    "featureId": "service-workers",
     "kind": "instanceMember",
     "iface": "Clients",
     "prop": "claim"
@@ -21981,6 +24726,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "ExtendableEvent"
+  },
+  {
+    "featureId": "service-workers",
     "kind": "newIdent",
     "name": "ExtendableEvent"
   },
@@ -21989,6 +24739,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ExtendableEvent",
     "prop": "waitUntil"
+  },
+  {
+    "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "ExtendableMessageEvent"
   },
   {
     "featureId": "service-workers",
@@ -22024,6 +24779,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ExtendableMessageEvent",
     "prop": "source"
+  },
+  {
+    "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "FetchEvent"
   },
   {
     "featureId": "service-workers",
@@ -22068,6 +24828,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "InstallEvent"
+  },
+  {
+    "featureId": "service-workers",
     "kind": "newIdent",
     "name": "InstallEvent"
   },
@@ -22076,6 +24841,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "InstallEvent",
     "prop": "addRoutes"
+  },
+  {
+    "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "NavigationPreloadManager"
   },
   {
     "featureId": "service-workers",
@@ -22109,6 +24879,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "ServiceWorker"
+  },
+  {
+    "featureId": "service-workers",
     "kind": "instanceMember",
     "iface": "ServiceWorker",
     "prop": "postMessage"
@@ -22130,6 +24905,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ServiceWorker",
     "prop": "statechange_event"
+  },
+  {
+    "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "ServiceWorkerContainer"
   },
   {
     "featureId": "service-workers",
@@ -22184,6 +24964,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ServiceWorkerContainer",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "ServiceWorkerGlobalScope"
   },
   {
     "featureId": "service-workers",
@@ -22289,6 +25074,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "WindowClient"
+  },
+  {
+    "featureId": "service-workers",
     "kind": "instanceMember",
     "iface": "WindowClient",
     "prop": "ancestorOrigins"
@@ -22325,6 +25115,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "service-workers",
+    "kind": "callGlobal",
+    "name": "caches"
+  },
+  {
+    "featureId": "service-workers",
     "kind": "instanceMember",
     "iface": "caches",
     "prop": "secure_context_required"
@@ -22337,9 +25132,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "setinterval",
+    "kind": "callGlobal",
+    "name": "clearInterval"
+  },
+  {
+    "featureId": "setinterval",
     "kind": "instanceMember",
     "iface": "clearInterval",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "setinterval",
+    "kind": "callGlobal",
+    "name": "setInterval"
   },
   {
     "featureId": "setinterval",
@@ -22349,9 +25154,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "settimeout",
+    "kind": "callGlobal",
+    "name": "clearTimeout"
+  },
+  {
+    "featureId": "settimeout",
     "kind": "instanceMember",
     "iface": "clearTimeout",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "settimeout",
+    "kind": "callGlobal",
+    "name": "setTimeout"
   },
   {
     "featureId": "settimeout",
@@ -22394,6 +25209,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Node",
     "prop": "isConnected"
+  },
+  {
+    "featureId": "shadow-dom",
+    "kind": "callGlobal",
+    "name": "ShadowRoot"
   },
   {
     "featureId": "shadow-dom",
@@ -22457,6 +25277,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "shared-storage",
+    "kind": "callGlobal",
+    "name": "SharedStorage"
+  },
+  {
+    "featureId": "shared-storage",
     "kind": "instanceMember",
     "iface": "SharedStorage",
     "prop": "append"
@@ -22511,6 +25336,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "shared-storage",
+    "kind": "callGlobal",
+    "name": "SharedStorageWorklet"
+  },
+  {
+    "featureId": "shared-storage",
     "kind": "instanceMember",
     "iface": "SharedStorageWorklet",
     "prop": "run"
@@ -22520,6 +25350,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SharedStorageWorklet",
     "prop": "selectURL"
+  },
+  {
+    "featureId": "shared-storage",
+    "kind": "callGlobal",
+    "name": "SharedStorageWorkletGlobalScope"
   },
   {
     "featureId": "shared-storage",
@@ -22547,8 +25382,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "shared-storage-locks",
+    "kind": "callGlobal",
+    "name": "SharedStorageAppendMethod"
+  },
+  {
+    "featureId": "shared-storage-locks",
     "kind": "newIdent",
     "name": "SharedStorageAppendMethod"
+  },
+  {
+    "featureId": "shared-storage-locks",
+    "kind": "callGlobal",
+    "name": "SharedStorageClearMethod"
   },
   {
     "featureId": "shared-storage-locks",
@@ -22557,13 +25402,33 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "shared-storage-locks",
-    "kind": "newIdent",
+    "kind": "callGlobal",
     "name": "SharedStorageDeleteMethod"
   },
   {
     "featureId": "shared-storage-locks",
     "kind": "newIdent",
+    "name": "SharedStorageDeleteMethod"
+  },
+  {
+    "featureId": "shared-storage-locks",
+    "kind": "callGlobal",
+    "name": "SharedStorageModifierMethod"
+  },
+  {
+    "featureId": "shared-storage-locks",
+    "kind": "callGlobal",
     "name": "SharedStorageSetMethod"
+  },
+  {
+    "featureId": "shared-storage-locks",
+    "kind": "newIdent",
+    "name": "SharedStorageSetMethod"
+  },
+  {
+    "featureId": "shared-workers",
+    "kind": "callGlobal",
+    "name": "SharedWorker"
   },
   {
     "featureId": "shared-workers",
@@ -22581,6 +25446,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SharedWorker",
     "prop": "port"
+  },
+  {
+    "featureId": "shared-workers",
+    "kind": "callGlobal",
+    "name": "SharedWorkerGlobalScope"
   },
   {
     "featureId": "shared-workers",
@@ -22626,6 +25496,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "slot",
+    "kind": "callGlobal",
+    "name": "HTMLSlotElement"
+  },
+  {
+    "featureId": "slot",
     "kind": "instanceMember",
     "iface": "HTMLSlotElement",
     "prop": "assignedElements"
@@ -22668,6 +25543,26 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimateElement"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimateMotionElement"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimateTransformElement"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedAngle"
+  },
+  {
+    "featureId": "smil-svg-animations",
     "kind": "instanceMember",
     "iface": "SVGAnimatedAngle",
     "prop": "animVal"
@@ -22677,6 +25572,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGAnimatedAngle",
     "prop": "baseVal"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedBoolean"
   },
   {
     "featureId": "smil-svg-animations",
@@ -22692,6 +25592,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedEnumeration"
+  },
+  {
+    "featureId": "smil-svg-animations",
     "kind": "instanceMember",
     "iface": "SVGAnimatedEnumeration",
     "prop": "animVal"
@@ -22701,6 +25606,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGAnimatedEnumeration",
     "prop": "baseVal"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedInteger"
   },
   {
     "featureId": "smil-svg-animations",
@@ -22716,6 +25626,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedLength"
+  },
+  {
+    "featureId": "smil-svg-animations",
     "kind": "instanceMember",
     "iface": "SVGAnimatedLength",
     "prop": "animVal"
@@ -22725,6 +25640,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGAnimatedLength",
     "prop": "baseVal"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedLengthList"
   },
   {
     "featureId": "smil-svg-animations",
@@ -22740,6 +25660,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedNumber"
+  },
+  {
+    "featureId": "smil-svg-animations",
     "kind": "instanceMember",
     "iface": "SVGAnimatedNumber",
     "prop": "animVal"
@@ -22749,6 +25674,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGAnimatedNumber",
     "prop": "baseVal"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedNumberList"
   },
   {
     "featureId": "smil-svg-animations",
@@ -22764,6 +25694,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedPreserveAspectRatio"
+  },
+  {
+    "featureId": "smil-svg-animations",
     "kind": "instanceMember",
     "iface": "SVGAnimatedPreserveAspectRatio",
     "prop": "animVal"
@@ -22773,6 +25708,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGAnimatedPreserveAspectRatio",
     "prop": "baseVal"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedRect"
   },
   {
     "featureId": "smil-svg-animations",
@@ -22788,6 +25728,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedString"
+  },
+  {
+    "featureId": "smil-svg-animations",
     "kind": "instanceMember",
     "iface": "SVGAnimatedString",
     "prop": "animVal"
@@ -22800,6 +25745,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimatedTransformList"
+  },
+  {
+    "featureId": "smil-svg-animations",
     "kind": "instanceMember",
     "iface": "SVGAnimatedTransformList",
     "prop": "animVal"
@@ -22809,6 +25759,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGAnimatedTransformList",
     "prop": "baseVal"
+  },
+  {
+    "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "SVGAnimationElement"
   },
   {
     "featureId": "smil-svg-animations",
@@ -22920,6 +25875,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "smil-svg-animations",
+    "kind": "callGlobal",
+    "name": "TimeEvent"
+  },
+  {
+    "featureId": "smil-svg-animations",
     "kind": "instanceMember",
     "iface": "TimeEvent",
     "prop": "detail"
@@ -22935,6 +25895,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TimeEvent",
     "prop": "view"
+  },
+  {
+    "featureId": "span",
+    "kind": "callGlobal",
+    "name": "HTMLSpanElement"
   },
   {
     "featureId": "speculation-rules",
@@ -22953,6 +25918,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PerformanceNavigationTiming",
     "prop": "activationStart"
+  },
+  {
+    "featureId": "speech-recognition",
+    "kind": "callGlobal",
+    "name": "SpeechRecognition"
   },
   {
     "featureId": "speech-recognition",
@@ -23069,6 +26039,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "speech-recognition",
+    "kind": "callGlobal",
+    "name": "SpeechRecognitionAlternative"
+  },
+  {
+    "featureId": "speech-recognition",
     "kind": "instanceMember",
     "iface": "SpeechRecognitionAlternative",
     "prop": "confidence"
@@ -23078,6 +26053,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SpeechRecognitionAlternative",
     "prop": "transcript"
+  },
+  {
+    "featureId": "speech-recognition",
+    "kind": "callGlobal",
+    "name": "SpeechRecognitionErrorEvent"
   },
   {
     "featureId": "speech-recognition",
@@ -23098,6 +26078,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "speech-recognition",
+    "kind": "callGlobal",
+    "name": "SpeechRecognitionEvent"
+  },
+  {
+    "featureId": "speech-recognition",
     "kind": "newIdent",
     "name": "SpeechRecognitionEvent"
   },
@@ -23112,6 +26097,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SpeechRecognitionEvent",
     "prop": "results"
+  },
+  {
+    "featureId": "speech-recognition",
+    "kind": "callGlobal",
+    "name": "SpeechRecognitionResult"
   },
   {
     "featureId": "speech-recognition",
@@ -23133,6 +26123,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "speech-recognition",
+    "kind": "callGlobal",
+    "name": "SpeechRecognitionResultList"
+  },
+  {
+    "featureId": "speech-recognition",
     "kind": "instanceMember",
     "iface": "SpeechRecognitionResultList",
     "prop": "item"
@@ -23145,6 +26140,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "speech-recognition-grammar",
+    "kind": "callGlobal",
+    "name": "SpeechGrammar"
+  },
+  {
+    "featureId": "speech-recognition-grammar",
     "kind": "instanceMember",
     "iface": "SpeechGrammar",
     "prop": "src"
@@ -23154,6 +26154,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SpeechGrammar",
     "prop": "weight"
+  },
+  {
+    "featureId": "speech-recognition-grammar",
+    "kind": "callGlobal",
+    "name": "SpeechGrammarList"
   },
   {
     "featureId": "speech-recognition-grammar",
@@ -23189,6 +26194,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SpeechRecognition",
     "prop": "grammars"
+  },
+  {
+    "featureId": "speech-synthesis",
+    "kind": "callGlobal",
+    "name": "SpeechSynthesis"
   },
   {
     "featureId": "speech-synthesis",
@@ -23246,6 +26256,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "speech-synthesis",
+    "kind": "callGlobal",
+    "name": "SpeechSynthesisErrorEvent"
+  },
+  {
+    "featureId": "speech-synthesis",
     "kind": "newIdent",
     "name": "SpeechSynthesisErrorEvent"
   },
@@ -23254,6 +26269,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SpeechSynthesisErrorEvent",
     "prop": "error"
+  },
+  {
+    "featureId": "speech-synthesis",
+    "kind": "callGlobal",
+    "name": "SpeechSynthesisEvent"
   },
   {
     "featureId": "speech-synthesis",
@@ -23289,6 +26309,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SpeechSynthesisEvent",
     "prop": "utterance"
+  },
+  {
+    "featureId": "speech-synthesis",
+    "kind": "callGlobal",
+    "name": "SpeechSynthesisUtterance"
   },
   {
     "featureId": "speech-synthesis",
@@ -23375,6 +26400,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "speech-synthesis",
+    "kind": "callGlobal",
+    "name": "SpeechSynthesisVoice"
+  },
+  {
+    "featureId": "speech-synthesis",
     "kind": "instanceMember",
     "iface": "SpeechSynthesisVoice",
     "prop": "default"
@@ -23438,6 +26468,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLSourceElement",
     "prop": "srcset"
+  },
+  {
+    "featureId": "starting-style",
+    "kind": "callGlobal",
+    "name": "CSSStartingStyleRule"
+  },
+  {
+    "featureId": "state",
+    "kind": "callGlobal",
+    "name": "CustomStateSet"
   },
   {
     "featureId": "state",
@@ -23520,26 +26560,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   {
     "featureId": "storage-access",
     "kind": "instanceMember",
-    "iface": "Document",
-    "prop": "requestStorageAccessFor"
-  },
-  {
-    "featureId": "storage-access",
-    "kind": "instanceMember",
     "iface": "Permissions",
     "prop": "permission_storage-access"
-  },
-  {
-    "featureId": "storage-access",
-    "kind": "instanceMember",
-    "iface": "Permissions",
-    "prop": "permission_top-level-storage-access"
   },
   {
     "featureId": "storage-buckets",
     "kind": "member",
     "base": "navigator",
     "prop": "storageBuckets"
+  },
+  {
+    "featureId": "storage-buckets",
+    "kind": "callGlobal",
+    "name": "StorageBucket"
   },
   {
     "featureId": "storage-buckets",
@@ -23597,6 +26630,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "storage-buckets",
+    "kind": "callGlobal",
+    "name": "StorageBucketManager"
+  },
+  {
+    "featureId": "storage-buckets",
     "kind": "instanceMember",
     "iface": "StorageBucketManager",
     "prop": "delete"
@@ -23633,6 +26671,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "storage-manager",
+    "kind": "callGlobal",
+    "name": "StorageManager"
+  },
+  {
+    "featureId": "storage-manager",
     "kind": "instanceMember",
     "iface": "StorageManager",
     "prop": "estimate"
@@ -23657,6 +26700,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "ByteLengthQueuingStrategy"
+  },
+  {
+    "featureId": "streams",
     "kind": "newIdent",
     "name": "ByteLengthQueuingStrategy"
   },
@@ -23674,6 +26722,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "CountQueuingStrategy"
+  },
+  {
+    "featureId": "streams",
     "kind": "newIdent",
     "name": "CountQueuingStrategy"
   },
@@ -23688,6 +26741,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CountQueuingStrategy",
     "prop": "size"
+  },
+  {
+    "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "ReadableStream"
   },
   {
     "featureId": "streams",
@@ -23732,6 +26790,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "ReadableStreamDefaultController"
+  },
+  {
+    "featureId": "streams",
     "kind": "instanceMember",
     "iface": "ReadableStreamDefaultController",
     "prop": "close"
@@ -23753,6 +26816,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ReadableStreamDefaultController",
     "prop": "error"
+  },
+  {
+    "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "ReadableStreamDefaultReader"
   },
   {
     "featureId": "streams",
@@ -23785,6 +26853,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "TransformStream"
+  },
+  {
+    "featureId": "streams",
     "kind": "newIdent",
     "name": "TransformStream"
   },
@@ -23799,6 +26872,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TransformStream",
     "prop": "writable"
+  },
+  {
+    "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "TransformStreamDefaultController"
   },
   {
     "featureId": "streams",
@@ -23823,6 +26901,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TransformStreamDefaultController",
     "prop": "terminate"
+  },
+  {
+    "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "WritableStream"
   },
   {
     "featureId": "streams",
@@ -23855,6 +26938,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "WritableStreamDefaultController"
+  },
+  {
+    "featureId": "streams",
     "kind": "instanceMember",
     "iface": "WritableStreamDefaultController",
     "prop": "error"
@@ -23864,6 +26952,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WritableStreamDefaultController",
     "prop": "signal"
+  },
+  {
+    "featureId": "streams",
+    "kind": "callGlobal",
+    "name": "WritableStreamDefaultWriter"
   },
   {
     "featureId": "streams",
@@ -23913,6 +27006,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "write"
   },
   {
+    "featureId": "structured-clone",
+    "kind": "callGlobal",
+    "name": "structuredClone"
+  },
+  {
+    "featureId": "style",
+    "kind": "callGlobal",
+    "name": "HTMLStyleElement"
+  },
+  {
     "featureId": "style",
     "kind": "instanceMember",
     "iface": "HTMLStyleElement",
@@ -23923,6 +27026,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLStyleElement",
     "prop": "media"
+  },
+  {
+    "featureId": "summarizer",
+    "kind": "callGlobal",
+    "name": "Summarizer"
   },
   {
     "featureId": "summarizer",
@@ -24015,6 +27123,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "supportsText"
   },
   {
+    "featureId": "supports",
+    "kind": "callGlobal",
+    "name": "CSSSupportsRule"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGAElement"
+  },
+  {
     "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGAElement",
@@ -24058,6 +27176,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGAngle"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGAngle",
     "prop": "convertToSpecifiedUnits"
@@ -24094,6 +27217,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGCircleElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGCircleElement",
     "prop": "cx"
@@ -24109,6 +27237,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGCircleElement",
     "prop": "r"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGComponentTransferFunctionElement"
   },
   {
     "featureId": "svg",
@@ -24151,6 +27284,21 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGComponentTransferFunctionElement",
     "prop": "type"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGDefsElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGDescElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGElement"
   },
   {
     "featureId": "svg",
@@ -24214,6 +27362,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGEllipseElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGEllipseElement",
     "prop": "cx"
@@ -24238,6 +27391,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGForeignObjectElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGForeignObjectElement",
     "prop": "height"
@@ -24259,6 +27417,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGForeignObjectElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGGElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGGeometryElement"
   },
   {
     "featureId": "svg",
@@ -24292,6 +27460,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGGradientElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGGradientElement",
     "prop": "gradientTransform"
@@ -24313,6 +27486,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGGradientElement",
     "prop": "spreadMethod"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGGraphicsElement"
   },
   {
     "featureId": "svg",
@@ -24349,6 +27527,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGGraphicsElement",
     "prop": "transform"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGImageElement"
   },
   {
     "featureId": "svg",
@@ -24406,6 +27589,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGLength"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGLength",
     "prop": "convertToSpecifiedUnits"
@@ -24439,6 +27627,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGLength",
     "prop": "valueInSpecifiedUnits"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGLengthList"
   },
   {
     "featureId": "svg",
@@ -24496,6 +27689,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGLineElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGLineElement",
     "prop": "x1"
@@ -24520,6 +27718,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGLinearGradientElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGLinearGradientElement",
     "prop": "x1"
@@ -24541,12 +27744,22 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGLinearGradientElement",
     "prop": "y2"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGMPathElement"
   },
   {
     "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGMPathElement",
     "prop": "href"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGMarkerElement"
   },
   {
     "featureId": "svg",
@@ -24622,6 +27835,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGMaskElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGMaskElement",
     "prop": "height"
@@ -24658,9 +27876,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGMetadataElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGNumber"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGNumber",
     "prop": "value"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGNumberList"
   },
   {
     "featureId": "svg",
@@ -24715,6 +27948,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGNumberList",
     "prop": "replaceItem"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGPathElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGPatternElement"
   },
   {
     "featureId": "svg",
@@ -24778,6 +28021,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGPointList"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGPointList",
     "prop": "appendItem"
@@ -24832,15 +28080,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGPolygonElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGPolygonElement",
     "prop": "points"
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGPolylineElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGPolylineElement",
     "prop": "points"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGPreserveAspectRatio"
   },
   {
     "featureId": "svg",
@@ -24853,6 +28116,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGPreserveAspectRatio",
     "prop": "meetOrSlice"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGRadialGradientElement"
   },
   {
     "featureId": "svg",
@@ -24892,6 +28160,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGRect"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGRect",
     "prop": "height"
@@ -24913,6 +28186,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGRect",
     "prop": "y"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGRectElement"
   },
   {
     "featureId": "svg",
@@ -24949,6 +28227,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGRectElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGSVGElement"
   },
   {
     "featureId": "svg",
@@ -25096,6 +28379,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGScriptElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGScriptElement",
     "prop": "async"
@@ -25126,9 +28414,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGSetElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGStopElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGStopElement",
     "prop": "offset"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGStringList"
   },
   {
     "featureId": "svg",
@@ -25186,6 +28489,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGStyleElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGStyleElement",
     "prop": "disabled"
@@ -25210,6 +28518,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGSwitchElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGSymbolElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGSymbolElement",
     "prop": "preserveAspectRatio"
@@ -25219,6 +28537,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGSymbolElement",
     "prop": "viewBox"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGTSpanElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGTextContentElement"
   },
   {
     "featureId": "svg",
@@ -25282,6 +28610,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGTextElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGTextPathElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGTextPathElement",
     "prop": "href"
@@ -25303,6 +28641,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGTextPathElement",
     "prop": "startOffset"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGTextPositioningElement"
   },
   {
     "featureId": "svg",
@@ -25333,6 +28676,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGTextPositioningElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGTitleElement"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGTransform"
   },
   {
     "featureId": "svg",
@@ -25387,6 +28740,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGTransform",
     "prop": "type"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGTransformList"
   },
   {
     "featureId": "svg",
@@ -25456,6 +28814,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGUnitTypes"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGUseElement"
+  },
+  {
+    "featureId": "svg",
     "kind": "instanceMember",
     "iface": "SVGUseElement",
     "prop": "height"
@@ -25483,6 +28851,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGUseElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg",
+    "kind": "callGlobal",
+    "name": "SVGViewElement"
   },
   {
     "featureId": "svg",
@@ -25630,6 +29003,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-discouraged",
+    "kind": "callGlobal",
+    "name": "SVGPoint"
+  },
+  {
+    "featureId": "svg-discouraged",
     "kind": "instanceMember",
     "iface": "SVGPoint",
     "prop": "matrixTransform"
@@ -25645,6 +29023,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGPoint",
     "prop": "y"
+  },
+  {
+    "featureId": "svg-discouraged",
+    "kind": "callGlobal",
+    "name": "SVGRenderingIntent"
   },
   {
     "featureId": "svg-discouraged",
@@ -25696,6 +29079,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEBlendElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEBlendElement",
     "prop": "height"
@@ -25741,6 +29129,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGFEBlendElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEColorMatrixElement"
   },
   {
     "featureId": "svg-filters",
@@ -25792,6 +29185,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEComponentTransferElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEComponentTransferElement",
     "prop": "height"
@@ -25825,6 +29223,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGFEComponentTransferElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFECompositeElement"
   },
   {
     "featureId": "svg-filters",
@@ -25897,6 +29300,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGFECompositeElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEConvolveMatrixElement"
   },
   {
     "featureId": "svg-filters",
@@ -26002,6 +29410,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEDiffuseLightingElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEDiffuseLightingElement",
     "prop": "diffuseConstant"
@@ -26059,6 +29472,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGFEDiffuseLightingElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEDisplacementMapElement"
   },
   {
     "featureId": "svg-filters",
@@ -26122,6 +29540,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEDistantLightElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEDistantLightElement",
     "prop": "azimuth"
@@ -26131,6 +29554,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGFEDistantLightElement",
     "prop": "elevation"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEDropShadowElement"
   },
   {
     "featureId": "svg-filters",
@@ -26200,6 +29628,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEFloodElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEFloodElement",
     "prop": "height"
@@ -26227,6 +29660,31 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGFEFloodElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEFuncAElement"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEFuncBElement"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEFuncGElement"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEFuncRElement"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEGaussianBlurElement"
   },
   {
     "featureId": "svg-filters",
@@ -26290,6 +29748,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEImageElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEImageElement",
     "prop": "crossOrigin"
@@ -26338,6 +29801,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEMergeElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEMergeElement",
     "prop": "height"
@@ -26368,9 +29836,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEMergeNodeElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEMergeNodeElement",
     "prop": "in1"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEMorphologyElement"
   },
   {
     "featureId": "svg-filters",
@@ -26428,6 +29906,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEOffsetElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEOffsetElement",
     "prop": "dx"
@@ -26476,6 +29959,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFEPointLightElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFEPointLightElement",
     "prop": "x"
@@ -26491,6 +29979,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGFEPointLightElement",
     "prop": "z"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFESpecularLightingElement"
   },
   {
     "featureId": "svg-filters",
@@ -26560,6 +30053,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFESpotLightElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFESpotLightElement",
     "prop": "limitingConeAngle"
@@ -26608,6 +30106,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFETileElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFETileElement",
     "prop": "height"
@@ -26641,6 +30144,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGFETileElement",
     "prop": "y"
+  },
+  {
+    "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFETurbulenceElement"
   },
   {
     "featureId": "svg-filters",
@@ -26710,6 +30218,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "svg-filters",
+    "kind": "callGlobal",
+    "name": "SVGFilterElement"
+  },
+  {
+    "featureId": "svg-filters",
     "kind": "instanceMember",
     "iface": "SVGFilterElement",
     "prop": "filterUnits"
@@ -26758,6 +30271,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "table",
+    "kind": "callGlobal",
+    "name": "HTMLTableCaptionElement"
+  },
+  {
+    "featureId": "table",
+    "kind": "callGlobal",
+    "name": "HTMLTableCellElement"
+  },
+  {
+    "featureId": "table",
     "kind": "instanceMember",
     "iface": "HTMLTableCellElement",
     "prop": "abbr"
@@ -26794,9 +30317,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "table",
+    "kind": "callGlobal",
+    "name": "HTMLTableColElement"
+  },
+  {
+    "featureId": "table",
     "kind": "instanceMember",
     "iface": "HTMLTableColElement",
     "prop": "span"
+  },
+  {
+    "featureId": "table",
+    "kind": "callGlobal",
+    "name": "HTMLTableElement"
   },
   {
     "featureId": "table",
@@ -26884,6 +30417,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "table",
+    "kind": "callGlobal",
+    "name": "HTMLTableRowElement"
+  },
+  {
+    "featureId": "table",
     "kind": "instanceMember",
     "iface": "HTMLTableRowElement",
     "prop": "cells"
@@ -26911,6 +30449,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLTableRowElement",
     "prop": "sectionRowIndex"
+  },
+  {
+    "featureId": "table",
+    "kind": "callGlobal",
+    "name": "HTMLTableSectionElement"
   },
   {
     "featureId": "table",
@@ -27130,9 +30673,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "template",
+    "kind": "callGlobal",
+    "name": "HTMLTemplateElement"
+  },
+  {
+    "featureId": "template",
     "kind": "instanceMember",
     "iface": "HTMLTemplateElement",
     "prop": "content"
+  },
+  {
+    "featureId": "text-encoding",
+    "kind": "callGlobal",
+    "name": "TextDecoder"
   },
   {
     "featureId": "text-encoding",
@@ -27171,6 +30724,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "text-encoding",
+    "kind": "callGlobal",
+    "name": "TextDecoderStream"
+  },
+  {
+    "featureId": "text-encoding",
     "kind": "newIdent",
     "name": "TextDecoderStream"
   },
@@ -27206,6 +30764,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "text-encoding",
+    "kind": "callGlobal",
+    "name": "TextEncoder"
+  },
+  {
+    "featureId": "text-encoding",
     "kind": "newIdent",
     "name": "TextEncoder"
   },
@@ -27232,6 +30795,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TextEncoder",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "text-encoding",
+    "kind": "callGlobal",
+    "name": "TextEncoderStream"
   },
   {
     "featureId": "text-encoding",
@@ -27267,6 +30835,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLMediaElement",
     "prop": "textTracks"
+  },
+  {
+    "featureId": "text-tracks",
+    "kind": "callGlobal",
+    "name": "HTMLTrackElement"
   },
   {
     "featureId": "text-tracks",
@@ -27315,6 +30888,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLTrackElement",
     "prop": "track"
+  },
+  {
+    "featureId": "text-tracks",
+    "kind": "callGlobal",
+    "name": "TextTrack"
   },
   {
     "featureId": "text-tracks",
@@ -27384,6 +30962,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "text-tracks",
+    "kind": "callGlobal",
+    "name": "TextTrackCue"
+  },
+  {
+    "featureId": "text-tracks",
     "kind": "instanceMember",
     "iface": "TextTrackCue",
     "prop": "endTime"
@@ -27426,6 +31009,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "text-tracks",
+    "kind": "callGlobal",
+    "name": "TextTrackCueList"
+  },
+  {
+    "featureId": "text-tracks",
     "kind": "instanceMember",
     "iface": "TextTrackCueList",
     "prop": "getCueById"
@@ -27435,6 +31023,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TextTrackCueList",
     "prop": "length"
+  },
+  {
+    "featureId": "text-tracks",
+    "kind": "callGlobal",
+    "name": "TextTrackList"
   },
   {
     "featureId": "text-tracks",
@@ -27465,6 +31058,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TextTrackList",
     "prop": "removetrack_event"
+  },
+  {
+    "featureId": "textarea",
+    "kind": "callGlobal",
+    "name": "HTMLTextAreaElement"
   },
   {
     "featureId": "textarea",
@@ -27612,9 +31210,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "time",
+    "kind": "callGlobal",
+    "name": "HTMLTimeElement"
+  },
+  {
+    "featureId": "time",
     "kind": "instanceMember",
     "iface": "HTMLTimeElement",
     "prop": "dateTime"
+  },
+  {
+    "featureId": "title",
+    "kind": "callGlobal",
+    "name": "HTMLTitleElement"
   },
   {
     "featureId": "title",
@@ -27627,6 +31235,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLElement",
     "prop": "title"
+  },
+  {
+    "featureId": "toggleevent-source",
+    "kind": "instanceMember",
+    "iface": "ToggleEvent",
+    "prop": "source"
   },
   {
     "featureId": "topics",
@@ -27669,6 +31283,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Element",
     "prop": "touchstart_event"
+  },
+  {
+    "featureId": "touch-events",
+    "kind": "callGlobal",
+    "name": "Touch"
   },
   {
     "featureId": "touch-events",
@@ -27767,6 +31386,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "touch-events",
+    "kind": "callGlobal",
+    "name": "TouchEvent"
+  },
+  {
+    "featureId": "touch-events",
     "kind": "newIdent",
     "name": "TouchEvent"
   },
@@ -27814,6 +31438,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "touch-events",
+    "kind": "callGlobal",
+    "name": "TouchList"
+  },
+  {
+    "featureId": "touch-events",
     "kind": "instanceMember",
     "iface": "TouchList",
     "prop": "item"
@@ -27841,6 +31470,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WritableStream",
     "prop": "transferable"
+  },
+  {
+    "featureId": "transitions",
+    "kind": "callGlobal",
+    "name": "CSSTransition"
   },
   {
     "featureId": "transitions",
@@ -27874,6 +31508,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "transitions",
+    "kind": "callGlobal",
+    "name": "TransitionEvent"
+  },
+  {
+    "featureId": "transitions",
     "kind": "newIdent",
     "name": "TransitionEvent"
   },
@@ -27903,6 +31542,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "trusted-types",
+    "kind": "callGlobal",
+    "name": "TrustedHTML"
+  },
+  {
+    "featureId": "trusted-types",
     "kind": "instanceMember",
     "iface": "TrustedHTML",
     "prop": "toJSON"
@@ -27912,6 +31556,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TrustedHTML",
     "prop": "toString"
+  },
+  {
+    "featureId": "trusted-types",
+    "kind": "callGlobal",
+    "name": "TrustedScript"
   },
   {
     "featureId": "trusted-types",
@@ -27927,6 +31576,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "trusted-types",
+    "kind": "callGlobal",
+    "name": "TrustedScriptURL"
+  },
+  {
+    "featureId": "trusted-types",
     "kind": "instanceMember",
     "iface": "TrustedScriptURL",
     "prop": "toJSON"
@@ -27936,6 +31590,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TrustedScriptURL",
     "prop": "toString"
+  },
+  {
+    "featureId": "trusted-types",
+    "kind": "callGlobal",
+    "name": "TrustedTypePolicy"
   },
   {
     "featureId": "trusted-types",
@@ -27960,6 +31619,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TrustedTypePolicy",
     "prop": "name"
+  },
+  {
+    "featureId": "trusted-types",
+    "kind": "callGlobal",
+    "name": "TrustedTypePolicyFactory"
   },
   {
     "featureId": "trusted-types",
@@ -28028,10 +31692,20 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "code_param_enforces_trusted_types"
   },
   {
+    "featureId": "trusted-types",
+    "kind": "callGlobal",
+    "name": "trustedTypes"
+  },
+  {
     "featureId": "ua-client-hints",
     "kind": "member",
     "base": "navigator",
     "prop": "userAgentData"
+  },
+  {
+    "featureId": "ua-client-hints",
+    "kind": "callGlobal",
+    "name": "NavigatorUAData"
   },
   {
     "featureId": "ua-client-hints",
@@ -28068,6 +31742,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WorkerNavigator",
     "prop": "userAgentData"
+  },
+  {
+    "featureId": "url",
+    "kind": "callGlobal",
+    "name": "URL"
   },
   {
     "featureId": "url",
@@ -28166,6 +31845,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "url",
+    "kind": "callGlobal",
+    "name": "URLSearchParams"
+  },
+  {
+    "featureId": "url",
     "kind": "instanceMember",
     "iface": "URLSearchParams",
     "prop": "@@iterator"
@@ -28261,6 +31945,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "urlpattern",
+    "kind": "callGlobal",
+    "name": "URLPattern"
+  },
+  {
+    "featureId": "urlpattern",
     "kind": "newIdent",
     "name": "URLPattern"
   },
@@ -28338,6 +32027,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "user-activation",
+    "kind": "callGlobal",
+    "name": "UserActivation"
+  },
+  {
+    "featureId": "user-activation",
     "kind": "instanceMember",
     "iface": "UserActivation",
     "prop": "hasBeenActive"
@@ -28365,6 +32059,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "vibrate"
+  },
+  {
+    "featureId": "video",
+    "kind": "callGlobal",
+    "name": "HTMLMediaElement"
   },
   {
     "featureId": "video",
@@ -28662,6 +32361,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "video",
+    "kind": "callGlobal",
+    "name": "HTMLVideoElement"
+  },
+  {
+    "featureId": "video",
     "kind": "instanceMember",
     "iface": "HTMLVideoElement",
     "prop": "height"
@@ -28704,6 +32408,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "video",
+    "kind": "callGlobal",
+    "name": "MediaError"
+  },
+  {
+    "featureId": "video",
     "kind": "instanceMember",
     "iface": "MediaError",
     "prop": "code"
@@ -28713,6 +32422,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaError",
     "prop": "message"
+  },
+  {
+    "featureId": "video",
+    "kind": "callGlobal",
+    "name": "TimeRanges"
   },
   {
     "featureId": "video",
@@ -28740,6 +32454,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "view-transitions",
+    "kind": "callGlobal",
+    "name": "PageRevealEvent"
+  },
+  {
+    "featureId": "view-transitions",
     "kind": "newIdent",
     "name": "PageRevealEvent"
   },
@@ -28748,6 +32467,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PageRevealEvent",
     "prop": "viewTransition"
+  },
+  {
+    "featureId": "view-transitions",
+    "kind": "callGlobal",
+    "name": "PageSwapEvent"
   },
   {
     "featureId": "view-transitions",
@@ -28765,6 +32489,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PageSwapEvent",
     "prop": "viewTransition"
+  },
+  {
+    "featureId": "view-transitions",
+    "kind": "callGlobal",
+    "name": "ViewTransition"
   },
   {
     "featureId": "view-transitions",
@@ -28804,6 +32533,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "viewport-segments",
+    "kind": "callGlobal",
+    "name": "Viewport"
+  },
+  {
+    "featureId": "viewport-segments",
     "kind": "instanceMember",
     "iface": "Viewport",
     "prop": "segments"
@@ -28825,6 +32559,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "virtualKeyboard"
+  },
+  {
+    "featureId": "virtual-keyboard",
+    "kind": "callGlobal",
+    "name": "VirtualKeyboard"
   },
   {
     "featureId": "virtual-keyboard",
@@ -28855,6 +32594,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VirtualKeyboard",
     "prop": "show"
+  },
+  {
+    "featureId": "visual-viewport",
+    "kind": "callGlobal",
+    "name": "VisualViewport"
   },
   {
     "featureId": "visual-viewport",
@@ -28921,6 +32665,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "visualViewport"
+  },
+  {
+    "featureId": "web-animations",
+    "kind": "callGlobal",
+    "name": "Animation"
   },
   {
     "featureId": "web-animations",
@@ -29067,6 +32816,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-animations",
+    "kind": "callGlobal",
+    "name": "AnimationEffect"
+  },
+  {
+    "featureId": "web-animations",
     "kind": "instanceMember",
     "iface": "AnimationEffect",
     "prop": "getComputedTiming"
@@ -29085,6 +32839,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-animations",
+    "kind": "callGlobal",
+    "name": "AnimationPlaybackEvent"
+  },
+  {
+    "featureId": "web-animations",
     "kind": "newIdent",
     "name": "AnimationPlaybackEvent"
   },
@@ -29099,6 +32858,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "AnimationPlaybackEvent",
     "prop": "timelineTime"
+  },
+  {
+    "featureId": "web-animations",
+    "kind": "callGlobal",
+    "name": "AnimationTimeline"
   },
   {
     "featureId": "web-animations",
@@ -29123,6 +32887,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Document",
     "prop": "timeline"
+  },
+  {
+    "featureId": "web-animations",
+    "kind": "callGlobal",
+    "name": "DocumentTimeline"
   },
   {
     "featureId": "web-animations",
@@ -29164,6 +32933,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Element",
     "prop": "getAnimations"
+  },
+  {
+    "featureId": "web-animations",
+    "kind": "callGlobal",
+    "name": "KeyframeEffect"
   },
   {
     "featureId": "web-animations",
@@ -29211,6 +32985,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ShadowRoot",
     "prop": "getAnimations"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AnalyserNode"
   },
   {
     "featureId": "web-audio",
@@ -29273,6 +33052,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioBuffer"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "AudioBuffer"
   },
@@ -29320,6 +33104,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioBufferSourceNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "AudioBufferSourceNode"
   },
@@ -29364,6 +33153,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "AudioBufferSourceNode",
     "prop": "start"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioContext"
   },
   {
     "featureId": "web-audio",
@@ -29456,9 +33250,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioDestinationNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "instanceMember",
     "iface": "AudioDestinationNode",
     "prop": "maxChannelCount"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioListener"
   },
   {
     "featureId": "web-audio",
@@ -29516,6 +33320,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "instanceMember",
     "iface": "AudioNode",
     "prop": "channelCount"
@@ -29561,6 +33370,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "AudioNode",
     "prop": "numberOfOutputs"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioParam"
   },
   {
     "featureId": "web-audio",
@@ -29636,6 +33450,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioParamMap"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "instanceMember",
     "iface": "AudioParamMap",
     "prop": "@@iterator"
@@ -29684,6 +33503,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioScheduledSourceNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "instanceMember",
     "iface": "AudioScheduledSourceNode",
     "prop": "ended_event"
@@ -29702,9 +33526,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "AudioSinkInfo"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "instanceMember",
     "iface": "AudioSinkInfo",
     "prop": "type"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "BaseAudioContext"
   },
   {
     "featureId": "web-audio",
@@ -29852,6 +33686,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "BiquadFilterNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "BiquadFilterNode"
   },
@@ -29893,13 +33732,28 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
-    "kind": "newIdent",
+    "kind": "callGlobal",
     "name": "ChannelMergerNode"
   },
   {
     "featureId": "web-audio",
     "kind": "newIdent",
+    "name": "ChannelMergerNode"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
     "name": "ChannelSplitterNode"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "newIdent",
+    "name": "ChannelSplitterNode"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "ConstantSourceNode"
   },
   {
     "featureId": "web-audio",
@@ -29911,6 +33765,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ConstantSourceNode",
     "prop": "offset"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "ConvolverNode"
   },
   {
     "featureId": "web-audio",
@@ -29931,6 +33790,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "DelayNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "DelayNode"
   },
@@ -29939,6 +33803,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "DelayNode",
     "prop": "delayTime"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "DynamicsCompressorNode"
   },
   {
     "featureId": "web-audio",
@@ -29983,6 +33852,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "GainNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "GainNode"
   },
@@ -29991,6 +33865,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GainNode",
     "prop": "gain"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "IIRFilterNode"
   },
   {
     "featureId": "web-audio",
@@ -30005,6 +33884,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "MediaElementAudioSourceNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "MediaElementAudioSourceNode"
   },
@@ -30013,6 +33897,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MediaElementAudioSourceNode",
     "prop": "mediaElement"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "MediaStreamAudioDestinationNode"
   },
   {
     "featureId": "web-audio",
@@ -30027,6 +33916,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "MediaStreamAudioSourceNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "MediaStreamAudioSourceNode"
   },
@@ -30038,8 +33932,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "MediaStreamTrackAudioSourceNode"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "MediaStreamTrackAudioSourceNode"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "OscillatorNode"
   },
   {
     "featureId": "web-audio",
@@ -30069,6 +33973,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "OscillatorNode",
     "prop": "type"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "PannerNode"
   },
   {
     "featureId": "web-audio",
@@ -30161,8 +34070,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "PeriodicWave"
+  },
+  {
+    "featureId": "web-audio",
     "kind": "newIdent",
     "name": "PeriodicWave"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "StereoPannerNode"
   },
   {
     "featureId": "web-audio",
@@ -30174,6 +34093,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "StereoPannerNode",
     "prop": "pan"
+  },
+  {
+    "featureId": "web-audio",
+    "kind": "callGlobal",
+    "name": "WaveShaperNode"
   },
   {
     "featureId": "web-audio",
@@ -30194,6 +34118,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-bluetooth",
+    "kind": "callGlobal",
+    "name": "Bluetooth"
+  },
+  {
+    "featureId": "web-bluetooth",
     "kind": "instanceMember",
     "iface": "Bluetooth",
     "prop": "getAvailability"
@@ -30209,6 +34138,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Bluetooth",
     "prop": "requestDevice"
+  },
+  {
+    "featureId": "web-bluetooth",
+    "kind": "callGlobal",
+    "name": "BluetoothCharacteristicProperties"
   },
   {
     "featureId": "web-bluetooth",
@@ -30266,6 +34200,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-bluetooth",
+    "kind": "callGlobal",
+    "name": "BluetoothDevice"
+  },
+  {
+    "featureId": "web-bluetooth",
     "kind": "instanceMember",
     "iface": "BluetoothDevice",
     "prop": "gatt"
@@ -30287,6 +34226,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "BluetoothDevice",
     "prop": "name"
+  },
+  {
+    "featureId": "web-bluetooth",
+    "kind": "callGlobal",
+    "name": "BluetoothRemoteGATTCharacteristic"
   },
   {
     "featureId": "web-bluetooth",
@@ -30362,6 +34306,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-bluetooth",
+    "kind": "callGlobal",
+    "name": "BluetoothRemoteGATTDescriptor"
+  },
+  {
+    "featureId": "web-bluetooth",
     "kind": "instanceMember",
     "iface": "BluetoothRemoteGATTDescriptor",
     "prop": "characteristic"
@@ -30389,6 +34338,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "BluetoothRemoteGATTDescriptor",
     "prop": "writeValue"
+  },
+  {
+    "featureId": "web-bluetooth",
+    "kind": "callGlobal",
+    "name": "BluetoothRemoteGATTServer"
   },
   {
     "featureId": "web-bluetooth",
@@ -30428,6 +34382,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-bluetooth",
+    "kind": "callGlobal",
+    "name": "BluetoothRemoteGATTService"
+  },
+  {
+    "featureId": "web-bluetooth",
     "kind": "instanceMember",
     "iface": "BluetoothRemoteGATTService",
     "prop": "device"
@@ -30455,6 +34414,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "BluetoothRemoteGATTService",
     "prop": "uuid"
+  },
+  {
+    "featureId": "web-bluetooth",
+    "kind": "callGlobal",
+    "name": "BluetoothUUID"
   },
   {
     "featureId": "web-bluetooth",
@@ -30488,6 +34452,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-cryptography",
+    "kind": "callGlobal",
+    "name": "Crypto"
+  },
+  {
+    "featureId": "web-cryptography",
     "kind": "instanceMember",
     "iface": "Crypto",
     "prop": "getRandomValues"
@@ -30503,6 +34472,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Crypto",
     "prop": "subtle"
+  },
+  {
+    "featureId": "web-cryptography",
+    "kind": "callGlobal",
+    "name": "CryptoKey"
   },
   {
     "featureId": "web-cryptography",
@@ -30527,6 +34501,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CryptoKey",
     "prop": "usages"
+  },
+  {
+    "featureId": "web-cryptography",
+    "kind": "callGlobal",
+    "name": "SubtleCrypto"
   },
   {
     "featureId": "web-cryptography",
@@ -30614,9 +34593,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-cryptography",
+    "kind": "callGlobal",
+    "name": "crypto"
+  },
+  {
+    "featureId": "web-cryptography",
     "kind": "instanceMember",
     "iface": "crypto",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "web-locks",
+    "kind": "callGlobal",
+    "name": "Lock"
   },
   {
     "featureId": "web-locks",
@@ -30629,6 +34618,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Lock",
     "prop": "name"
+  },
+  {
+    "featureId": "web-locks",
+    "kind": "callGlobal",
+    "name": "LockManager"
   },
   {
     "featureId": "web-locks",
@@ -30656,6 +34650,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-midi",
+    "kind": "callGlobal",
+    "name": "MIDIAccess"
+  },
+  {
+    "featureId": "web-midi",
     "kind": "instanceMember",
     "iface": "MIDIAccess",
     "prop": "inputs"
@@ -30680,6 +34679,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-midi",
+    "kind": "callGlobal",
+    "name": "MIDIConnectionEvent"
+  },
+  {
+    "featureId": "web-midi",
     "kind": "newIdent",
     "name": "MIDIConnectionEvent"
   },
@@ -30691,9 +34695,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-midi",
+    "kind": "callGlobal",
+    "name": "MIDIInput"
+  },
+  {
+    "featureId": "web-midi",
     "kind": "instanceMember",
     "iface": "MIDIInput",
     "prop": "midimessage_event"
+  },
+  {
+    "featureId": "web-midi",
+    "kind": "callGlobal",
+    "name": "MIDIInputMap"
   },
   {
     "featureId": "web-midi",
@@ -30745,6 +34759,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-midi",
+    "kind": "callGlobal",
+    "name": "MIDIMessageEvent"
+  },
+  {
+    "featureId": "web-midi",
     "kind": "newIdent",
     "name": "MIDIMessageEvent"
   },
@@ -30753,6 +34772,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MIDIMessageEvent",
     "prop": "data"
+  },
+  {
+    "featureId": "web-midi",
+    "kind": "callGlobal",
+    "name": "MIDIOutput"
   },
   {
     "featureId": "web-midi",
@@ -30768,6 +34792,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-midi",
+    "kind": "callGlobal",
+    "name": "MIDIOutputMap"
+  },
+  {
+    "featureId": "web-midi",
     "kind": "instanceMember",
     "iface": "MIDIOutputMap",
     "prop": "@@iterator"
@@ -30813,6 +34842,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MIDIOutputMap",
     "prop": "values"
+  },
+  {
+    "featureId": "web-midi",
+    "kind": "callGlobal",
+    "name": "MIDIPort"
   },
   {
     "featureId": "web-midi",
@@ -30888,6 +34922,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-nfc",
+    "kind": "callGlobal",
+    "name": "NDEFMessage"
+  },
+  {
+    "featureId": "web-nfc",
     "kind": "newIdent",
     "name": "NDEFMessage"
   },
@@ -30902,6 +34941,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "NDEFMessage",
     "prop": "secure_context_required"
+  },
+  {
+    "featureId": "web-nfc",
+    "kind": "callGlobal",
+    "name": "NDEFReader"
   },
   {
     "featureId": "web-nfc",
@@ -30946,6 +34990,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-nfc",
+    "kind": "callGlobal",
+    "name": "NDEFReadingEvent"
+  },
+  {
+    "featureId": "web-nfc",
     "kind": "newIdent",
     "name": "NDEFReadingEvent"
   },
@@ -30966,6 +35015,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "NDEFReadingEvent",
     "prop": "serialNumber"
+  },
+  {
+    "featureId": "web-nfc",
+    "kind": "callGlobal",
+    "name": "NDEFRecord"
   },
   {
     "featureId": "web-nfc",
@@ -31022,9 +35076,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "web-otp",
+    "kind": "callGlobal",
+    "name": "OTPCredential"
+  },
+  {
+    "featureId": "web-otp",
     "kind": "instanceMember",
     "iface": "OTPCredential",
     "prop": "code"
+  },
+  {
+    "featureId": "webauthn",
+    "kind": "callGlobal",
+    "name": "AuthenticatorAssertionResponse"
   },
   {
     "featureId": "webauthn",
@@ -31046,6 +35110,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webauthn",
+    "kind": "callGlobal",
+    "name": "AuthenticatorAttestationResponse"
+  },
+  {
+    "featureId": "webauthn",
     "kind": "instanceMember",
     "iface": "AuthenticatorAttestationResponse",
     "prop": "attestationObject"
@@ -31058,9 +35127,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webauthn",
+    "kind": "callGlobal",
+    "name": "AuthenticatorResponse"
+  },
+  {
+    "featureId": "webauthn",
     "kind": "instanceMember",
     "iface": "AuthenticatorResponse",
     "prop": "clientDataJSON"
+  },
+  {
+    "featureId": "webauthn",
+    "kind": "callGlobal",
+    "name": "PublicKeyCredential"
   },
   {
     "featureId": "webauthn",
@@ -31160,6 +35239,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "AudioData"
+  },
+  {
+    "featureId": "webcodecs",
     "kind": "newIdent",
     "name": "AudioData"
   },
@@ -31225,6 +35309,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "AudioDecoder"
+  },
+  {
+    "featureId": "webcodecs",
     "kind": "newIdent",
     "name": "AudioDecoder"
   },
@@ -31281,6 +35370,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "AudioDecoder",
     "prop": "state"
+  },
+  {
+    "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "AudioEncoder"
   },
   {
     "featureId": "webcodecs",
@@ -31343,6 +35437,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "EncodedAudioChunk"
+  },
+  {
+    "featureId": "webcodecs",
     "kind": "newIdent",
     "name": "EncodedAudioChunk"
   },
@@ -31378,6 +35477,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "EncodedVideoChunk"
+  },
+  {
+    "featureId": "webcodecs",
     "kind": "newIdent",
     "name": "EncodedVideoChunk"
   },
@@ -31410,6 +35514,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "EncodedVideoChunk",
     "prop": "type"
+  },
+  {
+    "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "ImageDecoder"
   },
   {
     "featureId": "webcodecs",
@@ -31466,6 +35575,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "ImageTrack"
+  },
+  {
+    "featureId": "webcodecs",
     "kind": "instanceMember",
     "iface": "ImageTrack",
     "prop": "animated"
@@ -31490,6 +35604,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "ImageTrackList"
+  },
+  {
+    "featureId": "webcodecs",
     "kind": "instanceMember",
     "iface": "ImageTrackList",
     "prop": "length"
@@ -31511,6 +35630,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ImageTrackList",
     "prop": "selectedTrack"
+  },
+  {
+    "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "VideoColorSpace"
   },
   {
     "featureId": "webcodecs",
@@ -31546,6 +35670,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VideoColorSpace",
     "prop": "transfer"
+  },
+  {
+    "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "VideoDecoder"
   },
   {
     "featureId": "webcodecs",
@@ -31608,6 +35737,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "VideoEncoder"
+  },
+  {
+    "featureId": "webcodecs",
     "kind": "newIdent",
     "name": "VideoEncoder"
   },
@@ -31664,6 +35798,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VideoEncoder",
     "prop": "state"
+  },
+  {
+    "featureId": "webcodecs",
+    "kind": "callGlobal",
+    "name": "VideoFrame"
   },
   {
     "featureId": "webcodecs",
@@ -31792,6 +35931,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLActiveInfo"
+  },
+  {
+    "featureId": "webgl",
     "kind": "instanceMember",
     "iface": "WebGLActiveInfo",
     "prop": "name"
@@ -31816,9 +35960,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLBuffer"
+  },
+  {
+    "featureId": "webgl",
     "kind": "instanceMember",
     "iface": "WebGLBuffer",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLContextEvent"
   },
   {
     "featureId": "webgl",
@@ -31839,9 +35993,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLFramebuffer"
+  },
+  {
+    "featureId": "webgl",
     "kind": "instanceMember",
     "iface": "WebGLFramebuffer",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLObject"
+  },
+  {
+    "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLProgram"
   },
   {
     "featureId": "webgl",
@@ -31851,9 +36020,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLRenderbuffer"
+  },
+  {
+    "featureId": "webgl",
     "kind": "instanceMember",
     "iface": "WebGLRenderbuffer",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLRenderingContext"
   },
   {
     "featureId": "webgl",
@@ -32709,9 +36888,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLShader"
+  },
+  {
+    "featureId": "webgl",
     "kind": "instanceMember",
     "iface": "WebGLShader",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLShaderPrecisionFormat"
   },
   {
     "featureId": "webgl",
@@ -32739,15 +36928,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLTexture"
+  },
+  {
+    "featureId": "webgl",
     "kind": "instanceMember",
     "iface": "WebGLTexture",
     "prop": "worker_support"
   },
   {
     "featureId": "webgl",
+    "kind": "callGlobal",
+    "name": "WebGLUniformLocation"
+  },
+  {
+    "featureId": "webgl",
     "kind": "instanceMember",
     "iface": "WebGLUniformLocation",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webgl-color-buffer-float",
+    "kind": "callGlobal",
+    "name": "WEBGL_color_buffer_float"
   },
   {
     "featureId": "webgl-color-management",
@@ -32763,9 +36967,49 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgl-compressed-texture-astc",
+    "kind": "callGlobal",
+    "name": "WEBGL_compressed_texture_astc"
+  },
+  {
+    "featureId": "webgl-compressed-texture-astc",
     "kind": "instanceMember",
     "iface": "WEBGL_compressed_texture_astc",
     "prop": "getSupportedProfiles"
+  },
+  {
+    "featureId": "webgl-compressed-texture-etc",
+    "kind": "callGlobal",
+    "name": "WEBGL_compressed_texture_etc"
+  },
+  {
+    "featureId": "webgl-compressed-texture-etc1",
+    "kind": "callGlobal",
+    "name": "WEBGL_compressed_texture_etc1"
+  },
+  {
+    "featureId": "webgl-compressed-texture-pvrtc",
+    "kind": "callGlobal",
+    "name": "WEBGL_compressed_texture_pvrtc"
+  },
+  {
+    "featureId": "webgl-compressed-texture-s3tc",
+    "kind": "callGlobal",
+    "name": "WEBGL_compressed_texture_s3tc"
+  },
+  {
+    "featureId": "webgl-compressed-texture-s3tc-srgb",
+    "kind": "callGlobal",
+    "name": "WEBGL_compressed_texture_s3tc_srgb"
+  },
+  {
+    "featureId": "webgl-debug-renderer-info",
+    "kind": "callGlobal",
+    "name": "WEBGL_debug_renderer_info"
+  },
+  {
+    "featureId": "webgl-debug-shaders",
+    "kind": "callGlobal",
+    "name": "WEBGL_debug_shaders"
   },
   {
     "featureId": "webgl-debug-shaders",
@@ -32774,10 +37018,25 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "getTranslatedShaderSource"
   },
   {
+    "featureId": "webgl-depth-texture",
+    "kind": "callGlobal",
+    "name": "WEBGL_depth_texture"
+  },
+  {
+    "featureId": "webgl-draw-buffers",
+    "kind": "callGlobal",
+    "name": "WEBGL_draw_buffers"
+  },
+  {
     "featureId": "webgl-draw-buffers",
     "kind": "instanceMember",
     "iface": "WEBGL_draw_buffers",
     "prop": "drawBuffersWEBGL"
+  },
+  {
+    "featureId": "webgl-lose-context",
+    "kind": "callGlobal",
+    "name": "WEBGL_lose_context"
   },
   {
     "featureId": "webgl-lose-context",
@@ -32790,6 +37049,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WEBGL_lose_context",
     "prop": "restoreContext"
+  },
+  {
+    "featureId": "webgl-multi-draw",
+    "kind": "callGlobal",
+    "name": "WEBGL_multi_draw"
   },
   {
     "featureId": "webgl-multi-draw",
@@ -32814,6 +37078,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WEBGL_multi_draw",
     "prop": "multiDrawElementsWEBGL"
+  },
+  {
+    "featureId": "webgl-oes-draw-buffers-indexed",
+    "kind": "callGlobal",
+    "name": "OES_draw_buffers_indexed"
   },
   {
     "featureId": "webgl-oes-draw-buffers-indexed",
@@ -32856,6 +37125,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "OES_draw_buffers_indexed",
     "prop": "enableiOES"
+  },
+  {
+    "featureId": "webgl2",
+    "kind": "callGlobal",
+    "name": "WebGL2RenderingContext"
   },
   {
     "featureId": "webgl2",
@@ -34232,6 +38506,31 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "waitSync"
   },
   {
+    "featureId": "webgl2",
+    "kind": "callGlobal",
+    "name": "WebGLQuery"
+  },
+  {
+    "featureId": "webgl2",
+    "kind": "callGlobal",
+    "name": "WebGLSampler"
+  },
+  {
+    "featureId": "webgl2",
+    "kind": "callGlobal",
+    "name": "WebGLSync"
+  },
+  {
+    "featureId": "webgl2",
+    "kind": "callGlobal",
+    "name": "WebGLTransformFeedback"
+  },
+  {
+    "featureId": "webgl2",
+    "kind": "callGlobal",
+    "name": "WebGLVertexArrayObject"
+  },
+  {
     "featureId": "webgl2-color-management",
     "kind": "instanceMember",
     "iface": "WebGL2RenderingContext",
@@ -34242,6 +38541,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WebGL2RenderingContext",
     "prop": "unpackColorSpace"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPU"
   },
   {
     "featureId": "webgpu",
@@ -34260,6 +38564,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GPU",
     "prop": "wgslLanguageFeatures"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUAdapter"
   },
   {
     "featureId": "webgpu",
@@ -34284,6 +38593,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GPUAdapter",
     "prop": "requestDevice"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUAdapterInfo"
   },
   {
     "featureId": "webgpu",
@@ -34323,15 +38637,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUBindGroup"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUBindGroup",
     "prop": "label"
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUBindGroupLayout"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUBindGroupLayout",
     "prop": "label"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUBuffer"
   },
   {
     "featureId": "webgpu",
@@ -34383,6 +38712,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUCanvasContext"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUCanvasContext",
     "prop": "canvas"
@@ -34413,9 +38747,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUCommandBuffer"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUCommandBuffer",
     "prop": "label"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUCommandEncoder"
   },
   {
     "featureId": "webgpu",
@@ -34497,9 +38841,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUCompilationInfo"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUCompilationInfo",
     "prop": "messages"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUCompilationMessage"
   },
   {
     "featureId": "webgpu",
@@ -34536,6 +38890,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GPUCompilationMessage",
     "prop": "type"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUComputePassEncoder"
   },
   {
     "featureId": "webgpu",
@@ -34593,6 +38952,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUComputePipeline"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUComputePipeline",
     "prop": "getBindGroupLayout"
@@ -34602,6 +38966,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GPUComputePipeline",
     "prop": "label"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUDevice"
   },
   {
     "featureId": "webgpu",
@@ -34755,6 +39124,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUDeviceLostInfo"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUDeviceLostInfo",
     "prop": "message"
@@ -34767,9 +39141,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUError"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUError",
     "prop": "message"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUExternalTexture"
   },
   {
     "featureId": "webgpu",
@@ -34779,13 +39163,28 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
-    "kind": "newIdent",
+    "kind": "callGlobal",
     "name": "GPUInternalError"
   },
   {
     "featureId": "webgpu",
     "kind": "newIdent",
+    "name": "GPUInternalError"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
     "name": "GPUOutOfMemoryError"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "newIdent",
+    "name": "GPUOutOfMemoryError"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUPipelineError"
   },
   {
     "featureId": "webgpu",
@@ -34800,9 +39199,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUPipelineLayout"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUPipelineLayout",
     "prop": "label"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUQuerySet"
   },
   {
     "featureId": "webgpu",
@@ -34827,6 +39236,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GPUQuerySet",
     "prop": "type"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUQueue"
   },
   {
     "featureId": "webgpu",
@@ -34866,9 +39280,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPURenderBundle"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPURenderBundle",
     "prop": "label"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPURenderBundleEncoder"
   },
   {
     "featureId": "webgpu",
@@ -34947,6 +39371,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GPURenderBundleEncoder",
     "prop": "setVertexBuffer"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPURenderPassEncoder"
   },
   {
     "featureId": "webgpu",
@@ -35070,6 +39499,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPURenderPipeline"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPURenderPipeline",
     "prop": "getBindGroupLayout"
@@ -35082,9 +39516,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUSampler"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUSampler",
     "prop": "label"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUShaderModule"
   },
   {
     "featureId": "webgpu",
@@ -35097,6 +39541,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GPUShaderModule",
     "prop": "label"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUSupportedFeatures"
   },
   {
     "featureId": "webgpu",
@@ -35223,6 +39672,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GPUSupportedFeatures",
     "prop": "values"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUSupportedLimits"
   },
   {
     "featureId": "webgpu",
@@ -35412,6 +39866,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUTexture"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUTexture",
     "prop": "createView"
@@ -35478,9 +39937,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUTextureView"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "instanceMember",
     "iface": "GPUTextureView",
     "prop": "label"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUUncapturedErrorEvent"
   },
   {
     "featureId": "webgpu",
@@ -35495,6 +39964,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "GPUValidationError"
+  },
+  {
+    "featureId": "webgpu",
     "kind": "newIdent",
     "name": "GPUValidationError"
   },
@@ -35503,6 +39977,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "gpu"
+  },
+  {
+    "featureId": "webgpu",
+    "kind": "callGlobal",
+    "name": "WGSLLanguageFeatures"
   },
   {
     "featureId": "webgpu",
@@ -35572,6 +40051,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webhid",
+    "kind": "callGlobal",
+    "name": "HID"
+  },
+  {
+    "featureId": "webhid",
     "kind": "instanceMember",
     "iface": "HID",
     "prop": "connect_event"
@@ -35602,6 +40086,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webhid",
+    "kind": "callGlobal",
+    "name": "HIDConnectionEvent"
+  },
+  {
+    "featureId": "webhid",
     "kind": "newIdent",
     "name": "HIDConnectionEvent"
   },
@@ -35616,6 +40105,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HIDConnectionEvent",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webhid",
+    "kind": "callGlobal",
+    "name": "HIDDevice"
   },
   {
     "featureId": "webhid",
@@ -35697,6 +40191,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webhid",
+    "kind": "callGlobal",
+    "name": "HIDInputReportEvent"
+  },
+  {
+    "featureId": "webhid",
     "kind": "instanceMember",
     "iface": "HIDInputReportEvent",
     "prop": "data"
@@ -35733,9 +40232,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webnn",
+    "kind": "callGlobal",
+    "name": "ML"
+  },
+  {
+    "featureId": "webnn",
     "kind": "instanceMember",
     "iface": "ML",
     "prop": "createContext"
+  },
+  {
+    "featureId": "webnn",
+    "kind": "callGlobal",
+    "name": "MLContext"
   },
   {
     "featureId": "webnn",
@@ -35748,6 +40257,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MLContext",
     "prop": "opSupportLimits"
+  },
+  {
+    "featureId": "webnn",
+    "kind": "callGlobal",
+    "name": "MLGraph"
+  },
+  {
+    "featureId": "webnn",
+    "kind": "callGlobal",
+    "name": "MLGraphBuilder"
   },
   {
     "featureId": "webnn",
@@ -36308,6 +40827,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webnn",
+    "kind": "callGlobal",
+    "name": "MLOperand"
+  },
+  {
+    "featureId": "webnn",
     "kind": "member",
     "base": "navigator",
     "prop": "ml"
@@ -36320,6 +40844,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCCertificate"
+  },
+  {
+    "featureId": "webrtc",
     "kind": "instanceMember",
     "iface": "RTCCertificate",
     "prop": "expires"
@@ -36329,6 +40858,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCCertificate",
     "prop": "getFingerprints"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCDTMFSender"
   },
   {
     "featureId": "webrtc",
@@ -36356,6 +40890,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCDTMFToneChangeEvent"
+  },
+  {
+    "featureId": "webrtc",
     "kind": "newIdent",
     "name": "RTCDTMFToneChangeEvent"
   },
@@ -36364,6 +40903,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCDTMFToneChangeEvent",
     "prop": "tone"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCDataChannel"
   },
   {
     "featureId": "webrtc",
@@ -36493,6 +41037,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCDataChannelEvent"
+  },
+  {
+    "featureId": "webrtc",
     "kind": "newIdent",
     "name": "RTCDataChannelEvent"
   },
@@ -36501,6 +41050,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCDataChannelEvent",
     "prop": "channel"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCDtlsTransport"
   },
   {
     "featureId": "webrtc",
@@ -36531,6 +41085,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCDtlsTransport",
     "prop": "statechange_event"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCError"
   },
   {
     "featureId": "webrtc",
@@ -36569,6 +41128,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCErrorEvent"
+  },
+  {
+    "featureId": "webrtc",
     "kind": "newIdent",
     "name": "RTCErrorEvent"
   },
@@ -36577,6 +41141,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCErrorEvent",
     "prop": "error"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCIceCandidate"
   },
   {
     "featureId": "webrtc",
@@ -36687,6 +41256,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCIceTransport"
+  },
+  {
+    "featureId": "webrtc",
     "kind": "instanceMember",
     "iface": "RTCIceTransport",
     "prop": "gatheringState"
@@ -36750,6 +41324,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCIceTransport",
     "prop": "statechange_event"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCPeerConnection"
   },
   {
     "featureId": "webrtc",
@@ -36980,6 +41559,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCPeerConnectionIceErrorEvent"
+  },
+  {
+    "featureId": "webrtc",
     "kind": "newIdent",
     "name": "RTCPeerConnectionIceErrorEvent"
   },
@@ -37015,6 +41599,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCPeerConnectionIceEvent"
+  },
+  {
+    "featureId": "webrtc",
     "kind": "newIdent",
     "name": "RTCPeerConnectionIceEvent"
   },
@@ -37029,6 +41618,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCPeerConnectionIceEvent",
     "prop": "url"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCRtpReceiver"
   },
   {
     "featureId": "webrtc",
@@ -37077,6 +41671,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCRtpReceiver",
     "prop": "transport"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCRtpSender"
   },
   {
     "featureId": "webrtc",
@@ -37131,6 +41730,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCRtpSender",
     "prop": "transport"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCRtpTransceiver"
   },
   {
     "featureId": "webrtc",
@@ -37194,6 +41798,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCSessionDescription"
+  },
+  {
+    "featureId": "webrtc",
     "kind": "instanceMember",
     "iface": "RTCSessionDescription",
     "prop": "sdp"
@@ -37209,6 +41818,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCSessionDescription",
     "prop": "type"
+  },
+  {
+    "featureId": "webrtc",
+    "kind": "callGlobal",
+    "name": "RTCTrackEvent"
   },
   {
     "featureId": "webrtc",
@@ -37247,6 +41861,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc-encoded-transform",
+    "kind": "callGlobal",
+    "name": "RTCEncodedAudioFrame"
+  },
+  {
+    "featureId": "webrtc-encoded-transform",
     "kind": "newIdent",
     "name": "RTCEncodedAudioFrame"
   },
@@ -37261,6 +41880,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCEncodedAudioFrame",
     "prop": "getMetadata"
+  },
+  {
+    "featureId": "webrtc-encoded-transform",
+    "kind": "callGlobal",
+    "name": "RTCEncodedVideoFrame"
   },
   {
     "featureId": "webrtc-encoded-transform",
@@ -37293,8 +41917,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc-encoded-transform",
+    "kind": "callGlobal",
+    "name": "RTCRtpScriptTransform"
+  },
+  {
+    "featureId": "webrtc-encoded-transform",
     "kind": "newIdent",
     "name": "RTCRtpScriptTransform"
+  },
+  {
+    "featureId": "webrtc-encoded-transform",
+    "kind": "callGlobal",
+    "name": "RTCRtpScriptTransformer"
   },
   {
     "featureId": "webrtc-encoded-transform",
@@ -37334,6 +41968,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webrtc-encoded-transform",
+    "kind": "callGlobal",
+    "name": "RTCTransformEvent"
+  },
+  {
+    "featureId": "webrtc-encoded-transform",
     "kind": "instanceMember",
     "iface": "RTCTransformEvent",
     "prop": "transformer"
@@ -37343,6 +41982,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCPeerConnection",
     "prop": "sctp"
+  },
+  {
+    "featureId": "webrtc-sctp",
+    "kind": "callGlobal",
+    "name": "RTCSctpTransport"
   },
   {
     "featureId": "webrtc-sctp",
@@ -37391,6 +42035,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCRtpSender",
     "prop": "getStats"
+  },
+  {
+    "featureId": "webrtc-stats",
+    "kind": "callGlobal",
+    "name": "RTCStatsReport"
   },
   {
     "featureId": "webrtc-stats",
@@ -37526,6 +42175,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "websockets",
+    "kind": "callGlobal",
+    "name": "CloseEvent"
+  },
+  {
+    "featureId": "websockets",
     "kind": "newIdent",
     "name": "CloseEvent"
   },
@@ -37546,6 +42200,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CloseEvent",
     "prop": "wasClean"
+  },
+  {
+    "featureId": "websockets",
+    "kind": "callGlobal",
+    "name": "WebSocket"
   },
   {
     "featureId": "websockets",
@@ -37638,6 +42297,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "websockets",
+    "kind": "callGlobal",
+    "name": "WebSocketError"
+  },
+  {
+    "featureId": "websockets",
     "kind": "newIdent",
     "name": "WebSocketError"
   },
@@ -37652,6 +42316,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WebSocketError",
     "prop": "reason"
+  },
+  {
+    "featureId": "webtransport",
+    "kind": "callGlobal",
+    "name": "WebTransport"
   },
   {
     "featureId": "webtransport",
@@ -37732,6 +42401,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webtransport",
+    "kind": "callGlobal",
+    "name": "WebTransportBidirectionalStream"
+  },
+  {
+    "featureId": "webtransport",
     "kind": "instanceMember",
     "iface": "WebTransportBidirectionalStream",
     "prop": "readable"
@@ -37741,6 +42415,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WebTransportBidirectionalStream",
     "prop": "writable"
+  },
+  {
+    "featureId": "webtransport",
+    "kind": "callGlobal",
+    "name": "WebTransportDatagramDuplexStream"
   },
   {
     "featureId": "webtransport",
@@ -37786,6 +42465,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webtransport",
+    "kind": "callGlobal",
+    "name": "WebTransportError"
+  },
+  {
+    "featureId": "webtransport",
     "kind": "newIdent",
     "name": "WebTransportError"
   },
@@ -37803,9 +42487,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webtransport",
+    "kind": "callGlobal",
+    "name": "WebTransportReceiveStream"
+  },
+  {
+    "featureId": "webtransport",
     "kind": "instanceMember",
     "iface": "WebTransportReceiveStream",
     "prop": "getStats"
+  },
+  {
+    "featureId": "webtransport",
+    "kind": "callGlobal",
+    "name": "WebTransportSendStream"
   },
   {
     "featureId": "webtransport",
@@ -37830,6 +42524,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "navigator",
     "prop": "usb"
+  },
+  {
+    "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USB"
   },
   {
     "featureId": "webusb",
@@ -37860,6 +42559,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "USB",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBAlternateInterface"
   },
   {
     "featureId": "webusb",
@@ -37910,6 +42614,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBConfiguration"
+  },
+  {
+    "featureId": "webusb",
     "kind": "newIdent",
     "name": "USBConfiguration"
   },
@@ -37939,6 +42648,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBConnectionEvent"
+  },
+  {
+    "featureId": "webusb",
     "kind": "newIdent",
     "name": "USBConnectionEvent"
   },
@@ -37953,6 +42667,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "USBConnectionEvent",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBDevice"
   },
   {
     "featureId": "webusb",
@@ -38154,6 +42873,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBEndpoint"
+  },
+  {
+    "featureId": "webusb",
     "kind": "newIdent",
     "name": "USBEndpoint"
   },
@@ -38189,6 +42913,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBInTransferResult"
+  },
+  {
+    "featureId": "webusb",
     "kind": "newIdent",
     "name": "USBInTransferResult"
   },
@@ -38209,6 +42938,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "USBInTransferResult",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBInterface"
   },
   {
     "featureId": "webusb",
@@ -38247,6 +42981,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBIsochronousInTransferPacket"
+  },
+  {
+    "featureId": "webusb",
     "kind": "newIdent",
     "name": "USBIsochronousInTransferPacket"
   },
@@ -38267,6 +43006,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "USBIsochronousInTransferPacket",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBIsochronousInTransferResult"
   },
   {
     "featureId": "webusb",
@@ -38293,6 +43037,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBIsochronousOutTransferPacket"
+  },
+  {
+    "featureId": "webusb",
     "kind": "newIdent",
     "name": "USBIsochronousOutTransferPacket"
   },
@@ -38316,6 +43065,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBIsochronousOutTransferResult"
+  },
+  {
+    "featureId": "webusb",
     "kind": "newIdent",
     "name": "USBIsochronousOutTransferResult"
   },
@@ -38330,6 +43084,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "USBIsochronousOutTransferResult",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "webusb",
+    "kind": "callGlobal",
+    "name": "USBOutTransferResult"
   },
   {
     "featureId": "webusb",
@@ -38380,6 +43139,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "PositionSensorVRDevice"
+  },
+  {
+    "featureId": "webvr",
     "kind": "instanceMember",
     "iface": "PositionSensorVRDevice",
     "prop": "getImmediateState"
@@ -38395,6 +43159,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PositionSensorVRDevice",
     "prop": "resetSensor"
+  },
+  {
+    "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "VRDisplay"
   },
   {
     "featureId": "webvr",
@@ -38512,6 +43281,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "VRDisplayCapabilities"
+  },
+  {
+    "featureId": "webvr",
     "kind": "instanceMember",
     "iface": "VRDisplayCapabilities",
     "prop": "canPresent"
@@ -38542,6 +43316,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "VRDisplayEvent"
+  },
+  {
+    "featureId": "webvr",
     "kind": "newIdent",
     "name": "VRDisplayEvent"
   },
@@ -38556,6 +43335,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VRDisplayEvent",
     "prop": "reason"
+  },
+  {
+    "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "VREyeParameters"
   },
   {
     "featureId": "webvr",
@@ -38595,6 +43379,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "VRFieldOfView"
+  },
+  {
+    "featureId": "webvr",
     "kind": "instanceMember",
     "iface": "VRFieldOfView",
     "prop": "downDegrees"
@@ -38616,6 +43405,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VRFieldOfView",
     "prop": "upDegrees"
+  },
+  {
+    "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "VRFrameData"
   },
   {
     "featureId": "webvr",
@@ -38660,6 +43454,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "VRPose"
+  },
+  {
+    "featureId": "webvr",
     "kind": "instanceMember",
     "iface": "VRPose",
     "prop": "angularAcceleration"
@@ -38693,6 +43492,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VRPose",
     "prop": "position"
+  },
+  {
+    "featureId": "webvr",
+    "kind": "callGlobal",
+    "name": "VRStageParameters"
   },
   {
     "featureId": "webvr",
@@ -38741,6 +43545,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "vrdisplaypresentchange_event"
+  },
+  {
+    "featureId": "webvtt",
+    "kind": "callGlobal",
+    "name": "VTTCue"
   },
   {
     "featureId": "webvtt",
@@ -38815,6 +43624,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webvtt-regions",
+    "kind": "callGlobal",
+    "name": "VTTRegion"
+  },
+  {
+    "featureId": "webvtt-regions",
     "kind": "newIdent",
     "name": "VTTRegion"
   },
@@ -38868,6 +43682,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-anchors",
+    "kind": "callGlobal",
+    "name": "XRAnchor"
+  },
+  {
+    "featureId": "webxr-anchors",
     "kind": "instanceMember",
     "iface": "XRAnchor",
     "prop": "anchorSpace"
@@ -38877,6 +43696,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRAnchor",
     "prop": "delete"
+  },
+  {
+    "featureId": "webxr-anchors",
+    "kind": "callGlobal",
+    "name": "XRAnchorSet"
   },
   {
     "featureId": "webxr-anchors",
@@ -38958,6 +43782,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-camera",
+    "kind": "callGlobal",
+    "name": "XRCamera"
+  },
+  {
+    "featureId": "webxr-camera",
     "kind": "instanceMember",
     "iface": "XRCamera",
     "prop": "height"
@@ -38982,6 +43811,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-depth-sensing",
+    "kind": "callGlobal",
+    "name": "XRCPUDepthInformation"
+  },
+  {
+    "featureId": "webxr-depth-sensing",
     "kind": "instanceMember",
     "iface": "XRCPUDepthInformation",
     "prop": "data"
@@ -38991,6 +43825,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRCPUDepthInformation",
     "prop": "getDepthInMeters"
+  },
+  {
+    "featureId": "webxr-depth-sensing",
+    "kind": "callGlobal",
+    "name": "XRDepthInformation"
   },
   {
     "featureId": "webxr-depth-sensing",
@@ -39042,6 +43881,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-depth-sensing",
+    "kind": "callGlobal",
+    "name": "XRWebGLDepthInformation"
+  },
+  {
+    "featureId": "webxr-depth-sensing",
     "kind": "instanceMember",
     "iface": "XRWebGLDepthInformation",
     "prop": "texture"
@@ -39066,9 +43910,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRBoundedReferenceSpace"
+  },
+  {
+    "featureId": "webxr-device",
     "kind": "instanceMember",
     "iface": "XRBoundedReferenceSpace",
     "prop": "boundsGeometry"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRFrame"
   },
   {
     "featureId": "webxr-device",
@@ -39087,6 +43941,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRFrame",
     "prop": "session"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRInputSource"
   },
   {
     "featureId": "webxr-device",
@@ -39117,6 +43976,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRInputSource",
     "prop": "targetRaySpace"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRInputSourceArray"
   },
   {
     "featureId": "webxr-device",
@@ -39156,6 +44020,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRInputSourceEvent"
+  },
+  {
+    "featureId": "webxr-device",
     "kind": "newIdent",
     "name": "XRInputSourceEvent"
   },
@@ -39170,6 +44039,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRInputSourceEvent",
     "prop": "inputSource"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRInputSourcesChangeEvent"
   },
   {
     "featureId": "webxr-device",
@@ -39193,6 +44067,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRInputSourcesChangeEvent",
     "prop": "session"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRLayer"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRPose"
   },
   {
     "featureId": "webxr-device",
@@ -39220,6 +44104,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRReferenceSpace"
+  },
+  {
+    "featureId": "webxr-device",
     "kind": "instanceMember",
     "iface": "XRReferenceSpace",
     "prop": "getOffsetReferenceSpace"
@@ -39229,6 +44118,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRReferenceSpace",
     "prop": "reset_event"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRReferenceSpaceEvent"
   },
   {
     "featureId": "webxr-device",
@@ -39246,6 +44140,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRReferenceSpaceEvent",
     "prop": "transform"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRRenderState"
   },
   {
     "featureId": "webxr-device",
@@ -39270,6 +44169,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRRenderState",
     "prop": "inlineVerticalFieldOfView"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRRigidTransform"
   },
   {
     "featureId": "webxr-device",
@@ -39299,6 +44203,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRRigidTransform",
     "prop": "position"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRSession"
   },
   {
     "featureId": "webxr-device",
@@ -39410,6 +44319,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRSessionEvent"
+  },
+  {
+    "featureId": "webxr-device",
     "kind": "newIdent",
     "name": "XRSessionEvent"
   },
@@ -39418,6 +44332,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRSessionEvent",
     "prop": "session"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRSpace"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRSystem"
   },
   {
     "featureId": "webxr-device",
@@ -39436,6 +44360,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRSystem",
     "prop": "requestSession"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRView"
   },
   {
     "featureId": "webxr-device",
@@ -39469,9 +44398,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRViewerPose"
+  },
+  {
+    "featureId": "webxr-device",
     "kind": "instanceMember",
     "iface": "XRViewerPose",
     "prop": "views"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRViewport"
   },
   {
     "featureId": "webxr-device",
@@ -39496,6 +44435,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRViewport",
     "prop": "y"
+  },
+  {
+    "featureId": "webxr-device",
+    "kind": "callGlobal",
+    "name": "XRWebGLLayer"
   },
   {
     "featureId": "webxr-device",
@@ -39588,6 +44532,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-hand-input",
+    "kind": "callGlobal",
+    "name": "XRHand"
+  },
+  {
+    "featureId": "webxr-hand-input",
     "kind": "instanceMember",
     "iface": "XRHand",
     "prop": "@@iterator"
@@ -39636,9 +44585,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-hand-input",
+    "kind": "callGlobal",
+    "name": "XRJointPose"
+  },
+  {
+    "featureId": "webxr-hand-input",
     "kind": "instanceMember",
     "iface": "XRJointPose",
     "prop": "radius"
+  },
+  {
+    "featureId": "webxr-hand-input",
+    "kind": "callGlobal",
+    "name": "XRJointSpace"
   },
   {
     "featureId": "webxr-hand-input",
@@ -39660,15 +44619,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-hit-test",
+    "kind": "callGlobal",
+    "name": "XRHitTestResult"
+  },
+  {
+    "featureId": "webxr-hit-test",
     "kind": "instanceMember",
     "iface": "XRHitTestResult",
     "prop": "getPose"
   },
   {
     "featureId": "webxr-hit-test",
+    "kind": "callGlobal",
+    "name": "XRHitTestSource"
+  },
+  {
+    "featureId": "webxr-hit-test",
     "kind": "instanceMember",
     "iface": "XRHitTestSource",
     "prop": "cancel"
+  },
+  {
+    "featureId": "webxr-hit-test",
+    "kind": "callGlobal",
+    "name": "XRRay"
   },
   {
     "featureId": "webxr-hit-test",
@@ -39707,6 +44681,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-hit-test",
+    "kind": "callGlobal",
+    "name": "XRTransientInputHitTestResult"
+  },
+  {
+    "featureId": "webxr-hit-test",
     "kind": "instanceMember",
     "iface": "XRTransientInputHitTestResult",
     "prop": "inputSource"
@@ -39719,9 +44698,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-hit-test",
+    "kind": "callGlobal",
+    "name": "XRTransientInputHitTestSource"
+  },
+  {
+    "featureId": "webxr-hit-test",
     "kind": "instanceMember",
     "iface": "XRTransientInputHitTestSource",
     "prop": "cancel"
+  },
+  {
+    "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRCompositionLayer"
   },
   {
     "featureId": "webxr-layers",
@@ -39755,6 +44744,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRCubeLayer"
+  },
+  {
+    "featureId": "webxr-layers",
     "kind": "instanceMember",
     "iface": "XRCubeLayer",
     "prop": "orientation"
@@ -39770,6 +44764,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRCubeLayer",
     "prop": "space"
+  },
+  {
+    "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRCylinderLayer"
   },
   {
     "featureId": "webxr-layers",
@@ -39806,6 +44805,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRCylinderLayer",
     "prop": "transform"
+  },
+  {
+    "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XREquirectLayer"
   },
   {
     "featureId": "webxr-layers",
@@ -39851,6 +44855,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRLayerEvent"
+  },
+  {
+    "featureId": "webxr-layers",
     "kind": "newIdent",
     "name": "XRLayerEvent"
   },
@@ -39859,6 +44868,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRLayerEvent",
     "prop": "layer"
+  },
+  {
+    "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRMediaBinding"
   },
   {
     "featureId": "webxr-layers",
@@ -39882,6 +44896,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRMediaBinding",
     "prop": "createQuadLayer"
+  },
+  {
+    "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRProjectionLayer"
   },
   {
     "featureId": "webxr-layers",
@@ -39912,6 +44931,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRProjectionLayer",
     "prop": "textureWidth"
+  },
+  {
+    "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRQuadLayer"
   },
   {
     "featureId": "webxr-layers",
@@ -39951,9 +44975,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRSubImage"
+  },
+  {
+    "featureId": "webxr-layers",
     "kind": "instanceMember",
     "iface": "XRSubImage",
     "prop": "viewport"
+  },
+  {
+    "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRWebGLBinding"
   },
   {
     "featureId": "webxr-layers",
@@ -40010,6 +45044,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-layers",
+    "kind": "callGlobal",
+    "name": "XRWebGLSubImage"
+  },
+  {
+    "featureId": "webxr-layers",
     "kind": "instanceMember",
     "iface": "XRWebGLSubImage",
     "prop": "colorTexture"
@@ -40046,6 +45085,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "webxr-lighting-estimation",
+    "kind": "callGlobal",
+    "name": "XRLightEstimate"
+  },
+  {
+    "featureId": "webxr-lighting-estimation",
     "kind": "instanceMember",
     "iface": "XRLightEstimate",
     "prop": "primaryLightDirection"
@@ -40061,6 +45105,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XRLightEstimate",
     "prop": "sphericalHarmonicsCoefficients"
+  },
+  {
+    "featureId": "webxr-lighting-estimation",
+    "kind": "callGlobal",
+    "name": "XRLightProbe"
   },
   {
     "featureId": "webxr-lighting-estimation",
@@ -40100,6 +45149,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "wheel-events",
+    "kind": "callGlobal",
+    "name": "WheelEvent"
+  },
+  {
+    "featureId": "wheel-events",
     "kind": "newIdent",
     "name": "WheelEvent"
   },
@@ -40132,6 +45186,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WheelEvent",
     "prop": "pinch_to_zoom_support"
+  },
+  {
+    "featureId": "window",
+    "kind": "callGlobal",
+    "name": "Window"
   },
   {
     "featureId": "window",
@@ -40339,6 +45398,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "window-controls-overlay",
+    "kind": "callGlobal",
+    "name": "WindowControlsOverlay"
+  },
+  {
+    "featureId": "window-controls-overlay",
     "kind": "instanceMember",
     "iface": "WindowControlsOverlay",
     "prop": "geometrychange_event"
@@ -40354,6 +45418,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WindowControlsOverlay",
     "prop": "visible"
+  },
+  {
+    "featureId": "window-controls-overlay",
+    "kind": "callGlobal",
+    "name": "WindowControlsOverlayGeometryChangeEvent"
   },
   {
     "featureId": "window-controls-overlay",
@@ -40389,6 +45458,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Screen",
     "prop": "isExtended"
+  },
+  {
+    "featureId": "window-management",
+    "kind": "callGlobal",
+    "name": "ScreenDetailed"
   },
   {
     "featureId": "window-management",
@@ -40440,6 +45514,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "window-management",
+    "kind": "callGlobal",
+    "name": "ScreenDetails"
+  },
+  {
+    "featureId": "window-management",
     "kind": "instanceMember",
     "iface": "ScreenDetails",
     "prop": "currentScreen"
@@ -40473,6 +45552,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLElement",
     "prop": "writingSuggestions"
+  },
+  {
+    "featureId": "xhr",
+    "kind": "callGlobal",
+    "name": "FormData"
   },
   {
     "featureId": "xhr",
@@ -40553,6 +45637,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "xhr",
+    "kind": "callGlobal",
+    "name": "ProgressEvent"
+  },
+  {
+    "featureId": "xhr",
     "kind": "newIdent",
     "name": "ProgressEvent"
   },
@@ -40579,6 +45668,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ProgressEvent",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "xhr",
+    "kind": "callGlobal",
+    "name": "XMLHttpRequest"
   },
   {
     "featureId": "xhr",
@@ -40755,6 +45849,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "xhr",
+    "kind": "callGlobal",
+    "name": "XMLHttpRequestEventTarget"
+  },
+  {
+    "featureId": "xhr",
+    "kind": "callGlobal",
+    "name": "XMLHttpRequestUpload"
+  },
+  {
+    "featureId": "xhr",
     "kind": "instanceMember",
     "iface": "XMLHttpRequestUpload",
     "prop": "abort_event"
@@ -40797,6 +45901,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "xml-serializer",
+    "kind": "callGlobal",
+    "name": "XMLSerializer"
+  },
+  {
+    "featureId": "xml-serializer",
     "kind": "newIdent",
     "name": "XMLSerializer"
   },
@@ -40820,6 +45929,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "xpath",
+    "kind": "callGlobal",
+    "name": "XPathEvaluator"
+  },
+  {
+    "featureId": "xpath",
     "kind": "newIdent",
     "name": "XPathEvaluator"
   },
@@ -40837,9 +45951,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "xpath",
+    "kind": "callGlobal",
+    "name": "XPathExpression"
+  },
+  {
+    "featureId": "xpath",
     "kind": "instanceMember",
     "iface": "XPathExpression",
     "prop": "evaluate"
+  },
+  {
+    "featureId": "xpath",
+    "kind": "callGlobal",
+    "name": "XPathResult"
   },
   {
     "featureId": "xpath",
@@ -40894,6 +46018,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XPathResult",
     "prop": "stringValue"
+  },
+  {
+    "featureId": "xslt",
+    "kind": "callGlobal",
+    "name": "XSLTProcessor"
   },
   {
     "featureId": "xslt",

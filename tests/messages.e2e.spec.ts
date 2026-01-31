@@ -22,7 +22,7 @@ describe("Baseline messages are unified across delegates", () => {
           errors: [
             {
               message:
-                "Feature 'Atomics.waitAsync' (atomics-wait-async) is not a widely available Baseline feature.",
+                "Feature 'Atomics.waitAsync()' (atomics-wait-async) is not a widely available Baseline feature.",
             },
           ],
         },

@@ -148,6 +148,17 @@ export default {
     ],
   },
 
+  "atomics-pause": {
+    kind: "syntax",
+    delegates: [
+      {
+        plugin: "self",
+        rule: "no-atomics-pause",
+        level: "error",
+      },
+    ],
+  },
+
   bigint: {
     kind: "syntax",
     delegates: [

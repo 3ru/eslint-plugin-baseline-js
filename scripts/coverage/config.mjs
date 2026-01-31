@@ -31,6 +31,7 @@ export default {
 
       // CSS domain — handled by stylelint or css-dedicated linters
       "starting-style": { memo: "CSS at-rule — use stylelint", exclude: true },
+      "custom-media-queries": { memo: "CSS at-rule — use stylelint", exclude: true },
 
       // Runtime/permission/context dependent — not robust for static AST detection
       "clipboard-unsanitized-formats": {
@@ -43,8 +44,11 @@ export default {
       },
       "webgl-sab": { memo: "SAB requires COOP/COEP — environment dependent", exclude: true },
 
-      // Avoid double counting: covered under JavaScript builtins
-      "structured-clone": { memo: "Covered in JS builtins (structuredClone)", exclude: true },
+      // scrollIntoView() option semantics — requires typed receiver validation
+      "scroll-into-view-container": {
+        memo: "Option detection requires typed receiver validation (Element.scrollIntoView) — future enhancement",
+        exclude: true,
+      },
     },
   },
   jsbi: {

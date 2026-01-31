@@ -70,15 +70,15 @@ describe("orchestrator (es-x delegates)", () => {
     expect(msgs.length).toBe(0);
   });
 
-  it("[top-level-await] year: 2021 > 2018 should be flagged", async () => {
-    const msgs = await lintWithBaseline("await Promise.resolve(1)", 2018, {
+  it("[top-level-await] (limited) should be flagged on widely", async () => {
+    const msgs = await lintWithBaseline("await Promise.resolve(1)", "widely", {
       filePath: "mod.mjs",
       sourceType: "module",
     });
     expect(
       msgs.some((m) =>
         m.includes(
-          "Feature 'Top-level await' (top-level-await) became Baseline in 2021 and exceeds 2018.",
+          "Feature 'Top-level await' (top-level-await) is not a widely available Baseline feature.",
         ),
       ),
     ).toBe(true);
@@ -147,13 +147,13 @@ describe("orchestrator (es-x delegates)", () => {
     ).toBe(true);
   });
 
-  it("[atomics-wait-async] (limited) should be flagged on widely", async () => {
+  it("[atomics-wait-async] (newly) should be flagged on widely", async () => {
     const code = "Atomics.waitAsync(new Int32Array(new SharedArrayBuffer(4)), 0, 0);";
     const msgs = await lintWithBaseline(code, "widely", { sourceType: "module" });
     expect(
       msgs.some((m) =>
         m.includes(
-          "Feature 'Atomics.waitAsync' (atomics-wait-async) is not a widely available Baseline feature.",
+          "Feature 'Atomics.waitAsync()' (atomics-wait-async) is not a widely available Baseline feature.",
         ),
       ),
     ).toBe(true);

@@ -17,7 +17,7 @@ const rule: Rule.RuleModule = {
   },
   create(context) {
     function report(node: unknown) {
-      context.report({ node: node as unknown as Rule.Node, messageId: "forbidden" });
+      context.report({ node: node as Rule.Node, messageId: "forbidden" });
     }
     return {
       MemberExpression(node: unknown) {

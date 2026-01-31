@@ -3,13 +3,13 @@ import { isGlobalNotShadowed } from "../../util/ast";
 
 // TODO(spec-tracking)
 // - Track proposal status; adjust behavior when standardized/renamed.
-// - Consider alias detection (e.g., const s = Math.sumPrecise; s()).
+// - Consider alias detection (e.g., const a = Atomics.pause; a()).
 
 const rule: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "disallow Math.sumPrecise() usage" },
-    messages: { forbidden: "Math.sumPrecise is not allowed." },
+    docs: { description: "disallow Atomics.pause() usage" },
+    messages: { forbidden: "Atomics.pause is not allowed." },
     schema: [],
   },
   create(context) {
@@ -17,9 +17,9 @@ const rule: Rule.RuleModule = {
       context.report({ node: node as Rule.Node, messageId: "forbidden" });
     }
 
-    function isMathIdentifier(objectNode: unknown): boolean {
+    function isAtomicsIdentifier(objectNode: unknown): boolean {
       const obj = objectNode as { type?: string; name?: string } | undefined;
-      return obj?.type === "Identifier" && obj?.name === "Math";
+      return obj?.type === "Identifier" && obj?.name === "Atomics";
     }
 
     return {
@@ -30,10 +30,10 @@ const rule: Rule.RuleModule = {
           callee &&
           callee.type === "MemberExpression" &&
           callee.computed === false &&
-          isMathIdentifier(callee.object) &&
+          isAtomicsIdentifier(callee.object) &&
           (callee.property as Record<string, unknown>)?.type === "Identifier" &&
-          (callee.property as Record<string, unknown>)?.name === "sumPrecise" &&
-          isGlobalNotShadowed(context, "Math", node)
+          (callee.property as Record<string, unknown>)?.name === "pause" &&
+          isGlobalNotShadowed(context, "Atomics", node)
         ) {
           report(callee.property);
         }
@@ -45,10 +45,10 @@ const rule: Rule.RuleModule = {
         if (parent?.type === "CallExpression" && parent.callee === node) return;
         if (
           m.computed === false &&
-          isMathIdentifier(m.object) &&
+          isAtomicsIdentifier(m.object) &&
           (m.property as Record<string, unknown>)?.type === "Identifier" &&
-          (m.property as Record<string, unknown>)?.name === "sumPrecise" &&
-          isGlobalNotShadowed(context, "Math", node)
+          (m.property as Record<string, unknown>)?.name === "pause" &&
+          isGlobalNotShadowed(context, "Atomics", node)
         ) {
           report(m.property);
         }

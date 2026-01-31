@@ -1,7 +1,7 @@
 import type { Rule } from "eslint";
+import { isGlobalNotShadowed } from "../../util/ast";
 
 // TODO(improve-detection)
-// - Restrict to global Temporal (avoid shadowed identifiers).
 // - Detect deeper aliasing: const T = Temporal; T.Now.instant().
 // - Consider ReferenceTracker to follow global Temporal across scopes.
 // - Expand coverage to key namespaces (PlainDate, ZonedDateTime, Duration, etc.).
@@ -15,7 +15,7 @@ const rule: Rule.RuleModule = {
   },
   create(context) {
     function report(node: unknown) {
-      context.report({ node: node as unknown as Rule.Node, messageId: "forbidden" });
+      context.report({ node: node as Rule.Node, messageId: "forbidden" });
     }
     function isTemporalIdent(node: unknown): boolean {
       const n = node as Record<string, unknown>;
@@ -24,13 +24,17 @@ const rule: Rule.RuleModule = {
     return {
       MemberExpression(node: unknown) {
         const m = node as Record<string, unknown>;
-        if (m.computed === false && isTemporalIdent(m.object)) {
+        if (
+          m.computed === false &&
+          isTemporalIdent(m.object) &&
+          isGlobalNotShadowed(context, "Temporal", node)
+        ) {
           report(m.object as unknown);
         }
       },
       NewExpression(node: unknown) {
         const n = node as Record<string, unknown>;
-        if (isTemporalIdent(n.callee)) {
+        if (isTemporalIdent(n.callee) && isGlobalNotShadowed(context, "Temporal", node)) {
           report(n.callee as unknown);
         }
       },

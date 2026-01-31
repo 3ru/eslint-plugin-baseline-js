@@ -30,6 +30,11 @@ for (const [id, f] of Object.entries(wfFeatures)) {
     for (const k of cfs) {
       if (!k.startsWith("api.")) continue;
       const parts = k.split(".");
+      // Global functions: api.functionName (e.g., api.structuredClone, api.queueMicrotask)
+      if (parts.length === 2) {
+        apiDescs.push({ featureId: id, kind: "callGlobal", name: parts[1] });
+        continue;
+      }
       if (parts.length === 3 && parts[1] === parts[2]) {
         apiDescs.push({ featureId: id, kind: "newIdent", name: parts[1] });
         continue;
@@ -277,6 +282,7 @@ const manualJsbi = [
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "flatMap" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "reduce" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "toArray" },
+  { featureId: "iterator-concat", kind: "callStatic", base: "Iterator", prop: "concat" },
 ];
 for (const d of manualJsbi) jsbiDescs.push(d);
 for (const prop of ["forEach", "some", "every", "find"]) {

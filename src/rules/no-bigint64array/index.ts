@@ -1,7 +1,7 @@
 import type { Rule } from "eslint";
+import { isGlobalNotShadowed } from "../../util/ast";
 
 // TODO(improve-detection)
-// - Restrict reports to global BigInt64Array/BigUint64Array, avoid shadowed locals.
 // - Detect aliasing: const C = BigInt64Array; new C(); (needs reference tracking)
 // - Consider using @eslint-community/eslint-utils ReferenceTracker for robust global lookups.
 
@@ -14,28 +14,38 @@ const rule: Rule.RuleModule = {
   },
   create(context) {
     function report(node: unknown) {
-      context.report({ node: node as unknown as Rule.Node, messageId: "forbidden" });
+      context.report({ node: node as Rule.Node, messageId: "forbidden" });
     }
+
+    function isBigIntArrayIdent(calleeNode: unknown): string | null {
+      const callee = calleeNode as { type?: string; name?: string } | undefined;
+      if (callee?.type !== "Identifier") return null;
+      if (callee.name === "BigInt64Array" || callee.name === "BigUint64Array") {
+        return callee.name;
+      }
+      return null;
+    }
+
     return {
       NewExpression(node: unknown) {
         const n = node as Record<string, unknown>;
-        const callee = n.callee as Record<string, unknown> | undefined;
-        if (callee?.type === "Identifier") {
-          if (callee.name === "BigInt64Array" || callee.name === "BigUint64Array") report(callee);
+        const name = isBigIntArrayIdent(n.callee);
+        if (name && isGlobalNotShadowed(context, name, node)) {
+          report(n.callee);
         }
       },
       CallExpression(node: unknown) {
         const n = node as Record<string, unknown>;
-        const callee = n.callee as Record<string, unknown> | undefined;
-        if (callee?.type === "Identifier") {
-          if (callee.name === "BigInt64Array" || callee.name === "BigUint64Array") report(callee);
+        const name = isBigIntArrayIdent(n.callee);
+        if (name && isGlobalNotShadowed(context, name, node)) {
+          report(n.callee);
         }
       },
       MemberExpression(node: unknown) {
         const m = node as Record<string, unknown>;
-        const obj = m.object as Record<string, unknown> | undefined;
-        if (obj?.type === "Identifier") {
-          if (obj.name === "BigInt64Array" || obj.name === "BigUint64Array") report(obj);
+        const name = isBigIntArrayIdent(m.object);
+        if (name && isGlobalNotShadowed(context, name, node)) {
+          report(m.object);
         }
       },
     };
