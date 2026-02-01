@@ -51,7 +51,7 @@
     "@typescript-eslint/parser": "^8.51.0",
     "eslint": "^9.39.2",
     "semantic-release": "^25.0.2",
-    "tsdown": "0.18.4",
+    "tsdown": "0.20.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16",
     "vue-eslint-parser": "^10.2.0",
