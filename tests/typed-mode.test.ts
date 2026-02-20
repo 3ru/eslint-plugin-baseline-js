@@ -1,8 +1,8 @@
 import { promises as fs } from "node:fs";
 import os from "node:os";
 import { join } from "node:path";
-import { ESLint } from "eslint";
 import { describe, expect, it } from "vitest";
+import { ESLintCompat } from "./compat";
 
 describe("typed mode (TypeScript-aware) integration", () => {
   it("reports instance member APIs when baseline excludes them", async () => {
@@ -63,7 +63,7 @@ describe("typed mode (TypeScript-aware) integration", () => {
     const flatConfigPath = join(tmpRoot, "eslint.config.mjs");
     await fs.writeFile(flatConfigPath, "export default [{}]\n", "utf8");
 
-    const eslint = new ESLint({
+    const eslint = new ESLintCompat({
       cwd: tmpRoot,
       overrideConfigFile: flatConfigPath,
       overrideConfig: [
@@ -146,7 +146,7 @@ describe("typed mode (TypeScript-aware) integration", () => {
     const flatConfigPath = join(tmpRoot, "eslint.config.mjs");
     await fs.writeFile(flatConfigPath, "export default [{}]\n", "utf8");
 
-    const eslint = new ESLint({
+    const eslint = new ESLintCompat({
       cwd: tmpRoot,
       overrideConfigFile: flatConfigPath,
       overrideConfig: [

@@ -1,9 +1,10 @@
 import { ESLint } from "eslint";
 import { describe, expect, it } from "vitest";
+import { ESLintCompat } from "../../../../tests/compat";
 import plugin from "../../../index";
 
 async function run(code: string) {
-  const eslint = new ESLint({
+  const eslint = new ESLintCompat({
     overrideConfigFile: true,
     overrideConfig: {
       languageOptions: { ecmaVersion: 2022, sourceType: "module" },

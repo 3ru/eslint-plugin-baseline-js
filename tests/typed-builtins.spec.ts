@@ -1,8 +1,8 @@
 import { promises as fs } from "node:fs";
 import os from "node:os";
 import { join } from "node:path";
-import { ESLint } from "eslint";
 import { describe, expect, it } from "vitest";
+import { ESLintCompat } from "./compat";
 
 async function ensureTsParser(): Promise<unknown | null> {
   try {
@@ -86,7 +86,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     const flatConfigPath = join(tmp, "eslint.config.mjs");
     await fs.writeFile(flatConfigPath, "export default [{}]\n", "utf8");
 
-    const eslint = new ESLint({
+    const eslint = new ESLintCompat({
       cwd: tmp,
       overrideConfigFile: flatConfigPath,
       overrideConfig: [
@@ -152,7 +152,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     await fs.writeFile(flatConfigPath, "export default [{}]\n", "utf8");
 
     // Typed-aware run → should report
-    const eslintTyped = new ESLint({
+    const eslintTyped = new ESLintCompat({
       cwd: tmp,
       overrideConfigFile: flatConfigPath,
       overrideConfig: [
@@ -179,7 +179,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     expect(msgsTyped.some((m) => /Resizable buffers/.test(m.message))).toBe(true);
 
     // Non-typed (safe preset) run → should not report due to typedOnly gating
-    const eslintUntyped = new ESLint({
+    const eslintUntyped = new ESLintCompat({
       cwd: tmp,
       overrideConfigFile: flatConfigPath,
       overrideConfig: [

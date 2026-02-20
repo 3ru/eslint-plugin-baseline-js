@@ -5,9 +5,9 @@
  */
 
 import type { Rule } from "eslint";
-import { RuleTester } from "eslint";
 import { describe, it } from "vitest";
 import plugin from "../dist/index.mjs";
+import { RuleTester } from "./compat";
 
 const rule = (plugin as unknown as { rules: Record<string, Rule.RuleModule> }).rules[
   "use-baseline"

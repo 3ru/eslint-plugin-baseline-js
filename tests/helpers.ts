@@ -1,5 +1,6 @@
 import { ESLint } from "eslint";
 import plugin from "../src";
+import { ESLintCompat } from "./compat";
 
 export async function lintWithBaseline(
   code: string,
@@ -7,7 +8,7 @@ export async function lintWithBaseline(
   opts: { filePath?: string; sourceType?: "script" | "module" } = {},
   ruleOptions: Record<string, unknown> = {},
 ) {
-  const eslint = new ESLint({
+  const eslint = new ESLintCompat({
     overrideConfigFile: true,
     overrideConfig: {
       languageOptions: {

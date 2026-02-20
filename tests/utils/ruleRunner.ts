@@ -1,6 +1,6 @@
 import type { Rule } from "eslint";
-import { RuleTester } from "eslint";
 import plugin from "../../dist/index.mjs";
+import { RuleTester } from "../compat";
 
 export function makeRuleTester(opts?: { ecmaVersion?: number; sourceType?: "script" | "module" }) {
   return new RuleTester({

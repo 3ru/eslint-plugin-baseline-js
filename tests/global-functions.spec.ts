@@ -1,7 +1,7 @@
 import type { Rule } from "eslint";
-import { RuleTester } from "eslint";
 import { describe, it } from "vitest";
 import plugin from "../dist/index.mjs";
+import { RuleTester } from "./compat";
 
 /**
  * Tests for global function detection (callGlobal descriptor).
