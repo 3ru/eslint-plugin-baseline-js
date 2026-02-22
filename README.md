@@ -144,12 +144,14 @@ and shows which ones are currently mapped by this plugin.
 | `ignoreFeatures`       | `string[]`                | —          | Skip specific web‑features by ID (supports regex `/.../`) across syntax delegates and Web API/JS builtin detection. |
 | `ignoreNodeTypes`      | `string[]`                | —          | Suppress reports by ESTree `node.type` (supports regex `/.../`). |
 
-## Baseline for HTML and CSS
+## Baseline for HTML, CSS, and React
 
-Baseline works best when HTML, CSS, and JS all align. For markup and styles, enable the "use-baseline" rules from these ESLint plugins:
+Baseline works best when HTML, CSS, JS, and React all align. For markup, styles, and React, enable the "use-baseline" rules from these ESLint plugins:
 
 - ESLint for CSS: https://github.com/eslint/css
-- HTML ESLint: https://github.com/yeonjuan/html-eslint
+- HTML ESLint (HTML): https://github.com/yeonjuan/html-eslint
+- HTML ESLint (React): https://github.com/yeonjuan/html-eslint/tree/main/packages/eslint-plugin-react
+
 
 ## Branding Note (Baseline)
 
