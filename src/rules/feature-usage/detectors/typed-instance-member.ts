@@ -15,18 +15,9 @@ export function addTypedInstanceMemberDetector(
     getPropertyOfType?: (t: unknown, name: string) => unknown;
     getApparentType?: (t: unknown) => unknown;
   };
-  type ParserServicesLike = {
-    program?: { getTypeChecker?: () => TsCheckerLike };
-    esTreeNodeToTSNodeMap?: { get(n: unknown): unknown };
-  };
-  type CtxLike = {
-    parserServices?: ParserServicesLike;
-    sourceCode?: { parserServices?: ParserServicesLike };
-  };
-  const ctxLike = context as unknown as CtxLike;
-  const services: ParserServicesLike =
-    ctxLike.parserServices || ctxLike.sourceCode?.parserServices || {};
-  const checker: TsCheckerLike | undefined = services.program?.getTypeChecker?.();
+  const services = context.sourceCode.parserServices as Record<string, unknown>;
+  const program = services.program as { getTypeChecker?: () => TsCheckerLike } | undefined;
+  const checker = program?.getTypeChecker?.();
   if (!checker || !services.esTreeNodeToTSNodeMap) return {};
   const checkerOk = checker; // non-null assertion helper for narrowing
   const tsMap = services.esTreeNodeToTSNodeMap; // non-null assertion helper

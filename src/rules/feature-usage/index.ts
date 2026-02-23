@@ -28,11 +28,12 @@ const rule: Rule.RuleModule = {
   },
   create(context) {
     const opt = (context.options?.[0] ?? {}) as Options;
-    const descs = (opt.descriptors ?? []) as ReadonlyArray<Descriptor>;
-    const messages = (opt.messages ?? {}) as Record<string, string>;
     const useTyped = !!opt.typed;
-    // ESLint v9 exposes parserServices under sourceCode
-    return buildListeners(context, { descriptors: descs, messages, typed: useTyped });
+    return buildListeners(context, {
+      descriptors: opt.descriptors,
+      messages: opt.messages,
+      typed: useTyped,
+    });
   },
 };
 

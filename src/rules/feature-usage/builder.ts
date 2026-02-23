@@ -35,19 +35,8 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
     context.report({ node: node as unknown as Rule.Node, message: msg });
   }
 
-  type ParserServicesLike = {
-    program?: { getTypeChecker?: () => unknown };
-    esTreeNodeToTSNodeMap?: unknown;
-  };
-  type CtxLike = {
-    parserServices?: ParserServicesLike;
-    sourceCode?: { parserServices?: ParserServicesLike };
-  };
-  const ctxLike = context as unknown as CtxLike;
-  const services: ParserServicesLike =
-    ctxLike.parserServices || ctxLike.sourceCode?.parserServices || {};
-  const checker: unknown = services.program?.getTypeChecker?.();
-  const useTyped = !!opt.typed && !!checker && !!services.esTreeNodeToTSNodeMap;
+  const services = context.sourceCode.parserServices as Record<string, unknown>;
+  const useTyped = !!opt.typed && "program" in services && "esTreeNodeToTSNodeMap" in services;
 
   for (const d of opt.descriptors) {
     switch (d.kind) {

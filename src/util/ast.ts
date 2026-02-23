@@ -1,21 +1,15 @@
-import type { Rule } from "eslint";
+import type { Rule, Scope } from "eslint";
 
-// In ESLint v9, context.getScope() is not available.
-// Instead, use sourceCode.scopeManager to resolve the scope for a node.
 export function isUnboundIdentifier(
   context: Rule.RuleContext,
   name: string,
   refNode?: unknown,
 ): boolean {
-  const sc = (context as unknown as { sourceCode?: { scopeManager?: unknown } }).sourceCode
-    ?.scopeManager as { acquire?: (n: unknown) => unknown; globalScope?: unknown } | undefined;
-  if (!sc) return true; // Be conservative: treat as unbound when scope info is missing
-  // Acquire a scope from refNode when provided; otherwise walk from globalScope.
-  let scope: unknown = (refNode && sc.acquire?.(refNode)) || sc.globalScope || null;
+  const sc = context.sourceCode.scopeManager;
+  let scope = refNode ? sc.acquire(refNode as Rule.Node) : sc.globalScope;
   while (scope) {
-    const s = scope as { set?: { has?: (k: string) => boolean }; upper?: unknown };
-    if (s.set?.has?.(name)) return false;
-    scope = s.upper || null;
+    if (scope.set.has(name)) return false;
+    scope = scope.upper;
   }
   return true;
 }
@@ -34,54 +28,17 @@ export function isGlobalNotShadowed(
   name: string,
   parentNode: unknown,
 ): boolean {
-  // These loose types mirror eslint-scope shapes without depending on private types.
-  type VariableLike = {
-    name?: string;
-    defs?: unknown[];
-    eslintExplicitGlobal?: boolean;
-  };
-  type ScopeLike = {
-    set?: { has?: (k: string) => boolean; get?: (k: string) => unknown };
-    variables?: VariableLike[];
-    upper?: unknown;
-    type?: string;
-  };
-
-  function findVariable(
-    scope: ScopeLike,
-    varName: string,
-  ): {
-    found: boolean;
-    variable?: VariableLike;
-  } {
-    // Some scope containers fill only one of these; checking all reduces false positives.
-    const bySet = scope.set?.get?.(varName) as VariableLike | undefined;
-    if (bySet) return { found: true, variable: bySet };
-    if (Array.isArray(scope.variables)) {
-      const byVars = scope.variables.find((v) => v?.name === varName);
-      if (byVars) return { found: true, variable: byVars };
-    }
-    if (scope.set?.has?.(varName)) return { found: true };
-    return { found: false };
-  }
-
-  const sourceCode = context.sourceCode as { getScope?: (n: unknown) => unknown };
-  if (!sourceCode?.getScope) return true; // Conservative: avoid false positives when scope info is missing
-  const scope = sourceCode.getScope(parentNode);
-
-  let current: unknown = scope;
-  while (current) {
-    const s = current as ScopeLike;
-    const { found, variable } = findVariable(s, name);
-    if (found) {
-      if (s.type !== "global") return false; // Shadowed by local declaration
+  let scope: Scope.Scope | null = context.sourceCode.getScope(parentNode as Rule.Node);
+  while (scope) {
+    const variable = scope.set.get(name);
+    if (variable) {
+      if (scope.type !== "global") return false; // Shadowed by local declaration
       // In script files, top-level `var`/`function` live in global scope.
       // Only treat them as shadowing when ESLint marks them with defs; built-ins have none.
-      const defs = variable?.defs;
-      if (Array.isArray(defs) && defs.length > 0) return false;
+      if (variable.defs.length > 0) return false;
       return true;
     }
-    current = s.upper || null;
+    scope = scope.upper;
   }
   return true;
 }
