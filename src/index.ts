@@ -1,5 +1,5 @@
 import type { Rule } from "eslint";
-import { recommendedConfig, recommendedTsConfig } from "./configs/baseline";
+import { baselineConfigs, recommendedConfig, recommendedTsConfig } from "./configs/baseline";
 
 export { BASELINE } from "./config";
 
@@ -22,6 +22,7 @@ const rules: Record<string, Rule.RuleModule> = {
 export default {
   rules,
   configs: {
+    baseline: baselineConfigs,
     recommended: recommendedConfig,
     "recommended-ts": recommendedTsConfig,
   },

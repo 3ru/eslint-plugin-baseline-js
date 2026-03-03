@@ -17,6 +17,8 @@
   ],
   "scripts": {
     "build": "tsdown",
+    "check:descriptor-compat": "node scripts/qa/check-descriptor-compat.mjs",
+    "check:generated-data": "node scripts/qa/check-generated-data-clean.mjs",
     "check:mapping": "node scripts/qa/check-mapping.mjs --out drift-report.json",
     "dev": "tsdown --watch",
     "format": "biome format --write .",

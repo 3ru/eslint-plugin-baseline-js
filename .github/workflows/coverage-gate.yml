@@ -43,6 +43,9 @@ jobs:
           pnpm gen:features:jsbi
           pnpm gen:descriptors
 
+      - name: Verify descriptor ↔ compat key integrity
+        run: pnpm check:descriptor-compat
+
       - name: Generate coverage report
         run: pnpm gen:coverage
 

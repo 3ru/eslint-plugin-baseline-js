@@ -45,8 +45,14 @@ jobs:
       - name: Verify signatures
         run: npm audit signatures
 
-      - name: Generate features (web-features -> features.ts)
-        run: pnpm gen:features
+      - name: Regenerate baseline data (features + descriptors)
+        run: pnpm gen:data
+
+      - name: Verify descriptor ↔ compat key integrity
+        run: pnpm check:descriptor-compat
+
+      - name: Verify generated data is committed
+        run: pnpm check:generated-data
 
       - name: Build
         run: pnpm build

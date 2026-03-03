@@ -5,8392 +5,9087 @@
  */
 
 export default {
-  a: {
-    id: "a",
-    name: "<a>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "a": {
+    "id": "a",
+    "name": "<a>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "abortable-fetch": {
-    id: "abortable-fetch",
-    name: "Abortable fetch",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2019-03-25",
-      baseline_high_date: "2021-09-25",
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "16",
-        firefox: "57",
-        firefox_android: "57",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+    "id": "abortable-fetch",
+    "name": "Abortable fetch",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2019-03-25",
+      "baseline_high_date": "2021-09-25",
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "16",
+        "firefox": "57",
+        "firefox_android": "57",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
-  aborting: {
-    id: "aborting",
-    name: "AbortController and AbortSignal",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2019-03-25",
-      baseline_high_date: "2021-09-25",
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "16",
-        firefox: "57",
-        firefox_android: "57",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+  "aborting": {
+    "id": "aborting",
+    "name": "AbortController and AbortSignal",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2019-03-25",
+      "baseline_high_date": "2021-09-25",
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "16",
+        "firefox": "57",
+        "firefox_android": "57",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
   "abortsignal-any": {
-    id: "abortsignal-any",
-    name: "AbortSignal.any()",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-03-19",
-      support: {
-        chrome: "116",
-        chrome_android: "116",
-        edge: "116",
-        firefox: "124",
-        firefox_android: "124",
-        safari: "17.4",
-        safari_ios: "17.4",
-      },
-    },
+    "id": "abortsignal-any",
+    "name": "AbortSignal.any()",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-03-19",
+      "support": {
+        "chrome": "116",
+        "chrome_android": "116",
+        "edge": "116",
+        "firefox": "124",
+        "firefox_android": "124",
+        "safari": "17.4",
+        "safari_ios": "17.4"
+      }
+    }
   },
   "abortsignal-timeout": {
-    id: "abortsignal-timeout",
-    name: "AbortSignal.timeout()",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-04-18",
-      support: {
-        chrome: "124",
-        chrome_android: "124",
-        edge: "124",
-        firefox: "100",
-        firefox_android: "100",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+    "id": "abortsignal-timeout",
+    "name": "AbortSignal.timeout()",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-04-18",
+      "support": {
+        "chrome": "124",
+        "chrome_android": "124",
+        "edge": "124",
+        "firefox": "100",
+        "firefox_android": "100",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
-  accelerometer: {
-    id: "accelerometer",
-    name: "Accelerometer",
-    group: ["sensors"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "91",
-        chrome_android: "91",
-        edge: "91",
-      },
-    },
+  "accelerometer": {
+    "id": "accelerometer",
+    "name": "Accelerometer",
+    "group": [
+      "sensors"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "91",
+        "chrome_android": "91",
+        "edge": "91"
+      }
+    }
   },
-  accesskey: {
-    id: "accesskey",
-    name: "accesskey",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "17",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "5",
-        firefox_android: "5",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+  "accesskey": {
+    "id": "accesskey",
+    "name": "accesskey",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "17",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "5",
+        "firefox_android": "5",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
   "active-view-transition": {
-    id: "active-view-transition",
-    name: "Active view transition",
-    group: ["view-transitions", "selectors"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2026-01-13",
-      support: {
-        chrome: "125",
-        chrome_android: "125",
-        edge: "125",
-        firefox: "147",
-        firefox_android: "147",
-        safari: "18.2",
-        safari_ios: "18.2",
-      },
-    },
+    "id": "active-view-transition",
+    "name": "Active view transition",
+    "group": [
+      "view-transitions",
+      "selectors"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2026-01-13",
+      "support": {
+        "chrome": "125",
+        "chrome_android": "125",
+        "edge": "125",
+        "firefox": "147",
+        "firefox_android": "147",
+        "safari": "18.2",
+        "safari_ios": "18.2"
+      }
+    }
   },
-  alerts: {
-    id: "alerts",
-    name: "Alerts",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "alerts": {
+    "id": "alerts",
+    "name": "Alerts",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "ambient-light": {
-    id: "ambient-light",
-    name: "Ambient light sensor",
-    group: ["sensors"],
-    status: {
-      baseline: false,
-      support: {},
-    },
+    "id": "ambient-light",
+    "name": "Ambient light sensor",
+    "group": [
+      "sensors"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
   "anchor-positioning": {
-    id: "anchor-positioning",
-    name: "Anchor positioning",
-    status: {
-      baseline: false,
-      support: {},
-    },
+    "id": "anchor-positioning",
+    "name": "Anchor positioning",
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
   "angle-instanced-arrays": {
-    id: "angle-instanced-arrays",
-    name: "ANGLE_instanced_arrays WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-06-07",
-      baseline_high_date: "2018-12-07",
-      support: {
-        chrome: "32",
-        chrome_android: "30",
-        edge: "12",
-        firefox: "47",
-        firefox_android: "47",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "angle-instanced-arrays",
+    "name": "ANGLE_instanced_arrays WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-06-07",
+      "baseline_high_date": "2018-12-07",
+      "support": {
+        "chrome": "32",
+        "chrome_android": "30",
+        "edge": "12",
+        "firefox": "47",
+        "firefox_android": "47",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "animations-css": {
-    id: "animations-css",
-    name: "Animations (CSS)",
-    group: ["animation", "css"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "43",
-        chrome_android: "43",
-        edge: "12",
-        firefox: "16",
-        firefox_android: "16",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "animations-css",
+    "name": "Animations (CSS)",
+    "group": [
+      "animation",
+      "css"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "43",
+        "chrome_android": "43",
+        "edge": "12",
+        "firefox": "16",
+        "firefox_android": "16",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "app-file-handlers": {
-    id: "app-file-handlers",
-    name: "File handlers",
-    group: ["progressive-web-app"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "102",
-        edge: "102",
-      },
-    },
+    "id": "app-file-handlers",
+    "name": "File handlers",
+    "group": [
+      "progressive-web-app"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "102",
+        "edge": "102"
+      }
+    }
   },
   "app-launch-handler": {
-    id: "app-launch-handler",
-    name: "Launch handler",
-    group: ["progressive-web-app"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "110",
-        edge: "110",
-      },
-    },
+    "id": "app-launch-handler",
+    "name": "Launch handler",
+    "group": [
+      "progressive-web-app"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "110",
+        "edge": "110"
+      }
+    }
   },
   "aria-attribute-reflection": {
-    id: "aria-attribute-reflection",
-    name: "ARIA attribute reflection",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-10-24",
-      support: {
-        chrome: "103",
-        chrome_android: "103",
-        edge: "103",
-        firefox: "119",
-        firefox_android: "119",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "aria-attribute-reflection",
+    "name": "ARIA attribute reflection",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-10-24",
+      "support": {
+        "chrome": "103",
+        "chrome_android": "103",
+        "edge": "103",
+        "firefox": "119",
+        "firefox_android": "119",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  arianotify: {
-    id: "arianotify",
-    name: "ariaNotify()",
-    status: {
-      baseline: false,
-      support: {},
-    },
+  "arianotify": {
+    "id": "arianotify",
+    "name": "ariaNotify()",
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
   "async-clipboard": {
-    id: "async-clipboard",
-    name: "Async clipboard",
-    group: ["clipboard"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-06-11",
-      support: {
-        chrome: "76",
-        chrome_android: "76",
-        edge: "79",
-        firefox: "127",
-        firefox_android: "127",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+    "id": "async-clipboard",
+    "name": "Async clipboard",
+    "group": [
+      "clipboard"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-06-11",
+      "support": {
+        "chrome": "76",
+        "chrome_android": "76",
+        "edge": "79",
+        "firefox": "127",
+        "firefox_android": "127",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
   "async-iterable-streams": {
-    id: "async-iterable-streams",
-    name: "Asynchronously iterable streams",
-    group: ["streams"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "124",
-        chrome_android: "124",
-        edge: "124",
-        firefox: "110",
-        firefox_android: "110",
-      },
-    },
+    "id": "async-iterable-streams",
+    "name": "Asynchronously iterable streams",
+    "group": [
+      "streams"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "124",
+        "chrome_android": "124",
+        "edge": "124",
+        "firefox": "110",
+        "firefox_android": "110"
+      }
+    }
   },
   "attribution-reporting": {
-    id: "attribution-reporting",
-    name: "Attribution reporting",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "133",
-        chrome_android: "133",
-        edge: "133",
-      },
+    "id": "attribution-reporting",
+    "name": "Attribution reporting",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "133",
+        "chrome_android": "133",
+        "edge": "133"
+      }
     },
-    discouraged: {
-      according_to: [
+    "discouraged": {
+      "according_to": [
         "https://groups.google.com/a/chromium.org/g/blink-dev/c/4K2RRt6VYCQ",
-        "https://chromestatus.com/feature/6320639375966208",
+        "https://chromestatus.com/feature/6320639375966208"
       ],
-      reason:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the attribution reporting API.",
-      reason_html:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the attribution reporting API.",
-      removal_date: "2026-06-01",
-    },
+      "reason": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the attribution reporting API.",
+      "reason_html": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the attribution reporting API.",
+      "removal_date": "2026-06-01"
+    }
   },
-  audio: {
-    id: "audio",
-    name: "<audio>",
-    group: ["media-elements", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "3",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "3.1",
-        safari_ios: "3",
-      },
-    },
+  "audio": {
+    "id": "audio",
+    "name": "<audio>",
+    "group": [
+      "media-elements",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "3",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "3.1",
+        "safari_ios": "3"
+      }
+    }
   },
   "audio-session": {
-    id: "audio-session",
-    name: "Audio session",
-    status: {
-      baseline: false,
-      support: {
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "audio-session",
+    "name": "Audio session",
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "audio-video-tracks": {
-    id: "audio-video-tracks",
-    name: "Audio and video tracks",
-    group: ["media-elements"],
-    status: {
-      baseline: false,
-      support: {
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "audio-video-tracks",
+    "name": "Audio and video tracks",
+    "group": [
+      "media-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "audio-worklet": {
-    id: "audio-worklet",
-    name: "AudioWorklet",
-    group: ["web-audio", "worklets"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "79",
-        firefox: "76",
-        firefox_android: "79",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "audio-worklet",
+    "name": "AudioWorklet",
+    "group": [
+      "web-audio",
+      "worklets"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "79",
+        "firefox": "76",
+        "firefox_android": "79",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
-  audiolistener: {
-    id: "audiolistener",
-    name: "AudioListener",
-    group: ["web-audio"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "52",
-        chrome_android: "52",
-        edge: "79",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+  "audiolistener": {
+    "id": "audiolistener",
+    "name": "AudioListener",
+    "group": [
+      "web-audio"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "52",
+        "chrome_android": "52",
+        "edge": "79",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "audiolistener-setposition-setorientation": {
-    id: "audiolistener-setposition-setorientation",
-    name: "AudioListener setPosition() and setOrientation()",
-    group: ["web-audio"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "14",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "25",
-        firefox_android: "25",
-        safari: "6",
-        safari_ios: "6",
-      },
+    "id": "audiolistener-setposition-setorientation",
+    "name": "AudioListener setPosition() and setOrientation()",
+    "group": [
+      "web-audio"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "14",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "25",
+        "firefox_android": "25",
+        "safari": "6",
+        "safari_ios": "6"
+      }
     },
-    discouraged: {
-      according_to: [
+    "discouraged": {
+      "according_to": [
         "https://webaudio.github.io/web-audio-api/#dom-audiolistener-setposition",
-        "https://webaudio.github.io/web-audio-api/#dom-audiolistener-setorientation",
+        "https://webaudio.github.io/web-audio-api/#dom-audiolistener-setorientation"
       ],
-      alternatives: ["audiolistener"],
-      reason:
-        "The setPosition() and setOrientation() methods are equivalent to using an AudioListener instances's positionX, positionY, positionZ, forwardX, forwardY, forwardZ, upX, upY, and upZ properties.",
-      reason_html:
-        "The <code>setPosition()</code> and <code>setOrientation()</code> methods are equivalent to using an <code>AudioListener</code> instances's <code>positionX</code>, <code>positionY</code>, <code>positionZ</code>, <code>forwardX</code>, <code>forwardY</code>, <code>forwardZ</code>, <code>upX</code>, <code>upY</code>, and <code>upZ</code> properties.",
-    },
+      "alternatives": [
+        "audiolistener"
+      ],
+      "reason": "The setPosition() and setOrientation() methods are equivalent to using an AudioListener instances's positionX, positionY, positionZ, forwardX, forwardY, forwardZ, upX, upY, and upZ properties.",
+      "reason_html": "The <code>setPosition()</code> and <code>setOrientation()</code> methods are equivalent to using an <code>AudioListener</code> instances's <code>positionX</code>, <code>positionY</code>, <code>positionZ</code>, <code>forwardX</code>, <code>forwardY</code>, <code>forwardZ</code>, <code>upX</code>, <code>upY</code>, and <code>upZ</code> properties."
+    }
   },
-  autocapitalize: {
-    id: "autocapitalize",
-    name: "autocapitalize",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "79",
-        firefox: "111",
-        firefox_android: "111",
-        safari_ios: "10.3",
-      },
-    },
+  "autocapitalize": {
+    "id": "autocapitalize",
+    "name": "autocapitalize",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "79",
+        "firefox": "111",
+        "firefox_android": "111",
+        "safari_ios": "10.3"
+      }
+    }
   },
-  autocorrect: {
-    id: "autocorrect",
-    name: "autocorrect",
-    status: {
-      baseline: false,
-      support: {
-        firefox: "136",
-        firefox_android: "136",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+  "autocorrect": {
+    "id": "autocorrect",
+    "name": "autocorrect",
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "136",
+        "firefox_android": "136",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
-  autofocus: {
-    id: "autofocus",
-    name: "autofocus",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "3.2",
-      },
-    },
+  "autofocus": {
+    "id": "autofocus",
+    "name": "autofocus",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "3.2"
+      }
+    }
   },
   "autonomous-custom-elements": {
-    id: "autonomous-custom-elements",
-    name: "Autonomous custom elements",
-    group: ["custom-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "54",
-        chrome_android: "54",
-        edge: "79",
-        firefox: "63",
-        firefox_android: "63",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+    "id": "autonomous-custom-elements",
+    "name": "Autonomous custom elements",
+    "group": [
+      "custom-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "54",
+        "chrome_android": "54",
+        "edge": "79",
+        "firefox": "63",
+        "firefox_android": "63",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "background-fetch": {
-    id: "background-fetch",
-    name: "Background fetch",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "74",
-        chrome_android: "74",
-        edge: "79",
-      },
-    },
+    "id": "background-fetch",
+    "name": "Background fetch",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "74",
+        "chrome_android": "74",
+        "edge": "79"
+      }
+    }
   },
   "background-sync": {
-    id: "background-sync",
-    name: "Background sync",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "49",
-        chrome_android: "49",
-        edge: "79",
-      },
-    },
+    "id": "background-sync",
+    "name": "Background sync",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "49",
+        "chrome_android": "49",
+        "edge": "79"
+      }
+    }
   },
-  badging: {
-    id: "badging",
-    name: "Badging",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "81",
-        edge: "81",
-        safari: "17",
-        safari_ios: "16.4",
-      },
-    },
+  "badging": {
+    "id": "badging",
+    "name": "Badging",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "81",
+        "edge": "81",
+        "safari": "17",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  barcode: {
-    id: "barcode",
-    name: "Barcode detector",
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "83",
-      },
-    },
+  "barcode": {
+    "id": "barcode",
+    "name": "Barcode detector",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "83"
+      }
+    }
   },
-  barprop: {
-    id: "barprop",
-    name: "BarProp",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "barprop": {
+    "id": "barprop",
+    "name": "BarProp",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
-  base: {
-    id: "base",
-    name: "<base>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "2",
-      },
-    },
+  "base": {
+    "id": "base",
+    "name": "<base>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "2"
+      }
+    }
   },
-  base64encodedecode: {
-    id: "base64encodedecode",
-    name: "Base64 encoding and decoding",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "30",
-        chrome_android: "30",
-        edge: "12",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+  "base64encodedecode": {
+    "id": "base64encodedecode",
+    "name": "Base64 encoding and decoding",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "30",
+        "chrome_android": "30",
+        "edge": "12",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
-  battery: {
-    id: "battery",
-    name: "Battery status",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "79",
-      },
-    },
+  "battery": {
+    "id": "battery",
+    "name": "Battery status",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "79"
+      }
+    }
   },
-  beacons: {
-    id: "beacons",
-    name: "Beacons",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-04-12",
-      baseline_high_date: "2020-10-12",
-      support: {
-        chrome: "39",
-        chrome_android: "42",
-        edge: "14",
-        firefox: "31",
-        firefox_android: "31",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+  "beacons": {
+    "id": "beacons",
+    "name": "Beacons",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-04-12",
+      "baseline_high_date": "2020-10-12",
+      "support": {
+        "chrome": "39",
+        "chrome_android": "42",
+        "edge": "14",
+        "firefox": "31",
+        "firefox_android": "31",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
-  beforeinstallprompt: {
-    id: "beforeinstallprompt",
-    name: "beforeinstallprompt",
-    group: ["progressive-web-app"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "76",
-        chrome_android: "76",
-        edge: "79",
-      },
-    },
+  "beforeinstallprompt": {
+    "id": "beforeinstallprompt",
+    "name": "beforeinstallprompt",
+    "group": [
+      "progressive-web-app"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "76",
+        "chrome_android": "76",
+        "edge": "79"
+      }
+    }
   },
-  beforeunload: {
-    id: "beforeunload",
-    name: "beforeunload",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-      },
-    },
+  "beforeunload": {
+    "id": "beforeunload",
+    "name": "beforeunload",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3"
+      }
+    }
   },
   "bfcache-blocking-reasons": {
-    id: "bfcache-blocking-reasons",
-    name: "Back/forward cache blocking reasons",
-    group: ["performance"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "125",
-        chrome_android: "125",
-        edge: "125",
-      },
-    },
+    "id": "bfcache-blocking-reasons",
+    "name": "Back/forward cache blocking reasons",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "125",
+        "chrome_android": "125",
+        "edge": "125"
+      }
+    }
   },
   "blocking-render": {
-    id: "blocking-render",
-    name: 'blocking="render"',
-    group: ["html"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "105",
-        chrome_android: "105",
-        edge: "105",
-        safari: "18.2",
-        safari_ios: "18.2",
-      },
-    },
+    "id": "blocking-render",
+    "name": "blocking=\"render\"",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "105",
+        "chrome_android": "105",
+        "edge": "105",
+        "safari": "18.2",
+        "safari_ios": "18.2"
+      }
+    }
   },
-  body: {
-    id: "body",
-    name: "<body>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "body": {
+    "id": "body",
+    "name": "<body>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
-  br: {
-    id: "br",
-    name: "<br>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "br": {
+    "id": "br",
+    "name": "<br>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
   "broadcast-channel": {
-    id: "broadcast-channel",
-    name: "BroadcastChannel",
-    group: ["messaging"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "54",
-        chrome_android: "54",
-        edge: "79",
-        firefox: "38",
-        firefox_android: "38",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "broadcast-channel",
+    "name": "BroadcastChannel",
+    "group": [
+      "messaging"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "54",
+        "chrome_android": "54",
+        "edge": "79",
+        "firefox": "38",
+        "firefox_android": "38",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
-  button: {
-    id: "button",
-    name: "<button>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "button": {
+    "id": "button",
+    "name": "<button>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  canvas: {
-    id: "canvas",
-    name: "<canvas>",
-    group: ["canvas", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1.5",
-        firefox_android: "4",
-        safari: "2",
-        safari_ios: "1",
-      },
-    },
+  "canvas": {
+    "id": "canvas",
+    "name": "<canvas>",
+    "group": [
+      "canvas",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1.5",
+        "firefox_android": "4",
+        "safari": "2",
+        "safari_ios": "1"
+      }
+    }
   },
   "canvas-2d": {
-    id: "canvas-2d",
-    name: "2D canvas",
-    group: ["canvas"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1.5",
-        firefox_android: "4",
-        safari: "2",
-        safari_ios: "1",
-      },
-    },
+    "id": "canvas-2d",
+    "name": "2D canvas",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1.5",
+        "firefox_android": "4",
+        "safari": "2",
+        "safari_ios": "1"
+      }
+    }
   },
   "canvas-2d-alpha": {
-    id: "canvas-2d-alpha",
-    name: "2D canvas opacity",
-    group: ["canvas"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "32",
-        chrome_android: "32",
-        edge: "79",
-        firefox: "30",
-        firefox_android: "30",
-      },
-    },
+    "id": "canvas-2d-alpha",
+    "name": "2D canvas opacity",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "32",
+        "chrome_android": "32",
+        "edge": "79",
+        "firefox": "30",
+        "firefox_android": "30"
+      }
+    }
   },
   "canvas-2d-color-management": {
-    id: "canvas-2d-color-management",
-    name: "Color management for 2D canvas",
-    group: ["canvas"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "92",
-        chrome_android: "92",
-        edge: "92",
-        safari: "15.2",
-        safari_ios: "15.2",
-      },
-    },
+    "id": "canvas-2d-color-management",
+    "name": "Color management for 2D canvas",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "92",
+        "chrome_android": "92",
+        "edge": "92",
+        "safari": "15.2",
+        "safari_ios": "15.2"
+      }
+    }
   },
   "canvas-2d-desynchronized": {
-    id: "canvas-2d-desynchronized",
-    name: "Desynchronized 2D canvas",
-    group: ["canvas"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "81",
-        chrome_android: "75",
-        edge: "79",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+    "id": "canvas-2d-desynchronized",
+    "name": "Desynchronized 2D canvas",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "81",
+        "chrome_android": "75",
+        "edge": "79",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "canvas-2d-willreadfrequently": {
-    id: "canvas-2d-willreadfrequently",
-    name: "willReadFrequently",
-    group: ["canvas"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-09-16",
-      support: {
-        chrome: "99",
-        chrome_android: "99",
-        edge: "99",
-        firefox: "28",
-        firefox_android: "28",
-        safari: "18",
-        safari_ios: "18",
-      },
-    },
+    "id": "canvas-2d-willreadfrequently",
+    "name": "willReadFrequently",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-09-16",
+      "support": {
+        "chrome": "99",
+        "chrome_android": "99",
+        "edge": "99",
+        "firefox": "28",
+        "firefox_android": "28",
+        "safari": "18",
+        "safari_ios": "18"
+      }
+    }
   },
   "canvas-context-lost": {
-    id: "canvas-context-lost",
-    name: "contextlost and contextrestored",
-    group: ["canvas"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "99",
-        chrome_android: "99",
-        edge: "99",
-        firefox: "125",
-        firefox_android: "125",
-      },
-    },
+    "id": "canvas-context-lost",
+    "name": "contextlost and contextrestored",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "99",
+        "chrome_android": "99",
+        "edge": "99",
+        "firefox": "125",
+        "firefox_android": "125"
+      }
+    }
   },
   "canvas-createconicgradient": {
-    id: "canvas-createconicgradient",
-    name: "Canvas createConicGradient()",
-    group: ["canvas"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-04-11",
-      baseline_high_date: "2025-10-11",
-      support: {
-        chrome: "99",
-        chrome_android: "99",
-        edge: "99",
-        firefox: "112",
-        firefox_android: "112",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "canvas-createconicgradient",
+    "name": "Canvas createConicGradient()",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-04-11",
+      "baseline_high_date": "2025-10-11",
+      "support": {
+        "chrome": "99",
+        "chrome_android": "99",
+        "edge": "99",
+        "firefox": "112",
+        "firefox_android": "112",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "canvas-reset": {
-    id: "canvas-reset",
-    name: "Canvas reset()",
-    group: ["canvas"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-12-11",
-      support: {
-        chrome: "99",
-        chrome_android: "99",
-        edge: "99",
-        firefox: "113",
-        firefox_android: "113",
-        safari: "17.2",
-        safari_ios: "17.2",
-      },
-    },
+    "id": "canvas-reset",
+    "name": "Canvas reset()",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-12-11",
+      "support": {
+        "chrome": "99",
+        "chrome_android": "99",
+        "edge": "99",
+        "firefox": "113",
+        "firefox_android": "113",
+        "safari": "17.2",
+        "safari_ios": "17.2"
+      }
+    }
   },
   "canvas-roundrect": {
-    id: "canvas-roundrect",
-    name: "Canvas roundRect()",
-    group: ["canvas"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-04-11",
-      baseline_high_date: "2025-10-11",
-      support: {
-        chrome: "99",
-        chrome_android: "99",
-        edge: "99",
-        firefox: "112",
-        firefox_android: "112",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "canvas-roundrect",
+    "name": "Canvas roundRect()",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-04-11",
+      "baseline_high_date": "2025-10-11",
+      "support": {
+        "chrome": "99",
+        "chrome_android": "99",
+        "edge": "99",
+        "firefox": "112",
+        "firefox_android": "112",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "capture-handle": {
-    id: "capture-handle",
-    name: "Capture Handle",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "102",
-        edge: "102",
-      },
-    },
+    "id": "capture-handle",
+    "name": "Capture Handle",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "102",
+        "edge": "102"
+      }
+    }
   },
   "capture-stream-audio-video": {
-    id: "capture-stream-audio-video",
-    name: "captureStream() for <audio> and <video>",
-    group: ["media-elements"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "62",
-        chrome_android: "62",
-        edge: "79",
-      },
-    },
+    "id": "capture-stream-audio-video",
+    "name": "captureStream() for <audio> and <video>",
+    "group": [
+      "media-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "62",
+        "chrome_android": "62",
+        "edge": "79"
+      }
+    }
   },
   "capture-stream-canvas": {
-    id: "capture-stream-canvas",
-    name: "captureStream() for <canvas>",
-    group: ["canvas"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "51",
-        chrome_android: "51",
-        edge: "79",
-        firefox: "43",
-        firefox_android: "43",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+    "id": "capture-stream-canvas",
+    "name": "captureStream() for <canvas>",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "51",
+        "chrome_android": "51",
+        "edge": "79",
+        "firefox": "43",
+        "firefox_android": "43",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
   "cascade-layers": {
-    id: "cascade-layers",
-    name: "Cascade layers",
-    group: ["css"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "99",
-        chrome_android: "99",
-        edge: "99",
-        firefox: "97",
-        firefox_android: "97",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "cascade-layers",
+    "name": "Cascade layers",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "99",
+        "chrome_android": "99",
+        "edge": "99",
+        "firefox": "97",
+        "firefox_android": "97",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "change-event": {
-    id: "change-event",
-    name: "Change event",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "2",
-      },
-    },
+    "id": "change-event",
+    "name": "Change event",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "2"
+      }
+    }
   },
   "channel-messaging": {
-    id: "channel-messaging",
-    name: "Channel messaging",
-    group: ["messaging"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-22",
-      baseline_high_date: "2018-03-22",
-      support: {
-        chrome: "4",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "41",
-        firefox_android: "41",
-        safari: "5",
-        safari_ios: "4.2",
-      },
-    },
+    "id": "channel-messaging",
+    "name": "Channel messaging",
+    "group": [
+      "messaging"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-22",
+      "baseline_high_date": "2018-03-22",
+      "support": {
+        "chrome": "4",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "41",
+        "firefox_android": "41",
+        "safari": "5",
+        "safari_ios": "4.2"
+      }
+    }
   },
   "check-visibility": {
-    id: "check-visibility",
-    name: "checkVisibility()",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-03-05",
-      support: {
-        chrome: "105",
-        chrome_android: "105",
-        edge: "105",
-        firefox: "106",
-        firefox_android: "106",
-        safari: "17.4",
-        safari_ios: "17.4",
-      },
-    },
+    "id": "check-visibility",
+    "name": "checkVisibility()",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-03-05",
+      "support": {
+        "chrome": "105",
+        "chrome_android": "105",
+        "edge": "105",
+        "firefox": "106",
+        "firefox_android": "106",
+        "safari": "17.4",
+        "safari_ios": "17.4"
+      }
+    }
   },
   "clip-path": {
-    id: "clip-path",
-    name: "clip-path",
-    group: ["clipping-shapes-masking"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-01-21",
-      baseline_high_date: "2023-07-21",
-      support: {
-        chrome: "88",
-        chrome_android: "88",
-        edge: "88",
-        firefox: "71",
-        firefox_android: "79",
-        safari: "13.1",
-        safari_ios: "13",
-      },
-    },
+    "id": "clip-path",
+    "name": "clip-path",
+    "group": [
+      "clipping-shapes-masking"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-01-21",
+      "baseline_high_date": "2023-07-21",
+      "support": {
+        "chrome": "88",
+        "chrome_android": "88",
+        "edge": "88",
+        "firefox": "71",
+        "firefox_android": "79",
+        "safari": "13.1",
+        "safari_ios": "13"
+      }
+    }
   },
   "clipboard-custom-format": {
-    id: "clipboard-custom-format",
-    name: "Custom formats for clipboard items",
-    group: ["clipboard"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "104",
-        chrome_android: "104",
-        edge: "104",
-      },
-    },
+    "id": "clipboard-custom-format",
+    "name": "Custom formats for clipboard items",
+    "group": [
+      "clipboard"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "104",
+        "chrome_android": "104",
+        "edge": "104"
+      }
+    }
   },
   "clipboard-events": {
-    id: "clipboard-events",
-    name: "Clipboard events",
-    group: ["clipboard"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-03-27",
-      baseline_high_date: "2019-09-27",
-      support: {
-        chrome: "41",
-        chrome_android: "41",
-        edge: "12",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+    "id": "clipboard-events",
+    "name": "Clipboard events",
+    "group": [
+      "clipboard"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-03-27",
+      "baseline_high_date": "2019-09-27",
+      "support": {
+        "chrome": "41",
+        "chrome_android": "41",
+        "edge": "12",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "clipboard-supports": {
-    id: "clipboard-supports",
-    name: "ClipboardItem.supports()",
-    group: ["clipboard"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-03-31",
-      support: {
-        chrome: "121",
-        chrome_android: "121",
-        edge: "121",
-        firefox: "127",
-        firefox_android: "127",
-        safari: "18.4",
-        safari_ios: "18.4",
-      },
-    },
+    "id": "clipboard-supports",
+    "name": "ClipboardItem.supports()",
+    "group": [
+      "clipboard"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-03-31",
+      "support": {
+        "chrome": "121",
+        "chrome_android": "121",
+        "edge": "121",
+        "firefox": "127",
+        "firefox_android": "127",
+        "safari": "18.4",
+        "safari_ios": "18.4"
+      }
+    }
   },
   "clipboard-svg": {
-    id: "clipboard-svg",
-    name: "SVG clipboard items",
-    group: ["clipboard"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "124",
-        chrome_android: "124",
-        edge: "124",
-      },
-    },
+    "id": "clipboard-svg",
+    "name": "SVG clipboard items",
+    "group": [
+      "clipboard"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "124",
+        "chrome_android": "124",
+        "edge": "124"
+      }
+    }
   },
   "clipboard-unsanitized-formats": {
-    id: "clipboard-unsanitized-formats",
-    name: "Read unsanitized clipboard data",
-    group: ["clipboard"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "122",
-        chrome_android: "122",
-        edge: "122",
-      },
-    },
+    "id": "clipboard-unsanitized-formats",
+    "name": "Read unsanitized clipboard data",
+    "group": [
+      "clipboard"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "122",
+        "chrome_android": "122",
+        "edge": "122"
+      }
+    }
   },
-  clipboardchange: {
-    id: "clipboardchange",
-    name: "clipboardchange",
-    group: ["clipboard"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "144",
-        chrome_android: "144",
-        edge: "144",
-      },
-    },
+  "clipboardchange": {
+    "id": "clipboardchange",
+    "name": "clipboardchange",
+    "group": [
+      "clipboard"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "144",
+        "chrome_android": "144",
+        "edge": "144"
+      }
+    }
   },
-  closewatcher: {
-    id: "closewatcher",
-    name: "CloseWatcher",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "126",
-        chrome_android: "126",
-        edge: "126",
-      },
-    },
+  "closewatcher": {
+    "id": "closewatcher",
+    "name": "CloseWatcher",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "126",
+        "chrome_android": "126",
+        "edge": "126"
+      }
+    }
   },
   "composed-ranges": {
-    id: "composed-ranges",
-    name: "Selection composed ranges",
-    group: ["selection", "web-components"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-08-19",
-      support: {
-        chrome: "137",
-        chrome_android: "137",
-        edge: "137",
-        firefox: "142",
-        firefox_android: "142",
-        safari: "17",
-        safari_ios: "17",
-      },
-    },
+    "id": "composed-ranges",
+    "name": "Selection composed ranges",
+    "group": [
+      "selection",
+      "web-components"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-08-19",
+      "support": {
+        "chrome": "137",
+        "chrome_android": "137",
+        "edge": "137",
+        "firefox": "142",
+        "firefox_android": "142",
+        "safari": "17",
+        "safari_ios": "17"
+      }
+    }
   },
   "composition-events": {
-    id: "composition-events",
-    name: "Composition events",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-04-19",
-      baseline_high_date: "2019-10-19",
-      support: {
-        chrome: "26",
-        chrome_android: "26",
-        edge: "12",
-        firefox: "53",
-        firefox_android: "53",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+    "id": "composition-events",
+    "name": "Composition events",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-04-19",
+      "baseline_high_date": "2019-10-19",
+      "support": {
+        "chrome": "26",
+        "chrome_android": "26",
+        "edge": "12",
+        "firefox": "53",
+        "firefox_android": "53",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
   "compression-streams": {
-    id: "compression-streams",
-    name: "Compression streams",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-05-09",
-      baseline_high_date: "2025-11-09",
-      support: {
-        chrome: "80",
-        chrome_android: "80",
-        edge: "80",
-        firefox: "113",
-        firefox_android: "113",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "compression-streams",
+    "name": "Compression streams",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-05-09",
+      "baseline_high_date": "2025-11-09",
+      "support": {
+        "chrome": "80",
+        "chrome_android": "80",
+        "edge": "80",
+        "firefox": "113",
+        "firefox_android": "113",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "compute-pressure": {
-    id: "compute-pressure",
-    name: "CPU compute pressure",
-    group: ["compute-pressure"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "125",
-        edge: "125",
-      },
-    },
+    "id": "compute-pressure",
+    "name": "CPU compute pressure",
+    "group": [
+      "compute-pressure"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "125",
+        "edge": "125"
+      }
+    }
   },
-  console: {
-    id: "console",
-    name: "Console",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "console": {
+    "id": "console",
+    "name": "Console",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
   "constraint-validation": {
-    id: "constraint-validation",
-    name: "Constraint validation API",
-    group: ["forms"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-12-11",
-      baseline_high_date: "2021-06-11",
-      support: {
-        chrome: "40",
-        chrome_android: "40",
-        edge: "18",
-        firefox: "51",
-        firefox_android: "64",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+    "id": "constraint-validation",
+    "name": "Constraint validation API",
+    "group": [
+      "forms"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-12-11",
+      "baseline_high_date": "2021-06-11",
+      "support": {
+        "chrome": "40",
+        "chrome_android": "40",
+        "edge": "18",
+        "firefox": "51",
+        "firefox_android": "64",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "constructed-stylesheets": {
-    id: "constructed-stylesheets",
-    name: "Constructed stylesheets",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "73",
-        chrome_android: "73",
-        edge: "79",
-        firefox: "101",
-        firefox_android: "101",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "constructed-stylesheets",
+    "name": "Constructed stylesheets",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "73",
+        "chrome_android": "73",
+        "edge": "79",
+        "firefox": "101",
+        "firefox_android": "101",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "contact-picker": {
-    id: "contact-picker",
-    name: "Contact picker",
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "80",
-      },
-    },
+    "id": "contact-picker",
+    "name": "Contact picker",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "80"
+      }
+    }
   },
   "container-queries": {
-    id: "container-queries",
-    name: "Container queries",
-    group: ["container-queries"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-02-14",
-      baseline_high_date: "2025-08-14",
-      support: {
-        chrome: "105",
-        chrome_android: "105",
-        edge: "105",
-        firefox: "110",
-        firefox_android: "110",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+    "id": "container-queries",
+    "name": "Container queries",
+    "group": [
+      "container-queries"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-02-14",
+      "baseline_high_date": "2025-08-14",
+      "support": {
+        "chrome": "105",
+        "chrome_android": "105",
+        "edge": "105",
+        "firefox": "110",
+        "firefox_android": "110",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
   "content-index": {
-    id: "content-index",
-    name: "Content Index",
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "84",
-      },
-    },
+    "id": "content-index",
+    "name": "Content Index",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "84"
+      }
+    }
   },
   "content-visibility": {
-    id: "content-visibility",
-    name: "content-visibility",
-    group: ["css"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-09-15",
-      support: {
-        chrome: "108",
-        chrome_android: "108",
-        edge: "108",
-        firefox: "130",
-        firefox_android: "130",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+    "id": "content-visibility",
+    "name": "content-visibility",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-09-15",
+      "support": {
+        "chrome": "108",
+        "chrome_android": "108",
+        "edge": "108",
+        "firefox": "130",
+        "firefox_android": "130",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
-  contenteditable: {
-    id: "contenteditable",
-    name: "contenteditable",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+  "contenteditable": {
+    "id": "contenteditable",
+    "name": "contenteditable",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "contenteditable-plaintextonly": {
-    id: "contenteditable-plaintextonly",
-    name: 'contenteditable="plaintext-only"',
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-03-04",
-      support: {
-        chrome: "51",
-        chrome_android: "51",
-        edge: "12",
-        firefox: "136",
-        firefox_android: "136",
-        safari: "5.1",
-        safari_ios: "5",
-      },
-    },
+    "id": "contenteditable-plaintextonly",
+    "name": "contenteditable=\"plaintext-only\"",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-03-04",
+      "support": {
+        "chrome": "51",
+        "chrome_android": "51",
+        "edge": "12",
+        "firefox": "136",
+        "firefox_android": "136",
+        "safari": "5.1",
+        "safari_ios": "5"
+      }
+    }
   },
   "controls-list": {
-    id: "controls-list",
-    name: "controlslist",
-    group: ["media-elements"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "58",
-        chrome_android: "58",
-        edge: "79",
-      },
-    },
+    "id": "controls-list",
+    "name": "controlslist",
+    "group": [
+      "media-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "58",
+        "chrome_android": "58",
+        "edge": "79"
+      }
+    }
   },
   "cookie-enabled": {
-    id: "cookie-enabled",
-    name: "cookieEnabled",
-    group: ["cookies"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-09-16",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "18",
-        safari_ios: "18",
-      },
-    },
+    "id": "cookie-enabled",
+    "name": "cookieEnabled",
+    "group": [
+      "cookies"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-09-16",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "18",
+        "safari_ios": "18"
+      }
+    }
   },
   "cookie-store": {
-    id: "cookie-store",
-    name: "Cookie store",
-    group: ["cookies"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "87",
-        chrome_android: "87",
-        edge: "87",
-      },
-    },
+    "id": "cookie-store",
+    "name": "Cookie store",
+    "group": [
+      "cookies"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "87",
+        "chrome_android": "87",
+        "edge": "87"
+      }
+    }
   },
-  cookies: {
-    id: "cookies",
-    name: "Cookies",
-    group: ["cookies"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "cookies": {
+    "id": "cookies",
+    "name": "Cookies",
+    "group": [
+      "cookies"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "counter-style": {
-    id: "counter-style",
-    name: "@counter-style",
-    group: ["counters"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-09-18",
-      support: {
-        chrome: "91",
-        chrome_android: "91",
-        edge: "91",
-        firefox: "33",
-        firefox_android: "33",
-        safari: "17",
-        safari_ios: "17",
-      },
-    },
+    "id": "counter-style",
+    "name": "@counter-style",
+    "group": [
+      "counters"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-09-18",
+      "support": {
+        "chrome": "91",
+        "chrome_android": "91",
+        "edge": "91",
+        "firefox": "33",
+        "firefox_android": "33",
+        "safari": "17",
+        "safari_ios": "17"
+      }
+    }
   },
-  createimagebitmap: {
-    id: "createimagebitmap",
-    name: "createImageBitmap",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-12-11",
-      support: {
-        chrome: "59",
-        chrome_android: "59",
-        edge: "79",
-        firefox: "98",
-        firefox_android: "98",
-        safari: "17.2",
-        safari_ios: "17.2",
-      },
-    },
+  "createimagebitmap": {
+    "id": "createimagebitmap",
+    "name": "createImageBitmap",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-12-11",
+      "support": {
+        "chrome": "59",
+        "chrome_android": "59",
+        "edge": "79",
+        "firefox": "98",
+        "firefox_android": "98",
+        "safari": "17.2",
+        "safari_ios": "17.2"
+      }
+    }
   },
   "credential-management": {
-    id: "credential-management",
-    name: "Credential management",
-    group: ["credential-management"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "60",
-        chrome_android: "60",
-        edge: "79",
-        firefox: "60",
-        firefox_android: "60",
-        safari: "13",
-        safari_ios: "13",
-      },
-    },
+    "id": "credential-management",
+    "name": "Credential management",
+    "group": [
+      "credential-management"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "60",
+        "chrome_android": "60",
+        "edge": "79",
+        "firefox": "60",
+        "firefox_android": "60",
+        "safari": "13",
+        "safari_ios": "13"
+      }
+    }
   },
   "cross-document-view-transitions": {
-    id: "cross-document-view-transitions",
-    name: "Cross-document view transitions",
-    group: ["view-transitions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "126",
-        chrome_android: "126",
-        edge: "126",
-        safari: "18.2",
-        safari_ios: "18.2",
-      },
-    },
+    "id": "cross-document-view-transitions",
+    "name": "Cross-document view transitions",
+    "group": [
+      "view-transitions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "126",
+        "chrome_android": "126",
+        "edge": "126",
+        "safari": "18.2",
+        "safari_ios": "18.2"
+      }
+    }
   },
-  csp: {
-    id: "csp",
-    name: "Content Security Policy (CSP)",
-    group: ["security"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-08-02",
-      baseline_high_date: "2019-02-02",
-      support: {
-        chrome: "25",
-        chrome_android: "25",
-        edge: "14",
-        firefox: "23",
-        firefox_android: "23",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+  "csp": {
+    "id": "csp",
+    "name": "Content Security Policy (CSP)",
+    "group": [
+      "security"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-08-02",
+      "baseline_high_date": "2019-02-02",
+      "support": {
+        "chrome": "25",
+        "chrome_android": "25",
+        "edge": "14",
+        "firefox": "23",
+        "firefox_android": "23",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
   "css-escape": {
-    id: "css-escape",
-    name: "CSS.escape()",
-    group: ["cssom"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "46",
-        chrome_android: "46",
-        edge: "79",
-        firefox: "31",
-        firefox_android: "31",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+    "id": "css-escape",
+    "name": "CSS.escape()",
+    "group": [
+      "cssom"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "46",
+        "chrome_android": "46",
+        "edge": "79",
+        "firefox": "31",
+        "firefox_android": "31",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "css-object-model": {
-    id: "css-object-model",
-    name: "CSS object model",
-    group: ["cssom"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "28",
-        chrome_android: "28",
-        edge: "12",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "css-object-model",
+    "name": "CSS object model",
+    "group": [
+      "cssom"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "28",
+        "chrome_android": "28",
+        "edge": "12",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "css-object-model-discouraged": {
-    id: "css-object-model-discouraged",
-    name: "CSS object model (DOM level 2)",
-    group: ["cssom"],
-    status: {
-      baseline: false,
-      support: {
-        safari: "10",
-        safari_ios: "10",
-      },
+    "id": "css-object-model-discouraged",
+    "name": "CSS object model (DOM level 2)",
+    "group": [
+      "cssom"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "10",
+        "safari_ios": "10"
+      }
     },
-    discouraged: {
-      according_to: ["https://www.w3.org/TR/DOM-Level-2-Style/#Overview-status"],
-      alternatives: ["css-object-model"],
-      reason:
-        "The DOM level 2 CSS object model was excluded from the later CSS object model (CSSOM) specification.",
-      reason_html:
-        "The DOM level 2 CSS object model was excluded from the later CSS object model (CSSOM) specification.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://www.w3.org/TR/DOM-Level-2-Style/#Overview-status"
+      ],
+      "alternatives": [
+        "css-object-model"
+      ],
+      "reason": "The DOM level 2 CSS object model was excluded from the later CSS object model (CSSOM) specification.",
+      "reason_html": "The DOM level 2 CSS object model was excluded from the later CSS object model (CSSOM) specification."
+    }
   },
   "css-supports": {
-    id: "css-supports",
-    name: "CSS.supports()",
-    group: ["css"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "61",
-        chrome_android: "61",
-        edge: "79",
-        firefox: "55",
-        firefox_android: "55",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+    "id": "css-supports",
+    "name": "CSS.supports()",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "61",
+        "chrome_android": "61",
+        "edge": "79",
+        "firefox": "55",
+        "firefox_android": "55",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
   "css-typed-om": {
-    id: "css-typed-om",
-    name: "CSS typed object model",
-    group: ["cssom"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "79",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "css-typed-om",
+    "name": "CSS typed object model",
+    "group": [
+      "cssom"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "79",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "custom-media-queries": {
-    id: "custom-media-queries",
-    name: "Custom media queries",
-    group: ["media-queries"],
-    status: {
-      baseline: false,
-      support: {},
-    },
+    "id": "custom-media-queries",
+    "name": "Custom media queries",
+    "group": [
+      "media-queries"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
   "customized-built-in-elements": {
-    id: "customized-built-in-elements",
-    name: "Customized built-in elements",
-    group: ["custom-elements"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "67",
-        chrome_android: "67",
-        edge: "79",
-        firefox: "63",
-        firefox_android: "63",
-      },
-    },
+    "id": "customized-built-in-elements",
+    "name": "Customized built-in elements",
+    "group": [
+      "custom-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "67",
+        "chrome_android": "67",
+        "edge": "79",
+        "firefox": "63",
+        "firefox_android": "63"
+      }
+    }
   },
-  data: {
-    id: "data",
-    name: "<data>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-10-24",
-      baseline_high_date: "2020-04-24",
-      support: {
-        chrome: "62",
-        chrome_android: "62",
-        edge: "14",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+  "data": {
+    "id": "data",
+    "name": "<data>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-10-24",
+      "baseline_high_date": "2020-04-24",
+      "support": {
+        "chrome": "62",
+        "chrome_android": "62",
+        "edge": "14",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
-  datalist: {
-    id: "datalist",
-    name: "<datalist>",
-    group: ["forms"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "69",
-        chrome_android: "69",
-        edge: "12",
-        firefox: "110",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+  "datalist": {
+    "id": "datalist",
+    "name": "<datalist>",
+    "group": [
+      "forms"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "69",
+        "chrome_android": "69",
+        "edge": "12",
+        "firefox": "110",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
-  dataset: {
-    id: "dataset",
-    name: "Dataset",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "7",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "5.1",
-        safari_ios: "5",
-      },
-    },
+  "dataset": {
+    "id": "dataset",
+    "name": "Dataset",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "7",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "5.1",
+        "safari_ios": "5"
+      }
+    }
   },
   "declarative-shadow-dom": {
-    id: "declarative-shadow-dom",
-    name: "Declarative shadow DOM",
-    group: ["html", "dom", "web-components"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-02-20",
-      support: {
-        chrome: "111",
-        chrome_android: "111",
-        edge: "111",
-        firefox: "123",
-        firefox_android: "123",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "declarative-shadow-dom",
+    "name": "Declarative shadow DOM",
+    "group": [
+      "html",
+      "dom",
+      "web-components"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-02-20",
+      "support": {
+        "chrome": "111",
+        "chrome_android": "111",
+        "edge": "111",
+        "firefox": "123",
+        "firefox_android": "123",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "dedicated-workers": {
-    id: "dedicated-workers",
-    name: "Dedicated workers",
-    group: ["workers"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "4",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "5",
-      },
-    },
+    "id": "dedicated-workers",
+    "name": "Dedicated workers",
+    "group": [
+      "workers"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "4",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "5"
+      }
+    }
   },
-  del: {
-    id: "del",
-    name: "<del>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+  "del": {
+    "id": "del",
+    "name": "<del>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "description-list": {
-    id: "description-list",
-    name: "Description list",
-    group: ["html"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+    "id": "description-list",
+    "name": "Description list",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
-  details: {
-    id: "details",
-    name: "<details>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "12",
-        chrome_android: "18",
-        edge: "79",
-        firefox: "49",
-        firefox_android: "49",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+  "details": {
+    "id": "details",
+    "name": "<details>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "12",
+        "chrome_android": "18",
+        "edge": "79",
+        "firefox": "49",
+        "firefox_android": "49",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
   "details-name": {
-    id: "details-name",
-    name: "Mutually exclusive <details> elements",
-    group: ["html-elements"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-09-03",
-      support: {
-        chrome: "120",
-        chrome_android: "120",
-        edge: "120",
-        firefox: "130",
-        firefox_android: "130",
-        safari: "17.2",
-        safari_ios: "17.2",
-      },
-    },
+    "id": "details-name",
+    "name": "Mutually exclusive <details> elements",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-09-03",
+      "support": {
+        "chrome": "120",
+        "chrome_android": "120",
+        "edge": "120",
+        "firefox": "130",
+        "firefox_android": "130",
+        "safari": "17.2",
+        "safari_ios": "17.2"
+      }
+    }
   },
   "device-memory": {
-    id: "device-memory",
-    name: "Device memory",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "97",
-        chrome_android: "97",
-        edge: "97",
-      },
-    },
+    "id": "device-memory",
+    "name": "Device memory",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "97",
+        "chrome_android": "97",
+        "edge": "97"
+      }
+    }
   },
   "device-orientation-events": {
-    id: "device-orientation-events",
-    name: "Device orientation events",
-    group: ["sensors"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-09-18",
-      support: {
-        chrome: "31",
-        chrome_android: "31",
-        edge: "12",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "17",
-        safari_ios: "4.2",
-      },
-    },
+    "id": "device-orientation-events",
+    "name": "Device orientation events",
+    "group": [
+      "sensors"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-09-18",
+      "support": {
+        "chrome": "31",
+        "chrome_android": "31",
+        "edge": "12",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "17",
+        "safari_ios": "4.2"
+      }
+    }
   },
   "device-posture": {
-    id: "device-posture",
-    name: "Device posture",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "132",
-        chrome_android: "132",
-        edge: "132",
-      },
-    },
+    "id": "device-posture",
+    "name": "Device posture",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "132",
+        "chrome_android": "132",
+        "edge": "132"
+      }
+    }
   },
-  devicepixelratio: {
-    id: "devicepixelratio",
-    name: "devicePixelRatio",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "18",
-        firefox_android: "18",
-      },
-    },
+  "devicepixelratio": {
+    "id": "devicepixelratio",
+    "name": "devicePixelRatio",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "18",
+        "firefox_android": "18"
+      }
+    }
   },
-  dialog: {
-    id: "dialog",
-    name: "<dialog>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "37",
-        chrome_android: "37",
-        edge: "79",
-        firefox: "98",
-        firefox_android: "98",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+  "dialog": {
+    "id": "dialog",
+    "name": "<dialog>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "37",
+        "chrome_android": "37",
+        "edge": "79",
+        "firefox": "98",
+        "firefox_android": "98",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "dialog-closedby": {
-    id: "dialog-closedby",
-    name: "<dialog closedby>",
-    group: ["html-elements"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "134",
-        chrome_android: "134",
-        edge: "134",
-        firefox: "141",
-        firefox_android: "141",
-      },
-    },
+    "id": "dialog-closedby",
+    "name": "<dialog closedby>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "134",
+        "chrome_android": "134",
+        "edge": "134",
+        "firefox": "141",
+        "firefox_android": "141"
+      }
+    }
   },
   "digital-credentials": {
-    id: "digital-credentials",
-    name: "Digital credentials",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "141",
-        chrome_android: "141",
-        edge: "141",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+    "id": "digital-credentials",
+    "name": "Digital credentials",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "141",
+        "chrome_android": "141",
+        "edge": "141",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
   "digital-goods": {
-    id: "digital-goods",
-    name: "Digital goods",
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "101",
-        edge: "134",
-      },
-    },
+    "id": "digital-goods",
+    "name": "Digital goods",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "101",
+        "edge": "134"
+      }
+    }
   },
-  dirname: {
-    id: "dirname",
-    name: "dirname",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-08-01",
-      baseline_high_date: "2026-02-01",
-      support: {
-        chrome: "17",
-        chrome_android: "18",
-        edge: "79",
-        firefox: "116",
-        firefox_android: "116",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+  "dirname": {
+    "id": "dirname",
+    "name": "dirname",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-08-01",
+      "baseline_high_date": "2026-02-01",
+      "support": {
+        "chrome": "17",
+        "chrome_android": "18",
+        "edge": "79",
+        "firefox": "116",
+        "firefox_android": "116",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
-  div: {
-    id: "div",
-    name: "<div>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "div": {
+    "id": "div",
+    "name": "<div>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "document-caretpositionfrompoint": {
-    id: "document-caretpositionfrompoint",
-    name: "document.caretPositionFromPoint()",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-12-12",
-      support: {
-        chrome: "128",
-        chrome_android: "128",
-        edge: "128",
-        firefox: "20",
-        firefox_android: "20",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+    "id": "document-caretpositionfrompoint",
+    "name": "document.caretPositionFromPoint()",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-12-12",
+      "support": {
+        "chrome": "128",
+        "chrome_android": "128",
+        "edge": "128",
+        "firefox": "20",
+        "firefox_android": "20",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
   "document-colors": {
-    id: "document-colors",
-    name: "Document colors",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "64",
-        chrome_android: "64",
-        edge: "12",
-        firefox: "69",
-        firefox_android: "79",
-        safari: "11",
-        safari_ios: "11",
-      },
+    "id": "document-colors",
+    "name": "Document colors",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "64",
+        "chrome_android": "64",
+        "edge": "12",
+        "firefox": "69",
+        "firefox_android": "79",
+        "safari": "11",
+        "safari_ios": "11"
+      }
     },
-    discouraged: {
-      according_to: ["https://html.spec.whatwg.org/multipage/obsolete.html"],
-      alternatives: ["background-color", "color", "css-object-model", "get-computed-style"],
-      reason: "Document color attributes are superseded by CSS.",
-      reason_html: "Document color attributes are superseded by CSS.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://html.spec.whatwg.org/multipage/obsolete.html"
+      ],
+      "alternatives": [
+        "background-color",
+        "color",
+        "css-object-model",
+        "get-computed-style"
+      ],
+      "reason": "Document color attributes are superseded by CSS.",
+      "reason_html": "Document color attributes are superseded by CSS."
+    }
   },
   "document-picture-in-picture": {
-    id: "document-picture-in-picture",
-    name: "Document picture-in-picture",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "130",
-        edge: "130",
-      },
-    },
+    "id": "document-picture-in-picture",
+    "name": "Document picture-in-picture",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "130",
+        "edge": "130"
+      }
+    }
   },
   "document-write": {
-    id: "document-write",
-    name: "document.write()",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "12",
-        firefox: "69",
-        firefox_android: "79",
-        safari: "11",
-        safari_ios: "11",
-      },
+    "id": "document-write",
+    "name": "document.write()",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "12",
+        "firefox": "69",
+        "firefox_android": "79",
+        "safari": "11",
+        "safari_ios": "11"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#document.write()",
+    "discouraged": {
+      "according_to": [
+        "https://html.spec.whatwg.org/multipage/dynamic-markup-insertion.html#document.write()"
       ],
-      alternatives: ["dom"],
-      reason:
-        'The dynamic markup insertion API, which includes document.write(), has "very idiosyncratic behavior" which can be difficult to debug.',
-      reason_html:
-        'The dynamic markup insertion API, which includes <code>document.write()</code>, has "very idiosyncratic behavior" which can be difficult to debug.',
-    },
+      "alternatives": [
+        "dom"
+      ],
+      "reason": "The dynamic markup insertion API, which includes document.write(), has \"very idiosyncratic behavior\" which can be difficult to debug.",
+      "reason_html": "The dynamic markup insertion API, which includes <code>document.write()</code>, has \"very idiosyncratic behavior\" which can be difficult to debug."
+    }
   },
-  dom: {
-    id: "dom",
-    name: "DOM",
-    group: ["dom"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "dom": {
+    "id": "dom",
+    "name": "DOM",
+    "group": [
+      "dom"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "dom-geometry": {
-    id: "dom-geometry",
-    name: "DOM Geometry",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "61",
-        chrome_android: "61",
-        edge: "79",
-        firefox: "33",
-        firefox_android: "33",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+    "id": "dom-geometry",
+    "name": "DOM Geometry",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "61",
+        "chrome_android": "61",
+        "edge": "79",
+        "firefox": "33",
+        "firefox_android": "33",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
-  domparser: {
-    id: "domparser",
-    name: "DOMParser",
-    group: ["parsing-and-serialization"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-03-21",
-      baseline_high_date: "2018-09-21",
-      support: {
-        chrome: "31",
-        chrome_android: "31",
-        edge: "12",
-        firefox: "12",
-        firefox_android: "14",
-        safari: "9.1",
-        safari_ios: "9.3",
-      },
-    },
+  "domparser": {
+    "id": "domparser",
+    "name": "DOMParser",
+    "group": [
+      "parsing-and-serialization"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-03-21",
+      "baseline_high_date": "2018-09-21",
+      "support": {
+        "chrome": "31",
+        "chrome_android": "31",
+        "edge": "12",
+        "firefox": "12",
+        "firefox_android": "14",
+        "safari": "9.1",
+        "safari_ios": "9.3"
+      }
+    }
   },
-  download: {
-    id: "download",
-    name: "download",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2019-09-19",
-      baseline_high_date: "2022-03-19",
-      support: {
-        chrome: "14",
-        chrome_android: "18",
-        edge: "18",
-        firefox: "20",
-        firefox_android: "20",
-        safari: "10.1",
-        safari_ios: "13",
-      },
-    },
+  "download": {
+    "id": "download",
+    "name": "download",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2019-09-19",
+      "baseline_high_date": "2022-03-19",
+      "support": {
+        "chrome": "14",
+        "chrome_android": "18",
+        "edge": "18",
+        "firefox": "20",
+        "firefox_android": "20",
+        "safari": "10.1",
+        "safari_ios": "13"
+      }
+    }
   },
-  draganddrop: {
-    id: "draganddrop",
-    name: "Drag and Drop",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "3",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "3.2",
-      },
-    },
+  "draganddrop": {
+    "id": "draganddrop",
+    "name": "Drag and Drop",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "3",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "3.2"
+      }
+    }
   },
   "edit-context": {
-    id: "edit-context",
-    name: "EditContext",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "121",
-        chrome_android: "121",
-        edge: "121",
-      },
-    },
+    "id": "edit-context",
+    "name": "EditContext",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "121",
+        "chrome_android": "121",
+        "edge": "121"
+      }
+    }
   },
   "element-capture": {
-    id: "element-capture",
-    name: "Element capture",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "132",
-        edge: "132",
-      },
-    },
+    "id": "element-capture",
+    "name": "Element capture",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "132",
+        "edge": "132"
+      }
+    }
   },
   "element-from-point": {
-    id: "element-from-point",
-    name: "document.elementFromPoint() and document.elementsFromPoint()",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "43",
-        chrome_android: "43",
-        edge: "79",
-        firefox: "46",
-        firefox_android: "46",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+    "id": "element-from-point",
+    "name": "document.elementFromPoint() and document.elementsFromPoint()",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "43",
+        "chrome_android": "43",
+        "edge": "79",
+        "firefox": "46",
+        "firefox_android": "46",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
   "element-timing": {
-    id: "element-timing",
-    name: "Element timing",
-    group: ["performance"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "77",
-        chrome_android: "77",
-        edge: "79",
-      },
-    },
+    "id": "element-timing",
+    "name": "Element timing",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "77",
+        "chrome_android": "77",
+        "edge": "79"
+      }
+    }
   },
-  embed: {
-    id: "embed",
-    name: "<embed>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "79",
-        firefox: "1.5",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+  "embed": {
+    "id": "embed",
+    "name": "<embed>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "79",
+        "firefox": "1.5",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "encrypted-media-extensions": {
-    id: "encrypted-media-extensions",
-    name: "Encrypted media extensions",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2019-03-25",
-      baseline_high_date: "2021-09-25",
-      support: {
-        chrome: "42",
-        chrome_android: "42",
-        edge: "13",
-        firefox: "38",
-        firefox_android: "38",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+    "id": "encrypted-media-extensions",
+    "name": "Encrypted media extensions",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2019-03-25",
+      "baseline_high_date": "2021-09-25",
+      "support": {
+        "chrome": "42",
+        "chrome_android": "42",
+        "edge": "13",
+        "firefox": "38",
+        "firefox_android": "38",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
-  enterkeyhint: {
-    id: "enterkeyhint",
-    name: "enterkeyhint",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-11-02",
-      baseline_high_date: "2024-05-02",
-      support: {
-        chrome: "77",
-        chrome_android: "77",
-        edge: "79",
-        firefox: "94",
-        firefox_android: "94",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+  "enterkeyhint": {
+    "id": "enterkeyhint",
+    "name": "enterkeyhint",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-11-02",
+      "baseline_high_date": "2024-05-02",
+      "support": {
+        "chrome": "77",
+        "chrome_android": "77",
+        "edge": "79",
+        "firefox": "94",
+        "firefox_android": "94",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
   "event-timing": {
-    id: "event-timing",
-    name: "Event timing",
-    group: ["performance"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-12-12",
-      support: {
-        chrome: "76",
-        chrome_android: "76",
-        edge: "79",
-        firefox: "89",
-        firefox_android: "89",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+    "id": "event-timing",
+    "name": "Event timing",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-12-12",
+      "support": {
+        "chrome": "76",
+        "chrome_android": "76",
+        "edge": "79",
+        "firefox": "89",
+        "firefox_android": "89",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
-  events: {
-    id: "events",
-    name: "Events",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "events": {
+    "id": "events",
+    "name": "Events",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  execcommand: {
-    id: "execcommand",
-    name: "execCommand()",
-    group: ["clipboard"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "69",
-        firefox_android: "79",
-        safari: "1.3",
-        safari_ios: "1",
-      },
+  "execcommand": {
+    "id": "execcommand",
+    "name": "execCommand()",
+    "group": [
+      "clipboard"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "69",
+        "firefox_android": "79",
+        "safari": "1.3",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: ["https://w3c.github.io/editing/docs/execCommand/"],
-      alternatives: ["async-clipboard", "contenteditable"],
-      reason:
-        'The execCommand() method is "not implemented consistently or fully by user agents, and it is not expected that this will change in the foreseeable future."',
-      reason_html:
-        'The <code>execCommand()</code> method is "not implemented consistently or fully by user agents, and it is not expected that this will change in the foreseeable future."',
-    },
+    "discouraged": {
+      "according_to": [
+        "https://w3c.github.io/editing/docs/execCommand/"
+      ],
+      "alternatives": [
+        "async-clipboard",
+        "contenteditable"
+      ],
+      "reason": "The execCommand() method is \"not implemented consistently or fully by user agents, and it is not expected that this will change in the foreseeable future.\"",
+      "reason_html": "The <code>execCommand()</code> method is \"not implemented consistently or fully by user agents, and it is not expected that this will change in the foreseeable future.\""
+    }
   },
   "ext-blend-minmax": {
-    id: "ext-blend-minmax",
-    name: "EXT_blend_minmax WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-04-30",
-      baseline_high_date: "2020-10-30",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "17",
-        firefox: "47",
-        firefox_android: "35",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "ext-blend-minmax",
+    "name": "EXT_blend_minmax WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-04-30",
+      "baseline_high_date": "2020-10-30",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "17",
+        "firefox": "47",
+        "firefox_android": "35",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "ext-color-buffer-float": {
-    id: "ext-color-buffer-float",
-    name: "EXT_color_buffer_float WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-20",
-      baseline_high_date: "2024-03-20",
-      support: {
-        chrome: "56",
-        chrome_android: "56",
-        edge: "79",
-        firefox: "51",
-        firefox_android: "51",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+    "id": "ext-color-buffer-float",
+    "name": "EXT_color_buffer_float WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-09-20",
+      "baseline_high_date": "2024-03-20",
+      "support": {
+        "chrome": "56",
+        "chrome_android": "56",
+        "edge": "79",
+        "firefox": "51",
+        "firefox_android": "51",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "ext-color-buffer-half-float": {
-    id: "ext-color-buffer-half-float",
-    name: "EXT_color_buffer_half_float WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-09-16",
-      baseline_high_date: "2023-03-16",
-      support: {
-        chrome: "63",
-        chrome_android: "63",
-        edge: "17",
-        firefox: "47",
-        firefox_android: "36",
-        safari: "14",
-        safari_ios: "14",
-      },
-    },
+    "id": "ext-color-buffer-half-float",
+    "name": "EXT_color_buffer_half_float WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-09-16",
+      "baseline_high_date": "2023-03-16",
+      "support": {
+        "chrome": "63",
+        "chrome_android": "63",
+        "edge": "17",
+        "firefox": "47",
+        "firefox_android": "36",
+        "safari": "14",
+        "safari_ios": "14"
+      }
+    }
   },
   "ext-disjoint-timer-query": {
-    id: "ext-disjoint-timer-query",
-    name: "EXT_disjoint_timer_query WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {},
-    },
+    "id": "ext-disjoint-timer-query",
+    "name": "EXT_disjoint_timer_query WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
   "ext-float-blend": {
-    id: "ext-float-blend",
-    name: "EXT_float_blend WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "75",
-        chrome_android: "75",
-        edge: "79",
-        firefox: "67",
-        firefox_android: "67",
-        safari: "14.1",
-      },
-    },
+    "id": "ext-float-blend",
+    "name": "EXT_float_blend WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "75",
+        "chrome_android": "75",
+        "edge": "79",
+        "firefox": "67",
+        "firefox_android": "67",
+        "safari": "14.1"
+      }
+    }
   },
   "ext-frag-depth": {
-    id: "ext-frag-depth",
-    name: "EXT_frag_depth WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "93",
-        firefox: "47",
-        safari: "9",
-        safari_ios: "15",
-      },
-    },
+    "id": "ext-frag-depth",
+    "name": "EXT_frag_depth WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "93",
+        "firefox": "47",
+        "safari": "9",
+        "safari_ios": "15"
+      }
+    }
   },
   "ext-shader-texture-lod": {
-    id: "ext-shader-texture-lod",
-    name: "EXT_shader_texture_lod WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "93",
-        firefox: "47",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "ext-shader-texture-lod",
+    "name": "EXT_shader_texture_lod WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "93",
+        "firefox": "47",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "ext-srgb": {
-    id: "ext-srgb",
-    name: "EXT_sRGB WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-02-07",
-      baseline_high_date: "2022-08-07",
-      support: {
-        chrome: "40",
-        chrome_android: "40",
-        edge: "80",
-        firefox: "58",
-        firefox_android: "28",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "ext-srgb",
+    "name": "EXT_sRGB WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-02-07",
+      "baseline_high_date": "2022-08-07",
+      "support": {
+        "chrome": "40",
+        "chrome_android": "40",
+        "edge": "80",
+        "firefox": "58",
+        "firefox_android": "28",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "ext-texture-compression-bptc": {
-    id: "ext-texture-compression-bptc",
-    name: "EXT_texture_compression_bptc WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "93",
-        chrome_android: "92",
-        edge: "93",
-        firefox: "68",
-        safari: "16",
-      },
-    },
+    "id": "ext-texture-compression-bptc",
+    "name": "EXT_texture_compression_bptc WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "93",
+        "chrome_android": "92",
+        "edge": "93",
+        "firefox": "68",
+        "safari": "16"
+      }
+    }
   },
   "ext-texture-compression-rgtc": {
-    id: "ext-texture-compression-rgtc",
-    name: "EXT_texture_compression_rgtc WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "93",
-        chrome_android: "83",
-        edge: "93",
-        safari: "14.1",
-      },
-    },
+    "id": "ext-texture-compression-rgtc",
+    "name": "EXT_texture_compression_rgtc WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "93",
+        "chrome_android": "83",
+        "edge": "93",
+        "safari": "14.1"
+      }
+    }
   },
   "ext-texture-filter-anisotropic": {
-    id: "ext-texture-filter-anisotropic",
-    name: "EXT_texture_filter_anisotropic WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-06-07",
-      baseline_high_date: "2018-12-07",
-      support: {
-        chrome: "34",
-        chrome_android: "34",
-        edge: "12",
-        firefox: "47",
-        firefox_android: "47",
-        safari: "9.1",
-        safari_ios: "9.3",
-      },
-    },
+    "id": "ext-texture-filter-anisotropic",
+    "name": "EXT_texture_filter_anisotropic WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-06-07",
+      "baseline_high_date": "2018-12-07",
+      "support": {
+        "chrome": "34",
+        "chrome_android": "34",
+        "edge": "12",
+        "firefox": "47",
+        "firefox_android": "47",
+        "safari": "9.1",
+        "safari_ios": "9.3"
+      }
+    }
   },
   "ext-texture-norm16": {
-    id: "ext-texture-norm16",
-    name: "EXT_texture_norm16 WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "87",
-        chrome_android: "87",
-        edge: "87",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+    "id": "ext-texture-norm16",
+    "name": "EXT_texture_norm16 WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "87",
+        "chrome_android": "87",
+        "edge": "87",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
-  external: {
-    id: "external",
-    name: "window.external",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "9",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "2",
-        firefox_android: "4",
-      },
+  "external": {
+    "id": "external",
+    "name": "window.external",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "9",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "2",
+        "firefox_android": "4"
+      }
     },
-    discouraged: {
-      according_to: ["https://html.spec.whatwg.org/multipage/obsolete.html#external"],
-      reason:
-        "The window.external.AddSearchProvider() and window.external.IsSearchProviderInstalled() methods do nothing, by specification.",
-      reason_html:
-        "The <code>window.external.AddSearchProvider()</code> and <code>window.external.IsSearchProviderInstalled()</code> methods do nothing, by specification.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://html.spec.whatwg.org/multipage/obsolete.html#external"
+      ],
+      "reason": "The window.external.AddSearchProvider() and window.external.IsSearchProviderInstalled() methods do nothing, by specification.",
+      "reason_html": "The <code>window.external.AddSearchProvider()</code> and <code>window.external.IsSearchProviderInstalled()</code> methods do nothing, by specification."
+    }
   },
-  eyedropper: {
-    id: "eyedropper",
-    name: "Eyedropper",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "96",
-        edge: "96",
-      },
-    },
+  "eyedropper": {
+    "id": "eyedropper",
+    "name": "Eyedropper",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "96",
+        "edge": "96"
+      }
+    }
   },
   "fast-seek": {
-    id: "fast-seek",
-    name: "fastSeek()",
-    group: ["media-elements"],
-    status: {
-      baseline: false,
-      support: {
-        firefox: "31",
-        firefox_android: "31",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "fast-seek",
+    "name": "fastSeek()",
+    "group": [
+      "media-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "31",
+        "firefox_android": "31",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "feature-policy": {
-    id: "feature-policy",
-    name: "Feature policy",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "74",
-        chrome_android: "74",
-        edge: "79",
-      },
+    "id": "feature-policy",
+    "name": "Feature policy",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "74",
+        "chrome_android": "74",
+        "edge": "79"
+      }
     },
-    discouraged: {
-      according_to: ["https://github.com/w3c/webappsec-permissions-policy/pull/379"],
-      alternatives: ["permissions-policy"],
-      reason: "Feature policy is superseded by permissions policy.",
-      reason_html: "Feature policy is superseded by permissions policy.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://github.com/w3c/webappsec-permissions-policy/pull/379"
+      ],
+      "alternatives": [
+        "permissions-policy"
+      ],
+      "reason": "Feature policy is superseded by permissions policy.",
+      "reason_html": "Feature policy is superseded by permissions policy."
+    }
   },
-  fedcm: {
-    id: "fedcm",
-    name: "Federated credential management",
-    group: ["credential-management"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "116",
-        chrome_android: "116",
-        edge: "116",
-      },
-    },
+  "fedcm": {
+    "id": "fedcm",
+    "name": "Federated credential management",
+    "group": [
+      "credential-management"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "116",
+        "chrome_android": "116",
+        "edge": "116"
+      }
+    }
   },
   "federated-credentials": {
-    id: "federated-credentials",
-    name: "Federated credentials",
-    group: ["credential-management"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "51",
-        chrome_android: "51",
-        edge: "79",
-      },
-    },
+    "id": "federated-credentials",
+    "name": "Federated credentials",
+    "group": [
+      "credential-management"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "51",
+        "chrome_android": "51",
+        "edge": "79"
+      }
+    }
   },
-  fencedframe: {
-    id: "fencedframe",
-    name: "<fencedframe>",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "126",
-        chrome_android: "126",
-        edge: "126",
-      },
-    },
+  "fencedframe": {
+    "id": "fencedframe",
+    "name": "<fencedframe>",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "126",
+        "chrome_android": "126",
+        "edge": "126"
+      }
+    }
   },
-  fetch: {
-    id: "fetch",
-    name: "Fetch",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-03-27",
-      baseline_high_date: "2019-09-27",
-      support: {
-        chrome: "42",
-        chrome_android: "42",
-        edge: "14",
-        firefox: "39",
-        firefox_android: "39",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+  "fetch": {
+    "id": "fetch",
+    "name": "Fetch",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-03-27",
+      "baseline_high_date": "2019-09-27",
+      "support": {
+        "chrome": "42",
+        "chrome_android": "42",
+        "edge": "14",
+        "firefox": "39",
+        "firefox_android": "39",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "fetch-priority": {
-    id: "fetch-priority",
-    name: "Fetch priority",
-    group: ["resource-hints"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-10-29",
-      support: {
-        chrome: "103",
-        chrome_android: "103",
-        edge: "103",
-        firefox: "132",
-        firefox_android: "132",
-        safari: "17.2",
-        safari_ios: "17.2",
-      },
-    },
+    "id": "fetch-priority",
+    "name": "Fetch priority",
+    "group": [
+      "resource-hints"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-10-29",
+      "support": {
+        "chrome": "103",
+        "chrome_android": "103",
+        "edge": "103",
+        "firefox": "132",
+        "firefox_android": "132",
+        "safari": "17.2",
+        "safari_ios": "17.2"
+      }
+    }
   },
   "fetch-request-streams": {
-    id: "fetch-request-streams",
-    name: "Fetch upload streams",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "105",
-        chrome_android: "105",
-        edge: "105",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+    "id": "fetch-request-streams",
+    "name": "Fetch upload streams",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "105",
+        "chrome_android": "105",
+        "edge": "105",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
-  fetchlater: {
-    id: "fetchlater",
-    name: "fetchLater",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "135",
-        chrome_android: "135",
-        edge: "135",
-      },
-    },
+  "fetchlater": {
+    "id": "fetchlater",
+    "name": "fetchLater",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "135",
+        "chrome_android": "135",
+        "edge": "135"
+      }
+    }
   },
-  fieldset: {
-    id: "fieldset",
-    name: "<fieldset> and <legend>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+  "fieldset": {
+    "id": "fieldset",
+    "name": "<fieldset> and <legend>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
-  file: {
-    id: "file",
-    name: "File API",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "79",
-        firefox: "28",
-        firefox_android: "28",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+  "file": {
+    "id": "file",
+    "name": "File API",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "79",
+        "firefox": "28",
+        "firefox_android": "28",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "file-system-access": {
-    id: "file-system-access",
-    name: "File system access",
-    group: ["file-system"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "86",
-        chrome_android: "132",
-        edge: "86",
-      },
-    },
+    "id": "file-system-access",
+    "name": "File system access",
+    "group": [
+      "file-system"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "86",
+        "chrome_android": "132",
+        "edge": "86"
+      }
+    }
   },
   "focus-events": {
-    id: "focus-events",
-    name: "Focus events",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "24",
-        firefox_android: "24",
-        safari: "3.1",
-        safari_ios: "2",
-      },
-    },
+    "id": "focus-events",
+    "name": "Focus events",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "24",
+        "firefox_android": "24",
+        "safari": "3.1",
+        "safari_ios": "2"
+      }
+    }
   },
   "font-face": {
-    id: "font-face",
-    name: "@font-face",
-    group: ["fonts"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "36",
-        chrome_android: "36",
-        edge: "14",
-        firefox: "39",
-        firefox_android: "39",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "font-face",
+    "name": "@font-face",
+    "group": [
+      "fonts"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "36",
+        "chrome_android": "36",
+        "edge": "14",
+        "firefox": "39",
+        "firefox_android": "39",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "font-loading": {
-    id: "font-loading",
-    name: "Font loading",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "35",
-        chrome_android: "35",
-        edge: "79",
-        firefox: "41",
-        firefox_android: "41",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "font-loading",
+    "name": "Font loading",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "35",
+        "chrome_android": "35",
+        "edge": "79",
+        "firefox": "41",
+        "firefox_android": "41",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "font-metric-overrides": {
-    id: "font-metric-overrides",
-    name: "Font metric overrides",
-    group: ["fonts"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "87",
-        chrome_android: "87",
-        edge: "87",
-        firefox: "89",
-        firefox_android: "89",
-      },
-    },
+    "id": "font-metric-overrides",
+    "name": "Font metric overrides",
+    "group": [
+      "fonts"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "87",
+        "chrome_android": "87",
+        "edge": "87",
+        "firefox": "89",
+        "firefox_android": "89"
+      }
+    }
   },
   "font-palette": {
-    id: "font-palette",
-    name: "font-palette",
-    group: ["fonts"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-11-15",
-      baseline_high_date: "2025-05-15",
-      support: {
-        chrome: "101",
-        chrome_android: "101",
-        edge: "101",
-        firefox: "107",
-        firefox_android: "107",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "font-palette",
+    "name": "font-palette",
+    "group": [
+      "fonts"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-11-15",
+      "baseline_high_date": "2025-05-15",
+      "support": {
+        "chrome": "101",
+        "chrome_android": "101",
+        "edge": "101",
+        "firefox": "107",
+        "firefox_android": "107",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "font-variant-alternates": {
-    id: "font-variant-alternates",
-    name: "font-variant-alternates",
-    group: ["fonts"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-13",
-      baseline_high_date: "2025-09-13",
-      support: {
-        chrome: "111",
-        chrome_android: "111",
-        edge: "111",
-        firefox: "34",
-        firefox_android: "34",
-        safari: "9.1",
-        safari_ios: "9.3",
-      },
-    },
+    "id": "font-variant-alternates",
+    "name": "font-variant-alternates",
+    "group": [
+      "fonts"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-13",
+      "baseline_high_date": "2025-09-13",
+      "support": {
+        "chrome": "111",
+        "chrome_android": "111",
+        "edge": "111",
+        "firefox": "34",
+        "firefox_android": "34",
+        "safari": "9.1",
+        "safari_ios": "9.3"
+      }
+    }
   },
-  form: {
-    id: "form",
-    name: "<form>",
-    group: ["forms", "landmark-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "2",
-      },
-    },
+  "form": {
+    "id": "form",
+    "name": "<form>",
+    "group": [
+      "forms",
+      "landmark-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "2"
+      }
+    }
   },
   "form-associated-custom-elements": {
-    id: "form-associated-custom-elements",
-    name: "Form-associated custom elements",
-    group: ["custom-elements", "forms"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "77",
-        chrome_android: "77",
-        edge: "79",
-        firefox: "98",
-        firefox_android: "98",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "form-associated-custom-elements",
+    "name": "Form-associated custom elements",
+    "group": [
+      "custom-elements",
+      "forms"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "77",
+        "chrome_android": "77",
+        "edge": "79",
+        "firefox": "98",
+        "firefox_android": "98",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  fullscreen: {
-    id: "fullscreen",
-    name: "Fullscreen API",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "71",
-        chrome_android: "71",
-        edge: "79",
-        firefox: "64",
-        firefox_android: "64",
-        safari: "16.4",
-      },
-    },
+  "fullscreen": {
+    "id": "fullscreen",
+    "name": "Fullscreen API",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "71",
+        "chrome_android": "71",
+        "edge": "79",
+        "firefox": "64",
+        "firefox_android": "64",
+        "safari": "16.4"
+      }
+    }
   },
-  function: {
-    id: "function",
-    name: "@function",
-    group: ["css"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "139",
-        chrome_android: "139",
-        edge: "139",
-      },
-    },
+  "function": {
+    "id": "function",
+    "name": "@function",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "139",
+        "chrome_android": "139",
+        "edge": "139"
+      }
+    }
   },
-  gamepad: {
-    id: "gamepad",
-    name: "Gamepad",
-    group: ["gamepad"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-03-27",
-      baseline_high_date: "2019-09-27",
-      support: {
-        chrome: "35",
-        chrome_android: "35",
-        edge: "12",
-        firefox: "29",
-        firefox_android: "32",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+  "gamepad": {
+    "id": "gamepad",
+    "name": "Gamepad",
+    "group": [
+      "gamepad"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-03-27",
+      "baseline_high_date": "2019-09-27",
+      "support": {
+        "chrome": "35",
+        "chrome_android": "35",
+        "edge": "12",
+        "firefox": "29",
+        "firefox_android": "32",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "gamepad-haptics": {
-    id: "gamepad-haptics",
-    name: "Gamepad haptic feedback",
-    group: ["gamepad"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "68",
-        chrome_android: "68",
-        edge: "79",
-        safari: "16.4",
-      },
-    },
+    "id": "gamepad-haptics",
+    "name": "Gamepad haptic feedback",
+    "group": [
+      "gamepad"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "68",
+        "chrome_android": "68",
+        "edge": "79",
+        "safari": "16.4"
+      }
+    }
   },
   "gamepad-touch": {
-    id: "gamepad-touch",
-    name: "Gamepad touch buttons",
-    group: ["gamepad"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "73",
-        chrome_android: "73",
-        edge: "15",
-        firefox: "55",
-        firefox_android: "55",
-      },
-    },
+    "id": "gamepad-touch",
+    "name": "Gamepad touch buttons",
+    "group": [
+      "gamepad"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "73",
+        "chrome_android": "73",
+        "edge": "15",
+        "firefox": "55",
+        "firefox_android": "55"
+      }
+    }
   },
   "gamepad-vr": {
-    id: "gamepad-vr",
-    name: "Gamepad VR hands and poses",
-    group: ["gamepad"],
-    status: {
-      baseline: false,
-      support: {
-        firefox: "55",
-        firefox_android: "55",
-      },
-    },
+    "id": "gamepad-vr",
+    "name": "Gamepad VR hands and poses",
+    "group": [
+      "gamepad"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "55",
+        "firefox_android": "55"
+      }
+    }
   },
-  geolocation: {
-    id: "geolocation",
-    name: "Geolocation API",
-    group: ["geolocation"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "5",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "5",
-        safari_ios: "≤3",
-      },
-    },
+  "geolocation": {
+    "id": "geolocation",
+    "name": "Geolocation API",
+    "group": [
+      "geolocation"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "5",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "5",
+        "safari_ios": "≤3"
+      }
+    }
   },
   "get-computed-style": {
-    id: "get-computed-style",
-    name: "getComputedStyle()",
-    group: ["cssom"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "11",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "5.1",
-        safari_ios: "5",
-      },
-    },
+    "id": "get-computed-style",
+    "name": "getComputedStyle()",
+    "group": [
+      "cssom"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "11",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "5.1",
+        "safari_ios": "5"
+      }
+    }
   },
-  getallrecords: {
-    id: "getallrecords",
-    name: "IndexedDB getAllRecords()",
-    group: ["indexeddb"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "141",
-        chrome_android: "141",
-        edge: "141",
-      },
-    },
+  "getallrecords": {
+    "id": "getallrecords",
+    "name": "IndexedDB getAllRecords()",
+    "group": [
+      "indexeddb"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "141",
+        "chrome_android": "141",
+        "edge": "141"
+      }
+    }
   },
-  getboxquads: {
-    id: "getboxquads",
-    name: "getBoxQuads()",
-    status: {
-      baseline: false,
-      support: {},
-    },
+  "getboxquads": {
+    "id": "getboxquads",
+    "name": "getBoxQuads()",
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
-  gethtml: {
-    id: "gethtml",
-    name: "getHTML()",
-    group: ["dom"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-09-16",
-      support: {
-        chrome: "125",
-        chrome_android: "125",
-        edge: "125",
-        firefox: "128",
-        firefox_android: "128",
-        safari: "18",
-        safari_ios: "18",
-      },
-    },
+  "gethtml": {
+    "id": "gethtml",
+    "name": "getHTML()",
+    "group": [
+      "dom"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-09-16",
+      "support": {
+        "chrome": "125",
+        "chrome_android": "125",
+        "edge": "125",
+        "firefox": "128",
+        "firefox_android": "128",
+        "safari": "18",
+        "safari_ios": "18"
+      }
+    }
   },
-  gpc: {
-    id: "gpc",
-    name: "Global privacy control",
-    status: {
-      baseline: false,
-      support: {
-        firefox: "120",
-        firefox_android: "122",
-      },
-    },
+  "gpc": {
+    "id": "gpc",
+    "name": "Global privacy control",
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "120",
+        "firefox_android": "122"
+      }
+    }
   },
-  gyroscope: {
-    id: "gyroscope",
-    name: "Gyroscope",
-    group: ["sensors"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "67",
-        chrome_android: "67",
-        edge: "79",
-      },
-    },
+  "gyroscope": {
+    "id": "gyroscope",
+    "name": "Gyroscope",
+    "group": [
+      "sensors"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "67",
+        "chrome_android": "67",
+        "edge": "79"
+      }
+    }
   },
   "hardware-concurrency": {
-    id: "hardware-concurrency",
-    name: "hardwareConcurrency",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "37",
-        chrome_android: "37",
-        edge: "15",
-        firefox: "48",
-        firefox_android: "48",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "hardware-concurrency",
+    "name": "hardwareConcurrency",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "37",
+        "chrome_android": "37",
+        "edge": "15",
+        "firefox": "48",
+        "firefox_android": "48",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
-  hashchange: {
-    id: "hashchange",
-    name: "hashchange",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "16",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "11",
-        firefox_android: "14",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+  "hashchange": {
+    "id": "hashchange",
+    "name": "hashchange",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "16",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "11",
+        "firefox_android": "14",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
-  head: {
-    id: "head",
-    name: "<head>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "head": {
+    "id": "head",
+    "name": "<head>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  headings: {
-    id: "headings",
-    name: "<h1> through <h6>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "headings": {
+    "id": "headings",
+    "name": "<h1> through <h6>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
   "hidden-until-found": {
-    id: "hidden-until-found",
-    name: 'hidden="until-found"',
-    group: ["html"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "102",
-        chrome_android: "102",
-        edge: "102",
-        firefox: "148",
-        firefox_android: "148",
-      },
-    },
+    "id": "hidden-until-found",
+    "name": "hidden=\"until-found\"",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "102",
+        "chrome_android": "102",
+        "edge": "102",
+        "firefox": "148",
+        "firefox_android": "148"
+      }
+    }
   },
-  highlight: {
-    id: "highlight",
-    name: "Custom highlights",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "105",
-        chrome_android: "105",
-        edge: "105",
-        safari: "17.2",
-        safari_ios: "17.2",
-      },
-    },
+  "highlight": {
+    "id": "highlight",
+    "name": "Custom highlights",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "105",
+        "chrome_android": "105",
+        "edge": "105",
+        "safari": "17.2",
+        "safari_ios": "17.2"
+      }
+    }
   },
-  highlightsfrompoint: {
-    id: "highlightsfrompoint",
-    name: "Custom highlights from point",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "140",
-        chrome_android: "140",
-        edge: "140",
-      },
-    },
+  "highlightsfrompoint": {
+    "id": "highlightsfrompoint",
+    "name": "Custom highlights from point",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "140",
+        "chrome_android": "140",
+        "edge": "140"
+      }
+    }
   },
-  history: {
-    id: "history",
-    name: "History",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "5",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "5",
-        safari_ios: "4",
-      },
-    },
+  "history": {
+    "id": "history",
+    "name": "History",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "5",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "5",
+        "safari_ios": "4"
+      }
+    }
   },
-  hr: {
-    id: "hr",
-    name: "<hr>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "hr": {
+    "id": "hr",
+    "name": "<hr>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
-  html: {
-    id: "html",
-    name: "<html>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "html": {
+    "id": "html",
+    "name": "<html>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "html-media-capture": {
-    id: "html-media-capture",
-    name: "HTML media capture",
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "25",
-        firefox_android: "79",
-        safari_ios: "10",
-      },
-    },
+    "id": "html-media-capture",
+    "name": "HTML media capture",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "25",
+        "firefox_android": "79",
+        "safari_ios": "10"
+      }
+    }
   },
   "idle-detection": {
-    id: "idle-detection",
-    name: "Idle detection",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "94",
-        chrome_android: "94",
-        edge: "114",
-      },
-    },
+    "id": "idle-detection",
+    "name": "Idle detection",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "94",
+        "chrome_android": "94",
+        "edge": "114"
+      }
+    }
   },
-  iframe: {
-    id: "iframe",
-    name: "<iframe>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+  "iframe": {
+    "id": "iframe",
+    "name": "<iframe>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "iframe-credentialless": {
-    id: "iframe-credentialless",
-    name: "Credentialless iframes",
-    group: ["security"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "110",
-        chrome_android: "110",
-        edge: "110",
-      },
-    },
+    "id": "iframe-credentialless",
+    "name": "Credentialless iframes",
+    "group": [
+      "security"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "110",
+        "chrome_android": "110",
+        "edge": "110"
+      }
+    }
   },
   "iframe-sandbox": {
-    id: "iframe-sandbox",
-    name: "Sandboxed iframes",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "5",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "17",
-        firefox_android: "17",
-        safari: "5",
-        safari_ios: "4",
-      },
-    },
+    "id": "iframe-sandbox",
+    "name": "Sandboxed iframes",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "5",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "17",
+        "firefox_android": "17",
+        "safari": "5",
+        "safari_ios": "4"
+      }
+    }
   },
   "iframe-srcdoc": {
-    id: "iframe-srcdoc",
-    name: "srcdoc",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "20",
-        chrome_android: "25",
-        edge: "79",
-        firefox: "25",
-        firefox_android: "25",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+    "id": "iframe-srcdoc",
+    "name": "srcdoc",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "20",
+        "chrome_android": "25",
+        "edge": "79",
+        "firefox": "25",
+        "firefox_android": "25",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
   "image-maps": {
-    id: "image-maps",
-    name: "Image maps",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+    "id": "image-maps",
+    "name": "Image maps",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  imagebitmaprenderingcontext: {
-    id: "imagebitmaprenderingcontext",
-    name: "ImageBitmapRenderingContext",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "79",
-        firefox: "50",
-        firefox_android: "50",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+  "imagebitmaprenderingcontext": {
+    "id": "imagebitmaprenderingcontext",
+    "name": "ImageBitmapRenderingContext",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "79",
+        "firefox": "50",
+        "firefox_android": "50",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
-  img: {
-    id: "img",
-    name: "<img>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "img": {
+    "id": "img",
+    "name": "<img>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  import: {
-    id: "import",
-    name: "@import",
-    group: ["css"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "import": {
+    "id": "import",
+    "name": "@import",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  indexeddb: {
-    id: "indexeddb",
-    name: "IndexedDB",
-    group: ["indexeddb"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-20",
-      baseline_high_date: "2024-03-20",
-      support: {
-        chrome: "58",
-        chrome_android: "58",
-        edge: "79",
-        firefox: "51",
-        firefox_android: "51",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+  "indexeddb": {
+    "id": "indexeddb",
+    "name": "IndexedDB",
+    "group": [
+      "indexeddb"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-09-20",
+      "baseline_high_date": "2024-03-20",
+      "support": {
+        "chrome": "58",
+        "chrome_android": "58",
+        "edge": "79",
+        "firefox": "51",
+        "firefox_android": "51",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
-  inert: {
-    id: "inert",
-    name: "inert",
-    group: ["html"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-04-11",
-      baseline_high_date: "2025-10-11",
-      support: {
-        chrome: "102",
-        chrome_android: "102",
-        edge: "102",
-        firefox: "112",
-        firefox_android: "112",
-        safari: "15.5",
-        safari_ios: "15.5",
-      },
-    },
+  "inert": {
+    "id": "inert",
+    "name": "inert",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-04-11",
+      "baseline_high_date": "2025-10-11",
+      "support": {
+        "chrome": "102",
+        "chrome_android": "102",
+        "edge": "102",
+        "firefox": "112",
+        "firefox_android": "112",
+        "safari": "15.5",
+        "safari_ios": "15.5"
+      }
+    }
   },
-  ink: {
-    id: "ink",
-    name: "Ink",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "94",
-        chrome_android: "94",
-        edge: "93",
-      },
-    },
+  "ink": {
+    "id": "ink",
+    "name": "Ink",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "94",
+        "chrome_android": "94",
+        "edge": "93"
+      }
+    }
   },
-  input: {
-    id: "input",
-    name: "<input>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "input": {
+    "id": "input",
+    "name": "<input>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "input-checkbox": {
-    id: "input-checkbox",
-    name: '<input type="checkbox">',
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.6",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+    "id": "input-checkbox",
+    "name": "<input type=\"checkbox\">",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.6",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
   "input-color-alpha": {
-    id: "input-color-alpha",
-    name: "`alpha` and `colorspace` attributes for `<input type=color>`",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: false,
-      support: {
-        safari: "18.4",
-        safari_ios: "18.4",
-      },
-    },
+    "id": "input-color-alpha",
+    "name": "`alpha` and `colorspace` attributes for `<input type=color>`",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "18.4",
+        "safari_ios": "18.4"
+      }
+    }
   },
   "input-date-time": {
-    id: "input-date-time",
-    name: "Date and time <input> types",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "20",
-        chrome_android: "25",
-        edge: "12",
-        firefox: "57",
-        firefox_android: "57",
-        safari: "14.1",
-        safari_ios: "5",
-      },
-    },
+    "id": "input-date-time",
+    "name": "Date and time <input> types",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "20",
+        "chrome_android": "25",
+        "edge": "12",
+        "firefox": "57",
+        "firefox_android": "57",
+        "safari": "14.1",
+        "safari_ios": "5"
+      }
+    }
   },
   "input-event": {
-    id: "input-event",
-    name: "input (event)",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "79",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "3.1",
-        safari_ios: "2",
-      },
-    },
+    "id": "input-event",
+    "name": "input (event)",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "79",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "3.1",
+        "safari_ios": "2"
+      }
+    }
   },
   "input-file": {
-    id: "input-file",
-    name: '<input type="file">',
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "2",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "3",
-      },
-    },
+    "id": "input-file",
+    "name": "<input type=\"file\">",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "2",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "3"
+      }
+    }
   },
   "input-file-multiple": {
-    id: "input-file-multiple",
-    name: '<input type="file" multiple>',
-    group: ["forms", "file-system"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "2",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.6",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "3.2",
-      },
-    },
+    "id": "input-file-multiple",
+    "name": "<input type=\"file\" multiple>",
+    "group": [
+      "forms",
+      "file-system"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "2",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.6",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "3.2"
+      }
+    }
   },
   "input-file-webkitdirectory": {
-    id: "input-file-webkitdirectory",
-    name: '<input type="file" webkitdirectory>',
-    group: ["forms", "file-system"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-08-19",
-      support: {
-        chrome: "13",
-        chrome_android: "132",
-        edge: "13",
-        firefox: "50",
-        firefox_android: "142",
-        safari: "11.1",
-        safari_ios: "18.4",
-      },
-    },
+    "id": "input-file-webkitdirectory",
+    "name": "<input type=\"file\" webkitdirectory>",
+    "group": [
+      "forms",
+      "file-system"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-08-19",
+      "support": {
+        "chrome": "13",
+        "chrome_android": "132",
+        "edge": "13",
+        "firefox": "50",
+        "firefox_android": "142",
+        "safari": "11.1",
+        "safari_ios": "18.4"
+      }
+    }
   },
   "input-image": {
-    id: "input-image",
-    name: '<input type="image">',
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+    "id": "input-image",
+    "name": "<input type=\"image\">",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "input-number": {
-    id: "input-number",
-    name: '<input type="number">',
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "7",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "29",
-        firefox_android: "29",
-        safari: "5.1",
-        safari_ios: "5",
-      },
-    },
+    "id": "input-number",
+    "name": "<input type=\"number\">",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "7",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "29",
+        "firefox_android": "29",
+        "safari": "5.1",
+        "safari_ios": "5"
+      }
+    }
   },
-  inputmode: {
-    id: "inputmode",
-    name: "inputmode",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-12-07",
-      baseline_high_date: "2024-06-07",
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "79",
-        firefox: "95",
-        firefox_android: "79",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+  "inputmode": {
+    "id": "inputmode",
+    "name": "inputmode",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-12-07",
+      "baseline_high_date": "2024-06-07",
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "79",
+        "firefox": "95",
+        "firefox_android": "79",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
   "insertable-streams": {
-    id: "insertable-streams",
-    name: "Insertable streams for MediaStreamTrack",
-    status: {
-      baseline: false,
-      support: {
-        safari: "18",
-        safari_ios: "18",
-      },
-    },
+    "id": "insertable-streams",
+    "name": "Insertable streams for MediaStreamTrack",
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "18",
+        "safari_ios": "18"
+      }
+    }
   },
   "interest-invokers": {
-    id: "interest-invokers",
-    name: "Interest invokers",
-    group: ["html"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "142",
-        chrome_android: "142",
-        edge: "142",
-      },
-    },
+    "id": "interest-invokers",
+    "name": "Interest invokers",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "142",
+        "chrome_android": "142",
+        "edge": "142"
+      }
+    }
   },
   "intersection-observer": {
-    id: "intersection-observer",
-    name: "Intersection observer",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2019-03-25",
-      baseline_high_date: "2021-09-25",
-      support: {
-        chrome: "58",
-        chrome_android: "58",
-        edge: "16",
-        firefox: "55",
-        firefox_android: "55",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+    "id": "intersection-observer",
+    "name": "Intersection observer",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2019-03-25",
+      "baseline_high_date": "2021-09-25",
+      "support": {
+        "chrome": "58",
+        "chrome_android": "58",
+        "edge": "16",
+        "firefox": "55",
+        "firefox_android": "55",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
   "invoker-commands": {
-    id: "invoker-commands",
-    name: "Invoker commands",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-12-12",
-      support: {
-        chrome: "135",
-        chrome_android: "135",
-        edge: "135",
-        firefox: "144",
-        firefox_android: "144",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+    "id": "invoker-commands",
+    "name": "Invoker commands",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-12-12",
+      "support": {
+        "chrome": "135",
+        "chrome_android": "135",
+        "edge": "135",
+        "firefox": "144",
+        "firefox_android": "144",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
   "is-input-pending": {
-    id: "is-input-pending",
-    name: "isInputPending()",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "87",
-        chrome_android: "87",
-        edge: "87",
-      },
+    "id": "is-input-pending",
+    "name": "isInputPending()",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "87",
+        "chrome_android": "87",
+        "edge": "87"
+      }
     },
-    discouraged: {
-      according_to: ["https://web.dev/articles/optimize-long-tasks#isinputpending"],
-      alternatives: ["scheduler"],
-      reason:
-        "The navigator.scheduling.isInputPending() method may incorrectly return false and is not the only case where you might expect to yield.",
-      reason_html:
-        "The <code>navigator.scheduling.isInputPending()</code> method may incorrectly return <code>false</code> and is not the only case where you might expect to yield.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://web.dev/articles/optimize-long-tasks#isinputpending"
+      ],
+      "alternatives": [
+        "scheduler"
+      ],
+      "reason": "The navigator.scheduling.isInputPending() method may incorrectly return false and is not the only case where you might expect to yield.",
+      "reason_html": "The <code>navigator.scheduling.isInputPending()</code> method may incorrectly return <code>false</code> and is not the only case where you might expect to yield."
+    }
   },
   "is-secure-context": {
-    id: "is-secure-context",
-    name: "isSecureContext",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-04-12",
-      baseline_high_date: "2020-10-12",
-      support: {
-        chrome: "55",
-        chrome_android: "55",
-        edge: "15",
-        firefox: "52",
-        firefox_android: "52",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+    "id": "is-secure-context",
+    "name": "isSecureContext",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-04-12",
+      "baseline_high_date": "2020-10-12",
+      "support": {
+        "chrome": "55",
+        "chrome_android": "55",
+        "edge": "15",
+        "firefox": "52",
+        "firefox_android": "52",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
   "js-modules": {
-    id: "js-modules",
-    name: "JavaScript modules",
-    group: ["js-modules"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-05-09",
-      baseline_high_date: "2020-11-09",
-      support: {
-        chrome: "61",
-        chrome_android: "61",
-        edge: "16",
-        firefox: "60",
-        firefox_android: "60",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+    "id": "js-modules",
+    "name": "JavaScript modules",
+    "group": [
+      "js-modules"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-05-09",
+      "baseline_high_date": "2020-11-09",
+      "support": {
+        "chrome": "61",
+        "chrome_android": "61",
+        "edge": "16",
+        "firefox": "60",
+        "firefox_android": "60",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
   "js-modules-service-workers": {
-    id: "js-modules-service-workers",
-    name: "JavaScript modules in service workers",
-    group: ["js-modules", "workers"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2026-01-13",
-      support: {
-        chrome: "91",
-        chrome_android: "91",
-        edge: "91",
-        firefox: "147",
-        firefox_android: "147",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+    "id": "js-modules-service-workers",
+    "name": "JavaScript modules in service workers",
+    "group": [
+      "js-modules",
+      "workers"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2026-01-13",
+      "support": {
+        "chrome": "91",
+        "chrome_android": "91",
+        "edge": "91",
+        "firefox": "147",
+        "firefox_android": "147",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "js-modules-shared-workers": {
-    id: "js-modules-shared-workers",
-    name: "JavaScript modules in shared workers",
-    group: ["js-modules", "workers"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "80",
-        edge: "80",
-        firefox: "114",
-        firefox_android: "114",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+    "id": "js-modules-shared-workers",
+    "name": "JavaScript modules in shared workers",
+    "group": [
+      "js-modules",
+      "workers"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "80",
+        "edge": "80",
+        "firefox": "114",
+        "firefox_android": "114",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
   "js-modules-workers": {
-    id: "js-modules-workers",
-    name: "JavaScript modules in workers",
-    group: ["js-modules", "workers"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-06-06",
-      baseline_high_date: "2025-12-06",
-      support: {
-        chrome: "80",
-        chrome_android: "80",
-        edge: "80",
-        firefox: "114",
-        firefox_android: "114",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+    "id": "js-modules-workers",
+    "name": "JavaScript modules in workers",
+    "group": [
+      "js-modules",
+      "workers"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-06-06",
+      "baseline_high_date": "2025-12-06",
+      "support": {
+        "chrome": "80",
+        "chrome_android": "80",
+        "edge": "80",
+        "firefox": "114",
+        "firefox_android": "114",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "keyboard-events": {
-    id: "keyboard-events",
-    name: "Keyboard events",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "1.2",
-        safari_ios: "1",
-      },
-    },
+    "id": "keyboard-events",
+    "name": "Keyboard events",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "1.2",
+        "safari_ios": "1"
+      }
+    }
   },
   "keyboard-lock": {
-    id: "keyboard-lock",
-    name: "Keyboard lock",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "68",
-        chrome_android: "68",
-        edge: "79",
-      },
-    },
+    "id": "keyboard-lock",
+    "name": "Keyboard lock",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "68",
+        "chrome_android": "68",
+        "edge": "79"
+      }
+    }
   },
   "keyboard-map": {
-    id: "keyboard-map",
-    name: "Keyboard map",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "69",
-        chrome_android: "69",
-        edge: "79",
-      },
-    },
+    "id": "keyboard-map",
+    "name": "Keyboard map",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "69",
+        "chrome_android": "69",
+        "edge": "79"
+      }
+    }
   },
   "khr-parallel-shader-compile": {
-    id: "khr-parallel-shader-compile",
-    name: "KHR_parallel_shader_compile WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "76",
-        chrome_android: "76",
-        edge: "79",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "khr-parallel-shader-compile",
+    "name": "KHR_parallel_shader_compile WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "76",
+        "chrome_android": "76",
+        "edge": "79",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
-  label: {
-    id: "label",
-    name: "<label>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+  "label": {
+    "id": "label",
+    "name": "<label>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "lang-attr": {
-    id: "lang-attr",
-    name: "lang",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+    "id": "lang-attr",
+    "name": "lang",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
-  language: {
-    id: "language",
-    name: "Language",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "language": {
+    "id": "language",
+    "name": "Language",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  languagedetector: {
-    id: "languagedetector",
-    name: "Language detector",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "138",
-      },
-    },
+  "languagedetector": {
+    "id": "languagedetector",
+    "name": "Language detector",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "138"
+      }
+    }
   },
   "largest-contentful-paint": {
-    id: "largest-contentful-paint",
-    name: "Largest contentful paint (LCP)",
-    group: ["performance"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-12-12",
-      support: {
-        chrome: "77",
-        chrome_android: "77",
-        edge: "79",
-        firefox: "122",
-        firefox_android: "122",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+    "id": "largest-contentful-paint",
+    "name": "Largest contentful paint (LCP)",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-12-12",
+      "support": {
+        "chrome": "77",
+        "chrome_android": "77",
+        "edge": "79",
+        "firefox": "122",
+        "firefox_android": "122",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
   "layout-instability": {
-    id: "layout-instability",
-    name: "Layout instability",
-    group: ["performance"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "84",
-        chrome_android: "84",
-        edge: "84",
-      },
-    },
+    "id": "layout-instability",
+    "name": "Layout instability",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "84",
+        "chrome_android": "84",
+        "edge": "84"
+      }
+    }
   },
-  link: {
-    id: "link",
-    name: "<link>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+  "link": {
+    "id": "link",
+    "name": "<link>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "link-rel-prefetch": {
-    id: "link-rel-prefetch",
-    name: '<link rel="prefetch">',
-    group: ["resource-hints"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "8",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "2",
-        firefox_android: "4",
-      },
-    },
+    "id": "link-rel-prefetch",
+    "name": "<link rel=\"prefetch\">",
+    "group": [
+      "resource-hints"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "8",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "2",
+        "firefox_android": "4"
+      }
+    }
   },
   "list-elements": {
-    id: "list-elements",
-    name: "<ol>, <ul>, and <li>",
-    group: ["html-elements", "lists"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+    "id": "list-elements",
+    "name": "<ol>, <ul>, and <li>",
+    "group": [
+      "html-elements",
+      "lists"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "loading-lazy": {
-    id: "loading-lazy",
-    name: "Lazy-loading images and iframes",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-12-19",
-      support: {
-        chrome: "77",
-        chrome_android: "77",
-        edge: "79",
-        firefox: "121",
-        firefox_android: "121",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "loading-lazy",
+    "name": "Lazy-loading images and iframes",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-12-19",
+      "support": {
+        "chrome": "77",
+        "chrome_android": "77",
+        "edge": "79",
+        "firefox": "121",
+        "firefox_android": "121",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "local-fonts": {
-    id: "local-fonts",
-    name: "Local fonts",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "103",
-        edge: "103",
-      },
-    },
+    "id": "local-fonts",
+    "name": "Local fonts",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "103",
+        "edge": "103"
+      }
+    }
   },
   "local-network-access": {
-    id: "local-network-access",
-    name: "Local network access",
-    status: {
-      baseline: false,
-      support: {},
-    },
+    "id": "local-network-access",
+    "name": "Local network access",
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
-  localstorage: {
-    id: "localstorage",
-    name: "localStorage and sessionStorage",
-    group: ["storage"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "4",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "6",
-        safari: "4",
-        safari_ios: "3.2",
-      },
-    },
+  "localstorage": {
+    "id": "localstorage",
+    "name": "localStorage and sessionStorage",
+    "group": [
+      "storage"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "4",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "6",
+        "safari": "4",
+        "safari_ios": "3.2"
+      }
+    }
   },
-  location: {
-    id: "location",
-    name: "Location",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "location": {
+    "id": "location",
+    "name": "Location",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "long-animation-frames": {
-    id: "long-animation-frames",
-    name: "Long animation frames",
-    group: ["performance"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "123",
-        chrome_android: "123",
-        edge: "123",
-      },
-    },
+    "id": "long-animation-frames",
+    "name": "Long animation frames",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "123",
+        "chrome_android": "123",
+        "edge": "123"
+      }
+    }
   },
-  longtasks: {
-    id: "longtasks",
-    name: "Long tasks",
-    group: ["performance"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "58",
-        chrome_android: "58",
-        edge: "79",
-      },
-    },
+  "longtasks": {
+    "id": "longtasks",
+    "name": "Long tasks",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "58",
+        "chrome_android": "58",
+        "edge": "79"
+      }
+    }
   },
-  magnetometer: {
-    id: "magnetometer",
-    name: "Magnetometer",
-    group: ["sensors"],
-    status: {
-      baseline: false,
-      support: {},
-    },
+  "magnetometer": {
+    "id": "magnetometer",
+    "name": "Magnetometer",
+    "group": [
+      "sensors"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
   "managed-media-source": {
-    id: "managed-media-source",
-    name: "Managed media source",
-    status: {
-      baseline: false,
-      support: {
-        safari: "17",
-        safari_ios: "17.1",
-      },
-    },
+    "id": "managed-media-source",
+    "name": "Managed media source",
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "17",
+        "safari_ios": "17.1"
+      }
+    }
   },
-  matchmedia: {
-    id: "matchmedia",
-    name: "matchMedia",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "9",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "5.1",
-        safari_ios: "5",
-      },
-    },
+  "matchmedia": {
+    "id": "matchmedia",
+    "name": "matchMedia",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "9",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "5.1",
+        "safari_ios": "5"
+      }
+    }
   },
-  mathml: {
-    id: "mathml",
-    name: "MathML",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-01-12",
-      baseline_high_date: "2025-07-12",
-      support: {
-        chrome: "109",
-        chrome_android: "109",
-        edge: "109",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "5.1",
-        safari_ios: "5",
-      },
-    },
+  "mathml": {
+    "id": "mathml",
+    "name": "MathML",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-01-12",
+      "baseline_high_date": "2025-07-12",
+      "support": {
+        "chrome": "109",
+        "chrome_android": "109",
+        "edge": "109",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "5.1",
+        "safari_ios": "5"
+      }
+    }
   },
   "measure-memory": {
-    id: "measure-memory",
-    name: "Memory measurement",
-    group: ["performance"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "89",
-        chrome_android: "89",
-        edge: "89",
-      },
-    },
+    "id": "measure-memory",
+    "name": "Memory measurement",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "89",
+        "chrome_android": "89",
+        "edge": "89"
+      }
+    }
   },
   "media-capabilities": {
-    id: "media-capabilities",
-    name: "Media capabilities",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-04-28",
-      baseline_high_date: "2024-10-28",
-      support: {
-        chrome: "101",
-        chrome_android: "101",
-        edge: "101",
-        firefox: "63",
-        firefox_android: "63",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "media-capabilities",
+    "name": "Media capabilities",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-04-28",
+      "baseline_high_date": "2024-10-28",
+      "support": {
+        "chrome": "101",
+        "chrome_android": "101",
+        "edge": "101",
+        "firefox": "63",
+        "firefox_android": "63",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "media-capture": {
-    id: "media-capture",
-    name: "Media capture",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-09-19",
-      baseline_high_date: "2020-03-19",
-      support: {
-        chrome: "53",
-        chrome_android: "53",
-        edge: "12",
-        firefox: "36",
-        firefox_android: "36",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+    "id": "media-capture",
+    "name": "Media capture",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-09-19",
+      "baseline_high_date": "2020-03-19",
+      "support": {
+        "chrome": "53",
+        "chrome_android": "53",
+        "edge": "12",
+        "firefox": "36",
+        "firefox_android": "36",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
   "media-playback-quality": {
-    id: "media-playback-quality",
-    name: "Media playback quality",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-02-04",
-      baseline_high_date: "2022-08-04",
-      support: {
-        chrome: "80",
-        chrome_android: "80",
-        edge: "12",
-        firefox: "42",
-        firefox_android: "42",
-        safari: "8",
-        safari_ios: "12.2",
-      },
-    },
+    "id": "media-playback-quality",
+    "name": "Media playback quality",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-02-04",
+      "baseline_high_date": "2022-08-04",
+      "support": {
+        "chrome": "80",
+        "chrome_android": "80",
+        "edge": "12",
+        "firefox": "42",
+        "firefox_android": "42",
+        "safari": "8",
+        "safari_ios": "12.2"
+      }
+    }
   },
   "media-session": {
-    id: "media-session",
-    name: "Media session",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "73",
-        chrome_android: "57",
-        edge: "79",
-        firefox: "82",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+    "id": "media-session",
+    "name": "Media session",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "73",
+        "chrome_android": "57",
+        "edge": "79",
+        "firefox": "82",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "media-source": {
-    id: "media-source",
-    name: "Media source",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "31",
-        chrome_android: "31",
-        edge: "12",
-        firefox: "42",
-        firefox_android: "41",
-        safari: "8",
-      },
-    },
+    "id": "media-source",
+    "name": "Media source",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "31",
+        "chrome_android": "31",
+        "edge": "12",
+        "firefox": "42",
+        "firefox_android": "41",
+        "safari": "8"
+      }
+    }
   },
-  mediacontroller: {
-    id: "mediacontroller",
-    name: "MediaController",
-    status: {
-      baseline: false,
-      support: {
-        safari: "7",
-        safari_ios: "7",
-      },
+  "mediacontroller": {
+    "id": "mediacontroller",
+    "name": "MediaController",
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "7",
+        "safari_ios": "7"
+      }
     },
-    discouraged: {
-      according_to: ["https://github.com/w3c/html/issues/246"],
-      reason:
-        "The MediaController API was dropped from the specification due to lack of implementations.",
-      reason_html:
-        "The <code>MediaController</code> API was dropped from the specification due to lack of implementations.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://github.com/w3c/html/issues/246"
+      ],
+      "reason": "The MediaController API was dropped from the specification due to lack of implementations.",
+      "reason_html": "The <code>MediaController</code> API was dropped from the specification due to lack of implementations."
+    }
   },
   "mediastream-recording": {
-    id: "mediastream-recording",
-    name: "MediaStream recording",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "49",
-        chrome_android: "49",
-        edge: "79",
-        firefox: "25",
-        firefox_android: "25",
-        safari: "14.1",
-        safari_ios: "14",
-      },
-    },
+    "id": "mediastream-recording",
+    "name": "MediaStream recording",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "49",
+        "chrome_android": "49",
+        "edge": "79",
+        "firefox": "25",
+        "firefox_android": "25",
+        "safari": "14.1",
+        "safari_ios": "14"
+      }
+    }
   },
-  menu: {
-    id: "menu",
-    name: "<menu>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "menu": {
+    "id": "menu",
+    "name": "<menu>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
-  messageerror: {
-    id: "messageerror",
-    name: "messageerror",
-    group: ["messaging"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "60",
-        chrome_android: "60",
-        edge: "18",
-        firefox: "57",
-        firefox_android: "57",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+  "messageerror": {
+    "id": "messageerror",
+    "name": "messageerror",
+    "group": [
+      "messaging"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "60",
+        "chrome_android": "60",
+        "edge": "18",
+        "firefox": "57",
+        "firefox_android": "57",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  meta: {
-    id: "meta",
-    name: "<meta>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "meta": {
+    "id": "meta",
+    "name": "<meta>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  meter: {
-    id: "meter",
-    name: "<meter>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-10-02",
-      baseline_high_date: "2021-04-02",
-      support: {
-        chrome: "6",
-        chrome_android: "18",
-        edge: "18",
-        firefox: "56",
-        firefox_android: "56",
-        safari: "6",
-        safari_ios: "10.3",
-      },
-    },
+  "meter": {
+    "id": "meter",
+    "name": "<meter>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-10-02",
+      "baseline_high_date": "2021-04-02",
+      "support": {
+        "chrome": "6",
+        "chrome_android": "18",
+        "edge": "18",
+        "firefox": "56",
+        "firefox_android": "56",
+        "safari": "6",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "mouse-events": {
-    id: "mouse-events",
-    name: "Mouse events",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+    "id": "mouse-events",
+    "name": "Mouse events",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "move-before": {
-    id: "move-before",
-    name: "moveBefore()",
-    group: ["dom"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "133",
-        chrome_android: "133",
-        edge: "133",
-        firefox: "144",
-        firefox_android: "144",
-      },
-    },
+    "id": "move-before",
+    "name": "moveBefore()",
+    "group": [
+      "dom"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "133",
+        "chrome_android": "133",
+        "edge": "133",
+        "firefox": "144",
+        "firefox_android": "144"
+      }
+    }
   },
   "mutation-events": {
-    id: "mutation-events",
-    name: "Mutation events",
-    group: ["dom"],
-    status: {
-      baseline: false,
-      support: {},
+    "id": "mutation-events",
+    "name": "Mutation events",
+    "group": [
+      "dom"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
     },
-    discouraged: {
-      according_to: [
+    "discouraged": {
+      "according_to": [
         "https://www.w3.org/TR/2024/WD-uievents-20240906/#legacy-mutationevent-events",
-        "https://github.com/web-platform-tests/interop/issues/784",
+        "https://github.com/web-platform-tests/interop/issues/784"
       ],
-      alternatives: ["mutationobserver"],
-      reason:
-        "Mutation events negatively impact performance and they were selected for removal from the web as part of Interop 2025.",
-      reason_html:
-        "Mutation events negatively impact performance and they were selected for removal from the web as part of Interop 2025.",
-      removal_date: "2025-09-15",
-    },
+      "alternatives": [
+        "mutationobserver"
+      ],
+      "reason": "Mutation events negatively impact performance and they were selected for removal from the web as part of Interop 2025.",
+      "reason_html": "Mutation events negatively impact performance and they were selected for removal from the web as part of Interop 2025.",
+      "removal_date": "2025-09-15"
+    }
   },
-  mutationobserver: {
-    id: "mutationobserver",
-    name: "MutationObserver",
-    group: ["dom"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "26",
-        chrome_android: "26",
-        edge: "12",
-        firefox: "14",
-        firefox_android: "14",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+  "mutationobserver": {
+    "id": "mutationobserver",
+    "name": "MutationObserver",
+    "group": [
+      "dom"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "26",
+        "chrome_android": "26",
+        "edge": "12",
+        "firefox": "14",
+        "firefox_android": "14",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
-  namespace: {
-    id: "namespace",
-    name: "@namespace",
-    group: ["css", "selectors"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "namespace": {
+    "id": "namespace",
+    "name": "@namespace",
+    "group": [
+      "css",
+      "selectors"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  navigation: {
-    id: "navigation",
-    name: "Navigation API",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2026-01-13",
-      support: {
-        chrome: "102",
-        chrome_android: "102",
-        edge: "102",
-        firefox: "147",
-        firefox_android: "147",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+  "navigation": {
+    "id": "navigation",
+    "name": "Navigation API",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2026-01-13",
+      "support": {
+        "chrome": "102",
+        "chrome_android": "102",
+        "edge": "102",
+        "firefox": "147",
+        "firefox_android": "147",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
   "navigation-precommit-handlers": {
-    id: "navigation-precommit-handlers",
-    name: "Navigation precommit handlers",
-    status: {
-      baseline: false,
-      support: {
-        firefox: "148",
-        firefox_android: "148",
-      },
-    },
+    "id": "navigation-precommit-handlers",
+    "name": "Navigation precommit handlers",
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "148",
+        "firefox_android": "148"
+      }
+    }
   },
   "navigation-timing": {
-    id: "navigation-timing",
-    name: "Navigation timing",
-    group: ["performance"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-10-25",
-      baseline_high_date: "2024-04-25",
-      support: {
-        chrome: "57",
-        chrome_android: "57",
-        edge: "12",
-        firefox: "58",
-        firefox_android: "58",
-        safari: "15",
-        safari_ios: "15.1",
-      },
-    },
+    "id": "navigation-timing",
+    "name": "Navigation timing",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-10-25",
+      "baseline_high_date": "2024-04-25",
+      "support": {
+        "chrome": "57",
+        "chrome_android": "57",
+        "edge": "12",
+        "firefox": "58",
+        "firefox_android": "58",
+        "safari": "15",
+        "safari_ios": "15.1"
+      }
+    }
   },
-  navigator: {
-    id: "navigator",
-    name: "Navigator",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "navigator": {
+    "id": "navigator",
+    "name": "Navigator",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  nesting: {
-    id: "nesting",
-    name: "Nesting",
-    group: ["css"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-12-11",
-      support: {
-        chrome: "120",
-        chrome_android: "120",
-        edge: "120",
-        firefox: "117",
-        firefox_android: "117",
-        safari: "17.2",
-        safari_ios: "17.2",
-      },
-    },
+  "nesting": {
+    "id": "nesting",
+    "name": "Nesting",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-12-11",
+      "support": {
+        "chrome": "120",
+        "chrome_android": "120",
+        "edge": "120",
+        "firefox": "117",
+        "firefox_android": "117",
+        "safari": "17.2",
+        "safari_ios": "17.2"
+      }
+    }
   },
   "network-information": {
-    id: "network-information",
-    name: "Network Information",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "67",
-        chrome_android: "67",
-      },
-    },
+    "id": "network-information",
+    "name": "Network Information",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "67",
+        "chrome_android": "67"
+      }
+    }
   },
   "non-cookie-storage-access": {
-    id: "non-cookie-storage-access",
-    name: "Non-cookie storage access",
-    group: ["storage"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "125",
-      },
-    },
+    "id": "non-cookie-storage-access",
+    "name": "Non-cookie storage access",
+    "group": [
+      "storage"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "125"
+      }
+    }
   },
-  notifications: {
-    id: "notifications",
-    name: "Notifications",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "20",
-        edge: "14",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "7",
-      },
-    },
+  "notifications": {
+    "id": "notifications",
+    "name": "Notifications",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "20",
+        "edge": "14",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "7"
+      }
+    }
   },
   "numeric-factory-functions": {
-    id: "numeric-factory-functions",
-    name: "Numeric factory functions",
-    group: ["cssom"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "79",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "numeric-factory-functions",
+    "name": "Numeric factory functions",
+    "group": [
+      "cssom"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "79",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  object: {
-    id: "object",
-    name: "<object>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "2",
-      },
-    },
+  "object": {
+    "id": "object",
+    "name": "<object>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "2"
+      }
+    }
   },
-  observable: {
-    id: "observable",
-    name: "Observable",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "135",
-        chrome_android: "135",
-        edge: "135",
-      },
-    },
+  "observable": {
+    "id": "observable",
+    "name": "Observable",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "135",
+        "chrome_android": "135",
+        "edge": "135"
+      }
+    }
   },
   "oes-element-index-uint": {
-    id: "oes-element-index-uint",
-    name: "OES_element_index_uint WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "24",
-        chrome_android: "25",
-        edge: "12",
-        firefox: "24",
-        firefox_android: "24",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "oes-element-index-uint",
+    "name": "OES_element_index_uint WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "24",
+        "chrome_android": "25",
+        "edge": "12",
+        "firefox": "24",
+        "firefox_android": "24",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "oes-fbo-render-mipmap": {
-    id: "oes-fbo-render-mipmap",
-    name: "OES_fbo_render_mipmap WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "80",
-        chrome_android: "80",
-        edge: "80",
-        firefox: "71",
-        firefox_android: "79",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "oes-fbo-render-mipmap",
+    "name": "OES_fbo_render_mipmap WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "80",
+        "chrome_android": "80",
+        "edge": "80",
+        "firefox": "71",
+        "firefox_android": "79",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "oes-standard-derivatives": {
-    id: "oes-standard-derivatives",
-    name: "OES_standard_derivatives WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "10",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "10",
-        firefox_android: "10",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "oes-standard-derivatives",
+    "name": "OES_standard_derivatives WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "10",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "10",
+        "firefox_android": "10",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "oes-texture-float": {
-    id: "oes-texture-float",
-    name: "OES_texture_float WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "10",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "oes-texture-float",
+    "name": "OES_texture_float WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "10",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "oes-texture-float-linear": {
-    id: "oes-texture-float-linear",
-    name: "OES_texture_float_linear WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "29",
-        chrome_android: "29",
-        edge: "12",
-        firefox: "24",
-        firefox_android: "24",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "oes-texture-float-linear",
+    "name": "OES_texture_float_linear WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "29",
+        "chrome_android": "29",
+        "edge": "12",
+        "firefox": "24",
+        "firefox_android": "24",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "oes-texture-half-float": {
-    id: "oes-texture-half-float",
-    name: "OES_texture_half_float WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-08-02",
-      baseline_high_date: "2019-02-02",
-      support: {
-        chrome: "27",
-        chrome_android: "27",
-        edge: "14",
-        firefox: "29",
-        firefox_android: "29",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "oes-texture-half-float",
+    "name": "OES_texture_half_float WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-08-02",
+      "baseline_high_date": "2019-02-02",
+      "support": {
+        "chrome": "27",
+        "chrome_android": "27",
+        "edge": "14",
+        "firefox": "29",
+        "firefox_android": "29",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "oes-texture-half-float-linear": {
-    id: "oes-texture-half-float-linear",
-    name: "OES_texture_half_float_linear WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "29",
-        chrome_android: "29",
-        edge: "14",
-        firefox: "30",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "oes-texture-half-float-linear",
+    "name": "OES_texture_half_float_linear WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "29",
+        "chrome_android": "29",
+        "edge": "14",
+        "firefox": "30",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "oes-vertex-array-object": {
-    id: "oes-vertex-array-object",
-    name: "OES_vertex_array_object WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-04-30",
-      baseline_high_date: "2020-10-30",
-      support: {
-        chrome: "24",
-        chrome_android: "25",
-        edge: "17",
-        firefox: "25",
-        firefox_android: "25",
-        safari: "8",
-        safari_ios: "9",
-      },
-    },
+    "id": "oes-vertex-array-object",
+    "name": "OES_vertex_array_object WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-04-30",
+      "baseline_high_date": "2020-10-30",
+      "support": {
+        "chrome": "24",
+        "chrome_android": "25",
+        "edge": "17",
+        "firefox": "25",
+        "firefox_android": "25",
+        "safari": "8",
+        "safari_ios": "9"
+      }
+    }
   },
   "offline-audio-context": {
-    id: "offline-audio-context",
-    name: "OfflineAudioContext",
-    group: ["web-audio"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "35",
-        chrome_android: "35",
-        edge: "12",
-        firefox: "25",
-        firefox_android: "25",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "offline-audio-context",
+    "name": "OfflineAudioContext",
+    "group": [
+      "web-audio"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "35",
+        "chrome_android": "35",
+        "edge": "12",
+        "firefox": "25",
+        "firefox_android": "25",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "offscreen-canvas": {
-    id: "offscreen-canvas",
-    name: "Offscreen canvas",
-    group: ["canvas"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "69",
-        chrome_android: "69",
-        edge: "79",
-        firefox: "105",
-        firefox_android: "105",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "offscreen-canvas",
+    "name": "Offscreen canvas",
+    "group": [
+      "canvas"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "69",
+        "chrome_android": "69",
+        "edge": "79",
+        "firefox": "105",
+        "firefox_android": "105",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  online: {
-    id: "online",
-    name: "Online status",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "2",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1.5",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "3.2",
-      },
-    },
+  "online": {
+    "id": "online",
+    "name": "Online status",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "2",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1.5",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "3.2"
+      }
+    }
   },
   "orientation-sensor": {
-    id: "orientation-sensor",
-    name: "Orientation Sensor",
-    group: ["sensors"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "67",
-        chrome_android: "67",
-        edge: "79",
-      },
-    },
+    "id": "orientation-sensor",
+    "name": "Orientation Sensor",
+    "group": [
+      "sensors"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "67",
+        "chrome_android": "67",
+        "edge": "79"
+      }
+    }
   },
-  origin: {
-    id: "origin",
-    name: "Origin",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "145",
-        chrome_android: "145",
-        edge: "145",
-      },
-    },
+  "origin": {
+    "id": "origin",
+    "name": "Origin",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "145",
+        "chrome_android": "145",
+        "edge": "145"
+      }
+    }
   },
   "origin-private-file-system": {
-    id: "origin-private-file-system",
-    name: "Origin private file system",
-    group: ["file-system"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "108",
-        chrome_android: "109",
-        edge: "108",
-        firefox: "111",
-        firefox_android: "111",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "origin-private-file-system",
+    "name": "Origin private file system",
+    "group": [
+      "file-system"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "108",
+        "chrome_android": "109",
+        "edge": "108",
+        "firefox": "111",
+        "firefox_android": "111",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  output: {
-    id: "output",
-    name: "<output>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "≤2018-10-02",
-      baseline_high_date: "≤2021-04-02",
-      support: {
-        chrome: "10",
-        chrome_android: "18",
-        edge: "≤18",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+  "output": {
+    "id": "output",
+    "name": "<output>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "≤2018-10-02",
+      "baseline_high_date": "≤2021-04-02",
+      "support": {
+        "chrome": "10",
+        "chrome_android": "18",
+        "edge": "≤18",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
   "ovr-multiview2": {
-    id: "ovr-multiview2",
-    name: "OVR_multiview2 WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "93",
-      },
-    },
+    "id": "ovr-multiview2",
+    "name": "OVR_multiview2 WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "93"
+      }
+    }
   },
-  p: {
-    id: "p",
-    name: "<p>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "p": {
+    "id": "p",
+    "name": "<p>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
   "page-lifecycle": {
-    id: "page-lifecycle",
-    name: "Page lifecycle",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "68",
-        chrome_android: "68",
-        edge: "79",
-      },
-    },
+    "id": "page-lifecycle",
+    "name": "Page lifecycle",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "68",
+        "chrome_android": "68",
+        "edge": "79"
+      }
+    }
   },
   "page-transition-events": {
-    id: "page-transition-events",
-    name: "Page transition events",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "4",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1.5",
-        firefox_android: "4",
-        safari: "5",
-        safari_ios: "4",
-      },
-    },
+    "id": "page-transition-events",
+    "name": "Page transition events",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "4",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1.5",
+        "firefox_android": "4",
+        "safari": "5",
+        "safari_ios": "4"
+      }
+    }
   },
   "page-visibility": {
-    id: "page-visibility",
-    name: "Page visibility",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "33",
-        chrome_android: "33",
-        edge: "12",
-        firefox: "18",
-        firefox_android: "18",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+    "id": "page-visibility",
+    "name": "Page visibility",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "33",
+        "chrome_android": "33",
+        "edge": "12",
+        "firefox": "18",
+        "firefox_android": "18",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
   "page-visibility-state": {
-    id: "page-visibility-state",
-    name: "Page visibility state",
-    group: ["performance"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "115",
-        chrome_android: "115",
-        edge: "115",
-      },
-    },
+    "id": "page-visibility-state",
+    "name": "Page visibility state",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "115",
+        "chrome_android": "115",
+        "edge": "115"
+      }
+    }
   },
-  paint: {
-    id: "paint",
-    name: "paint()",
-    group: ["css", "worklets"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "65",
-        chrome_android: "65",
-        edge: "79",
-      },
-    },
+  "paint": {
+    "id": "paint",
+    "name": "paint()",
+    "group": [
+      "css",
+      "worklets"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "65",
+        "chrome_android": "65",
+        "edge": "79"
+      }
+    }
   },
   "paint-timing": {
-    id: "paint-timing",
-    name: "Paint timing",
-    group: ["performance"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "60",
-        chrome_android: "60",
-        edge: "79",
-        firefox: "84",
-        firefox_android: "84",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "paint-timing",
+    "name": "Paint timing",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "60",
+        "chrome_android": "60",
+        "edge": "79",
+        "firefox": "84",
+        "firefox_android": "84",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "parse-html-unsafe": {
-    id: "parse-html-unsafe",
-    name: "Unsanitized HTML parsing methods",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-09-15",
-      support: {
-        chrome: "124",
-        chrome_android: "124",
-        edge: "124",
-        firefox: "128",
-        firefox_android: "128",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+    "id": "parse-html-unsafe",
+    "name": "Unsanitized HTML parsing methods",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-09-15",
+      "support": {
+        "chrome": "124",
+        "chrome_android": "124",
+        "edge": "124",
+        "firefox": "128",
+        "firefox_android": "128",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
   "partitioned-cookies": {
-    id: "partitioned-cookies",
-    name: "Partitioned cookies",
-    group: ["cookies"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "114",
-        chrome_android: "114",
-        edge: "114",
-      },
-    },
+    "id": "partitioned-cookies",
+    "name": "Partitioned cookies",
+    "group": [
+      "cookies"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "114",
+        "chrome_android": "114",
+        "edge": "114"
+      }
+    }
   },
   "password-credentials": {
-    id: "password-credentials",
-    name: "Password credentials",
-    group: ["credential-management"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "60",
-        chrome_android: "60",
-        edge: "79",
-      },
-    },
+    "id": "password-credentials",
+    "name": "Password credentials",
+    "group": [
+      "credential-management"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "60",
+        "chrome_android": "60",
+        "edge": "79"
+      }
+    }
   },
   "payment-handler": {
-    id: "payment-handler",
-    name: "Payment handler",
-    group: ["payments"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "70",
-        chrome_android: "70",
-        edge: "79",
-      },
-    },
+    "id": "payment-handler",
+    "name": "Payment handler",
+    "group": [
+      "payments"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "70",
+        "chrome_android": "70",
+        "edge": "79"
+      }
+    }
   },
   "payment-request": {
-    id: "payment-request",
-    name: "Payment request",
-    group: ["payments"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "60",
-        chrome_android: "53",
-        edge: "15",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+    "id": "payment-request",
+    "name": "Payment request",
+    "group": [
+      "payments"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "60",
+        "chrome_android": "53",
+        "edge": "15",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
   "pdf-viewer": {
-    id: "pdf-viewer",
-    name: "pdfViewerEnabled",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "94",
-        chrome_android: "94",
-        edge: "94",
-        firefox: "99",
-        firefox_android: "99",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "pdf-viewer",
+    "name": "pdfViewerEnabled",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "94",
+        "chrome_android": "94",
+        "edge": "94",
+        "firefox": "99",
+        "firefox_android": "99",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  performance: {
-    id: "performance",
-    name: "Performance",
-    group: ["performance"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-16",
-      baseline_high_date: "2018-03-16",
-      support: {
-        chrome: "6",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "7",
-        firefox_android: "7",
-        safari: "8",
-        safari_ios: "9",
-      },
-    },
+  "performance": {
+    "id": "performance",
+    "name": "Performance",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-16",
+      "baseline_high_date": "2018-03-16",
+      "support": {
+        "chrome": "6",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "7",
+        "firefox_android": "7",
+        "safari": "8",
+        "safari_ios": "9"
+      }
+    }
   },
-  performancetiming: {
-    id: "performancetiming",
-    name: "PerformanceTiming and PerformanceNavigation",
-    group: ["performance"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "56",
-        chrome_android: "56",
-        edge: "18",
-        firefox: "56",
-        firefox_android: "56",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
+  "performancetiming": {
+    "id": "performancetiming",
+    "name": "PerformanceTiming and PerformanceNavigation",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "56",
+        "chrome_android": "56",
+        "edge": "18",
+        "firefox": "56",
+        "firefox_android": "56",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
     },
-    discouraged: {
-      according_to: ["https://w3c.github.io/navigation-timing/#obsolete"],
-      alternatives: ["performance", "navigation-timing"],
-      reason: "This feature is supserseded by the PerformanceNavigationTiming API.",
-      reason_html:
-        "This feature is supserseded by the <code>PerformanceNavigationTiming</code> API.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://w3c.github.io/navigation-timing/#obsolete"
+      ],
+      "alternatives": [
+        "performance",
+        "navigation-timing"
+      ],
+      "reason": "This feature is supserseded by the PerformanceNavigationTiming API.",
+      "reason_html": "This feature is supserseded by the <code>PerformanceNavigationTiming</code> API."
+    }
   },
   "periodic-background-sync": {
-    id: "periodic-background-sync",
-    name: "Periodic background sync",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "80",
-        chrome_android: "80",
-        edge: "80",
-      },
-    },
+    "id": "periodic-background-sync",
+    "name": "Periodic background sync",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "80",
+        "chrome_android": "80",
+        "edge": "80"
+      }
+    }
   },
-  permissions: {
-    id: "permissions",
-    name: "Permissions",
-    group: ["security"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-09-12",
-      baseline_high_date: "2025-03-12",
-      support: {
-        chrome: "44",
-        chrome_android: "44",
-        edge: "79",
-        firefox: "46",
-        firefox_android: "46",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+  "permissions": {
+    "id": "permissions",
+    "name": "Permissions",
+    "group": [
+      "security"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-09-12",
+      "baseline_high_date": "2025-03-12",
+      "support": {
+        "chrome": "44",
+        "chrome_android": "44",
+        "edge": "79",
+        "firefox": "46",
+        "firefox_android": "46",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
   "permissions-policy": {
-    id: "permissions-policy",
-    name: "Permissions policy",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "108",
-        chrome_android: "108",
-        edge: "108",
-      },
-    },
+    "id": "permissions-policy",
+    "name": "Permissions policy",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "108",
+        "chrome_android": "108",
+        "edge": "108"
+      }
+    }
   },
-  picture: {
-    id: "picture",
-    name: "<picture>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-03-21",
-      baseline_high_date: "2018-09-21",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "13",
-        firefox: "38",
-        firefox_android: "38",
-        safari: "9.1",
-        safari_ios: "9.3",
-      },
-    },
+  "picture": {
+    "id": "picture",
+    "name": "<picture>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-03-21",
+      "baseline_high_date": "2018-09-21",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "13",
+        "firefox": "38",
+        "firefox_android": "38",
+        "safari": "9.1",
+        "safari_ios": "9.3"
+      }
+    }
   },
   "picture-in-picture": {
-    id: "picture-in-picture",
-    name: "Picture-in-picture (video)",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "69",
-        chrome_android: "105",
-        edge: "79",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+    "id": "picture-in-picture",
+    "name": "Picture-in-picture (video)",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "69",
+        "chrome_android": "105",
+        "edge": "79",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
-  ping: {
-    id: "ping",
-    name: "ping",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "12",
-        chrome_android: "18",
-        edge: "17",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+  "ping": {
+    "id": "ping",
+    "name": "ping",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "12",
+        "chrome_android": "18",
+        "edge": "17",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
   "pointer-events-api": {
-    id: "pointer-events-api",
-    name: "Pointer Events",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-07-28",
-      baseline_high_date: "2023-01-28",
-      support: {
-        chrome: "55",
-        chrome_android: "55",
-        edge: "12",
-        firefox: "59",
-        firefox_android: "79",
-        safari: "13",
-        safari_ios: "13",
-      },
-    },
+    "id": "pointer-events-api",
+    "name": "Pointer Events",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-07-28",
+      "baseline_high_date": "2023-01-28",
+      "support": {
+        "chrome": "55",
+        "chrome_android": "55",
+        "edge": "12",
+        "firefox": "59",
+        "firefox_android": "79",
+        "safari": "13",
+        "safari_ios": "13"
+      }
+    }
   },
   "pointer-lock": {
-    id: "pointer-lock",
-    name: "Pointer lock",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "37",
-        edge: "13",
-        firefox: "50",
-        firefox_android: "50",
-        safari: "10.1",
-      },
-    },
+    "id": "pointer-lock",
+    "name": "Pointer lock",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "37",
+        "edge": "13",
+        "firefox": "50",
+        "firefox_android": "50",
+        "safari": "10.1"
+      }
+    }
   },
-  popover: {
-    id: "popover",
-    name: "Popover",
-    group: ["html"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-01-27",
-      support: {
-        chrome: "116",
-        chrome_android: "116",
-        edge: "116",
-        firefox: "125",
-        firefox_android: "125",
-        safari: "17",
-        safari_ios: "18.3",
-      },
-    },
+  "popover": {
+    "id": "popover",
+    "name": "Popover",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-01-27",
+      "support": {
+        "chrome": "116",
+        "chrome_android": "116",
+        "edge": "116",
+        "firefox": "125",
+        "firefox_android": "125",
+        "safari": "17",
+        "safari_ios": "18.3"
+      }
+    }
   },
   "popover-hint": {
-    id: "popover-hint",
-    name: 'popover="hint"',
-    group: ["html"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "133",
-        chrome_android: "133",
-        edge: "133",
-      },
-    },
+    "id": "popover-hint",
+    "name": "popover=\"hint\"",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "133",
+        "chrome_android": "133",
+        "edge": "133"
+      }
+    }
   },
-  postmessage: {
-    id: "postmessage",
-    name: "postMessage",
-    group: ["messaging"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "2",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "3.2",
-      },
-    },
+  "postmessage": {
+    "id": "postmessage",
+    "name": "postMessage",
+    "group": [
+      "messaging"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "2",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "3.2"
+      }
+    }
   },
-  pre: {
-    id: "pre",
-    name: "<pre>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+  "pre": {
+    "id": "pre",
+    "name": "<pre>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "preloading-responsive-images": {
-    id: "preloading-responsive-images",
-    name: "Preloading responsive images",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-12-11",
-      support: {
-        chrome: "73",
-        chrome_android: "73",
-        edge: "79",
-        firefox: "78",
-        firefox_android: "79",
-        safari: "17.2",
-        safari_ios: "17.2",
-      },
-    },
+    "id": "preloading-responsive-images",
+    "name": "Preloading responsive images",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-12-11",
+      "support": {
+        "chrome": "73",
+        "chrome_android": "73",
+        "edge": "79",
+        "firefox": "78",
+        "firefox_android": "79",
+        "safari": "17.2",
+        "safari_ios": "17.2"
+      }
+    }
   },
   "presentation-api": {
-    id: "presentation-api",
-    name: "Presentation API",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "47",
-        chrome_android: "47",
-        edge: "79",
-      },
-    },
+    "id": "presentation-api",
+    "name": "Presentation API",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "47",
+        "chrome_android": "47",
+        "edge": "79"
+      }
+    }
   },
   "preserves-pitch": {
-    id: "preserves-pitch",
-    name: "preservesPitch",
-    group: ["media-elements"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-12-11",
-      support: {
-        chrome: "86",
-        chrome_android: "86",
-        edge: "86",
-        firefox: "101",
-        firefox_android: "101",
-        safari: "17.2",
-        safari_ios: "17.2",
-      },
-    },
+    "id": "preserves-pitch",
+    "name": "preservesPitch",
+    "group": [
+      "media-elements"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-12-11",
+      "support": {
+        "chrome": "86",
+        "chrome_android": "86",
+        "edge": "86",
+        "firefox": "101",
+        "firefox_android": "101",
+        "safari": "17.2",
+        "safari_ios": "17.2"
+      }
+    }
   },
-  print: {
-    id: "print",
-    name: "window.print()",
-    group: ["print"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-06-06",
-      baseline_high_date: "2025-12-06",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "114",
-        safari: "1.1",
-        safari_ios: "1",
-      },
-    },
+  "print": {
+    "id": "print",
+    "name": "window.print()",
+    "group": [
+      "print"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-06-06",
+      "baseline_high_date": "2025-12-06",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "114",
+        "safari": "1.1",
+        "safari_ios": "1"
+      }
+    }
   },
   "print-events": {
-    id: "print-events",
-    name: "Print events",
-    group: ["print"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2019-09-19",
-      baseline_high_date: "2022-03-19",
-      support: {
-        chrome: "63",
-        chrome_android: "63",
-        edge: "12",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "13",
-        safari_ios: "13",
-      },
-    },
+    "id": "print-events",
+    "name": "Print events",
+    "group": [
+      "print"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2019-09-19",
+      "baseline_high_date": "2022-03-19",
+      "support": {
+        "chrome": "63",
+        "chrome_android": "63",
+        "edge": "12",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "13",
+        "safari_ios": "13"
+      }
+    }
   },
   "private-click-measurement": {
-    id: "private-click-measurement",
-    name: "Private click measurement",
-    status: {
-      baseline: false,
-      support: {
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "private-click-measurement",
+    "name": "Private click measurement",
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
-  profiler: {
-    id: "profiler",
-    name: "Profiler",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "94",
-        chrome_android: "94",
-        edge: "94",
-      },
-    },
+  "profiler": {
+    "id": "profiler",
+    "name": "Profiler",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "94",
+        "chrome_android": "94",
+        "edge": "94"
+      }
+    }
   },
-  progress: {
-    id: "progress",
-    name: "<progress>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "6",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "6",
-        safari_ios: "7",
-      },
-    },
+  "progress": {
+    "id": "progress",
+    "name": "<progress>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "6",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "6",
+        "safari_ios": "7"
+      }
+    }
   },
-  push: {
-    id: "push",
-    name: "Push messages",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "50",
-        chrome_android: "50",
-        edge: "17",
-        firefox: "44",
-        firefox_android: "48",
-        safari: "16",
-        safari_ios: "16.4",
-      },
-    },
+  "push": {
+    "id": "push",
+    "name": "Push messages",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "50",
+        "chrome_android": "50",
+        "edge": "17",
+        "firefox": "44",
+        "firefox_android": "48",
+        "safari": "16",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  q: {
-    id: "q",
-    name: "<q>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "2",
-      },
-    },
+  "q": {
+    "id": "q",
+    "name": "<q>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "2"
+      }
+    }
   },
-  queuemicrotask: {
-    id: "queuemicrotask",
-    name: "queueMicrotask()",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-07-28",
-      baseline_high_date: "2023-01-28",
-      support: {
-        chrome: "71",
-        chrome_android: "71",
-        edge: "79",
-        firefox: "69",
-        firefox_android: "79",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+  "queuemicrotask": {
+    "id": "queuemicrotask",
+    "name": "queueMicrotask()",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-07-28",
+      "baseline_high_date": "2023-01-28",
+      "support": {
+        "chrome": "71",
+        "chrome_android": "71",
+        "edge": "79",
+        "firefox": "69",
+        "firefox_android": "79",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
   "readable-byte-streams": {
-    id: "readable-byte-streams",
-    name: "Readable byte streams",
-    group: ["streams"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "89",
-        chrome_android: "89",
-        edge: "89",
-        firefox: "102",
-        firefox_android: "102",
-      },
-    },
+    "id": "readable-byte-streams",
+    "name": "Readable byte streams",
+    "group": [
+      "streams"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "89",
+        "chrome_android": "89",
+        "edge": "89",
+        "firefox": "102",
+        "firefox_android": "102"
+      }
+    }
   },
   "readablestream-from": {
-    id: "readablestream-from",
-    name: "ReadableStream.from()",
-    group: ["streams"],
-    status: {
-      baseline: false,
-      support: {
-        firefox: "117",
-        firefox_android: "117",
-      },
-    },
+    "id": "readablestream-from",
+    "name": "ReadableStream.from()",
+    "group": [
+      "streams"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "117",
+        "firefox_android": "117"
+      }
+    }
   },
   "referrer-policy": {
-    id: "referrer-policy",
-    name: "Referrer policy",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-20",
-      baseline_high_date: "2024-03-20",
-      support: {
-        chrome: "85",
-        chrome_android: "85",
-        edge: "85",
-        firefox: "87",
-        firefox_android: "87",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+    "id": "referrer-policy",
+    "name": "Referrer policy",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-09-20",
+      "baseline_high_date": "2024-03-20",
+      "support": {
+        "chrome": "85",
+        "chrome_android": "85",
+        "edge": "85",
+        "firefox": "87",
+        "firefox_android": "87",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "region-capture": {
-    id: "region-capture",
-    name: "Region capture",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "104",
-        edge: "104",
-      },
-    },
+    "id": "region-capture",
+    "name": "Region capture",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "104",
+        "edge": "104"
+      }
+    }
   },
   "registered-custom-properties": {
-    id: "registered-custom-properties",
-    name: "Registered custom properties",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-07-09",
-      support: {
-        chrome: "85",
-        chrome_android: "85",
-        edge: "85",
-        firefox: "128",
-        firefox_android: "128",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "registered-custom-properties",
+    "name": "Registered custom properties",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-07-09",
+      "support": {
+        "chrome": "85",
+        "chrome_android": "85",
+        "edge": "85",
+        "firefox": "128",
+        "firefox_android": "128",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  registerprotocolhandler: {
-    id: "registerprotocolhandler",
-    name: "registerProtocolHandler",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "13",
-        edge: "79",
-        firefox: "2",
-        firefox_android: "4",
-      },
-    },
+  "registerprotocolhandler": {
+    "id": "registerprotocolhandler",
+    "name": "registerProtocolHandler",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "13",
+        "edge": "79",
+        "firefox": "2",
+        "firefox_android": "4"
+      }
+    }
   },
   "related-apps": {
-    id: "related-apps",
-    name: "Related apps",
-    group: ["progressive-web-app"],
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "84",
-        edge: "85",
-      },
-    },
+    "id": "related-apps",
+    "name": "Related apps",
+    "group": [
+      "progressive-web-app"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "84",
+        "edge": "85"
+      }
+    }
   },
   "related-website-sets": {
-    id: "related-website-sets",
-    name: "Related website sets",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "119",
-        chrome_android: "120",
-        edge: "119",
-      },
+    "id": "related-website-sets",
+    "name": "Related website sets",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "119",
+        "chrome_android": "120",
+        "edge": "119"
+      }
     },
-    discouraged: {
-      according_to: [
+    "discouraged": {
+      "according_to": [
         "https://groups.google.com/a/chromium.org/g/blink-dev/c/V-wPXyoruac",
         "https://chromestatus.com/feature/5162221567082496",
-        "https://chromestatus.com/feature/5194473869017088",
+        "https://chromestatus.com/feature/5194473869017088"
       ],
-      reason:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the related website sets.",
-      reason_html:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the related website sets.",
-      removal_date: "2026-06-01",
-    },
+      "reason": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the related website sets.",
+      "reason_html": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the related website sets.",
+      "removal_date": "2026-06-01"
+    }
   },
   "remote-playback": {
-    id: "remote-playback",
-    name: "Remote playback",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "121",
-        chrome_android: "56",
-        edge: "121",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+    "id": "remote-playback",
+    "name": "Remote playback",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "121",
+        "chrome_android": "56",
+        "edge": "121",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
-  reporting: {
-    id: "reporting",
-    name: "Reporting API",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "96",
-        chrome_android: "96",
-        edge: "96",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+  "reporting": {
+    "id": "reporting",
+    "name": "Reporting API",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "96",
+        "chrome_android": "96",
+        "edge": "96",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "request-animation-frame": {
-    id: "request-animation-frame",
-    name: "requestAnimationFrame()",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "24",
-        chrome_android: "25",
-        edge: "12",
-        firefox: "23",
-        firefox_android: "23",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+    "id": "request-animation-frame",
+    "name": "requestAnimationFrame()",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "24",
+        "chrome_android": "25",
+        "edge": "12",
+        "firefox": "23",
+        "firefox_android": "23",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
   "request-animation-frame-workers": {
-    id: "request-animation-frame-workers",
-    name: "requestAnimationFrame() in workers",
-    group: ["workers"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "69",
-        chrome_android: "69",
-        edge: "79",
-        firefox: "99",
-        firefox_android: "99",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "request-animation-frame-workers",
+    "name": "requestAnimationFrame() in workers",
+    "group": [
+      "workers"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "69",
+        "chrome_android": "69",
+        "edge": "79",
+        "firefox": "99",
+        "firefox_android": "99",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "request-video-frame-callback": {
-    id: "request-video-frame-callback",
-    name: "requestVideoFrameCallback()",
-    group: ["media-elements"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-10-29",
-      support: {
-        chrome: "83",
-        chrome_android: "83",
-        edge: "83",
-        firefox: "132",
-        firefox_android: "132",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "request-video-frame-callback",
+    "name": "requestVideoFrameCallback()",
+    "group": [
+      "media-elements"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-10-29",
+      "support": {
+        "chrome": "83",
+        "chrome_android": "83",
+        "edge": "83",
+        "firefox": "132",
+        "firefox_android": "132",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
-  requestclose: {
-    id: "requestclose",
-    name: "dialog.requestClose()",
-    group: ["html-elements"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-05-27",
-      support: {
-        chrome: "134",
-        chrome_android: "134",
-        edge: "134",
-        firefox: "139",
-        firefox_android: "139",
-        safari: "18.4",
-        safari_ios: "18.4",
-      },
-    },
+  "requestclose": {
+    "id": "requestclose",
+    "name": "dialog.requestClose()",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-05-27",
+      "support": {
+        "chrome": "134",
+        "chrome_android": "134",
+        "edge": "134",
+        "firefox": "139",
+        "firefox_android": "139",
+        "safari": "18.4",
+        "safari_ios": "18.4"
+      }
+    }
   },
-  requestidlecallback: {
-    id: "requestidlecallback",
-    name: "requestIdleCallback()",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "47",
-        chrome_android: "47",
-        edge: "79",
-        firefox: "55",
-        firefox_android: "55",
-      },
-    },
+  "requestidlecallback": {
+    "id": "requestidlecallback",
+    "name": "requestIdleCallback()",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "47",
+        "chrome_android": "47",
+        "edge": "79",
+        "firefox": "55",
+        "firefox_android": "55"
+      }
+    }
   },
   "resize-observer": {
-    id: "resize-observer",
-    name: "Resize observer",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-07-28",
-      baseline_high_date: "2023-01-28",
-      support: {
-        chrome: "64",
-        chrome_android: "64",
-        edge: "79",
-        firefox: "69",
-        firefox_android: "79",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+    "id": "resize-observer",
+    "name": "Resize observer",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-07-28",
+      "baseline_high_date": "2023-01-28",
+      "support": {
+        "chrome": "64",
+        "chrome_android": "64",
+        "edge": "79",
+        "firefox": "69",
+        "firefox_android": "79",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
   "resource-size": {
-    id: "resource-size",
-    name: "Resource size",
-    group: ["performance"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "54",
-        chrome_android: "54",
-        edge: "17",
-        firefox: "45",
-        firefox_android: "45",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "resource-size",
+    "name": "Resource size",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "54",
+        "chrome_android": "54",
+        "edge": "17",
+        "firefox": "45",
+        "firefox_android": "45",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "resource-timing": {
-    id: "resource-timing",
-    name: "Resource timing",
-    group: ["performance"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-09-19",
-      baseline_high_date: "2020-03-19",
-      support: {
-        chrome: "29",
-        chrome_android: "29",
-        edge: "12",
-        firefox: "35",
-        firefox_android: "35",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+    "id": "resource-timing",
+    "name": "Resource timing",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-09-19",
+      "baseline_high_date": "2020-03-19",
+      "support": {
+        "chrome": "29",
+        "chrome_android": "29",
+        "edge": "12",
+        "firefox": "35",
+        "firefox_android": "35",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
-  sanitizer: {
-    id: "sanitizer",
-    name: "Sanitizer API",
-    status: {
-      baseline: false,
-      support: {
-        firefox: "148",
-        firefox_android: "148",
-      },
-    },
+  "sanitizer": {
+    "id": "sanitizer",
+    "name": "Sanitizer API",
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "148",
+        "firefox_android": "148"
+      }
+    }
   },
-  savedata: {
-    id: "savedata",
-    name: "Save-Data",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "65",
-        chrome_android: "65",
-        edge: "79",
-      },
-    },
+  "savedata": {
+    "id": "savedata",
+    "name": "Save-Data",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "65",
+        "chrome_android": "65",
+        "edge": "79"
+      }
+    }
   },
-  scheduler: {
-    id: "scheduler",
-    name: "Scheduler API",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "129",
-        chrome_android: "129",
-        edge: "129",
-        firefox: "142",
-        firefox_android: "142",
-      },
-    },
+  "scheduler": {
+    "id": "scheduler",
+    "name": "Scheduler API",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "129",
+        "chrome_android": "129",
+        "edge": "129",
+        "firefox": "142",
+        "firefox_android": "142"
+      }
+    }
   },
-  scope: {
-    id: "scope",
-    name: "@scope",
-    group: ["css"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-12-12",
-      support: {
-        chrome: "143",
-        chrome_android: "143",
-        edge: "143",
-        firefox: "146",
-        firefox_android: "146",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+  "scope": {
+    "id": "scope",
+    "name": "@scope",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-12-12",
+      "support": {
+        "chrome": "143",
+        "chrome_android": "143",
+        "edge": "143",
+        "firefox": "146",
+        "firefox_android": "146",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
   "scoped-custom-element-registries": {
-    id: "scoped-custom-element-registries",
-    name: "Scoped custom element registries",
-    group: ["custom-elements"],
-    status: {
-      baseline: false,
-      support: {
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+    "id": "scoped-custom-element-registries",
+    "name": "Scoped custom element registries",
+    "group": [
+      "custom-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
-  screen: {
-    id: "screen",
-    name: "Screen",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "screen": {
+    "id": "screen",
+    "name": "Screen",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "screen-capture": {
-    id: "screen-capture",
-    name: "Screen capture",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "72",
-        edge: "79",
-        firefox: "33",
-        safari: "13",
-      },
-    },
+    "id": "screen-capture",
+    "name": "Screen capture",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "72",
+        "edge": "79",
+        "firefox": "33",
+        "safari": "13"
+      }
+    }
   },
   "screen-orientation": {
-    id: "screen-orientation",
-    name: "Screen orientation",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "38",
-        chrome_android: "39",
-        edge: "79",
-        firefox: "43",
-        firefox_android: "43",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "screen-orientation",
+    "name": "Screen orientation",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "39",
+        "edge": "79",
+        "firefox": "43",
+        "firefox_android": "43",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "screen-orientation-lock": {
-    id: "screen-orientation-lock",
-    name: "Screen orientation lock",
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "38",
-        firefox: "144",
-        firefox_android: "144",
-      },
-    },
+    "id": "screen-orientation-lock",
+    "name": "Screen orientation lock",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "38",
+        "firefox": "144",
+        "firefox_android": "144"
+      }
+    }
   },
   "screen-wake-lock": {
-    id: "screen-wake-lock",
-    name: "Screen wake lock",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-03-31",
-      support: {
-        chrome: "84",
-        chrome_android: "84",
-        edge: "84",
-        firefox: "126",
-        firefox_android: "126",
-        safari: "16.4",
-        safari_ios: "18.4",
-      },
-    },
+    "id": "screen-wake-lock",
+    "name": "Screen wake lock",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-03-31",
+      "support": {
+        "chrome": "84",
+        "chrome_android": "84",
+        "edge": "84",
+        "firefox": "126",
+        "firefox_android": "126",
+        "safari": "16.4",
+        "safari_ios": "18.4"
+      }
+    }
   },
-  script: {
-    id: "script",
-    name: "<script> and <noscript>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "2",
-      },
-    },
+  "script": {
+    "id": "script",
+    "name": "<script> and <noscript>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "2"
+      }
+    }
   },
   "scroll-driven-animations": {
-    id: "scroll-driven-animations",
-    name: "Scroll-driven animations",
-    group: ["scrolling", "animation"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "115",
-        chrome_android: "115",
-        edge: "115",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+    "id": "scroll-driven-animations",
+    "name": "Scroll-driven animations",
+    "group": [
+      "scrolling",
+      "animation"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "115",
+        "chrome_android": "115",
+        "edge": "115",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
   "scroll-elements": {
-    id: "scroll-elements",
-    name: "Scroll methods on elements",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-09-16",
-      baseline_high_date: "2023-03-16",
-      support: {
-        chrome: "61",
-        chrome_android: "61",
-        edge: "79",
-        firefox: "36",
-        firefox_android: "36",
-        safari: "14",
-        safari_ios: "14",
-      },
-    },
+    "id": "scroll-elements",
+    "name": "Scroll methods on elements",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-09-16",
+      "baseline_high_date": "2023-03-16",
+      "support": {
+        "chrome": "61",
+        "chrome_android": "61",
+        "edge": "79",
+        "firefox": "36",
+        "firefox_android": "36",
+        "safari": "14",
+        "safari_ios": "14"
+      }
+    }
   },
   "scroll-into-view": {
-    id: "scroll-into-view",
-    name: "scrollIntoView()",
-    group: ["scrolling"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "79",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+    "id": "scroll-into-view",
+    "name": "scrollIntoView()",
+    "group": [
+      "scrolling"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "79",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
   "scroll-into-view-container": {
-    id: "scroll-into-view-container",
-    name: "scrollIntoView() container",
-    group: ["scrolling"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "140",
-        chrome_android: "140",
-        edge: "140",
-      },
-    },
+    "id": "scroll-into-view-container",
+    "name": "scrollIntoView() container",
+    "group": [
+      "scrolling"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "140",
+        "chrome_android": "140",
+        "edge": "140"
+      }
+    }
   },
   "scroll-snap-events": {
-    id: "scroll-snap-events",
-    name: "Scroll snap events",
-    group: ["scrolling"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "129",
-        chrome_android: "129",
-        edge: "129",
-      },
-    },
+    "id": "scroll-snap-events",
+    "name": "Scroll snap events",
+    "group": [
+      "scrolling"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "129",
+        "chrome_android": "129",
+        "edge": "129"
+      }
+    }
   },
   "scroll-to-text-fragment": {
-    id: "scroll-to-text-fragment",
-    name: "Scroll to text fragment",
-    group: ["text-fragments", "scrolling"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-10-01",
-      support: {
-        chrome: "80",
-        chrome_android: "80",
-        edge: "80",
-        firefox: "131",
-        firefox_android: "131",
-        safari: "16.1",
-        safari_ios: "16.1",
-      },
-    },
+    "id": "scroll-to-text-fragment",
+    "name": "Scroll to text fragment",
+    "group": [
+      "text-fragments",
+      "scrolling"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-10-01",
+      "support": {
+        "chrome": "80",
+        "chrome_android": "80",
+        "edge": "80",
+        "firefox": "131",
+        "firefox_android": "131",
+        "safari": "16.1",
+        "safari_ios": "16.1"
+      }
+    }
   },
-  scrollend: {
-    id: "scrollend",
-    name: "scrollend",
-    group: ["scrolling"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-12-12",
-      support: {
-        chrome: "114",
-        chrome_android: "114",
-        edge: "114",
-        firefox: "109",
-        firefox_android: "109",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+  "scrollend": {
+    "id": "scrollend",
+    "name": "scrollend",
+    "group": [
+      "scrolling"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-12-12",
+      "support": {
+        "chrome": "114",
+        "chrome_android": "114",
+        "edge": "114",
+        "firefox": "109",
+        "firefox_android": "109",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
   "secure-payment-confirmation": {
-    id: "secure-payment-confirmation",
-    name: "Secure payment confirmation",
-    group: ["payments"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "139",
-        chrome_android: "139",
-        edge: "139",
-      },
-    },
+    "id": "secure-payment-confirmation",
+    "name": "Secure payment confirmation",
+    "group": [
+      "payments"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "139",
+        "chrome_android": "139",
+        "edge": "139"
+      }
+    }
   },
-  select: {
-    id: "select",
-    name: "<select>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "select": {
+    "id": "select",
+    "name": "<select>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "selection-api": {
-    id: "selection-api",
-    name: "Selection",
-    group: ["selection"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-03-07",
-      baseline_high_date: "2019-09-07",
-      support: {
-        chrome: "11",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "52",
-        firefox_android: "52",
-        safari: "5.1",
-        safari_ios: "5",
-      },
-    },
+    "id": "selection-api",
+    "name": "Selection",
+    "group": [
+      "selection"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-03-07",
+      "baseline_high_date": "2019-09-07",
+      "support": {
+        "chrome": "11",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "52",
+        "firefox_android": "52",
+        "safari": "5.1",
+        "safari_ios": "5"
+      }
+    }
   },
-  serial: {
-    id: "serial",
-    name: "Web serial",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "89",
-        edge: "89",
-      },
-    },
+  "serial": {
+    "id": "serial",
+    "name": "Web serial",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "89",
+        "edge": "89"
+      }
+    }
   },
   "serializable-errors": {
-    id: "serializable-errors",
-    name: "Serializable errors",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "77",
-        chrome_android: "77",
-        edge: "79",
-        firefox: "103",
-        firefox_android: "103",
-      },
-    },
+    "id": "serializable-errors",
+    "name": "Serializable errors",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "77",
+        "chrome_android": "77",
+        "edge": "79",
+        "firefox": "103",
+        "firefox_android": "103"
+      }
+    }
   },
   "server-sent-events": {
-    id: "server-sent-events",
-    name: "Server-sent events",
-    group: ["messaging"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "6",
-        chrome_android: "18",
-        edge: "79",
-        firefox: "6",
-        firefox_android: "45",
-        safari: "5",
-        safari_ios: "5",
-      },
-    },
+    "id": "server-sent-events",
+    "name": "Server-sent events",
+    "group": [
+      "messaging"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "6",
+        "chrome_android": "18",
+        "edge": "79",
+        "firefox": "6",
+        "firefox_android": "45",
+        "safari": "5",
+        "safari_ios": "5"
+      }
+    }
   },
   "server-timing": {
-    id: "server-timing",
-    name: "Server timing",
-    group: ["performance"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "65",
-        chrome_android: "65",
-        edge: "79",
-        firefox: "61",
-        firefox_android: "61",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "server-timing",
+    "name": "Server timing",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "65",
+        "chrome_android": "65",
+        "edge": "79",
+        "firefox": "61",
+        "firefox_android": "61",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "service-workers": {
-    id: "service-workers",
-    name: "Service workers",
-    group: ["workers"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-04-30",
-      baseline_high_date: "2020-10-30",
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "17",
-        firefox: "44",
-        firefox_android: "44",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+    "id": "service-workers",
+    "name": "Service workers",
+    "group": [
+      "workers"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-04-30",
+      "baseline_high_date": "2020-10-30",
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "17",
+        "firefox": "44",
+        "firefox_android": "44",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
-  setinterval: {
-    id: "setinterval",
-    name: "setInterval",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "3",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "5",
-      },
-    },
+  "setinterval": {
+    "id": "setinterval",
+    "name": "setInterval",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "3",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "5"
+      }
+    }
   },
-  settimeout: {
-    id: "settimeout",
-    name: "setTimeout()",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "3",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "5",
-      },
-    },
+  "settimeout": {
+    "id": "settimeout",
+    "name": "setTimeout()",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "3",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "5"
+      }
+    }
   },
   "shadow-dom": {
-    id: "shadow-dom",
-    name: "Shadow DOM",
-    group: ["dom", "web-components"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "53",
-        chrome_android: "53",
-        edge: "79",
-        firefox: "63",
-        firefox_android: "63",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "shadow-dom",
+    "name": "Shadow DOM",
+    "group": [
+      "dom",
+      "web-components"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "53",
+        "chrome_android": "53",
+        "edge": "79",
+        "firefox": "63",
+        "firefox_android": "63",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "shadow-parts": {
-    id: "shadow-parts",
-    name: "Shadow parts",
-    group: ["selectors", "web-components"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-07-28",
-      baseline_high_date: "2023-01-28",
-      support: {
-        chrome: "73",
-        chrome_android: "73",
-        edge: "79",
-        firefox: "72",
-        firefox_android: "79",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+    "id": "shadow-parts",
+    "name": "Shadow parts",
+    "group": [
+      "selectors",
+      "web-components"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-07-28",
+      "baseline_high_date": "2023-01-28",
+      "support": {
+        "chrome": "73",
+        "chrome_android": "73",
+        "edge": "79",
+        "firefox": "72",
+        "firefox_android": "79",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
-  share: {
-    id: "share",
-    name: "navigator.share()",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "128",
-        chrome_android: "61",
-        edge: "93",
-        firefox_android: "79",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+  "share": {
+    "id": "share",
+    "name": "navigator.share()",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "128",
+        "chrome_android": "61",
+        "edge": "93",
+        "firefox_android": "79",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
   "shared-storage": {
-    id: "shared-storage",
-    name: "Shared storage",
-    group: ["storage", "worklets"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "126",
-        chrome_android: "126",
-        edge: "126",
-      },
+    "id": "shared-storage",
+    "name": "Shared storage",
+    "group": [
+      "storage",
+      "worklets"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "126",
+        "chrome_android": "126",
+        "edge": "126"
+      }
     },
-    discouraged: {
-      according_to: [
+    "discouraged": {
+      "according_to": [
         "https://groups.google.com/a/chromium.org/g/blink-dev/c/uh5Ke6qyegc",
-        "https://chromestatus.com/feature/5076349064708096",
+        "https://chromestatus.com/feature/5076349064708096"
       ],
-      reason:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the shared storage.",
-      reason_html:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the shared storage.",
-      removal_date: "2026-06-01",
-    },
+      "reason": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the shared storage.",
+      "reason_html": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the shared storage.",
+      "removal_date": "2026-06-01"
+    }
   },
   "shared-storage-locks": {
-    id: "shared-storage-locks",
-    name: "Shared storage locks",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "134",
-        chrome_android: "134",
-        edge: "134",
-      },
+    "id": "shared-storage-locks",
+    "name": "Shared storage locks",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "134",
+        "chrome_android": "134",
+        "edge": "134"
+      }
     },
-    discouraged: {
-      according_to: [
+    "discouraged": {
+      "according_to": [
         "https://groups.google.com/a/chromium.org/g/blink-dev/c/uh5Ke6qyegc",
-        "https://chromestatus.com/feature/5076349064708096",
+        "https://chromestatus.com/feature/5076349064708096"
       ],
-      reason:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including shared storage locks.",
-      reason_html:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including shared storage locks.",
-      removal_date: "2026-06-01",
-    },
+      "reason": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including shared storage locks.",
+      "reason_html": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including shared storage locks.",
+      "removal_date": "2026-06-01"
+    }
   },
   "shared-workers": {
-    id: "shared-workers",
-    name: "Shared worker",
-    group: ["workers"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "5",
-        edge: "79",
-        firefox: "29",
-        firefox_android: "33",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+    "id": "shared-workers",
+    "name": "Shared worker",
+    "group": [
+      "workers"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "5",
+        "edge": "79",
+        "firefox": "29",
+        "firefox_android": "33",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
   "show-picker-input": {
-    id: "show-picker-input",
-    name: "showPicker() for <input>",
-    group: ["forms"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "99",
-        chrome_android: "99",
-        edge: "99",
-        firefox: "101",
-        firefox_android: "101",
-        safari: "17.4",
-      },
-    },
+    "id": "show-picker-input",
+    "name": "showPicker() for <input>",
+    "group": [
+      "forms"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "99",
+        "chrome_android": "99",
+        "edge": "99",
+        "firefox": "101",
+        "firefox_android": "101",
+        "safari": "17.4"
+      }
+    }
   },
   "show-picker-select": {
-    id: "show-picker-select",
-    name: "showPicker() for <select>",
-    group: ["forms"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "121",
-        chrome_android: "121",
-        edge: "121",
-        firefox: "122",
-        firefox_android: "122",
-      },
-    },
+    "id": "show-picker-select",
+    "name": "showPicker() for <select>",
+    "group": [
+      "forms"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "121",
+        "chrome_android": "121",
+        "edge": "121",
+        "firefox": "122",
+        "firefox_android": "122"
+      }
+    }
   },
-  slot: {
-    id: "slot",
-    name: "<slot>",
-    group: ["html-elements", "web-components"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "53",
-        chrome_android: "53",
-        edge: "79",
-        firefox: "63",
-        firefox_android: "63",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+  "slot": {
+    "id": "slot",
+    "name": "<slot>",
+    "group": [
+      "html-elements",
+      "web-components"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "53",
+        "chrome_android": "53",
+        "edge": "79",
+        "firefox": "63",
+        "firefox_android": "63",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "slot-assign": {
-    id: "slot-assign",
-    name: "Imperative slot assignment",
-    group: ["web-components"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-27",
-      baseline_high_date: "2025-09-27",
-      support: {
-        chrome: "92",
-        chrome_android: "92",
-        edge: "92",
-        firefox: "92",
-        firefox_android: "92",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "slot-assign",
+    "name": "Imperative slot assignment",
+    "group": [
+      "web-components"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-27",
+      "baseline_high_date": "2025-09-27",
+      "support": {
+        "chrome": "92",
+        "chrome_android": "92",
+        "edge": "92",
+        "firefox": "92",
+        "firefox_android": "92",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "smil-svg-animations": {
-    id: "smil-svg-animations",
-    name: "SMIL SVG animations",
-    group: ["animation", "svg"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "19",
-        chrome_android: "25",
-        edge: "79",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+    "id": "smil-svg-animations",
+    "name": "SMIL SVG animations",
+    "group": [
+      "animation",
+      "svg"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "19",
+        "chrome_android": "25",
+        "edge": "79",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
-  span: {
-    id: "span",
-    name: "<span>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "span": {
+    "id": "span",
+    "name": "<span>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "speculation-rules": {
-    id: "speculation-rules",
-    name: "Speculation rules",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "109",
-        chrome_android: "109",
-        edge: "109",
-      },
-    },
+    "id": "speculation-rules",
+    "name": "Speculation rules",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "109",
+        "chrome_android": "109",
+        "edge": "109"
+      }
+    }
   },
   "speech-recognition": {
-    id: "speech-recognition",
-    name: "Speech recognition",
-    group: ["speech"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "139",
-        chrome_android: "139",
-        edge: "139",
-      },
-    },
+    "id": "speech-recognition",
+    "name": "Speech recognition",
+    "group": [
+      "speech"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "139",
+        "chrome_android": "139",
+        "edge": "139"
+      }
+    }
   },
   "speech-recognition-grammar": {
-    id: "speech-recognition-grammar",
-    name: "Speech recognition grammar",
-    group: ["speech"],
-    status: {
-      baseline: false,
-      support: {},
+    "id": "speech-recognition-grammar",
+    "name": "Speech recognition grammar",
+    "group": [
+      "speech"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
     },
-    discouraged: {
-      according_to: ["https://github.com/WebAudio/web-speech-api/pull/117"],
-      reason:
-        "Advancements in speech recognition mean that speech grammars are not needed to achieve low error rates.",
-      reason_html:
-        "Advancements in speech recognition mean that speech grammars are not needed to achieve low error rates.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://github.com/WebAudio/web-speech-api/pull/117"
+      ],
+      "reason": "Advancements in speech recognition mean that speech grammars are not needed to achieve low error rates.",
+      "reason_html": "Advancements in speech recognition mean that speech grammars are not needed to achieve low error rates."
+    }
   },
   "speech-synthesis": {
-    id: "speech-synthesis",
-    name: "Speech synthesis",
-    group: ["speech"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-09-05",
-      baseline_high_date: "2021-03-05",
-      support: {
-        chrome: "33",
-        chrome_android: "33",
-        edge: "14",
-        firefox: "49",
-        firefox_android: "62",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+    "id": "speech-synthesis",
+    "name": "Speech synthesis",
+    "group": [
+      "speech"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-09-05",
+      "baseline_high_date": "2021-03-05",
+      "support": {
+        "chrome": "33",
+        "chrome_android": "33",
+        "edge": "14",
+        "firefox": "49",
+        "firefox_android": "62",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
-  spellcheck: {
-    id: "spellcheck",
-    name: "spellcheck",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-11-28",
-      baseline_high_date: "2020-05-28",
-      support: {
-        chrome: "9",
-        chrome_android: "47",
-        edge: "12",
-        firefox: "2",
-        firefox_android: "57",
-        safari: "5.1",
-        safari_ios: "5",
-      },
-    },
+  "spellcheck": {
+    "id": "spellcheck",
+    "name": "spellcheck",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-11-28",
+      "baseline_high_date": "2020-05-28",
+      "support": {
+        "chrome": "9",
+        "chrome_android": "47",
+        "edge": "12",
+        "firefox": "2",
+        "firefox_android": "57",
+        "safari": "5.1",
+        "safari_ios": "5"
+      }
+    }
   },
-  srcset: {
-    id: "srcset",
-    name: "srcset and sizes",
-    group: ["html"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-03-27",
-      baseline_high_date: "2019-09-27",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "13",
-        firefox: "38",
-        firefox_android: "38",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+  "srcset": {
+    "id": "srcset",
+    "name": "srcset and sizes",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-03-27",
+      "baseline_high_date": "2019-09-27",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "13",
+        "firefox": "38",
+        "firefox_android": "38",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "starting-style": {
-    id: "starting-style",
-    name: "@starting-style",
-    group: ["css"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-08-06",
-      support: {
-        chrome: "117",
-        chrome_android: "117",
-        edge: "117",
-        firefox: "129",
-        firefox_android: "129",
-        safari: "17.5",
-        safari_ios: "17.5",
-      },
-    },
+    "id": "starting-style",
+    "name": "@starting-style",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-08-06",
+      "support": {
+        "chrome": "117",
+        "chrome_android": "117",
+        "edge": "117",
+        "firefox": "129",
+        "firefox_android": "129",
+        "safari": "17.5",
+        "safari_ios": "17.5"
+      }
+    }
   },
-  state: {
-    id: "state",
-    name: ":state()",
-    group: ["custom-elements"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-05-17",
-      support: {
-        chrome: "125",
-        chrome_android: "125",
-        edge: "125",
-        firefox: "126",
-        firefox_android: "126",
-        safari: "17.4",
-        safari_ios: "17.4",
-      },
-    },
+  "state": {
+    "id": "state",
+    "name": ":state()",
+    "group": [
+      "custom-elements"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-05-17",
+      "support": {
+        "chrome": "125",
+        "chrome_android": "125",
+        "edge": "125",
+        "firefox": "126",
+        "firefox_android": "126",
+        "safari": "17.4",
+        "safari_ios": "17.4"
+      }
+    }
   },
   "storage-access": {
-    id: "storage-access",
-    name: "Storage access",
-    group: ["storage"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-12-05",
-      support: {
-        chrome: "119",
-        chrome_android: "120",
-        edge: "85",
-        firefox: "65",
-        firefox_android: "65",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+    "id": "storage-access",
+    "name": "Storage access",
+    "group": [
+      "storage"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-12-05",
+      "support": {
+        "chrome": "119",
+        "chrome_android": "120",
+        "edge": "85",
+        "firefox": "65",
+        "firefox_android": "65",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
   "storage-buckets": {
-    id: "storage-buckets",
-    name: "Storage buckets",
-    group: ["storage"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "122",
-        chrome_android: "122",
-        edge: "122",
-      },
-    },
+    "id": "storage-buckets",
+    "name": "Storage buckets",
+    "group": [
+      "storage"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "122",
+        "chrome_android": "122",
+        "edge": "122"
+      }
+    }
   },
   "storage-manager": {
-    id: "storage-manager",
-    name: "Storage manager",
-    group: ["storage"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-09-18",
-      support: {
-        chrome: "61",
-        chrome_android: "61",
-        edge: "79",
-        firefox: "57",
-        firefox_android: "57",
-        safari: "17",
-        safari_ios: "17",
-      },
-    },
+    "id": "storage-manager",
+    "name": "Storage manager",
+    "group": [
+      "storage"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-09-18",
+      "support": {
+        "chrome": "61",
+        "chrome_android": "61",
+        "edge": "79",
+        "firefox": "57",
+        "firefox_android": "57",
+        "safari": "17",
+        "safari_ios": "17"
+      }
+    }
   },
-  streams: {
-    id: "streams",
-    name: "Streams",
-    group: ["streams"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-06-28",
-      baseline_high_date: "2024-12-28",
-      support: {
-        chrome: "67",
-        chrome_android: "67",
-        edge: "79",
-        firefox: "102",
-        firefox_android: "102",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+  "streams": {
+    "id": "streams",
+    "name": "Streams",
+    "group": [
+      "streams"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-06-28",
+      "baseline_high_date": "2024-12-28",
+      "support": {
+        "chrome": "67",
+        "chrome_android": "67",
+        "edge": "79",
+        "firefox": "102",
+        "firefox_android": "102",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "structured-clone": {
-    id: "structured-clone",
-    name: "structuredClone()",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "98",
-        chrome_android: "98",
-        edge: "98",
-        firefox: "94",
-        firefox_android: "94",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "structured-clone",
+    "name": "structuredClone()",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "98",
+        "chrome_android": "98",
+        "edge": "98",
+        "firefox": "94",
+        "firefox_android": "94",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
-  style: {
-    id: "style",
-    name: "<style>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "style": {
+    "id": "style",
+    "name": "<style>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  summarizer: {
-    id: "summarizer",
-    name: "Summarizer",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "138",
-      },
-    },
+  "summarizer": {
+    "id": "summarizer",
+    "name": "Summarizer",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "138"
+      }
+    }
   },
-  supports: {
-    id: "supports",
-    name: "@supports",
-    group: ["css"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "28",
-        chrome_android: "28",
-        edge: "12",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+  "supports": {
+    "id": "supports",
+    "name": "@supports",
+    "group": [
+      "css"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "28",
+        "chrome_android": "28",
+        "edge": "12",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
-  svg: {
-    id: "svg",
-    name: "SVG",
-    group: ["svg"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "79",
-        firefox: "3",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "2",
-      },
-    },
+  "svg": {
+    "id": "svg",
+    "name": "SVG",
+    "group": [
+      "svg"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "79",
+        "firefox": "3",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "2"
+      }
+    }
   },
   "svg-discouraged": {
-    id: "svg-discouraged",
-    name: "SVG 1.1",
-    status: {
-      baseline: false,
-      support: {},
+    "id": "svg-discouraged",
+    "name": "SVG 1.1",
+    "status": {
+      "baseline": false,
+      "support": {}
     },
-    discouraged: {
-      according_to: ["https://svgwg.org/svg2-draft/changes.html#substantial"],
-      alternatives: ["svg", "font-face"],
-      reason:
-        'SVG 2 omittted some parts of SVG 1.1 to "improv[e] the usability and precision of the language."',
-      reason_html:
-        'SVG 2 omittted some parts of SVG 1.1 to "improv[e] the usability and precision of the language."',
-    },
+    "discouraged": {
+      "according_to": [
+        "https://svgwg.org/svg2-draft/changes.html#substantial"
+      ],
+      "alternatives": [
+        "svg",
+        "font-face"
+      ],
+      "reason": "SVG 2 omittted some parts of SVG 1.1 to \"improv[e] the usability and precision of the language.\"",
+      "reason_html": "SVG 2 omittted some parts of SVG 1.1 to \"improv[e] the usability and precision of the language.\""
+    }
   },
   "svg-filters": {
-    id: "svg-filters",
-    name: "SVG filters",
-    group: ["svg"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "5",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3",
-        firefox_android: "4",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+    "id": "svg-filters",
+    "name": "SVG filters",
+    "group": [
+      "svg"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "5",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3",
+        "firefox_android": "4",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
-  tabindex: {
-    id: "tabindex",
-    name: "tabindex",
-    group: ["html"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-10-02",
-      baseline_high_date: "2021-04-02",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "18",
-        firefox: "1.5",
-        firefox_android: "4",
-        safari: "3.1",
-        safari_ios: "2",
-      },
-    },
+  "tabindex": {
+    "id": "tabindex",
+    "name": "tabindex",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-10-02",
+      "baseline_high_date": "2021-04-02",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "18",
+        "firefox": "1.5",
+        "firefox_android": "4",
+        "safari": "3.1",
+        "safari_ios": "2"
+      }
+    }
   },
-  table: {
-    id: "table",
-    name: "Tables",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "table": {
+    "id": "table",
+    "name": "Tables",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "table-discouraged": {
-    id: "table-discouraged",
-    name: "Table styling",
-    group: ["html-elements"],
-    status: {
-      baseline: false,
-      support: {},
+    "id": "table-discouraged",
+    "name": "Table styling",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
     },
-    discouraged: {
-      according_to: ["https://html.spec.whatwg.org/multipage/obsolete.html"],
-      reason: "Some table styling attributes have no effect. They are superseded by CSS.",
-      reason_html: "Some table styling attributes have no effect. They are superseded by CSS.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://html.spec.whatwg.org/multipage/obsolete.html"
+      ],
+      "reason": "Some table styling attributes have no effect. They are superseded by CSS.",
+      "reason_html": "Some table styling attributes have no effect. They are superseded by CSS."
+    }
   },
-  template: {
-    id: "template",
-    name: "<template>",
-    group: ["html-elements", "web-components"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-11-12",
-      baseline_high_date: "2018-05-12",
-      support: {
-        chrome: "26",
-        chrome_android: "26",
-        edge: "13",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+  "template": {
+    "id": "template",
+    "name": "<template>",
+    "group": [
+      "html-elements",
+      "web-components"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-11-12",
+      "baseline_high_date": "2018-05-12",
+      "support": {
+        "chrome": "26",
+        "chrome_android": "26",
+        "edge": "13",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "text-encoding": {
-    id: "text-encoding",
-    name: "Text encoding and decoding",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "79",
-        firefox: "19",
-        firefox_android: "19",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+    "id": "text-encoding",
+    "name": "Text encoding and decoding",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "79",
+        "firefox": "19",
+        "firefox_android": "19",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "text-tracks": {
-    id: "text-tracks",
-    name: "Text tracks",
-    group: ["media-elements", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "23",
-        chrome_android: "25",
-        edge: "12",
-        firefox: "31",
-        firefox_android: "31",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+    "id": "text-tracks",
+    "name": "Text tracks",
+    "group": [
+      "media-elements",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "23",
+        "chrome_android": "25",
+        "edge": "12",
+        "firefox": "31",
+        "firefox_android": "31",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
-  textarea: {
-    id: "textarea",
-    name: "<textarea>",
-    group: ["forms", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3",
-      },
-    },
+  "textarea": {
+    "id": "textarea",
+    "name": "<textarea>",
+    "group": [
+      "forms",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3"
+      }
+    }
   },
-  time: {
-    id: "time",
-    name: "<time>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-10-24",
-      baseline_high_date: "2020-04-24",
-      support: {
-        chrome: "62",
-        chrome_android: "62",
-        edge: "14",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+  "time": {
+    "id": "time",
+    "name": "<time>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-10-24",
+      "baseline_high_date": "2020-04-24",
+      "support": {
+        "chrome": "62",
+        "chrome_android": "62",
+        "edge": "14",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
-  title: {
-    id: "title",
-    name: "<title>",
-    group: ["html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "title": {
+    "id": "title",
+    "name": "<title>",
+    "group": [
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "title-attr": {
-    id: "title-attr",
-    name: "title (attribute)",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "≤4",
-        safari_ios: "≤3.2",
-      },
-    },
+    "id": "title-attr",
+    "name": "title (attribute)",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "≤4",
+        "safari_ios": "≤3.2"
+      }
+    }
   },
   "toggleevent-source": {
-    id: "toggleevent-source",
-    name: "ToggleEvent source",
-    group: ["html"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "140",
-        chrome_android: "140",
-        edge: "140",
-        firefox: "145",
-        firefox_android: "145",
-      },
-    },
+    "id": "toggleevent-source",
+    "name": "ToggleEvent source",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "140",
+        "chrome_android": "140",
+        "edge": "140",
+        "firefox": "145",
+        "firefox_android": "145"
+      }
+    }
   },
-  topics: {
-    id: "topics",
-    name: "Topics",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "126",
-        chrome_android: "126",
-        edge: "126",
-      },
+  "topics": {
+    "id": "topics",
+    "name": "Topics",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "126",
+        "chrome_android": "126",
+        "edge": "126"
+      }
     },
-    discouraged: {
-      according_to: [
+    "discouraged": {
+      "according_to": [
         "https://groups.google.com/a/chromium.org/g/blink-dev/c/_R85yctz4Rs",
-        "https://chromestatus.com/feature/5135370673061888",
+        "https://chromestatus.com/feature/5135370673061888"
       ],
-      reason:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the topics API.",
-      reason_html:
-        "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the topics API.",
-      removal_date: "2026-06-01",
-    },
+      "reason": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the topics API.",
+      "reason_html": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the topics API.",
+      "removal_date": "2026-06-01"
+    }
   },
   "touch-events": {
-    id: "touch-events",
-    name: "Touch events",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "22",
-        chrome_android: "25",
-        edge: "12",
-        firefox: "52",
-        firefox_android: "6",
-        safari_ios: "≤3",
-      },
-    },
+    "id": "touch-events",
+    "name": "Touch events",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "22",
+        "chrome_android": "25",
+        "edge": "12",
+        "firefox": "52",
+        "firefox_android": "6",
+        "safari_ios": "≤3"
+      }
+    }
   },
   "transferable-streams": {
-    id: "transferable-streams",
-    name: "Transferable streams",
-    group: ["streams"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "87",
-        chrome_android: "87",
-        edge: "87",
-        firefox: "103",
-        firefox_android: "103",
-      },
-    },
+    "id": "transferable-streams",
+    "name": "Transferable streams",
+    "group": [
+      "streams"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "87",
+        "chrome_android": "87",
+        "edge": "87",
+        "firefox": "103",
+        "firefox_android": "103"
+      }
+    }
   },
   "transformstream-transformer-cancel": {
-    id: "transformstream-transformer-cancel",
-    name: "TransformStream transformer cancel() method",
-    group: ["streams"],
-    status: {
-      baseline: false,
-      support: {},
-    },
+    "id": "transformstream-transformer-cancel",
+    "name": "TransformStream transformer cancel() method",
+    "group": [
+      "streams"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
-  transitions: {
-    id: "transitions",
-    name: "Transitions (CSS)",
-    group: ["transitions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "26",
-        chrome_android: "26",
-        edge: "12",
-        firefox: "16",
-        firefox_android: "16",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+  "transitions": {
+    "id": "transitions",
+    "name": "Transitions (CSS)",
+    "group": [
+      "transitions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "26",
+        "chrome_android": "26",
+        "edge": "12",
+        "firefox": "16",
+        "firefox_android": "16",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
-  translate: {
-    id: "translate",
-    name: "translate",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-03-14",
-      baseline_high_date: "2025-09-14",
-      support: {
-        chrome: "19",
-        chrome_android: "25",
-        edge: "79",
-        firefox: "111",
-        firefox_android: "111",
-        safari: "6",
-        safari_ios: "6",
-      },
-    },
+  "translate": {
+    "id": "translate",
+    "name": "translate",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-03-14",
+      "baseline_high_date": "2025-09-14",
+      "support": {
+        "chrome": "19",
+        "chrome_android": "25",
+        "edge": "79",
+        "firefox": "111",
+        "firefox_android": "111",
+        "safari": "6",
+        "safari_ios": "6"
+      }
+    }
   },
-  translator: {
-    id: "translator",
-    name: "Translator",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "138",
-      },
-    },
+  "translator": {
+    "id": "translator",
+    "name": "Translator",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "138"
+      }
+    }
   },
   "trusted-types": {
-    id: "trusted-types",
-    name: "Trusted types",
-    group: ["security"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2026-02-24",
-      support: {
-        chrome: "83",
-        chrome_android: "83",
-        edge: "83",
-        firefox: "148",
-        firefox_android: "148",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+    "id": "trusted-types",
+    "name": "Trusted types",
+    "group": [
+      "security"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2026-02-24",
+      "support": {
+        "chrome": "83",
+        "chrome_android": "83",
+        "edge": "83",
+        "firefox": "148",
+        "firefox_android": "148",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
   "ua-client-hints": {
-    id: "ua-client-hints",
-    name: "User agent client hints",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "90",
-        chrome_android: "90",
-        edge: "90",
-      },
-    },
+    "id": "ua-client-hints",
+    "name": "User agent client hints",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "90",
+        "chrome_android": "90",
+        "edge": "90"
+      }
+    }
   },
-  url: {
-    id: "url",
-    name: "URL",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "32",
-        chrome_android: "32",
-        edge: "12",
-        firefox: "19",
-        firefox_android: "19",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+  "url": {
+    "id": "url",
+    "name": "URL",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "32",
+        "chrome_android": "32",
+        "edge": "12",
+        "firefox": "19",
+        "firefox_android": "19",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
   "url-canparse": {
-    id: "url-canparse",
-    name: "URL.canParse()",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-12-07",
-      support: {
-        chrome: "120",
-        chrome_android: "120",
-        edge: "120",
-        firefox: "115",
-        firefox_android: "115",
-        safari: "17",
-        safari_ios: "17",
-      },
-    },
+    "id": "url-canparse",
+    "name": "URL.canParse()",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-12-07",
+      "support": {
+        "chrome": "120",
+        "chrome_android": "120",
+        "edge": "120",
+        "firefox": "115",
+        "firefox_android": "115",
+        "safari": "17",
+        "safari_ios": "17"
+      }
+    }
   },
-  urlpattern: {
-    id: "urlpattern",
-    name: "URLPattern",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-09-15",
-      support: {
-        chrome: "95",
-        chrome_android: "95",
-        edge: "95",
-        firefox: "142",
-        firefox_android: "142",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+  "urlpattern": {
+    "id": "urlpattern",
+    "name": "URLPattern",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-09-15",
+      "support": {
+        "chrome": "95",
+        "chrome_android": "95",
+        "edge": "95",
+        "firefox": "142",
+        "firefox_android": "142",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
   "user-activation": {
-    id: "user-activation",
-    name: "User activation",
-    group: ["security"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-11-21",
-      support: {
-        chrome: "72",
-        chrome_android: "72",
-        edge: "79",
-        firefox: "120",
-        firefox_android: "120",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "user-activation",
+    "name": "User activation",
+    "group": [
+      "security"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-11-21",
+      "support": {
+        "chrome": "72",
+        "chrome_android": "72",
+        "edge": "79",
+        "firefox": "120",
+        "firefox_android": "120",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "user-agent-sniffing": {
-    id: "user-agent-sniffing",
-    name: "User agent sniffing",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "4",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "5",
-      },
-    },
+    "id": "user-agent-sniffing",
+    "name": "User agent sniffing",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "4",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "5"
+      }
+    }
   },
-  vibration: {
-    id: "vibration",
-    name: "Vibration",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "32",
-        chrome_android: "32",
-        edge: "79",
-      },
-    },
+  "vibration": {
+    "id": "vibration",
+    "name": "Vibration",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "32",
+        "chrome_android": "32",
+        "edge": "79"
+      }
+    }
   },
-  video: {
-    id: "video",
-    name: "<video>",
-    group: ["media-elements", "html-elements"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "3",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "3.1",
-        safari_ios: "3",
-      },
-    },
+  "video": {
+    "id": "video",
+    "name": "<video>",
+    "group": [
+      "media-elements",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "3",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "3.1",
+        "safari_ios": "3"
+      }
+    }
   },
   "view-transitions": {
-    id: "view-transitions",
-    name: "View transitions",
-    group: ["view-transitions"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-10-14",
-      support: {
-        chrome: "111",
-        chrome_android: "111",
-        edge: "111",
-        firefox: "144",
-        firefox_android: "144",
-        safari: "18",
-        safari_ios: "18",
-      },
-    },
+    "id": "view-transitions",
+    "name": "View transitions",
+    "group": [
+      "view-transitions"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-10-14",
+      "support": {
+        "chrome": "111",
+        "chrome_android": "111",
+        "edge": "111",
+        "firefox": "144",
+        "firefox_android": "144",
+        "safari": "18",
+        "safari_ios": "18"
+      }
+    }
   },
   "viewport-segments": {
-    id: "viewport-segments",
-    name: "Viewport segments",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "138",
-        chrome_android: "138",
-        edge: "138",
-      },
-    },
+    "id": "viewport-segments",
+    "name": "Viewport segments",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "138",
+        "chrome_android": "138",
+        "edge": "138"
+      }
+    }
   },
   "virtual-keyboard": {
-    id: "virtual-keyboard",
-    name: "Virtual keyboard",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "94",
-        chrome_android: "94",
-        edge: "94",
-      },
-    },
+    "id": "virtual-keyboard",
+    "name": "Virtual keyboard",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "94",
+        "chrome_android": "94",
+        "edge": "94"
+      }
+    }
   },
   "visual-viewport": {
-    id: "visual-viewport",
-    name: "Visual viewport API",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-08-10",
-      baseline_high_date: "2024-02-10",
-      support: {
-        chrome: "61",
-        chrome_android: "61",
-        edge: "79",
-        firefox: "91",
-        firefox_android: "68",
-        safari: "13",
-        safari_ios: "13",
-      },
-    },
+    "id": "visual-viewport",
+    "name": "Visual viewport API",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-08-10",
+      "baseline_high_date": "2024-02-10",
+      "support": {
+        "chrome": "61",
+        "chrome_android": "61",
+        "edge": "79",
+        "firefox": "91",
+        "firefox_android": "68",
+        "safari": "13",
+        "safari_ios": "13"
+      }
+    }
   },
   "web-animations": {
-    id: "web-animations",
-    name: "Web animations",
-    group: ["animation"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-09-16",
-      baseline_high_date: "2023-03-16",
-      support: {
-        chrome: "84",
-        chrome_android: "84",
-        edge: "84",
-        firefox: "75",
-        firefox_android: "79",
-        safari: "14",
-        safari_ios: "14",
-      },
-    },
+    "id": "web-animations",
+    "name": "Web animations",
+    "group": [
+      "animation"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-09-16",
+      "baseline_high_date": "2023-03-16",
+      "support": {
+        "chrome": "84",
+        "chrome_android": "84",
+        "edge": "84",
+        "firefox": "75",
+        "firefox_android": "79",
+        "safari": "14",
+        "safari_ios": "14"
+      }
+    }
   },
   "web-audio": {
-    id: "web-audio",
-    name: "Web Audio",
-    group: ["web-audio"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "35",
-        chrome_android: "35",
-        edge: "12",
-        firefox: "25",
-        firefox_android: "25",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "web-audio",
+    "name": "Web Audio",
+    "group": [
+      "web-audio"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "35",
+        "chrome_android": "35",
+        "edge": "12",
+        "firefox": "25",
+        "firefox_android": "25",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "web-bluetooth": {
-    id: "web-bluetooth",
-    name: "Web Bluetooth",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "70",
-        chrome_android: "56",
-        edge: "79",
-      },
-    },
+    "id": "web-bluetooth",
+    "name": "Web Bluetooth",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "70",
+        "chrome_android": "56",
+        "edge": "79"
+      }
+    }
   },
   "web-cryptography": {
-    id: "web-cryptography",
-    name: "Web Cryptography",
-    group: ["security"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "37",
-        chrome_android: "37",
-        edge: "12",
-        firefox: "34",
-        firefox_android: "34",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+    "id": "web-cryptography",
+    "name": "Web Cryptography",
+    "group": [
+      "security"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "37",
+        "chrome_android": "37",
+        "edge": "12",
+        "firefox": "34",
+        "firefox_android": "34",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
   "web-locks": {
-    id: "web-locks",
-    name: "Locks",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "69",
-        chrome_android: "69",
-        edge: "79",
-        firefox: "96",
-        firefox_android: "96",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "web-locks",
+    "name": "Locks",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "69",
+        "chrome_android": "69",
+        "edge": "79",
+        "firefox": "96",
+        "firefox_android": "96",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "web-midi": {
-    id: "web-midi",
-    name: "Web MIDI",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "43",
-        chrome_android: "43",
-        edge: "79",
-        firefox: "108",
-      },
-    },
+    "id": "web-midi",
+    "name": "Web MIDI",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "43",
+        "chrome_android": "43",
+        "edge": "79",
+        "firefox": "108"
+      }
+    }
   },
   "web-nfc": {
-    id: "web-nfc",
-    name: "Web NFC",
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "100",
-      },
-    },
+    "id": "web-nfc",
+    "name": "Web NFC",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "100"
+      }
+    }
   },
   "web-otp": {
-    id: "web-otp",
-    name: "WebOTP",
-    group: ["credential-management"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "93",
-        chrome_android: "84",
-        edge: "93",
-      },
-    },
+    "id": "web-otp",
+    "name": "WebOTP",
+    "group": [
+      "credential-management"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "93",
+        "chrome_android": "84",
+        "edge": "93"
+      }
+    }
   },
-  webauthn: {
-    id: "webauthn",
-    name: "Web authentication",
-    group: ["webauthn"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-07",
-      baseline_high_date: "2024-03-07",
-      support: {
-        chrome: "67",
-        chrome_android: "70",
-        edge: "18",
-        firefox: "60",
-        firefox_android: "92",
-        safari: "13",
-        safari_ios: "13",
-      },
-    },
+  "webauthn": {
+    "id": "webauthn",
+    "name": "Web authentication",
+    "group": [
+      "webauthn"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-09-07",
+      "baseline_high_date": "2024-03-07",
+      "support": {
+        "chrome": "67",
+        "chrome_android": "70",
+        "edge": "18",
+        "firefox": "60",
+        "firefox_android": "92",
+        "safari": "13",
+        "safari_ios": "13"
+      }
+    }
   },
   "webauthn-public-key-easy": {
-    id: "webauthn-public-key-easy",
-    name: "Web authentication easy public key access",
-    group: ["webauthn"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-10-24",
-      support: {
-        chrome: "85",
-        chrome_android: "85",
-        edge: "85",
-        firefox: "119",
-        firefox_android: "119",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+    "id": "webauthn-public-key-easy",
+    "name": "Web authentication easy public key access",
+    "group": [
+      "webauthn"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-10-24",
+      "support": {
+        "chrome": "85",
+        "chrome_android": "85",
+        "edge": "85",
+        "firefox": "119",
+        "firefox_android": "119",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
   "webauthn-signals": {
-    id: "webauthn-signals",
-    name: "Web authentication signal methods",
-    group: ["webauthn"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "132",
-        chrome_android: "132",
-        edge: "132",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+    "id": "webauthn-signals",
+    "name": "Web authentication signal methods",
+    "group": [
+      "webauthn"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "132",
+        "chrome_android": "132",
+        "edge": "132",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
-  webcodecs: {
-    id: "webcodecs",
-    name: "WebCodecs",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "94",
-        chrome_android: "94",
-        edge: "94",
-        firefox: "130",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+  "webcodecs": {
+    "id": "webcodecs",
+    "name": "WebCodecs",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "94",
+        "chrome_android": "94",
+        "edge": "94",
+        "firefox": "130",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
-  webdriver: {
-    id: "webdriver",
-    name: "WebDriver",
-    group: ["webdriver"],
-    status: {
-      baseline: false,
-      support: {
-        firefox: "66",
-      },
-    },
+  "webdriver": {
+    "id": "webdriver",
+    "name": "WebDriver",
+    "group": [
+      "webdriver"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "66"
+      }
+    }
   },
-  webgl: {
-    id: "webgl",
-    name: "WebGL",
-    group: ["webgl"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "9",
-        chrome_android: "25",
-        edge: "12",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "5.1",
-        safari_ios: "8",
-      },
-    },
+  "webgl": {
+    "id": "webgl",
+    "name": "WebGL",
+    "group": [
+      "webgl"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "9",
+        "chrome_android": "25",
+        "edge": "12",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "5.1",
+        "safari_ios": "8"
+      }
+    }
   },
   "webgl-color-buffer-float": {
-    id: "webgl-color-buffer-float",
-    name: "WEBGL_color_buffer_float WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-20",
-      baseline_high_date: "2024-03-20",
-      support: {
-        chrome: "63",
-        chrome_android: "63",
-        edge: "17",
-        firefox: "30",
-        firefox_android: "30",
-        safari: "14",
-        safari_ios: "15",
-      },
-    },
+    "id": "webgl-color-buffer-float",
+    "name": "WEBGL_color_buffer_float WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-09-20",
+      "baseline_high_date": "2024-03-20",
+      "support": {
+        "chrome": "63",
+        "chrome_android": "63",
+        "edge": "17",
+        "firefox": "30",
+        "firefox_android": "30",
+        "safari": "14",
+        "safari_ios": "15"
+      }
+    }
   },
   "webgl-color-management": {
-    id: "webgl-color-management",
-    name: "Color management for WebGL",
-    group: ["webgl"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-10-29",
-      support: {
-        chrome: "104",
-        chrome_android: "104",
-        edge: "104",
-        firefox: "132",
-        firefox_android: "132",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "webgl-color-management",
+    "name": "Color management for WebGL",
+    "group": [
+      "webgl"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-10-29",
+      "support": {
+        "chrome": "104",
+        "chrome_android": "104",
+        "edge": "104",
+        "firefox": "132",
+        "firefox_android": "132",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "webgl-compressed-texture-astc": {
-    id: "webgl-compressed-texture-astc",
-    name: "WEBGL_compressed_texture_astc WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "47",
-        chrome_android: "47",
-        edge: "79",
-        firefox: "53",
-        firefox_android: "53",
-        safari: "12",
-        safari_ios: "12",
-      },
-    },
+    "id": "webgl-compressed-texture-astc",
+    "name": "WEBGL_compressed_texture_astc WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "47",
+        "chrome_android": "47",
+        "edge": "79",
+        "firefox": "53",
+        "firefox_android": "53",
+        "safari": "12",
+        "safari_ios": "12"
+      }
+    }
   },
   "webgl-compressed-texture-etc": {
-    id: "webgl-compressed-texture-etc",
-    name: "WEBGL_compressed_texture_etc WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "63",
-        chrome_android: "63",
-        edge: "79",
-        firefox_android: "51",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+    "id": "webgl-compressed-texture-etc",
+    "name": "WEBGL_compressed_texture_etc WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "63",
+        "chrome_android": "63",
+        "edge": "79",
+        "firefox_android": "51",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
   "webgl-compressed-texture-etc1": {
-    id: "webgl-compressed-texture-etc1",
-    name: "WEBGL_compressed_texture_etc1 WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "49",
-        chrome_android: "49",
-        edge: "79",
-        firefox_android: "30",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+    "id": "webgl-compressed-texture-etc1",
+    "name": "WEBGL_compressed_texture_etc1 WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "49",
+        "chrome_android": "49",
+        "edge": "79",
+        "firefox_android": "30",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
   "webgl-compressed-texture-pvrtc": {
-    id: "webgl-compressed-texture-pvrtc",
-    name: "WEBGL_compressed_texture_pvrtc WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "28",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+    "id": "webgl-compressed-texture-pvrtc",
+    "name": "WEBGL_compressed_texture_pvrtc WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "28",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
   "webgl-compressed-texture-s3tc": {
-    id: "webgl-compressed-texture-s3tc",
-    name: "WEBGL_compressed_texture_s3tc WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "26",
-        edge: "12",
-        firefox: "22",
-        safari: "8",
-      },
-    },
+    "id": "webgl-compressed-texture-s3tc",
+    "name": "WEBGL_compressed_texture_s3tc WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "26",
+        "edge": "12",
+        "firefox": "22",
+        "safari": "8"
+      }
+    }
   },
   "webgl-compressed-texture-s3tc-srgb": {
-    id: "webgl-compressed-texture-s3tc-srgb",
-    name: "WEBGL_compressed_texture_s3tc_srgb WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "60",
-        chrome_android: "60",
-        edge: "80",
-        firefox: "55",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "webgl-compressed-texture-s3tc-srgb",
+    "name": "WEBGL_compressed_texture_s3tc_srgb WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "60",
+        "chrome_android": "60",
+        "edge": "80",
+        "firefox": "55",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "webgl-debug-renderer-info": {
-    id: "webgl-debug-renderer-info",
-    name: "WEBGL_debug_renderer_info WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-04-19",
-      baseline_high_date: "2019-10-19",
-      support: {
-        chrome: "33",
-        chrome_android: "33",
-        edge: "12",
-        firefox: "53",
-        firefox_android: "53",
-        safari: "9.1",
-        safari_ios: "9.3",
-      },
-    },
+    "id": "webgl-debug-renderer-info",
+    "name": "WEBGL_debug_renderer_info WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-04-19",
+      "baseline_high_date": "2019-10-19",
+      "support": {
+        "chrome": "33",
+        "chrome_android": "33",
+        "edge": "12",
+        "firefox": "53",
+        "firefox_android": "53",
+        "safari": "9.1",
+        "safari_ios": "9.3"
+      }
+    }
   },
   "webgl-debug-shaders": {
-    id: "webgl-debug-shaders",
-    name: "WEBGL_debug_shaders WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-09-16",
-      baseline_high_date: "2023-03-16",
-      support: {
-        chrome: "47",
-        chrome_android: "47",
-        edge: "79",
-        firefox: "56",
-        firefox_android: "56",
-        safari: "14",
-        safari_ios: "14",
-      },
-    },
+    "id": "webgl-debug-shaders",
+    "name": "WEBGL_debug_shaders WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-09-16",
+      "baseline_high_date": "2023-03-16",
+      "support": {
+        "chrome": "47",
+        "chrome_android": "47",
+        "edge": "79",
+        "firefox": "56",
+        "firefox_android": "56",
+        "safari": "14",
+        "safari_ios": "14"
+      }
+    }
   },
   "webgl-depth-texture": {
-    id: "webgl-depth-texture",
-    name: "WEBGL_depth_texture WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "26",
-        chrome_android: "26",
-        edge: "12",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "webgl-depth-texture",
+    "name": "WEBGL_depth_texture WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "26",
+        "chrome_android": "26",
+        "edge": "12",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "webgl-desynchronized": {
-    id: "webgl-desynchronized",
-    name: "Desynchronized WebGL canvas",
-    group: ["webgl"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "81",
-        chrome_android: "75",
-        edge: "79",
-      },
-    },
+    "id": "webgl-desynchronized",
+    "name": "Desynchronized WebGL canvas",
+    "group": [
+      "webgl"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "81",
+        "chrome_android": "75",
+        "edge": "79"
+      }
+    }
   },
   "webgl-draw-buffers": {
-    id: "webgl-draw-buffers",
-    name: "WEBGL_draw_buffers WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "36",
-        edge: "17",
-        firefox: "28",
-        safari: "9",
-        safari_ios: "15",
-      },
-    },
+    "id": "webgl-draw-buffers",
+    "name": "WEBGL_draw_buffers WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "36",
+        "edge": "17",
+        "firefox": "28",
+        "safari": "9",
+        "safari_ios": "15"
+      }
+    }
   },
   "webgl-lose-context": {
-    id: "webgl-lose-context",
-    name: "WEBGL_lose_context WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-04-30",
-      baseline_high_date: "2020-10-30",
-      support: {
-        chrome: "26",
-        chrome_android: "26",
-        edge: "17",
-        firefox: "22",
-        firefox_android: "22",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+    "id": "webgl-lose-context",
+    "name": "WEBGL_lose_context WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-04-30",
+      "baseline_high_date": "2020-10-30",
+      "support": {
+        "chrome": "26",
+        "chrome_android": "26",
+        "edge": "17",
+        "firefox": "22",
+        "firefox_android": "22",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "webgl-multi-draw": {
-    id: "webgl-multi-draw",
-    name: "WEBGL_multi_draw WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "86",
-        chrome_android: "86",
-        edge: "86",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+    "id": "webgl-multi-draw",
+    "name": "WEBGL_multi_draw WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "86",
+        "chrome_android": "86",
+        "edge": "86",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "webgl-oes-draw-buffers-indexed": {
-    id: "webgl-oes-draw-buffers-indexed",
-    name: "OES_draw_buffers_indexed WebGL extension",
-    group: ["webgl-extensions"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-12-13",
-      baseline_high_date: "2025-06-13",
-      support: {
-        chrome: "100",
-        chrome_android: "100",
-        edge: "100",
-        firefox: "108",
-        firefox_android: "108",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+    "id": "webgl-oes-draw-buffers-indexed",
+    "name": "OES_draw_buffers_indexed WebGL extension",
+    "group": [
+      "webgl-extensions"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-12-13",
+      "baseline_high_date": "2025-06-13",
+      "support": {
+        "chrome": "100",
+        "chrome_android": "100",
+        "edge": "100",
+        "firefox": "108",
+        "firefox_android": "108",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
   "webgl-sab": {
-    id: "webgl-sab",
-    name: "SharedArrayBuffer in WebGL",
-    group: ["webgl"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "60",
-        chrome_android: "60",
-        edge: "79",
-        firefox: "79",
-        firefox_android: "79",
-      },
-    },
+    "id": "webgl-sab",
+    "name": "SharedArrayBuffer in WebGL",
+    "group": [
+      "webgl"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "60",
+        "chrome_android": "60",
+        "edge": "79",
+        "firefox": "79",
+        "firefox_android": "79"
+      }
+    }
   },
-  webgl2: {
-    id: "webgl2",
-    name: "WebGL2",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-20",
-      baseline_high_date: "2024-03-20",
-      support: {
-        chrome: "56",
-        chrome_android: "58",
-        edge: "79",
-        firefox: "51",
-        firefox_android: "51",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+  "webgl2": {
+    "id": "webgl2",
+    "name": "WebGL2",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-09-20",
+      "baseline_high_date": "2024-03-20",
+      "support": {
+        "chrome": "56",
+        "chrome_android": "58",
+        "edge": "79",
+        "firefox": "51",
+        "firefox_android": "51",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "webgl2-color-management": {
-    id: "webgl2-color-management",
-    name: "Color management for WebGL2",
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-10-29",
-      support: {
-        chrome: "104",
-        chrome_android: "104",
-        edge: "104",
-        firefox: "132",
-        firefox_android: "132",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "webgl2-color-management",
+    "name": "Color management for WebGL2",
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-10-29",
+      "support": {
+        "chrome": "104",
+        "chrome_android": "104",
+        "edge": "104",
+        "firefox": "132",
+        "firefox_android": "132",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "webgl2-desynchronized": {
-    id: "webgl2-desynchronized",
-    name: "Desynchronized WebGL2 canvas",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "81",
-        chrome_android: "75",
-        edge: "79",
-      },
-    },
+    "id": "webgl2-desynchronized",
+    "name": "Desynchronized WebGL2 canvas",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "81",
+        "chrome_android": "75",
+        "edge": "79"
+      }
+    }
   },
-  webgpu: {
-    id: "webgpu",
-    name: "WebGPU",
-    group: ["webgpu"],
-    status: {
-      baseline: false,
-      support: {
-        chrome_android: "121",
-        safari: "26",
-        safari_ios: "26",
-      },
-    },
+  "webgpu": {
+    "id": "webgpu",
+    "name": "WebGPU",
+    "group": [
+      "webgpu"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome_android": "121",
+        "safari": "26",
+        "safari_ios": "26"
+      }
+    }
   },
   "webgpu-subgroups": {
-    id: "webgpu-subgroups",
-    name: "WebGPU subgroups",
-    group: ["webgpu"],
-    status: {
-      baseline: false,
-      support: {},
-    },
+    "id": "webgpu-subgroups",
+    "name": "WebGPU subgroups",
+    "group": [
+      "webgpu"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
-  webhid: {
-    id: "webhid",
-    name: "WebHID",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "89",
-        edge: "89",
-      },
-    },
+  "webhid": {
+    "id": "webhid",
+    "name": "WebHID",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "89",
+        "edge": "89"
+      }
+    }
   },
-  webnn: {
-    id: "webnn",
-    name: "WebNN",
-    status: {
-      baseline: false,
-      support: {},
-    },
+  "webnn": {
+    "id": "webnn",
+    "name": "WebNN",
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
-  webrtc: {
-    id: "webrtc",
-    name: "WebRTC",
-    group: ["webrtc"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "56",
-        chrome_android: "56",
-        edge: "79",
-        firefox: "22",
-        firefox_android: "24",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+  "webrtc": {
+    "id": "webrtc",
+    "name": "WebRTC",
+    "group": [
+      "webrtc"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "56",
+        "chrome_android": "56",
+        "edge": "79",
+        "firefox": "22",
+        "firefox_android": "24",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
   "webrtc-encoded-transform": {
-    id: "webrtc-encoded-transform",
-    name: "WebRTC encoded transform",
-    group: ["webrtc"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-10-03",
-      support: {
-        chrome: "141",
-        chrome_android: "141",
-        edge: "141",
-        firefox: "117",
-        firefox_android: "117",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "webrtc-encoded-transform",
+    "name": "WebRTC encoded transform",
+    "group": [
+      "webrtc"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-10-03",
+      "support": {
+        "chrome": "141",
+        "chrome_android": "141",
+        "edge": "141",
+        "firefox": "117",
+        "firefox_android": "117",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "webrtc-sctp": {
-    id: "webrtc-sctp",
-    name: "WebRTC SCTP information",
-    group: ["webrtc"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-05-09",
-      baseline_high_date: "2025-11-09",
-      support: {
-        chrome: "76",
-        chrome_android: "76",
-        edge: "79",
-        firefox: "113",
-        firefox_android: "113",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "webrtc-sctp",
+    "name": "WebRTC SCTP information",
+    "group": [
+      "webrtc"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-05-09",
+      "baseline_high_date": "2025-11-09",
+      "support": {
+        "chrome": "76",
+        "chrome_android": "76",
+        "edge": "79",
+        "firefox": "113",
+        "firefox_android": "113",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "webrtc-stats": {
-    id: "webrtc-stats",
-    name: "WebRTC statistics",
-    group: ["webrtc"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "58",
-        chrome_android: "58",
-        edge: "79",
-        firefox: "44",
-        firefox_android: "44",
-        safari: "11",
-        safari_ios: "11",
-      },
-    },
+    "id": "webrtc-stats",
+    "name": "WebRTC statistics",
+    "group": [
+      "webrtc"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "58",
+        "chrome_android": "58",
+        "edge": "79",
+        "firefox": "44",
+        "firefox_android": "44",
+        "safari": "11",
+        "safari_ios": "11"
+      }
+    }
   },
-  websockets: {
-    id: "websockets",
-    name: "WebSockets",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "5",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "11",
-        firefox_android: "14",
-        safari: "5",
-        safari_ios: "4.2",
-      },
-    },
+  "websockets": {
+    "id": "websockets",
+    "name": "WebSockets",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "5",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "11",
+        "firefox_android": "14",
+        "safari": "5",
+        "safari_ios": "4.2"
+      }
+    }
   },
-  webtransport: {
-    id: "webtransport",
-    name: "WebTransport",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "97",
-        chrome_android: "97",
-        edge: "97",
-        firefox: "114",
-        firefox_android: "114",
-      },
-    },
+  "webtransport": {
+    "id": "webtransport",
+    "name": "WebTransport",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "97",
+        "chrome_android": "97",
+        "edge": "97",
+        "firefox": "114",
+        "firefox_android": "114"
+      }
+    }
   },
-  webusb: {
-    id: "webusb",
-    name: "WebUSB",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "61",
-        chrome_android: "61",
-        edge: "79",
-      },
-    },
+  "webusb": {
+    "id": "webusb",
+    "name": "WebUSB",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "61",
+        "chrome_android": "61",
+        "edge": "79"
+      }
+    }
   },
-  webvr: {
-    id: "webvr",
-    name: "WebVR",
-    status: {
-      baseline: false,
-      support: {},
+  "webvr": {
+    "id": "webvr",
+    "name": "WebVR",
+    "status": {
+      "baseline": false,
+      "support": {}
     },
-    discouraged: {
-      according_to: ["https://immersive-web.github.io/webvr/spec/1.1/#abstract"],
-      alternatives: ["webxr-device"],
-      reason: "Development of the WebVR API halted in favor of WebXR.",
-      reason_html: "Development of the WebVR API halted in favor of WebXR.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://immersive-web.github.io/webvr/spec/1.1/#abstract"
+      ],
+      "alternatives": [
+        "webxr-device"
+      ],
+      "reason": "Development of the WebVR API halted in favor of WebXR.",
+      "reason_html": "Development of the WebVR API halted in favor of WebXR."
+    }
   },
-  webvtt: {
-    id: "webvtt",
-    name: "WebVTT",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "23",
-        chrome_android: "25",
-        edge: "12",
-        firefox: "31",
-        firefox_android: "31",
-        safari: "6",
-        safari_ios: "8",
-      },
-    },
+  "webvtt": {
+    "id": "webvtt",
+    "name": "WebVTT",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "23",
+        "chrome_android": "25",
+        "edge": "12",
+        "firefox": "31",
+        "firefox_android": "31",
+        "safari": "6",
+        "safari_ios": "8"
+      }
+    }
   },
   "webvtt-cue-alignment": {
-    id: "webvtt-cue-alignment",
-    name: "WebVTT cue alignment",
-    status: {
-      baseline: false,
-      support: {
-        firefox: "31",
-        firefox_android: "31",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "webvtt-cue-alignment",
+    "name": "WebVTT cue alignment",
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "31",
+        "firefox_android": "31",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "webvtt-cue-settings": {
-    id: "webvtt-cue-settings",
-    name: "WebVTT cue settings",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "23",
-        chrome_android: "25",
-        edge: "79",
-        firefox: "31",
-        firefox_android: "31",
-        safari: "6",
-        safari_ios: "8",
-      },
-    },
+    "id": "webvtt-cue-settings",
+    "name": "WebVTT cue settings",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "23",
+        "chrome_android": "25",
+        "edge": "79",
+        "firefox": "31",
+        "firefox_android": "31",
+        "safari": "6",
+        "safari_ios": "8"
+      }
+    }
   },
   "webvtt-regions": {
-    id: "webvtt-regions",
-    name: "WebVTT regions",
-    status: {
-      baseline: false,
-      support: {
-        firefox: "59",
-        firefox_android: "59",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "webvtt-regions",
+    "name": "WebVTT regions",
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "59",
+        "firefox_android": "59",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "webxr-anchors": {
-    id: "webxr-anchors",
-    name: "Anchors (WebXR)",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "85",
-        chrome_android: "85",
-        edge: "85",
-      },
-    },
+    "id": "webxr-anchors",
+    "name": "Anchors (WebXR)",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "85",
+        "chrome_android": "85",
+        "edge": "85"
+      }
+    }
   },
   "webxr-ar": {
-    id: "webxr-ar",
-    name: "Augmented reality",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "86",
-        chrome_android: "86",
-        edge: "86",
-      },
-    },
+    "id": "webxr-ar",
+    "name": "Augmented reality",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "86",
+        "chrome_android": "86",
+        "edge": "86"
+      }
+    }
   },
   "webxr-camera": {
-    id: "webxr-camera",
-    name: "Raw camera access for WebXR",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "107",
-        chrome_android: "107",
-        edge: "107",
-      },
-    },
+    "id": "webxr-camera",
+    "name": "Raw camera access for WebXR",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "107",
+        "chrome_android": "107",
+        "edge": "107"
+      }
+    }
   },
   "webxr-depth-sensing": {
-    id: "webxr-depth-sensing",
-    name: "Depth sensing",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "90",
-        chrome_android: "90",
-        edge: "90",
-      },
-    },
+    "id": "webxr-depth-sensing",
+    "name": "Depth sensing",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "90",
+        "chrome_android": "90",
+        "edge": "90"
+      }
+    }
   },
   "webxr-device": {
-    id: "webxr-device",
-    name: "WebXR",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "79",
-        chrome_android: "79",
-        edge: "79",
-      },
-    },
+    "id": "webxr-device",
+    "name": "WebXR",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "79",
+        "chrome_android": "79",
+        "edge": "79"
+      }
+    }
   },
   "webxr-dom-overlays": {
-    id: "webxr-dom-overlays",
-    name: "DOM overlays for WebXR",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "83",
-        chrome_android: "83",
-        edge: "83",
-      },
-    },
+    "id": "webxr-dom-overlays",
+    "name": "DOM overlays for WebXR",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "83",
+        "chrome_android": "83",
+        "edge": "83"
+      }
+    }
   },
   "webxr-gamepads": {
-    id: "webxr-gamepads",
-    name: "Gamepad (WebXR)",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "79",
-        chrome_android: "79",
-        edge: "79",
-      },
-    },
+    "id": "webxr-gamepads",
+    "name": "Gamepad (WebXR)",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "79",
+        "chrome_android": "79",
+        "edge": "79"
+      }
+    }
   },
   "webxr-hand-input": {
-    id: "webxr-hand-input",
-    name: "Hand input",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "131",
-        chrome_android: "131",
-      },
-    },
+    "id": "webxr-hand-input",
+    "name": "Hand input",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "131",
+        "chrome_android": "131"
+      }
+    }
   },
   "webxr-hit-test": {
-    id: "webxr-hit-test",
-    name: "Hit test",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "81",
-        chrome_android: "81",
-        edge: "81",
-      },
-    },
+    "id": "webxr-hit-test",
+    "name": "Hit test",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "81",
+        "chrome_android": "81",
+        "edge": "81"
+      }
+    }
   },
   "webxr-layers": {
-    id: "webxr-layers",
-    name: "Layers (WebXR)",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {},
-    },
+    "id": "webxr-layers",
+    "name": "Layers (WebXR)",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
   },
   "webxr-lighting-estimation": {
-    id: "webxr-lighting-estimation",
-    name: "Lighting estimation",
-    group: ["webxr"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "90",
-        chrome_android: "90",
-        edge: "90",
-      },
-    },
+    "id": "webxr-lighting-estimation",
+    "name": "Lighting estimation",
+    "group": [
+      "webxr"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "90",
+        "chrome_android": "90",
+        "edge": "90"
+      }
+    }
   },
   "wheel-events": {
-    id: "wheel-events",
-    name: "Wheel events",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "31",
-        chrome_android: "31",
-        edge: "12",
-        firefox: "17",
-        firefox_android: "17",
-        safari: "7",
-      },
-    },
+    "id": "wheel-events",
+    "name": "Wheel events",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "31",
+        "chrome_android": "31",
+        "edge": "12",
+        "firefox": "17",
+        "firefox_android": "17",
+        "safari": "7"
+      }
+    }
   },
-  window: {
-    id: "window",
-    name: "Window",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "window": {
+    "id": "window",
+    "name": "Window",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "window-controls-overlay": {
-    id: "window-controls-overlay",
-    name: "Window Controls Overlay",
-    group: ["progressive-web-app"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "105",
-        edge: "105",
-      },
-    },
+    "id": "window-controls-overlay",
+    "name": "Window Controls Overlay",
+    "group": [
+      "progressive-web-app"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "105",
+        "edge": "105"
+      }
+    }
   },
   "window-management": {
-    id: "window-management",
-    name: "Window management",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "111",
-        edge: "111",
-      },
-    },
+    "id": "window-management",
+    "name": "Window management",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "111",
+        "edge": "111"
+      }
+    }
   },
-  writingsuggestions: {
-    id: "writingsuggestions",
-    name: "writingsuggestions",
-    group: ["forms"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "124",
-        chrome_android: "124",
-        edge: "124",
-        safari: "18",
-        safari_ios: "18",
-      },
-    },
+  "writingsuggestions": {
+    "id": "writingsuggestions",
+    "name": "writingsuggestions",
+    "group": [
+      "forms"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "124",
+        "chrome_android": "124",
+        "edge": "124",
+        "safari": "18",
+        "safari_ios": "18"
+      }
+    }
   },
-  xhr: {
-    id: "xhr",
-    name: "XMLHttpRequest",
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "xhr": {
+    "id": "xhr",
+    "name": "XMLHttpRequest",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
   "xml-serializer": {
-    id: "xml-serializer",
-    name: "XMLSerializer",
-    group: ["parsing-and-serialization", "xml"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+    "id": "xml-serializer",
+    "name": "XMLSerializer",
+    "group": [
+      "parsing-and-serialization",
+      "xml"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
-  xpath: {
-    id: "xpath",
-    name: "XPath",
-    group: ["xml"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
-    },
+  "xpath": {
+    "id": "xpath",
+    "name": "XPath",
+    "group": [
+      "xml"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
+    }
   },
-  xslt: {
-    id: "xslt",
-    name: "XSLT",
-    group: ["xml"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3.1",
-        safari_ios: "2",
-      },
-    },
-  },
+  "xslt": {
+    "id": "xslt",
+    "name": "XSLT",
+    "group": [
+      "xml"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3.1",
+        "safari_ios": "2"
+      }
+    }
+  }
 } as const;

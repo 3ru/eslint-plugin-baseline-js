@@ -227,6 +227,8 @@ const manualJsbi = [
     objectArg: { index: 2, hasKeys: ["cause"] },
   },
   { featureId: "explicit-resource-management", kind: "newIdent", name: "DisposableStack" },
+  { featureId: "explicit-resource-management", kind: "newIdent", name: "AsyncDisposableStack" },
+  { featureId: "explicit-resource-management", kind: "newIdent", name: "SuppressedError" },
   { featureId: "explicit-resource-management", kind: "member", base: "Symbol", prop: "dispose" },
   {
     featureId: "explicit-resource-management",
@@ -267,14 +269,32 @@ const manualJsbi = [
     iface: "Uint8Array",
     prop: "toHex",
   },
+  {
+    featureId: "uint8array-base64-hex",
+    kind: "instanceMember",
+    iface: "Uint8Array",
+    prop: "setFromBase64",
+  },
+  {
+    featureId: "uint8array-base64-hex",
+    kind: "instanceMember",
+    iface: "Uint8Array",
+    prop: "setFromHex",
+  },
   { featureId: "weak-references", kind: "newIdent", name: "WeakRef" },
   { featureId: "weak-references", kind: "newIdent", name: "FinalizationRegistry" },
-  { featureId: "intl-locale-info", kind: "newMember", base: "Intl", prop: "Locale" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "maximize" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "minimize" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "hourCycle" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "textInfo" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "weekInfo" },
+  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getCalendars" },
+  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getCollations" },
+  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getHourCycles" },
+  {
+    featureId: "intl-locale-info",
+    kind: "instanceMember",
+    iface: "Locale",
+    prop: "getNumberingSystems",
+  },
+  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getTextInfo" },
+  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getTimeZones" },
+  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getWeekInfo" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "map" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "filter" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "take" },
@@ -282,6 +302,7 @@ const manualJsbi = [
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "flatMap" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "reduce" },
   { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "toArray" },
+  { featureId: "iterator-methods", kind: "callStatic", base: "Iterator", prop: "from" },
   { featureId: "iterator-concat", kind: "callStatic", base: "Iterator", prop: "concat" },
 ];
 for (const d of manualJsbi) jsbiDescs.push(d);
@@ -292,9 +313,6 @@ for (const prop of ["forEach", "some", "every", "find"]) {
     iface: "Iterator",
     prop,
   });
-}
-for (const prop of ["calendars", "collations", "numberingSystems"]) {
-  jsbiDescs.push({ featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop });
 }
 
 const TYPED_ARRAY_IFACES = [
@@ -323,8 +341,8 @@ const TYPED_ITER_METHODS = [
   "filter",
   "reduce",
   "reduceRight",
-  "find",
-  "findIndex",
+  "indexOf",
+  "lastIndexOf",
 ];
 for (const iface of TYPED_ARRAY_IFACES) {
   for (const prop of TYPED_ITER_METHODS) {

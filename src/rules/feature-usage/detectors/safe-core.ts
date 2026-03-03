@@ -6,7 +6,7 @@ import type {
   NewIdentDescriptor,
   NewMemberDescriptor,
 } from "../../../baseline/types";
-import { isGlobalBase, isGlobalNotShadowed, isMemberWithProperty } from "../../../util/ast";
+import { isGlobalBaseNotShadowed, isMemberWithProperty } from "../../../util/ast";
 export type Reporter = (node: unknown, featureId: string) => void;
 
 export function addNewIdentDetector(
@@ -23,8 +23,7 @@ export function addNewIdentDetector(
     if (
       callee?.type === "Identifier" &&
       callee.name === name &&
-      isGlobalBase(context, callee, name) &&
-      isGlobalNotShadowed(context, name, node)
+      isGlobalBaseNotShadowed(context, callee, name, node)
     ) {
       report(callee, featureId);
     }
@@ -42,7 +41,12 @@ export function addNewMemberDetector(
     const callee = (node as unknown as { callee?: unknown }).callee;
     if (
       isMemberWithProperty(callee, prop) &&
-      isGlobalBase(context, (callee as unknown as { object?: unknown }).object, base)
+      isGlobalBaseNotShadowed(
+        context,
+        (callee as unknown as { object?: unknown }).object,
+        base,
+        node,
+      )
     ) {
       report((callee as unknown as { property?: unknown }).property, featureId);
     }
@@ -60,7 +64,12 @@ export function addCallStaticDetector(
     const callee = (node as unknown as { callee?: unknown }).callee;
     if (
       isMemberWithProperty(callee, prop) &&
-      isGlobalBase(context, (callee as unknown as { object?: unknown }).object, base)
+      isGlobalBaseNotShadowed(
+        context,
+        (callee as unknown as { object?: unknown }).object,
+        base,
+        node,
+      )
     ) {
       report((callee as unknown as { property?: unknown }).property, featureId);
     }
@@ -81,8 +90,7 @@ export function addCallGlobalDetector(
     if (
       callee?.type === "Identifier" &&
       callee.name === name &&
-      isGlobalBase(context, callee, name) &&
-      isGlobalNotShadowed(context, name, node)
+      isGlobalBaseNotShadowed(context, callee, name, node)
     ) {
       report(callee, featureId);
     }
@@ -99,7 +107,7 @@ export function addMemberDetector(
   const handler: Rule.RuleListener["MemberExpression"] = (node) => {
     if (
       isMemberWithProperty(node, prop) &&
-      isGlobalBase(context, (node as unknown as { object?: unknown }).object, base)
+      isGlobalBaseNotShadowed(context, (node as unknown as { object?: unknown }).object, base, node)
     ) {
       report((node as unknown as { property?: unknown }).property, featureId);
     }

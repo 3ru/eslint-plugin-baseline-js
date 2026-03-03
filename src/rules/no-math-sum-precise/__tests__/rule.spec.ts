@@ -34,4 +34,26 @@ describe("no-math-sum-precise", () => {
     const msgs = await run("Math.max(1,2)");
     expect(msgs.length).toBe(0);
   });
+
+  it("flags globalThis/window qualified access", async () => {
+    const a = await run("globalThis.Math.sumPrecise(1,2)");
+    expect(a.length).toBe(1);
+
+    const b = await run("window.Math.sumPrecise");
+    expect(b.length).toBeGreaterThan(0);
+  });
+
+  it("does not flag shadowed window/globalThis wrappers", async () => {
+    const a = await run(`
+      const window = { Math: { sumPrecise() {} } };
+      window.Math.sumPrecise();
+    `);
+    expect(a.length).toBe(0);
+
+    const b = await run(`
+      const globalThis = { Math: { sumPrecise() {} } };
+      globalThis.Math.sumPrecise;
+    `);
+    expect(b.length).toBe(0);
+  });
 });

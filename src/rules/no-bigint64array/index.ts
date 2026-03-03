@@ -1,5 +1,5 @@
 import type { Rule } from "eslint";
-import { isGlobalNotShadowed } from "../../util/ast";
+import { isGlobalBaseNotShadowed } from "../../util/ast";
 
 // TODO(improve-detection)
 // - Detect aliasing: const C = BigInt64Array; new C(); (needs reference tracking)
@@ -17,11 +17,12 @@ const rule: Rule.RuleModule = {
       context.report({ node: node as Rule.Node, messageId: "forbidden" });
     }
 
-    function isBigIntArrayIdent(calleeNode: unknown): string | null {
-      const callee = calleeNode as { type?: string; name?: string } | undefined;
-      if (callee?.type !== "Identifier") return null;
-      if (callee.name === "BigInt64Array" || callee.name === "BigUint64Array") {
-        return callee.name;
+    function resolveBigIntArrayBase(node: unknown, parentNode: unknown): string | null {
+      if (isGlobalBaseNotShadowed(context, node, "BigInt64Array", parentNode)) {
+        return "BigInt64Array";
+      }
+      if (isGlobalBaseNotShadowed(context, node, "BigUint64Array", parentNode)) {
+        return "BigUint64Array";
       }
       return null;
     }
@@ -29,22 +30,22 @@ const rule: Rule.RuleModule = {
     return {
       NewExpression(node: unknown) {
         const n = node as Record<string, unknown>;
-        const name = isBigIntArrayIdent(n.callee);
-        if (name && isGlobalNotShadowed(context, name, node)) {
+        const name = resolveBigIntArrayBase(n.callee, node);
+        if (name) {
           report(n.callee);
         }
       },
       CallExpression(node: unknown) {
         const n = node as Record<string, unknown>;
-        const name = isBigIntArrayIdent(n.callee);
-        if (name && isGlobalNotShadowed(context, name, node)) {
+        const name = resolveBigIntArrayBase(n.callee, node);
+        if (name) {
           report(n.callee);
         }
       },
       MemberExpression(node: unknown) {
         const m = node as Record<string, unknown>;
-        const name = isBigIntArrayIdent(m.object);
-        if (name && isGlobalNotShadowed(context, name, node)) {
+        const name = resolveBigIntArrayBase(m.object, node);
+        if (name) {
           report(m.object);
         }
       },

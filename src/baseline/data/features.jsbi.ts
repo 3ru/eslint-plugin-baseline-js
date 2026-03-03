@@ -6,1930 +6,2133 @@
 
 export default {
   "accessor-methods": {
-    id: "accessor-methods",
-    name: "Accessor methods",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
+    "id": "accessor-methods",
+    "name": "Accessor methods",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers"
       ],
-      reason:
-        'TC39 included accessor methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
-      reason_html:
-        'TC39 included accessor methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
-    },
+      "reason": "TC39 included accessor methods in Annex B of the ECMAScript specification, which covers JavaScript features with \"one or more undesirable characteristics and in the absence of legacy usage would be removed.\"",
+      "reason_html": "TC39 included accessor methods in Annex B of the ECMAScript specification, which covers JavaScript features with \"one or more undesirable characteristics and in the absence of legacy usage would be removed.\""
+    }
   },
-  array: {
-    id: "array",
-    name: "Array (initial support)",
-    group: ["arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "array": {
+    "id": "array",
+    "name": "Array (initial support)",
+    "group": [
+      "arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "array-at": {
-    id: "array-at",
-    name: "Array at()",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "92",
-        chrome_android: "92",
-        edge: "92",
-        firefox: "90",
-        firefox_android: "90",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "array-at",
+    "name": "Array at()",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "92",
+        "chrome_android": "92",
+        "edge": "92",
+        "firefox": "90",
+        "firefox_android": "90",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "array-by-copy": {
-    id: "array-by-copy",
-    name: "Array by copy",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2023-07-04",
-      baseline_high_date: "2026-01-04",
-      support: {
-        chrome: "110",
-        chrome_android: "110",
-        edge: "110",
-        firefox: "115",
-        firefox_android: "115",
-        safari: "16",
-        safari_ios: "16",
-      },
-    },
+    "id": "array-by-copy",
+    "name": "Array by copy",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2023-07-04",
+      "baseline_high_date": "2026-01-04",
+      "support": {
+        "chrome": "110",
+        "chrome_android": "110",
+        "edge": "110",
+        "firefox": "115",
+        "firefox_android": "115",
+        "safari": "16",
+        "safari_ios": "16"
+      }
+    }
   },
   "array-copywithin": {
-    id: "array-copywithin",
-    name: "Array copyWithin()",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "12",
-        firefox: "34",
-        firefox_android: "34",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "array-copywithin",
+    "name": "Array copyWithin()",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "12",
+        "firefox": "34",
+        "firefox_android": "34",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "array-fill": {
-    id: "array-fill",
-    name: "Array fill()",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "12",
-        firefox: "37",
-        firefox_android: "37",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "array-fill",
+    "name": "Array fill()",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "12",
+        "firefox": "37",
+        "firefox_android": "37",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "array-find": {
-    id: "array-find",
-    name: "Array find() and findIndex()",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "12",
-        firefox: "37",
-        firefox_android: "37",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "array-find",
+    "name": "Array find() and findIndex()",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "12",
+        "firefox": "37",
+        "firefox_android": "37",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "array-findlast": {
-    id: "array-findlast",
-    name: "Array findLast() and findLastIndex()",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-08-23",
-      baseline_high_date: "2025-02-23",
-      support: {
-        chrome: "97",
-        chrome_android: "97",
-        edge: "97",
-        firefox: "104",
-        firefox_android: "104",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "array-findlast",
+    "name": "Array findLast() and findLastIndex()",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-08-23",
+      "baseline_high_date": "2025-02-23",
+      "support": {
+        "chrome": "97",
+        "chrome_android": "97",
+        "edge": "97",
+        "firefox": "104",
+        "firefox_android": "104",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "array-flat": {
-    id: "array-flat",
-    name: "Array flat() and flatMap()",
-    group: ["arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "69",
-        chrome_android: "69",
-        edge: "79",
-        firefox: "62",
-        firefox_android: "62",
-        safari: "12",
-        safari_ios: "12",
-      },
-    },
+    "id": "array-flat",
+    "name": "Array flat() and flatMap()",
+    "group": [
+      "arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "69",
+        "chrome_android": "69",
+        "edge": "79",
+        "firefox": "62",
+        "firefox_android": "62",
+        "safari": "12",
+        "safari_ios": "12"
+      }
+    }
   },
   "array-from": {
-    id: "array-from",
-    name: "Array.from()",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "12",
-        firefox: "38",
-        firefox_android: "38",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "array-from",
+    "name": "Array.from()",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "12",
+        "firefox": "38",
+        "firefox_android": "38",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "array-fromasync": {
-    id: "array-fromasync",
-    name: "Array.fromAsync()",
-    group: ["arrays"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-01-25",
-      support: {
-        chrome: "121",
-        chrome_android: "121",
-        edge: "121",
-        firefox: "115",
-        firefox_android: "115",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "array-fromasync",
+    "name": "Array.fromAsync()",
+    "group": [
+      "arrays"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-01-25",
+      "support": {
+        "chrome": "121",
+        "chrome_android": "121",
+        "edge": "121",
+        "firefox": "115",
+        "firefox_android": "115",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "array-group": {
-    id: "array-group",
-    name: "Array grouping",
-    group: ["maps"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-03-05",
-      support: {
-        chrome: "117",
-        chrome_android: "117",
-        edge: "117",
-        firefox: "119",
-        firefox_android: "119",
-        safari: "17.4",
-        safari_ios: "17.4",
-      },
-    },
+    "id": "array-group",
+    "name": "Array grouping",
+    "group": [
+      "maps"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-03-05",
+      "support": {
+        "chrome": "117",
+        "chrome_android": "117",
+        "edge": "117",
+        "firefox": "119",
+        "firefox_android": "119",
+        "safari": "17.4",
+        "safari_ios": "17.4"
+      }
+    }
   },
   "array-includes": {
-    id: "array-includes",
-    name: "Array includes()",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "47",
-        chrome_android: "47",
-        edge: "14",
-        firefox: "43",
-        firefox_android: "43",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "array-includes",
+    "name": "Array includes()",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "47",
+        "chrome_android": "47",
+        "edge": "14",
+        "firefox": "43",
+        "firefox_android": "43",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "array-isarray": {
-    id: "array-isarray",
-    name: "Array.isArray()",
-    group: ["arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "4",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "5",
-        safari_ios: "5",
-      },
-    },
+    "id": "array-isarray",
+    "name": "Array.isArray()",
+    "group": [
+      "arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "4",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "5",
+        "safari_ios": "5"
+      }
+    }
   },
   "array-iteration-methods": {
-    id: "array-iteration-methods",
-    name: "Array iteration methods",
-    group: ["arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "3",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "3.2",
-      },
-    },
+    "id": "array-iteration-methods",
+    "name": "Array iteration methods",
+    "group": [
+      "arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "3",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "3.2"
+      }
+    }
   },
   "array-iterators": {
-    id: "array-iterators",
-    name: "Array iterators",
-    group: ["arrays", "iterators"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-05-09",
-      baseline_high_date: "2020-11-09",
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "14",
-        firefox: "60",
-        firefox_android: "60",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "array-iterators",
+    "name": "Array iterators",
+    "group": [
+      "arrays",
+      "iterators"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-05-09",
+      "baseline_high_date": "2020-11-09",
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "14",
+        "firefox": "60",
+        "firefox_android": "60",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "array-of": {
-    id: "array-of",
-    name: "Array.of()",
-    group: ["arrays", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "12",
-        firefox: "38",
-        firefox_android: "38",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "array-of",
+    "name": "Array.of()",
+    "group": [
+      "arrays",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "12",
+        "firefox": "38",
+        "firefox_android": "38",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "array-splice": {
-    id: "array-splice",
-    name: "Array splice()",
-    group: ["arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+    "id": "array-splice",
+    "name": "Array splice()",
+    "group": [
+      "arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "async-await": {
-    id: "async-await",
-    name: "Async functions",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-04-05",
-      baseline_high_date: "2019-10-05",
-      support: {
-        chrome: "55",
-        chrome_android: "55",
-        edge: "15",
-        firefox: "52",
-        firefox_android: "52",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+    "id": "async-await",
+    "name": "Async functions",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-04-05",
+      "baseline_high_date": "2019-10-05",
+      "support": {
+        "chrome": "55",
+        "chrome_android": "55",
+        "edge": "15",
+        "firefox": "52",
+        "firefox_android": "52",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "async-generators": {
-    id: "async-generators",
-    name: "Async generators",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "63",
-        chrome_android: "63",
-        edge: "79",
-        firefox: "57",
-        firefox_android: "57",
-        safari: "12",
-        safari_ios: "12",
-      },
-    },
+    "id": "async-generators",
+    "name": "Async generators",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "63",
+        "chrome_android": "63",
+        "edge": "79",
+        "firefox": "57",
+        "firefox_android": "57",
+        "safari": "12",
+        "safari_ios": "12"
+      }
+    }
   },
   "async-iterators": {
-    id: "async-iterators",
-    name: "Async iterators and the for await..of loop",
-    group: ["iterators"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "63",
-        chrome_android: "63",
-        edge: "79",
-        firefox: "57",
-        firefox_android: "57",
-        safari: "12",
-        safari_ios: "12",
-      },
-    },
+    "id": "async-iterators",
+    "name": "Async iterators and the for await..of loop",
+    "group": [
+      "iterators"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "63",
+        "chrome_android": "63",
+        "edge": "79",
+        "firefox": "57",
+        "firefox_android": "57",
+        "safari": "12",
+        "safari_ios": "12"
+      }
+    }
   },
   "atomics-pause": {
-    id: "atomics-pause",
-    name: "Atomics.pause()",
-    group: ["javascript"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-04-01",
-      support: {
-        chrome: "133",
-        chrome_android: "133",
-        edge: "133",
-        firefox: "137",
-        firefox_android: "137",
-        safari: "18.4",
-        safari_ios: "18.4",
-      },
-    },
+    "id": "atomics-pause",
+    "name": "Atomics.pause()",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-04-01",
+      "support": {
+        "chrome": "133",
+        "chrome_android": "133",
+        "edge": "133",
+        "firefox": "137",
+        "firefox_android": "137",
+        "safari": "18.4",
+        "safari_ios": "18.4"
+      }
+    }
   },
   "atomics-wait-async": {
-    id: "atomics-wait-async",
-    name: "Atomics.waitAsync()",
-    group: ["javascript"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-11-11",
-      support: {
-        chrome: "90",
-        chrome_android: "90",
-        edge: "90",
-        firefox: "145",
-        firefox_android: "145",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "atomics-wait-async",
+    "name": "Atomics.waitAsync()",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-11-11",
+      "support": {
+        "chrome": "90",
+        "chrome_android": "90",
+        "edge": "90",
+        "firefox": "145",
+        "firefox_android": "145",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  bigint: {
-    id: "bigint",
-    name: "BigInt",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-09-16",
-      baseline_high_date: "2023-03-16",
-      support: {
-        chrome: "67",
-        chrome_android: "67",
-        edge: "79",
-        firefox: "68",
-        firefox_android: "68",
-        safari: "14",
-        safari_ios: "14",
-      },
-    },
+  "bigint": {
+    "id": "bigint",
+    "name": "BigInt",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-09-16",
+      "baseline_high_date": "2023-03-16",
+      "support": {
+        "chrome": "67",
+        "chrome_android": "67",
+        "edge": "79",
+        "firefox": "68",
+        "firefox_android": "68",
+        "safari": "14",
+        "safari_ios": "14"
+      }
+    }
   },
-  bigint64array: {
-    id: "bigint64array",
-    name: "BigInt64Array",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-20",
-      baseline_high_date: "2024-03-20",
-      support: {
-        chrome: "67",
-        chrome_android: "67",
-        edge: "79",
-        firefox: "68",
-        firefox_android: "68",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+  "bigint64array": {
+    "id": "bigint64array",
+    "name": "BigInt64Array",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-09-20",
+      "baseline_high_date": "2024-03-20",
+      "support": {
+        "chrome": "67",
+        "chrome_android": "67",
+        "edge": "79",
+        "firefox": "68",
+        "firefox_android": "68",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
-  date: {
-    id: "date",
-    name: "Date",
-    group: ["primitive-types"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "date": {
+    "id": "date",
+    "name": "Date",
+    "group": [
+      "primitive-types"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "date-get-year-set-year": {
-    id: "date-get-year-set-year",
-    name: "getYear() and setYear()",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
+    "id": "date-get-year-set-year",
+    "name": "getYear() and setYear()",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers"
       ],
-      reason:
-        "The getYear() and setYear() methods use a truncated number instead of the actual year number, known as a year 2000 problem.",
-      reason_html:
-        "The <code>getYear()</code> and <code>setYear()</code> methods use a truncated number instead of the actual year number, known as a year 2000 problem.",
-    },
+      "reason": "The getYear() and setYear() methods use a truncated number instead of the actual year number, known as a year 2000 problem.",
+      "reason_html": "The <code>getYear()</code> and <code>setYear()</code> methods use a truncated number instead of the actual year number, known as a year 2000 problem."
+    }
   },
   "date-to-gmt-string": {
-    id: "date-to-gmt-string",
-    name: "toGMTString()",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
+    "id": "date-to-gmt-string",
+    "name": "toGMTString()",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: [
+    "discouraged": {
+      "according_to": [
         "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
-        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-date.prototype.togmtstring",
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-date.prototype.togmtstring"
       ],
-      reason: 'The method exists "principally for compatibility with old code."',
-      reason_html: 'The method exists "principally for compatibility with old code."',
-    },
+      "reason": "The method exists \"principally for compatibility with old code.\"",
+      "reason_html": "The method exists \"principally for compatibility with old code.\""
+    }
   },
   "error-cause": {
-    id: "error-cause",
-    name: "Error cause",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-09-20",
-      baseline_high_date: "2024-03-20",
-      support: {
-        chrome: "93",
-        chrome_android: "93",
-        edge: "93",
-        firefox: "91",
-        firefox_android: "91",
-        safari: "15",
-        safari_ios: "15",
-      },
-    },
+    "id": "error-cause",
+    "name": "Error cause",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-09-20",
+      "baseline_high_date": "2024-03-20",
+      "support": {
+        "chrome": "93",
+        "chrome_android": "93",
+        "edge": "93",
+        "firefox": "91",
+        "firefox_android": "91",
+        "safari": "15",
+        "safari_ios": "15"
+      }
+    }
   },
   "escape-unescape": {
-    id: "escape-unescape",
-    name: "escape() and unescape()",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
+    "id": "escape-unescape",
+    "name": "escape() and unescape()",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers"
       ],
-      reason:
-        'TC39 included the escape() and unescape() methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
-      reason_html:
-        'TC39 included the <code>escape()</code> and <code>unescape()</code> methods in Annex B of the ECMAScript specification, which covers JavaScript features with "one or more undesirable characteristics and in the absence of legacy usage would be removed."',
-    },
+      "reason": "TC39 included the escape() and unescape() methods in Annex B of the ECMAScript specification, which covers JavaScript features with \"one or more undesirable characteristics and in the absence of legacy usage would be removed.\"",
+      "reason_html": "TC39 included the <code>escape()</code> and <code>unescape()</code> methods in Annex B of the ECMAScript specification, which covers JavaScript features with \"one or more undesirable characteristics and in the absence of legacy usage would be removed.\""
+    }
   },
   "explicit-resource-management": {
-    id: "explicit-resource-management",
-    name: "Explicit resource management",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "134",
-        chrome_android: "134",
-        edge: "134",
-        firefox: "141",
-        firefox_android: "141",
-      },
-    },
+    "id": "explicit-resource-management",
+    "name": "Explicit resource management",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "134",
+        "chrome_android": "134",
+        "edge": "134",
+        "firefox": "141",
+        "firefox_android": "141"
+      }
+    }
   },
-  float16array: {
-    id: "float16array",
-    name: "Float16Array",
-    group: ["typed-arrays"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-04-04",
-      support: {
-        chrome: "135",
-        chrome_android: "135",
-        edge: "135",
-        firefox: "129",
-        firefox_android: "129",
-        safari: "18.2",
-        safari_ios: "18.2",
-      },
-    },
+  "float16array": {
+    "id": "float16array",
+    "name": "Float16Array",
+    "group": [
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-04-04",
+      "support": {
+        "chrome": "135",
+        "chrome_android": "135",
+        "edge": "135",
+        "firefox": "129",
+        "firefox_android": "129",
+        "safari": "18.2",
+        "safari_ios": "18.2"
+      }
+    }
   },
-  functions: {
-    id: "functions",
-    name: "Functions",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "functions": {
+    "id": "functions",
+    "name": "Functions",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "functions-caller-arguments": {
-    id: "functions-caller-arguments",
-    name: "Function caller and arguments",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
+    "id": "functions-caller-arguments",
+    "name": "Function caller and arguments",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://tc39.es/ecma262/multipage/error-handling-and-language-extensions.html#sec-forbidden-extensions",
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/error-handling-and-language-extensions.html#sec-forbidden-extensions"
       ],
-      reason:
-        "JavaScript strict mode prohibits accessing the caller and arguments properties of a Function object.",
-      reason_html:
-        "JavaScript strict mode prohibits accessing the <code>caller</code> and <code>arguments</code> properties of a <code>Function</code> object.",
-    },
+      "reason": "JavaScript strict mode prohibits accessing the caller and arguments properties of a Function object.",
+      "reason_html": "JavaScript strict mode prohibits accessing the <code>caller</code> and <code>arguments</code> properties of a <code>Function</code> object."
+    }
   },
-  generators: {
-    id: "generators",
-    name: "Generators",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "39",
-        chrome_android: "39",
-        edge: "13",
-        firefox: "26",
-        firefox_android: "26",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+  "generators": {
+    "id": "generators",
+    "name": "Generators",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "39",
+        "chrome_android": "39",
+        "edge": "13",
+        "firefox": "26",
+        "firefox_android": "26",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
-  getorinsert: {
-    id: "getorinsert",
-    name: "Map getOrInsert()",
-    group: ["maps"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2026-02-14",
-      support: {
-        chrome: "145",
-        chrome_android: "145",
-        edge: "145",
-        firefox: "144",
-        firefox_android: "144",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+  "getorinsert": {
+    "id": "getorinsert",
+    "name": "Map getOrInsert()",
+    "group": [
+      "maps"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2026-02-14",
+      "support": {
+        "chrome": "145",
+        "chrome_android": "145",
+        "edge": "145",
+        "firefox": "144",
+        "firefox_android": "144",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
-  globalthis: {
-    id: "globalthis",
-    name: "globalThis",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "71",
-        chrome_android: "71",
-        edge: "79",
-        firefox: "65",
-        firefox_android: "65",
-        safari: "12.1",
-        safari_ios: "12.2",
-      },
-    },
+  "globalthis": {
+    "id": "globalthis",
+    "name": "globalThis",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "71",
+        "chrome_android": "71",
+        "edge": "79",
+        "firefox": "65",
+        "firefox_android": "65",
+        "safari": "12.1",
+        "safari_ios": "12.2"
+      }
+    }
   },
   "html-wrapper-methods": {
-    id: "html-wrapper-methods",
-    name: "HTML wrapper methods",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
+    "id": "html-wrapper-methods",
+    "name": "HTML wrapper methods",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers"
       ],
-      alternatives: ["dom"],
-      reason:
-        "HTML wrapper methods exist only for backwards compatibility. Use DOM APIs to create elements instead.",
-      reason_html:
-        "HTML wrapper methods exist only for backwards compatibility. Use DOM APIs to create elements instead.",
-    },
+      "alternatives": [
+        "dom"
+      ],
+      "reason": "HTML wrapper methods exist only for backwards compatibility. Use DOM APIs to create elements instead.",
+      "reason_html": "HTML wrapper methods exist only for backwards compatibility. Use DOM APIs to create elements instead."
+    }
   },
-  intl: {
-    id: "intl",
-    name: "Intl",
-    group: ["intl"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-09-28",
-      baseline_high_date: "2020-03-28",
-      support: {
-        chrome: "24",
-        chrome_android: "25",
-        edge: "12",
-        firefox: "29",
-        firefox_android: "56",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+  "intl": {
+    "id": "intl",
+    "name": "Intl",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-09-28",
+      "baseline_high_date": "2020-03-28",
+      "support": {
+        "chrome": "24",
+        "chrome_android": "25",
+        "edge": "12",
+        "firefox": "29",
+        "firefox_android": "56",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "intl-display-names": {
-    id: "intl-display-names",
-    name: "Intl.DisplayNames",
-    group: ["intl"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "81",
-        chrome_android: "81",
-        edge: "81",
-        firefox: "86",
-        firefox_android: "86",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "intl-display-names",
+    "name": "Intl.DisplayNames",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "81",
+        "chrome_android": "81",
+        "edge": "81",
+        "firefox": "86",
+        "firefox_android": "86",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "intl-duration-format": {
-    id: "intl-duration-format",
-    name: "Intl.DurationFormat",
-    group: ["intl"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-03-04",
-      support: {
-        chrome: "129",
-        chrome_android: "129",
-        edge: "129",
-        firefox: "136",
-        firefox_android: "136",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "intl-duration-format",
+    "name": "Intl.DurationFormat",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-03-04",
+      "support": {
+        "chrome": "129",
+        "chrome_android": "129",
+        "edge": "129",
+        "firefox": "136",
+        "firefox_android": "136",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "intl-list-format": {
-    id: "intl-list-format",
-    name: "Intl.ListFormat",
-    group: ["intl"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "72",
-        chrome_android: "72",
-        edge: "79",
-        firefox: "78",
-        firefox_android: "79",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "intl-list-format",
+    "name": "Intl.ListFormat",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "72",
+        "chrome_android": "72",
+        "edge": "79",
+        "firefox": "78",
+        "firefox_android": "79",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "intl-locale": {
-    id: "intl-locale",
-    name: "Intl.Locale",
-    group: ["intl"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-09-16",
-      baseline_high_date: "2023-03-16",
-      support: {
-        chrome: "74",
-        chrome_android: "74",
-        edge: "79",
-        firefox: "75",
-        firefox_android: "79",
-        safari: "14",
-        safari_ios: "14",
-      },
-    },
+    "id": "intl-locale",
+    "name": "Intl.Locale",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-09-16",
+      "baseline_high_date": "2023-03-16",
+      "support": {
+        "chrome": "74",
+        "chrome_android": "74",
+        "edge": "79",
+        "firefox": "75",
+        "firefox_android": "79",
+        "safari": "14",
+        "safari_ios": "14"
+      }
+    }
   },
   "intl-locale-info": {
-    id: "intl-locale-info",
-    name: "Intl.Locale info",
-    group: ["intl"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "130",
-        chrome_android: "130",
-        edge: "130",
-        safari: "17",
-        safari_ios: "17",
-      },
-    },
+    "id": "intl-locale-info",
+    "name": "Intl.Locale info",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "130",
+        "chrome_android": "130",
+        "edge": "130",
+        "safari": "17",
+        "safari_ios": "17"
+      }
+    }
   },
   "intl-plural-rules": {
-    id: "intl-plural-rules",
-    name: "Intl.PluralRules",
-    group: ["intl"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2019-09-19",
-      baseline_high_date: "2022-03-19",
-      support: {
-        chrome: "63",
-        chrome_android: "63",
-        edge: "18",
-        firefox: "58",
-        firefox_android: "58",
-        safari: "13",
-        safari_ios: "13",
-      },
-    },
+    "id": "intl-plural-rules",
+    "name": "Intl.PluralRules",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2019-09-19",
+      "baseline_high_date": "2022-03-19",
+      "support": {
+        "chrome": "63",
+        "chrome_android": "63",
+        "edge": "18",
+        "firefox": "58",
+        "firefox_android": "58",
+        "safari": "13",
+        "safari_ios": "13"
+      }
+    }
   },
   "intl-relative-time-format": {
-    id: "intl-relative-time-format",
-    name: "Intl.RelativeTimeFormat",
-    group: ["intl"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-09-16",
-      baseline_high_date: "2023-03-16",
-      support: {
-        chrome: "71",
-        chrome_android: "71",
-        edge: "79",
-        firefox: "76",
-        firefox_android: "79",
-        safari: "14",
-        safari_ios: "14",
-      },
-    },
+    "id": "intl-relative-time-format",
+    "name": "Intl.RelativeTimeFormat",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-09-16",
+      "baseline_high_date": "2023-03-16",
+      "support": {
+        "chrome": "71",
+        "chrome_android": "71",
+        "edge": "79",
+        "firefox": "76",
+        "firefox_android": "79",
+        "safari": "14",
+        "safari_ios": "14"
+      }
+    }
   },
   "intl-segmenter": {
-    id: "intl-segmenter",
-    name: "Intl.Segmenter",
-    group: ["intl"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-04-16",
-      support: {
-        chrome: "87",
-        chrome_android: "87",
-        edge: "87",
-        firefox: "125",
-        firefox_android: "125",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "intl-segmenter",
+    "name": "Intl.Segmenter",
+    "group": [
+      "intl"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-04-16",
+      "support": {
+        "chrome": "87",
+        "chrome_android": "87",
+        "edge": "87",
+        "firefox": "125",
+        "firefox_android": "125",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
   "is-error": {
-    id: "is-error",
-    name: "Error.isError()",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "134",
-        chrome_android: "134",
-        edge: "134",
-        firefox: "138",
-        firefox_android: "138",
-      },
-    },
+    "id": "is-error",
+    "name": "Error.isError()",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "134",
+        "chrome_android": "134",
+        "edge": "134",
+        "firefox": "138",
+        "firefox_android": "138"
+      }
+    }
   },
   "iterator-concat": {
-    id: "iterator-concat",
-    name: "Iterator.concat()",
-    group: ["iterators"],
-    status: {
-      baseline: false,
-      support: {
-        firefox: "147",
-        firefox_android: "147",
-      },
-    },
+    "id": "iterator-concat",
+    "name": "Iterator.concat()",
+    "group": [
+      "iterators"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "147",
+        "firefox_android": "147"
+      }
+    }
   },
   "iterator-methods": {
-    id: "iterator-methods",
-    name: "Iterator methods",
-    group: ["iterators"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-03-31",
-      support: {
-        chrome: "122",
-        chrome_android: "122",
-        edge: "122",
-        firefox: "131",
-        firefox_android: "131",
-        safari: "18.4",
-        safari_ios: "18.4",
-      },
-    },
+    "id": "iterator-methods",
+    "name": "Iterator methods",
+    "group": [
+      "iterators"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-03-31",
+      "support": {
+        "chrome": "122",
+        "chrome_android": "122",
+        "edge": "122",
+        "firefox": "131",
+        "firefox_android": "131",
+        "safari": "18.4",
+        "safari_ios": "18.4"
+      }
+    }
   },
-  iterators: {
-    id: "iterators",
-    name: "Iterators and the for...of loop",
-    group: ["iterators"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "12",
-        firefox: "13",
-        firefox_android: "14",
-        safari: "7",
-        safari_ios: "7",
-      },
-    },
+  "iterators": {
+    "id": "iterators",
+    "name": "Iterators and the for...of loop",
+    "group": [
+      "iterators"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "12",
+        "firefox": "13",
+        "firefox_android": "14",
+        "safari": "7",
+        "safari_ios": "7"
+      }
+    }
   },
-  javascript: {
-    id: "javascript",
-    name: "JavaScript (initial core language support)",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "5",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "5",
-        safari_ios: "4.2",
-      },
-    },
+  "javascript": {
+    "id": "javascript",
+    "name": "JavaScript (initial core language support)",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "5",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "5",
+        "safari_ios": "4.2"
+      }
+    }
   },
-  json: {
-    id: "json",
-    name: "JSON",
-    group: ["json"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "3",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "3.5",
-        firefox_android: "4",
-        safari: "4",
-        safari_ios: "4",
-      },
-    },
+  "json": {
+    "id": "json",
+    "name": "JSON",
+    "group": [
+      "json"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "3",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "4",
+        "safari_ios": "4"
+      }
+    }
   },
   "json-raw": {
-    id: "json-raw",
-    name: "JSON source text access",
-    group: ["json"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "114",
-        chrome_android: "114",
-        edge: "114",
-        firefox: "135",
-        firefox_android: "135",
-      },
-    },
+    "id": "json-raw",
+    "name": "JSON source text access",
+    "group": [
+      "json"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "114",
+        "chrome_android": "114",
+        "edge": "114",
+        "firefox": "135",
+        "firefox_android": "135"
+      }
+    }
   },
-  map: {
-    id: "map",
-    name: "Map (initial support)",
-    group: ["maps"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "12",
-        firefox: "13",
-        firefox_android: "14",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+  "map": {
+    "id": "map",
+    "name": "Map (initial support)",
+    "group": [
+      "maps"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "12",
+        "firefox": "13",
+        "firefox_android": "14",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "math-sum-precise": {
-    id: "math-sum-precise",
-    name: "Math.sumPrecise()",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        firefox: "137",
-        firefox_android: "137",
-        safari: "26.2",
-        safari_ios: "26.2",
-      },
-    },
+    "id": "math-sum-precise",
+    "name": "Math.sumPrecise()",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "137",
+        "firefox_android": "137",
+        "safari": "26.2",
+        "safari_ios": "26.2"
+      }
+    }
   },
-  number: {
-    id: "number",
-    name: "Math and numbers",
-    group: ["primitive-types"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "number": {
+    "id": "number",
+    "name": "Math and numbers",
+    "group": [
+      "primitive-types"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "object-hasown": {
-    id: "object-hasown",
-    name: "Object.hasOwn()",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "93",
-        chrome_android: "93",
-        edge: "93",
-        firefox: "92",
-        firefox_android: "92",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "object-hasown",
+    "name": "Object.hasOwn()",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "93",
+        "chrome_android": "93",
+        "edge": "93",
+        "firefox": "92",
+        "firefox_android": "92",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "object-object": {
-    id: "object-object",
-    name: "Object",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+    "id": "object-object",
+    "name": "Object",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  promise: {
-    id: "promise",
-    name: "Promise (initial support)",
-    group: ["promises"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "32",
-        chrome_android: "32",
-        edge: "12",
-        firefox: "29",
-        firefox_android: "29",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+  "promise": {
+    "id": "promise",
+    "name": "Promise (initial support)",
+    "group": [
+      "promises"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "32",
+        "chrome_android": "32",
+        "edge": "12",
+        "firefox": "29",
+        "firefox_android": "29",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "promise-allsettled": {
-    id: "promise-allsettled",
-    name: "Promise.allSettled()",
-    group: ["promises"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-07-28",
-      baseline_high_date: "2023-01-28",
-      support: {
-        chrome: "76",
-        chrome_android: "76",
-        edge: "79",
-        firefox: "71",
-        firefox_android: "79",
-        safari: "13",
-        safari_ios: "13",
-      },
-    },
+    "id": "promise-allsettled",
+    "name": "Promise.allSettled()",
+    "group": [
+      "promises"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-07-28",
+      "baseline_high_date": "2023-01-28",
+      "support": {
+        "chrome": "76",
+        "chrome_android": "76",
+        "edge": "79",
+        "firefox": "71",
+        "firefox_android": "79",
+        "safari": "13",
+        "safari_ios": "13"
+      }
+    }
   },
   "promise-any": {
-    id: "promise-any",
-    name: "Promise.any()",
-    group: ["promises"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-09-16",
-      baseline_high_date: "2023-03-16",
-      support: {
-        chrome: "85",
-        chrome_android: "85",
-        edge: "85",
-        firefox: "79",
-        firefox_android: "79",
-        safari: "14",
-        safari_ios: "14",
-      },
-    },
+    "id": "promise-any",
+    "name": "Promise.any()",
+    "group": [
+      "promises"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-09-16",
+      "baseline_high_date": "2023-03-16",
+      "support": {
+        "chrome": "85",
+        "chrome_android": "85",
+        "edge": "85",
+        "firefox": "79",
+        "firefox_android": "79",
+        "safari": "14",
+        "safari_ios": "14"
+      }
+    }
   },
   "promise-finally": {
-    id: "promise-finally",
-    name: "Promise finally()",
-    group: ["promises"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2018-10-02",
-      baseline_high_date: "2021-04-02",
-      support: {
-        chrome: "63",
-        chrome_android: "63",
-        edge: "18",
-        firefox: "58",
-        firefox_android: "58",
-        safari: "11.1",
-        safari_ios: "11.3",
-      },
-    },
+    "id": "promise-finally",
+    "name": "Promise finally()",
+    "group": [
+      "promises"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-10-02",
+      "baseline_high_date": "2021-04-02",
+      "support": {
+        "chrome": "63",
+        "chrome_android": "63",
+        "edge": "18",
+        "firefox": "58",
+        "firefox_android": "58",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
   },
   "promise-try": {
-    id: "promise-try",
-    name: "Promise.try()",
-    group: ["promises"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-01-07",
-      support: {
-        chrome: "128",
-        chrome_android: "128",
-        edge: "128",
-        firefox: "134",
-        firefox_android: "134",
-        safari: "18.2",
-        safari_ios: "18.2",
-      },
-    },
+    "id": "promise-try",
+    "name": "Promise.try()",
+    "group": [
+      "promises"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-01-07",
+      "support": {
+        "chrome": "128",
+        "chrome_android": "128",
+        "edge": "128",
+        "firefox": "134",
+        "firefox_android": "134",
+        "safari": "18.2",
+        "safari_ios": "18.2"
+      }
+    }
   },
   "promise-withresolvers": {
-    id: "promise-withresolvers",
-    name: "Promise.withResolvers()",
-    group: ["promises"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-03-05",
-      support: {
-        chrome: "119",
-        chrome_android: "119",
-        edge: "119",
-        firefox: "121",
-        firefox_android: "121",
-        safari: "17.4",
-        safari_ios: "17.4",
-      },
-    },
+    "id": "promise-withresolvers",
+    "name": "Promise.withResolvers()",
+    "group": [
+      "promises"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-03-05",
+      "support": {
+        "chrome": "119",
+        "chrome_android": "119",
+        "edge": "119",
+        "firefox": "121",
+        "firefox_android": "121",
+        "safari": "17.4",
+        "safari_ios": "17.4"
+      }
+    }
   },
-  proto: {
-    id: "proto",
-    name: "__proto__",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
+  "proto": {
+    "id": "proto",
+    "name": "__proto__",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers"
       ],
-      reason: "Changing __proto__ is slow and can cause surprising bugs.",
-      reason_html: "Changing <code>__proto__</code> is slow and can cause surprising bugs.",
-    },
+      "reason": "Changing __proto__ is slow and can cause surprising bugs.",
+      "reason_html": "Changing <code>__proto__</code> is slow and can cause surprising bugs."
+    }
   },
   "proxy-reflect": {
-    id: "proxy-reflect",
-    name: "Proxy and Reflect",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "49",
-        chrome_android: "49",
-        edge: "12",
-        firefox: "18",
-        firefox_android: "18",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "proxy-reflect",
+    "name": "Proxy and Reflect",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "49",
+        "chrome_android": "49",
+        "edge": "12",
+        "firefox": "18",
+        "firefox_android": "18",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
-  regexp: {
-    id: "regexp",
-    name: "Regular expressions",
-    group: ["regexps"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "regexp": {
+    "id": "regexp",
+    "name": "Regular expressions",
+    "group": [
+      "regexps"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
   "regexp-compile": {
-    id: "regexp-compile",
-    name: "RegExp compile()",
-    group: ["regexps"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3.1",
-        safari_ios: "2",
-      },
+    "id": "regexp-compile",
+    "name": "RegExp compile()",
+    "group": [
+      "regexps"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3.1",
+        "safari_ios": "2"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers",
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers"
       ],
-      reason:
-        "The compile() method duplicates behavior of the RegExp() constructor and it exists only for backwards compatibility.",
-      reason_html:
-        "The <code>compile()</code> method duplicates behavior of the <code>RegExp()</code> constructor and it exists only for backwards compatibility.",
-    },
+      "reason": "The compile() method duplicates behavior of the RegExp() constructor and it exists only for backwards compatibility.",
+      "reason_html": "The <code>compile()</code> method duplicates behavior of the <code>RegExp()</code> constructor and it exists only for backwards compatibility."
+    }
   },
   "regexp-escape": {
-    id: "regexp-escape",
-    name: "RegExp.escape()",
-    group: ["regexps"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-05-01",
-      support: {
-        chrome: "136",
-        chrome_android: "136",
-        edge: "136",
-        firefox: "134",
-        firefox_android: "134",
-        safari: "18.2",
-        safari_ios: "18.2",
-      },
-    },
+    "id": "regexp-escape",
+    "name": "RegExp.escape()",
+    "group": [
+      "regexps"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-05-01",
+      "support": {
+        "chrome": "136",
+        "chrome_android": "136",
+        "edge": "136",
+        "firefox": "134",
+        "firefox_android": "134",
+        "safari": "18.2",
+        "safari_ios": "18.2"
+      }
+    }
   },
   "regexp-static-properties": {
-    id: "regexp-static-properties",
-    name: "RegExp static properties",
-    group: ["regexps"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "3",
-        safari_ios: "1",
-      },
+    "id": "regexp-static-properties",
+    "name": "RegExp static properties",
+    "group": [
+      "regexps"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
+      }
     },
-    discouraged: {
-      according_to: ["https://github.com/tc39/proposal-regexp-legacy-features"],
-      reason: "The RegExp static properties may have unintended side effects.",
-      reason_html: "The <code>RegExp</code> static properties may have unintended side effects.",
-    },
+    "discouraged": {
+      "according_to": [
+        "https://github.com/tc39/proposal-regexp-legacy-features"
+      ],
+      "reason": "The RegExp static properties may have unintended side effects.",
+      "reason_html": "The <code>RegExp</code> static properties may have unintended side effects."
+    }
   },
   "resizable-buffers": {
-    id: "resizable-buffers",
-    name: "Resizable buffers",
-    group: ["javascript"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-07-09",
-      support: {
-        chrome: "111",
-        chrome_android: "111",
-        edge: "111",
-        firefox: "128",
-        firefox_android: "128",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "resizable-buffers",
+    "name": "Resizable buffers",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-07-09",
+      "support": {
+        "chrome": "111",
+        "chrome_android": "111",
+        "edge": "111",
+        "firefox": "128",
+        "firefox_android": "128",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
   "serializable-errors": {
-    id: "serializable-errors",
-    name: "Serializable errors",
-    status: {
-      baseline: false,
-      support: {
-        chrome: "77",
-        chrome_android: "77",
-        edge: "79",
-        firefox: "103",
-        firefox_android: "103",
-      },
-    },
+    "id": "serializable-errors",
+    "name": "Serializable errors",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "77",
+        "chrome_android": "77",
+        "edge": "79",
+        "firefox": "103",
+        "firefox_android": "103"
+      }
+    }
   },
-  set: {
-    id: "set",
-    name: "Set (initial support)",
-    group: ["sets"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "12",
-        firefox: "13",
-        firefox_android: "14",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+  "set": {
+    "id": "set",
+    "name": "Set (initial support)",
+    "group": [
+      "sets"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "12",
+        "firefox": "13",
+        "firefox_android": "14",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
   "set-methods": {
-    id: "set-methods",
-    name: "Set methods",
-    group: ["sets"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-06-11",
-      support: {
-        chrome: "122",
-        chrome_android: "122",
-        edge: "122",
-        firefox: "127",
-        firefox_android: "127",
-        safari: "17",
-        safari_ios: "17",
-      },
-    },
+    "id": "set-methods",
+    "name": "Set methods",
+    "group": [
+      "sets"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-06-11",
+      "support": {
+        "chrome": "122",
+        "chrome_android": "122",
+        "edge": "122",
+        "firefox": "127",
+        "firefox_android": "127",
+        "safari": "17",
+        "safari_ios": "17"
+      }
+    }
   },
   "shared-memory": {
-    id: "shared-memory",
-    name: "SharedArrayBuffer and Atomics",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-12-13",
-      baseline_high_date: "2024-06-13",
-      support: {
-        chrome: "68",
-        chrome_android: "89",
-        edge: "79",
-        firefox: "79",
-        firefox_android: "79",
-        safari: "15.2",
-        safari_ios: "15.2",
-      },
-    },
+    "id": "shared-memory",
+    "name": "SharedArrayBuffer and Atomics",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-12-13",
+      "baseline_high_date": "2024-06-13",
+      "support": {
+        "chrome": "68",
+        "chrome_android": "89",
+        "edge": "79",
+        "firefox": "79",
+        "firefox_android": "79",
+        "safari": "15.2",
+        "safari_ios": "15.2"
+      }
+    }
   },
   "stable-array-sort": {
-    id: "stable-array-sort",
-    name: "Stable array sort",
-    group: ["arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "70",
-        chrome_android: "70",
-        edge: "79",
-        firefox: "3",
-        firefox_android: "4",
-        safari: "10.1",
-        safari_ios: "10.3",
-      },
-    },
+    "id": "stable-array-sort",
+    "name": "Stable array sort",
+    "group": [
+      "arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "70",
+        "chrome_android": "70",
+        "edge": "79",
+        "firefox": "3",
+        "firefox_android": "4",
+        "safari": "10.1",
+        "safari_ios": "10.3"
+      }
+    }
   },
   "string-at": {
-    id: "string-at",
-    name: "String at()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2022-03-14",
-      baseline_high_date: "2024-09-14",
-      support: {
-        chrome: "92",
-        chrome_android: "92",
-        edge: "92",
-        firefox: "90",
-        firefox_android: "90",
-        safari: "15.4",
-        safari_ios: "15.4",
-      },
-    },
+    "id": "string-at",
+    "name": "String at()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2022-03-14",
+      "baseline_high_date": "2024-09-14",
+      "support": {
+        "chrome": "92",
+        "chrome_android": "92",
+        "edge": "92",
+        "firefox": "90",
+        "firefox_android": "90",
+        "safari": "15.4",
+        "safari_ios": "15.4"
+      }
+    }
   },
   "string-codepoint": {
-    id: "string-codepoint",
-    name: "String codePointAt() and fromCodePoint()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "41",
-        chrome_android: "41",
-        edge: "12",
-        firefox: "29",
-        firefox_android: "29",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "string-codepoint",
+    "name": "String codePointAt() and fromCodePoint()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "41",
+        "chrome_android": "41",
+        "edge": "12",
+        "firefox": "29",
+        "firefox_android": "29",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "string-includes": {
-    id: "string-includes",
-    name: "String includes()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "41",
-        chrome_android: "41",
-        edge: "12",
-        firefox: "40",
-        firefox_android: "40",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "string-includes",
+    "name": "String includes()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "41",
+        "chrome_android": "41",
+        "edge": "12",
+        "firefox": "40",
+        "firefox_android": "40",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "string-matchall": {
-    id: "string-matchall",
-    name: "String matchAll()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "73",
-        chrome_android: "73",
-        edge: "79",
-        firefox: "67",
-        firefox_android: "67",
-        safari: "13",
-        safari_ios: "13",
-      },
-    },
+    "id": "string-matchall",
+    "name": "String matchAll()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "73",
+        "chrome_android": "73",
+        "edge": "79",
+        "firefox": "67",
+        "firefox_android": "67",
+        "safari": "13",
+        "safari_ios": "13"
+      }
+    }
   },
   "string-normalize": {
-    id: "string-normalize",
-    name: "String normalize()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "34",
-        chrome_android: "34",
-        edge: "12",
-        firefox: "31",
-        firefox_android: "31",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "string-normalize",
+    "name": "String normalize()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "34",
+        "chrome_android": "34",
+        "edge": "12",
+        "firefox": "31",
+        "firefox_android": "31",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "string-pad": {
-    id: "string-pad",
-    name: "String padStart() and padEnd()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2017-04-05",
-      baseline_high_date: "2019-10-05",
-      support: {
-        chrome: "57",
-        chrome_android: "57",
-        edge: "15",
-        firefox: "48",
-        firefox_android: "48",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "string-pad",
+    "name": "String padStart() and padEnd()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2017-04-05",
+      "baseline_high_date": "2019-10-05",
+      "support": {
+        "chrome": "57",
+        "chrome_android": "57",
+        "edge": "15",
+        "firefox": "48",
+        "firefox_android": "48",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "string-raw": {
-    id: "string-raw",
-    name: "String raw()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "41",
-        chrome_android: "41",
-        edge: "12",
-        firefox: "34",
-        firefox_android: "34",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "string-raw",
+    "name": "String raw()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "41",
+        "chrome_android": "41",
+        "edge": "12",
+        "firefox": "34",
+        "firefox_android": "34",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "string-repeat": {
-    id: "string-repeat",
-    name: "String repeat()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "41",
-        chrome_android: "36",
-        edge: "12",
-        firefox: "24",
-        firefox_android: "24",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "string-repeat",
+    "name": "String repeat()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "41",
+        "chrome_android": "36",
+        "edge": "12",
+        "firefox": "24",
+        "firefox_android": "24",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "string-replaceall": {
-    id: "string-replaceall",
-    name: "String replaceAll()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-08-27",
-      baseline_high_date: "2023-02-27",
-      support: {
-        chrome: "85",
-        chrome_android: "85",
-        edge: "85",
-        firefox: "77",
-        firefox_android: "79",
-        safari: "13.1",
-        safari_ios: "13.4",
-      },
-    },
+    "id": "string-replaceall",
+    "name": "String replaceAll()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-08-27",
+      "baseline_high_date": "2023-02-27",
+      "support": {
+        "chrome": "85",
+        "chrome_android": "85",
+        "edge": "85",
+        "firefox": "77",
+        "firefox_android": "79",
+        "safari": "13.1",
+        "safari_ios": "13.4"
+      }
+    }
   },
   "string-startsends-with": {
-    id: "string-startsends-with",
-    name: "String startsWith() and endsWith()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "41",
-        chrome_android: "36",
-        edge: "12",
-        firefox: "17",
-        firefox_android: "17",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+    "id": "string-startsends-with",
+    "name": "String startsWith() and endsWith()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "41",
+        "chrome_android": "36",
+        "edge": "12",
+        "firefox": "17",
+        "firefox_android": "17",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
   "string-trim-startend": {
-    id: "string-trim-startend",
-    name: "String trimStart() and trimEnd()",
-    group: ["string"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2020-01-15",
-      baseline_high_date: "2022-07-15",
-      support: {
-        chrome: "66",
-        chrome_android: "66",
-        edge: "79",
-        firefox: "61",
-        firefox_android: "61",
-        safari: "12",
-        safari_ios: "12",
-      },
-    },
+    "id": "string-trim-startend",
+    "name": "String trimStart() and trimEnd()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2020-01-15",
+      "baseline_high_date": "2022-07-15",
+      "support": {
+        "chrome": "66",
+        "chrome_android": "66",
+        "edge": "79",
+        "firefox": "61",
+        "firefox_android": "61",
+        "safari": "12",
+        "safari_ios": "12"
+      }
+    }
   },
   "string-wellformed": {
-    id: "string-wellformed",
-    name: "String isWellFormed() and toWellFormed()",
-    group: ["string"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2023-10-24",
-      support: {
-        chrome: "111",
-        chrome_android: "111",
-        edge: "111",
-        firefox: "119",
-        firefox_android: "119",
-        safari: "16.4",
-        safari_ios: "16.4",
-      },
-    },
+    "id": "string-wellformed",
+    "name": "String isWellFormed() and toWellFormed()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2023-10-24",
+      "support": {
+        "chrome": "111",
+        "chrome_android": "111",
+        "edge": "111",
+        "firefox": "119",
+        "firefox_android": "119",
+        "safari": "16.4",
+        "safari_ios": "16.4"
+      }
+    }
   },
-  strings: {
-    id: "strings",
-    name: "String (initial support)",
-    group: ["primitive-types"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "1",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "1",
-        firefox_android: "4",
-        safari: "1",
-        safari_ios: "1",
-      },
-    },
+  "strings": {
+    "id": "strings",
+    "name": "String (initial support)",
+    "group": [
+      "primitive-types"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    }
   },
-  symbol: {
-    id: "symbol",
-    name: "Symbol",
-    group: ["primitive-types"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "12",
-        firefox: "36",
-        firefox_android: "36",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+  "symbol": {
+    "id": "symbol",
+    "name": "Symbol",
+    "group": [
+      "primitive-types"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "12",
+        "firefox": "36",
+        "firefox_android": "36",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
-  temporal: {
-    id: "temporal",
-    name: "Temporal",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "144",
-        chrome_android: "144",
-        edge: "144",
-        firefox: "139",
-        firefox_android: "139",
-      },
-    },
+  "temporal": {
+    "id": "temporal",
+    "name": "Temporal",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "144",
+        "chrome_android": "144",
+        "edge": "144",
+        "firefox": "139",
+        "firefox_android": "139"
+      }
+    }
   },
   "transferable-arraybuffer": {
-    id: "transferable-arraybuffer",
-    name: "Transferable ArrayBuffer",
-    group: ["javascript"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2024-03-05",
-      support: {
-        chrome: "114",
-        chrome_android: "114",
-        edge: "114",
-        firefox: "122",
-        firefox_android: "122",
-        safari: "17.4",
-        safari_ios: "17.4",
-      },
-    },
+    "id": "transferable-arraybuffer",
+    "name": "Transferable ArrayBuffer",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2024-03-05",
+      "support": {
+        "chrome": "114",
+        "chrome_android": "114",
+        "edge": "114",
+        "firefox": "122",
+        "firefox_android": "122",
+        "safari": "17.4",
+        "safari_ios": "17.4"
+      }
+    }
   },
   "typed-array-iteration-methods": {
-    id: "typed-array-iteration-methods",
-    name: "Typed array iteration methods",
-    group: ["typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "12",
-        firefox: "38",
-        firefox_android: "38",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "typed-array-iteration-methods",
+    "name": "Typed array iteration methods",
+    "group": [
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "12",
+        "firefox": "38",
+        "firefox_android": "38",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "typed-array-iterators": {
-    id: "typed-array-iterators",
-    name: "Typed array iterators",
-    group: ["iterators", "typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2016-09-20",
-      baseline_high_date: "2019-03-20",
-      support: {
-        chrome: "45",
-        chrome_android: "45",
-        edge: "12",
-        firefox: "37",
-        firefox_android: "37",
-        safari: "10",
-        safari_ios: "10",
-      },
-    },
+    "id": "typed-array-iterators",
+    "name": "Typed array iterators",
+    "group": [
+      "iterators",
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
+      "support": {
+        "chrome": "45",
+        "chrome_android": "45",
+        "edge": "12",
+        "firefox": "37",
+        "firefox_android": "37",
+        "safari": "10",
+        "safari_ios": "10"
+      }
+    }
   },
   "typed-arrays": {
-    id: "typed-arrays",
-    name: "Typed arrays (initial support)",
-    group: ["typed-arrays"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "7",
-        chrome_android: "18",
-        edge: "12",
-        firefox: "4",
-        firefox_android: "4",
-        safari: "5.1",
-        safari_ios: "4.2",
-      },
-    },
+    "id": "typed-arrays",
+    "name": "Typed arrays (initial support)",
+    "group": [
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "7",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "4",
+        "firefox_android": "4",
+        "safari": "5.1",
+        "safari_ios": "4.2"
+      }
+    }
   },
   "uint8array-base64-hex": {
-    id: "uint8array-base64-hex",
-    name: "Uint8Array base64 and hex conversion",
-    group: ["typed-arrays"],
-    status: {
-      baseline: "low",
-      baseline_low_date: "2025-09-05",
-      support: {
-        chrome: "140",
-        chrome_android: "140",
-        edge: "140",
-        firefox: "133",
-        firefox_android: "133",
-        safari: "18.2",
-        safari_ios: "18.2",
-      },
-    },
+    "id": "uint8array-base64-hex",
+    "name": "Uint8Array base64 and hex conversion",
+    "group": [
+      "typed-arrays"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2025-09-05",
+      "support": {
+        "chrome": "140",
+        "chrome_android": "140",
+        "edge": "140",
+        "firefox": "133",
+        "firefox_android": "133",
+        "safari": "18.2",
+        "safari_ios": "18.2"
+      }
+    }
   },
   "weak-references": {
-    id: "weak-references",
-    name: "Weak references",
-    group: ["javascript"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2021-04-26",
-      baseline_high_date: "2023-10-26",
-      support: {
-        chrome: "84",
-        chrome_android: "84",
-        edge: "84",
-        firefox: "79",
-        firefox_android: "79",
-        safari: "14.1",
-        safari_ios: "14.5",
-      },
-    },
+    "id": "weak-references",
+    "name": "Weak references",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2021-04-26",
+      "baseline_high_date": "2023-10-26",
+      "support": {
+        "chrome": "84",
+        "chrome_android": "84",
+        "edge": "84",
+        "firefox": "79",
+        "firefox_android": "79",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
   },
-  weakmap: {
-    id: "weakmap",
-    name: "WeakMap",
-    group: ["collections"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-07-29",
-      baseline_high_date: "2018-01-29",
-      support: {
-        chrome: "36",
-        chrome_android: "36",
-        edge: "12",
-        firefox: "6",
-        firefox_android: "6",
-        safari: "8",
-        safari_ios: "8",
-      },
-    },
+  "weakmap": {
+    "id": "weakmap",
+    "name": "WeakMap",
+    "group": [
+      "collections"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "36",
+        "chrome_android": "36",
+        "edge": "12",
+        "firefox": "6",
+        "firefox_android": "6",
+        "safari": "8",
+        "safari_ios": "8"
+      }
+    }
   },
-  weakset: {
-    id: "weakset",
-    name: "WeakSet",
-    group: ["collections"],
-    status: {
-      baseline: "high",
-      baseline_low_date: "2015-09-30",
-      baseline_high_date: "2018-03-30",
-      support: {
-        chrome: "36",
-        chrome_android: "36",
-        edge: "12",
-        firefox: "34",
-        firefox_android: "34",
-        safari: "9",
-        safari_ios: "9",
-      },
-    },
+  "weakset": {
+    "id": "weakset",
+    "name": "WeakSet",
+    "group": [
+      "collections"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-09-30",
+      "baseline_high_date": "2018-03-30",
+      "support": {
+        "chrome": "36",
+        "chrome_android": "36",
+        "edge": "12",
+        "firefox": "34",
+        "firefox_android": "34",
+        "safari": "9",
+        "safari_ios": "9"
+      }
+    }
   },
-  with: {
-    id: "with",
-    name: "with",
-    group: ["javascript"],
-    status: {
-      baseline: false,
-      support: {
-        chrome: "38",
-        chrome_android: "38",
-        edge: "12",
-        firefox: "48",
-        firefox_android: "48",
-        safari: "10",
-        safari_ios: "10",
-      },
+  "with": {
+    "id": "with",
+    "name": "with",
+    "group": [
+      "javascript"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "38",
+        "chrome_android": "38",
+        "edge": "12",
+        "firefox": "48",
+        "firefox_android": "48",
+        "safari": "10",
+        "safari_ios": "10"
+      }
     },
-    discouraged: {
-      according_to: [
-        "https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-with-statement",
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-with-statement"
       ],
-      alternatives: ["destructuring"],
-      reason: "JavaScript strict mode prohibits the with statement.",
-      reason_html: "JavaScript strict mode prohibits the <code>with</code> statement.",
-    },
-  },
+      "alternatives": [
+        "destructuring"
+      ],
+      "reason": "JavaScript strict mode prohibits the with statement.",
+      "reason_html": "JavaScript strict mode prohibits the <code>with</code> statement."
+    }
+  }
 } as const;
