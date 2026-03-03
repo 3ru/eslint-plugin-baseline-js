@@ -1,3 +1,17 @@
+# [0.6.0](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.5.0...v0.6.0) (2026-03-03)
+
+
+### Bug Fixes
+
+* eliminate shadowed-global false positives and enforce descriptor consistency ([#103](https://github.com/3ru/eslint-plugin-baseline-js/issues/103)) ([d3cec0f](https://github.com/3ru/eslint-plugin-baseline-js/commit/d3cec0f42b25849c8fd5dd792c92e807930c2bb0))
+
+
+### Features
+
+* add ESLint 10 support, drop ESLint 8 ([#99](https://github.com/3ru/eslint-plugin-baseline-js/issues/99)) ([8e9ef5d](https://github.com/3ru/eslint-plugin-baseline-js/commit/8e9ef5d308923d38f06b202af65301defe6809f1))
+* drop CJS build, publish ESM-only ([#101](https://github.com/3ru/eslint-plugin-baseline-js/issues/101)) ([ad7231d](https://github.com/3ru/eslint-plugin-baseline-js/commit/ad7231d9836cdc9d77ca245adfb0f56069b049bf))
+* upgrade web-features to 3.19.0 ([#100](https://github.com/3ru/eslint-plugin-baseline-js/issues/100)) ([9bb41b5](https://github.com/3ru/eslint-plugin-baseline-js/commit/9bb41b5e3547841d0f858ee75cf7b046cb943e72))
+
 # [0.5.0](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.4.2...v0.5.0) (2026-01-31)
 
 

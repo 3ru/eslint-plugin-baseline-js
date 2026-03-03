@@ -622,7 +622,7 @@
 | date-to-gmt-string | ` toGMTString() ` | limited | - | ✅ | ` typed ` | 1 | - |
 | error-cause | ` Error cause ` | widely | 2021 | ✅ | ` safe ` | 2 | - |
 | escape-unescape | ` escape() and unescape() ` | limited | - | ✅ | - | 0 | Covered by JS Language (syntax); |
-| explicit-resource-management | ` Explicit resource management ` | limited | - | ✅ | ` safe ` | 3 | - |
+| explicit-resource-management | ` Explicit resource management ` | limited | - | ✅ | ` safe ` | 5 | - |
 | float16array | ` Float16Array ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 2 | - |
 | functions | ` Functions ` | widely | 2015 | ✅ | - | 0 | - |
 | functions-caller-arguments | ` Function caller and arguments ` | limited | - | ✅ | - | 0 | Covered by JS Language (syntax); |
@@ -635,13 +635,13 @@
 | intl-duration-format | ` Intl.DurationFormat ` | newly | 2025 | ✅ | ` safe ` | 1 | - |
 | intl-list-format | ` Intl.ListFormat ` | widely | 2021 | ✅ | ` safe ` | 1 | - |
 | intl-locale | ` Intl.Locale ` | widely | 2020 | ✅ | ` safe ` | 1 | - |
-| intl-locale-info | ` Intl.Locale info ` | limited | - | ✅ | ` safe `, ` typed ` | 9 | - |
+| intl-locale-info | ` Intl.Locale info ` | limited | - | ✅ | ` typed ` | 7 | - |
 | intl-plural-rules | ` Intl.PluralRules ` | widely | 2019 | ✅ | ` safe ` | 1 | - |
 | intl-relative-time-format | ` Intl.RelativeTimeFormat ` | widely | 2020 | ✅ | ` safe ` | 1 | - |
 | intl-segmenter | ` Intl.Segmenter ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
 | is-error | ` Error.isError() ` | limited | - | ✅ | ` safe ` | 1 | - |
 | iterator-concat | ` Iterator.concat() ` | limited | - | ✅ | ` safe ` | 1 | - |
-| iterator-methods | ` Iterator methods ` | newly | 2025 | ✅ | ` typed ` | 11 | - |
+| iterator-methods | ` Iterator methods ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 12 | - |
 | iterators | ` Iterators and the for...of loop ` | widely | 2015 | ❌ | - | - | Meta feature |
 | javascript | ` JavaScript (initial core language support) ` | widely | 2015 | ✅ | ` typed ` | 3 | - |
 | json | ` JSON ` | widely | 2015 | ✅ | ` safe ` | 3 | - |
@@ -688,7 +688,7 @@
 | typed-array-iteration-methods | ` Typed array iteration methods ` | widely | 2016 | ✅ | ` typed ` | 99 | - |
 | typed-array-iterators | ` Typed array iterators ` | widely | 2016 | ✅ | ` typed ` | 33 | - |
 | typed-arrays | ` Typed arrays (initial support) ` | widely | 2015 | ✅ | ` typed ` | 5 | - |
-| uint8array-base64-hex | ` Uint8Array base64 and hex conversion ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 4 | - |
+| uint8array-base64-hex | ` Uint8Array base64 and hex conversion ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 6 | - |
 | weak-references | ` Weak references ` | widely | 2021 | ✅ | ` safe ` | 2 | - |
 | weakmap | ` WeakMap ` | widely | 2015 | ✅ | ` typed ` | 6 | - |
 | weakset | ` WeakSet ` | widely | 2015 | ✅ | ` typed ` | 5 | - |
