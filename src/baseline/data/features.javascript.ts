@@ -757,6 +757,7 @@ export default {
       support: {
         chrome: "144",
         chrome_android: "144",
+        edge: "144",
         firefox: "139",
         firefox_android: "139",
       },

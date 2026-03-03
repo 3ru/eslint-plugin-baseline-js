@@ -699,8 +699,12 @@ export default {
     name: "Map getOrInsert()",
     group: ["maps"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2026-02-14",
       support: {
+        chrome: "145",
+        chrome_android: "145",
+        edge: "145",
         firefox: "144",
         firefox_android: "144",
         safari: "26.2",
@@ -1747,6 +1751,7 @@ export default {
       support: {
         chrome: "144",
         chrome_android: "144",
+        edge: "144",
         firefox: "139",
         firefox_android: "139",
       },

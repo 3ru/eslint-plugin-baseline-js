@@ -190,16 +190,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "throwIfAborted"
   },
   {
-    "featureId": "aborting",
-    "kind": "callStatic",
-    "base": "AbortSignal",
-    "prop": "timeout"
-  },
-  {
     "featureId": "abortsignal-any",
     "kind": "callStatic",
     "base": "AbortSignal",
     "prop": "any"
+  },
+  {
+    "featureId": "abortsignal-timeout",
+    "kind": "callStatic",
+    "base": "AbortSignal",
+    "prop": "timeout"
   },
   {
     "featureId": "accelerometer",
@@ -2032,6 +2032,77 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "name": "WorkletGlobalScope"
   },
   {
+    "featureId": "audiolistener",
+    "kind": "callGlobal",
+    "name": "AudioListener"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "forwardX"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "forwardY"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "forwardZ"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "positionX"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "positionY"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "positionZ"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "upX"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "upY"
+  },
+  {
+    "featureId": "audiolistener",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "upZ"
+  },
+  {
+    "featureId": "audiolistener-setposition-setorientation",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "setOrientation"
+  },
+  {
+    "featureId": "audiolistener-setposition-setorientation",
+    "kind": "instanceMember",
+    "iface": "AudioListener",
+    "prop": "setPosition"
+  },
+  {
     "featureId": "autocapitalize",
     "kind": "instanceMember",
     "iface": "HTMLElement",
@@ -3541,6 +3612,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "OffscreenCanvasRenderingContext2D",
     "prop": "roundRect"
+  },
+  {
+    "featureId": "capture-handle",
+    "kind": "instanceMember",
+    "iface": "MediaDevices",
+    "prop": "setCaptureHandleConfig"
+  },
+  {
+    "featureId": "capture-handle",
+    "kind": "instanceMember",
+    "iface": "MediaStreamTrack",
+    "prop": "capturehandlechange_event"
+  },
+  {
+    "featureId": "capture-handle",
+    "kind": "instanceMember",
+    "iface": "MediaStreamTrack",
+    "prop": "getCaptureHandle"
   },
   {
     "featureId": "capture-stream-audio-video",
@@ -7010,6 +7099,35 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLDialogElement",
     "prop": "closedBy"
+  },
+  {
+    "featureId": "digital-credentials",
+    "kind": "callGlobal",
+    "name": "DigitalCredential"
+  },
+  {
+    "featureId": "digital-credentials",
+    "kind": "instanceMember",
+    "iface": "DigitalCredential",
+    "prop": "data"
+  },
+  {
+    "featureId": "digital-credentials",
+    "kind": "instanceMember",
+    "iface": "DigitalCredential",
+    "prop": "protocol"
+  },
+  {
+    "featureId": "digital-credentials",
+    "kind": "instanceMember",
+    "iface": "DigitalCredential",
+    "prop": "toJSON"
+  },
+  {
+    "featureId": "digital-credentials",
+    "kind": "callStatic",
+    "base": "DigitalCredential",
+    "prop": "userAgentAllowsProtocol"
   },
   {
     "featureId": "digital-goods",
@@ -15391,6 +15509,53 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "languages"
   },
   {
+    "featureId": "languagedetector",
+    "kind": "callGlobal",
+    "name": "LanguageDetector"
+  },
+  {
+    "featureId": "languagedetector",
+    "kind": "callStatic",
+    "base": "LanguageDetector",
+    "prop": "availability"
+  },
+  {
+    "featureId": "languagedetector",
+    "kind": "callStatic",
+    "base": "LanguageDetector",
+    "prop": "create"
+  },
+  {
+    "featureId": "languagedetector",
+    "kind": "instanceMember",
+    "iface": "LanguageDetector",
+    "prop": "destroy"
+  },
+  {
+    "featureId": "languagedetector",
+    "kind": "instanceMember",
+    "iface": "LanguageDetector",
+    "prop": "detect"
+  },
+  {
+    "featureId": "languagedetector",
+    "kind": "instanceMember",
+    "iface": "LanguageDetector",
+    "prop": "expectedInputLanguages"
+  },
+  {
+    "featureId": "languagedetector",
+    "kind": "instanceMember",
+    "iface": "LanguageDetector",
+    "prop": "inputQuota"
+  },
+  {
+    "featureId": "languagedetector",
+    "kind": "instanceMember",
+    "iface": "LanguageDetector",
+    "prop": "measureInputUsage"
+  },
+  {
     "featureId": "largest-contentful-paint",
     "kind": "callGlobal",
     "name": "LargestContentfulPaint"
@@ -18046,6 +18211,23 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "navigation"
+  },
+  {
+    "featureId": "navigation-precommit-handlers",
+    "kind": "callGlobal",
+    "name": "NavigationPrecommitController"
+  },
+  {
+    "featureId": "navigation-precommit-handlers",
+    "kind": "instanceMember",
+    "iface": "NavigationPrecommitController",
+    "prop": "addHandler"
+  },
+  {
+    "featureId": "navigation-precommit-handlers",
+    "kind": "instanceMember",
+    "iface": "NavigationPrecommitController",
+    "prop": "redirect"
   },
   {
     "featureId": "navigation-timing",
@@ -24039,12 +24221,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Range",
     "prop": "deleteContents"
-  },
-  {
-    "featureId": "selection-api",
-    "kind": "instanceMember",
-    "iface": "Range",
-    "prop": "detach"
   },
   {
     "featureId": "selection-api",
@@ -31541,6 +31717,65 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "translate"
   },
   {
+    "featureId": "translator",
+    "kind": "callGlobal",
+    "name": "Translator"
+  },
+  {
+    "featureId": "translator",
+    "kind": "callStatic",
+    "base": "Translator",
+    "prop": "availability"
+  },
+  {
+    "featureId": "translator",
+    "kind": "callStatic",
+    "base": "Translator",
+    "prop": "create"
+  },
+  {
+    "featureId": "translator",
+    "kind": "instanceMember",
+    "iface": "Translator",
+    "prop": "destroy"
+  },
+  {
+    "featureId": "translator",
+    "kind": "instanceMember",
+    "iface": "Translator",
+    "prop": "inputQuota"
+  },
+  {
+    "featureId": "translator",
+    "kind": "instanceMember",
+    "iface": "Translator",
+    "prop": "measureInputUsage"
+  },
+  {
+    "featureId": "translator",
+    "kind": "instanceMember",
+    "iface": "Translator",
+    "prop": "sourceLanguage"
+  },
+  {
+    "featureId": "translator",
+    "kind": "instanceMember",
+    "iface": "Translator",
+    "prop": "targetLanguage"
+  },
+  {
+    "featureId": "translator",
+    "kind": "instanceMember",
+    "iface": "Translator",
+    "prop": "translate"
+  },
+  {
+    "featureId": "translator",
+    "kind": "instanceMember",
+    "iface": "Translator",
+    "prop": "translateStreaming"
+  },
+  {
     "featureId": "trusted-types",
     "kind": "callGlobal",
     "name": "TrustedHTML"
@@ -33258,65 +33493,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "AudioDestinationNode",
     "prop": "maxChannelCount"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "callGlobal",
-    "name": "AudioListener"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "forwardX"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "forwardY"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "forwardZ"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "positionX"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "positionY"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "positionZ"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "upX"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "upY"
-  },
-  {
-    "featureId": "web-audio",
-    "kind": "instanceMember",
-    "iface": "AudioListener",
-    "prop": "upZ"
   },
   {
     "featureId": "web-audio",
@@ -40050,6 +40226,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "gpu"
   },
   {
+    "featureId": "webgpu-subgroups",
+    "kind": "instanceMember",
+    "iface": "GPUSupportedFeatures",
+    "prop": "feature_subgroups"
+  },
+  {
     "featureId": "webhid",
     "kind": "callGlobal",
     "name": "HID"
@@ -41612,12 +41794,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RTCPeerConnectionIceEvent",
     "prop": "candidate"
-  },
-  {
-    "featureId": "webrtc",
-    "kind": "instanceMember",
-    "iface": "RTCPeerConnectionIceEvent",
-    "prop": "url"
   },
   {
     "featureId": "webrtc",

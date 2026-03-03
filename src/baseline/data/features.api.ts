@@ -77,6 +77,23 @@ export default {
       },
     },
   },
+  "abortsignal-timeout": {
+    id: "abortsignal-timeout",
+    name: "AbortSignal.timeout()",
+    status: {
+      baseline: "low",
+      baseline_low_date: "2024-04-18",
+      support: {
+        chrome: "124",
+        chrome_android: "124",
+        edge: "124",
+        firefox: "100",
+        firefox_android: "100",
+        safari: "16",
+        safari_ios: "16",
+      },
+    },
+  },
   accelerometer: {
     id: "accelerometer",
     name: "Accelerometer",
@@ -363,6 +380,49 @@ export default {
         safari: "14.1",
         safari_ios: "14.5",
       },
+    },
+  },
+  audiolistener: {
+    id: "audiolistener",
+    name: "AudioListener",
+    group: ["web-audio"],
+    status: {
+      baseline: false,
+      support: {
+        chrome: "52",
+        chrome_android: "52",
+        edge: "79",
+        safari: "14.1",
+        safari_ios: "14.5",
+      },
+    },
+  },
+  "audiolistener-setposition-setorientation": {
+    id: "audiolistener-setposition-setorientation",
+    name: "AudioListener setPosition() and setOrientation()",
+    group: ["web-audio"],
+    status: {
+      baseline: false,
+      support: {
+        chrome: "14",
+        chrome_android: "18",
+        edge: "12",
+        firefox: "25",
+        firefox_android: "25",
+        safari: "6",
+        safari_ios: "6",
+      },
+    },
+    discouraged: {
+      according_to: [
+        "https://webaudio.github.io/web-audio-api/#dom-audiolistener-setposition",
+        "https://webaudio.github.io/web-audio-api/#dom-audiolistener-setorientation",
+      ],
+      alternatives: ["audiolistener"],
+      reason:
+        "The setPosition() and setOrientation() methods are equivalent to using an AudioListener instances's positionX, positionY, positionZ, forwardX, forwardY, forwardZ, upX, upY, and upZ properties.",
+      reason_html:
+        "The <code>setPosition()</code> and <code>setOrientation()</code> methods are equivalent to using an <code>AudioListener</code> instances's <code>positionX</code>, <code>positionY</code>, <code>positionZ</code>, <code>forwardX</code>, <code>forwardY</code>, <code>forwardZ</code>, <code>upX</code>, <code>upY</code>, and <code>upZ</code> properties.",
     },
   },
   autocapitalize: {
@@ -866,6 +926,17 @@ export default {
       },
     },
   },
+  "capture-handle": {
+    id: "capture-handle",
+    name: "Capture Handle",
+    status: {
+      baseline: false,
+      support: {
+        chrome: "102",
+        edge: "102",
+      },
+    },
+  },
   "capture-stream-audio-video": {
     id: "capture-stream-audio-video",
     name: "captureStream() for <audio> and <video>",
@@ -1075,6 +1146,7 @@ export default {
       support: {
         chrome: "144",
         chrome_android: "144",
+        edge: "144",
       },
     },
   },
@@ -1826,6 +1898,20 @@ export default {
       },
     },
   },
+  "digital-credentials": {
+    id: "digital-credentials",
+    name: "Digital credentials",
+    status: {
+      baseline: false,
+      support: {
+        chrome: "141",
+        chrome_android: "141",
+        edge: "141",
+        safari: "26",
+        safari_ios: "26",
+      },
+    },
+  },
   "digital-goods": {
     id: "digital-goods",
     name: "Digital goods",
@@ -1841,8 +1927,9 @@ export default {
     id: "dirname",
     name: "dirname",
     status: {
-      baseline: "low",
+      baseline: "high",
       baseline_low_date: "2023-08-01",
+      baseline_high_date: "2026-02-01",
       support: {
         chrome: "17",
         chrome_android: "18",
@@ -2857,7 +2944,8 @@ export default {
   },
   geolocation: {
     id: "geolocation",
-    name: "Geolocation",
+    name: "Geolocation API",
+    group: ["geolocation"],
     status: {
       baseline: "high",
       baseline_low_date: "2015-07-29",
@@ -3039,6 +3127,8 @@ export default {
         chrome: "102",
         chrome_android: "102",
         edge: "102",
+        firefox: "148",
+        firefox_android: "148",
       },
     },
   },
@@ -3821,6 +3911,16 @@ export default {
       },
     },
   },
+  languagedetector: {
+    id: "languagedetector",
+    name: "Language detector",
+    status: {
+      baseline: false,
+      support: {
+        chrome: "138",
+      },
+    },
+  },
   "largest-contentful-paint": {
     id: "largest-contentful-paint",
     name: "Largest contentful paint (LCP)",
@@ -4378,6 +4478,17 @@ export default {
       },
     },
   },
+  "navigation-precommit-handlers": {
+    id: "navigation-precommit-handlers",
+    name: "Navigation precommit handlers",
+    status: {
+      baseline: false,
+      support: {
+        firefox: "148",
+        firefox_android: "148",
+      },
+    },
+  },
   "navigation-timing": {
     id: "navigation-timing",
     name: "Navigation timing",
@@ -4738,7 +4849,11 @@ export default {
     name: "Origin",
     status: {
       baseline: false,
-      support: {},
+      support: {
+        chrome: "145",
+        chrome_android: "145",
+        edge: "145",
+      },
     },
   },
   "origin-private-file-system": {
@@ -5705,7 +5820,10 @@ export default {
     name: "Sanitizer API",
     status: {
       baseline: false,
-      support: {},
+      support: {
+        firefox: "148",
+        firefox_android: "148",
+      },
     },
   },
   savedata: {
@@ -5740,15 +5858,15 @@ export default {
     group: ["css"],
     status: {
       baseline: "low",
-      baseline_low_date: "2025-12-09",
+      baseline_low_date: "2025-12-12",
       support: {
-        chrome: "118",
-        chrome_android: "118",
-        edge: "118",
+        chrome: "143",
+        chrome_android: "143",
+        edge: "143",
         firefox: "146",
         firefox_android: "146",
-        safari: "17.4",
-        safari_ios: "17.4",
+        safari: "26.2",
+        safari_ios: "26.2",
       },
     },
   },
@@ -6985,16 +7103,29 @@ export default {
       },
     },
   },
+  translator: {
+    id: "translator",
+    name: "Translator",
+    status: {
+      baseline: false,
+      support: {
+        chrome: "138",
+      },
+    },
+  },
   "trusted-types": {
     id: "trusted-types",
     name: "Trusted types",
     group: ["security"],
     status: {
-      baseline: false,
+      baseline: "low",
+      baseline_low_date: "2026-02-24",
       support: {
         chrome: "83",
         chrome_android: "83",
         edge: "83",
+        firefox: "148",
+        firefox_android: "148",
         safari: "26",
         safari_ios: "26",
       },
@@ -7745,6 +7876,7 @@ export default {
   webgpu: {
     id: "webgpu",
     name: "WebGPU",
+    group: ["webgpu"],
     status: {
       baseline: false,
       support: {
@@ -7752,6 +7884,15 @@ export default {
         safari: "26",
         safari_ios: "26",
       },
+    },
+  },
+  "webgpu-subgroups": {
+    id: "webgpu-subgroups",
+    name: "WebGPU subgroups",
+    group: ["webgpu"],
+    status: {
+      baseline: false,
+      support: {},
     },
   },
   webhid: {
