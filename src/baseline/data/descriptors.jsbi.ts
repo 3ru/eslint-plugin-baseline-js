@@ -2502,6 +2502,16 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "explicit-resource-management",
+    "kind": "newIdent",
+    "name": "AsyncDisposableStack"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "newIdent",
+    "name": "SuppressedError"
+  },
+  {
+    "featureId": "explicit-resource-management",
     "kind": "member",
     "base": "Symbol",
     "prop": "dispose"
@@ -2567,6 +2577,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "toHex"
   },
   {
+    "featureId": "uint8array-base64-hex",
+    "kind": "instanceMember",
+    "iface": "Uint8Array",
+    "prop": "setFromBase64"
+  },
+  {
+    "featureId": "uint8array-base64-hex",
+    "kind": "instanceMember",
+    "iface": "Uint8Array",
+    "prop": "setFromHex"
+  },
+  {
     "featureId": "weak-references",
     "kind": "newIdent",
     "name": "WeakRef"
@@ -2578,39 +2600,45 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "intl-locale-info",
-    "kind": "newMember",
-    "base": "Intl",
-    "prop": "Locale"
+    "kind": "instanceMember",
+    "iface": "Locale",
+    "prop": "getCalendars"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "maximize"
+    "prop": "getCollations"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "minimize"
+    "prop": "getHourCycles"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "hourCycle"
+    "prop": "getNumberingSystems"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "textInfo"
+    "prop": "getTextInfo"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "weekInfo"
+    "prop": "getTimeZones"
+  },
+  {
+    "featureId": "intl-locale-info",
+    "kind": "instanceMember",
+    "iface": "Locale",
+    "prop": "getWeekInfo"
   },
   {
     "featureId": "iterator-methods",
@@ -2655,6 +2683,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "toArray"
   },
   {
+    "featureId": "iterator-methods",
+    "kind": "callStatic",
+    "base": "Iterator",
+    "prop": "from"
+  },
+  {
     "featureId": "iterator-concat",
     "kind": "callStatic",
     "base": "Iterator",
@@ -2685,24 +2719,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "find"
   },
   {
-    "featureId": "intl-locale-info",
-    "kind": "instanceMember",
-    "iface": "Locale",
-    "prop": "calendars"
-  },
-  {
-    "featureId": "intl-locale-info",
-    "kind": "instanceMember",
-    "iface": "Locale",
-    "prop": "collations"
-  },
-  {
-    "featureId": "intl-locale-info",
-    "kind": "instanceMember",
-    "iface": "Locale",
-    "prop": "numberingSystems"
-  },
-  {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int8Array",
@@ -2946,13 +2962,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3000,13 +3016,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3054,13 +3070,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3108,13 +3124,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3162,13 +3178,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3216,13 +3232,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3270,13 +3286,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3324,13 +3340,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3378,13 +3394,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3432,13 +3448,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
@@ -3486,13 +3502,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "find"
+    "prop": "indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "findIndex"
+    "prop": "lastIndexOf"
   }
 ];
 export default descriptors;

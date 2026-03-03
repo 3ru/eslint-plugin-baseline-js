@@ -43,38 +43,40 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 2), "utf8");
 
     const code = `
-      // Intl.Locale info (limited) → should report
+      // Intl.Locale info (limited) → should report for getCalendars()
       const lc = new Intl.Locale('en-US');
-      const h = lc.hourCycle;
+      const cals = lc.getCalendars();
+      // Intl.Locale base property (widely available) → should NOT report
+      const lang = lc.language;
       // Iterator helpers (newly) → using ambient Iterator type below
       declare function getIter(): Iterator<number>;
       const it = getIter();
-      const it2 = it.map?.(x => x + 1);
+      const it2 = it.map(x => x + 1);
       // Uint8Array instance toHex (limited) → should report
       const u = new Uint8Array([1,2,3]);
-      // ambient augment adds toHex signature
-      const hex = (u as any).toHex();
+      const hex = u.toHex();
     `;
     await fs.writeFile(samplePath, code, "utf8");
 
     const ambient = `
-      declare namespace Intl {
-        class Locale {
-          hourCycle: any;
-          textInfo: any;
-          weekInfo: any;
-          maximize(): Locale;
-          minimize(): Locale;
-          calendars?: string[];
-          collations?: string[];
-          numberingSystems?: string[];
+      declare global {
+        namespace Intl {
+          interface Locale {
+            getCalendars(): string[];
+            getCollations(): string[];
+            getHourCycles(): string[];
+            getNumberingSystems(): string[];
+            getTextInfo(): { direction: string };
+            getTimeZones(): string[];
+            getWeekInfo(): { firstDay: number };
+          }
         }
-      }
-      interface Iterator<T> {
-        map<U>(fn: (v: T) => U): Iterator<U>;
-      }
-      interface Uint8Array {
-        toHex(): string;
+        interface Iterator<T, TReturn = any, TNext = unknown> {
+          map<U>(fn: (v: T) => U): Iterator<U, TReturn, TNext>;
+        }
+        interface Uint8Array {
+          toHex(): string;
+        }
       }
       export {};
     `;
