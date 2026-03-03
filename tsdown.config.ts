@@ -5,7 +5,7 @@ export default defineConfig({
   dts: true,
   clean: true,
   sourcemap: false,
-  format: ["esm", "cjs"],
+  format: ["esm"],
   target: "es2020",
   fixedExtension: true,
   inputOptions(defaults) {
