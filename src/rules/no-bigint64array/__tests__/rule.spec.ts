@@ -54,4 +54,26 @@ describe("no-bigint64array", () => {
     const msgs = await run("new Int32Array(8)");
     expect(msgs.length).toBe(0);
   });
+
+  it("flags globalThis/window qualified BigInt typed arrays", async () => {
+    const a = await run("new globalThis.BigInt64Array(8)");
+    expect(a.length).toBe(1);
+
+    const b = await run("window.BigUint64Array.BYTES_PER_ELEMENT");
+    expect(b.length).toBe(1);
+  });
+
+  it("does not flag shadowed window/globalThis wrappers", async () => {
+    const a = await run(`
+      const window = { BigInt64Array: class { static BYTES_PER_ELEMENT = 8; } };
+      window.BigInt64Array.BYTES_PER_ELEMENT;
+    `);
+    expect(a.length).toBe(0);
+
+    const b = await run(`
+      const globalThis = { BigUint64Array: class {} };
+      new globalThis.BigUint64Array(8);
+    `);
+    expect(b.length).toBe(0);
+  });
 });

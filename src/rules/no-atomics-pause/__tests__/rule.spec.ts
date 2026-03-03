@@ -73,4 +73,26 @@ describe("no-atomics-pause", () => {
     const msgs = await run(code);
     expect(msgs.length).toBe(1);
   });
+
+  it("flags globalThis/window qualified Atomics.pause", async () => {
+    const a = await run("globalThis.Atomics.pause()");
+    expect(a.length).toBe(1);
+
+    const b = await run("window.Atomics.pause");
+    expect(b.length).toBeGreaterThan(0);
+  });
+
+  it("does not flag shadowed window/globalThis wrappers", async () => {
+    const a = await run(`
+      const window = { Atomics: { pause() {} } };
+      window.Atomics.pause();
+    `);
+    expect(a.length).toBe(0);
+
+    const b = await run(`
+      const globalThis = { Atomics: { pause() {} } };
+      globalThis.Atomics.pause;
+    `);
+    expect(b.length).toBe(0);
+  });
 });

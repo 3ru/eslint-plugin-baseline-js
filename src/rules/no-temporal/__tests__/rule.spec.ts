@@ -44,4 +44,26 @@ describe("no-temporal", () => {
     const msgs = await run("const T = {}; T.now = () => {}; T.now();");
     expect(msgs.length).toBe(0);
   });
+
+  it("flags globalThis/window qualified Temporal namespace usage", async () => {
+    const a = await run("globalThis.Temporal.Now.instant()");
+    expect(a.length).toBe(1);
+
+    const b = await run("new window.Temporal.PlainDate(2020,1,1)");
+    expect(b.length).toBe(1);
+  });
+
+  it("does not flag shadowed window/globalThis wrappers", async () => {
+    const a = await run(`
+      const window = { Temporal: { Now: { instant() {} } } };
+      window.Temporal.Now.instant();
+    `);
+    expect(a.length).toBe(0);
+
+    const b = await run(`
+      const globalThis = { Temporal: { PlainDate: class {} } };
+      new globalThis.Temporal.PlainDate(2020,1,1);
+    `);
+    expect(b.length).toBe(0);
+  });
 });

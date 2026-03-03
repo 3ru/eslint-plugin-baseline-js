@@ -1,5 +1,5 @@
 import type { Rule } from "eslint";
-import { isGlobalNotShadowed } from "../../util/ast";
+import { isGlobalBaseNotShadowed } from "../../util/ast";
 
 // TODO(improve-detection)
 // - Detect deeper aliasing: const T = Temporal; T.Now.instant().
@@ -17,25 +17,28 @@ const rule: Rule.RuleModule = {
     function report(node: unknown) {
       context.report({ node: node as Rule.Node, messageId: "forbidden" });
     }
-    function isTemporalIdent(node: unknown): boolean {
-      const n = node as Record<string, unknown>;
-      return n && n.type === "Identifier" && n.name === "Temporal";
-    }
     return {
       MemberExpression(node: unknown) {
-        const m = node as Record<string, unknown>;
-        if (
-          m.computed === false &&
-          isTemporalIdent(m.object) &&
-          isGlobalNotShadowed(context, "Temporal", node)
-        ) {
+        const m = node as Record<string, unknown> & { parent?: unknown };
+        const parent = m.parent as { type?: string; callee?: unknown } | undefined;
+        if (parent?.type === "NewExpression" && parent.callee === node) return;
+        if (m.computed === false && isGlobalBaseNotShadowed(context, m.object, "Temporal", node)) {
           report(m.object as unknown);
         }
       },
       NewExpression(node: unknown) {
-        const n = node as Record<string, unknown>;
-        if (isTemporalIdent(n.callee) && isGlobalNotShadowed(context, "Temporal", node)) {
-          report(n.callee as unknown);
+        const n = node as { callee?: { type?: string; object?: unknown; name?: string } };
+        if (n.callee?.type === "Identifier") {
+          if (isGlobalBaseNotShadowed(context, n.callee, "Temporal", node)) {
+            report(n.callee as unknown);
+          }
+          return;
+        }
+        if (
+          n.callee?.type === "MemberExpression" &&
+          isGlobalBaseNotShadowed(context, n.callee.object, "Temporal", node)
+        ) {
+          report(n.callee.object as unknown);
         }
       },
     };

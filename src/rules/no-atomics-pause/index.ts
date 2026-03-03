@@ -1,5 +1,5 @@
 import type { Rule } from "eslint";
-import { isGlobalNotShadowed } from "../../util/ast";
+import { isGlobalBaseNotShadowed } from "../../util/ast";
 
 // TODO(spec-tracking)
 // - Track proposal status; adjust behavior when standardized/renamed.
@@ -17,11 +17,6 @@ const rule: Rule.RuleModule = {
       context.report({ node: node as Rule.Node, messageId: "forbidden" });
     }
 
-    function isAtomicsIdentifier(objectNode: unknown): boolean {
-      const obj = objectNode as { type?: string; name?: string } | undefined;
-      return obj?.type === "Identifier" && obj?.name === "Atomics";
-    }
-
     return {
       CallExpression(node: unknown) {
         const n = node as Record<string, unknown>;
@@ -30,10 +25,9 @@ const rule: Rule.RuleModule = {
           callee &&
           callee.type === "MemberExpression" &&
           callee.computed === false &&
-          isAtomicsIdentifier(callee.object) &&
+          isGlobalBaseNotShadowed(context, callee.object, "Atomics", node) &&
           (callee.property as Record<string, unknown>)?.type === "Identifier" &&
-          (callee.property as Record<string, unknown>)?.name === "pause" &&
-          isGlobalNotShadowed(context, "Atomics", node)
+          (callee.property as Record<string, unknown>)?.name === "pause"
         ) {
           report(callee.property);
         }
@@ -45,10 +39,9 @@ const rule: Rule.RuleModule = {
         if (parent?.type === "CallExpression" && parent.callee === node) return;
         if (
           m.computed === false &&
-          isAtomicsIdentifier(m.object) &&
+          isGlobalBaseNotShadowed(context, m.object, "Atomics", node) &&
           (m.property as Record<string, unknown>)?.type === "Identifier" &&
-          (m.property as Record<string, unknown>)?.name === "pause" &&
-          isGlobalNotShadowed(context, "Atomics", node)
+          (m.property as Record<string, unknown>)?.name === "pause"
         ) {
           report(m.property);
         }
