@@ -135,8 +135,9 @@ Both control “what surface to detect and how aggressive it should be”. The t
     }
     ```
 
-- `preset: 'type-aware'` (strictest)
+- `preset: ‘type-aware’` (strictest)
   - Requires TS types. Resolves the receiver’s actual type before reporting instance members
+  - **Not available under oxlint.** Instance-member checks won't fire. See [FAQ](/docs/meta/faq#using-with-oxlinthttpoxcrs--less-precise-detection).
   - Example:
     ```ts title="type-aware preset (TS project)"
     import tsParser from '@typescript-eslint/parser';
@@ -335,6 +336,30 @@ module.exports = {
   </div>
 </details>
 
+
+## Use with [oxlint](https://oxc.rs/)
+
+Drop the plugin into your [`.oxlintrc.json`](https://oxc.rs/docs/guide/usage/linter/js-plugins):
+
+```jsonc title=".oxlintrc.json"
+{
+  "jsPlugins": ["eslint-plugin-baseline-js"],
+  "rules": {
+    "baseline-js/use-baseline": [
+      "warn",
+      {
+        "available": "widely",
+        "includeWebApis": { "preset": "auto" },
+        "includeJsBuiltins": { "preset": "auto" }
+      }
+    ]
+  }
+}
+```
+
+<Callout type="error" title="No type-aware detection under oxlint">
+Checks that need TypeScript type resolution (e.g., `Set.difference()`, `Iterator.map()`) won't fire. Use ESLint with the `type-aware` preset if you need them. See [FAQ](/docs/meta/faq#using-with-oxlinthttpoxcrs--less-precise-detection).
+</Callout>
 
 ### Messages
 

@@ -1,3 +1,4 @@
+import { createRequire } from "node:module";
 import type { Rule } from "eslint";
 import { baselineConfigs, recommendedConfig, recommendedTsConfig } from "./configs/baseline";
 
@@ -10,6 +11,11 @@ import noFunctionCallerArguments from "./rules/no-function-caller-arguments";
 import noMathSumPrecise from "./rules/no-math-sum-precise";
 import noTemporal from "./rules/no-temporal";
 
+const pkg = createRequire(import.meta.url)("../package.json") as {
+  name: string;
+  version: string;
+};
+
 const rules: Record<string, Rule.RuleModule> = {
   "use-baseline": useBaseline,
   "no-atomics-pause": noAtomicsPause,
@@ -20,6 +26,10 @@ const rules: Record<string, Rule.RuleModule> = {
 };
 
 export default {
+  meta: {
+    name: pkg.name,
+    version: pkg.version,
+  },
   rules,
   configs: {
     baseline: baselineConfigs,

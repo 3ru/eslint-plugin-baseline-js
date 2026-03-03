@@ -144,6 +144,30 @@ and shows which ones are currently mapped by this plugin.
 | `ignoreFeatures`       | `string[]`                | —          | Skip specific web‑features by ID (supports regex `/.../`) across syntax delegates and Web API/JS builtin detection. |
 | `ignoreNodeTypes`      | `string[]`                | —          | Suppress reports by ESTree `node.type` (supports regex `/.../`). |
 
+## Use with [oxlint](https://oxc.rs/)
+
+Runs as an [oxlint JS plugin](https://oxc.rs/docs/guide/usage/linter/js-plugins). Just drop it into `.oxlintrc.json`:
+
+```jsonc
+// .oxlintrc.json
+{
+  "jsPlugins": ["eslint-plugin-baseline-js"],
+  "rules": {
+    "baseline-js/use-baseline": [
+      "warn",
+      {
+        "available": "widely",
+        "includeWebApis": { "preset": "auto" },
+        "includeJsBuiltins": { "preset": "auto" }
+      }
+    ]
+  }
+}
+```
+
+> [!CAUTION]
+> **No type-aware detection under oxlint.** Checks that need TypeScript type resolution (e.g., `Set.difference()`, `Iterator.map()`) won't fire. Use ESLint with the `type-aware` preset if you need them.
+
 ## Baseline for HTML, CSS, and React
 
 Baseline works best when HTML, CSS, JS, and React all align. For markup, styles, and React, enable the "use-baseline" rules from these ESLint plugins:
