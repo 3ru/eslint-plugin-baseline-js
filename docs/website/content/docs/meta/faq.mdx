@@ -32,6 +32,12 @@ export default [
 
 </details>
 
+## Using with [oxlint](https://oxc.rs/): less precise detection
+
+[oxlint JS plugins](https://oxc.rs/docs/guide/usage/linter/js-plugins) don't have access to TypeScript type information. Checks that rely on type resolution (`Set.difference()`, `Iterator.map()`, `response.arrayBuffer()`, etc.) won't fire. Everything else (syntax, constructors, static methods, globals) works fine.
+
+If you need full instance-member coverage, run ESLint with the `type-aware` preset.
+
 ## False positives / suppression
 
 Try the following first, then open an issue with a repro sample if needed.

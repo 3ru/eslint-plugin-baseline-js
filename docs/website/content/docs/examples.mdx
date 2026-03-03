@@ -228,3 +228,23 @@ module.exports = {
 <Callout type="info" title="Tip: constants">
 Prefer <code>BASELINE.WIDELY/NEWLY</code> over string literals to avoid typos.
 </Callout>
+
+## [oxlint](https://oxc.rs/)
+
+```jsonc title=".oxlintrc.json"
+// Drop-in oxlint support. Type-aware detection won't work here;
+// use 'safe' or 'auto' instead of 'type-aware'.
+{
+  "jsPlugins": ["eslint-plugin-baseline-js"],
+  "rules": {
+    "baseline-js/use-baseline": [
+      "warn",
+      {
+        "available": "widely",
+        "includeWebApis": { "preset": "auto" },
+        "includeJsBuiltins": { "preset": "auto" }
+      }
+    ]
+  }
+}
+```
