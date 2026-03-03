@@ -1,3 +1,10 @@
+## [0.6.1](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.6.0...v0.6.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* add plugin meta and document oxlint support ([#104](https://github.com/3ru/eslint-plugin-baseline-js/issues/104)) ([0db845c](https://github.com/3ru/eslint-plugin-baseline-js/commit/0db845c8ebfec35688eb38a1c7ad632d14ba5138))
+
 # [0.6.0](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.5.0...v0.6.0) (2026-03-03)
 
 
