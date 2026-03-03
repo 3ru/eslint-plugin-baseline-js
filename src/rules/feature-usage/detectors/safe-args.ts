@@ -7,7 +7,7 @@ import {
   getCallObjectArg,
   getCallStringArg,
   isCallOfMember,
-  isGlobalBase,
+  isGlobalBaseNotShadowed,
   objectHasKey,
   objectHasKeyWithValues,
 } from "../../../util/ast";
@@ -82,7 +82,7 @@ export function addNewWithOptionsDetector(
       | { type?: string; name?: string }
       | undefined;
     if (callee?.type !== "Identifier" || callee.name !== d.name) return;
-    if (!isGlobalBase(context, callee, d.name)) return;
+    if (!isGlobalBaseNotShadowed(context, callee, d.name, node)) return;
     const obj = getCallObjectArg(node as unknown, d.objectArg.index);
     if (!obj) return;
     if (d.objectArg.hasKeys?.length) {

@@ -106,6 +106,32 @@ export function isGlobalBase(_context: Rule.RuleContext, node: unknown, baseName
   return false;
 }
 
+function collectGlobalBaseRoots(node: unknown, baseName: string): string[] {
+  const id = node as { type?: string; name?: string };
+  if (id.type === "Identifier" && id.name === baseName) return [baseName];
+
+  const me = node as { type?: string; computed?: boolean; object?: unknown; property?: unknown };
+  if (me.type !== "MemberExpression" || me.computed) return [];
+  const obj = me.object as { type?: string; name?: string } | undefined;
+  const prop = me.property as { type?: string; name?: string } | undefined;
+  if (obj?.type !== "Identifier" || prop?.type !== "Identifier") return [];
+  if (prop.name !== baseName) return [];
+  if (obj.name === "window" || obj.name === "globalThis") return [obj.name];
+  return [];
+}
+
+export function isGlobalBaseNotShadowed(
+  context: Rule.RuleContext,
+  node: unknown,
+  baseName: string,
+  parentNode: unknown,
+): boolean {
+  if (!isGlobalBase(context, node, baseName)) return false;
+  const roots = collectGlobalBaseRoots(node, baseName);
+  if (!roots.length) return false;
+  return roots.every((name) => isGlobalNotShadowed(context, name, parentNode));
+}
+
 export function isMemberWithProperty(node: unknown, propName: string): boolean {
   const me = node as { type?: string; computed?: boolean; property?: unknown };
   if (!me || me.type !== "MemberExpression" || me.computed) return false;
