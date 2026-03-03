@@ -67,8 +67,14 @@ jobs:
         if: matrix.eslint-version != '10'
         run: pnpm add -D eslint@${{ matrix.eslint-version }} --no-lockfile
 
-      - name: Generate features (web-features -> features.ts)
-        run: pnpm gen:features
+      - name: Regenerate baseline data (features + descriptors)
+        run: pnpm gen:data
+
+      - name: Verify descriptor ↔ compat key integrity
+        run: pnpm check:descriptor-compat
+
+      - name: Verify generated data is committed
+        run: pnpm check:generated-data
 
       - name: Build
         run: pnpm build
