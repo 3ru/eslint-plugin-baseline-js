@@ -40,15 +40,20 @@ jobs:
     needs: [format]
     permissions:
       contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        eslint-version: ['9.29.0', '10']
+    name: test (eslint@${{ matrix.eslint-version }})
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-          
+
       - name: Install pnpm
         run: |
           corepack enable
           corepack prepare pnpm@10.15.1 --activate
-        
+
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
@@ -57,7 +62,11 @@ jobs:
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
-      
+
+      - name: Override ESLint version
+        if: matrix.eslint-version != '10'
+        run: pnpm add -D eslint@${{ matrix.eslint-version }} --no-lockfile
+
       - name: Generate features (web-features -> features.ts)
         run: pnpm gen:features
 
