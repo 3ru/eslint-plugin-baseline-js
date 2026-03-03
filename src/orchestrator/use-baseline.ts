@@ -19,6 +19,31 @@ import { mergeRuleListeners } from "../utils/listeners";
 
 type ListenerMap = Rule.RuleListener;
 
+function buildDelegateContext(
+  ctx: Rule.RuleContext,
+  overrides: Record<string, unknown>,
+): Record<string, unknown> {
+  const src = ctx as unknown as Record<string, unknown>;
+  const delegateCtx: Record<string, unknown> = {};
+
+  // Forward properties that delegates actually consume
+  if (src.sourceCode != null) delegateCtx.sourceCode = src.sourceCode;
+  if (src.settings != null) delegateCtx.settings = src.settings;
+
+  // parserServices may live on ctx directly or on sourceCode (ESLint 10)
+  type CtxWithPS = { parserServices?: unknown; sourceCode?: { parserServices?: unknown } };
+  const cx = ctx as unknown as CtxWithPS;
+  const ps = cx.parserServices ?? cx.sourceCode?.parserServices;
+  if (ps != null) delegateCtx.parserServices = ps;
+
+  // Apply caller overrides (options, report, parserOptions, etc.)
+  for (const [k, v] of Object.entries(overrides)) {
+    delegateCtx[k] = v;
+  }
+
+  return delegateCtx;
+}
+
 // Register project-local rules once so they can be resolved via the 'self' plugin.
 const SELF_RULES: Record<string, Rule.RuleModule> = {
   "no-atomics-pause": noAtomicsPause,
@@ -108,10 +133,10 @@ const rule: Rule.RuleModule = {
   },
   create(ctx) {
     const _DEBUG = process.env.BASELINE_DEBUG === "1";
-    const sourceCode = ctx.getSourceCode?.();
-    const ast = sourceCode?.ast as { type?: string } | undefined;
+    const sourceCode = ctx.sourceCode;
+    const ast = sourceCode.ast as { type?: string } | undefined;
     // Avoid running when the parser did not produce a JS Program (eg, non-ESTree processors)
-    if (ast && ast.type && ast.type !== "Program") return {};
+    if (ast?.type && ast.type !== "Program") return {};
     const opt = (ctx.options[0] ?? {}) as CommonRuleOptions;
     const baseline = getBaselineValue(opt);
     const ignoreFeaturePatterns = (opt.ignoreFeatures ?? []) as string[];
@@ -181,64 +206,40 @@ const rule: Rule.RuleModule = {
       const impl = resolveDelegateRule(plugin, name);
       if (!impl?.create) continue;
 
-      // Create a minimal context wrapper that forwards necessary APIs and overrides report/options.
-      const delegateCtx: Record<string, unknown> = {};
-      // Forward commonly used context methods/properties safely
-      const fwd = [
-        "getSourceCode",
-        "getCwd",
-        "getFilename",
-        "getPhysicalFilename",
-        "getAncestors",
-        "getDeclaredVariables",
-        "markVariableAsUsed",
-        "getScope",
-      ] as const;
-      for (const k of fwd) {
-        const v = (ctx as unknown as Record<string, unknown>)[k as string];
-        if (typeof v === "function") {
-          type AnyFn = (...args: unknown[]) => unknown;
-          const fn = v as unknown as AnyFn;
-          delegateCtx[k] = fn.bind(ctx);
-        }
-      }
-      // Pass-through common data containers if present
-      for (const k of [
-        "settings",
-        "parserPath",
-        "parserServices",
-        "languageOptions",
-        "sourceCode",
-      ]) {
-        const src = ctx as unknown as Record<string, unknown>;
-        if (src[k] != null) delegateCtx[k] = src[k];
-      }
       // Force es-x delegates to consider syntax as "unsupported" by lowering ecmaVersion.
-      {
-        const src = ctx as unknown as { parserOptions?: Record<string, unknown> };
-        const orig = src.parserOptions ?? {};
-        (delegateCtx as Record<string, unknown>).parserOptions = { ...orig, ecmaVersion: 3 };
-      }
-      // Provide options expected by the delegate rule
-      delegateCtx.options = delegateOptions;
-      // Unified Baseline-aware reporting
-      delegateCtx.report = function report(arg: unknown) {
-        const isObj = typeof arg === "object" && arg !== null;
-        const node =
-          isObj && "node" in (arg as Record<string, unknown>)
-            ? (arg as Record<string, unknown>).node
-            : arg;
-        if (matchIgnoreNodeType) {
-          const t = (node as Record<string, unknown> | null | undefined)?.type as
-            | string
-            | undefined;
-          if (t && matchIgnoreNodeType(t)) return;
-        }
-        (ctx as unknown as { report: (d: { node: unknown; message: string }) => void }).report({
-          node,
-          message: baselineMessage(featureId, baseline),
-        });
-      };
+      const origParserOptions =
+        (ctx as unknown as { parserOptions?: Record<string, unknown> }).parserOptions ?? {};
+      const origLangOpts =
+        (ctx as unknown as { languageOptions?: Record<string, unknown> }).languageOptions ?? {};
+      const delegateCtx = buildDelegateContext(ctx, {
+        parserOptions: { ...origParserOptions, ecmaVersion: 3 },
+        languageOptions: {
+          ...origLangOpts,
+          ecmaVersion: 3,
+          parserOptions: {
+            ...((origLangOpts.parserOptions as Record<string, unknown> | undefined) ?? {}),
+            ecmaVersion: 3,
+          },
+        },
+        options: delegateOptions,
+        report(arg: unknown) {
+          const isObj = typeof arg === "object" && arg !== null;
+          const node =
+            isObj && "node" in (arg as Record<string, unknown>)
+              ? (arg as Record<string, unknown>).node
+              : arg;
+          if (matchIgnoreNodeType) {
+            const t = (node as Record<string, unknown> | null | undefined)?.type as
+              | string
+              | undefined;
+            if (t && matchIgnoreNodeType(t)) return;
+          }
+          (ctx as unknown as { report: (d: { node: unknown; message: string }) => void }).report({
+            node,
+            message: baselineMessage(featureId, baseline),
+          });
+        },
+      });
 
       const l = impl.create(delegateCtx as unknown as Rule.RuleContext);
       mergeRuleListeners(listeners, l);
@@ -297,73 +298,32 @@ const rule: Rule.RuleModule = {
     if (descriptors.length > 0) {
       const messages: Record<string, string> = {};
       for (const d of descriptors) messages[d.featureId] = baselineMessage(d.featureId, baseline);
-      // Build a delegate context similar to other delegates
-      const delegateCtx: Record<string, unknown> = {};
-      const fwd = [
-        "getSourceCode",
-        "getCwd",
-        "getFilename",
-        "getPhysicalFilename",
-        "getAncestors",
-        "getDeclaredVariables",
-        "markVariableAsUsed",
-        "getScope",
-      ] as const;
-      for (const k of fwd) {
-        const v = (ctx as unknown as Record<string, unknown>)[k as string];
-        if (typeof v === "function") {
-          type AnyFn = (...args: unknown[]) => unknown;
-          const fn = v as unknown as AnyFn;
-          delegateCtx[k] = fn.bind(ctx);
-        }
-      }
-      for (const k of [
-        "settings",
-        "parserPath",
-        "parserOptions",
-        "parserServices",
-        "languageOptions",
-        "sourceCode",
-      ]) {
-        const src = ctx as unknown as Record<string, unknown>;
-        if (src[k] != null) delegateCtx[k] = src[k];
-      }
-      if (
-        delegateCtx.sourceCode == null &&
-        typeof (ctx as unknown as { getSourceCode?: () => unknown }).getSourceCode === "function"
-      ) {
-        delegateCtx.sourceCode = (
-          ctx as unknown as { getSourceCode: () => unknown }
-        ).getSourceCode();
-      }
-      delegateCtx.options = [
-        typedEnabled ? { descriptors, messages, typed: true } : { descriptors, messages },
-      ];
-      // Ensure report is available to the generic detector (feature-usage)
-      // so it can forward to the primary rule context and respect ignoreNodeTypes.
-      (delegateCtx as unknown as { report: (arg: unknown) => void }).report = function report(
-        arg: unknown,
-      ) {
-        const isObj = typeof arg === "object" && arg !== null;
-        const node =
-          isObj && "node" in (arg as Record<string, unknown>)
-            ? (arg as Record<string, unknown>).node
-            : arg;
-        if (matchIgnoreNodeType) {
-          const t = (node as Record<string, unknown> | null | undefined)?.type as
-            | string
-            | undefined;
-          if (t && matchIgnoreNodeType(t)) return;
-        }
-        let msg: string | undefined;
-        if (isObj && typeof (arg as { message?: unknown }).message === "string")
-          msg = (arg as { message?: string }).message;
+      const delegateCtx = buildDelegateContext(ctx, {
+        options: [
+          typedEnabled ? { descriptors, messages, typed: true } : { descriptors, messages },
+        ],
+        report(arg: unknown) {
+          const isObj = typeof arg === "object" && arg !== null;
+          const node =
+            isObj && "node" in (arg as Record<string, unknown>)
+              ? (arg as Record<string, unknown>).node
+              : arg;
+          if (matchIgnoreNodeType) {
+            const t = (node as Record<string, unknown> | null | undefined)?.type as
+              | string
+              | undefined;
+            if (t && matchIgnoreNodeType(t)) return;
+          }
+          let msg: string | undefined;
+          if (isObj && typeof (arg as { message?: unknown }).message === "string")
+            msg = (arg as { message?: string }).message;
 
-        (ctx as unknown as { report: (d: { node: unknown; message?: string }) => void }).report({
-          node,
-          message: msg,
-        });
-      };
+          (ctx as unknown as { report: (d: { node: unknown; message?: string }) => void }).report({
+            node,
+            message: msg,
+          });
+        },
+      });
       const generic = featureUsage.create(delegateCtx as unknown as Rule.RuleContext);
       mergeRuleListeners(listeners, generic);
     }
