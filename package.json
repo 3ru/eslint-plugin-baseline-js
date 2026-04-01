@@ -47,7 +47,7 @@
     "@types/eslint": "^9.6.1",
     "@types/node": "^25.3.3",
     "@typescript-eslint/parser": "^8.56.1",
-    "eslint": "^10.0.2",
+    "eslint": "^10.1.0",
     "semantic-release": "^25.0.2",
     "tsdown": "0.20.3",
     "typescript": "^5.9.3",
