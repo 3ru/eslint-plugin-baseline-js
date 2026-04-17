@@ -1,3 +1,10 @@
+## [0.6.2](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.6.1...v0.6.2) (2026-04-17)
+
+
+### Bug Fixes
+
+* **ci:** remove npm self-update from release job ([ed93736](https://github.com/3ru/eslint-plugin-baseline-js/commit/ed937369cb7d473e217873eb37dc931fd38dc31e))
+
 ## [0.6.1](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.6.0...v0.6.1) (2026-03-03)
 
 
