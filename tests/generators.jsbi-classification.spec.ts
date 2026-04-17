@@ -75,6 +75,11 @@ describe("descriptors.jsbi generation (auto builtin classification)", () => {
       base: "Symbol",
       prop: "for",
     });
+    expect(classifyJsBuiltinCompatFeature("RegExp", "escape")).toEqual({
+      kind: "callStatic",
+      base: "RegExp",
+      prop: "escape",
+    });
     expect(classifyJsBuiltinCompatFeature("Number", "EPSILON")).toEqual({
       kind: "staticMember",
       base: "Number",

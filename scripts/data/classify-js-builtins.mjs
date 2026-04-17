@@ -20,9 +20,14 @@ const PREFERRED_INSTANCE_BASES = new Set([
 ]);
 
 // Spec-stable builtin members that are not yet surfaced by TypeScript's lib
-// declarations or by the current Node.js runtime used during generation.
+// declarations or are not available across the Node.js versions used during
+// descriptor generation and CI.
 // Keep this table explicit and small so every fallback remains auditable.
 export const JS_BUILTIN_CLASSIFICATION_FALLBACKS = [
+  {
+    compatKey: "javascript.builtins.RegExp.escape",
+    descriptor: { kind: "callStatic", base: "RegExp", prop: "escape" },
+  },
   {
     compatKey: "javascript.builtins.Map.getOrInsert",
     descriptor: { kind: "instanceMember", iface: "Map", prop: "getOrInsert" },
