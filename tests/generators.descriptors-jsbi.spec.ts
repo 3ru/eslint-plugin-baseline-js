@@ -46,4 +46,20 @@ describe("descriptors.jsbi generation (manual JS builtins)", () => {
       /(?:"featureId"|featureId):\s*"weak-references"[\s\S]*?(?:"kind"|kind):\s*"newIdent"[\s\S]*?(?:"name"|name):\s*"FinalizationRegistry"/,
     );
   });
+
+  it("contains Map and WeakMap getOrInsert instance members", () => {
+    const src = readDescriptorsJsbi();
+    expect(src).toMatch(
+      /(?:"featureId"|featureId):\s*"getorinsert"[\s\S]*?(?:"kind"|kind):\s*"instanceMember"[\s\S]*?(?:"iface"|iface):\s*"Map"[\s\S]*?(?:"prop"|prop):\s*"getOrInsert"/,
+    );
+    expect(src).toMatch(
+      /(?:"featureId"|featureId):\s*"getorinsert"[\s\S]*?(?:"kind"|kind):\s*"instanceMember"[\s\S]*?(?:"iface"|iface):\s*"Map"[\s\S]*?(?:"prop"|prop):\s*"getOrInsertComputed"/,
+    );
+    expect(src).toMatch(
+      /(?:"featureId"|featureId):\s*"getorinsert"[\s\S]*?(?:"kind"|kind):\s*"instanceMember"[\s\S]*?(?:"iface"|iface):\s*"WeakMap"[\s\S]*?(?:"prop"|prop):\s*"getOrInsert"/,
+    );
+    expect(src).toMatch(
+      /(?:"featureId"|featureId):\s*"getorinsert"[\s\S]*?(?:"kind"|kind):\s*"instanceMember"[\s\S]*?(?:"iface"|iface):\s*"WeakMap"[\s\S]*?(?:"prop"|prop):\s*"getOrInsertComputed"/,
+    );
+  });
 });

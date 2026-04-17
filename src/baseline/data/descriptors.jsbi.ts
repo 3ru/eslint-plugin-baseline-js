@@ -8,36 +8,6 @@ import type { Descriptor } from "../types";
 
 const descriptors: ReadonlyArray<Descriptor> = [
   {
-    "featureId": "accessor-methods",
-    "kind": "callStatic",
-    "base": "Object",
-    "prop": "defineGetter"
-  },
-  {
-    "featureId": "accessor-methods",
-    "kind": "callStatic",
-    "base": "Object",
-    "prop": "defineSetter"
-  },
-  {
-    "featureId": "accessor-methods",
-    "kind": "callStatic",
-    "base": "Object",
-    "prop": "lookupGetter"
-  },
-  {
-    "featureId": "accessor-methods",
-    "kind": "callStatic",
-    "base": "Object",
-    "prop": "lookupSetter"
-  },
-  {
-    "featureId": "array",
-    "kind": "instanceMember",
-    "iface": "Array",
-    "prop": "Array"
-  },
-  {
     "featureId": "array",
     "kind": "instanceMember",
     "iface": "Array",
@@ -195,8 +165,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "array-group",
-    "kind": "instanceMember",
-    "iface": "Map",
+    "kind": "callStatic",
+    "base": "Map",
     "prop": "groupBy"
   },
   {
@@ -275,12 +245,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "array-iterators",
     "kind": "instanceMember",
     "iface": "Array",
-    "prop": "@@iterator"
-  },
-  {
-    "featureId": "array-iterators",
-    "kind": "instanceMember",
-    "iface": "Array",
     "prop": "entries"
   },
   {
@@ -308,6 +272,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "splice"
   },
   {
+    "featureId": "async-generators",
+    "kind": "instanceMember",
+    "iface": "AsyncGenerator",
+    "prop": "next"
+  },
+  {
+    "featureId": "async-generators",
+    "kind": "instanceMember",
+    "iface": "AsyncGenerator",
+    "prop": "return"
+  },
+  {
+    "featureId": "async-generators",
+    "kind": "instanceMember",
+    "iface": "AsyncGenerator",
+    "prop": "throw"
+  },
+  {
+    "featureId": "async-iterators",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "asyncIterator"
+  },
+  {
     "featureId": "atomics-pause",
     "kind": "callStatic",
     "base": "Atomics",
@@ -320,33 +308,57 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "waitAsync"
   },
   {
-    "featureId": "bigint64array",
+    "featureId": "bigint",
+    "kind": "callStatic",
+    "base": "BigInt",
+    "prop": "asIntN"
+  },
+  {
+    "featureId": "bigint",
+    "kind": "callStatic",
+    "base": "BigInt",
+    "prop": "asUintN"
+  },
+  {
+    "featureId": "bigint",
     "kind": "instanceMember",
-    "iface": "BigInt64Array",
-    "prop": "BigInt64Array"
+    "iface": "BigInt",
+    "prop": "toString"
+  },
+  {
+    "featureId": "bigint",
+    "kind": "instanceMember",
+    "iface": "BigInt",
+    "prop": "valueOf"
   },
   {
     "featureId": "bigint64array",
     "kind": "instanceMember",
-    "iface": "BigUint64Array",
-    "prop": "BigUint64Array"
+    "iface": "DataView",
+    "prop": "getBigInt64"
+  },
+  {
+    "featureId": "bigint64array",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getBigUint64"
+  },
+  {
+    "featureId": "bigint64array",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setBigInt64"
+  },
+  {
+    "featureId": "bigint64array",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setBigUint64"
   },
   {
     "featureId": "date",
-    "kind": "instanceMember",
-    "iface": "Date",
-    "prop": "@@toPrimitive"
-  },
-  {
-    "featureId": "date",
-    "kind": "instanceMember",
-    "iface": "Date",
-    "prop": "Date"
-  },
-  {
-    "featureId": "date",
-    "kind": "instanceMember",
-    "iface": "Date",
+    "kind": "callStatic",
+    "base": "Date",
     "prop": "UTC"
   },
   {
@@ -459,14 +471,14 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "date",
-    "kind": "instanceMember",
-    "iface": "Date",
+    "kind": "callStatic",
+    "base": "Date",
     "prop": "now"
   },
   {
     "featureId": "date",
-    "kind": "instanceMember",
-    "iface": "Date",
+    "kind": "callStatic",
+    "base": "Date",
     "prop": "parse"
   },
   {
@@ -620,16 +632,190 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "toGMTString"
   },
   {
+    "featureId": "error-cause",
+    "kind": "instanceMember",
+    "iface": "Error",
+    "prop": "cause"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "AsyncDisposableStack",
+    "prop": "adopt"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "AsyncDisposableStack",
+    "prop": "defer"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "AsyncDisposableStack",
+    "prop": "disposeAsync"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "AsyncDisposableStack",
+    "prop": "disposed"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "AsyncDisposableStack",
+    "prop": "move"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "AsyncDisposableStack",
+    "prop": "use"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "DisposableStack",
+    "prop": "adopt"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "DisposableStack",
+    "prop": "defer"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "DisposableStack",
+    "prop": "dispose"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "DisposableStack",
+    "prop": "disposed"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "DisposableStack",
+    "prop": "move"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "DisposableStack",
+    "prop": "use"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "SuppressedError",
+    "prop": "error"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "instanceMember",
+    "iface": "SuppressedError",
+    "prop": "suppressed"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "asyncDispose"
+  },
+  {
+    "featureId": "explicit-resource-management",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "dispose"
+  },
+  {
     "featureId": "float16array",
     "kind": "instanceMember",
-    "iface": "Float16Array",
-    "prop": "Float16Array"
+    "iface": "DataView",
+    "prop": "getFloat16"
+  },
+  {
+    "featureId": "float16array",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setFloat16"
   },
   {
     "featureId": "float16array",
     "kind": "callStatic",
     "base": "Math",
     "prop": "f16round"
+  },
+  {
+    "featureId": "functions",
+    "kind": "instanceMember",
+    "iface": "Function",
+    "prop": "apply"
+  },
+  {
+    "featureId": "functions",
+    "kind": "instanceMember",
+    "iface": "Function",
+    "prop": "bind"
+  },
+  {
+    "featureId": "functions",
+    "kind": "instanceMember",
+    "iface": "Function",
+    "prop": "call"
+  },
+  {
+    "featureId": "functions",
+    "kind": "instanceMember",
+    "iface": "Function",
+    "prop": "length"
+  },
+  {
+    "featureId": "functions",
+    "kind": "instanceMember",
+    "iface": "Function",
+    "prop": "name"
+  },
+  {
+    "featureId": "functions",
+    "kind": "instanceMember",
+    "iface": "Function",
+    "prop": "toString"
+  },
+  {
+    "featureId": "functions-caller-arguments",
+    "kind": "instanceMember",
+    "iface": "Function",
+    "prop": "arguments"
+  },
+  {
+    "featureId": "functions-caller-arguments",
+    "kind": "instanceMember",
+    "iface": "Function",
+    "prop": "caller"
+  },
+  {
+    "featureId": "generators",
+    "kind": "instanceMember",
+    "iface": "Generator",
+    "prop": "next"
+  },
+  {
+    "featureId": "generators",
+    "kind": "instanceMember",
+    "iface": "Generator",
+    "prop": "return"
+  },
+  {
+    "featureId": "generators",
+    "kind": "instanceMember",
+    "iface": "Generator",
+    "prop": "throw"
   },
   {
     "featureId": "getorinsert",
@@ -748,6 +934,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
   {
     "featureId": "intl",
     "kind": "instanceMember",
+    "iface": "BigInt",
+    "prop": "toLocaleString"
+  },
+  {
+    "featureId": "intl",
+    "kind": "instanceMember",
     "iface": "Date",
     "prop": "toLocaleDateString"
   },
@@ -780,6 +972,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "newMember",
     "base": "Intl",
     "prop": "NumberFormat"
+  },
+  {
+    "featureId": "intl",
+    "kind": "callStatic",
+    "base": "Intl",
+    "prop": "getCanonicalLocales"
+  },
+  {
+    "featureId": "intl",
+    "kind": "callStatic",
+    "base": "Intl",
+    "prop": "supportedValuesOf"
   },
   {
     "featureId": "intl",
@@ -854,10 +1058,82 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "Segmenter"
   },
   {
-    "featureId": "javascript",
+    "featureId": "is-error",
+    "kind": "callStatic",
+    "base": "Error",
+    "prop": "isError"
+  },
+  {
+    "featureId": "iterator-methods",
     "kind": "instanceMember",
-    "iface": "Boolean",
-    "prop": "Boolean"
+    "iface": "Iterator",
+    "prop": "drop"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "every"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "filter"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "find"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "flatMap"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "forEach"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "callStatic",
+    "base": "Iterator",
+    "prop": "from"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "map"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "reduce"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "some"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "take"
+  },
+  {
+    "featureId": "iterator-methods",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "toArray"
   },
   {
     "featureId": "javascript",
@@ -872,10 +1148,22 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "valueOf"
   },
   {
-    "featureId": "json",
-    "kind": "callStatic",
-    "base": "JSON",
-    "prop": "json_superset"
+    "featureId": "javascript",
+    "kind": "instanceMember",
+    "iface": "Error",
+    "prop": "message"
+  },
+  {
+    "featureId": "javascript",
+    "kind": "instanceMember",
+    "iface": "Error",
+    "prop": "name"
+  },
+  {
+    "featureId": "javascript",
+    "kind": "instanceMember",
+    "iface": "Error",
+    "prop": "toString"
   },
   {
     "featureId": "json",
@@ -900,24 +1188,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "callStatic",
     "base": "JSON",
     "prop": "rawJSON"
-  },
-  {
-    "featureId": "map",
-    "kind": "instanceMember",
-    "iface": "Map",
-    "prop": "@@iterator"
-  },
-  {
-    "featureId": "map",
-    "kind": "instanceMember",
-    "iface": "Map",
-    "prop": "@@species"
-  },
-  {
-    "featureId": "map",
-    "kind": "instanceMember",
-    "iface": "Map",
-    "prop": "Map"
   },
   {
     "featureId": "map",
@@ -959,12 +1229,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "map",
     "kind": "instanceMember",
     "iface": "Map",
-    "prop": "key_equality_for_zeros"
-  },
-  {
-    "featureId": "map",
-    "kind": "instanceMember",
-    "iface": "Map",
     "prop": "keys"
   },
   {
@@ -986,56 +1250,50 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "values"
   },
   {
-    "featureId": "math-sum-precise",
-    "kind": "callStatic",
-    "base": "Math",
-    "prop": "sumPrecise"
-  },
-  {
     "featureId": "number",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Math",
     "prop": "E"
   },
   {
     "featureId": "number",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Math",
     "prop": "LN10"
   },
   {
     "featureId": "number",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Math",
     "prop": "LN2"
   },
   {
     "featureId": "number",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Math",
     "prop": "LOG10E"
   },
   {
     "featureId": "number",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Math",
     "prop": "LOG2E"
   },
   {
     "featureId": "number",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Math",
     "prop": "PI"
   },
   {
     "featureId": "number",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Math",
     "prop": "SQRT1_2"
   },
   {
     "featureId": "number",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Math",
     "prop": "SQRT2"
   },
@@ -1251,92 +1509,86 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "staticMember",
+    "base": "Number",
     "prop": "EPSILON"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "staticMember",
+    "base": "Number",
     "prop": "MAX_SAFE_INTEGER"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "staticMember",
+    "base": "Number",
     "prop": "MAX_VALUE"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "staticMember",
+    "base": "Number",
     "prop": "MIN_SAFE_INTEGER"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "staticMember",
+    "base": "Number",
     "prop": "MIN_VALUE"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "staticMember",
+    "base": "Number",
     "prop": "NEGATIVE_INFINITY"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "staticMember",
+    "base": "Number",
     "prop": "NaN"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
-    "prop": "Number"
-  },
-  {
-    "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "staticMember",
+    "base": "Number",
     "prop": "POSITIVE_INFINITY"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "callStatic",
+    "base": "Number",
     "prop": "isFinite"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "callStatic",
+    "base": "Number",
     "prop": "isInteger"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "callStatic",
+    "base": "Number",
     "prop": "isNaN"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "callStatic",
+    "base": "Number",
     "prop": "isSafeInteger"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "callStatic",
+    "base": "Number",
     "prop": "parseFloat"
   },
   {
     "featureId": "number",
-    "kind": "instanceMember",
-    "iface": "Number",
+    "kind": "callStatic",
+    "base": "Number",
     "prop": "parseInt"
   },
   {
@@ -1379,17 +1631,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "object-object",
     "kind": "callStatic",
     "base": "Object",
-    "prop": "Object"
-  },
-  {
-    "featureId": "object-object",
-    "kind": "callStatic",
-    "base": "Object",
     "prop": "assign"
   },
   {
     "featureId": "object-object",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Object",
     "prop": "constructor"
   },
@@ -1545,20 +1791,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "promise",
-    "kind": "instanceMember",
-    "iface": "Promise",
-    "prop": "@@species"
-  },
-  {
-    "featureId": "promise",
-    "kind": "instanceMember",
-    "iface": "Promise",
-    "prop": "Promise"
-  },
-  {
-    "featureId": "promise",
-    "kind": "instanceMember",
-    "iface": "Promise",
+    "kind": "callStatic",
+    "base": "Promise",
     "prop": "all"
   },
   {
@@ -1569,26 +1803,20 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "promise",
-    "kind": "instanceMember",
-    "iface": "Promise",
-    "prop": "incumbent_settings_object_tracking"
-  },
-  {
-    "featureId": "promise",
-    "kind": "instanceMember",
-    "iface": "Promise",
+    "kind": "callStatic",
+    "base": "Promise",
     "prop": "race"
   },
   {
     "featureId": "promise",
-    "kind": "instanceMember",
-    "iface": "Promise",
+    "kind": "callStatic",
+    "base": "Promise",
     "prop": "reject"
   },
   {
     "featureId": "promise",
-    "kind": "instanceMember",
-    "iface": "Promise",
+    "kind": "callStatic",
+    "base": "Promise",
     "prop": "resolve"
   },
   {
@@ -1599,14 +1827,20 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "promise-allsettled",
-    "kind": "instanceMember",
-    "iface": "Promise",
+    "kind": "callStatic",
+    "base": "Promise",
     "prop": "allSettled"
   },
   {
     "featureId": "promise-any",
     "kind": "instanceMember",
-    "iface": "Promise",
+    "iface": "AggregateError",
+    "prop": "errors"
+  },
+  {
+    "featureId": "promise-any",
+    "kind": "callStatic",
+    "base": "Promise",
     "prop": "any"
   },
   {
@@ -1617,21 +1851,21 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "promise-try",
-    "kind": "instanceMember",
-    "iface": "Promise",
+    "kind": "callStatic",
+    "base": "Promise",
     "prop": "try"
   },
   {
     "featureId": "promise-withresolvers",
-    "kind": "instanceMember",
-    "iface": "Promise",
+    "kind": "callStatic",
+    "base": "Promise",
     "prop": "withResolvers"
   },
   {
-    "featureId": "proto",
+    "featureId": "proxy-reflect",
     "kind": "callStatic",
-    "base": "Object",
-    "prop": "proto"
+    "base": "Proxy",
+    "prop": "revocable"
   },
   {
     "featureId": "proxy-reflect",
@@ -1710,48 +1944,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "setPrototypeOf"
-  },
-  {
-    "featureId": "regexp",
-    "kind": "instanceMember",
-    "iface": "RegExp",
-    "prop": "@@match"
-  },
-  {
-    "featureId": "regexp",
-    "kind": "instanceMember",
-    "iface": "RegExp",
-    "prop": "@@matchAll"
-  },
-  {
-    "featureId": "regexp",
-    "kind": "instanceMember",
-    "iface": "RegExp",
-    "prop": "@@replace"
-  },
-  {
-    "featureId": "regexp",
-    "kind": "instanceMember",
-    "iface": "RegExp",
-    "prop": "@@search"
-  },
-  {
-    "featureId": "regexp",
-    "kind": "instanceMember",
-    "iface": "RegExp",
-    "prop": "@@species"
-  },
-  {
-    "featureId": "regexp",
-    "kind": "instanceMember",
-    "iface": "RegExp",
-    "prop": "@@split"
-  },
-  {
-    "featureId": "regexp",
-    "kind": "instanceMember",
-    "iface": "RegExp",
-    "prop": "RegExp"
   },
   {
     "featureId": "regexp",
@@ -1845,63 +2037,75 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "regexp-escape",
-    "kind": "instanceMember",
-    "iface": "RegExp",
+    "kind": "callStatic",
+    "base": "RegExp",
     "prop": "escape"
   },
   {
     "featureId": "regexp-static-properties",
-    "kind": "instanceMember",
-    "iface": "RegExp",
+    "kind": "staticMember",
+    "base": "RegExp",
     "prop": "input"
   },
   {
     "featureId": "regexp-static-properties",
-    "kind": "instanceMember",
-    "iface": "RegExp",
+    "kind": "staticMember",
+    "base": "RegExp",
     "prop": "lastMatch"
   },
   {
     "featureId": "regexp-static-properties",
-    "kind": "instanceMember",
-    "iface": "RegExp",
+    "kind": "staticMember",
+    "base": "RegExp",
     "prop": "lastParen"
   },
   {
     "featureId": "regexp-static-properties",
-    "kind": "instanceMember",
-    "iface": "RegExp",
+    "kind": "staticMember",
+    "base": "RegExp",
     "prop": "leftContext"
   },
   {
     "featureId": "regexp-static-properties",
-    "kind": "instanceMember",
-    "iface": "RegExp",
-    "prop": "n"
-  },
-  {
-    "featureId": "regexp-static-properties",
-    "kind": "instanceMember",
-    "iface": "RegExp",
+    "kind": "staticMember",
+    "base": "RegExp",
     "prop": "rightContext"
   },
   {
-    "featureId": "set",
+    "featureId": "resizable-buffers",
     "kind": "instanceMember",
-    "iface": "Set",
-    "prop": "@@iterator"
+    "iface": "ArrayBuffer",
+    "prop": "maxByteLength"
   },
   {
-    "featureId": "set",
+    "featureId": "resizable-buffers",
     "kind": "instanceMember",
-    "iface": "Set",
-    "prop": "@@species"
+    "iface": "ArrayBuffer",
+    "prop": "resizable"
   },
   {
-    "featureId": "set",
+    "featureId": "resizable-buffers",
     "kind": "instanceMember",
-    "iface": "Set",
-    "prop": "Set"
+    "iface": "ArrayBuffer",
+    "prop": "resize"
+  },
+  {
+    "featureId": "resizable-buffers",
+    "kind": "instanceMember",
+    "iface": "SharedArrayBuffer",
+    "prop": "grow"
+  },
+  {
+    "featureId": "resizable-buffers",
+    "kind": "instanceMember",
+    "iface": "SharedArrayBuffer",
+    "prop": "growable"
+  },
+  {
+    "featureId": "resizable-buffers",
+    "kind": "instanceMember",
+    "iface": "SharedArrayBuffer",
+    "prop": "maxByteLength"
   },
   {
     "featureId": "set",
@@ -1938,12 +2142,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "has"
-  },
-  {
-    "featureId": "set",
-    "kind": "instanceMember",
-    "iface": "Set",
-    "prop": "key_equality_for_zeros"
   },
   {
     "featureId": "set",
@@ -2004,12 +2202,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "union"
-  },
-  {
-    "featureId": "shared-memory",
-    "kind": "callStatic",
-    "base": "Atomics",
-    "prop": "Atomic_operations_on_non_shared_buffers"
   },
   {
     "featureId": "shared-memory",
@@ -2084,6 +2276,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "xor"
   },
   {
+    "featureId": "shared-memory",
+    "kind": "instanceMember",
+    "iface": "SharedArrayBuffer",
+    "prop": "byteLength"
+  },
+  {
+    "featureId": "shared-memory",
+    "kind": "instanceMember",
+    "iface": "SharedArrayBuffer",
+    "prop": "slice"
+  },
+  {
     "featureId": "string-at",
     "kind": "instanceMember",
     "iface": "String",
@@ -2097,8 +2301,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "string-codepoint",
-    "kind": "instanceMember",
-    "iface": "String",
+    "kind": "callStatic",
+    "base": "String",
     "prop": "fromCodePoint"
   },
   {
@@ -2133,8 +2337,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "string-raw",
-    "kind": "instanceMember",
-    "iface": "String",
+    "kind": "callStatic",
+    "base": "String",
     "prop": "raw"
   },
   {
@@ -2189,18 +2393,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "strings",
     "kind": "instanceMember",
     "iface": "String",
-    "prop": "@@iterator"
-  },
-  {
-    "featureId": "strings",
-    "kind": "instanceMember",
-    "iface": "String",
-    "prop": "String"
-  },
-  {
-    "featureId": "strings",
-    "kind": "instanceMember",
-    "iface": "String",
     "prop": "charAt"
   },
   {
@@ -2217,8 +2409,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "strings",
-    "kind": "instanceMember",
-    "iface": "String",
+    "kind": "callStatic",
+    "base": "String",
     "prop": "fromCharCode"
   },
   {
@@ -2303,25 +2495,91 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "strings",
     "kind": "instanceMember",
     "iface": "String",
-    "prop": "unicode_code_point_escapes"
-  },
-  {
-    "featureId": "strings",
-    "kind": "instanceMember",
-    "iface": "String",
     "prop": "valueOf"
   },
   {
     "featureId": "symbol",
     "kind": "instanceMember",
-    "iface": "Array",
-    "prop": "@@species"
+    "iface": "Symbol",
+    "prop": "description"
   },
   {
-    "featureId": "temporal",
-    "kind": "instanceMember",
-    "iface": "Date",
-    "prop": "toTemporalInstant"
+    "featureId": "symbol",
+    "kind": "callStatic",
+    "base": "Symbol",
+    "prop": "for"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "hasInstance"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "isConcatSpreadable"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "iterator"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "callStatic",
+    "base": "Symbol",
+    "prop": "keyFor"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "match"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "matchAll"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "replace"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "search"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "species"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "split"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "toPrimitive"
+  },
+  {
+    "featureId": "symbol",
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "toStringTag"
   },
   {
     "featureId": "temporal",
@@ -2372,40 +2630,172 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "ZonedDateTime"
   },
   {
-    "featureId": "typed-arrays",
+    "featureId": "transferable-arraybuffer",
     "kind": "instanceMember",
-    "iface": "Float32Array",
-    "prop": "Float32Array"
+    "iface": "ArrayBuffer",
+    "prop": "detached"
+  },
+  {
+    "featureId": "transferable-arraybuffer",
+    "kind": "instanceMember",
+    "iface": "ArrayBuffer",
+    "prop": "transfer"
+  },
+  {
+    "featureId": "transferable-arraybuffer",
+    "kind": "instanceMember",
+    "iface": "ArrayBuffer",
+    "prop": "transferToFixedLength"
   },
   {
     "featureId": "typed-arrays",
     "kind": "instanceMember",
-    "iface": "Float64Array",
-    "prop": "Float64Array"
+    "iface": "ArrayBuffer",
+    "prop": "byteLength"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "callStatic",
+    "base": "ArrayBuffer",
+    "prop": "isView"
   },
   {
     "featureId": "typed-arrays",
     "kind": "instanceMember",
-    "iface": "Int16Array",
-    "prop": "Int16Array"
+    "iface": "ArrayBuffer",
+    "prop": "slice"
   },
   {
     "featureId": "typed-arrays",
     "kind": "instanceMember",
-    "iface": "Int32Array",
-    "prop": "Int32Array"
+    "iface": "DataView",
+    "prop": "buffer"
   },
   {
     "featureId": "typed-arrays",
     "kind": "instanceMember",
-    "iface": "Int8Array",
-    "prop": "Int8Array"
+    "iface": "DataView",
+    "prop": "byteLength"
   },
   {
-    "featureId": "weakmap",
+    "featureId": "typed-arrays",
     "kind": "instanceMember",
-    "iface": "WeakMap",
-    "prop": "WeakMap"
+    "iface": "DataView",
+    "prop": "byteOffset"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getFloat32"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getFloat64"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getInt16"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getInt32"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getInt8"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getUint16"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getUint32"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "getUint8"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setFloat32"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setFloat64"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setInt16"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setInt32"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setInt8"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setUint16"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setUint32"
+  },
+  {
+    "featureId": "typed-arrays",
+    "kind": "instanceMember",
+    "iface": "DataView",
+    "prop": "setUint8"
+  },
+  {
+    "featureId": "weak-references",
+    "kind": "instanceMember",
+    "iface": "FinalizationRegistry",
+    "prop": "register"
+  },
+  {
+    "featureId": "weak-references",
+    "kind": "instanceMember",
+    "iface": "FinalizationRegistry",
+    "prop": "unregister"
+  },
+  {
+    "featureId": "weak-references",
+    "kind": "instanceMember",
+    "iface": "WeakRef",
+    "prop": "deref"
   },
   {
     "featureId": "weakmap",
@@ -2432,18 +2822,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "set"
   },
   {
-    "featureId": "weakmap",
-    "kind": "instanceMember",
-    "iface": "WeakMap",
-    "prop": "symbol_as_keys"
-  },
-  {
-    "featureId": "weakset",
-    "kind": "instanceMember",
-    "iface": "WeakSet",
-    "prop": "WeakSet"
-  },
-  {
     "featureId": "weakset",
     "kind": "instanceMember",
     "iface": "WeakSet",
@@ -2462,16 +2840,10 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "has"
   },
   {
-    "featureId": "weakset",
-    "kind": "instanceMember",
-    "iface": "WeakSet",
-    "prop": "symbol_as_keys"
-  },
-  {
     "featureId": "with",
-    "kind": "instanceMember",
-    "iface": "Array",
-    "prop": "@@unscopables"
+    "kind": "staticMember",
+    "base": "Symbol",
+    "prop": "unscopables"
   },
   {
     "featureId": "error-cause",
@@ -2509,24 +2881,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "explicit-resource-management",
     "kind": "newIdent",
     "name": "SuppressedError"
-  },
-  {
-    "featureId": "explicit-resource-management",
-    "kind": "member",
-    "base": "Symbol",
-    "prop": "dispose"
-  },
-  {
-    "featureId": "explicit-resource-management",
-    "kind": "member",
-    "base": "Symbol",
-    "prop": "asyncDispose"
-  },
-  {
-    "featureId": "is-error",
-    "kind": "callStatic",
-    "base": "Error",
-    "prop": "isError"
   },
   {
     "featureId": "resizable-buffers",
@@ -2641,82 +2995,10 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "getWeekInfo"
   },
   {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "map"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "filter"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "take"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "drop"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "flatMap"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "reduce"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "toArray"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "callStatic",
-    "base": "Iterator",
-    "prop": "from"
-  },
-  {
     "featureId": "iterator-concat",
     "kind": "callStatic",
     "base": "Iterator",
     "prop": "concat"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "forEach"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "some"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "every"
-  },
-  {
-    "featureId": "iterator-methods",
-    "kind": "instanceMember",
-    "iface": "Iterator",
-    "prop": "find"
   },
   {
     "featureId": "typed-array-iterators",

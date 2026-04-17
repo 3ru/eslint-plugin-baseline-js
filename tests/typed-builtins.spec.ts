@@ -204,4 +204,113 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
       .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
     expect(msgsUntyped.length).toBe(0);
   }, 20000);
+
+  it("reports Map/WeakMap getOrInsert only when typed declarations are available", async () => {
+    const tsParser = await ensureTsParser();
+    if (!tsParser) {
+      expect(true).toBe(true);
+      return;
+    }
+
+    const tmp = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-typed-getorinsert-"));
+    const tsconfigPath = join(tmp, "tsconfig.json");
+    const srcDir = join(tmp, "src");
+    await fs.mkdir(srcDir);
+    const samplePath = join(srcDir, "sample.ts");
+    const ambientPath = join(srcDir, "ambient.d.ts");
+
+    const tsconfig = {
+      compilerOptions: {
+        target: "ES2023",
+        module: "ESNext",
+        moduleResolution: "Bundler",
+        lib: ["ES2023", "ESNext", "DOM"],
+        noEmit: true,
+        strict: true,
+        skipLibCheck: true,
+      },
+      include: ["src/**/*.ts"],
+    };
+    await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 2), "utf8");
+
+    const code = `
+      const map = new Map<string, number>();
+      map.getOrInsert("alpha", 1);
+      map.getOrInsertComputed("beta", () => 2);
+
+      const weak = new WeakMap<object, number>();
+      const key = {};
+      weak.getOrInsert(key, 1);
+      weak.getOrInsertComputed(key, () => 2);
+    `;
+    await fs.writeFile(samplePath, code, "utf8");
+
+    const ambient = `
+      declare global {
+        interface Map<K, V> {
+          getOrInsert(key: K, defaultValue: V): V;
+          getOrInsertComputed(key: K, compute: (key: K) => V): V;
+        }
+        interface WeakMap<K extends WeakKey, V> {
+          getOrInsert(key: K, defaultValue: V): V;
+          getOrInsertComputed(key: K, compute: (key: K) => V): V;
+        }
+      }
+      export {};
+    `;
+    await fs.writeFile(ambientPath, ambient, "utf8");
+
+    const plugin = (await import("../dist/index.mjs")).default;
+    const flatConfigPath = join(tmp, "eslint.config.mjs");
+    await fs.writeFile(flatConfigPath, "export default [{}]\n", "utf8");
+
+    const eslintTyped = new ESLint({
+      cwd: tmp,
+      overrideConfigFile: flatConfigPath,
+      overrideConfig: [
+        {
+          files: ["**/*.ts"],
+          languageOptions: {
+            parser: tsParser,
+            parserOptions: { project: [tsconfigPath], tsconfigRootDir: tmp },
+          },
+          plugins: { "baseline-js": plugin },
+          rules: {
+            "baseline-js/use-baseline": [
+              "error",
+              { available: "widely", includeJsBuiltins: { preset: "type-aware" } },
+            ],
+          },
+        },
+      ],
+    });
+    const resultsTyped = await eslintTyped.lintFiles([samplePath]);
+    const msgsTyped = resultsTyped
+      .flatMap((r) => r.messages)
+      .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
+    expect(msgsTyped.filter((m) => /\(getorinsert\)/.test(m.message))).toHaveLength(4);
+
+    const eslintUntyped = new ESLint({
+      cwd: tmp,
+      overrideConfigFile: flatConfigPath,
+      overrideConfig: [
+        {
+          files: ["**/*.ts"],
+          languageOptions: {},
+          plugins: { "baseline-js": plugin },
+          rules: {
+            "baseline-js/use-baseline": [
+              "error",
+              { available: "widely", includeJsBuiltins: { preset: "safe" } },
+            ],
+          },
+        },
+      ],
+    });
+    const resultsUntyped = await eslintUntyped.lintFiles([samplePath]);
+    const msgsUntyped = resultsUntyped
+      .flatMap((r) => r.messages)
+      .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
+    expect(msgsUntyped.length).toBe(0);
+  }, 20000);
 });

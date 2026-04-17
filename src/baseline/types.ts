@@ -23,6 +23,7 @@ export type DescriptorKind =
   | "newMember"
   | "callStatic"
   | "callGlobal"
+  | "staticMember"
   | "member"
   | "instanceMember"
   | "callMemberWithArgs"
@@ -57,6 +58,12 @@ export interface CallGlobalDescriptor extends BaseDescriptor {
   name: string; // e.g. 'structuredClone', 'queueMicrotask'
 }
 
+export interface StaticMemberDescriptor extends BaseDescriptor {
+  kind: "staticMember";
+  base: string; // e.g. 'Number'
+  prop: string; // e.g. 'EPSILON'
+}
+
 export interface MemberDescriptor extends BaseDescriptor {
   kind: "member";
   base: string; // e.g. 'navigator'
@@ -68,6 +75,7 @@ export type Descriptor =
   | NewMemberDescriptor
   | CallStaticDescriptor
   | CallGlobalDescriptor
+  | StaticMemberDescriptor
   | MemberDescriptor
   | InstanceMemberDescriptor
   | CallMemberWithArgsDescriptor
