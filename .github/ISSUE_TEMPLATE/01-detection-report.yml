@@ -1,0 +1,98 @@
+name: Detection issue
+description: Report a feature that is missed or reported incorrectly.
+title: "[Detection]: "
+labels: ["detection"]
+assignees: ["3ru"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when a Baseline feature is not reported, or when the plugin reports a feature incorrectly.
+
+        Please include a minimal reproduction. Reports with exact config, versions, and code snippets are much faster to verify.
+
+  - type: dropdown
+    id: report_type
+    attributes:
+      label: Report type
+      description: What kind of detection issue are you seeing?
+      options:
+        - False negative (a feature should be reported but is not)
+        - False positive (a feature is reported incorrectly)
+        - Other detection problem
+    validations:
+      required: true
+
+  - type: dropdown
+    id: linter
+    attributes:
+      label: Linter
+      description: Which linter are you using?
+      options:
+        - ESLint
+        - Oxlint
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: input
+    id: other_linter
+    attributes:
+      label: Other linter
+      description: Fill this only if you selected "Other" above.
+      placeholder: "Biome, custom wrapper, editor integration"
+
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: Include all relevant versions.
+      value: |
+        - eslint-plugin-baseline-js:
+        - linter:
+        - node:
+        - package manager:
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Config snippet
+      description: Paste the relevant ESLint or Oxlint config.
+      placeholder: |
+        export default [
+          { plugins: { "baseline-js": baselineJs } },
+          baselineJs.configs.recommended({ available: "widely", level: "warn" }),
+        ];
+      render: javascript
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Paste the smallest code snippet that reproduces the issue. Keep it focused on the exact feature or syntax that is misdetected.
+      placeholder: |
+        Promise.try(() => 1);
+      render: javascript
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Add anything else that may help us investigate.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues and did not find the same report.
+          required: true
+        - label: I reproduced this with the latest released version
+          required: true
