@@ -1041,10 +1041,16 @@ export default {
       "iterators"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-03-24",
       "support": {
+        "chrome": "146",
+        "chrome_android": "146",
+        "edge": "146",
         "firefox": "147",
-        "firefox_android": "147"
+        "firefox_android": "147",
+        "safari": "26.4",
+        "safari_ios": "26.4"
       }
     }
   },
@@ -1138,13 +1144,16 @@ export default {
       "json"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2025-03-31",
       "support": {
         "chrome": "114",
         "chrome_android": "114",
         "edge": "114",
         "firefox": "135",
-        "firefox_android": "135"
+        "firefox_android": "135",
+        "safari": "18.4",
+        "safari_ios": "18.4"
       }
     }
   },
@@ -1178,6 +1187,8 @@ export default {
     "status": {
       "baseline": false,
       "support": {
+        "chrome": "147",
+        "chrome_android": "147",
         "firefox": "137",
         "firefox_android": "137",
         "safari": "26.2",

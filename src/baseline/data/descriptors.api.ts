@@ -11305,12 +11305,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "fetch",
     "kind": "instanceMember",
     "iface": "Request",
-    "prop": "formData"
-  },
-  {
-    "featureId": "fetch",
-    "kind": "instanceMember",
-    "iface": "Request",
     "prop": "headers"
   },
   {
@@ -11435,12 +11429,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "fetch",
     "kind": "instanceMember",
     "iface": "Response",
-    "prop": "formData"
-  },
-  {
-    "featureId": "fetch",
-    "kind": "instanceMember",
-    "iface": "Response",
     "prop": "headers"
   },
   {
@@ -11531,6 +11519,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "fetch",
     "prop": "init_referrerPolicy_parameter"
+  },
+  {
+    "featureId": "fetch-formdata",
+    "kind": "instanceMember",
+    "iface": "Request",
+    "prop": "formData"
+  },
+  {
+    "featureId": "fetch-formdata",
+    "kind": "instanceMember",
+    "iface": "Response",
+    "prop": "formData"
   },
   {
     "featureId": "fetch-priority",
@@ -12383,6 +12383,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "CSSFontFeatureValuesRule",
     "prop": "swash"
+  },
+  {
+    "featureId": "font-width",
+    "kind": "instanceMember",
+    "iface": "CSSFontFaceDescriptors",
+    "prop": "fontWidth"
   },
   {
     "featureId": "form",
@@ -15789,6 +15795,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "loading"
   },
   {
+    "featureId": "loading-lazy-media",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "loading"
+  },
+  {
     "featureId": "local-fonts",
     "kind": "callGlobal",
     "name": "FontData"
@@ -18305,6 +18317,35 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "PerformanceNavigationTiming",
     "prop": "unloadEventStart"
+  },
+  {
+    "featureId": "navigation-timing-confidence",
+    "kind": "instanceMember",
+    "iface": "PerformanceNavigationTiming",
+    "prop": "confidence"
+  },
+  {
+    "featureId": "navigation-timing-confidence",
+    "kind": "callGlobal",
+    "name": "PerformanceTimingConfidence"
+  },
+  {
+    "featureId": "navigation-timing-confidence",
+    "kind": "instanceMember",
+    "iface": "PerformanceTimingConfidence",
+    "prop": "randomizedTriggerRate"
+  },
+  {
+    "featureId": "navigation-timing-confidence",
+    "kind": "instanceMember",
+    "iface": "PerformanceTimingConfidence",
+    "prop": "toJSON"
+  },
+  {
+    "featureId": "navigation-timing-confidence",
+    "kind": "instanceMember",
+    "iface": "PerformanceTimingConfidence",
+    "prop": "value"
   },
   {
     "featureId": "navigator",
@@ -22798,94 +22839,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "RemotePlayback",
     "prop": "watchAvailability"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "callGlobal",
-    "name": "DeprecationReportBody"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "DeprecationReportBody",
-    "prop": "anticipatedRemoval"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "DeprecationReportBody",
-    "prop": "columnNumber"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "DeprecationReportBody",
-    "prop": "id"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "DeprecationReportBody",
-    "prop": "lineNumber"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "DeprecationReportBody",
-    "prop": "message"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "DeprecationReportBody",
-    "prop": "sourceFile"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "DeprecationReportBody",
-    "prop": "toJSON"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "callGlobal",
-    "name": "InterventionReportBody"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "InterventionReportBody",
-    "prop": "columnNumber"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "InterventionReportBody",
-    "prop": "id"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "InterventionReportBody",
-    "prop": "lineNumber"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "InterventionReportBody",
-    "prop": "message"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "InterventionReportBody",
-    "prop": "sourceFile"
-  },
-  {
-    "featureId": "reporting",
-    "kind": "instanceMember",
-    "iface": "InterventionReportBody",
-    "prop": "toJSON"
   },
   {
     "featureId": "reporting",
@@ -33195,12 +33148,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "web-animations",
     "kind": "instanceMember",
     "iface": "KeyframeEffect",
-    "prop": "iterationComposite"
-  },
-  {
-    "featureId": "web-animations",
-    "kind": "instanceMember",
-    "iface": "KeyframeEffect",
     "prop": "pseudoElement"
   },
   {
@@ -33220,6 +33167,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ShadowRoot",
     "prop": "getAnimations"
+  },
+  {
+    "featureId": "web-animations-iterationcomposite",
+    "kind": "instanceMember",
+    "iface": "KeyframeEffect",
+    "prop": "iterationComposite"
   },
   {
     "featureId": "web-audio",
