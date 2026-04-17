@@ -30,14 +30,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: 22
+          node-version: 24.10.0
           cache: 'pnpm'
-
-      - name: Install latest npm
-        run: |
-          echo "Current npm version: $(npm -v)"
-          npm install -g npm@latest
-          echo "Updated npm version: $(npm -v)"
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
