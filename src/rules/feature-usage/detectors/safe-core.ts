@@ -5,6 +5,7 @@ import type {
   MemberDescriptor,
   NewIdentDescriptor,
   NewMemberDescriptor,
+  StaticMemberDescriptor,
 } from "../../../baseline/types";
 import { isGlobalBaseNotShadowed, isMemberWithProperty } from "../../../util/ast";
 export type Reporter = (node: unknown, featureId: string) => void;
@@ -100,7 +101,7 @@ export function addCallGlobalDetector(
 
 export function addMemberDetector(
   context: Rule.RuleContext,
-  d: MemberDescriptor,
+  d: MemberDescriptor | StaticMemberDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
   const { base, prop, featureId } = d;
@@ -113,4 +114,12 @@ export function addMemberDetector(
     }
   };
   return { MemberExpression: handler };
+}
+
+export function addStaticMemberDetector(
+  context: Rule.RuleContext,
+  d: StaticMemberDescriptor,
+  report: Reporter,
+): Rule.RuleListener {
+  return addMemberDetector(context, d, report);
 }

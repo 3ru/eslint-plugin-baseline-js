@@ -572,6 +572,8 @@ export default {
     "status": {
       "baseline": false,
       "support": {
+        "chrome": "147",
+        "chrome_android": "147",
         "firefox": "137",
         "firefox_android": "137",
         "safari": "26.2",

@@ -29,6 +29,9 @@ export default {
   "abortable-fetch": {
     "id": "abortable-fetch",
     "name": "Abortable fetch",
+    "group": [
+      "fetch"
+    ],
     "status": {
       "baseline": "high",
       "baseline_low_date": "2019-03-25",
@@ -1020,7 +1023,9 @@ export default {
       "support": {
         "chrome": "62",
         "chrome_android": "62",
-        "edge": "79"
+        "edge": "79",
+        "firefox": "149",
+        "firefox_android": "149"
       }
     }
   },
@@ -1252,7 +1257,9 @@ export default {
       "support": {
         "chrome": "126",
         "chrome_android": "126",
-        "edge": "126"
+        "edge": "126",
+        "firefox": "149",
+        "firefox_android": "149"
       }
     }
   },
@@ -1561,8 +1568,9 @@ export default {
       "counters"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-09-18",
+      "baseline_high_date": "2026-03-18",
       "support": {
         "chrome": "91",
         "chrome_android": "91",
@@ -1984,8 +1992,9 @@ export default {
       "sensors"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-09-18",
+      "baseline_high_date": "2026-03-18",
       "support": {
         "chrome": "31",
         "chrome_android": "31",
@@ -2820,6 +2829,9 @@ export default {
   "fetch": {
     "id": "fetch",
     "name": "Fetch",
+    "group": [
+      "fetch"
+    ],
     "status": {
       "baseline": "high",
       "baseline_low_date": "2017-03-27",
@@ -2835,11 +2847,28 @@ export default {
       }
     }
   },
+  "fetch-formdata": {
+    "id": "fetch-formdata",
+    "name": "Fetch form data",
+    "group": [
+      "fetch"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "39",
+        "firefox_android": "39",
+        "safari": "14.1",
+        "safari_ios": "14.5"
+      }
+    }
+  },
   "fetch-priority": {
     "id": "fetch-priority",
     "name": "Fetch priority",
     "group": [
-      "resource-hints"
+      "resource-hints",
+      "fetch"
     ],
     "status": {
       "baseline": "low",
@@ -2858,6 +2887,9 @@ export default {
   "fetch-request-streams": {
     "id": "fetch-request-streams",
     "name": "Fetch upload streams",
+    "group": [
+      "fetch"
+    ],
     "status": {
       "baseline": false,
       "support": {
@@ -2872,6 +2904,9 @@ export default {
   "fetchlater": {
     "id": "fetchlater",
     "name": "fetchLater",
+    "group": [
+      "fetch"
+    ],
     "status": {
       "baseline": false,
       "support": {
@@ -3049,6 +3084,19 @@ export default {
         "firefox_android": "34",
         "safari": "9.1",
         "safari_ios": "9.3"
+      }
+    }
+  },
+  "font-width": {
+    "id": "font-width",
+    "name": "font-width",
+    "group": [
+      "fonts"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "safari": "18.4"
       }
     }
   },
@@ -4366,6 +4414,17 @@ export default {
       }
     }
   },
+  "loading-lazy-media": {
+    "id": "loading-lazy-media",
+    "name": "Lazy-loading media",
+    "group": [
+      "media-elements"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
+  },
   "local-fonts": {
     "id": "local-fonts",
     "name": "Local fonts",
@@ -4382,7 +4441,11 @@ export default {
     "name": "Local network access",
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "chrome": "142",
+        "chrome_android": "142",
+        "edge": "142"
+      }
     }
   },
   "localstorage": {
@@ -4497,6 +4560,9 @@ export default {
   "mathml": {
     "id": "mathml",
     "name": "MathML",
+    "group": [
+      "mathml"
+    ],
     "status": {
       "baseline": "high",
       "baseline_low_date": "2023-01-12",
@@ -4856,6 +4922,9 @@ export default {
     "status": {
       "baseline": false,
       "support": {
+        "chrome": "146",
+        "chrome_android": "146",
+        "edge": "146",
         "firefox": "148",
         "firefox_android": "148"
       }
@@ -4879,6 +4948,18 @@ export default {
         "firefox_android": "58",
         "safari": "15",
         "safari_ios": "15.1"
+      }
+    }
+  },
+  "navigation-timing-confidence": {
+    "id": "navigation-timing-confidence",
+    "name": "Navigation timing confidence",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "145",
+        "chrome_android": "145",
+        "edge": "145"
       }
     }
   },
@@ -5742,7 +5823,9 @@ export default {
       "support": {
         "chrome": "133",
         "chrome_android": "133",
-        "edge": "133"
+        "edge": "133",
+        "firefox": "149",
+        "firefox_android": "149"
       }
     }
   },
@@ -5988,13 +6071,16 @@ export default {
       "streams"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-03-24",
       "support": {
         "chrome": "89",
         "chrome_android": "89",
         "edge": "89",
         "firefox": "102",
-        "firefox_android": "102"
+        "firefox_android": "102",
+        "safari": "26.4",
+        "safari_ios": "26.4"
       }
     }
   },
@@ -6125,11 +6211,14 @@ export default {
     "id": "reporting",
     "name": "Reporting API",
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-03-24",
       "support": {
         "chrome": "96",
         "chrome_android": "96",
         "edge": "96",
+        "firefox": "149",
+        "firefox_android": "149",
         "safari": "16.4",
         "safari_ios": "16.4"
       }
@@ -6354,6 +6443,9 @@ export default {
     "status": {
       "baseline": false,
       "support": {
+        "chrome": "146",
+        "chrome_android": "146",
+        "edge": "146",
         "safari": "26",
         "safari_ios": "26"
       }
@@ -7199,8 +7291,9 @@ export default {
       "storage"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-09-18",
+      "baseline_high_date": "2026-03-18",
       "support": {
         "chrome": "61",
         "chrome_android": "61",
@@ -7307,7 +7400,8 @@ export default {
     "id": "svg",
     "name": "SVG",
     "group": [
-      "svg"
+      "svg",
+      "image-formats"
     ],
     "status": {
       "baseline": "high",
@@ -7327,13 +7421,17 @@ export default {
   "svg-discouraged": {
     "id": "svg-discouraged",
     "name": "SVG 1.1",
+    "group": [
+      "svg",
+      "image-formats"
+    ],
     "status": {
       "baseline": false,
       "support": {}
     },
     "discouraged": {
       "according_to": [
-        "https://svgwg.org/svg2-draft/changes.html#substantial"
+        "https://w3c.github.io/svgwg/svg2-draft/changes.html#substantial"
       ],
       "alternatives": [
         "svg",
@@ -7368,7 +7466,8 @@ export default {
     "id": "tabindex",
     "name": "tabindex",
     "group": [
-      "html"
+      "html",
+      "reading-order"
     ],
     "status": {
       "baseline": "high",
@@ -7934,6 +8033,19 @@ export default {
         "firefox_android": "79",
         "safari": "14",
         "safari_ios": "14"
+      }
+    }
+  },
+  "web-animations-iterationcomposite": {
+    "id": "web-animations-iterationcomposite",
+    "name": "iterationComposite",
+    "status": {
+      "baseline": false,
+      "support": {
+        "firefox": "80",
+        "firefox_android": "80",
+        "safari": "16.4",
+        "safari_ios": "16.4"
       }
     }
   },
@@ -8669,13 +8781,16 @@ export default {
     "id": "webtransport",
     "name": "WebTransport",
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-03-24",
       "support": {
         "chrome": "97",
         "chrome_android": "97",
         "edge": "97",
         "firefox": "114",
-        "firefox_android": "114"
+        "firefox_android": "114",
+        "safari": "26.4",
+        "safari_ios": "26.4"
       }
     }
   },
@@ -8913,7 +9028,10 @@ export default {
     ],
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "chrome": "147",
+        "chrome_android": "147"
+      }
     }
   },
   "webxr-lighting-estimation": {
@@ -9074,12 +9192,8 @@ export default {
       "xml"
     ],
     "status": {
-      "baseline": "high",
-      "baseline_low_date": "2015-07-29",
-      "baseline_high_date": "2018-01-29",
+      "baseline": false,
       "support": {
-        "chrome": "1",
-        "chrome_android": "18",
         "edge": "12",
         "firefox": "1",
         "firefox_android": "4",

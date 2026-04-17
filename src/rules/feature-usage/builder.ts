@@ -9,6 +9,7 @@ import type {
   NewIdentDescriptor,
   NewMemberDescriptor,
   NewWithOptionsDescriptor,
+  StaticMemberDescriptor,
 } from "../../baseline/types";
 import { mergeRuleListeners } from "../../utils/listeners";
 import { addCallMemberWithArgsDetector, addNewWithOptionsDetector } from "./detectors/safe-args";
@@ -18,6 +19,7 @@ import {
   addMemberDetector,
   addNewIdentDetector,
   addNewMemberDetector,
+  addStaticMemberDetector,
 } from "./detectors/safe-core";
 import { addTypedInstanceMemberDetector } from "./detectors/typed-instance-member";
 
@@ -77,6 +79,12 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
         break;
       case "member":
         mergeRuleListeners(listeners, addMemberDetector(context, d as MemberDescriptor, report));
+        break;
+      case "staticMember":
+        mergeRuleListeners(
+          listeners,
+          addStaticMemberDetector(context, d as StaticMemberDescriptor, report),
+        );
         break;
       case "instanceMember":
         if (useTyped)

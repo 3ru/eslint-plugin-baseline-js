@@ -38,22 +38,22 @@
     "verify:features": "node scripts/data/verify-features.mjs"
   },
   "dependencies": {
-    "eslint-plugin-es-x": "^9.5.0"
+    "eslint-plugin-es-x": "^9.6.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.5",
+    "@biomejs/biome": "^2.4.12",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^25.3.3",
-    "@typescript-eslint/parser": "^8.56.1",
-    "eslint": "^10.0.2",
+    "@types/node": "^25.6.0",
+    "@typescript-eslint/parser": "^8.58.2",
+    "eslint": "^10.2.0",
     "semantic-release": "^25.0.2",
-    "tsdown": "0.20.3",
+    "tsdown": "0.21.9",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.16",
+    "vitest": "^4.1.4",
     "vue-eslint-parser": "^10.4.0",
-    "web-features": "3.19.0"
+    "web-features": "3.23.1"
   },
   "peerDependencies": {
     "eslint": ">=9.29.0 <11"
