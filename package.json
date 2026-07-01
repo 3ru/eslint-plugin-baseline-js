@@ -41,7 +41,7 @@
     "eslint-plugin-es-x": "^9.6.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.12",
+    "@biomejs/biome": "^2.5.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/eslint": "^9.6.1",
