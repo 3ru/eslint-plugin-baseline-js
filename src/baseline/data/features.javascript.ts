@@ -570,10 +570,12 @@ export default {
       "javascript"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-04-10",
       "support": {
         "chrome": "147",
         "chrome_android": "147",
+        "edge": "147",
         "firefox": "137",
         "firefox_android": "137",
         "safari": "26.2",

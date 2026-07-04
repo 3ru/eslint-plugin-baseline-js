@@ -187,7 +187,10 @@ export default {
     "name": "Anchor positioning",
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "firefox": "151",
+        "firefox_android": "151"
+      }
     }
   },
   "angle-instanced-arrays": {
@@ -265,8 +268,9 @@ export default {
     "id": "aria-attribute-reflection",
     "name": "ARIA attribute reflection",
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-10-24",
+      "baseline_high_date": "2026-04-24",
       "support": {
         "chrome": "103",
         "chrome_android": "103",
@@ -283,7 +287,10 @@ export default {
     "name": "ariaNotify()",
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "firefox": "150",
+        "firefox_android": "150"
+      }
     }
   },
   "async-clipboard": {
@@ -967,8 +974,9 @@ export default {
       "canvas"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-12-11",
+      "baseline_high_date": "2026-06-11",
       "support": {
         "chrome": "99",
         "chrome_android": "99",
@@ -1586,8 +1594,9 @@ export default {
     "id": "createimagebitmap",
     "name": "createImageBitmap",
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-12-11",
+      "baseline_high_date": "2026-06-11",
       "support": {
         "chrome": "59",
         "chrome_android": "59",
@@ -2187,7 +2196,8 @@ export default {
       "baseline": false,
       "support": {
         "chrome": "130",
-        "edge": "130"
+        "edge": "130",
+        "firefox": "151"
       }
     }
   },
@@ -2672,6 +2682,7 @@ export default {
         "chrome": "93",
         "chrome_android": "83",
         "edge": "93",
+        "firefox": "65",
         "safari": "14.1"
       }
     }
@@ -2895,9 +2906,7 @@ export default {
       "support": {
         "chrome": "105",
         "chrome_android": "105",
-        "edge": "105",
-        "safari": "11.1",
-        "safari_ios": "11.3"
+        "edge": "105"
       }
     }
   },
@@ -3263,6 +3272,22 @@ export default {
       }
     }
   },
+  "geolocation-element": {
+    "id": "geolocation-element",
+    "name": "<geolocation>",
+    "group": [
+      "html-elements",
+      "geolocation"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "144",
+        "chrome_android": "144",
+        "edge": "144"
+      }
+    }
+  },
   "get-computed-style": {
     "id": "get-computed-style",
     "name": "getComputedStyle()",
@@ -3452,11 +3477,14 @@ export default {
     "id": "highlight",
     "name": "Custom highlights",
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-03-24",
       "support": {
         "chrome": "105",
         "chrome_android": "105",
         "edge": "105",
+        "firefox": "149",
+        "firefox_android": "149",
         "safari": "17.2",
         "safari_ios": "17.2"
       }
@@ -3470,7 +3498,9 @@ export default {
       "support": {
         "chrome": "140",
         "chrome_android": "140",
-        "edge": "140"
+        "edge": "140",
+        "firefox": "150",
+        "firefox_android": "150"
       }
     }
   },
@@ -3811,7 +3841,7 @@ export default {
   },
   "input-color-alpha": {
     "id": "input-color-alpha",
-    "name": "`alpha` and `colorspace` attributes for `<input type=color>`",
+    "name": "alpha and colorspace attributes for <input type=color>",
     "group": [
       "forms",
       "html-elements"
@@ -4142,9 +4172,11 @@ export default {
       "workers"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-05-05",
       "support": {
         "chrome": "80",
+        "chrome_android": "148",
         "edge": "80",
         "firefox": "114",
         "firefox_android": "114",
@@ -4298,7 +4330,18 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "138"
+        "chrome": "138",
+        "edge": "148"
+      }
+    }
+  },
+  "languagemodel": {
+    "id": "languagemodel",
+    "name": "LanguageModel",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "148"
       }
     }
   },
@@ -4401,8 +4444,9 @@ export default {
     "id": "loading-lazy",
     "name": "Lazy-loading images and iframes",
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-12-19",
+      "baseline_high_date": "2026-06-19",
       "support": {
         "chrome": "77",
         "chrome_android": "77",
@@ -4988,8 +5032,9 @@ export default {
       "css"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-12-11",
+      "baseline_high_date": "2026-06-11",
       "support": {
         "chrome": "120",
         "chrome_android": "120",
@@ -5007,7 +5052,6 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "67",
         "chrome_android": "67"
       }
     }
@@ -5337,7 +5381,9 @@ export default {
       "support": {
         "chrome": "145",
         "chrome_android": "145",
-        "edge": "145"
+        "edge": "145",
+        "safari": "26.5",
+        "safari_ios": "26.5"
       }
     }
   },
@@ -5875,8 +5921,9 @@ export default {
     "id": "preloading-responsive-images",
     "name": "Preloading responsive images",
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-12-11",
+      "baseline_high_date": "2026-06-11",
       "support": {
         "chrome": "73",
         "chrome_android": "73",
@@ -5907,8 +5954,9 @@ export default {
       "media-elements"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-12-11",
+      "baseline_high_date": "2026-06-11",
       "support": {
         "chrome": "86",
         "chrome_android": "86",
@@ -6007,6 +6055,26 @@ export default {
       }
     }
   },
+  "protected-audience": {
+    "id": "protected-audience",
+    "name": "Protected audience",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "134",
+        "chrome_android": "134"
+      }
+    },
+    "discouraged": {
+      "according_to": [
+        "https://groups.google.com/a/chromium.org/g/blink-dev/c/k_nubsMb97g/m/aAp_5MTXBQAJ",
+        "https://chromestatus.com/feature/6552486106234880"
+      ],
+      "reason": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the protected audience API.",
+      "reason_html": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the protected audience API.",
+      "removal_date": "2026-06-01"
+    }
+  },
   "push": {
     "id": "push",
     "name": "Push messages",
@@ -6096,6 +6164,17 @@ export default {
         "firefox": "117",
         "firefox_android": "117"
       }
+    }
+  },
+  "referencetarget": {
+    "id": "referencetarget",
+    "name": "Reference target",
+    "group": [
+      "web-components"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
     }
   },
   "referrer-policy": {
@@ -6210,6 +6289,9 @@ export default {
   "reporting": {
     "id": "reporting",
     "name": "Reporting API",
+    "group": [
+      "reporting"
+    ],
     "status": {
       "baseline": "low",
       "baseline_low_date": "2026-03-24",
@@ -6221,6 +6303,119 @@ export default {
         "firefox_android": "149",
         "safari": "16.4",
         "safari_ios": "16.4"
+      }
+    }
+  },
+  "reporting-coep-violations": {
+    "id": "reporting-coep-violations",
+    "name": "COEP violation reports",
+    "group": [
+      "reporting"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "96",
+        "chrome_android": "96",
+        "edge": "96"
+      }
+    }
+  },
+  "reporting-crashes-storage": {
+    "id": "reporting-crashes-storage",
+    "name": "Crash report storage",
+    "group": [
+      "reporting"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "145",
+        "chrome_android": "145",
+        "edge": "145"
+      }
+    }
+  },
+  "reporting-csp-violations": {
+    "id": "reporting-csp-violations",
+    "name": "CSP violation reports",
+    "group": [
+      "reporting"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2026-03-24",
+      "support": {
+        "chrome": "74",
+        "chrome_android": "74",
+        "edge": "79",
+        "firefox": "149",
+        "firefox_android": "149",
+        "safari": "18.4",
+        "safari_ios": "18.4"
+      }
+    }
+  },
+  "reporting-deprecation": {
+    "id": "reporting-deprecation",
+    "name": "Deprecation reports",
+    "group": [
+      "reporting"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "69",
+        "chrome_android": "69",
+        "edge": "79"
+      }
+    }
+  },
+  "reporting-integrity-violations": {
+    "id": "reporting-integrity-violations",
+    "name": "Integrity violation reports",
+    "group": [
+      "reporting"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
+  },
+  "reporting-interventions": {
+    "id": "reporting-interventions",
+    "name": "Intervention reports",
+    "group": [
+      "reporting"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "69",
+        "chrome_android": "69",
+        "edge": "79"
+      }
+    },
+    "discouraged": {
+      "according_to": [
+        "https://github.com/WICG/interventions/blob/2dc14cf385982835a5dee488e2b5295a9d441bea/README.md"
+      ],
+      "reason": "Specification authors no longer define browser behaviors as \"interventions\" or \"non-interventions.\"",
+      "reason_html": "Specification authors no longer define browser behaviors as \"interventions\" or \"non-interventions.\""
+    }
+  },
+  "reporting-permissions-policy-violations": {
+    "id": "reporting-permissions-policy-violations",
+    "name": "Permissions policy violation reporting",
+    "group": [
+      "reporting"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "120",
+        "chrome_android": "120",
+        "edge": "120"
       }
     }
   },
@@ -6743,7 +6938,8 @@ export default {
       "baseline": false,
       "support": {
         "chrome": "89",
-        "edge": "89"
+        "edge": "89",
+        "firefox": "151"
       }
     }
   },
@@ -6821,6 +7017,21 @@ export default {
         "firefox_android": "44",
         "safari": "11.1",
         "safari_ios": "11.3"
+      }
+    }
+  },
+  "service-workers-static-routes": {
+    "id": "service-workers-static-routes",
+    "name": "Service workers static routing",
+    "group": [
+      "workers"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "123",
+        "chrome_android": "123",
+        "edge": "123"
       }
     }
   },
@@ -6928,11 +7139,7 @@ export default {
     ],
     "status": {
       "baseline": false,
-      "support": {
-        "chrome": "126",
-        "chrome_android": "126",
-        "edge": "126"
-      }
+      "support": {}
     },
     "discouraged": {
       "according_to": [
@@ -6972,9 +7179,11 @@ export default {
       "workers"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-05-05",
       "support": {
         "chrome": "5",
+        "chrome_android": "148",
         "edge": "79",
         "firefox": "29",
         "firefox_android": "33",
@@ -7256,8 +7465,9 @@ export default {
       "storage"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-12-05",
+      "baseline_high_date": "2026-06-05",
       "support": {
         "chrome": "119",
         "chrome_android": "120",
@@ -7365,13 +7575,35 @@ export default {
       }
     }
   },
+  "subresource-integrity": {
+    "id": "subresource-integrity",
+    "name": "Subresource integrity",
+    "group": [
+      "integrity"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2018-04-30",
+      "baseline_high_date": "2020-10-30",
+      "support": {
+        "chrome": "46",
+        "chrome_android": "46",
+        "edge": "17",
+        "firefox": "51",
+        "firefox_android": "51",
+        "safari": "11.1",
+        "safari_ios": "11.3"
+      }
+    }
+  },
   "summarizer": {
     "id": "summarizer",
     "name": "Summarizer",
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "138"
+        "chrome": "138",
+        "edge": "138"
       }
     }
   },
@@ -7427,7 +7659,10 @@ export default {
     ],
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "safari": "≤13.1",
+        "safari_ios": "≤13.4"
+      }
     },
     "discouraged": {
       "according_to": [
@@ -7674,13 +7909,16 @@ export default {
       "html"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-05-11",
       "support": {
         "chrome": "140",
         "chrome_android": "140",
         "edge": "140",
         "firefox": "145",
-        "firefox_android": "145"
+        "firefox_android": "145",
+        "safari": "26.5",
+        "safari_ios": "26.5"
       }
     }
   },
@@ -7793,7 +8031,8 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "138"
+        "chrome": "138",
+        "edge": "148"
       }
     }
   },
@@ -7851,8 +8090,9 @@ export default {
     "id": "url-canparse",
     "name": "URL.canParse()",
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-12-07",
+      "baseline_high_date": "2026-06-07",
       "support": {
         "chrome": "120",
         "chrome_android": "120",
@@ -7888,8 +8128,9 @@ export default {
       "security"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-11-21",
+      "baseline_high_date": "2026-05-21",
       "support": {
         "chrome": "72",
         "chrome_android": "72",
@@ -7906,16 +8147,16 @@ export default {
     "name": "User agent sniffing",
     "status": {
       "baseline": "high",
-      "baseline_low_date": "2015-07-29",
-      "baseline_high_date": "2018-01-29",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20",
       "support": {
         "chrome": "4",
         "chrome_android": "18",
         "edge": "12",
         "firefox": "3.5",
         "firefox_android": "4",
-        "safari": "4",
-        "safari_ios": "5"
+        "safari": "10",
+        "safari_ios": "10"
       }
     }
   },
@@ -7970,6 +8211,21 @@ export default {
         "firefox_android": "144",
         "safari": "18",
         "safari_ios": "18"
+      }
+    }
+  },
+  "view-transitions-element-scoped": {
+    "id": "view-transitions-element-scoped",
+    "name": "Element-scoped view transitions",
+    "group": [
+      "view-transitions"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "147",
+        "chrome_android": "147",
+        "edge": "147"
       }
     }
   },
@@ -8187,8 +8443,9 @@ export default {
       "webauthn"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2023-10-24",
+      "baseline_high_date": "2026-04-24",
       "support": {
         "chrome": "85",
         "chrome_android": "85",
@@ -8335,11 +8592,14 @@ export default {
       "webgl-extensions"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "high",
+      "baseline_low_date": "2020-03-24",
+      "baseline_high_date": "2022-09-24",
       "support": {
         "chrome": "63",
         "chrome_android": "63",
         "edge": "79",
+        "firefox": "55",
         "firefox_android": "51",
         "safari": "13.1",
         "safari_ios": "13.4"
@@ -8353,11 +8613,14 @@ export default {
       "webgl-extensions"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "high",
+      "baseline_low_date": "2020-03-24",
+      "baseline_high_date": "2022-09-24",
       "support": {
         "chrome": "49",
         "chrome_android": "49",
         "edge": "79",
+        "firefox": "55",
         "firefox_android": "30",
         "safari": "13.1",
         "safari_ios": "13.4"
@@ -9030,7 +9293,8 @@ export default {
       "baseline": false,
       "support": {
         "chrome": "147",
-        "chrome_android": "147"
+        "chrome_android": "147",
+        "edge": "147"
       }
     }
   },
@@ -9192,8 +9456,12 @@ export default {
       "xml"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
       "support": {
+        "chrome": "1",
+        "chrome_android": "18",
         "edge": "12",
         "firefox": "1",
         "firefox_android": "4",

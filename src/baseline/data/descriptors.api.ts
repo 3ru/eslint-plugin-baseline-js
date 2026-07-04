@@ -127,12 +127,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "signal"
   },
   {
-    "featureId": "abortable-fetch",
-    "kind": "instanceMember",
-    "iface": "fetch",
-    "prop": "init_signal_parameter"
-  },
-  {
     "featureId": "aborting",
     "kind": "callGlobal",
     "name": "AbortController"
@@ -1732,12 +1726,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XMLHttpRequest",
     "prop": "setAttributionReporting"
-  },
-  {
-    "featureId": "attribution-reporting",
-    "kind": "instanceMember",
-    "iface": "fetch",
-    "prop": "init_attributionReporting_parameter"
   },
   {
     "featureId": "audio",
@@ -6656,6 +6644,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "shadowRootSerializable"
   },
   {
+    "featureId": "declarative-shadow-dom",
+    "kind": "instanceMember",
+    "iface": "HTMLTemplateElement",
+    "prop": "shadowRootSlotAssignment"
+  },
+  {
     "featureId": "dedicated-workers",
     "kind": "callGlobal",
     "name": "DedicatedWorkerGlobalScope"
@@ -8424,6 +8418,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLElement",
     "prop": "dir"
+  },
+  {
+    "featureId": "dom",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "error_event"
   },
   {
     "featureId": "dom",
@@ -11311,12 +11311,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "fetch",
     "kind": "instanceMember",
     "iface": "Request",
-    "prop": "integrity"
-  },
-  {
-    "featureId": "fetch",
-    "kind": "instanceMember",
-    "iface": "Request",
     "prop": "isHistoryNavigation"
   },
   {
@@ -11512,13 +11506,7 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "fetch",
     "kind": "instanceMember",
     "iface": "fetch",
-    "prop": "init_keepalive_parameter"
-  },
-  {
-    "featureId": "fetch",
-    "kind": "instanceMember",
-    "iface": "fetch",
-    "prop": "init_referrerPolicy_parameter"
+    "prop": "options_parameter"
   },
   {
     "featureId": "fetch-formdata",
@@ -11549,12 +11537,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLScriptElement",
     "prop": "fetchPriority"
-  },
-  {
-    "featureId": "fetch-priority",
-    "kind": "instanceMember",
-    "iface": "fetch",
-    "prop": "init_priority_parameter"
   },
   {
     "featureId": "fetch-request-streams",
@@ -12767,12 +12749,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "gamepad",
     "kind": "instanceMember",
     "iface": "Gamepad",
-    "prop": "secure_context_required"
-  },
-  {
-    "featureId": "gamepad",
-    "kind": "instanceMember",
-    "iface": "Gamepad",
     "prop": "timestamp"
   },
   {
@@ -12785,12 +12761,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GamepadButton",
     "prop": "pressed"
-  },
-  {
-    "featureId": "gamepad",
-    "kind": "instanceMember",
-    "iface": "GamepadButton",
-    "prop": "secure_context_required"
   },
   {
     "featureId": "gamepad",
@@ -12813,12 +12783,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GamepadEvent",
     "prop": "gamepad"
-  },
-  {
-    "featureId": "gamepad",
-    "kind": "instanceMember",
-    "iface": "GamepadEvent",
-    "prop": "secure_context_required"
   },
   {
     "featureId": "gamepad",
@@ -12878,12 +12842,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GamepadHapticActuator",
     "prop": "reset"
-  },
-  {
-    "featureId": "gamepad-haptics",
-    "kind": "instanceMember",
-    "iface": "GamepadHapticActuator",
-    "prop": "secure_context_required"
   },
   {
     "featureId": "gamepad-touch",
@@ -12955,12 +12913,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "GamepadPose",
     "prop": "position"
-  },
-  {
-    "featureId": "gamepad-vr",
-    "kind": "instanceMember",
-    "iface": "GamepadPose",
-    "prop": "secure_context_required"
   },
   {
     "featureId": "geolocation",
@@ -13113,6 +13065,88 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Permissions",
     "prop": "permission_geolocation"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "callGlobal",
+    "name": "HTMLGeolocationElement"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "newIdent",
+    "name": "HTMLGeolocationElement"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "autolocate"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "error"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "initialPermissionStatus"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "invalidReason"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "isValid"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "location_event"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "permissionStatus"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "position"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "promptaction_event"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "promptdismiss_event"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "validationstatuschange_event"
+  },
+  {
+    "featureId": "geolocation-element",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "watch"
   },
   {
     "featureId": "get-computed-style",
@@ -15562,6 +15596,65 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "measureInputUsage"
   },
   {
+    "featureId": "languagemodel",
+    "kind": "callGlobal",
+    "name": "LanguageModel"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "append"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "callStatic",
+    "base": "LanguageModel",
+    "prop": "availability"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "clone"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "contextUsage"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "contextWindow"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "callStatic",
+    "base": "LanguageModel",
+    "prop": "create"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "measureContextUsage"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "prompt"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "promptStreaming"
+  },
+  {
     "featureId": "largest-contentful-paint",
     "kind": "callGlobal",
     "name": "LargestContentfulPaint"
@@ -15706,12 +15799,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLLinkElement",
     "prop": "hreflang"
-  },
-  {
-    "featureId": "link",
-    "kind": "instanceMember",
-    "iface": "HTMLLinkElement",
-    "prop": "integrity"
   },
   {
     "featureId": "link",
@@ -21062,6 +21149,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "pdf-viewer",
     "kind": "member",
     "base": "navigator",
+    "prop": "mimeTypes"
+  },
+  {
+    "featureId": "pdf-viewer",
+    "kind": "member",
+    "base": "navigator",
     "prop": "pdfViewerEnabled"
   },
   {
@@ -22350,6 +22443,89 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "value"
   },
   {
+    "featureId": "protected-audience",
+    "kind": "instanceMember",
+    "iface": "HTMLIFrameElement",
+    "prop": "adAuctionHeaders"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "canLoadAdAuctionFencedFrame"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "clearOriginJoinedAdInterestGroups"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "createAuctionNonce"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "deprecatedRunAdAuctionEnforcesKAnonymity"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "getInterestGroupAdAuctionData"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "joinAdInterestGroup"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "leaveAdInterestGroup"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "protectedAudience"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "runAdAuction"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "updateAdInterestGroups"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "callGlobal",
+    "name": "ProtectedAudience"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "instanceMember",
+    "iface": "ProtectedAudience",
+    "prop": "queryFeatureSupport"
+  },
+  {
+    "featureId": "protected-audience",
+    "kind": "instanceMember",
+    "iface": "SharedStorageWorkletGlobalScope",
+    "prop": "interestGroups"
+  },
+  {
     "featureId": "push",
     "kind": "instanceMember",
     "iface": "Permissions",
@@ -22653,6 +22829,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "from"
   },
   {
+    "featureId": "referencetarget",
+    "kind": "instanceMember",
+    "iface": "HTMLTemplateElement",
+    "prop": "shadowRootReferenceTarget"
+  },
+  {
+    "featureId": "referencetarget",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "referenceTarget"
+  },
+  {
     "featureId": "referrer-policy",
     "kind": "instanceMember",
     "iface": "HTMLAnchorElement",
@@ -22873,6 +23061,76 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "ReportingObserver",
     "prop": "worker_support"
+  },
+  {
+    "featureId": "reporting-crashes-storage",
+    "kind": "callGlobal",
+    "name": "CrashReportContext"
+  },
+  {
+    "featureId": "reporting-crashes-storage",
+    "kind": "instanceMember",
+    "iface": "CrashReportContext",
+    "prop": "delete"
+  },
+  {
+    "featureId": "reporting-crashes-storage",
+    "kind": "instanceMember",
+    "iface": "CrashReportContext",
+    "prop": "initialize"
+  },
+  {
+    "featureId": "reporting-crashes-storage",
+    "kind": "instanceMember",
+    "iface": "CrashReportContext",
+    "prop": "set"
+  },
+  {
+    "featureId": "reporting-crashes-storage",
+    "kind": "member",
+    "base": "window",
+    "prop": "crashReport"
+  },
+  {
+    "featureId": "reporting-interventions",
+    "kind": "callGlobal",
+    "name": "InterventionReportBody"
+  },
+  {
+    "featureId": "reporting-interventions",
+    "kind": "instanceMember",
+    "iface": "InterventionReportBody",
+    "prop": "columnNumber"
+  },
+  {
+    "featureId": "reporting-interventions",
+    "kind": "instanceMember",
+    "iface": "InterventionReportBody",
+    "prop": "id"
+  },
+  {
+    "featureId": "reporting-interventions",
+    "kind": "instanceMember",
+    "iface": "InterventionReportBody",
+    "prop": "lineNumber"
+  },
+  {
+    "featureId": "reporting-interventions",
+    "kind": "instanceMember",
+    "iface": "InterventionReportBody",
+    "prop": "message"
+  },
+  {
+    "featureId": "reporting-interventions",
+    "kind": "instanceMember",
+    "iface": "InterventionReportBody",
+    "prop": "sourceFile"
+  },
+  {
+    "featureId": "reporting-interventions",
+    "kind": "instanceMember",
+    "iface": "InterventionReportBody",
+    "prop": "toJSON"
   },
   {
     "featureId": "request-animation-frame",
@@ -23592,7 +23850,7 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "script",
     "kind": "instanceMember",
     "iface": "HTMLScriptElement",
-    "prop": "integrity"
+    "prop": "innerText"
   },
   {
     "featureId": "script",
@@ -23611,6 +23869,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLScriptElement",
     "prop": "text"
+  },
+  {
+    "featureId": "script",
+    "kind": "instanceMember",
+    "iface": "HTMLScriptElement",
+    "prop": "textContent"
   },
   {
     "featureId": "script",
@@ -24958,22 +25222,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
   {
     "featureId": "service-workers",
     "kind": "callGlobal",
-    "name": "InstallEvent"
-  },
-  {
-    "featureId": "service-workers",
-    "kind": "newIdent",
-    "name": "InstallEvent"
-  },
-  {
-    "featureId": "service-workers",
-    "kind": "instanceMember",
-    "iface": "InstallEvent",
-    "prop": "addRoutes"
-  },
-  {
-    "featureId": "service-workers",
-    "kind": "callGlobal",
     "name": "NavigationPreloadManager"
   },
   {
@@ -25260,6 +25508,22 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "worker_support"
   },
   {
+    "featureId": "service-workers-static-routes",
+    "kind": "callGlobal",
+    "name": "InstallEvent"
+  },
+  {
+    "featureId": "service-workers-static-routes",
+    "kind": "newIdent",
+    "name": "InstallEvent"
+  },
+  {
+    "featureId": "service-workers-static-routes",
+    "kind": "instanceMember",
+    "iface": "InstallEvent",
+    "prop": "addRoutes"
+  },
+  {
     "featureId": "setinterval",
     "kind": "callGlobal",
     "name": "clearInterval"
@@ -25274,6 +25538,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "setinterval",
     "kind": "callGlobal",
     "name": "setInterval"
+  },
+  {
+    "featureId": "setinterval",
+    "kind": "instanceMember",
+    "iface": "setInterval",
+    "prop": "supports_parameters_for_callback"
   },
   {
     "featureId": "setinterval",
@@ -25296,6 +25566,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "settimeout",
     "kind": "callGlobal",
     "name": "setTimeout"
+  },
+  {
+    "featureId": "settimeout",
+    "kind": "instanceMember",
+    "iface": "setTimeout",
+    "prop": "supports_parameters_for_callback"
   },
   {
     "featureId": "settimeout",
@@ -27157,6 +27433,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "media"
   },
   {
+    "featureId": "subresource-integrity",
+    "kind": "instanceMember",
+    "iface": "HTMLLinkElement",
+    "prop": "integrity"
+  },
+  {
+    "featureId": "subresource-integrity",
+    "kind": "instanceMember",
+    "iface": "HTMLScriptElement",
+    "prop": "integrity"
+  },
+  {
+    "featureId": "subresource-integrity",
+    "kind": "instanceMember",
+    "iface": "Request",
+    "prop": "integrity"
+  },
+  {
     "featureId": "summarizer",
     "kind": "callGlobal",
     "name": "Summarizer"
@@ -29001,12 +29295,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
   {
     "featureId": "svg-discouraged",
     "kind": "instanceMember",
-    "iface": "SVGAElement",
-    "prop": "text"
-  },
-  {
-    "featureId": "svg-discouraged",
-    "kind": "instanceMember",
     "iface": "SVGElement",
     "prop": "className"
   },
@@ -29152,11 +29440,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SVGPoint",
     "prop": "y"
-  },
-  {
-    "featureId": "svg-discouraged",
-    "kind": "callGlobal",
-    "name": "SVGRenderingIntent"
   },
   {
     "featureId": "svg-discouraged",
@@ -31384,12 +31667,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "browsingTopics"
   },
   {
-    "featureId": "topics",
-    "kind": "instanceMember",
-    "iface": "fetch",
-    "prop": "init_browsingTopics_parameter"
-  },
-  {
     "featureId": "touch-events",
     "kind": "instanceMember",
     "iface": "Element",
@@ -32234,7 +32511,97 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "user-agent-sniffing",
     "kind": "member",
     "base": "navigator",
+    "prop": "appCodeName"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "appName"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "appVersion"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "javaEnabled"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "platform"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "plugins"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "product"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "productSub"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
     "prop": "userAgent"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "vendor"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "member",
+    "base": "navigator",
+    "prop": "vendorSub"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "instanceMember",
+    "iface": "WorkerNavigator",
+    "prop": "appCodeName"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "instanceMember",
+    "iface": "WorkerNavigator",
+    "prop": "appName"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "instanceMember",
+    "iface": "WorkerNavigator",
+    "prop": "appVersion"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "instanceMember",
+    "iface": "WorkerNavigator",
+    "prop": "platform"
+  },
+  {
+    "featureId": "user-agent-sniffing",
+    "kind": "instanceMember",
+    "iface": "WorkerNavigator",
+    "prop": "product"
   },
   {
     "featureId": "user-agent-sniffing",
@@ -32718,6 +33085,24 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "pageswap_event"
+  },
+  {
+    "featureId": "view-transitions-element-scoped",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "activeViewTransition"
+  },
+  {
+    "featureId": "view-transitions-element-scoped",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "startViewTransition"
+  },
+  {
+    "featureId": "view-transitions-element-scoped",
+    "kind": "instanceMember",
+    "iface": "ViewTransition",
+    "prop": "transitionRoot"
   },
   {
     "featureId": "viewport-segments",
