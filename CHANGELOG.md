@@ -1,3 +1,10 @@
+# [0.7.0](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.6.2...v0.7.0) (2026-07-04)
+
+
+### Features
+
+* refresh baseline data to web-features 3.32.0 and update dependencies ([#142](https://github.com/3ru/eslint-plugin-baseline-js/issues/142)) ([6e1caab](https://github.com/3ru/eslint-plugin-baseline-js/commit/6e1caabf09f79157aee613f1316eb2a5f2a6494e))
+
 ## [0.6.2](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.6.1...v0.6.2) (2026-04-17)
 
 
