@@ -2583,6 +2583,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "temporal",
+    "kind": "instanceMember",
+    "iface": "Date",
+    "prop": "toTemporalInstant"
+  },
+  {
+    "featureId": "temporal",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "Duration"
@@ -2592,6 +2598,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "newMember",
     "base": "Temporal",
     "prop": "Instant"
+  },
+  {
+    "featureId": "temporal",
+    "kind": "staticMember",
+    "base": "Temporal",
+    "prop": "Now"
   },
   {
     "featureId": "temporal",
@@ -2780,6 +2792,42 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "setUint8"
   },
   {
+    "featureId": "uint8array-base64-hex",
+    "kind": "callStatic",
+    "base": "Uint8Array",
+    "prop": "fromBase64"
+  },
+  {
+    "featureId": "uint8array-base64-hex",
+    "kind": "callStatic",
+    "base": "Uint8Array",
+    "prop": "fromHex"
+  },
+  {
+    "featureId": "uint8array-base64-hex",
+    "kind": "instanceMember",
+    "iface": "Uint8Array",
+    "prop": "setFromBase64"
+  },
+  {
+    "featureId": "uint8array-base64-hex",
+    "kind": "instanceMember",
+    "iface": "Uint8Array",
+    "prop": "setFromHex"
+  },
+  {
+    "featureId": "uint8array-base64-hex",
+    "kind": "instanceMember",
+    "iface": "Uint8Array",
+    "prop": "toBase64"
+  },
+  {
+    "featureId": "uint8array-base64-hex",
+    "kind": "instanceMember",
+    "iface": "Uint8Array",
+    "prop": "toHex"
+  },
+  {
     "featureId": "weak-references",
     "kind": "instanceMember",
     "iface": "FinalizationRegistry",
@@ -2905,42 +2953,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
       ]
     },
     "typedOnly": true
-  },
-  {
-    "featureId": "uint8array-base64-hex",
-    "kind": "callStatic",
-    "base": "Uint8Array",
-    "prop": "fromBase64"
-  },
-  {
-    "featureId": "uint8array-base64-hex",
-    "kind": "callStatic",
-    "base": "Uint8Array",
-    "prop": "fromHex"
-  },
-  {
-    "featureId": "uint8array-base64-hex",
-    "kind": "instanceMember",
-    "iface": "Uint8Array",
-    "prop": "toBase64"
-  },
-  {
-    "featureId": "uint8array-base64-hex",
-    "kind": "instanceMember",
-    "iface": "Uint8Array",
-    "prop": "toHex"
-  },
-  {
-    "featureId": "uint8array-base64-hex",
-    "kind": "instanceMember",
-    "iface": "Uint8Array",
-    "prop": "setFromBase64"
-  },
-  {
-    "featureId": "uint8array-base64-hex",
-    "kind": "instanceMember",
-    "iface": "Uint8Array",
-    "prop": "setFromHex"
   },
   {
     "featureId": "weak-references",
