@@ -38,7 +38,7 @@
     "verify:features": "node scripts/data/verify-features.mjs"
   },
   "dependencies": {
-    "eslint-plugin-es-x": "^9.7.0"
+    "eslint-plugin-es-x": "^10.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.1",
