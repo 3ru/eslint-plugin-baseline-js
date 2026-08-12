@@ -234,8 +234,9 @@ export default {
       "arrays"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-01-25",
+      "baseline_high_date": "2026-07-25",
       "support": {
         "chrome": "121",
         "chrome_android": "121",
@@ -945,11 +946,14 @@ export default {
       "intl"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-07-21",
       "support": {
         "chrome": "130",
         "chrome_android": "130",
         "edge": "130",
+        "firefox": "153",
+        "firefox_android": "153",
         "safari": "17",
         "safari_ios": "17"
       }

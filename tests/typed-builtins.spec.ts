@@ -43,7 +43,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 2), "utf8");
 
     const code = `
-      // Intl.Locale info (limited) → should report for getCalendars()
+      // Intl.Locale info (newly) → should report for getCalendars()
       const lc = new Intl.Locale('en-US');
       const cals = lc.getCalendars();
       // Intl.Locale base property (widely available) → should NOT report

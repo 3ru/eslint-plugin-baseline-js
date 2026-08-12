@@ -13288,6 +13288,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "name": "HTMLHeadElement"
   },
   {
+    "featureId": "heading-offset",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "headingOffset"
+  },
+  {
+    "featureId": "heading-offset",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "headingReset"
+  },
+  {
     "featureId": "headings",
     "kind": "callGlobal",
     "name": "HTMLHeadingElement"
@@ -15632,9 +15644,21 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "contextoverflow_event"
+  },
+  {
+    "featureId": "languagemodel",
     "kind": "callStatic",
     "base": "LanguageModel",
     "prop": "create"
+  },
+  {
+    "featureId": "languagemodel",
+    "kind": "instanceMember",
+    "iface": "LanguageModel",
+    "prop": "destroy"
   },
   {
     "featureId": "languagemodel",
@@ -17802,6 +17826,28 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "MouseEvent",
     "prop": "y"
+  },
+  {
+    "featureId": "mouse-events",
+    "kind": "callGlobal",
+    "name": "UIEvent"
+  },
+  {
+    "featureId": "mouse-events",
+    "kind": "newIdent",
+    "name": "UIEvent"
+  },
+  {
+    "featureId": "mouse-events",
+    "kind": "instanceMember",
+    "iface": "UIEvent",
+    "prop": "detail"
+  },
+  {
+    "featureId": "mouse-events",
+    "kind": "instanceMember",
+    "iface": "UIEvent",
+    "prop": "view"
   },
   {
     "featureId": "move-before",
@@ -42945,12 +42991,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "webtransport",
     "kind": "instanceMember",
     "iface": "WebTransportDatagramDuplexStream",
-    "prop": "incomingHighWaterMark"
-  },
-  {
-    "featureId": "webtransport",
-    "kind": "instanceMember",
-    "iface": "WebTransportDatagramDuplexStream",
     "prop": "incomingMaxAge"
   },
   {
@@ -42958,12 +42998,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "WebTransportDatagramDuplexStream",
     "prop": "maxDatagramSize"
-  },
-  {
-    "featureId": "webtransport",
-    "kind": "instanceMember",
-    "iface": "WebTransportDatagramDuplexStream",
-    "prop": "outgoingHighWaterMark"
   },
   {
     "featureId": "webtransport",
