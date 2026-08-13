@@ -5,7 +5,12 @@
     { "name": "alpha", "channel": "alpha", "prerelease": "alpha" }
   ],
   "plugins": [
-    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "releaseRules": [{ "type": "chore", "scope": "data", "release": "patch" }]
+      }
+    ],
     "@semantic-release/release-notes-generator",
     [
       "@semantic-release/changelog",

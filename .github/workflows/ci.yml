@@ -21,7 +21,7 @@ jobs:
       - name: Install pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@10.15.1 --activate
+          corepack prepare pnpm@10.34.5 --activate
         
       - name: Setup Node
         uses: actions/setup-node@v7
@@ -52,7 +52,7 @@ jobs:
       - name: Install pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@10.15.1 --activate
+          corepack prepare pnpm@10.34.5 --activate
 
       - name: Setup Node
         uses: actions/setup-node@v7
