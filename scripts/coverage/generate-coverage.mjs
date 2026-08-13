@@ -2,51 +2,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
-
-// Lightweight TS object literal parser tailored for features.*.ts structure
-// - Accepts quoted and unquoted keys
-// - Matches properties with or without a leading newline
-function parseDefaultObject(tsPath) {
-  const src = readFileSync(tsPath, "utf8");
-  const obj = {};
-  // Match entries like: "feature-id": { ... } OR featureId: { ... }
-  const entryRe = /\n\s*(?:"([^"]+)"|([A-Za-z_][A-Za-z0-9_-]*))\s*:\s*\{([\s\S]*?)\n\s*\},/g;
-  for (const m of src.matchAll(entryRe)) {
-    const id = m[1] || m[2];
-    const block = m[3];
-    const get = (re) => {
-      const mm = re.exec(block);
-      return mm ? mm[1] : undefined;
-    };
-    // Robustness: ensure we're capturing a real top-level feature entry by
-    // validating that the inner block declares the same `id` value.
-    // Accept both quoted and unquoted property keys (our generators emit quoted keys)
-    const innerId = get(/(?:^|\n)\s*(?:"id"|id)\s*:\s*"([^"]+)"/);
-    if (!innerId || innerId !== id) continue; // skip nested blocks like `discouraged: { ... }`
-    const name = get(/(?:^|\n)\s*(?:"name"|name)\s*:\s*"([^"]+)"/);
-    const baseline = get(/(?:^|\n)\s*(?:"baseline"|baseline)\s*:\s*("high"|"low"|false)/);
-    const baseline_low_date = get(
-      /(?:^|\n)\s*(?:"baseline_low_date"|baseline_low_date)\s*:\s*"(\d{4}-[^"]*)"/,
-    );
-    const baseline_high_date = get(
-      /(?:^|\n)\s*(?:"baseline_high_date"|baseline_high_date)\s*:\s*"(\d{4}-[^"]*)"/,
-    );
-    obj[id] = {
-      id,
-      name,
-      status: {
-        baseline: baseline
-          ? baseline === "false"
-            ? false
-            : baseline.replace(/"/g, "")
-          : undefined,
-        baseline_low_date,
-        baseline_high_date,
-      },
-    };
-  }
-  return obj;
-}
+import { formatBaselineYear, readGeneratedFeatures } from "./parse-generated-features.mjs";
 
 // Lightweight parser for descriptors.*.ts arrays
 function parseDescriptorsArray(tsPath) {
@@ -97,9 +53,9 @@ const mappingPath = resolve(root, "src/baseline/mapping/syntax.ts");
 const descriptorsApiPath = resolve(root, "src/baseline/data/descriptors.api.ts");
 const descriptorsJsbiPath = resolve(root, "src/baseline/data/descriptors.jsbi.ts");
 
-const jsFeatures = parseDefaultObject(jsFeaturesPath);
-const apiFeatures = parseDefaultObject(apiFeaturesPath);
-const jsbiFeatures = parseDefaultObject(jsbiFeaturesPath);
+const jsFeatures = readGeneratedFeatures(jsFeaturesPath);
+const apiFeatures = readGeneratedFeatures(apiFeaturesPath);
+const jsbiFeatures = readGeneratedFeatures(jsbiFeaturesPath);
 const mapping = parseMappingSyntax(mappingPath);
 const descApi = parseDescriptorsArray(descriptorsApiPath);
 const descJsbi = parseDescriptorsArray(descriptorsJsbiPath);
@@ -120,7 +76,7 @@ for (const id of jsIds.sort()) {
   const f = jsFeatures[id];
   const status = f.status || {};
   const bucket = mapBaseline(status.baseline);
-  const year = (status.baseline_low_date || status.baseline_high_date || "").slice(0, 4);
+  const year = formatBaselineYear(status);
   const mapped = mappedSyntaxIds.includes(id);
   let mechanism = "-";
   let delegates = "";
@@ -167,7 +123,7 @@ for (const id of apiIds.sort()) {
   const f = apiFeatures[id];
   const status = f.status || {};
   const bucket = mapBaseline(status.baseline);
-  const year = (status.baseline_low_date || status.baseline_high_date || "").slice(0, 4);
+  const year = formatBaselineYear(status);
   const pat = apiPatternMap.get(id) || { safe: 0, typed: 0, heuristic: 0 };
   const patterns = [];
   if (pat.safe > 0) patterns.push("safe");
@@ -216,7 +172,7 @@ for (const id of jsbiIds.sort()) {
   const f = jsbiFeatures[id];
   const status = f.status || {};
   const bucket = mapBaseline(status.baseline);
-  const year = (status.baseline_low_date || status.baseline_high_date || "").slice(0, 4);
+  const year = formatBaselineYear(status);
   const pat = jsbiPatternMap.get(id) || { safe: 0, typed: 0, heuristic: 0 };
   const patterns = [];
   if (pat.safe > 0) patterns.push("safe");

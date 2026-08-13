@@ -8,6 +8,19 @@ function readDescriptorsApi(): string {
 }
 
 describe("descriptors.api generation (manual + auto WebGL)", () => {
+  it("contains typed heading offset properties", () => {
+    // web-features: https://github.com/web-platform-dx/web-features/blob/v3.34.3/features/heading-offset.yml
+    // spec: https://html.spec.whatwg.org/multipage/sections.html#heading-levels-&-offsets
+    const src = readDescriptorsApi();
+    for (const prop of ["headingOffset", "headingReset"]) {
+      expect(src).toMatch(
+        new RegExp(
+          `(?:"featureId"|featureId):\\s*"heading-offset"[\\s\\S]*?(?:"kind"|kind):\\s*"instanceMember"[\\s\\S]*?(?:"iface"|iface):\\s*"HTMLElement"[\\s\\S]*?(?:"prop"|prop):\\s*"${prop}"`,
+        ),
+      );
+    }
+  });
+
   it("contains Canvas 2D willReadFrequently option", () => {
     const src = readDescriptorsApi();
     expect(src).toMatch(

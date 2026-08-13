@@ -4,7 +4,7 @@
 -->
 # Baseline Coverage
 
-- web-features: [`v3.32.0`](https://github.com/web-platform-dx/web-features/releases/tag/v3.32.0)
+- web-features: [`v3.34.3`](https://github.com/web-platform-dx/web-features/releases/tag/v3.34.3)
 
 ## JavaScript Language (syntax)
 
@@ -60,10 +60,10 @@
 
 ## Web APIs (api.*)
 
-- total: `532`
+- total: `534`
 - excluded (out-of-scope): `22`
-- included (in-scope): `510`
-- mapped: `505`
+- included (in-scope): `512`
+- mapped: `507`
 - coverage: `99.0%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Patterns | Descriptors | Memo |
@@ -110,7 +110,7 @@
 | beforeinstallprompt | ` beforeinstallprompt ` | limited | - | ✅ | ` safe `, ` typed ` | 7 | - |
 | beforeunload | ` beforeunload ` | limited | - | ✅ | ` safe `, ` typed ` | 3 | - |
 | bfcache-blocking-reasons | ` Back/forward cache blocking reasons ` | limited | - | ✅ | ` safe `, ` typed ` | 12 | - |
-| blocking-render | ` blocking=\ ` | limited | - | ✅ | ` typed ` | 3 | - |
+| blocking-render | ` blocking="render" ` | limited | - | ✅ | ` typed ` | 3 | - |
 | body | ` <body> ` | widely | 2015 | ✅ | ` safe ` | 1 | HTML element — use `html-eslint` |
 | br | ` <br> ` | widely | 2015 | ✅ | ` safe ` | 1 | HTML element — use `html-eslint` |
 | broadcast-channel | ` BroadcastChannel ` | widely | 2022 | ✅ | ` safe `, ` typed ` | 7 | - |
@@ -152,7 +152,7 @@
 | content-index | ` Content Index ` | limited | - | ✅ | ` safe `, ` typed ` | 9 | - |
 | content-visibility | ` content-visibility ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 4 | - |
 | contenteditable | ` contenteditable ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
-| contenteditable-plaintextonly | ` contenteditable=\ ` | newly | 2025 | ❌ | - | - | HTML attribute — use `html-eslint` |
+| contenteditable-plaintextonly | ` contenteditable="plaintext-only" ` | newly | 2025 | ❌ | - | - | HTML attribute — use `html-eslint` |
 | controls-list | ` controlslist ` | limited | - | ✅ | ` typed ` | 1 | - |
 | cookie-enabled | ` cookieEnabled ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
 | cookie-store | ` Cookie store ` | limited | - | ✅ | ` safe `, ` typed ` | 22 | - |
@@ -213,7 +213,7 @@
 | ext-disjoint-timer-query | ` EXT_disjoint_timer_query WebGL extension ` | limited | - | ✅ | ` safe `, ` typed ` | 12 | - |
 | ext-float-blend | ` EXT_float_blend WebGL extension ` | limited | - | ✅ | ` safe ` | 3 | - |
 | ext-frag-depth | ` EXT_frag_depth WebGL extension ` | limited | - | ✅ | ` safe ` | 3 | - |
-| ext-shader-texture-lod | ` EXT_shader_texture_lod WebGL extension ` | limited | - | ✅ | ` safe ` | 3 | - |
+| ext-shader-texture-lod | ` EXT_shader_texture_lod WebGL extension ` | widely | 2021 | ✅ | ` safe ` | 3 | - |
 | ext-srgb | ` EXT_sRGB WebGL extension ` | widely | 2020 | ✅ | ` safe ` | 3 | - |
 | ext-texture-compression-bptc | ` EXT_texture_compression_bptc WebGL extension ` | limited | - | ✅ | ` safe ` | 3 | - |
 | ext-texture-compression-rgtc | ` EXT_texture_compression_rgtc WebGL extension ` | limited | - | ✅ | ` safe ` | 3 | - |
@@ -260,8 +260,9 @@
 | hardware-concurrency | ` hardwareConcurrency ` | widely | 2022 | ✅ | ` safe `, ` typed ` | 2 | - |
 | hashchange | ` hashchange ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 5 | - |
 | head | ` <head> ` | widely | 2015 | ✅ | ` safe ` | 1 | HTML element — use `html-eslint` |
+| heading-offset | ` Heading offset ` | limited | - | ✅ | ` typed ` | 2 | - |
 | headings | ` <h1> through <h6> ` | widely | 2015 | ✅ | ` safe ` | 1 | HTML headings — use `html-eslint` |
-| hidden-until-found | ` hidden=\ ` | limited | - | ✅ | ` typed ` | 1 | - |
+| hidden-until-found | ` hidden="until-found" ` | limited | - | ✅ | ` typed ` | 1 | - |
 | highlight | ` Custom highlights ` | newly | 2026 | ✅ | ` safe `, ` typed ` | 27 | - |
 | highlightsfrompoint | ` Custom highlights from point ` | limited | - | ✅ | ` typed ` | 1 | - |
 | history | ` History ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 15 | - |
@@ -281,15 +282,15 @@
 | inert | ` inert ` | widely | 2023 | ✅ | ` typed ` | 1 | - |
 | ink | ` Ink ` | limited | - | ✅ | ` safe `, ` typed ` | 6 | - |
 | input | ` <input> ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 36 | - |
-| input-checkbox | ` <input type=\ ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
+| input-checkbox | ` <input type="checkbox"> ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
 | input-color-alpha | ` alpha and colorspace attributes for <input type=color> ` | limited | - | ✅ | ` typed ` | 2 | - |
 | input-date-time | ` Date and time <input> types ` | widely | 2021 | ✅ | ` typed ` | 1 | - |
 | input-event | ` input (event) ` | widely | 2020 | ✅ | ` safe `, ` typed ` | 9 | - |
-| input-file | ` <input type=\ ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
-| input-file-multiple | ` <input type=\ ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
-| input-file-webkitdirectory | ` <input type=\ ` | newly | 2025 | ✅ | ` typed ` | 2 | - |
-| input-image | ` <input type=\ ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
-| input-number | ` <input type=\ ` | widely | 2015 | ✅ | ` typed ` | 6 | - |
+| input-file | ` <input type="file"> ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
+| input-file-multiple | ` <input type="file" multiple> ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
+| input-file-webkitdirectory | ` <input type="file" webkitdirectory> ` | newly | 2025 | ✅ | ` typed ` | 2 | - |
+| input-image | ` <input type="image"> ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
+| input-number | ` <input type="number"> ` | widely | 2015 | ✅ | ` typed ` | 6 | - |
 | inputmode | ` inputmode ` | widely | 2021 | ✅ | ` typed ` | 1 | - |
 | insertable-streams | ` Insertable streams for MediaStreamTrack ` | limited | - | ✅ | ` safe `, ` typed ` | 8 | - |
 | interest-invokers | ` Interest invokers ` | limited | - | ✅ | ` safe `, ` typed ` | 9 | - |
@@ -309,11 +310,11 @@
 | lang-attr | ` lang ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
 | language | ` Language ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 6 | - |
 | languagedetector | ` Language detector ` | limited | - | ✅ | ` safe `, ` typed ` | 8 | - |
-| languagemodel | ` LanguageModel ` | limited | - | ✅ | ` safe `, ` typed ` | 10 | - |
+| languagemodel | ` LanguageModel ` | limited | - | ✅ | ` safe `, ` typed ` | 12 | - |
 | largest-contentful-paint | ` Largest contentful paint (LCP) ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 8 | - |
 | layout-instability | ` Layout instability ` | limited | - | ✅ | ` safe `, ` typed ` | 11 | - |
 | link | ` <link> ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 11 | - |
-| link-rel-prefetch | ` <link rel=\ ` | limited | - | ❌ | - | - | HTML link rel — use `html-eslint` |
+| link-rel-prefetch | ` <link rel="prefetch"> ` | limited | - | ❌ | - | - | HTML link rel — use `html-eslint` |
 | list-elements | ` <ol>, <ul>, and <li> ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 7 | - |
 | loading-lazy | ` Lazy-loading images and iframes ` | widely | 2023 | ✅ | ` typed ` | 2 | - |
 | loading-lazy-media | ` Lazy-loading media ` | limited | - | ✅ | ` typed ` | 1 | - |
@@ -339,7 +340,7 @@
 | messageerror | ` messageerror ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 6 | - |
 | meta | ` <meta> ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 5 | - |
 | meter | ` <meter> ` | widely | 2018 | ✅ | ` safe `, ` typed ` | 8 | - |
-| mouse-events | ` Mouse events ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 34 | - |
+| mouse-events | ` Mouse events ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 38 | - |
 | move-before | ` moveBefore() ` | limited | - | ✅ | ` typed ` | 3 | - |
 | mutation-events | ` Mutation events ` | limited | - | ✅ | ` safe `, ` typed ` | 7 | - |
 | mutationobserver | ` MutationObserver ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 15 | - |
@@ -362,7 +363,7 @@
 | oes-texture-float | ` OES_texture_float WebGL extension ` | widely | 2015 | ✅ | ` safe ` | 3 | - |
 | oes-texture-float-linear | ` OES_texture_float_linear WebGL extension ` | widely | 2015 | ✅ | ` safe ` | 3 | - |
 | oes-texture-half-float | ` OES_texture_half_float WebGL extension ` | widely | 2016 | ✅ | ` safe ` | 3 | - |
-| oes-texture-half-float-linear | ` OES_texture_half_float_linear WebGL extension ` | limited | - | ✅ | ` safe ` | 3 | - |
+| oes-texture-half-float-linear | ` OES_texture_half_float_linear WebGL extension ` | widely | 2016 | ✅ | ` safe ` | 3 | - |
 | oes-vertex-array-object | ` OES_vertex_array_object WebGL extension ` | widely | 2018 | ✅ | ` safe `, ` typed ` | 8 | - |
 | offline-audio-context | ` OfflineAudioContext ` | widely | 2021 | ✅ | ` safe `, ` typed ` | 10 | - |
 | offscreen-canvas | ` Offscreen canvas ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 75 | - |
@@ -370,7 +371,7 @@
 | orientation-sensor | ` Orientation Sensor ` | limited | - | ✅ | ` safe `, ` typed ` | 19 | - |
 | origin | ` Origin ` | limited | - | ✅ | ` safe `, ` typed ` | 6 | - |
 | origin-private-file-system | ` Origin private file system ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 23 | - |
-| output | ` <output> ` | widely | - | ✅ | ` safe `, ` typed ` | 9 | - |
+| output | ` <output> ` | widely | ≤2018 | ✅ | ` safe `, ` typed ` | 9 | - |
 | ovr-multiview2 | ` OVR_multiview2 WebGL extension ` | limited | - | ✅ | ` safe `, ` typed ` | 4 | - |
 | p | ` <p> ` | widely | 2015 | ✅ | ` safe ` | 1 | HTML element — use `html-eslint` |
 | page-lifecycle | ` Page lifecycle ` | limited | - | ✅ | ` typed ` | 3 | - |
@@ -396,7 +397,7 @@
 | pointer-events-api | ` Pointer Events ` | widely | 2020 | ✅ | ` safe `, ` typed ` | 32 | - |
 | pointer-lock | ` Pointer lock ` | limited | - | ✅ | ` typed ` | 5 | - |
 | popover | ` Popover ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 13 | - |
-| popover-hint | ` popover=\ ` | limited | - | ❌ | - | - | HTML attribute — use `html-eslint` |
+| popover-hint | ` popover="hint" ` | limited | - | ❌ | - | - | HTML attribute — use `html-eslint` |
 | postmessage | ` postMessage ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 12 | - |
 | pre | ` <pre> ` | widely | 2015 | ✅ | ` safe ` | 1 | HTML element — use `html-eslint` |
 | preloading-responsive-images | ` Preloading responsive images ` | widely | 2023 | ✅ | ` typed ` | 2 | - |
@@ -574,7 +575,7 @@
 | webrtc-sctp | ` WebRTC SCTP information ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 7 | - |
 | webrtc-stats | ` WebRTC statistics ` | widely | 2020 | ✅ | ` safe `, ` typed ` | 26 | - |
 | websockets | ` WebSockets ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 25 | - |
-| webtransport | ` WebTransport ` | newly | 2026 | ✅ | ` safe `, ` typed ` | 35 | - |
+| webtransport | ` WebTransport ` | newly | 2026 | ✅ | ` safe `, ` typed ` | 33 | - |
 | webusb | ` WebUSB ` | limited | - | ✅ | ` safe `, ` typed ` | 104 | - |
 | webvr | ` WebVR ` | limited | - | ✅ | ` safe `, ` typed ` | 73 | - |
 | webvtt | ` WebVTT ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 4 | - |
@@ -600,6 +601,7 @@
 | xhr | ` XMLHttpRequest ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 59 | - |
 | xml-serializer | ` XMLSerializer ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 3 | - |
 | xpath | ` XPath ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 18 | - |
+| xslt | ` XSLT ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 10 | - |
 
 ## JavaScript Builtins (javascript.*)
 
@@ -621,7 +623,7 @@
 | array-findlast | ` Array findLast() and findLastIndex() ` | widely | 2022 | ✅ | ` typed ` | 2 | - |
 | array-flat | ` Array flat() and flatMap() ` | widely | 2020 | ✅ | ` typed ` | 2 | - |
 | array-from | ` Array.from() ` | widely | 2016 | ✅ | ` safe ` | 1 | - |
-| array-fromasync | ` Array.fromAsync() ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
+| array-fromasync | ` Array.fromAsync() ` | widely | 2024 | ✅ | ` safe ` | 1 | - |
 | array-group | ` Array grouping ` | newly | 2024 | ✅ | ` safe ` | 2 | - |
 | array-includes | ` Array includes() ` | widely | 2016 | ✅ | ` typed ` | 1 | - |
 | array-isarray | ` Array.isArray() ` | widely | 2015 | ✅ | ` safe ` | 1 | - |
@@ -654,7 +656,7 @@
 | intl-duration-format | ` Intl.DurationFormat ` | newly | 2025 | ✅ | ` safe ` | 1 | - |
 | intl-list-format | ` Intl.ListFormat ` | widely | 2021 | ✅ | ` safe ` | 1 | - |
 | intl-locale | ` Intl.Locale ` | widely | 2020 | ✅ | ` safe ` | 1 | - |
-| intl-locale-info | ` Intl.Locale info ` | limited | - | ✅ | ` typed ` | 7 | - |
+| intl-locale-info | ` Intl.Locale info ` | newly | 2026 | ✅ | ` typed ` | 7 | - |
 | intl-plural-rules | ` Intl.PluralRules ` | widely | 2019 | ✅ | ` safe ` | 1 | - |
 | intl-relative-time-format | ` Intl.RelativeTimeFormat ` | widely | 2020 | ✅ | ` safe ` | 1 | - |
 | intl-segmenter | ` Intl.Segmenter ` | newly | 2024 | ✅ | ` safe ` | 1 | - |

@@ -18,17 +18,22 @@ describe("ignoreFeatures across descriptor-based detection", () => {
 
   it("skips JS builtin descriptors when ignored", async () => {
     const code = "Array.fromAsync([]);";
-    const msgs = await lintWithBaseline(
+    const allowed = await lintWithBaseline(
       code,
       "widely",
       {},
-      { includeJsBuiltins: { preset: "auto" } },
+      {
+        includeJsBuiltins: { preset: "auto" },
+      },
     );
+    expect(allowed).toHaveLength(0);
+
+    const msgs = await lintWithBaseline(code, 2023, {}, { includeJsBuiltins: { preset: "auto" } });
     expect(msgs.some((m) => m.includes("(array-fromasync)"))).toBe(true);
 
     const ignored = await lintWithBaseline(
       code,
-      "widely",
+      2023,
       {},
       {
         includeJsBuiltins: { preset: "auto" },

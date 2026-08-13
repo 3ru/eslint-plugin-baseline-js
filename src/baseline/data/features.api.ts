@@ -187,10 +187,7 @@ export default {
     "name": "Anchor positioning",
     "status": {
       "baseline": false,
-      "support": {
-        "firefox": "151",
-        "firefox_android": "151"
-      }
+      "support": {}
     }
   },
   "angle-instanced-arrays": {
@@ -2621,12 +2618,15 @@ export default {
       "webgl-extensions"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "high",
+      "baseline_low_date": "2021-09-02",
+      "baseline_high_date": "2024-03-02",
       "support": {
         "chrome": "38",
         "chrome_android": "38",
         "edge": "93",
         "firefox": "47",
+        "firefox_android": "67",
         "safari": "8",
         "safari_ios": "8"
       }
@@ -2683,6 +2683,7 @@ export default {
         "chrome_android": "83",
         "edge": "93",
         "firefox": "65",
+        "firefox_android": "65",
         "safari": "14.1"
       }
     }
@@ -3105,7 +3106,8 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "safari": "18.4"
+        "safari": "18.4",
+        "safari_ios": "18.4"
       }
     }
   },
@@ -3320,7 +3322,9 @@ export default {
       "support": {
         "chrome": "141",
         "chrome_android": "141",
-        "edge": "141"
+        "edge": "141",
+        "firefox": "153",
+        "firefox_android": "153"
       }
     }
   },
@@ -3433,6 +3437,17 @@ export default {
         "safari": "1",
         "safari_ios": "1"
       }
+    }
+  },
+  "heading-offset": {
+    "id": "heading-offset",
+    "name": "Heading offset",
+    "group": [
+      "html"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
     }
   },
   "headings": {
@@ -4466,7 +4481,11 @@ export default {
     ],
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "chrome": "150",
+        "chrome_android": "150",
+        "edge": "150"
+      }
     }
   },
   "local-fonts": {
@@ -5266,12 +5285,15 @@ export default {
       "webgl-extensions"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "high",
+      "baseline_low_date": "2016-08-02",
+      "baseline_high_date": "2019-02-02",
       "support": {
         "chrome": "29",
         "chrome_android": "29",
         "edge": "14",
         "firefox": "30",
+        "firefox_android": "30",
         "safari": "8",
         "safari_ios": "8"
       }
@@ -5787,6 +5809,7 @@ export default {
         "chrome": "69",
         "chrome_android": "105",
         "edge": "79",
+        "firefox": "153",
         "safari": "13.1",
         "safari_ios": "13.4"
       }
@@ -5831,6 +5854,7 @@ export default {
       "baseline": false,
       "support": {
         "chrome": "37",
+        "chrome_android": "144",
         "edge": "13",
         "firefox": "50",
         "firefox_android": "50",
@@ -5867,11 +5891,11 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "133",
-        "chrome_android": "133",
-        "edge": "133",
-        "firefox": "149",
-        "firefox_android": "149"
+        "chrome": "151",
+        "chrome_android": "151",
+        "edge": "151",
+        "firefox": "153",
+        "firefox_android": "153"
       }
     }
   },
@@ -6578,6 +6602,9 @@ export default {
     "status": {
       "baseline": false,
       "support": {
+        "chrome": "146",
+        "chrome_android": "146",
+        "edge": "146",
         "firefox": "148",
         "firefox_android": "148"
       }
@@ -8903,7 +8930,9 @@ export default {
     "status": {
       "baseline": false,
       "support": {
+        "chrome": "144",
         "chrome_android": "121",
+        "edge": "144",
         "safari": "26",
         "safari_ios": "26"
       }
@@ -8917,7 +8946,11 @@ export default {
     ],
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "chrome": "144",
+        "chrome_android": "144",
+        "edge": "144"
+      }
     }
   },
   "webhid": {
