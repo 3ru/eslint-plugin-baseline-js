@@ -1,3 +1,5 @@
+## [0.7.1](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.0...v0.7.1) (2026-08-13)
+
 # [0.7.0](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.6.2...v0.7.0) (2026-07-04)
 
 
