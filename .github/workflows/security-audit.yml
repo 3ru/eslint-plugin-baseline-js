@@ -20,7 +20,7 @@ jobs:
       - name: Install pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@10.15.1 --activate
+          corepack prepare pnpm@10.34.5 --activate
 
       - name: Setup Node LTS (22)
         uses: actions/setup-node@v7
@@ -33,3 +33,6 @@ jobs:
 
       - name: Audit production deps (high severity)
         run: pnpm audit --prod --audit-level high
+
+      - name: Audit all dependencies (high severity)
+        run: pnpm audit --audit-level high
