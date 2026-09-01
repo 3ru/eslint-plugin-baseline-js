@@ -51,7 +51,7 @@
     "semantic-release": "^25.0.9",
     "tsdown": "0.22.14",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.10",
+    "vitest": "^4.1.11",
     "vue-eslint-parser": "^10.4.1",
     "web-features": "3.34.3"
   },
