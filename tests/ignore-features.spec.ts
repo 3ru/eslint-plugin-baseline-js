@@ -1,15 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { lintWithBaseline } from "./helpers";
+import { lintWithBaseline, reportingPolicyFor } from "./helpers";
 
+// Each feature is linted under a policy that reports it whatever its current
+// Baseline status is, so the only thing that can silence it is ignoreFeatures.
 describe("ignoreFeatures across descriptor-based detection", () => {
   it("skips Web API descriptors when ignored", async () => {
     const code = "const dpr = window.devicePixelRatio;";
-    const msgs = await lintWithBaseline(code, "widely", {}, { includeWebApis: { preset: "auto" } });
+    const policy = reportingPolicyFor("devicepixelratio");
+    const msgs = await lintWithBaseline(code, policy, {}, { includeWebApis: { preset: "auto" } });
     expect(msgs.some((m) => m.includes("(devicepixelratio)"))).toBe(true);
 
     const ignored = await lintWithBaseline(
       code,
-      "widely",
+      policy,
       {},
       { includeWebApis: { preset: "auto" }, ignoreFeatures: ["devicepixelratio"] },
     );
@@ -18,22 +21,18 @@ describe("ignoreFeatures across descriptor-based detection", () => {
 
   it("skips JS builtin descriptors when ignored", async () => {
     const code = "Array.fromAsync([]);";
-    const allowed = await lintWithBaseline(
+    const policy = reportingPolicyFor("array-fromasync");
+    const msgs = await lintWithBaseline(
       code,
-      "widely",
+      policy,
       {},
-      {
-        includeJsBuiltins: { preset: "auto" },
-      },
+      { includeJsBuiltins: { preset: "auto" } },
     );
-    expect(allowed).toHaveLength(0);
-
-    const msgs = await lintWithBaseline(code, 2023, {}, { includeJsBuiltins: { preset: "auto" } });
     expect(msgs.some((m) => m.includes("(array-fromasync)"))).toBe(true);
 
     const ignored = await lintWithBaseline(
       code,
-      2023,
+      policy,
       {},
       {
         includeJsBuiltins: { preset: "auto" },

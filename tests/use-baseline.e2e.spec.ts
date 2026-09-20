@@ -8,6 +8,7 @@ import type { Rule } from "eslint";
 import { RuleTester } from "eslint";
 import { describe, it } from "vitest";
 import plugin from "../dist/index.mjs";
+import { reportingPolicyFor } from "./utils/policy";
 
 const rule = (plugin as unknown as { rules: Record<string, Rule.RuleModule> }).rules[
   "use-baseline"
@@ -22,28 +23,28 @@ const tester = new RuleTester({
 
 describe("use-baseline e2e", () => {
   it("runs representative RuleTester suites", () => {
-    tester.run("baseline-js/use-baseline (syntax, available: widely)", rule, {
+    tester.run("baseline-js/use-baseline (syntax)", rule, {
       valid: [
         {
-          // nullish coalescing is Baseline widely → no report
+          // nullish coalescing is Baseline widely → no report under the default policy
           code: "const x = a ?? b;",
         },
       ],
       invalid: [
         {
-          // Temporal is Baseline limited → should report
+          // self delegate (Temporal), reported whatever its current Baseline status is
           code: "Temporal.Now.instant();",
-          errors: [{ message: /Feature '.*' \(temporal\).*Baseline/i }],
-          options: [{ available: "widely" }],
+          errors: [{ message: /\(temporal\)/ }],
+          options: [{ available: reportingPolicyFor("temporal") }],
         },
         {
-          // Atomics.waitAsync is Baseline limited → should report
+          // es-x delegate (Atomics.waitAsync), reported whatever its current Baseline status is
           code: "Atomics.waitAsync();",
-          errors: [{ message: /Feature '.*' \(atomics-wait-async\).*Baseline/i }],
-          options: [{ available: "widely" }],
+          errors: [{ message: /\(atomics-wait-async\)/ }],
+          options: [{ available: reportingPolicyFor("atomics-wait-async") }],
         },
         {
-          // with statement is discouraged/limited → should report
+          // with statement is discouraged, so it stays Limited → reported under widely
           code: "with (obj) { const a = 1; }",
           errors: [{ message: /Feature '.*' \(with\).*Baseline/i }],
           options: [{ available: "widely" }],
@@ -55,17 +56,22 @@ describe("use-baseline e2e", () => {
       valid: [
         {
           // By default (no includeWebApis), AbortSignal.any is not checked → no report,
-          // even under a year policy that would otherwise flag it (2024 > 2023)
+          // even under a policy that would otherwise report abortsignal-any
           code: "AbortSignal.any([]);",
-          options: [{ available: 2023 }],
+          options: [{ available: reportingPolicyFor("abortsignal-any") }],
         },
       ],
       invalid: [
         {
-          // includeWebApis: safe → AbortSignal.any() became Baseline in 2024 → exceeds 2023
+          // includeWebApis: safe → AbortSignal.any() is detected and mapped to abortsignal-any
           code: "AbortSignal.any([]);",
-          options: [{ available: 2023, includeWebApis: { preset: "safe" } }],
-          errors: [{ message: /Feature '.*' \(abortsignal-any\).*Baseline/i }],
+          options: [
+            {
+              available: reportingPolicyFor("abortsignal-any"),
+              includeWebApis: { preset: "safe" },
+            },
+          ],
+          errors: [{ message: /\(abortsignal-any\)/ }],
         },
       ],
     });

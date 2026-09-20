@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { lintWithBaseline } from "./helpers";
+import { baselineYearOf, lintWithBaseline, reportingPolicyFor, yearPolicyMessage } from "./helpers";
 
 describe("orchestrator (es-x delegates)", () => {
   it("[nullish-coalescing] widely: should not be flagged", async () => {
@@ -7,31 +7,23 @@ describe("orchestrator (es-x delegates)", () => {
     expect(msgs.length).toBe(0);
   });
 
-  it("[nullish-coalescing] year: 2020 > 2018 should be flagged", async () => {
-    const msgs = await lintWithBaseline("const a = x ?? y;", 2018, { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Nullish coalescing' (nullish-coalescing) became Baseline in 2020 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+  it("[nullish-coalescing] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("nullish-coalescing");
+    const msgs = await lintWithBaseline("const a = x ?? y;", policy, { sourceType: "module" });
+    expect(msgs).toContain(yearPolicyMessage("nullish-coalescing", policy));
   });
 
-  it("[nullish-coalescing] year: 2020 baseline should not be flagged", async () => {
-    const msgs = await lintWithBaseline("const a = x ?? y;", 2020, { sourceType: "module" });
+  it("[nullish-coalescing] year policy equal to the Baseline year does not report", async () => {
+    const msgs = await lintWithBaseline("const a = x ?? y;", baselineYearOf("nullish-coalescing"), {
+      sourceType: "module",
+    });
     expect(msgs.length).toBe(0);
   });
 
-  it("[logical-assignments] year: 2020 > 2018 should be flagged", async () => {
-    const msgs = await lintWithBaseline("a &&= b; a ||= c; a ??= d;", 2018);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Logical assignments' (logical-assignments) became Baseline in 2020 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+  it("[logical-assignments] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("logical-assignments");
+    const msgs = await lintWithBaseline("a &&= b; a ||= c; a ??= d;", policy);
+    expect(msgs).toContain(yearPolicyMessage("logical-assignments", policy));
   });
 
   it("[template-literals] widely: should not be flagged", async () => {
@@ -70,137 +62,87 @@ describe("orchestrator (es-x delegates)", () => {
     expect(msgs.length).toBe(0);
   });
 
-  it("[top-level-await] (newly) should be flagged on widely", async () => {
-    const msgs = await lintWithBaseline("await Promise.resolve(1)", "widely", {
-      filePath: "mod.mjs",
-      sourceType: "module",
-    });
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Top-level await' (top-level-await) is not a widely available Baseline feature.",
-        ),
-      ),
-    ).toBe(true);
+  it("[top-level-await] is detected whatever its Baseline status", async () => {
+    const msgs = await lintWithBaseline(
+      "await Promise.resolve(1)",
+      reportingPolicyFor("top-level-await"),
+      { filePath: "mod.mjs", sourceType: "module" },
+    );
+    expect(msgs.some((m) => m.includes("(top-level-await)"))).toBe(true);
   });
 
-  it("[numeric-separators] year: 2020 > 2018 should be flagged", async () => {
-    const msgs = await lintWithBaseline("const n = 1_000_000;", 2018);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Numeric separators' (numeric-separators) became Baseline in 2020 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+  it("[numeric-separators] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("numeric-separators");
+    const msgs = await lintWithBaseline("const n = 1_000_000;", policy);
+    expect(msgs).toContain(yearPolicyMessage("numeric-separators", policy));
   });
 
-  it("[hashbang-comments] year: 2020 > 2018 should be flagged", async () => {
+  it("[hashbang-comments] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("hashbang-comments");
     const code = "#!/usr/bin/env node\nconst x = 1;";
-    const msgs = await lintWithBaseline(code, 2018, {
+    const msgs = await lintWithBaseline(code, policy, {
       filePath: "script.js",
       sourceType: "script",
     });
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Hashbang comments' (hashbang-comments) became Baseline in 2020 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+    expect(msgs).toContain(yearPolicyMessage("hashbang-comments", policy));
   });
 
-  it("[weak-references] year: 2021 > 2018 should be flagged", async () => {
+  it("[weak-references] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("weak-references");
     const code = "const wr = new WeakRef({});";
-    const msgs = await lintWithBaseline(code, 2018, { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Weak references' (weak-references) became Baseline in 2021 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
+    expect(msgs).toContain(yearPolicyMessage("weak-references", policy));
   });
 
-  it("[async-await] year: 2017 > 2016 should be flagged", async () => {
+  it("[async-await] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("async-await");
     const code = "async function f(){ await Promise.resolve(1) }";
-    const msgs = await lintWithBaseline(code, 2016, { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Async functions' (async-await) became Baseline in 2017 and exceeds 2016.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
+    expect(msgs).toContain(yearPolicyMessage("async-await", policy));
   });
 
-  it("[async-generators] year: 2020 > 2018 should be flagged", async () => {
+  it("[async-generators] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("async-generators");
     const code =
       "async function* g(){ yield 1 }; async function h(){ for await (const x of g()) {} }";
-    const msgs = await lintWithBaseline(code, 2018, { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Async generators' (async-generators) became Baseline in 2020 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
+    expect(msgs).toContain(yearPolicyMessage("async-generators", policy));
   });
 
-  it("[atomics-wait-async] (newly) should be flagged on widely", async () => {
+  it("[atomics-wait-async] is detected whatever its Baseline status", async () => {
     const code = "Atomics.waitAsync(new Int32Array(new SharedArrayBuffer(4)), 0, 0);";
-    const msgs = await lintWithBaseline(code, "widely", { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Atomics.waitAsync()' (atomics-wait-async) is not a widely available Baseline feature.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, reportingPolicyFor("atomics-wait-async"), {
+      sourceType: "module",
+    });
+    expect(msgs.some((m) => m.includes("(atomics-wait-async)"))).toBe(true);
   });
 
-  it("[bigint] year: 2020 > 2018 should be flagged", async () => {
+  it("[bigint] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("bigint");
     const code = "const a = 1n; const b = BigInt(2);";
-    const msgs = await lintWithBaseline(code, 2018, { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes("Feature 'BigInt' (bigint) became Baseline in 2020 and exceeds 2018."),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
+    expect(msgs).toContain(yearPolicyMessage("bigint", policy));
   });
 
-  it("[class-syntax] year: 2016 > 2015 should be flagged", async () => {
+  it("[class-syntax] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("class-syntax");
     const code = "class C {}";
-    const msgs = await lintWithBaseline(code, 2015, { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes("Feature 'Classes' (class-syntax) became Baseline in 2016 and exceeds 2015."),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
+    expect(msgs).toContain(yearPolicyMessage("class-syntax", policy));
   });
 
-  it("[destructuring] year: 2020 > 2018 should be flagged", async () => {
+  it("[destructuring] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("destructuring");
     const code = "const {a} = obj; const [x] = arr;";
-    const msgs = await lintWithBaseline(code, 2018);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Destructuring' (destructuring) became Baseline in 2020 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("destructuring", policy));
   });
 
-  it("[exponentiation] year: 2017 > 2016 should be flagged", async () => {
+  it("[exponentiation] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("exponentiation");
     const code = "const x = 2 ** 3;";
-    const msgs = await lintWithBaseline(code, 2016);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Exponentiation operator' (exponentiation) became Baseline in 2017 and exceeds 2016.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("exponentiation", policy));
   });
 
   it("[accessor-methods] widely: legacy accessor methods should be flagged", async () => {
@@ -226,36 +168,22 @@ describe("orchestrator (es-x delegates)", () => {
     ).toBe(true);
   });
 
-  it("[error-cause] year: 2021 > 2020 should be flagged", async () => {
+  it("[error-cause] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("error-cause");
     const code = "new Error('x', { cause: new Error('y') });";
-    const msgs = await lintWithBaseline(code, 2020);
-    expect(
-      msgs.some((m) =>
-        m.includes("Feature 'Error cause' (error-cause) became Baseline in 2021 and exceeds 2020."),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("error-cause", policy));
   });
 
-  it("[is-error] widely: Error.isError() (limited) should be flagged", async () => {
-    const msgs = await lintWithBaseline("Error.isError('x')", "widely");
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Error.isError()' (is-error) is not a widely available Baseline feature.",
-        ),
-      ),
-    ).toBe(true);
+  it("[is-error] is detected whatever its Baseline status", async () => {
+    const msgs = await lintWithBaseline("Error.isError('x')", reportingPolicyFor("is-error"));
+    expect(msgs.some((m) => m.includes("(is-error)"))).toBe(true);
   });
 
-  it("[object-hasown] year: 2022 > 2020 should be flagged", async () => {
-    const msgs = await lintWithBaseline("Object.hasOwn({a:1}, 'a')", 2020);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Object.hasOwn()' (object-hasown) became Baseline in 2022 and exceeds 2020.",
-        ),
-      ),
-    ).toBe(true);
+  it("[object-hasown] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("object-hasown");
+    const msgs = await lintWithBaseline("Object.hasOwn({a:1}, 'a')", policy);
+    expect(msgs).toContain(yearPolicyMessage("object-hasown", policy));
   });
 
   it("[proto] widely: __proto__ (limited) should be flagged", async () => {
@@ -269,37 +197,28 @@ describe("orchestrator (es-x delegates)", () => {
 
   // resizable-buffers: covered via JS builtins descriptors (safe patterns). No syntax delegate.
 
-  it("[transferable-arraybuffer] year: 2024 > 2023 should be flagged", async () => {
-    const msgs = await lintWithBaseline("(new ArrayBuffer(8)).transfer(4)", 2023);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Transferable ArrayBuffer' (transferable-arraybuffer) became Baseline in 2024 and exceeds 2023.",
-        ),
-      ),
-    ).toBe(true);
+  it("[transferable-arraybuffer] is detected whatever its Baseline status", async () => {
+    const msgs = await lintWithBaseline(
+      "(new ArrayBuffer(8)).transfer(4)",
+      reportingPolicyFor("transferable-arraybuffer"),
+    );
+    expect(msgs.some((m) => m.includes("(transferable-arraybuffer)"))).toBe(true);
   });
 
   // iterators: feature id no longer in JavaScript group — mapping entry removed.
 
-  it("[generators] year: 2016 > 2015 should be flagged", async () => {
+  it("[generators] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("generators");
     const code = "function* g(){ yield 1 }";
-    const msgs = await lintWithBaseline(code, 2015);
-    expect(
-      msgs.some((m) =>
-        m.includes("Feature 'Generators' (generators) became Baseline in 2016 and exceeds 2015."),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("generators", policy));
   });
 
-  it("[globalthis] year: 2020 > 2018 should be flagged", async () => {
+  it("[globalthis] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("globalthis");
     const code = "globalThis.x = 1";
-    const msgs = await lintWithBaseline(code, 2018, { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes("Feature 'globalThis' (globalthis) became Baseline in 2020 and exceeds 2018."),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
+    expect(msgs).toContain(yearPolicyMessage("globalthis", policy));
   });
 
   it("[html-wrapper-methods] (limited) should be flagged on widely", async () => {
@@ -314,90 +233,59 @@ describe("orchestrator (es-x delegates)", () => {
     ).toBe(true);
   });
 
-  it("[let-const] year: 2016 > 2015 should be flagged", async () => {
+  it("[let-const] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("let-const");
     const code = "let a = 1; const b = 2;";
-    const msgs = await lintWithBaseline(code, 2015);
-    expect(
-      msgs.some((m) =>
-        m.includes("Feature 'Let and const' (let-const) became Baseline in 2016 and exceeds 2015."),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("let-const", policy));
   });
 
-  it("[optional-catch-binding] year: 2020 > 2018 should be flagged", async () => {
+  it("[optional-catch-binding] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("optional-catch-binding");
     const code = "try { throw 1 } catch { }";
-    const msgs = await lintWithBaseline(code, 2018);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Optional catch binding' (optional-catch-binding) became Baseline in 2020 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("optional-catch-binding", policy));
   });
 
-  it("[proxy-reflect] year: 2016 > 2015 should be flagged", async () => {
+  it("[proxy-reflect] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("proxy-reflect");
     const code = "new Proxy({}, {}); Reflect.get({}, 'a');";
-    const msgs = await lintWithBaseline(code, 2015);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Proxy and Reflect' (proxy-reflect) became Baseline in 2016 and exceeds 2015.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("proxy-reflect", policy));
   });
 
-  it("[shared-memory] year: 2021 > 2018 should be flagged", async () => {
+  it("[shared-memory] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("shared-memory");
     const code = "new SharedArrayBuffer(4); Atomics.add(new Int32Array(4), 0, 1);";
-    const msgs = await lintWithBaseline(code, 2018, { sourceType: "module" });
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'SharedArrayBuffer and Atomics' (shared-memory) became Baseline in 2021 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
+    expect(msgs).toContain(yearPolicyMessage("shared-memory", policy));
   });
 
-  it("[spread] year: 2020 > 2018 should be flagged", async () => {
+  it("[spread] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("spread");
     const code = "const a = [...b]; const o = { ...obj };";
-    const msgs = await lintWithBaseline(code, 2018);
-    expect(
-      msgs.some((m) =>
-        m.includes("Feature 'Spread syntax' (spread) became Baseline in 2020 and exceeds 2018."),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("spread", policy));
   });
 
-  it("[template-literals] year: 2020 > 2018 should be flagged", async () => {
+  it("[template-literals] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("template-literals");
     const code = "const s = `a" + "$" + "{'b'}" + "`" + ";";
-    const msgs = await lintWithBaseline(code, 2018);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Template literals' (template-literals) became Baseline in 2020 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("template-literals", policy));
   });
 
-  it("[unicode-point-escapes] year: 2015 > 2014 should be flagged", async () => {
+  it("[unicode-point-escapes] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("unicode-point-escapes");
     const code = "const s = '\\u{1F600}';";
-    const msgs = await lintWithBaseline(code, 2014);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Unicode point escapes' (unicode-point-escapes) became Baseline in 2015 and exceeds 2014.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("unicode-point-escapes", policy));
   });
 
   it("[nullish-coalescing] ignoreFeatures should skip reports", async () => {
     const msgs = await lintWithBaseline(
       "const a = x ?? y;",
-      2018,
+      reportingPolicyFor("nullish-coalescing"),
       { sourceType: "module" },
       { ignoreFeatures: ["nullish-coalescing"] },
     );
@@ -417,16 +305,11 @@ describe("orchestrator (es-x delegates)", () => {
     expect(msgs.length).toBe(0);
   });
 
-  it("[bigint64array] year: 2021 > 2018 should be flagged", async () => {
+  it("[bigint64array] year policy: reported with the Baseline year from the record", async () => {
+    const policy = reportingPolicyFor("bigint64array");
     const code = "new BigInt64Array(8); new BigUint64Array(8);";
-    const msgs = await lintWithBaseline(code, 2018);
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'BigInt64Array' (bigint64array) became Baseline in 2021 and exceeds 2018.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, policy);
+    expect(msgs).toContain(yearPolicyMessage("bigint64array", policy));
   });
 
   it("[functions-caller-arguments] (limited) should be flagged on widely", async () => {
@@ -441,36 +324,22 @@ describe("orchestrator (es-x delegates)", () => {
     ).toBe(true);
   });
 
-  it("[math-sum-precise] (limited) should be flagged on widely", async () => {
+  it("[math-sum-precise] is detected whatever its Baseline status", async () => {
     const code = "Math.sumPrecise(1,2)";
-    const msgs = await lintWithBaseline(code, "widely");
-    expect(
-      msgs.some((m) =>
-        m.includes(
-          "Feature 'Math.sumPrecise()' (math-sum-precise) is not a widely available Baseline feature.",
-        ),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, reportingPolicyFor("math-sum-precise"));
+    expect(msgs.some((m) => m.includes("(math-sum-precise)"))).toBe(true);
   });
 
   it("[math-sum-precise] should not produce duplicate reports", async () => {
     const code = "Math.sumPrecise(1,2)";
-    const msgs = await lintWithBaseline(code, "widely");
-    const count = msgs.filter((m) =>
-      m.includes(
-        "Feature 'Math.sumPrecise()' (math-sum-precise) is not a widely available Baseline feature.",
-      ),
-    ).length;
+    const msgs = await lintWithBaseline(code, reportingPolicyFor("math-sum-precise"));
+    const count = msgs.filter((m) => m.includes("(math-sum-precise)")).length;
     expect(count).toBe(1);
   });
 
-  it("[temporal] (limited) should be flagged on widely", async () => {
+  it("[temporal] is detected whatever its Baseline status", async () => {
     const code = "Temporal.Now.instant()";
-    const msgs = await lintWithBaseline(code, "widely");
-    expect(
-      msgs.some((m) =>
-        m.includes("Feature 'Temporal' (temporal) is not a widely available Baseline feature."),
-      ),
-    ).toBe(true);
+    const msgs = await lintWithBaseline(code, reportingPolicyFor("temporal"));
+    expect(msgs.some((m) => m.includes("(temporal)"))).toBe(true);
   });
 });

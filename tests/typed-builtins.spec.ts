@@ -3,6 +3,7 @@ import os from "node:os";
 import { join } from "node:path";
 import { ESLint } from "eslint";
 import { describe, expect, it } from "vitest";
+import { reportingPolicyFor } from "./utils/policy";
 
 async function ensureTsParser(): Promise<unknown | null> {
   try {
@@ -43,16 +44,14 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 2), "utf8");
 
     const code = `
-      // Intl.Locale info (newly) → should report for getCalendars()
+      // Intl.Locale info → getCalendars() maps to intl-locale-info
       const lc = new Intl.Locale('en-US');
       const cals = lc.getCalendars();
-      // Intl.Locale base property (widely available) → should NOT report
-      const lang = lc.language;
-      // Iterator helpers (newly) → using ambient Iterator type below
+      // Iterator helpers → using ambient Iterator type below
       declare function getIter(): Iterator<number>;
       const it = getIter();
       const it2 = it.map(x => x + 1);
-      // Uint8Array instance toHex (limited) → should report
+      // Uint8Array instance toHex → uint8array-base64-hex
       const u = new Uint8Array([1,2,3]);
       const hex = u.toHex();
     `;
@@ -102,7 +101,14 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
           rules: {
             "baseline-js/use-baseline": [
               "error",
-              { available: "widely", includeJsBuiltins: { preset: "type-aware" } },
+              {
+                available: reportingPolicyFor(
+                  "intl-locale-info",
+                  "iterator-methods",
+                  "uint8array-base64-hex",
+                ),
+                includeJsBuiltins: { preset: "type-aware" },
+              },
             ],
           },
         },
@@ -112,8 +118,14 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     const results = await eslint.lintFiles([samplePath]);
     const msgs = results
       .flatMap((r) => r.messages)
-      .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
-    expect(msgs.length).toBeGreaterThanOrEqual(2);
+      .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"))
+      .map((m) => m.message);
+    for (const id of ["intl-locale-info", "iterator-methods", "uint8array-base64-hex"]) {
+      expect(
+        msgs.some((m) => m.includes(`(${id})`)),
+        id,
+      ).toBe(true);
+    }
   }, 15000);
 
   it("reports resizable-buffers (SharedArrayBuffer options) only when typed is available", async () => {
@@ -144,7 +156,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 2), "utf8");
 
     const code = `
-      // SharedArrayBuffer options (newWithOptions) → should report when typed
+      // SharedArrayBuffer options (newWithOptions) → resizable-buffers, typed only
       new SharedArrayBuffer(8, { maxByteLength: 16, growable: true });
     `;
     await fs.writeFile(samplePath, code, "utf8");
@@ -168,7 +180,10 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
           rules: {
             "baseline-js/use-baseline": [
               "error",
-              { available: "widely", includeJsBuiltins: { preset: "type-aware" } },
+              {
+                available: reportingPolicyFor("resizable-buffers"),
+                includeJsBuiltins: { preset: "type-aware" },
+              },
             ],
           },
         },
@@ -178,7 +193,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     const msgsTyped = resultsTyped
       .flatMap((r) => r.messages)
       .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
-    expect(msgsTyped.some((m) => /Resizable buffers/.test(m.message))).toBe(true);
+    expect(msgsTyped.some((m) => /\(resizable-buffers\)/.test(m.message))).toBe(true);
 
     // Non-typed (safe preset) run → should not report due to typedOnly gating
     const eslintUntyped = new ESLint({
@@ -192,7 +207,10 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
           rules: {
             "baseline-js/use-baseline": [
               "error",
-              { available: "widely", includeJsBuiltins: { preset: "safe" } },
+              {
+                available: reportingPolicyFor("resizable-buffers"),
+                includeJsBuiltins: { preset: "safe" },
+              },
             ],
           },
         },
@@ -278,7 +296,10 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
           rules: {
             "baseline-js/use-baseline": [
               "error",
-              { available: "widely", includeJsBuiltins: { preset: "type-aware" } },
+              {
+                available: reportingPolicyFor("getorinsert"),
+                includeJsBuiltins: { preset: "type-aware" },
+              },
             ],
           },
         },
@@ -301,7 +322,10 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
           rules: {
             "baseline-js/use-baseline": [
               "error",
-              { available: "widely", includeJsBuiltins: { preset: "safe" } },
+              {
+                available: reportingPolicyFor("getorinsert"),
+                includeJsBuiltins: { preset: "safe" },
+              },
             ],
           },
         },

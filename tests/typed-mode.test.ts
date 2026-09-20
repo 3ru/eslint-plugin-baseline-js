@@ -3,6 +3,7 @@ import os from "node:os";
 import { join } from "node:path";
 import { ESLint } from "eslint";
 import { describe, expect, it } from "vitest";
+import { reportingPolicyFor, yearPolicyMessage } from "./utils/policy";
 
 describe("typed mode (TypeScript-aware) integration", () => {
   it("reports instance member APIs when baseline excludes them", async () => {
@@ -81,7 +82,7 @@ describe("typed mode (TypeScript-aware) integration", () => {
             "baseline-js/use-baseline": [
               "error",
               {
-                available: "widely",
+                available: reportingPolicyFor("atomics-wait-async"),
                 includeJsBuiltins: { preset: "type-aware" },
               },
             ],
@@ -142,6 +143,7 @@ describe("typed mode (TypeScript-aware) integration", () => {
     await fs.writeFile(ambientPath, ambient, "utf8");
 
     const plugin = (await import("../dist/index.mjs")).default;
+    const policy = reportingPolicyFor("array-by-copy");
 
     const flatConfigPath = join(tmpRoot, "eslint.config.mjs");
     await fs.writeFile(flatConfigPath, "export default [{}]\n", "utf8");
@@ -160,7 +162,7 @@ describe("typed mode (TypeScript-aware) integration", () => {
           rules: {
             "baseline-js/use-baseline": [
               "error",
-              { available: 2022, includeJsBuiltins: { preset: "type-aware" } },
+              { available: policy, includeJsBuiltins: { preset: "type-aware" } },
             ],
           },
         },
@@ -170,8 +172,6 @@ describe("typed mode (TypeScript-aware) integration", () => {
     const results = await eslint.lintFiles([samplePath]);
     const messages = results.flatMap((r) => r.messages);
     const msg = messages.find((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
-    expect(msg?.message).toBe(
-      "Feature 'Array by copy' (array-by-copy) became Baseline in 2023 and exceeds 2022.",
-    );
+    expect(msg?.message).toBe(yearPolicyMessage("array-by-copy", policy));
   }, 15000);
 });

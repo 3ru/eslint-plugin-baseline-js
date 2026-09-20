@@ -3,6 +3,7 @@ import os from "node:os";
 import { join } from "node:path";
 import { ESLint } from "eslint";
 import { describe, expect, it } from "vitest";
+import { reportingPolicyFor } from "./utils/policy";
 
 describe("typed Web API detection", () => {
   it("reports and ignores heading offset properties", async () => {
@@ -73,7 +74,7 @@ describe("typed Web API detection", () => {
               "baseline-js/use-baseline": [
                 "error",
                 {
-                  available: "widely",
+                  available: reportingPolicyFor("heading-offset"),
                   includeWebApis: { preset: "type-aware", only: ["heading-offset"] },
                   includeJsBuiltins: false,
                   ignoreFeatures,

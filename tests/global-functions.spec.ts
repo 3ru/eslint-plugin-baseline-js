@@ -2,10 +2,15 @@ import type { Rule } from "eslint";
 import { RuleTester } from "eslint";
 import { describe, it } from "vitest";
 import plugin from "../dist/index.mjs";
+import { baselineYearOf, reportingPolicyFor, yearPolicyMessage } from "./utils/policy";
 
 /**
  * Tests for global function detection (callGlobal descriptor).
  * Verifies Issue #59: structuredClone detection.
+ *
+ * Policies and expected messages are derived from each feature's bundled
+ * record, so the cases keep testing detection, shadowing and the year-policy
+ * boundary whatever the current Baseline data says.
  */
 
 const rule = (plugin as unknown as { rules: Record<string, Rule.RuleModule> }).rules[
@@ -19,80 +24,67 @@ const tester = new RuleTester({
   },
 });
 
+const safe = { preset: "safe" } as const;
+
 describe("global function detection (callGlobal)", () => {
   it("detects structuredClone (Issue #59)", () => {
+    const policy = reportingPolicyFor("structured-clone");
     tester.run("baseline-js/use-baseline (structuredClone)", rule, {
       valid: [
         {
-          // structuredClone is baseline widely 2022, so year >= 2022 should not report
+          // a year policy equal to the Baseline year does not report
           code: "structuredClone({ a: 1 });",
-          options: [{ available: 2022, includeWebApis: { preset: "safe" } }],
-        },
-        {
-          // 'widely' should not flag structuredClone (it's baseline high)
-          code: "structuredClone(obj);",
-          options: [{ available: "widely", includeWebApis: { preset: "safe" } }],
+          options: [{ available: baselineYearOf("structured-clone"), includeWebApis: safe }],
         },
         {
           // Shadowed global in module scope should not report
           code: "function structuredClone() { return 1; } structuredClone({ a: 1 });",
-          options: [{ available: 2015, includeWebApis: { preset: "safe" } }],
+          options: [{ available: policy, includeWebApis: safe }],
         },
         {
           // Shadowed global in script scope should not report
           code: "var structuredClone = () => {}; structuredClone({ a: 1 });",
-          options: [{ available: 2015, includeWebApis: { preset: "safe" } }],
+          options: [{ available: policy, includeWebApis: safe }],
           languageOptions: { ecmaVersion: 2022, sourceType: "script" },
         },
       ],
       invalid: [
         {
-          // structuredClone became baseline in 2022, so year 2015 should report
+          // a year policy before the Baseline year reports with the year message
           code: "structuredClone({ a: 1 });",
-          options: [{ available: 2015, includeWebApis: { preset: "safe" } }],
-          errors: [{ message: /Feature 'structuredClone\(\)' \(structured-clone\).*2022.*2015/i }],
-        },
-        {
-          // structuredClone with year 2021 should report
-          code: "structuredClone(data);",
-          options: [{ available: 2021, includeWebApis: { preset: "safe" } }],
-          errors: [{ message: /Feature 'structuredClone\(\)' \(structured-clone\).*2022.*2021/i }],
+          options: [{ available: policy, includeWebApis: safe }],
+          errors: [{ message: yearPolicyMessage("structured-clone", policy) }],
         },
       ],
     });
   });
 
   it("detects queueMicrotask", () => {
+    const policy = reportingPolicyFor("queuemicrotask");
     tester.run("baseline-js/use-baseline (queueMicrotask)", rule, {
       valid: [
         {
-          // queueMicrotask is baseline widely 2020, so year >= 2020 should not report
+          // a year policy equal to the Baseline year does not report
           code: "queueMicrotask(callback);",
-          options: [{ available: 2020, includeWebApis: { preset: "safe" } }],
-        },
-        {
-          // 'widely' should not flag queueMicrotask (it's baseline high)
-          code: "queueMicrotask(fn);",
-          options: [{ available: "widely", includeWebApis: { preset: "safe" } }],
+          options: [{ available: baselineYearOf("queuemicrotask"), includeWebApis: safe }],
         },
         {
           // Shadowed import should not report
           code: "import { queueMicrotask } from 'x'; queueMicrotask(cb);",
-          options: [{ available: 2019, includeWebApis: { preset: "safe" } }],
+          options: [{ available: policy, includeWebApis: safe }],
         },
         {
           // Shadowed global in script scope should not report
           code: "var queueMicrotask = () => {}; queueMicrotask(cb);",
-          options: [{ available: 2019, includeWebApis: { preset: "safe" } }],
+          options: [{ available: policy, includeWebApis: safe }],
           languageOptions: { ecmaVersion: 2022, sourceType: "script" },
         },
       ],
       invalid: [
         {
-          // queueMicrotask became baseline in 2020, so year 2019 should report
           code: "queueMicrotask(callback);",
-          options: [{ available: 2019, includeWebApis: { preset: "safe" } }],
-          errors: [{ message: /Feature 'queueMicrotask\(\)' \(queuemicrotask\).*2020.*2019/i }],
+          options: [{ available: policy, includeWebApis: safe }],
+          errors: [{ message: yearPolicyMessage("queuemicrotask", policy) }],
         },
       ],
     });
