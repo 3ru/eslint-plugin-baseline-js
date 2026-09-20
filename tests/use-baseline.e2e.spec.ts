@@ -54,16 +54,17 @@ describe("use-baseline e2e", () => {
     tester.run("baseline-js/use-baseline (Web API safe patterns via includeWebApis)", rule, {
       valid: [
         {
-          // By default (no includeWebApis), AbortSignal.any is not checked → no report
+          // By default (no includeWebApis), AbortSignal.any is not checked → no report,
+          // even under a year policy that would otherwise flag it (2024 > 2023)
           code: "AbortSignal.any([]);",
-          options: [{ available: "widely" }],
+          options: [{ available: 2023 }],
         },
       ],
       invalid: [
         {
-          // includeWebApis: safe → AbortSignal.any() is Baseline newly → should report
+          // includeWebApis: safe → AbortSignal.any() became Baseline in 2024 → exceeds 2023
           code: "AbortSignal.any([]);",
-          options: [{ available: "widely", includeWebApis: { preset: "safe" } }],
+          options: [{ available: 2023, includeWebApis: { preset: "safe" } }],
           errors: [{ message: /Feature '.*' \(abortsignal-any\).*Baseline/i }],
         },
       ],

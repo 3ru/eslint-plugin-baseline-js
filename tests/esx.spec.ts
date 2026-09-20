@@ -269,12 +269,12 @@ describe("orchestrator (es-x delegates)", () => {
 
   // resizable-buffers: covered via JS builtins descriptors (safe patterns). No syntax delegate.
 
-  it("[transferable-arraybuffer] widely: ArrayBuffer.prototype.transfer should be flagged", async () => {
-    const msgs = await lintWithBaseline("(new ArrayBuffer(8)).transfer(4)", "widely");
+  it("[transferable-arraybuffer] year: 2024 > 2023 should be flagged", async () => {
+    const msgs = await lintWithBaseline("(new ArrayBuffer(8)).transfer(4)", 2023);
     expect(
       msgs.some((m) =>
         m.includes(
-          "Feature 'Transferable ArrayBuffer' (transferable-arraybuffer) is not a widely available Baseline feature.",
+          "Feature 'Transferable ArrayBuffer' (transferable-arraybuffer) became Baseline in 2024 and exceeds 2023.",
         ),
       ),
     ).toBe(true);

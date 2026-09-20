@@ -10,9 +10,12 @@ describe("use-baseline: Web API shadowing safety", () => {
     ];
 
     for (const code of cases) {
+      // Same 2023 year policy as the positive test below: it would report an
+      // unshadowed AbortSignal.any() regardless of when abortsignal-any reaches
+      // widely availability, so the shadowed forms must stay silent under it.
       const msgs = await lintWithBaseline(
         code,
-        "widely",
+        2023,
         { sourceType: "module" },
         { includeWebApis: { preset: "safe" }, includeJsBuiltins: false },
       );
@@ -21,9 +24,11 @@ describe("use-baseline: Web API shadowing safety", () => {
   });
 
   it("still reports real global API usage", async () => {
+    // abortsignal-any became Baseline newly in 2024, so a 2023 year policy reports it
+    // regardless of when it later reaches widely availability.
     const direct = await lintWithBaseline(
       "AbortSignal.any([]);",
-      "widely",
+      2023,
       { sourceType: "module" },
       { includeWebApis: { preset: "safe" }, includeJsBuiltins: false },
     );
@@ -31,7 +36,7 @@ describe("use-baseline: Web API shadowing safety", () => {
 
     const qualified = await lintWithBaseline(
       "globalThis.AbortSignal.any([]);",
-      "widely",
+      2023,
       { sourceType: "module" },
       { includeWebApis: { preset: "safe" }, includeJsBuiltins: false },
     );

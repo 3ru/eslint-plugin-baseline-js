@@ -13,8 +13,6 @@ describe("use-baseline: JS builtins static methods (preset: safe)", () => {
   describe("newly features are flagged under available: widely", () => {
     const cases: Array<{ code: string; featureId: string }> = [
       { code: "Promise.try(fn);", featureId: "promise-try" },
-      { code: "Promise.withResolvers();", featureId: "promise-withresolvers" },
-      { code: "Map.groupBy(arr, fn);", featureId: "array-group" },
       { code: "RegExp.escape(s);", featureId: "regexp-escape" },
     ];
     for (const { code, featureId } of cases) {
@@ -30,6 +28,9 @@ describe("use-baseline: JS builtins static methods (preset: safe)", () => {
       { code: "Promise.all([p]);", available: 2014, featureId: "promise" },
       { code: "Promise.allSettled([p]);", available: 2019, featureId: "promise-allsettled" },
       { code: "Promise.any([p]);", available: 2019, featureId: "promise-any" },
+      { code: "Promise.withResolvers();", available: 2023, featureId: "promise-withresolvers" },
+      { code: "Map.groupBy(arr, fn);", available: 2023, featureId: "array-group" },
+      { code: "Object.groupBy(arr, fn);", available: 2023, featureId: "array-group" },
       { code: "ArrayBuffer.isView(buf);", available: 2010, featureId: "typed-arrays" },
       { code: "BigInt.asIntN(1, 1n);", available: 2010, featureId: "bigint" },
       { code: "BigInt.asUintN(1, 1n);", available: 2010, featureId: "bigint" },
@@ -94,7 +95,7 @@ describe("use-baseline: JS builtins static methods (preset: safe)", () => {
       "p.then(fn);",
       "p.catch(fn);",
       // Shadowed constructors must not report the static.
-      "class Map {} Map.groupBy(arr, fn);",
+      "class RegExp {} RegExp.escape(s);",
       "function Promise(){} Promise.try(fn);",
       "const ArrayBuffer = { isView: () => true }; ArrayBuffer.isView(buf);",
       "const BigInt = { asIntN: () => 1n }; BigInt.asIntN(1, 1n);",
