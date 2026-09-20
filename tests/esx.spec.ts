@@ -70,7 +70,7 @@ describe("orchestrator (es-x delegates)", () => {
     expect(msgs.length).toBe(0);
   });
 
-  it("[top-level-await] (limited) should be flagged on widely", async () => {
+  it("[top-level-await] (newly) should be flagged on widely", async () => {
     const msgs = await lintWithBaseline("await Promise.resolve(1)", "widely", {
       filePath: "mod.mjs",
       sourceType: "module",

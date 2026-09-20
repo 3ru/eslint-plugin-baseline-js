@@ -9,7 +9,7 @@ function readDescriptorsApi(): string {
 
 describe("descriptors.api generation (manual + auto WebGL)", () => {
   it("contains typed heading offset properties", () => {
-    // web-features: https://github.com/web-platform-dx/web-features/blob/v3.34.3/features/heading-offset.yml
+    // web-features: https://github.com/web-platform-dx/web-features/blob/v3.39.0/features/heading-offset.yml
     // spec: https://html.spec.whatwg.org/multipage/sections.html#heading-levels-&-offsets
     const src = readDescriptorsApi();
     for (const prop of ["headingOffset", "headingReset"]) {

@@ -80,6 +80,10 @@ describe("use-baseline: JS builtins static methods (preset: safe)", () => {
       "Date.now();",
       "Date.parse(s);",
       "Date.UTC(2020, 0, 1);",
+      // Baseline widely since 2026-09-05 (web-features >= 3.38.0), see #165
+      "Object.groupBy(arr, fn);",
+      "Map.groupBy(arr, fn);",
+      "Promise.withResolvers();",
     ];
     for (const code of cases) {
       it(`stays silent for \`${code}\``, async () => {

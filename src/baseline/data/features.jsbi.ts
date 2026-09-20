@@ -255,8 +255,9 @@ export default {
       "maps"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-03-05",
+      "baseline_high_date": "2026-09-05",
       "support": {
         "chrome": "117",
         "chrome_android": "117",
@@ -1376,8 +1377,9 @@ export default {
       "promises"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-03-05",
+      "baseline_high_date": "2026-09-05",
       "support": {
         "chrome": "119",
         "chrome_android": "119",
@@ -1964,8 +1966,9 @@ export default {
       "javascript"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-03-05",
+      "baseline_high_date": "2026-09-05",
       "support": {
         "chrome": "114",
         "chrome_android": "114",

@@ -842,13 +842,16 @@ export default {
       "javascript"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-09-14",
       "support": {
         "chrome": "89",
         "chrome_android": "89",
         "edge": "89",
         "firefox": "89",
-        "firefox_android": "89"
+        "firefox_android": "89",
+        "safari": "27",
+        "safari_ios": "27"
       }
     }
   },
@@ -859,8 +862,9 @@ export default {
       "javascript"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-03-05",
+      "baseline_high_date": "2026-09-05",
       "support": {
         "chrome": "114",
         "chrome_android": "114",
