@@ -1,6 +1,13 @@
 import { ESLint } from "eslint";
 import plugin from "../src";
 
+export {
+  baselineYearOf,
+  LIMITED_ONLY_YEAR,
+  reportingPolicyFor,
+  yearPolicyMessage,
+} from "./utils/policy";
+
 export async function lintWithBaseline(
   code: string,
   available: "widely" | "newly" | number,

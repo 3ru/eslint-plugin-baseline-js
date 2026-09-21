@@ -41,19 +41,19 @@
     "eslint-plugin-es-x": "^9.7.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.8",
+    "@biomejs/biome": "^2.5.14",
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/git": "^11.0.1",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^26.2.0",
-    "@typescript-eslint/parser": "^8.67.0",
-    "eslint": "^10.8.1",
+    "@types/node": "^26.6.2",
+    "@typescript-eslint/parser": "^8.70.0",
+    "eslint": "^10.11.0",
     "semantic-release": "^25.0.9",
-    "tsdown": "0.22.14",
+    "tsdown": "0.23.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.10",
+    "vitest": "^4.1.11",
     "vue-eslint-parser": "^10.4.1",
-    "web-features": "3.34.3"
+    "web-features": "3.39.0"
   },
   "peerDependencies": {
     "eslint": ">=9.29.0 <11"

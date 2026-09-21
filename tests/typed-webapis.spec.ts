@@ -3,10 +3,11 @@ import os from "node:os";
 import { join } from "node:path";
 import { ESLint } from "eslint";
 import { describe, expect, it } from "vitest";
+import { reportingPolicyFor } from "./utils/policy";
 
 describe("typed Web API detection", () => {
   it("reports and ignores heading offset properties", async () => {
-    // web-features: https://github.com/web-platform-dx/web-features/blob/v3.34.3/features/heading-offset.yml
+    // web-features: https://github.com/web-platform-dx/web-features/blob/v3.39.0/features/heading-offset.yml
     // spec: https://html.spec.whatwg.org/multipage/sections.html#heading-levels-&-offsets
     const parser = (await import("@typescript-eslint/parser")).default;
     const root = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-heading-offset-"));
@@ -73,7 +74,7 @@ describe("typed Web API detection", () => {
               "baseline-js/use-baseline": [
                 "error",
                 {
-                  available: "widely",
+                  available: reportingPolicyFor("heading-offset"),
                   includeWebApis: { preset: "type-aware", only: ["heading-offset"] },
                   includeJsBuiltins: false,
                   ignoreFeatures,

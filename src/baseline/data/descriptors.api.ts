@@ -4642,6 +4642,59 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "containerQuery"
   },
   {
+    "featureId": "container-timing",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "containerTiming"
+  },
+  {
+    "featureId": "container-timing",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "containerTimingIgnore"
+  },
+  {
+    "featureId": "container-timing",
+    "kind": "callGlobal",
+    "name": "PerformanceContainerTiming"
+  },
+  {
+    "featureId": "container-timing",
+    "kind": "instanceMember",
+    "iface": "PerformanceContainerTiming",
+    "prop": "firstRenderTime"
+  },
+  {
+    "featureId": "container-timing",
+    "kind": "instanceMember",
+    "iface": "PerformanceContainerTiming",
+    "prop": "identifier"
+  },
+  {
+    "featureId": "container-timing",
+    "kind": "instanceMember",
+    "iface": "PerformanceContainerTiming",
+    "prop": "intersectionRect"
+  },
+  {
+    "featureId": "container-timing",
+    "kind": "instanceMember",
+    "iface": "PerformanceContainerTiming",
+    "prop": "lastPaintedElement"
+  },
+  {
+    "featureId": "container-timing",
+    "kind": "instanceMember",
+    "iface": "PerformanceContainerTiming",
+    "prop": "rootElement"
+  },
+  {
+    "featureId": "container-timing",
+    "kind": "instanceMember",
+    "iface": "PerformanceContainerTiming",
+    "prop": "size"
+  },
+  {
     "featureId": "content-index",
     "kind": "callGlobal",
     "name": "ContentIndex"
@@ -8802,6 +8855,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "dom",
     "kind": "instanceMember",
     "iface": "ProcessingInstruction",
+    "prop": "doc_xml"
+  },
+  {
+    "featureId": "dom",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
     "prop": "target"
   },
   {
@@ -12600,6 +12659,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "attachInternals"
   },
   {
+    "featureId": "frame-sizing",
+    "kind": "member",
+    "base": "window",
+    "prop": "requestResize"
+  },
+  {
     "featureId": "fullscreen",
     "kind": "instanceMember",
     "iface": "Document",
@@ -13073,11 +13138,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "geolocation-element",
-    "kind": "newIdent",
-    "name": "HTMLGeolocationElement"
-  },
-  {
-    "featureId": "geolocation-element",
     "kind": "instanceMember",
     "iface": "HTMLGeolocationElement",
     "prop": "autolocate"
@@ -13087,12 +13147,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLGeolocationElement",
     "prop": "error"
-  },
-  {
-    "featureId": "geolocation-element",
-    "kind": "instanceMember",
-    "iface": "HTMLGeolocationElement",
-    "prop": "initialPermissionStatus"
   },
   {
     "featureId": "geolocation-element",
@@ -13147,6 +13201,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLGeolocationElement",
     "prop": "watch"
+  },
+  {
+    "featureId": "geolocation-element-initialpermissionstatus",
+    "kind": "instanceMember",
+    "iface": "HTMLGeolocationElement",
+    "prop": "initialPermissionStatus"
   },
   {
     "featureId": "get-computed-style",
@@ -13577,6 +13637,515 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLInputElement",
     "prop": "capture"
+  },
+  {
+    "featureId": "html-processing-instructions",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
+    "prop": "doc_html"
+  },
+  {
+    "featureId": "html-processing-instructions",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
+    "prop": "getAttribute"
+  },
+  {
+    "featureId": "html-processing-instructions",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
+    "prop": "getAttributeNames"
+  },
+  {
+    "featureId": "html-processing-instructions",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
+    "prop": "hasAttribute"
+  },
+  {
+    "featureId": "html-processing-instructions",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
+    "prop": "hasAttributes"
+  },
+  {
+    "featureId": "html-processing-instructions",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
+    "prop": "removeAttribute"
+  },
+  {
+    "featureId": "html-processing-instructions",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
+    "prop": "setAttribute"
+  },
+  {
+    "featureId": "html-processing-instructions",
+    "kind": "instanceMember",
+    "iface": "ProcessingInstruction",
+    "prop": "toggleAttribute"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "afterHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "afterHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "beforeHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "beforeHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "replaceWithHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "replaceWithHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "afterHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "afterHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "beforeHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "beforeHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "replaceWithHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "replaceWithHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "afterHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "afterHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "appendHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "appendHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "beforeHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "beforeHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "prependHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "prependHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "replaceHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "replaceHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "replaceWithHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "replaceWithHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "setHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "afterHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "afterHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "appendHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "appendHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "beforeHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "beforeHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "prependHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "prependHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "replaceWithHTML"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "replaceWithHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "setHTMLUnsafe"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "callGlobal",
+    "name": "TrustedHTMLParserOptions"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "TrustedHTMLParserOptions",
+    "prop": "runScripts"
+  },
+  {
+    "featureId": "html-setters",
+    "kind": "instanceMember",
+    "iface": "TrustedHTMLParserOptions",
+    "prop": "sanitizer"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "streamAfterHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "streamAfterHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "streamBeforeHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "streamBeforeHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "streamReplaceWithHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "CharacterData",
+    "prop": "streamReplaceWithHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "streamAfterHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "streamAfterHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "streamBeforeHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "streamBeforeHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "streamReplaceWithHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "DocumentType",
+    "prop": "streamReplaceWithHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamAfterHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamAfterHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamAppendHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamAppendHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamBeforeHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamBeforeHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamPrependHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamPrependHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamReplaceHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamReplaceHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamReplaceWithHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "streamReplaceWithHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamAfterHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamAfterHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamAppendHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamAppendHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamBeforeHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamBeforeHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamPrependHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamPrependHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamReplaceWithHTML"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "ShadowRoot",
+    "prop": "streamReplaceWithHTMLUnsafe"
   },
   {
     "featureId": "idle-detection",
@@ -15065,6 +15634,41 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "VideoTrackGenerator",
     "prop": "writable"
+  },
+  {
+    "featureId": "interaction-contentful-paint",
+    "kind": "callGlobal",
+    "name": "InteractionContentfulPaint"
+  },
+  {
+    "featureId": "interaction-contentful-paint",
+    "kind": "instanceMember",
+    "iface": "InteractionContentfulPaint",
+    "prop": "interactionId"
+  },
+  {
+    "featureId": "interaction-contentful-paint",
+    "kind": "instanceMember",
+    "iface": "InteractionContentfulPaint",
+    "prop": "largestContentfulPaint"
+  },
+  {
+    "featureId": "interaction-contentful-paint",
+    "kind": "instanceMember",
+    "iface": "InteractionContentfulPaint",
+    "prop": "paintTime"
+  },
+  {
+    "featureId": "interaction-contentful-paint",
+    "kind": "instanceMember",
+    "iface": "InteractionContentfulPaint",
+    "prop": "presentationTime"
+  },
+  {
+    "featureId": "interaction-contentful-paint",
+    "kind": "instanceMember",
+    "iface": "InteractionContentfulPaint",
+    "prop": "toJSON"
   },
   {
     "featureId": "interest-invokers",
@@ -20371,11 +20975,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "output",
-    "kind": "newIdent",
-    "name": "HTMLOutputElement"
-  },
-  {
-    "featureId": "output",
     "kind": "instanceMember",
     "iface": "HTMLOutputElement",
     "prop": "defaultValue"
@@ -20838,18 +21437,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "callStatic",
     "base": "Document",
     "prop": "parseHTMLUnsafe"
-  },
-  {
-    "featureId": "parse-html-unsafe",
-    "kind": "instanceMember",
-    "iface": "Element",
-    "prop": "setHTMLUnsafe"
-  },
-  {
-    "featureId": "parse-html-unsafe",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "setHTMLUnsafe"
   },
   {
     "featureId": "password-credentials",
@@ -24240,6 +24827,35 @@ const descriptors: ReadonlyArray<Descriptor> = [
   {
     "featureId": "select",
     "kind": "callGlobal",
+    "name": "HTMLOptionsCollection"
+  },
+  {
+    "featureId": "select",
+    "kind": "instanceMember",
+    "iface": "HTMLOptionsCollection",
+    "prop": "add"
+  },
+  {
+    "featureId": "select",
+    "kind": "instanceMember",
+    "iface": "HTMLOptionsCollection",
+    "prop": "length"
+  },
+  {
+    "featureId": "select",
+    "kind": "instanceMember",
+    "iface": "HTMLOptionsCollection",
+    "prop": "remove"
+  },
+  {
+    "featureId": "select",
+    "kind": "instanceMember",
+    "iface": "HTMLOptionsCollection",
+    "prop": "selectedIndex"
+  },
+  {
+    "featureId": "select",
+    "kind": "callGlobal",
     "name": "HTMLSelectElement"
   },
   {
@@ -26346,6 +26962,47 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TimeEvent",
     "prop": "view"
+  },
+  {
+    "featureId": "soft-navigations",
+    "kind": "callGlobal",
+    "name": "PerformanceSoftNavigation"
+  },
+  {
+    "featureId": "soft-navigations",
+    "kind": "instanceMember",
+    "iface": "PerformanceSoftNavigation",
+    "prop": "getLargestInteractionContentfulPaint"
+  },
+  {
+    "featureId": "soft-navigations",
+    "kind": "instanceMember",
+    "iface": "PerformanceSoftNavigation",
+    "prop": "interactionId"
+  },
+  {
+    "featureId": "soft-navigations",
+    "kind": "instanceMember",
+    "iface": "PerformanceSoftNavigation",
+    "prop": "navigationType"
+  },
+  {
+    "featureId": "soft-navigations",
+    "kind": "instanceMember",
+    "iface": "PerformanceSoftNavigation",
+    "prop": "paintTime"
+  },
+  {
+    "featureId": "soft-navigations",
+    "kind": "instanceMember",
+    "iface": "PerformanceSoftNavigation",
+    "prop": "presentationTime"
+  },
+  {
+    "featureId": "soft-navigations",
+    "kind": "instanceMember",
+    "iface": "PerformanceSoftNavigation",
+    "prop": "toJSON"
   },
   {
     "featureId": "span",
@@ -31139,6 +31796,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "HTMLTemplateElement",
     "prop": "content"
+  },
+  {
+    "featureId": "template-for",
+    "kind": "instanceMember",
+    "iface": "HTMLTemplateElement",
+    "prop": "htmlFor"
   },
   {
     "featureId": "text-encoding",
@@ -45739,12 +46402,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "window",
     "kind": "callGlobal",
     "name": "Window"
-  },
-  {
-    "featureId": "window",
-    "kind": "member",
-    "base": "window",
-    "prop": "DOMContentLoaded_event"
   },
   {
     "featureId": "window",

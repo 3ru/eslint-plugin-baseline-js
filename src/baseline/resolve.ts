@@ -33,10 +33,22 @@ function mapBaseline(b: WebFeaturesBaseline | undefined): BaselineBucket {
   return "unknown";
 }
 
-function yearFrom(dateStr?: string): number | null {
-  if (!dateStr) return null;
-  const y = Number(dateStr.slice(0, 4));
-  return Number.isFinite(y) ? y : null;
+// web-features writes "≤YYYY-MM-DD" when only an upper bound of the date is
+// known; the Baseline year is still YYYY.
+const BASELINE_DATE = /^(≤?)(\d{4})/;
+
+/** Year in which the feature entered Baseline, or null when it has no date. */
+export function baselineYear(status: MinFeatureRecord["status"]): number | null {
+  const date = status?.baseline_low_date ?? status?.baseline_high_date;
+  const m = date ? BASELINE_DATE.exec(date) : null;
+  return m ? Number(m[2]) : null;
+}
+
+/** Baseline year for messages, keeping the "≤" prefix of upper-bound dates. */
+export function baselineYearLabel(status: MinFeatureRecord["status"]): string | null {
+  const date = status?.baseline_low_date ?? status?.baseline_high_date;
+  const m = date ? BASELINE_DATE.exec(date) : null;
+  return m ? `${m[1]}${m[2]}` : null;
 }
 
 export function getFeatureRecord(id: string): MinFeatureRecord | null {
@@ -62,7 +74,7 @@ export function isBeyondBaseline(featureId: string, baseline: BaselineOption): b
     // Year-based policy: anything that hasn't entered Baseline yet (limited)
     // should be considered beyond the configured year.
     if (bucket === "limited") return true;
-    const y = yearFrom(rec.status?.baseline_low_date) ?? yearFrom(rec.status?.baseline_high_date);
+    const y = baselineYear(rec.status);
     if (y == null) return false;
     return y > baseline;
   }

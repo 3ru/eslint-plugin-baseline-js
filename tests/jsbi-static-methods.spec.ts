@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { lintWithBaseline } from "./helpers";
+import { lintWithBaseline, reportingPolicyFor } from "./helpers";
 
 // Regression tests for static methods on constructors that share a name with
 // their ALLOWED_IFACE entries (e.g. `Promise.try` vs `Promise.prototype.then`).
@@ -10,44 +10,43 @@ import { lintWithBaseline } from "./helpers";
 describe("use-baseline: JS builtins static methods (preset: safe)", () => {
   const safe = { includeJsBuiltins: { preset: "safe" } as const };
 
-  describe("newly features are flagged under available: widely", () => {
+  // Each case lints under a year policy derived from its feature's own record,
+  // so detection is asserted whatever the feature's current Baseline status is.
+  // bigint and proxy-reflect are also syntax-mapped (es-x), so for those ids the
+  // report may come from the delegate rather than from the static descriptor.
+  describe("static methods are reported and mapped to their feature", () => {
     const cases: Array<{ code: string; featureId: string }> = [
       { code: "Promise.try(fn);", featureId: "promise-try" },
       { code: "Promise.withResolvers();", featureId: "promise-withresolvers" },
+      { code: "Promise.all([p]);", featureId: "promise" },
+      { code: "Promise.allSettled([p]);", featureId: "promise-allsettled" },
+      { code: "Promise.any([p]);", featureId: "promise-any" },
       { code: "Map.groupBy(arr, fn);", featureId: "array-group" },
+      { code: "Object.groupBy(arr, fn);", featureId: "array-group" },
       { code: "RegExp.escape(s);", featureId: "regexp-escape" },
+      { code: "ArrayBuffer.isView(buf);", featureId: "typed-arrays" },
+      { code: "BigInt.asIntN(1, 1n);", featureId: "bigint" },
+      { code: "BigInt.asUintN(1, 1n);", featureId: "bigint" },
+      { code: "Number.isInteger(x);", featureId: "number" },
+      { code: "Number.parseInt('1');", featureId: "number" },
+      { code: "Number.EPSILON;", featureId: "number" },
+      { code: "Proxy.revocable({}, handler);", featureId: "proxy-reflect" },
+      { code: "Symbol.for('x');", featureId: "symbol" },
+      { code: "Symbol.keyFor(sym);", featureId: "symbol" },
+      { code: "String.fromCharCode(65);", featureId: "strings" },
+      { code: "String.fromCodePoint(0x41);", featureId: "string-codepoint" },
+      { code: "Date.now();", featureId: "date" },
+      { code: "Date.parse(s);", featureId: "date" },
+      { code: "Date.UTC(2020, 0, 1);", featureId: "date" },
     ];
     for (const { code, featureId } of cases) {
       it(`reports ${featureId} for \`${code}\``, async () => {
-        const msgs = await lintWithBaseline(code, "widely", { sourceType: "module" }, safe);
-        expect(msgs.some((m) => m.includes(`(${featureId})`))).toBe(true);
-      });
-    }
-  });
-
-  describe("widely features are flagged under older numeric baselines", () => {
-    const cases: Array<{ code: string; available: number; featureId: string }> = [
-      { code: "Promise.all([p]);", available: 2014, featureId: "promise" },
-      { code: "Promise.allSettled([p]);", available: 2019, featureId: "promise-allsettled" },
-      { code: "Promise.any([p]);", available: 2019, featureId: "promise-any" },
-      { code: "ArrayBuffer.isView(buf);", available: 2010, featureId: "typed-arrays" },
-      { code: "BigInt.asIntN(1, 1n);", available: 2010, featureId: "bigint" },
-      { code: "BigInt.asUintN(1, 1n);", available: 2010, featureId: "bigint" },
-      { code: "Number.isInteger(x);", available: 2010, featureId: "number" },
-      { code: "Number.parseInt('1');", available: 2010, featureId: "number" },
-      { code: "Number.EPSILON;", available: 2010, featureId: "number" },
-      { code: "Proxy.revocable({}, handler);", available: 2010, featureId: "proxy-reflect" },
-      { code: "Symbol.for('x');", available: 2010, featureId: "symbol" },
-      { code: "Symbol.keyFor(sym);", available: 2010, featureId: "symbol" },
-      { code: "String.fromCharCode(65);", available: 2014, featureId: "strings" },
-      { code: "String.fromCodePoint(0x41);", available: 2014, featureId: "string-codepoint" },
-      { code: "Date.now();", available: 2008, featureId: "date" },
-      { code: "Date.parse(s);", available: 2008, featureId: "date" },
-      { code: "Date.UTC(2020, 0, 1);", available: 2008, featureId: "date" },
-    ];
-    for (const { code, available, featureId } of cases) {
-      it(`reports ${featureId} for \`${code}\` under year ${available}`, async () => {
-        const msgs = await lintWithBaseline(code, available, { sourceType: "module" }, safe);
+        const msgs = await lintWithBaseline(
+          code,
+          reportingPolicyFor(featureId),
+          { sourceType: "module" },
+          safe,
+        );
         expect(msgs.some((m) => m.includes(`(${featureId})`))).toBe(true);
       });
     }
@@ -89,24 +88,41 @@ describe("use-baseline: JS builtins static methods (preset: safe)", () => {
   });
 
   describe("does not confuse instance usage or shadowed globals", () => {
-    const cases = [
+    const cases: Array<{ code: string; featureId: string }> = [
       // Prototype methods must not match callStatic descriptors.
-      "p.then(fn);",
-      "p.catch(fn);",
+      { code: "p.then(fn);", featureId: "promise-try" },
+      { code: "p.catch(fn);", featureId: "promise-try" },
       // Shadowed constructors must not report the static.
-      "class Map {} Map.groupBy(arr, fn);",
-      "function Promise(){} Promise.try(fn);",
-      "const ArrayBuffer = { isView: () => true }; ArrayBuffer.isView(buf);",
-      "const BigInt = { asIntN: () => 1n }; BigInt.asIntN(1, 1n);",
-      "const Date = { now: () => 0 }; Date.now();",
-      "const Proxy = { revocable: () => ({}) }; Proxy.revocable({}, handler);",
-      "const RegExp = { escape: (s) => s }; RegExp.escape(s);",
-      "const Symbol = { for: () => Symbol('x') }; Symbol.for('x');",
+      { code: "class Map {} Map.groupBy(arr, fn);", featureId: "array-group" },
+      { code: "function Promise(){} Promise.try(fn);", featureId: "promise-try" },
+      {
+        code: "const ArrayBuffer = { isView: () => true }; ArrayBuffer.isView(buf);",
+        featureId: "typed-arrays",
+      },
+      // plain numbers: a 1n literal would itself be reported as bigint by the syntax delegate
+      { code: "const BigInt = { asIntN: () => 1 }; BigInt.asIntN(1, 1);", featureId: "bigint" },
+      { code: "const Date = { now: () => 0 }; Date.now();", featureId: "date" },
+      {
+        code: "const Proxy = { revocable: () => ({}) }; Proxy.revocable({}, handler);",
+        featureId: "proxy-reflect",
+      },
+      {
+        code: "const RegExp = { escape: (s) => s }; RegExp.escape(s);",
+        featureId: "regexp-escape",
+      },
+      { code: "const Symbol = { for: () => Symbol('x') }; Symbol.for('x');", featureId: "symbol" },
     ];
-    for (const code of cases) {
+    for (const { code, featureId } of cases) {
       it(`stays silent for \`${code}\``, async () => {
-        const msgs = await lintWithBaseline(code, "widely", { sourceType: "module" }, safe);
-        expect(msgs).toEqual([]);
+        // The policy would report the feature if the static were resolved
+        // through the real global, so no report for it means it was not.
+        const msgs = await lintWithBaseline(
+          code,
+          reportingPolicyFor(featureId),
+          { sourceType: "module" },
+          safe,
+        );
+        expect(msgs.filter((m) => m.includes(`(${featureId})`))).toEqual([]);
       });
     }
   });

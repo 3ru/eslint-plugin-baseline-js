@@ -2,6 +2,7 @@ import type { Rule } from "eslint";
 import { RuleTester } from "eslint";
 import { describe, it } from "vitest";
 import plugin from "../dist/index.mjs";
+import { reportingPolicyFor } from "./utils/policy";
 
 const rule = (plugin as unknown as { rules: Record<string, Rule.RuleModule> }).rules[
   "use-baseline"
@@ -15,7 +16,9 @@ const tester = new RuleTester({
 });
 
 describe("use-baseline: Web API safe arg-based patterns", () => {
-  it("detects argument-literal based Web API usage beyond Baseline (widely)", () => {
+  // Each case lints under a policy that reports the feature it is about
+  // whatever that feature's current Baseline status is.
+  it("detects argument-literal based Web API usage", () => {
     tester.run("baseline-js/use-baseline (safe arg patterns)", rule, {
       valid: [
         {
@@ -24,7 +27,7 @@ describe("use-baseline: Web API safe arg-based patterns", () => {
           // Ensure Web API detectors are enabled explicitly for this suite
           options: [
             {
-              available: "widely",
+              available: reportingPolicyFor("canvas-2d-alpha"),
               includeWebApis: { preset: "safe" },
               includeJsBuiltins: false,
             },
@@ -35,7 +38,7 @@ describe("use-baseline: Web API safe arg-based patterns", () => {
           code: "const o = { type: 'module' }; new Worker('w.js', o);",
           options: [
             {
-              available: "widely",
+              available: reportingPolicyFor("js-modules-workers"),
               includeWebApis: { preset: "safe" },
               includeJsBuiltins: false,
             },
@@ -44,18 +47,18 @@ describe("use-baseline: Web API safe arg-based patterns", () => {
       ],
       invalid: [
         {
-          // Canvas 2D alpha option (limited)
+          // Canvas 2D alpha option
           // Isolate only this feature to rule out cross-feature interference
           filename: "alpha.js",
           code: "const canvas = document.createElement('canvas'); canvas.getContext('2d', { alpha: true });",
           options: [
             {
-              available: "widely",
+              available: reportingPolicyFor("canvas-2d-alpha"),
               includeWebApis: { preset: "safe", only: ["canvas-2d-alpha"] },
               includeJsBuiltins: false,
             },
           ],
-          errors: [{ message: /Feature '2D canvas opacity' \(canvas-2d-alpha\).*Baseline/i }],
+          errors: [{ message: /\(canvas-2d-alpha\)/ }],
         },
         // TODO(restore): The following representative cases are valid, but currently
         // fail intermittently in RuleTester due to pending coverage or scoping nuance.

@@ -11,18 +11,21 @@ const tester = new RuleTester({
   languageOptions: { ecmaVersion: 2022, sourceType: "script" },
 });
 
+// Each case uses a feature that web-features marks as discouraged. Discouraged
+// features never leave Limited availability, so the exact "not a widely
+// available" wording asserted here cannot go stale as the data is refreshed.
 describe("Baseline messages are unified across delegates", () => {
   it("es-x delegate: uses Baseline message", () => {
     tester.run("es-x message", rule, {
       valid: [],
       invalid: [
         {
-          code: "Atomics.waitAsync();",
+          code: "'x'.bold();",
           options: [{ available: "widely" }],
           errors: [
             {
               message:
-                "Feature 'Atomics.waitAsync()' (atomics-wait-async) is not a widely available Baseline feature.",
+                "Feature 'HTML wrapper methods' (html-wrapper-methods) is not a widely available Baseline feature.",
             },
           ],
         },
@@ -52,11 +55,12 @@ describe("Baseline messages are unified across delegates", () => {
       valid: [],
       invalid: [
         {
-          code: "Temporal.Now.instant();",
+          code: "function f() {} const x = f.caller;",
           options: [{ available: "widely" }],
           errors: [
             {
-              message: "Feature 'Temporal' (temporal) is not a widely available Baseline feature.",
+              message:
+                "Feature 'Function caller and arguments' (functions-caller-arguments) is not a widely available Baseline feature.",
             },
           ],
         },

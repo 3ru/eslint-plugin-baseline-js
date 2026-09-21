@@ -185,9 +185,15 @@ export default {
   "anchor-positioning": {
     "id": "anchor-positioning",
     "name": "Anchor positioning",
+    "group": [
+      "anchor-positioning"
+    ],
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "safari": "27",
+        "safari_ios": "27"
+      }
     }
   },
   "angle-instanced-arrays": {
@@ -286,7 +292,9 @@ export default {
       "baseline": false,
       "support": {
         "firefox": "150",
-        "firefox_android": "150"
+        "firefox_android": "150",
+        "safari": "27",
+        "safari_ios": "27"
       }
     }
   },
@@ -317,13 +325,16 @@ export default {
       "streams"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-09-14",
       "support": {
         "chrome": "124",
         "chrome_android": "124",
         "edge": "124",
         "firefox": "110",
-        "firefox_android": "110"
+        "firefox_android": "110",
+        "safari": "27",
+        "safari_ios": "27"
       }
     }
   },
@@ -483,8 +494,12 @@ export default {
     "id": "autocorrect",
     "name": "autocorrect",
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-09-11",
       "support": {
+        "chrome": "153",
+        "chrome_android": "153",
+        "edge": "153",
         "firefox": "136",
         "firefox_android": "136",
         "safari": "14.1",
@@ -1119,8 +1134,9 @@ export default {
     "id": "check-visibility",
     "name": "checkVisibility()",
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-03-05",
+      "baseline_high_date": "2026-09-05",
       "support": {
         "chrome": "105",
         "chrome_android": "105",
@@ -1339,6 +1355,21 @@ export default {
       }
     }
   },
+  "connection-allowlists": {
+    "id": "connection-allowlists",
+    "name": "Connection allowlists",
+    "group": [
+      "security"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "152",
+        "chrome_android": "152",
+        "edge": "152"
+      }
+    }
+  },
   "console": {
     "id": "console",
     "name": "Console",
@@ -1428,6 +1459,17 @@ export default {
         "safari": "16",
         "safari_ios": "16"
       }
+    }
+  },
+  "container-timing": {
+    "id": "container-timing",
+    "name": "Container timing performance entries",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
     }
   },
   "content-index": {
@@ -1541,8 +1583,29 @@ export default {
       "support": {
         "chrome": "87",
         "chrome_android": "87",
+        "edge": "87",
+        "firefox": "140",
+        "firefox_android": "140"
+      }
+    }
+  },
+  "cookie-store-get-metadata": {
+    "id": "cookie-store-get-metadata",
+    "name": "cookieStore.get() metadata",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "87",
+        "chrome_android": "87",
         "edge": "87"
       }
+    },
+    "discouraged": {
+      "according_to": [
+        "https://github.com/whatwg/cookiestore/pull/274"
+      ],
+      "reason": "Scripting access to cookie metadata creates privacy and forward-compatibility problems.",
+      "reason_html": "Scripting access to cookie metadata creates privacy and forward-compatibility problems."
     }
   },
   "cookies": {
@@ -1862,8 +1925,9 @@ export default {
       "web-components"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-02-20",
+      "baseline_high_date": "2026-08-20",
       "support": {
         "chrome": "111",
         "chrome_android": "111",
@@ -2363,7 +2427,7 @@ export default {
   },
   "element-timing": {
     "id": "element-timing",
-    "name": "Element timing",
+    "name": "Element timing performance entries",
     "group": [
       "performance"
     ],
@@ -2435,7 +2499,7 @@ export default {
   },
   "event-timing": {
     "id": "event-timing",
-    "name": "Event timing",
+    "name": "Event timing performance entries",
     "group": [
       "performance"
     ],
@@ -2666,7 +2730,8 @@ export default {
         "chrome_android": "92",
         "edge": "93",
         "firefox": "68",
-        "safari": "16"
+        "safari": "16",
+        "safari_ios": "16"
       }
     }
   },
@@ -2677,14 +2742,16 @@ export default {
       "webgl-extensions"
     ],
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2025-05-12",
       "support": {
         "chrome": "93",
         "chrome_android": "83",
         "edge": "93",
         "firefox": "65",
         "firefox_android": "65",
-        "safari": "14.1"
+        "safari": "14.1",
+        "safari_ios": "18.5"
       }
     }
   },
@@ -2832,10 +2899,19 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "126",
-        "chrome_android": "126",
-        "edge": "126"
+        "chrome": "128",
+        "chrome_android": "128",
+        "edge": "128"
       }
+    },
+    "discouraged": {
+      "according_to": [
+        "https://groups.google.com/a/chromium.org/g/blink-dev/c/c9w5uH3eSuo/m/KcvocvF1DQAJ",
+        "https://chromestatus.com/feature/6366274495053824"
+      ],
+      "reason": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the <fencedframe> element and related APIs.",
+      "reason_html": "Following the announcement that Chrome will maintain its current approach to third-party cookies, Chrome decided to withdraw certain Privacy Sandbox features including the <code>&#x3C;fencedframe></code> element and related APIs.",
+      "removal_date": "2026-09-09"
     }
   },
   "fetch": {
@@ -3155,6 +3231,14 @@ export default {
       }
     }
   },
+  "frame-sizing": {
+    "id": "frame-sizing",
+    "name": "Responsive iframes",
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
+  },
   "fullscreen": {
     "id": "fullscreen",
     "name": "Fullscreen API",
@@ -3288,6 +3372,28 @@ export default {
         "chrome_android": "144",
         "edge": "144"
       }
+    }
+  },
+  "geolocation-element-initialpermissionstatus": {
+    "id": "geolocation-element-initialpermissionstatus",
+    "name": "HTMLGeolocationElement initialPermissionStatus",
+    "group": [
+      "geolocation"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "144",
+        "chrome_android": "144",
+        "edge": "144"
+      }
+    },
+    "discouraged": {
+      "according_to": [
+        "https://chromestatus.com/feature/5113729407647744"
+      ],
+      "reason": "The value of the property can be miscomputed and the sole implementer, Chromium, intends to remove it.",
+      "reason_html": "The value of the property can be miscomputed and the sole implementer, Chromium, intends to remove it."
     }
   },
   "get-computed-style": {
@@ -3591,6 +3697,40 @@ export default {
       }
     }
   },
+  "html-processing-instructions": {
+    "id": "html-processing-instructions",
+    "name": "HTML processing instructions",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "150",
+        "chrome_android": "150",
+        "edge": "150"
+      }
+    }
+  },
+  "html-setters": {
+    "id": "html-setters",
+    "name": "HTML setter methods",
+    "group": [
+      "dom"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
+  },
+  "html-streaming-setters": {
+    "id": "html-streaming-setters",
+    "name": "HTML streaming setters",
+    "group": [
+      "dom"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {}
+    }
+  },
   "idle-detection": {
     "id": "idle-detection",
     "name": "Idle detection",
@@ -3878,14 +4018,14 @@ export default {
     ],
     "status": {
       "baseline": "high",
-      "baseline_low_date": "2021-04-26",
-      "baseline_high_date": "2023-10-26",
+      "baseline_low_date": "2021-10-05",
+      "baseline_high_date": "2024-04-05",
       "support": {
         "chrome": "20",
         "chrome_android": "25",
         "edge": "12",
-        "firefox": "57",
-        "firefox_android": "57",
+        "firefox": "93",
+        "firefox_android": "93",
         "safari": "14.1",
         "safari_ios": "5"
       }
@@ -4044,6 +4184,21 @@ export default {
       "support": {
         "safari": "18",
         "safari_ios": "18"
+      }
+    }
+  },
+  "interaction-contentful-paint": {
+    "id": "interaction-contentful-paint",
+    "name": "Interaction contentful paint performance entries",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "151",
+        "chrome_android": "151",
+        "edge": "151"
       }
     }
   },
@@ -4362,7 +4517,7 @@ export default {
   },
   "largest-contentful-paint": {
     "id": "largest-contentful-paint",
-    "name": "Largest contentful paint (LCP)",
+    "name": "Largest contentful paint (LCP) performance entries",
     "group": [
       "performance"
     ],
@@ -4382,7 +4537,7 @@ export default {
   },
   "layout-instability": {
     "id": "layout-instability",
-    "name": "Layout instability",
+    "name": "Layout instability performance entries",
     "group": [
       "performance"
     ],
@@ -4552,7 +4707,7 @@ export default {
   },
   "long-animation-frames": {
     "id": "long-animation-frames",
-    "name": "Long animation frames",
+    "name": "Long animation frames performance entries",
     "group": [
       "performance"
     ],
@@ -4567,7 +4722,7 @@ export default {
   },
   "longtasks": {
     "id": "longtasks",
-    "name": "Long tasks",
+    "name": "Long task performance entries",
     "group": [
       "performance"
     ],
@@ -4995,7 +5150,7 @@ export default {
   },
   "navigation-timing": {
     "id": "navigation-timing",
-    "name": "Navigation timing",
+    "name": "Navigation timing performance entries",
     "group": [
       "performance"
     ],
@@ -5536,7 +5691,7 @@ export default {
   },
   "page-visibility-state": {
     "id": "page-visibility-state",
-    "name": "Page visibility state",
+    "name": "Page visibility state performance entries",
     "group": [
       "performance"
     ],
@@ -5567,7 +5722,7 @@ export default {
   },
   "paint-timing": {
     "id": "paint-timing",
-    "name": "Paint timing",
+    "name": "Paint timing performance entries",
     "group": [
       "performance"
     ],
@@ -5588,7 +5743,7 @@ export default {
   },
   "parse-html-unsafe": {
     "id": "parse-html-unsafe",
-    "name": "Unsanitized HTML parsing methods",
+    "name": "Unsanitized HTML parsing",
     "status": {
       "baseline": "low",
       "baseline_low_date": "2025-09-15",
@@ -6186,7 +6341,9 @@ export default {
       "baseline": false,
       "support": {
         "firefox": "117",
-        "firefox_android": "117"
+        "firefox_android": "117",
+        "safari": "27",
+        "safari_ios": "27"
       }
     }
   },
@@ -6198,7 +6355,11 @@ export default {
     ],
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "chrome": "152",
+        "chrome_android": "152",
+        "edge": "152"
+      }
     }
   },
   "referrer-policy": {
@@ -6577,7 +6738,7 @@ export default {
   },
   "resource-timing": {
     "id": "resource-timing",
-    "name": "Resource timing",
+    "name": "Resource timing performance entries",
     "group": [
       "performance"
     ],
@@ -6644,15 +6805,15 @@ export default {
     ],
     "status": {
       "baseline": "low",
-      "baseline_low_date": "2025-12-12",
+      "baseline_low_date": "2026-03-24",
       "support": {
         "chrome": "143",
         "chrome_android": "143",
         "edge": "143",
         "firefox": "146",
         "firefox_android": "146",
-        "safari": "26.2",
-        "safari_ios": "26.2"
+        "safari": "26.4",
+        "safari_ios": "26.4"
       }
     }
   },
@@ -6793,6 +6954,9 @@ export default {
   "scroll-elements": {
     "id": "scroll-elements",
     "name": "Scroll methods on elements",
+    "group": [
+      "scrolling"
+    ],
     "status": {
       "baseline": "high",
       "baseline_low_date": "2020-09-16",
@@ -6841,6 +7005,21 @@ export default {
         "chrome": "140",
         "chrome_android": "140",
         "edge": "140"
+      }
+    }
+  },
+  "scroll-promises": {
+    "id": "scroll-promises",
+    "name": "Scroll method promises",
+    "group": [
+      "scrolling"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "150",
+        "chrome_android": "150",
+        "edge": "150"
       }
     }
   },
@@ -6965,6 +7144,7 @@ export default {
       "baseline": false,
       "support": {
         "chrome": "89",
+        "chrome_android": "148",
         "edge": "89",
         "firefox": "151"
       }
@@ -7058,7 +7238,9 @@ export default {
       "support": {
         "chrome": "123",
         "chrome_android": "123",
-        "edge": "123"
+        "edge": "123",
+        "safari": "27",
+        "safari_ios": "27"
       }
     }
   },
@@ -7219,6 +7401,21 @@ export default {
       }
     }
   },
+  "shared-workers-extended-lifetime": {
+    "id": "shared-workers-extended-lifetime",
+    "name": "Shared worker extended lifetime",
+    "group": [
+      "workers"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "148",
+        "chrome_android": "148",
+        "edge": "148"
+      }
+    }
+  },
   "show-picker-input": {
     "id": "show-picker-input",
     "name": "showPicker() for <input>",
@@ -7316,6 +7513,21 @@ export default {
         "firefox_android": "4",
         "safari": "6",
         "safari_ios": "6"
+      }
+    }
+  },
+  "soft-navigations": {
+    "id": "soft-navigations",
+    "name": "Soft navigation performance entries",
+    "group": [
+      "performance"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "151",
+        "chrome_android": "151",
+        "edge": "151"
       }
     }
   },
@@ -7807,6 +8019,18 @@ export default {
       }
     }
   },
+  "template-for": {
+    "id": "template-for",
+    "name": "<template for>",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "150",
+        "chrome_android": "150",
+        "edge": "150"
+      }
+    }
+  },
   "text-encoding": {
     "id": "text-encoding",
     "name": "Text encoding and decoding",
@@ -7954,11 +8178,7 @@ export default {
     "name": "Topics",
     "status": {
       "baseline": false,
-      "support": {
-        "chrome": "126",
-        "chrome_android": "126",
-        "edge": "126"
-      }
+      "support": {}
     },
     "discouraged": {
       "according_to": [
@@ -8373,8 +8593,8 @@ export default {
     ],
     "status": {
       "baseline": "high",
-      "baseline_low_date": "2015-07-29",
-      "baseline_high_date": "2018-01-29",
+      "baseline_low_date": "2017-09-19",
+      "baseline_high_date": "2020-03-19",
       "support": {
         "chrome": "37",
         "chrome_android": "37",
@@ -8438,7 +8658,9 @@ export default {
       "support": {
         "chrome": "93",
         "chrome_android": "84",
-        "edge": "93"
+        "edge": "93",
+        "safari": "27",
+        "safari_ios": "27"
       }
     }
   },
@@ -8681,7 +8903,8 @@ export default {
         "chrome": "26",
         "edge": "12",
         "firefox": "22",
-        "safari": "8"
+        "safari": "8",
+        "safari_ios": "8"
       }
     }
   },
@@ -9489,9 +9712,7 @@ export default {
       "xml"
     ],
     "status": {
-      "baseline": "high",
-      "baseline_low_date": "2015-07-29",
-      "baseline_high_date": "2018-01-29",
+      "baseline": false,
       "support": {
         "chrome": "1",
         "chrome_android": "18",
@@ -9501,6 +9722,14 @@ export default {
         "safari": "3.1",
         "safari_ios": "2"
       }
+    },
+    "discouraged": {
+      "according_to": [
+        "https://html.spec.whatwg.org/#interactions-with-xpath-and-xslt",
+        "https://dom.spec.whatwg.org/#xslt"
+      ],
+      "reason": "XSLT is a candidate for removal from browsers because browser implementations are highly susceptible to memory safety vulnerabilities.",
+      "reason_html": "XSLT is a candidate for removal from browsers because browser implementations are highly susceptible to memory safety vulnerabilities."
     }
   }
 } as const;

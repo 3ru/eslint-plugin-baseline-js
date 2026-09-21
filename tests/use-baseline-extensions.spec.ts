@@ -3,6 +3,7 @@ import { RuleTester } from "eslint";
 import { describe, it } from "vitest";
 import vueParser from "vue-eslint-parser";
 import plugin from "../dist/index.mjs";
+import { reportingPolicyFor } from "./utils/policy";
 
 const rule = (plugin as unknown as { rules: Record<string, Rule.RuleModule> }).rules[
   "use-baseline"
@@ -48,7 +49,7 @@ const value = foo ?? "fallback";
 <script setup>
 const t = Temporal.Now.instant();
 </script>`,
-          options: [{ available: "widely" }],
+          options: [{ available: reportingPolicyFor("temporal") }],
           errors: [{ message: /temporal/i }],
         },
       ],
@@ -68,7 +69,7 @@ const t = Temporal.Now.instant();
         {
           filename: "Component.jsx",
           code: "const App = () => <div>{Temporal.Now.instant()}</div>;",
-          options: [{ available: "widely" }],
+          options: [{ available: reportingPolicyFor("temporal") }],
           errors: [{ message: /temporal/i }],
         },
       ],
