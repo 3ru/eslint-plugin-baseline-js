@@ -378,6 +378,8 @@ Feature '<id>' is not a newly available Baseline feature. // [!code error]
 Feature '<id>' became Baseline in <YYYY> and exceeds <year>. // [!code error]
 ```
 
+When web‑features only records an upper bound for the date a feature entered Baseline (`≤YYYY-MM-DD` in the data), `<YYYY>` keeps that prefix, e.g. `became Baseline in ≤2018`. The policy compares the numeric year, so such a feature is reported under `available: 2017` and allowed under `available: 2018`.
+
 ## Self rules (internal)
 
 Minimal supplements where community rules don’t exist.

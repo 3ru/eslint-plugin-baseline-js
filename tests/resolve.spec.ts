@@ -2,7 +2,12 @@ import { describe, expect, it } from "vitest";
 import apiRaw from "../src/baseline/data/features.api";
 import jsRaw from "../src/baseline/data/features.javascript";
 import jsbiRaw from "../src/baseline/data/features.jsbi";
-import { getFeatureBucket, isBeyondBaseline } from "../src/baseline/resolve";
+import {
+  baselineYear,
+  baselineYearLabel,
+  getFeatureBucket,
+  isBeyondBaseline,
+} from "../src/baseline/resolve";
 import { reportingPolicyFor } from "./utils/policy";
 
 // These checks derive the expected outcome from each record's own status
@@ -21,16 +26,12 @@ const features = { ...jsRaw, ...apiRaw, ...jsbiRaw } as unknown as Record<
 >;
 const entries = Object.entries(features);
 
-function isRanged(status: Status | undefined): boolean {
+// Expected Baseline year, independent of the implementation under test:
+// "≤YYYY-MM-DD" is an upper bound whose year is still YYYY.
+function expectedYear(status: Status | undefined): number | null {
   const date = status?.baseline_low_date ?? status?.baseline_high_date;
-  return date?.startsWith("≤") ?? false;
-}
-
-// Ranged dates ("≤YYYY-MM-DD") yield no year in src/baseline/resolve.ts.
-function baselineYear(status: Status | undefined): number | null {
-  const date = status?.baseline_low_date ?? status?.baseline_high_date;
-  if (!date || isRanged(status)) return null;
-  return Number(date.slice(0, 4));
+  if (!date) return null;
+  return Number(date.replace(/^≤/, "").slice(0, 4));
 }
 
 describe("baseline resolution against the bundled snapshot", () => {
@@ -68,7 +69,7 @@ describe("baseline resolution against the bundled snapshot", () => {
           expect(isBeyondBaseline(id, year), `${id} @ ${year}`).toBe(true);
           continue;
         }
-        const y = baselineYear(rec.status);
+        const y = expectedYear(rec.status);
         if (y == null) continue;
         expect(isBeyondBaseline(id, year), `${id} @ ${year}`).toBe(y > year);
       }
@@ -76,15 +77,32 @@ describe("baseline resolution against the bundled snapshot", () => {
   });
 
   it("reportingPolicyFor() yields a year policy that reports the feature", () => {
-    for (const [id, rec] of entries) {
-      if (isRanged(rec.status)) {
-        // No year policy can report these; the helper must say so instead of guessing.
-        expect(() => reportingPolicyFor(id), id).toThrow(/ranged Baseline date/);
-        continue;
-      }
+    for (const [id] of entries) {
       expect(isBeyondBaseline(id, reportingPolicyFor(id)), id).toBe(true);
     }
     expect(() => reportingPolicyFor("not-a-feature")).toThrow(/unknown feature id/);
+  });
+
+  it("parses exact and upper-bound Baseline dates", () => {
+    expect(baselineYear({ baseline: "high", baseline_low_date: "2020-09-16" })).toBe(2020);
+    expect(baselineYear({ baseline: "high", baseline_low_date: "≤2018-10-02" })).toBe(2018);
+    expect(baselineYear({ baseline: "high", baseline_high_date: "2019-03-20" })).toBe(2019);
+    expect(baselineYear({ baseline: false })).toBeNull();
+    expect(baselineYear(undefined)).toBeNull();
+    expect(baselineYear({ baseline: "low", baseline_low_date: "unknown" })).toBeNull();
+
+    expect(baselineYearLabel({ baseline: "high", baseline_low_date: "2020-09-16" })).toBe("2020");
+    expect(baselineYearLabel({ baseline: "high", baseline_low_date: "≤2018-10-02" })).toBe("≤2018");
+    expect(baselineYearLabel({ baseline: false })).toBeNull();
+    expect(baselineYearLabel(undefined)).toBeNull();
+    expect(baselineYearLabel({ baseline: "high", baseline_high_date: "2019-03-20" })).toBe("2019");
+    expect(
+      baselineYearLabel({
+        baseline: "high",
+        baseline_low_date: "≤2018-10-02",
+        baseline_high_date: "≤2021-04-02",
+      }),
+    ).toBe("≤2018");
   });
 
   it("unknown feature ids are never reported", () => {

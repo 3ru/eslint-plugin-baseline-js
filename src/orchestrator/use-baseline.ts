@@ -2,7 +2,7 @@ import type { Rule } from "eslint";
 import { getIncludedDescriptors } from "../baseline/loader";
 import mapping from "../baseline/mapping/syntax";
 import { parseDelegateRuleKey } from "../baseline/plugins";
-import { getFeatureRecord, isBeyondBaseline } from "../baseline/resolve";
+import { baselineYearLabel, getFeatureRecord, isBeyondBaseline } from "../baseline/resolve";
 import { type CommonRuleOptions, getBaselineValue } from "../config";
 import featureUsage from "../rules/feature-usage";
 import noAtomicsPause from "../rules/no-atomics-pause";
@@ -69,10 +69,7 @@ function baselineMessage(featureId: string, baseline: ReturnType<typeof getBasel
   if (isLimited) {
     return `Feature '${label}'${idSuffix} has Limited availability and exceeds ${baseline}.`;
   }
-  const year =
-    rec?.status?.baseline_low_date?.slice(0, 4) ||
-    rec?.status?.baseline_high_date?.slice(0, 4) ||
-    "unknown";
+  const year = baselineYearLabel(rec?.status) ?? "unknown";
   return `Feature '${label}'${idSuffix} became Baseline in ${year} and exceeds ${baseline}.`;
 }
 
