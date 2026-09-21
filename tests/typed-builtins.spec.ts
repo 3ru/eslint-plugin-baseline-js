@@ -220,6 +220,8 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     const msgsUntyped = resultsUntyped
       .flatMap((r) => r.messages)
       .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
+    // the sample must parse without a TS parser, otherwise this check is vacuous
+    expect(resultsUntyped.flatMap((r) => r.messages).some((m) => m.fatal)).toBe(false);
     expect(msgsUntyped.length).toBe(0);
   }, 20000);
 
@@ -262,6 +264,23 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
       weak.getOrInsertComputed(key, () => 2);
     `;
     await fs.writeFile(samplePath, code, "utf8");
+    // Same calls as plain JavaScript, outside the TypeScript program, so the
+    // default parser can lint them.
+    const plainPath = join(tmp, "plain.js");
+    await fs.writeFile(
+      plainPath,
+      `
+      const map = new Map();
+      map.getOrInsert("alpha", 1);
+      map.getOrInsertComputed("beta", () => 2);
+
+      const weak = new WeakMap();
+      const key = {};
+      weak.getOrInsert(key, 1);
+      weak.getOrInsertComputed(key, () => 2);
+    `,
+      "utf8",
+    );
 
     const ambient = `
       declare global {
@@ -316,7 +335,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
       overrideConfigFile: flatConfigPath,
       overrideConfig: [
         {
-          files: ["**/*.ts"],
+          files: ["**/*.js"],
           languageOptions: {},
           plugins: { "baseline-js": plugin },
           rules: {
@@ -331,10 +350,15 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
         },
       ],
     });
-    const resultsUntyped = await eslintUntyped.lintFiles([samplePath]);
+    // the rule must apply to the file, otherwise a zero-message result is vacuous
+    const untypedConfig = await eslintUntyped.calculateConfigForFile(plainPath);
+    expect(untypedConfig?.rules?.["baseline-js/use-baseline"]).toBeDefined();
+    const resultsUntyped = await eslintUntyped.lintFiles([plainPath]);
     const msgsUntyped = resultsUntyped
       .flatMap((r) => r.messages)
       .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
+    // the sample must parse without a TS parser, otherwise this check is vacuous
+    expect(resultsUntyped.flatMap((r) => r.messages).some((m) => m.fatal)).toBe(false);
     expect(msgsUntyped.length).toBe(0);
   }, 20000);
 });
