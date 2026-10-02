@@ -43,6 +43,23 @@ export function addTypedInstanceMemberDetector(
   if (typeof propertyOfType !== "function") return {};
   const getPropertyOfType = propertyOfType.bind(checkerOk);
 
+  function getBaseTypes(t: unknown): unknown[] {
+    type TypeWithBases = {
+      getBaseTypes?: () => unknown[];
+      baseTypes?: unknown[];
+      target?: TypeWithBases;
+    };
+    const type = t as TypeWithBases;
+    // Instantiated generic references expose their bases on the target interface.
+    return (
+      type.getBaseTypes?.() ||
+      type.baseTypes ||
+      type.target?.getBaseTypes?.() ||
+      type.target?.baseTypes ||
+      []
+    );
+  }
+
   function typeMatches(t: unknown): boolean {
     if (!t) return false;
     const withTypes = t as { types?: unknown[] };
@@ -56,14 +73,12 @@ export function addTypedInstanceMemberDetector(
     const name = (sym as { name?: string } | undefined)?.name;
     if (name === iface || name?.endsWith(`.${iface}`)) return true;
     const apparent = checkerOk.getApparentType?.(t) || t;
-    const ap = apparent as { getBaseTypes?: () => unknown[]; baseTypes?: unknown[] };
-    const baseTypes = (ap.getBaseTypes?.() || ap.baseTypes || []) as unknown[];
+    const baseTypes = getBaseTypes(apparent);
     if (baseTypes?.length) {
       if (baseTypes.some((bt) => (bt as { symbol?: { name?: string } }).symbol?.name === iface))
         return true;
       for (const bt of baseTypes) {
-        const btLike = bt as { getBaseTypes?: () => unknown[] };
-        const bt2 = btLike.getBaseTypes?.() || [];
+        const bt2 = getBaseTypes(bt);
         if (
           Array.isArray(bt2) &&
           bt2.some((b2) => (b2 as { symbol?: { name?: string } }).symbol?.name === iface)

@@ -1059,6 +1059,23 @@ export default {
       }
     }
   },
+  "iterator-join": {
+    "id": "iterator-join",
+    "name": "Iterator join()",
+    "group": [
+      "iterators"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "153",
+        "chrome_android": "153",
+        "edge": "153",
+        "firefox": "154",
+        "firefox_android": "154"
+      }
+    }
+  },
   "iterator-methods": {
     "id": "iterator-methods",
     "name": "Iterator methods",
@@ -1856,6 +1873,35 @@ export default {
         "safari": "9",
         "safari_ios": "9"
       }
+    }
+  },
+  "string-trim-leftright": {
+    "id": "string-trim-leftright",
+    "name": "String trimLeft() and trimRight()",
+    "group": [
+      "string"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "4",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "5",
+        "safari_ios": "4.2"
+      }
+    },
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#String.prototype.trimleft"
+      ],
+      "alternatives": [
+        "string-trim-startend"
+      ],
+      "reason": "TC39 recommends using trimStart() and trimEnd() instead. The trimLeft() and trimRight() aliases are provided for compatibility with old code.",
+      "reason_html": "TC39 recommends using <code>trimStart()</code> and <code>trimEnd()</code> instead. The <code>trimLeft()</code> and <code>trimRight()</code> aliases are provided for compatibility with old code."
     }
   },
   "string-trim-startend": {

@@ -4,7 +4,7 @@
 -->
 # Baseline Coverage
 
-- web-features: [`v3.39.0`](https://github.com/web-platform-dx/web-features/releases/tag/v3.39.0)
+- web-features: [`v3.40.0`](https://github.com/web-platform-dx/web-features/releases/tag/v3.40.0)
 
 ## JavaScript Language (syntax)
 
@@ -71,7 +71,7 @@
 | a | ` <a> ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 19 | - |
 | abortable-fetch | ` Abortable fetch ` | widely | 2019 | ✅ | ` typed ` | 1 | - |
 | aborting | ` AbortController and AbortSignal ` | widely | 2019 | ✅ | ` safe `, ` typed ` | 10 | - |
-| abortsignal-any | ` AbortSignal.any() ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
+| abortsignal-any | ` AbortSignal.any() ` | widely | 2024 | ✅ | ` safe ` | 1 | - |
 | abortsignal-timeout | ` AbortSignal.timeout() ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
 | accelerometer | ` Accelerometer ` | limited | - | ✅ | ` safe `, ` typed ` | 10 | - |
 | accesskey | ` accesskey ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
@@ -84,7 +84,7 @@
 | app-file-handlers | ` File handlers ` | limited | - | ✅ | ` typed ` | 1 | - |
 | app-launch-handler | ` Launch handler ` | limited | - | ✅ | ` safe `, ` typed ` | 5 | - |
 | aria-attribute-reflection | ` ARIA attribute reflection ` | widely | 2023 | ✅ | ` typed ` | 103 | - |
-| arianotify | ` ariaNotify() ` | limited | - | ✅ | ` typed ` | 2 | - |
+| arianotify | ` ariaNotify() ` | newly | 2026 | ✅ | ` typed ` | 2 | - |
 | async-clipboard | ` Async clipboard ` | newly | 2024 | ✅ | ` safe `, ` typed ` | 15 | - |
 | async-iterable-streams | ` Asynchronously iterable streams ` | newly | 2026 | ✅ | ` typed ` | 2 | - |
 | attribution-reporting | ` Attribution reporting ` | limited | - | ✅ | ` typed ` | 5 | - |
@@ -149,7 +149,7 @@
 | constraint-validation | ` Constraint validation API ` | widely | 2018 | ✅ | ` safe `, ` typed ` | 56 | - |
 | constructed-stylesheets | ` Constructed stylesheets ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 5 | - |
 | contact-picker | ` Contact picker ` | limited | - | ✅ | ` safe `, ` typed ` | 16 | - |
-| container-queries | ` Container queries ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 3 | - |
+| container-queries | ` Container queries (size) ` | widely | 2023 | ✅ | ` safe `, ` typed ` | 3 | - |
 | container-timing | ` Container timing performance entries ` | limited | - | ✅ | ` safe `, ` typed ` | 9 | - |
 | content-index | ` Content Index ` | limited | - | ✅ | ` safe `, ` typed ` | 9 | - |
 | content-visibility | ` content-visibility ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 4 | - |
@@ -275,8 +275,8 @@
 | html | ` <html> ` | widely | 2015 | ✅ | ` safe ` | 1 | HTML element — use `html-eslint` |
 | html-media-capture | ` HTML media capture ` | limited | - | ✅ | ` typed ` | 1 | - |
 | html-processing-instructions | ` HTML processing instructions ` | limited | - | ✅ | ` typed ` | 8 | - |
-| html-setters | ` HTML setter methods ` | limited | - | ✅ | ` safe `, ` typed ` | 39 | - |
-| html-streaming-setters | ` HTML streaming setters ` | limited | - | ✅ | ` typed ` | 38 | - |
+| html-setters | ` HTML setter methods ` | limited | - | ✅ | ` safe `, ` typed ` | 37 | - |
+| html-streaming-setters | ` HTML streaming setters ` | limited | - | ✅ | ` typed ` | 39 | - |
 | idle-detection | ` Idle detection ` | limited | - | ✅ | ` safe `, ` typed ` | 7 | - |
 | iframe | ` <iframe> ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 8 | - |
 | iframe-credentialless | ` Credentialless iframes ` | limited | - | ✅ | ` safe `, ` typed ` | 2 | - |
@@ -618,10 +618,10 @@
 
 ## JavaScript Builtins (javascript.*)
 
-- total: `101`
+- total: `103`
 - excluded (out-of-scope): `9`
-- included (in-scope): `92`
-- mapped: `92`
+- included (in-scope): `94`
+- mapped: `94`
 - coverage: `100.0%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Patterns | Descriptors | Memo |
@@ -675,6 +675,7 @@
 | intl-segmenter | ` Intl.Segmenter ` | newly | 2024 | ✅ | ` safe ` | 1 | - |
 | is-error | ` Error.isError() ` | limited | - | ✅ | ` safe ` | 1 | - |
 | iterator-concat | ` Iterator.concat() ` | newly | 2026 | ✅ | ` safe ` | 1 | - |
+| iterator-join | ` Iterator join() ` | limited | - | ✅ | ` typed ` | 1 | - |
 | iterator-methods | ` Iterator methods ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 12 | - |
 | iterators | ` Iterators and the for...of loop ` | widely | 2015 | ❌ | - | - | Meta feature |
 | javascript | ` JavaScript (initial core language support) ` | widely | 2015 | ✅ | ` typed ` | 5 | - |
@@ -713,6 +714,7 @@
 | string-repeat | ` String repeat() ` | widely | 2015 | ✅ | ` typed ` | 1 | - |
 | string-replaceall | ` String replaceAll() ` | widely | 2020 | ✅ | ` typed ` | 1 | - |
 | string-startsends-with | ` String startsWith() and endsWith() ` | widely | 2015 | ✅ | ` typed ` | 2 | - |
+| string-trim-leftright | ` String trimLeft() and trimRight() ` | limited | - | ✅ | ` typed ` | 2 | - |
 | string-trim-startend | ` String trimStart() and trimEnd() ` | widely | 2020 | ✅ | ` typed ` | 2 | - |
 | string-wellformed | ` String isWellFormed() and toWellFormed() ` | widely | 2023 | ✅ | ` typed ` | 2 | - |
 | strings | ` String (initial support) ` | widely | 2015 | ✅ | ` safe `, ` typed ` | 18 | - |
