@@ -196,3 +196,6 @@ MIT
 [jsdocs-href]: https://www.jsdocs.io/package/eslint-plugin-baseline-js
 [license-src]: https://img.shields.io/github/license/3ru/eslint-plugin-baseline-js.svg?style=flat&colorA=080f12&colorB=1ea446
 [license-href]: https://github.com/3ru/eslint-plugin-baseline-js/blob/main/LICENSE
+  
+---
+<sub>Thanks to Anthropic for sponsoring</sub>
