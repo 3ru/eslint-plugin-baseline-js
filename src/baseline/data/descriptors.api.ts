@@ -13810,18 +13810,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "html-setters",
     "kind": "instanceMember",
     "iface": "Element",
-    "prop": "replaceHTML"
-  },
-  {
-    "featureId": "html-setters",
-    "kind": "instanceMember",
-    "iface": "Element",
-    "prop": "replaceHTMLUnsafe"
-  },
-  {
-    "featureId": "html-setters",
-    "kind": "instanceMember",
-    "iface": "Element",
     "prop": "replaceWithHTML"
   },
   {
@@ -13918,6 +13906,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "TrustedHTMLParserOptions",
     "prop": "sanitizer"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Blob",
+    "prop": "textStream"
   },
   {
     "featureId": "html-streaming-setters",
@@ -14055,18 +14049,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "html-streaming-setters",
     "kind": "instanceMember",
     "iface": "Element",
-    "prop": "streamReplaceHTML"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "kind": "instanceMember",
-    "iface": "Element",
-    "prop": "streamReplaceHTMLUnsafe"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "kind": "instanceMember",
-    "iface": "Element",
     "prop": "streamReplaceWithHTML"
   },
   {
@@ -14074,6 +14056,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "Element",
     "prop": "streamReplaceWithHTMLUnsafe"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Request",
+    "prop": "textStream"
+  },
+  {
+    "featureId": "html-streaming-setters",
+    "kind": "instanceMember",
+    "iface": "Response",
+    "prop": "textStream"
   },
   {
     "featureId": "html-streaming-setters",

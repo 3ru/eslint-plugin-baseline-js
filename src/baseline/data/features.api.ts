@@ -69,8 +69,9 @@ export default {
     "id": "abortsignal-any",
     "name": "AbortSignal.any()",
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-03-19",
+      "baseline_high_date": "2026-09-19",
       "support": {
         "chrome": "116",
         "chrome_android": "116",
@@ -289,8 +290,12 @@ export default {
     "id": "arianotify",
     "name": "ariaNotify()",
     "status": {
-      "baseline": false,
+      "baseline": "low",
+      "baseline_low_date": "2026-09-14",
       "support": {
+        "chrome": "141",
+        "chrome_android": "141",
+        "edge": "141",
         "firefox": "150",
         "firefox_android": "150",
         "safari": "27",
@@ -1442,7 +1447,7 @@ export default {
   },
   "container-queries": {
     "id": "container-queries",
-    "name": "Container queries",
+    "name": "Container queries (size)",
     "group": [
       "container-queries"
     ],
@@ -2899,8 +2904,6 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "128",
-        "chrome_android": "128",
         "edge": "128"
       }
     },
@@ -3236,7 +3239,10 @@ export default {
     "name": "Responsive iframes",
     "status": {
       "baseline": false,
-      "support": {}
+      "support": {
+        "chrome": "154",
+        "chrome_android": "154"
+      }
     }
   },
   "fullscreen": {

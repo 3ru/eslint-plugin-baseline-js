@@ -29,6 +29,10 @@ export const JS_BUILTIN_CLASSIFICATION_FALLBACKS = [
     descriptor: { kind: "callStatic", base: "RegExp", prop: "escape" },
   },
   {
+    compatKey: "javascript.builtins.Iterator.join",
+    descriptor: { kind: "instanceMember", iface: "Iterator", prop: "join" },
+  },
+  {
     compatKey: "javascript.builtins.Map.getOrInsert",
     descriptor: { kind: "instanceMember", iface: "Map", prop: "getOrInsert" },
   },

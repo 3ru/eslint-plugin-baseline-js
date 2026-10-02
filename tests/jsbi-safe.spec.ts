@@ -40,6 +40,15 @@ describe("use-baseline: JS builtins safe arg-based patterns", () => {
           code: "new SharedArrayBuffer(8, { maxByteLength: 16, growable: true });",
           options: [resizableBuffers],
         },
+        {
+          code: "Iterator.from([1, 2]).join(','); [1, 2].join(','); const custom = { join() {} }; custom.join();",
+          options: [
+            {
+              available: reportingPolicyFor("iterator-join"),
+              includeJsBuiltins: { preset: "safe", only: ["iterator-join"] },
+            },
+          ],
+        },
       ],
       invalid: [
         {

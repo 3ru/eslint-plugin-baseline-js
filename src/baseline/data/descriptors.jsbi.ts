@@ -1064,6 +1064,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "isError"
   },
   {
+    "featureId": "iterator-join",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "join"
+  },
+  {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
@@ -2364,6 +2370,18 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "String",
     "prop": "startsWith"
+  },
+  {
+    "featureId": "string-trim-leftright",
+    "kind": "instanceMember",
+    "iface": "String",
+    "prop": "trimLeft"
+  },
+  {
+    "featureId": "string-trim-leftright",
+    "kind": "instanceMember",
+    "iface": "String",
+    "prop": "trimRight"
   },
   {
     "featureId": "string-trim-startend",

@@ -15,7 +15,7 @@ async function ensureTsParser(): Promise<unknown | null> {
 }
 
 describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)", () => {
-  it("reports intl-locale-info and iterator-methods when typed is available", async () => {
+  it("reports Intl.Locale and Iterator members only on their typed receivers", async () => {
     const tsParser = await ensureTsParser();
     if (!tsParser) {
       expect(true).toBe(true);
@@ -51,6 +51,13 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
       declare function getIter(): Iterator<number>;
       const it = getIter();
       const it2 = it.map(x => x + 1);
+      it.join(',');
+      Iterator.from([1, 2]).join(',');
+      [1, 2].values().join(',');
+      // Other join methods must not be mistaken for Iterator.prototype.join.
+      [1, 2].join(',');
+      const custom = { join: (separator: string) => separator };
+      custom.join(',');
       // Uint8Array instance toHex → uint8array-base64-hex
       const u = new Uint8Array([1,2,3]);
       const hex = u.toHex();
@@ -70,8 +77,9 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
             getWeekInfo(): { firstDay: number };
           }
         }
-        interface Iterator<T, TReturn = any, TNext = unknown> {
+        interface Iterator<T, TReturn = any, TNext = any> {
           map<U>(fn: (v: T) => U): Iterator<U, TReturn, TNext>;
+          join(separator?: string): string;
         }
         interface Uint8Array {
           toHex(): string;
@@ -105,6 +113,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
                 available: reportingPolicyFor(
                   "intl-locale-info",
                   "iterator-methods",
+                  "iterator-join",
                   "uint8array-base64-hex",
                 ),
                 includeJsBuiltins: { preset: "type-aware" },
@@ -126,6 +135,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
         id,
       ).toBe(true);
     }
+    expect(msgs.filter((message) => message.includes("(iterator-join)"))).toHaveLength(3);
   }, 15000);
 
   it("reports resizable-buffers (SharedArrayBuffer options) only when typed is available", async () => {
