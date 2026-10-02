@@ -1,3 +1,10 @@
+## [0.7.3](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.2...v0.7.3) (2026-10-02)
+
+
+### Bug Fixes
+
+* **release:** update vulnerable dependencies ([#172](https://github.com/3ru/eslint-plugin-baseline-js/issues/172)) ([d59f455](https://github.com/3ru/eslint-plugin-baseline-js/commit/d59f455c7a60505a1dd6a31d457dc61244ecc4bb))
+
 ## [0.7.2](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.1...v0.7.2) (2026-09-21)
 
 ## [0.7.1](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.0...v0.7.1) (2026-08-13)
