@@ -1,6 +1,6 @@
 ---
 title: Examples
-description: Configs for JavaScript, TypeScript, and mixed projects.
+description: Complete Baseline setups for JavaScript, TypeScript, CSS, and HTML.
 ---
 
 Use these examples in `eslint.config.mjs` with ESLint 9 or 10.
@@ -161,15 +161,76 @@ export default [
 ];
 ```
 
-## HTML and CSS
+## Full (JS + CSS + HTML)
 
-Use separate plugins for markup and styles:
+Check JavaScript, CSS, and HTML with one ESLint config and one Baseline target.
+This example combines `eslint-plugin-baseline-js`, [`@eslint/css`](https://github.com/eslint/css), and [`@html-eslint/eslint-plugin`](https://html-eslint.org/docs/getting-started).
 
-- [ESLint CSS](https://github.com/eslint/css) provides `css/use-baseline`.
-- [HTML ESLint](https://html-eslint.org/docs/rules/use-baseline) provides an HTML Baseline rule.
+Install the plugins and browser globals:
 
-Keep each plugin's rules scoped to the files its parser or language supports.
-The JavaScript presets already include file patterns. Follow the linked documentation for the other plugins' current setup.
+```bash
+pnpm add -D eslint eslint-plugin-baseline-js @eslint/css @html-eslint/eslint-plugin globals
+```
+
+Save this as `eslint.config.mjs` in your project root:
+
+```js title="eslint.config.mjs"
+import css from "@eslint/css";
+import html from "@html-eslint/eslint-plugin";
+import baselineJs, { BASELINE } from "eslint-plugin-baseline-js";
+import globals from "globals";
+
+const available = BASELINE.WIDELY;
+
+export default [
+  // JavaScript, including JSX.
+  {
+    ...baselineJs.configs.recommended({ available }),
+    plugins: { "baseline-js": baselineJs },
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+  },
+
+  // CSS files.
+  {
+    files: ["**/*.css"],
+    plugins: { css },
+    language: "css/css",
+    rules: {
+      "css/use-baseline": ["error", { available }],
+    },
+  },
+
+  // HTML files.
+  {
+    files: ["**/*.html"],
+    plugins: { "@html-eslint": html },
+    language: "@html-eslint/html",
+    rules: {
+      "@html-eslint/use-baseline": ["error", { available }],
+    },
+  },
+];
+```
+
+Run all three checks:
+
+```bash
+pnpm exec eslint .
+```
+
+Change `available` once to use `BASELINE.NEWLY` or a year such as `2024` across all three plugins.
+Keep browser globals inside the JavaScript block so they do not apply to the CSS or HTML language.
+
+This example uses HTML ESLint's `language` setup. It does not need a separate `@html-eslint/parser` import.
+For TypeScript, add the parser block from [Mixed JavaScript and TypeScript](#mixed-javascript-and-typescript) and pass the same `available` value.
+
+Each plugin has its own data version and detection coverage. The HTML and CSS blocks check standalone files.
+See the [HTML rule](https://html-eslint.org/docs/rules/use-baseline) and [CSS rule](https://github.com/eslint/css/blob/main/docs/rules/use-baseline.md) for their options.
+
+The same config is available in [the examples directory](https://github.com/3ru/eslint-plugin-baseline-js/blob/main/examples/flat-full-baseline.eslint.config.mjs).
 
 ## Migrating from legacy config
 
