@@ -1,84 +1,139 @@
 ---
 title: FAQ
-description: Common questions about configuration and detection limits.
+description: Find the right setup and troubleshoot missing or unexpected reports.
 ---
 
-If a check behaves unexpectedly, open a
-[GitHub issue](https://github.com/3ru/eslint-plugin-baseline-js/issues) with your
-configuration and a small code sample.
+Start with the checks below. If you still need help, open a
+[GitHub issue](https://github.com/3ru/eslint-plugin-baseline-js/issues) with your configuration and a small code sample.
 
 ## Why is an API not reported?
 
-- Check that the rule applies to the file. `recommended` covers JavaScript;
-  `recommended-ts` covers `.ts` and `.tsx`.
-- The `baseline` preset leaves descriptor checks disabled. Use a recommended
-  preset to enable Web API and JS builtin descriptors.
-- Instance-member descriptors need TypeScript type information. Configure the
-  parser and its project as shown in [Quick Start](/docs).
-- The receiver's type must contain the member. Missing type declarations can
-  prevent a report.
-- A feature needs a mapped rule or descriptor. Check the
-  [coverage report](/docs/meta/coverage).
-- Some dynamic access and alias patterns are not detected.
-- The feature must exceed your configured Baseline policy.
+1. **Check the file scope.** `recommended` covers JavaScript; `recommended-ts` covers `.ts` and `.tsx`.
+2. **Enable the detector.** The `baseline` preset leaves Web API and JS builtin descriptor checks disabled.
+3. **Connect type information.** Instance-member descriptors need a configured TypeScript parser and declarations for the member.
+4. **Check the policy and coverage.** Reports need a matching detector and a feature that exceeds your Baseline threshold.
+
+<details>
+<summary>Switch from the minimal preset to recommended</summary>
+
+Replace the `baseline` entry with `recommended` to enable additional Web API and JS builtin checks for JavaScript:
+
+```js title="eslint.config.mjs"
+import baselineJs, { BASELINE } from "eslint-plugin-baseline-js";
+
+export default [
+  { plugins: { "baseline-js": baselineJs } },
+  baselineJs.configs.recommended({ available: BASELINE.WIDELY }), // [!code ++]
+];
+```
+
+For TypeScript, use `recommended-ts` and configure the parser as shown in [Quick Start](/docs#add-typescript).
+
+</details>
+
+<details>
+<summary>The settings look right, but the report is still missing</summary>
+
+Check the [coverage report](/docs/meta/coverage) for a matching rule or descriptor.
+Some dynamic access and alias patterns are not detected.
+
+For typed checks, confirm that the receiver's type contains the member.
+Missing declarations or `any` types can prevent a report.
+
+</details>
+
+## Does `type-aware` fail when types are missing?
+
+No. The plugin keeps other checks active and skips instance-member and `typedOnly` descriptors when parser type information is missing.
+
+<Callout title="Check the parser project" type="info">
+The parser can report an error if a file is outside its TypeScript project.
+Include the file in `tsconfig.json` or adjust the config's `files` scope.
+</Callout>
+
+## Can I use oxlint?
+
+Yes, through its JS plugin support. See [Use with oxlint](/docs/oxlint) for a complete config.
+
+Checks that need TypeScript parser services do not run there.
+Use ESLint with a configured TypeScript parser for checks such as `Set.prototype.difference()` and `Iterator.prototype.join()`.
+
+## How do I handle a false positive or an exception?
+
+Use `ignoreFeatures` for a specific web-features ID.
+Use `ignoreNodeTypes` when you need to suppress reports on an ESTree node type.
+
+<details>
+<summary>Add a feature exception</summary>
+
+Copy the feature ID from the report. Keep your existing options and add it to `ignoreFeatures`:
+
+```js title="Inside your rule options"
+{
+  available: "widely",
+  includeWebApis: { preset: "auto" },
+  includeJsBuiltins: { preset: "auto" },
+  ignoreFeatures: ["iterator-join"], // [!code ++]
+}
+```
+
+Record why your project allows the feature, such as a tested polyfill or fallback.
+The plugin does not verify that exception's runtime behavior.
+
+</details>
+
+<details>
+<summary>Match several features or report node types</summary>
+
+`ignoreFeatures` and `ignoreNodeTypes` accept exact strings or regex patterns:
+
+```js title="Inside your rule options"
+ignoreFeatures: ["nullish-coalescing", "/^iterator-/"],
+ignoreNodeTypes: ["WithStatement", "/Expression$/"],
+```
+
+Regex strings must start and end with `/`. Flags such as `/pattern/i` are not supported.
+The `only` and `ignore` lists inside include options accept exact feature IDs only.
+
+</details>
+
+## How do I combine presets or start with warnings?
+
+Recommended presets configure this plugin's rule and file patterns.
+Register the plugin under `'baseline-js'`, then add your parser and other rule configs as needed.
+Use flat config objects with `files` and `ignores` to scope changes.
+
+<details>
+<summary>Start with warnings during rollout</summary>
+
+Pass `level: "warn"` to keep the preset's detection options and lower its severity:
 
 ```js title="eslint.config.mjs"
 import baselineJs from "eslint-plugin-baseline-js";
 
 export default [
-  {
-    ...baselineJs.configs.recommended({ available: "widely" }),
-    plugins: { "baseline-js": baselineJs },
-  },
+  { plugins: { "baseline-js": baselineJs } },
+  baselineJs.configs.recommended({
+    available: "widely",
+    level: "warn", // [!code ++]
+  }),
 ];
 ```
 
-## Does `type-aware` fail when types are missing?
+Switch to `"error"` when the project is ready to enforce the policy.
 
-No. The plugin skips instance-member and `typedOnly` descriptor checks when it
-cannot find parser type information. Other supported checks still run.
-
-The parser itself can report an error if a file is outside its configured
-TypeScript project.
-
-## Can I use oxlint?
-
-Yes, through its JS plugin support. This plugin's checks that need TypeScript
-parser services do not run there. See [Use with oxlint](/docs/oxlint) for setup
-and limits.
+</details>
 
 ## Why does the status differ from today's Baseline data?
 
-The plugin bundles a fixed web-features snapshot. It does not download data or
-advance availability dates during linting. A newer release may include updated
-data and detectors.
+The plugin bundles a fixed web-features snapshot. A newer release may include updated data and detectors.
+Linting does not download data or advance availability dates.
 
-## Does the plugin account for polyfills or Node.js versions?
+## Does it account for polyfills or Node.js versions?
 
-No. It checks source code against browser Baseline data. It does not inspect
-installed polyfills, transpiler output, or runtime feature guards.
+The plugin checks source code against browser Baseline data.
+It does not inspect polyfills, transpiler output, or runtime feature guards.
+Setting ESLint globals does not change that policy.
 
-Setting ESLint globals does not change that policy. Use a narrow exception when
-you have verified support for your targets.
-
-## How do I suppress a report?
-
-- `ignoreFeatures` matches web-features IDs, such as `'iterator-join'`.
-- `ignoreNodeTypes` matches the reported node's ESTree type, such as `'WithStatement'`.
-- Both options accept exact strings or regex patterns such as `'/^iterator-/'`.
-- Regex strings must start and end with `/`. Flags such as `/pattern/i` are not supported.
-- The `only` and `ignore` lists inside include options accept exact feature IDs only.
-
-## How do I combine presets or change severity?
-
-Recommended presets configure this plugin's rule and file patterns. Register the
-plugin under `'baseline-js'` and add your parser separately.
-
-Use flat config objects with `files` and `ignores` to scope changes. Pass `level`
-to change a preset's severity without replacing its detection options:
-
-```js
-baselineJs.configs.recommended({ available: "widely", level: "warn" });
-```
-
-See [Configuration](/docs/config) for the full options.
+Use a narrow exception after you verify support for your targets.
+See [Configuration](/docs/config) for all options.

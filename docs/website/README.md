@@ -17,6 +17,7 @@ Open http://localhost:3000 to preview the docs.
 Build and start a production preview from `docs/website`:
 
 ```bash
+pnpm typecheck
 pnpm build
 pnpm start
 ```
@@ -38,12 +39,17 @@ Production metadata uses `https://baselinejs.vercel.app` by default. Set `NEXT_P
   - `layout.shared.tsx` — Shared layout options (TOC, sidebar)
   - `ui.ts` — Sidebar/TOC settings
 - `mdx-components.tsx` — MDX component registry (Tabs, Steps, Files, TypeTable, etc.)
-- `source.config.ts` — Fumadocs MDX config (frontmatter schema, lastModifiedTime)
+- `source.config.ts` — Fumadocs MDX config, code annotations, and the last-modified plugin
 
 ## Authoring content
 
 - Add or edit docs under `content/docs/**`. Navigation order is controlled by `content/docs/meta.json`.
-- Use standard MDX plus Fumadocs components (Tabs, Steps, Files, TypeTable, Callout).
+- Use standard MDX plus Fumadocs components (Tabs, Steps, Files, TypeTable, Callout, Cards, Accordions).
+- Use code-fence metadata such as `title="eslint.config.js"`, `tab="JavaScript"`, and `lineNumbers`. Use `noCopy` for diagnostic previews that should not be pasted into a project.
+- Add `// [!code ++]`, `// [!code --]`, `// [!code highlight]`, `// [!code focus]`, or `// [!code error]` to mark important code. Use `// [!code word:available]` to highlight a word.
+- Add `tab-group="package-manager"` to the first code fence in each package-manager tab group to keep the reader's choice across pages. For explicit `<Tabs>`, use `groupId="package-manager" persist`.
+
+The source loader imports the generated `collections/server` entry. The raw Markdown route uses `page.data.getText("raw")` to keep Copy Markdown working with the current Fumadocs MDX API.
 
 ## Coverage page
 

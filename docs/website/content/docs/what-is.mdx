@@ -1,53 +1,90 @@
 ---
 title: What is eslint-plugin-baseline-js
-description: Check JavaScript syntax, builtins, and Web APIs against a Baseline policy.
+description: Check JavaScript syntax, builtins, and Web APIs with one Baseline rule.
 ---
 
 ## Overview
 
-`eslint-plugin-baseline-js` reports supported JavaScript features that exceed your
-Baseline policy. It uses one rule: `baseline-js/use-baseline`.
+`eslint-plugin-baseline-js` brings Baseline browser support data into your editor and lint checks.
+It reports detected features that exceed your chosen policy.
 
-- Set `available` to `'widely'`, `'newly'`, or a year.
-- Use a recommended preset to enable Web API and JS builtin detection.
-- Add TypeScript type information for supported instance-member checks.
+- **One threshold:** choose `'widely'`, `'newly'`, or a year.
+- **One rule:** `baseline-js/use-baseline` gives reports a consistent format.
+- **Three surfaces:** check JavaScript syntax, JS builtins, and Web APIs.
+- **One project policy:** use the same threshold with [CSS and HTML plugins](/docs/best-practices).
 
-The plugin checks JavaScript. Separate plugins can apply the same threshold to
-[CSS and HTML](/docs/best-practices).
+<Callout title="Start with your project" type="info">
+Use `recommended` for JavaScript or `recommended-ts` with a configured TypeScript parser.
+[Quick Start](/docs) walks through both setups.
+</Callout>
 
-## Baseline data
+## Detection that uses TypeScript types
 
-The plugin bundles generated data from
-[web-features](https://github.com/web-platform-dx/web-features).
-Each release uses a fixed data snapshot. Linting does not fetch live browser data
-or change feature status as time passes.
+Type information helps the plugin distinguish a platform method from a custom method with the same name.
+For example, use the TypeScript preset with `available: 'widely'`:
 
-Detection also needs a matching rule or descriptor. A feature can exist in
-web-features without a detector in this plugin. See the
-[coverage report](/docs/meta/coverage) for mapped features and detection limits.
+```ts twoslash title="example.ts"
+// @lib: esnext,dom
+// ---cut---
+const values = new Set([1, 2]);
+//    ^?
+values.difference(new Set([2])); // [!code error]
 
-## TypeScript detection
+const custom = { difference: () => [] };
+//    ^?
+custom.difference(); // A custom method, so no set-methods report.
+```
 
-With `@typescript-eslint/parser` and type information, supported checks inspect
-the receiver's declared or inferred type. This helps distinguish platform methods
-from methods with the same name.
+Hover over `values` and `custom` to compare their types. The platform call reports:
 
-Examples include:
+```text noCopy
+Feature 'Set methods' (set-methods) is not a widely available Baseline feature.
+```
 
-- Array methods such as `toReversed()` and `toSorted()` (`array-by-copy`).
-- `Intl.Locale` methods such as `getCalendars()` (`intl-locale-info`).
-- Iterator helpers such as `map()` (`iterator-methods`) and `join()` (`iterator-join`).
-- `Uint8Array` methods such as `toHex()` (`uint8array-base64-hex`).
+Other supported checks include:
 
-These checks depend on the types and members available in your TypeScript
-project. Some unions, aliases, and inherited types work. This does not guarantee
-that every type or access pattern is detected.
+| Feature | Example |
+| --- | --- |
+| Array by copy (`array-by-copy`) | `values.toReversed()` and `values.toSorted()` |
+| Intl.Locale info (`intl-locale-info`) | `locale.getCalendars()` |
+| Iterator helpers (`iterator-methods`) | `iterator.map(fn)` |
+| Iterator join (`iterator-join`) | `iterator.join(", ")` |
+| Uint8Array base64/hex (`uint8array-base64-hex`) | `bytes.toHex()` |
 
-The `type-aware` preset skips checks that need types when type information is
-missing. See [Quick Start](/docs) for parser setup.
+The parser supplies the receiver's declared or inferred type.
+Supported checks can also follow some aliases, unions, and inherited types.
 
-## Limits
+<details>
+<summary>What type information needs to include</summary>
 
-The plugin checks source code against bundled browser data. It does not validate
-your polyfills, build output, Node.js support, or runtime behavior. A clean lint
-result does not guarantee browser compatibility.
+Your TypeScript project must include the files and library declarations for the APIs you use.
+The receiver's type must contain the member. Missing declarations or `any` types can hide a report.
+
+These checks do not cover every type or access pattern.
+When parser type information is missing, the plugin skips checks that need it and keeps other checks active.
+See [Quick Start](/docs#add-typescript) for parser setup.
+
+</details>
+
+## Data from web-features
+
+[web-features](https://github.com/web-platform-dx/web-features), maintained by WebDX, supplies the Baseline statuses behind the reports.
+Each plugin release bundles a generated data snapshot.
+
+<Callout title="Check the data and the detector" type="info">
+A feature needs both Baseline data and a matching rule or descriptor.
+Use [Coverage](/docs/meta/coverage) to see what is mapped before investigating a missing report.
+</Callout>
+
+<details>
+<summary>Why results can differ from current browser support</summary>
+
+Linting uses the installed snapshot. It does not fetch live browser data or advance feature status as time passes.
+A newer plugin release may include updated data and detectors.
+
+The plugin checks source code. It does not validate polyfills, build output, Node.js support, or runtime behavior.
+Use it alongside tests in your target browsers.
+
+</details>
+
+<Card title="Scope & Terms" href="/docs/concepts" description="Choose the checks that fit your JavaScript, builtins, and Web APIs" />

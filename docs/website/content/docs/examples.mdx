@@ -6,9 +6,15 @@ description: Complete Baseline setups for JavaScript, TypeScript, CSS, and HTML.
 Use these examples in `eslint.config.mjs` with ESLint 9 or 10.
 See [Config](/docs/config) for all rule options and preset scopes.
 
+<Callout type="info" title="Start with your project">
+Use the JavaScript example for `.js` files. Choose TypeScript when you need checks on typed instance methods.
+For styles and markup too, use [Full (JS + CSS + HTML)](#full-js--css--html).
+</Callout>
+
 ## JavaScript
 
-### Mapped features
+<Tabs items={["Recommended", "Mapped features"]}>
+<Tab value="Mapped features">
 
 This setup checks the plugin's mapped features. Additional Web API and built-in detection stays off.
 
@@ -20,13 +26,14 @@ export default [
     files: ['**/*.{js,mjs,cjs}'],
     plugins: { 'baseline-js': baselineJs },
     rules: {
-      'baseline-js/use-baseline': ['error', { available: 'widely' }],
+      'baseline-js/use-baseline': ['error', { available: 'widely' }], // [!code focus]
     },
   },
 ];
 ```
 
-### Additional Web API and built-in checks
+</Tab>
+<Tab value="Recommended">
 
 The recommended preset enables both detectors with `preset: 'auto'`.
 It applies to `js`, `cjs`, `mjs`, and `jsx` files. It uses types only when your parser provides them.
@@ -36,25 +43,42 @@ import baselineJs from 'eslint-plugin-baseline-js';
 
 export default [
   { plugins: { 'baseline-js': baselineJs } },
-  baselineJs.configs.recommended({ available: 'widely', level: 'warn' }),
+  baselineJs.configs.recommended({ available: 'widely', level: 'warn' }), // [!code ++]
 ];
 ```
 
-For JSX, add `languageOptions.parserOptions.ecmaFeatures.jsx: true` or use a parser that supports JSX.
+</Tab>
+</Tabs>
+
+<Callout type="info" title="Using JSX?">
+Add `languageOptions.parserOptions.ecmaFeatures.jsx: true` or use a parser that supports JSX.
 This checks JavaScript usage in JSX files. It does not check HTML attributes or React-specific browser support.
+</Callout>
 
 ## TypeScript
 
 Install the parser and TypeScript alongside the plugin:
 
-```bash
+```bash tab="pnpm" tab-group="package-manager"
+pnpm add -D eslint eslint-plugin-baseline-js typescript @typescript-eslint/parser
+```
+
+```bash tab="npm"
 npm install --save-dev eslint eslint-plugin-baseline-js typescript @typescript-eslint/parser
+```
+
+```bash tab="yarn"
+yarn add -D eslint eslint-plugin-baseline-js typescript @typescript-eslint/parser
+```
+
+```bash tab="bun"
+bun add -D eslint eslint-plugin-baseline-js typescript @typescript-eslint/parser
 ```
 
 The TypeScript preset targets `ts` and `tsx` files. Configure the parser in the same config object.
 
 ```js title="eslint.config.mjs"
-import tsParser from '@typescript-eslint/parser';
+import tsParser from '@typescript-eslint/parser'; // [!code ++]
 import baselineJs from 'eslint-plugin-baseline-js';
 
 export default [
@@ -62,15 +86,18 @@ export default [
   {
     ...baselineJs.configs['recommended-ts']({ available: 'widely' }),
     languageOptions: {
-      parser: tsParser,
+      parser: tsParser, // [!code ++]
       parserOptions: {
-        project: './tsconfig.json',
+        project: './tsconfig.json', // [!code ++]
         tsconfigRootDir: import.meta.dirname,
       },
     },
   },
 ];
 ```
+
+<details>
+<summary>Set up a tsconfig.json for these checks</summary>
 
 Your `tsconfig.json` must include the files you lint.
 Its library declarations must include the APIs you use so TypeScript can resolve their types.
@@ -82,33 +109,55 @@ For example, a browser project using Iterator helpers can include `DOM` and `ESN
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "ESNext"],
+    "jsx": "preserve",
     "strict": true,
     "noEmit": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
 ```
 
 TypeScript declarations do not add browser support or polyfills.
 Without type information, the plugin skips instance-member checks such as `Set.prototype.difference()` and `Iterator.prototype.join()`.
 
+</details>
+
+Try an instance method that needs type information:
+
+```ts title="src/example.ts"
+const left = new Set([1, 2]);
+left.difference(new Set([2])); // [!code error]
+```
+
+With `available: 'widely'`, the bundled data produces this report:
+
+```text title="ESLint report" noCopy
+Feature 'Set methods' (set-methods) is not a widely available Baseline feature.
+```
+
+<Callout type="warn" title="No report on an instance method?">
+Check the parser project and the receiver's type. A missing declaration or a value typed as `any` can hide a check.
+See the [FAQ](/docs/meta/faq#why-is-an-api-not-reported) for the full checklist.
+</Callout>
+
 ## Mixed JavaScript and TypeScript
 
 Use both presets. Each applies to its own file extensions.
+The added JavaScript preset covers `.js`, `.cjs`, `.mjs`, and `.jsx` alongside your TypeScript block.
 
 ```js title="eslint.config.mjs"
-import tsParser from '@typescript-eslint/parser';
+import tsParser from '@typescript-eslint/parser'; // [!code ++]
 import baselineJs from 'eslint-plugin-baseline-js';
 
 export default [
   { plugins: { 'baseline-js': baselineJs } },
-  baselineJs.configs.recommended({ available: 'widely' }),
+  baselineJs.configs.recommended({ available: 'widely' }), // [!code ++]
   {
     ...baselineJs.configs['recommended-ts']({ available: 'widely' }),
     languageOptions: {
-      parser: tsParser,
+      parser: tsParser, // [!code ++]
       parserOptions: {
-        project: './tsconfig.json',
+        project: './tsconfig.json', // [!code ++]
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -131,12 +180,12 @@ export default [
     plugins: { 'baseline-js': baselineJs },
     rules: {
       'baseline-js/use-baseline': ['error', {
-        available: 2020,
-        ignoreFeatures: ['nullish-coalescing', '/^optional-/'],
+        available: 2020, // [!code focus]
+        ignoreFeatures: ['nullish-coalescing', '/^optional-/'], // [!code focus]
         includeWebApis: { preset: 'safe' },
         includeJsBuiltins: {
           preset: 'safe',
-          only: ['array-group'],
+          only: ['array-group'], // [!code focus]
         },
       }],
     },
@@ -146,7 +195,10 @@ export default [
 
 ## Disable checks for test files
 
+<Callout type="info" title="Order matters">
 Place the override after the preset so it takes precedence.
+The highlighted lines disable only this rule for matching test files.
+</Callout>
 
 ```js title="eslint.config.mjs"
 import baselineJs from 'eslint-plugin-baseline-js';
@@ -155,8 +207,8 @@ export default [
   { plugins: { 'baseline-js': baselineJs } },
   baselineJs.configs.recommended(),
   {
-    files: ['**/*.test.{js,mjs,cjs}'],
-    rules: { 'baseline-js/use-baseline': 'off' },
+    files: ['**/*.test.{js,mjs,cjs}'], // [!code ++]
+    rules: { 'baseline-js/use-baseline': 'off' }, // [!code ++]
   },
 ];
 ```
@@ -168,8 +220,20 @@ This example combines `eslint-plugin-baseline-js`, [`@eslint/css`](https://githu
 
 Install the plugins and browser globals:
 
-```bash
+```bash tab="pnpm" tab-group="package-manager"
 pnpm add -D eslint eslint-plugin-baseline-js @eslint/css @html-eslint/eslint-plugin globals
+```
+
+```bash tab="npm"
+npm install --save-dev eslint eslint-plugin-baseline-js @eslint/css @html-eslint/eslint-plugin globals
+```
+
+```bash tab="yarn"
+yarn add -D eslint eslint-plugin-baseline-js @eslint/css @html-eslint/eslint-plugin globals
+```
+
+```bash tab="bun"
+bun add -D eslint eslint-plugin-baseline-js @eslint/css @html-eslint/eslint-plugin globals
 ```
 
 Save this as `eslint.config.mjs` in your project root:
@@ -180,7 +244,7 @@ import html from "@html-eslint/eslint-plugin";
 import baselineJs, { BASELINE } from "eslint-plugin-baseline-js";
 import globals from "globals";
 
-const available = BASELINE.WIDELY;
+const available = BASELINE.WIDELY; // [!code focus]
 
 export default [
   // JavaScript, including JSX.
@@ -188,7 +252,7 @@ export default [
     ...baselineJs.configs.recommended({ available }),
     plugins: { "baseline-js": baselineJs },
     languageOptions: {
-      globals: globals.browser,
+      globals: globals.browser, // [!code focus]
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
@@ -197,7 +261,7 @@ export default [
   {
     files: ["**/*.css"],
     plugins: { css },
-    language: "css/css",
+    language: "css/css", // [!code focus]
     rules: {
       "css/use-baseline": ["error", { available }],
     },
@@ -207,7 +271,7 @@ export default [
   {
     files: ["**/*.html"],
     plugins: { "@html-eslint": html },
-    language: "@html-eslint/html",
+    language: "@html-eslint/html", // [!code focus]
     rules: {
       "@html-eslint/use-baseline": ["error", { available }],
     },
@@ -217,12 +281,26 @@ export default [
 
 Run all three checks:
 
-```bash
+```bash tab="pnpm" tab-group="package-manager"
 pnpm exec eslint .
 ```
 
+```bash tab="npm"
+npx eslint .
+```
+
+```bash tab="yarn"
+yarn eslint .
+```
+
+```bash tab="bun"
+bunx eslint .
+```
+
+<Callout type="info" title="One target, three file types">
 Change `available` once to use `BASELINE.NEWLY` or a year such as `2024` across all three plugins.
 Keep browser globals inside the JavaScript block so they do not apply to the CSS or HTML language.
+</Callout>
 
 This example uses HTML ESLint's `language` setup. It does not need a separate `@html-eslint/parser` import.
 For TypeScript, add the parser block from [Mixed JavaScript and TypeScript](#mixed-javascript-and-typescript) and pass the same `available` value.
@@ -231,6 +309,54 @@ Each plugin has its own data version and detection coverage. The HTML and CSS bl
 See the [HTML rule](https://html-eslint.org/docs/rules/use-baseline) and [CSS rule](https://github.com/eslint/css/blob/main/docs/rules/use-baseline.md) for their options.
 
 The same config is available in [the examples directory](https://github.com/3ru/eslint-plugin-baseline-js/blob/main/examples/flat-full-baseline.eslint.config.mjs).
+
+### Try each language
+
+Save a sample file and run ESLint. Each tab shows a reported feature alongside widely available usage.
+
+<Tabs items={["JavaScript", "CSS", "HTML"]}>
+<Tab value="JavaScript">
+
+```js title="example.js"
+const year = new Date().getYear(); // [!code error]
+const fullYear = new Date().getFullYear();
+```
+
+```text title="ESLint report" noCopy
+Feature 'getYear() and setYear()' (date-get-year-set-year) is not a widely available Baseline feature.
+```
+
+</Tab>
+<Tab value="CSS">
+
+```css title="example.css"
+a {
+  interpolate-size: allow-keywords; /* [!code error] */
+  color: red;
+}
+```
+
+```text title="ESLint report" noCopy
+Property 'interpolate-size' is not a widely available baseline feature.
+```
+
+</Tab>
+<Tab value="HTML">
+
+```html title="example.html"
+<dialog closedby="any"></dialog> <!-- [!code error] -->
+<button type="button">Open</button>
+```
+
+```text title="ESLint report" noCopy
+Attribute 'closedby' on '<dialog>' is not a widely available baseline feature.
+```
+
+</Tab>
+</Tabs>
+
+These reports can change when a plugin updates its feature data.
+
 
 ## Migrating from legacy config
 

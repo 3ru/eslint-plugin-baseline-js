@@ -1,38 +1,26 @@
 import { transformerNotationErrorLevel } from "@shikijs/transformers";
-import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
-import { defineConfig, defineDocs, frontmatterSchema, metaSchema } from "fumadocs-mdx/config";
+import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins/rehype-code";
+import { defineConfig, defineDocs } from "fumadocs-mdx/config";
+import lastModified from "fumadocs-mdx/plugins/last-modified";
 import { transformerTwoslash } from "fumadocs-twoslash";
 import { createFileSystemTypesCache } from "fumadocs-twoslash/cache-fs";
 
-// You can customise Zod schemas for frontmatter and `meta.json` here
-// see https://fumadocs.dev/docs/mdx/collections#define-docs
-export const docs = defineDocs({
-  docs: {
-    schema: frontmatterSchema,
-  },
-  meta: {
-    schema: metaSchema,
-  },
-});
+export const docs = defineDocs({ dir: "content/docs" });
 
 export default defineConfig({
-  // Track last modified time for pages
-  lastModifiedTime: "git",
+  plugins: [lastModified()],
   mdxOptions: {
     rehypeCodeOptions: {
-      // Inherit sane defaults (includes required `themes` field)
       ...rehypeCodeDefaultOptions,
-      // ensure required languages are loaded for Shiki
       langs: ["ts", "js", "html", "tsx", "mdx"],
       inline: "tailing-curly-colon",
-      // extend transformers
       transformers: [
+        // Keep native line, word, diff, and focus annotations.
         ...(rehypeCodeDefaultOptions.transformers ?? []),
+        transformerNotationErrorLevel({ matchAlgorithm: "v3" }),
         transformerTwoslash({
           typesCache: createFileSystemTypesCache(),
         }),
-        // Enable [!code error]/[!code warning]/[!code log] annotations in code blocks
-        transformerNotationErrorLevel(),
       ],
     },
   },

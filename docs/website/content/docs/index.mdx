@@ -1,17 +1,26 @@
 ---
 title: Quick Start
-description: Check JavaScript features against your chosen Baseline target.
+description: Add Baseline checks and see your first warning in three steps.
 ---
 
-`eslint-plugin-baseline-js` reports supported JavaScript syntax, built-ins, and Web APIs that exceed your chosen Baseline target.
-Choose `widely`, `newly`, or a year. The plugin uses the feature data bundled with each release.
+Catch JavaScript features that exceed your browser support policy while you write code.
+`eslint-plugin-baseline-js` checks supported syntax, built-ins, and Web APIs with one rule.
 
-## Install
+<Callout title="Start with widely available features" type="info">
+The examples use `widely` for broad browser support. You can also choose `newly` or a year, such as `2024`.
+See [Scope & Terms](/docs/concepts) for what each kind of check covers.
+</Callout>
 
-The plugin supports ESLint `>=9.29.0 <11` and requires Node.js `^20.19.0 || >=22.12.0`.
-Your ESLint version can have stricter [Node.js requirements](https://eslint.org/docs/latest/use/getting-started#prerequisites).
+## Quick Start
 
-```bash tab="pnpm"
+<Steps>
+<Step>
+
+### Install
+
+Add ESLint and the plugin to your project:
+
+```bash tab="pnpm" tab-group="package-manager"
 pnpm add -D eslint eslint-plugin-baseline-js
 ```
 
@@ -27,98 +36,218 @@ yarn add -D eslint eslint-plugin-baseline-js
 bun add -D eslint eslint-plugin-baseline-js
 ```
 
-## Configure JavaScript
+<details>
+<summary>Supported ESLint and Node.js versions</summary>
 
-Create `eslint.config.mjs` in your project root:
+The plugin supports ESLint `>=9.29.0 <11` and requires Node.js `^20.19.0 || >=22.12.0`.
+Your ESLint version can have stricter [Node.js requirements](https://eslint.org/docs/latest/use/getting-started#prerequisites).
 
-```js title="eslint.config.mjs"
-import baselineJs from 'eslint-plugin-baseline-js';
+</details>
+
+</Step>
+<Step>
+
+### Configure JavaScript
+
+Create `eslint.config.mjs` in your project root, or add the green lines to your existing flat config.
+Register the plugin, then enable its recommended preset.
+
+```js title="eslint.config.mjs" tab="Strings" lineNumbers
+import baselineJs from 'eslint-plugin-baseline-js'; // [!code ++]
 
 export default [
-  { plugins: { 'baseline-js': baselineJs } },
-  baselineJs.configs.recommended({ available: 'widely', level: 'warn' }),
+  { plugins: { 'baseline-js': baselineJs } }, // [!code ++]
+  baselineJs.configs.recommended({ available: 'widely', level: 'warn' }), // [!code ++]
 ];
 ```
 
-The `recommended` preset applies to `.js`, `.cjs`, `.mjs`, and `.jsx` files.
-It enables extra Web API and built-in checks with `preset: 'auto'`.
-Without type information, these checks cover supported global and static uses. Instance member checks need type information.
-JSX also needs parser settings; see [Examples](/docs/examples).
+```js title="eslint.config.mjs" tab="Constants" lineNumbers
+import baselineJs, { BASELINE } from 'eslint-plugin-baseline-js'; // [!code ++]
 
-Add a file to check:
+export default [
+  { plugins: { 'baseline-js': baselineJs } }, // [!code ++]
+  baselineJs.configs.recommended({ available: BASELINE.WIDELY, level: 'warn' }), // [!code ++]
+];
+```
+
+Both versions work the same way. The constants help avoid typos when you reuse a target across configs.
+The recommended preset covers JavaScript files and enables Web API and built-in checks with `preset: 'auto'`.
+
+<Callout title="Using TypeScript?" type="info">
+Keep this JavaScript block and [add the TypeScript setup below](#add-typescript).
+For a complete app setup, see [JS + CSS + HTML](/docs/examples#full-js--css--html).
+</Callout>
+
+</Step>
+<Step>
+
+### Run the check
+
+Create a small file to try it:
 
 ```js title="example.js"
 const date = new Date();
-const year = date.getYear();
+const year = date.getYear(); // [!code highlight]
 ```
 
-Run ESLint:
+Then run ESLint:
 
-```bash
+```bash tab="pnpm" tab-group="package-manager"
 pnpm exec eslint example.js
 ```
 
-The rule reports:
+```bash tab="npm"
+npx eslint example.js
+```
+
+```bash tab="yarn"
+yarn eslint example.js
+```
+
+```bash tab="bun"
+bunx eslint example.js
+```
+
+</Step>
+</Steps>
+
+### You’re all set
+
+You should see a warning on `getYear()`. The preview shows the code and a shortened message together.
+Switch to **Use instead** to see the change:
+
+<Tabs items={['Reported', 'Use instead']}>
+<Tab value="Reported">
+
+```js title="Diagnostic preview" noCopy
+const date = new Date();
+const year = date.getYear();
+             ^^^^^^^^^^^^^^^
+Feature 'getYear()' is not a widely available Baseline feature. // [!code error]
+```
+
+</Tab>
+<Tab value="Use instead">
+
+```js title="example.js"
+const date = new Date();
+const year = date.getFullYear(); // [!code ++]
+```
+
+`getFullYear()` returns the full year, such as `2026`, and passes this check.
+
+</Tab>
+</Tabs>
+
+<details>
+<summary>Full ESLint message</summary>
 
 ```text
 Feature 'getYear() and setYear()' (date-get-year-set-year) is not a widely available Baseline feature.
 ```
 
+</details>
+
+<Callout title="Your Baseline check is active" type="success">
+Start with `level: 'warn'` to review existing code. Change it to `'error'` when you want violations to fail your lint command.
+</Callout>
+
 ## Add TypeScript
 
+Type information lets the rule recognize supported instance members, such as `Set.prototype.difference()`.
 Install the parser and TypeScript:
 
-```bash
+```bash tab="pnpm" tab-group="package-manager"
 pnpm add -D @typescript-eslint/parser typescript
 ```
 
-Use both presets if your project contains JavaScript and TypeScript.
-The `recommended-ts` preset only matches `.ts` and `.tsx` files.
+```bash tab="npm"
+npm install -D @typescript-eslint/parser typescript
+```
 
-```js title="eslint.config.mjs"
-import tsParser from '@typescript-eslint/parser';
+```bash tab="yarn"
+yarn add -D @typescript-eslint/parser typescript
+```
+
+```bash tab="bun"
+bun add -D @typescript-eslint/parser typescript
+```
+
+Add the TypeScript block alongside the JavaScript preset. The green lines mark the parser and type-aware settings:
+
+```js title="eslint.config.mjs" lineNumbers
+import tsParser from '@typescript-eslint/parser'; // [!code ++]
 import baselineJs from 'eslint-plugin-baseline-js';
 
 export default [
   { plugins: { 'baseline-js': baselineJs } },
   baselineJs.configs.recommended({ available: 'widely', level: 'warn' }),
   {
-    ...baselineJs.configs['recommended-ts']({ available: 'widely', level: 'warn' }),
+    ...baselineJs.configs['recommended-ts']({ available: 'widely', level: 'warn' }), // [!code ++]
     languageOptions: {
-      parser: tsParser,
+      parser: tsParser, // [!code ++]
       parserOptions: {
-        project: './tsconfig.json',
-        tsconfigRootDir: import.meta.dirname,
+        project: './tsconfig.json', // [!code ++]
+        tsconfigRootDir: import.meta.dirname, // [!code ++]
       },
     },
   },
 ];
 ```
 
+<Callout title="Point the parser at your project" type="info">
 Your `tsconfig.json` must include the files you lint and the library declarations for the APIs you use.
-Type information lets the rule identify supported instance members, such as `Set.prototype.difference`.
-If parser services are missing, the rule skips checks that need types. The preset does not configure a parser or throw an error itself.
+See the [complete TypeScript example](/docs/examples#typescript) for a starter config.
+</Callout>
+
+<details>
+<summary>File scopes and checks that need types</summary>
+
+`recommended` matches `.js`, `.cjs`, `.mjs`, and `.jsx`. JSX also needs [parser settings](/docs/examples#javascript).
+`recommended-ts` matches `.ts` and `.tsx`, so use both presets for a mixed project.
+
+Without parser type information, the rule skips instance-member and other type-dependent checks.
+The preset does not configure a parser or throw an error itself. See [Configuration](/docs/config) for the detection options.
+
+</details>
 
 ## Use mapped rules without extra API checks
 
-Use `baseline` when you only want the mapped rules. These cover syntax and some built-ins.
-Unlike the recommended presets, this helper returns an array, so spread it into your config:
+Use `baseline` if you want the mapped checks for syntax and some built-ins without enabling the extra API detectors.
+Spread the helper's array into your config:
 
 ```js title="eslint.config.mjs"
 import baselineJs from 'eslint-plugin-baseline-js';
 
 export default [
-  { plugins: { 'baseline-js': baselineJs } },
-  ...baselineJs.configs.baseline({ available: 'widely', level: 'warn' }),
+  { plugins: { 'baseline-js': baselineJs } }, // [!code ++]
+  ...baselineJs.configs.baseline({ available: 'widely', level: 'warn' }), // [!code ++]
 ];
 ```
 
-This helper does not enable the extra Web API or built-in detectors.
-It also does not configure TypeScript or JSX parsing.
+<Callout title="Remember the spread" type="info">
+`baseline()` returns an array. `recommended()` and `recommended-ts()` return single config objects.
+All three still need the right parser settings for your files.
+</Callout>
 
 ## Next steps
 
-- Read [Scope & Terms](/docs/concepts) for detection limits.
-- See [Configuration](/docs/config) for targets, presets, and filters.
-- Use [Oxlint](/docs/oxlint) if you run the plugin through JavaScript plugins.
-- Check [Coverage](/docs/meta/coverage) for mapped features.
+<Cards>
+  <Card title="Check your whole app" href="/docs/best-practices">
+    Use one Baseline target for JavaScript, TypeScript, CSS, and HTML.
+  </Card>
+  <Card title="Choose your settings" href="/docs/config">
+    Compare presets and learn how to handle specific exceptions.
+  </Card>
+  <Card title="Use Oxlint" href="/docs/oxlint">
+    Add the rule through Oxlint's JavaScript plugin support.
+  </Card>
+  <Card title="Explore coverage" href="/docs/meta/coverage">
+    See the mapped features and supported detection patterns.
+  </Card>
+</Cards>
+
+## Further reading
+
+- [What is Baseline?](https://web-platform-dx.github.io/web-features/) from the W3C WebDX Community Group.
+- [Bringing Baseline into Product Development — and Keeping It Safe in Practice](https://dev.to/ryuya/bringing-baseline-into-product-development-and-keeping-it-safe-in-practice-3pb8): a case study from this project's author.

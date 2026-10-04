@@ -10,8 +10,7 @@ const config = {
   turbopack: {
     root: process.cwd(),
   },
-  // Twoslash requires these packages to be externalized for Next.js
-  serverExternalPackages: ["typescript", "twoslash"],
+  serverExternalPackages: ["typescript"],
 };
 
 export default withMDX(config);

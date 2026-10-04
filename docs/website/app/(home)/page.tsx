@@ -1,6 +1,7 @@
 import { buttonVariants } from "fumadocs-ui/components/ui/button";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { GithubIcon } from "@/components/github-icon";
 
 export default function HomePage() {
   return (
@@ -36,7 +37,7 @@ export default function HomePage() {
               className: "gap-2 px-5 py-2.5 md:px-6",
             })}
           >
-            <Github className="h-4 w-4" /> GitHub
+            <GithubIcon className="h-4 w-4" /> GitHub
           </a>
         </div>
       </section>
