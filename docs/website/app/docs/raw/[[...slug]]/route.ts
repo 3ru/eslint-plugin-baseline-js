@@ -6,7 +6,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
   const page = source.getPage(slug);
   if (!page) notFound();
 
-  return new Response(page.data.content ?? "", {
+  return new Response(await page.data.getText("raw"), {
     headers: { "Content-Type": "text/plain; charset=utf-8" },
   });
 }

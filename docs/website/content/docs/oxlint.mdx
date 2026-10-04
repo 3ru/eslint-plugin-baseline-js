@@ -1,0 +1,70 @@
+---
+title: Oxlint
+description: Run Baseline checks through Oxlint's JavaScript plugin support.
+---
+
+Oxlint can load this package through its [JavaScript plugin support](https://oxc.rs/docs/guide/usage/linter/js-plugins.html).
+Configure the rule directly in `.oxlintrc.json`. The exported config helpers are for ESLint flat config.
+
+## Install
+
+```bash tab="pnpm" tab-group="package-manager"
+pnpm add -D oxlint eslint-plugin-baseline-js
+```
+
+```bash tab="npm"
+npm install -D oxlint eslint-plugin-baseline-js
+```
+
+```bash tab="yarn"
+yarn add -D oxlint eslint-plugin-baseline-js
+```
+
+```bash tab="bun"
+bun add -D oxlint eslint-plugin-baseline-js
+```
+
+## Configure
+
+Add the plugin and its rule to your config. The green lines show where to start:
+
+```jsonc title=".oxlintrc.json" lineNumbers
+{
+  "jsPlugins": ["eslint-plugin-baseline-js"], // [!code ++]
+  "rules": {
+    "baseline-js/use-baseline": [ // [!code ++]
+      "warn",
+      {
+        "available": "widely",
+        "includeWebApis": { "preset": "auto" },
+        "includeJsBuiltins": { "preset": "auto" }
+      }
+    ]
+  }
+}
+```
+
+Run the linter:
+
+```bash
+pnpm exec oxlint .
+```
+
+<Callout title="Need instance-member checks?" type="info">
+Use the [ESLint TypeScript setup](/docs#add-typescript) for checks such as `Set.prototype.difference()`.
+Oxlint runs the supported checks that do not need TypeScript parser services.
+</Callout>
+
+<details>
+<summary>Type information and Oxlint support</summary>
+
+Oxlint's JavaScript plugins do not provide the TypeScript parser services this plugin uses.
+The rule can check mapped syntax and built-ins, plus supported global constructors and static API calls.
+It skips instance member checks that need type information, such as `Set.prototype.difference` and iterator helper methods.
+
+Setting `preset: 'type-aware'` or enabling Oxlint's own type-aware rules does not provide those parser services to this plugin.
+Use the [ESLint TypeScript setup](/docs#add-typescript) when you need these checks.
+
+JavaScript plugin support in Oxlint is still in alpha. Check the [upstream limitations](https://oxc.rs/docs/guide/usage/linter/js-plugins.html#api-support) when upgrading.
+
+</details>

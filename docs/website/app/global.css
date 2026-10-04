@@ -375,14 +375,6 @@ html:not(.dark) .panel-royal {
   border-left-width: 3px;
 }
 
-.shiki .line.highlighted {
-  /* Hack: Forcefully shift upward */
-  margin-top: -0.4rem;
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-  padding-left: calc(var(--padding-left) - 2px);
-}
-
 .shiki .line.highlighted.warning * {
   color: #fbbf24;
 }

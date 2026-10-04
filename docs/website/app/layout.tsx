@@ -1,5 +1,5 @@
 import "@/app/global.css";
-import { RootProvider } from "fumadocs-ui/provider";
+import { RootProvider } from "fumadocs-ui/provider/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
@@ -14,7 +14,8 @@ export const metadata: Metadata = createMetadata({
     template: "%s | Baseline JS",
     default: "Baseline JS Docs",
   },
-  description: "Documentation for eslint-plugin-baseline-js",
+  description:
+    "Check JavaScript syntax, built-ins, and Web APIs against Baseline browser support data with eslint-plugin-baseline-js.",
   icons: {
     icon: "/logos/baseline-widely-icon.svg",
   },

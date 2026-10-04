@@ -1,62 +1,139 @@
 ---
 title: FAQ
-description: Frequently asked questions and troubleshooting.
+description: Find the right setup and troubleshoot missing or unexpected reports.
 ---
 
-If this page doesn’t help, please open an
-<a href="https://github.com/3ru/eslint-plugin-baseline-js/issues">issue on GitHub</a>
-with repro steps and a minimal sample.
+Start with the checks below. If you still need help, open a
+[GitHub issue](https://github.com/3ru/eslint-plugin-baseline-js/issues) with your configuration and a small code sample.
 
-## Web APIs are not being detected
+## Why is an API not reported?
 
-- The minimal preset (`configs.baseline`) does not enable Web APIs / JS Builtins.
-  - Use <a href="/docs/config#presets-flat-config">presets</a>:
-  `configs.recommended` or `configs['recommended-ts']`.
-- Without TypeScript types, instance‑member checks (e.g. `element.animate()`) are skipped.
-  - Configure `@typescript-eslint/parser` and `parserOptions.project`.
-- Dynamic access / deep aliasing is intentionally conservative to avoid false positives.
-- Reports only happen when a feature exceeds your Baseline (`widely`/`newly`/year).
+1. **Check the file scope.** `recommended` covers JavaScript; `recommended-ts` covers `.ts` and `.tsx`.
+2. **Enable the detector.** The `baseline` preset leaves Web API and JS builtin descriptor checks disabled.
+3. **Connect type information.** Instance-member descriptors need a configured TypeScript parser and declarations for the member.
+4. **Check the policy and coverage.** Reports need a matching detector and a feature that exceeds your Baseline threshold.
 
 <details>
-  <summary>Going from minimal → recommended (Flat Config)</summary>
+<summary>Switch from the minimal preset to recommended</summary>
 
-```ts
-import baselineJs, { BASELINE } from 'eslint-plugin-baseline-js';
+Replace the `baseline` entry with `recommended` to enable additional Web API and JS builtin checks for JavaScript:
+
+```js title="eslint.config.mjs"
+import baselineJs, { BASELINE } from "eslint-plugin-baseline-js";
 
 export default [
-  { plugins: { 'baseline-js': baselineJs } },
-  // Switch from minimal → recommended (auto)
-  baselineJs.configs.recommended({ available: BASELINE.WIDELY }),
+  { plugins: { "baseline-js": baselineJs } },
+  baselineJs.configs.recommended({ available: BASELINE.WIDELY }), // [!code ++]
 ];
 ```
 
+For TypeScript, use `recommended-ts` and configure the parser as shown in [Quick Start](/docs#add-typescript).
+
 </details>
 
-## Using with [oxlint](https://oxc.rs/): less precise detection
+<details>
+<summary>The settings look right, but the report is still missing</summary>
 
-[oxlint JS plugins](https://oxc.rs/docs/guide/usage/linter/js-plugins) don't have access to TypeScript type information. Checks that rely on type resolution (`Set.difference()`, `Iterator.map()`, `response.arrayBuffer()`, etc.) won't fire. Everything else (syntax, constructors, static methods, globals) works fine.
+Check the [coverage report](/docs/meta/coverage) for a matching rule or descriptor.
+Some dynamic access and alias patterns are not detected.
 
-If you need full instance-member coverage, run ESLint with the `type-aware` preset.
+For typed checks, confirm that the receiver's type contains the member.
+Missing declarations or `any` types can prevent a report.
 
-## False positives / suppression
+</details>
 
-Try the following first, then open an issue with a repro sample if needed.
-- `ignoreFeatures`: suppress by web‑features featureId (or `/regex/`)
-- `ignoreNodeTypes`: suppress by ESTree `node.type` (e.g. `WithStatement`)
+## Does `type-aware` fail when types are missing?
 
-## Conflicts with other rules/presets
+No. The plugin keeps other checks active and skips instance-member and `typedOnly` descriptors when parser type information is missing.
 
-- Use Flat Config `overrides` to scope, suppress, or override.
-- Recommended presets (`recommended` / `recommended-ts`) configure just this plugin’s rule; you can combine with other configs.
+<Callout title="Check the parser project" type="info">
+The parser can report an error if a file is outside its TypeScript project.
+Include the file in `tsconfig.json` or adjust the config's `files` scope.
+</Callout>
+
+## Can I use oxlint?
+
+Yes, through its JS plugin support. See [Use with oxlint](/docs/oxlint) for a complete config.
+
+Checks that need TypeScript parser services do not run there.
+Use ESLint with a configured TypeScript parser for checks such as `Set.prototype.difference()` and `Iterator.prototype.join()`.
+
+## How do I handle a false positive or an exception?
+
+Use `ignoreFeatures` for a specific web-features ID.
+Use `ignoreNodeTypes` when you need to suppress reports on an ESTree node type.
 
 <details>
-  <summary>Temporarily relax severity</summary>
+<summary>Add a feature exception</summary>
 
-```ts
-rules: {
-  // Start with 'warn' to understand the impact
-  'baseline-js/use-baseline': ['warn', { available: 'widely' }],
+Copy the feature ID from the report. Keep your existing options and add it to `ignoreFeatures`:
+
+```js title="Inside your rule options"
+{
+  available: "widely",
+  includeWebApis: { preset: "auto" },
+  includeJsBuiltins: { preset: "auto" },
+  ignoreFeatures: ["iterator-join"], // [!code ++]
 }
 ```
 
+Record why your project allows the feature, such as a tested polyfill or fallback.
+The plugin does not verify that exception's runtime behavior.
+
 </details>
+
+<details>
+<summary>Match several features or report node types</summary>
+
+`ignoreFeatures` and `ignoreNodeTypes` accept exact strings or regex patterns:
+
+```js title="Inside your rule options"
+ignoreFeatures: ["nullish-coalescing", "/^iterator-/"],
+ignoreNodeTypes: ["WithStatement", "/Expression$/"],
+```
+
+Regex strings must start and end with `/`. Flags such as `/pattern/i` are not supported.
+The `only` and `ignore` lists inside include options accept exact feature IDs only.
+
+</details>
+
+## How do I combine presets or start with warnings?
+
+Recommended presets configure this plugin's rule and file patterns.
+Register the plugin under `'baseline-js'`, then add your parser and other rule configs as needed.
+Use flat config objects with `files` and `ignores` to scope changes.
+
+<details>
+<summary>Start with warnings during rollout</summary>
+
+Pass `level: "warn"` to keep the preset's detection options and lower its severity:
+
+```js title="eslint.config.mjs"
+import baselineJs from "eslint-plugin-baseline-js";
+
+export default [
+  { plugins: { "baseline-js": baselineJs } },
+  baselineJs.configs.recommended({
+    available: "widely",
+    level: "warn", // [!code ++]
+  }),
+];
+```
+
+Switch to `"error"` when the project is ready to enforce the policy.
+
+</details>
+
+## Why does the status differ from today's Baseline data?
+
+The plugin bundles a fixed web-features snapshot. A newer release may include updated data and detectors.
+Linting does not download data or advance availability dates.
+
+## Does it account for polyfills or Node.js versions?
+
+The plugin checks source code against browser Baseline data.
+It does not inspect polyfills, transpiler output, or runtime feature guards.
+Setting ESLint globals does not change that policy.
+
+Use a narrow exception after you verify support for your targets.
+See [Configuration](/docs/config) for all options.

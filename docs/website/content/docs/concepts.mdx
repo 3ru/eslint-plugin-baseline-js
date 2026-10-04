@@ -1,33 +1,70 @@
 ---
 title: Scope & Terms
-description: What this plugin checks and how JS Syntax vs JS Builtins vs Web APIs.
+description: Understand JavaScript syntax, builtins, and Web APIs before choosing a preset.
 ---
 
 <Callout title="Three surfaces of JavaScript" type="info">
-When we say “JavaScript”, we actually mean one of three surfaces. Knowing the
-difference makes configuration and detection much easier.
+JavaScript checks cover language syntax, builtins, and Web APIs.
+Use the examples below to find the settings your code needs.
 </Callout>
 
-## JS Syntax
-- Examples: nullish coalescing (`a ?? b`), optional catch binding, top‑level await, template literals
-- What it is: ECMAScript language syntax (operators, statements)
-- How we detect: delegate to community rules (`eslint-plugin-es-x`), ESLint core, and a few internal rules
-- In this plugin: always in scope, even with the “syntax only” setup
+## JS syntax
 
-## JS Builtins
-- Examples: `BigInt64Array`, `Intl.Segmenter`, `Temporal`, `Math.sumPrecise` (proposal)
-- What it is: the standard library (globals, namespaces, classes, methods)
-- How we detect: data‑driven (web‑features “JSBI” descriptors). Works without types for most patterns
-- In this plugin: enabled in recommended presets (`includeJsBuiltins: { preset: 'auto' }`)
+- **Examples:** nullish coalescing (`a ?? b`), optional catch binding, top-level `await`, and template literals.
+- **What it is:** ECMAScript operators and statements.
+- **How we detect it:** mapped rules from `eslint-plugin-es-x`, ESLint core, and this plugin.
+- **Setup:** mapped checks run in every preset.
+
+<Callout title="The minimal preset also checks some builtins" type="info">
+`configs.baseline()` enables mapped rules, including checks for `Temporal` and `Math.sumPrecise`.
+It leaves the separate Web API and JS builtin descriptor checks disabled.
+</Callout>
+
+## JS builtins
+
+- **Examples:** `Intl.Segmenter`, `Set.prototype.difference()`, and `Iterator.prototype.join()`.
+- **What it is:** the ECMAScript standard library: globals, classes, and methods.
+- **How we detect it:** descriptors generated from web-features, plus the mapped checks above.
+- **Setup:** both recommended presets enable `includeJsBuiltins`.
+
+Supported constructors, static methods, and globals can work without types.
+Instance-member descriptors use TypeScript type information to identify the receiver.
 
 ## Web APIs
-- Examples: `fetch`, `AbortSignal.any()`, `IntersectionObserver`, `Element.animate()`
-- What it is: browser/host APIs (DOM, WebGL, media, sensors, …)
-- How we detect: data‑driven (web‑features API descriptors). Instance methods benefit from type info
-- In this plugin: enabled in recommended presets (`includeWebApis: { preset: 'auto' }`, or `type‑aware` for TS)
 
-## Extras
-For detection mechanics and overall coverage, see the
-[Coverage](/docs/meta/coverage) report.
-<Card title="Coverage" href="/docs/meta/coverage" description="What’s covered, at a glance" />
+- **Examples:** `fetch`, `AbortSignal.any()`, `IntersectionObserver`, and `Element.animate()`.
+- **What it is:** browser APIs for features such as the DOM, networking, media, and sensors.
+- **How we detect it:** descriptors generated from web-features.
+- **Setup:** both recommended presets enable `includeWebApis`.
 
+Use the TypeScript setup for supported instance-member checks, such as methods called on an element or response.
+See [Quick Start](/docs#add-typescript) to connect the parser.
+
+## Pick a preset
+
+| Your setup | Start with |
+| --- | --- |
+| JavaScript | `configs.recommended()` |
+| TypeScript with type information | `configs['recommended-ts']()` |
+| JavaScript and TypeScript | Both recommended presets |
+| Mapped rules without extra descriptor checks | `configs.baseline()` |
+
+<details>
+<summary>How coverage and runtime targets affect a check</summary>
+
+A mapped feature has a rule or descriptor. It can still have unsupported access patterns, such as dynamic property access or aliases.
+The [coverage report](/docs/meta/coverage) lists the available checks.
+
+The plugin uses browser Baseline status from its bundled data. It does not select Node.js versions, worker environments, or custom browser targets.
+ESLint's `languageOptions.globals` controls known global names; it does not change the Baseline policy.
+
+The plugin does not account for polyfills or transpiler output. Test your app in its target environments.
+
+</details>
+
+## Explore the coverage
+
+See which features have mapped rules and which use descriptors.
+Use the report when you choose a policy or investigate a missing report.
+
+<Card title="Coverage" href="/docs/meta/coverage" description="Mapped features and detection limits, at a glance" />

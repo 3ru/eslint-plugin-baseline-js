@@ -1,4 +1,5 @@
 import * as Twoslash from "fumadocs-twoslash/ui";
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import * as FilesComponents from "fumadocs-ui/components/files";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import * as TabsComponents from "fumadocs-ui/components/tabs";
@@ -13,6 +14,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...Twoslash,
     ...TabsComponents,
     ...FilesComponents,
+    Accordion,
+    Accordions,
     Steps,
     Step,
     TypeTable,
