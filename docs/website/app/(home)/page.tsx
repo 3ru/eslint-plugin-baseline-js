@@ -11,8 +11,8 @@ export default function HomePage() {
           ESLint Plugin for <span className="text-royal-texture">Baseline</span> JavaScript
         </h1>
         <p className="text-pretty mx-auto mt-4 max-w-2xl text-sm text-fd-muted-foreground sm:text-base md:text-lg">
-          Default to the Web Platform Baseline, the cross‑browser compatibility standard. Ship code
-          that works for everyone.
+          Check JavaScript syntax and APIs against Baseline browser support data. Use widely
+          available features, newly available features, or a target year.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -52,7 +52,7 @@ export default function HomePage() {
               <span className="demo-dot bg-amber-500" />
               <span className="demo-dot bg-emerald-500" />
             </div>
-            <span className="font-mono">example.ts</span>
+            <span className="font-mono">example.js</span>
           </div>
 
           <pre className="overflow-auto p-4 text-sm leading-7 sm:px-6 sm:py-7 sm:text-base md:text-lg md:leading-8 bg-transparent">
@@ -70,7 +70,7 @@ export default function HomePage() {
               <span>
                 Feature{" "}
                 <code className="font-mono rounded border bg-fd-muted px-1.5 py-0.5">
-                  getYear()
+                  &apos;getYear() and setYear()&apos; (date-get-year-set-year)
                 </code>{" "}
                 is not a widely available Baseline feature.
               </span>

@@ -26,7 +26,7 @@ This plugin delegates detection to eslint-plugin-es-x and ESLint core (plus a fe
 - yarn: `yarn add -D eslint-plugin-baseline-js`
 
 Recommended
-- ESLint >= 8.57 (Flat Config)
+- ESLint >= 9.29.0 and < 11 (Flat Config)
 
 ## Quick Start (Flat Config)
 

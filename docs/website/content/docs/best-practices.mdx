@@ -1,109 +1,102 @@
 ---
 title: Best Practices
-description: Flat Config recipes for running JS/CSS/HTML under one Baseline policy.
+description: Set up JavaScript and TypeScript checks and share a Baseline policy.
 ---
 
-<Callout title="Goal" type="info">
-Align Baseline across an app/monorepo and lint JavaScript (including Web APIs /
-JS Builtins), CSS, and HTML using the same threshold (`widely` / `newly` /
-year).
-</Callout>
-
+Choose one threshold for your project: `'widely'`, `'newly'`, or a year.
+Use both recommended presets when your project contains JavaScript and TypeScript.
 
 ## Install
-We’ll use sibling plugins for CSS and HTML, plus common globals.
 
 ```bash tab="npm"
-npm i -D eslint eslint-plugin-baseline-js @eslint/css @html-eslint/eslint-plugin @html-eslint/parser globals
+npm i -D eslint eslint-plugin-baseline-js typescript @typescript-eslint/parser
 ```
 
 ```bash tab="yarn"
-yarn add -D eslint eslint-plugin-baseline-js @eslint/css @html-eslint/eslint-plugin @html-eslint/parser globals
+yarn add -D eslint eslint-plugin-baseline-js typescript @typescript-eslint/parser
 ```
 
 ```bash tab="pnpm"
-pnpm add -D eslint eslint-plugin-baseline-js @eslint/css @html-eslint/eslint-plugin @html-eslint/parser globals
+pnpm add -D eslint eslint-plugin-baseline-js typescript @typescript-eslint/parser
 ```
 
+See [Quick Start](/docs) for supported Node.js and ESLint versions.
 
-## Flat Config (full, TS‑aware)
+## Flat config
 
-```ts title="eslint.config.ts (TS aware)"
+Keep the TypeScript files in `tsconfig.json`. The parser needs that project to
+provide type information.
+
+```js title="eslint.config.mjs"
 import baselineJs, { BASELINE } from "eslint-plugin-baseline-js";
-import css from "@eslint/css";
-import html from "@html-eslint/eslint-plugin";
-import htmlParser from "@html-eslint/parser";
-import globals from "globals";
+import tsParser from "@typescript-eslint/parser";
+
+const available = BASELINE.WIDELY;
 
 export default [
-  // Shared: browser globals (adjust per project: browser/worker/node)
   {
+    ...baselineJs.configs.recommended({ available }),
+    plugins: { "baseline-js": baselineJs },
     languageOptions: {
-      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
-
-  // JavaScript / TypeScript
-  { plugins: { "baseline-js": baselineJs } },
-  { files: ["**/*.{ts,tsx}"], languageOptions: { parser: tsParser, parserOptions: { project: ["./tsconfig.json"] } } },
-  baselineJs.configs["recommended-ts"]({ level: "error", available: BASELINE.WIDELY }),
-
-  // CSS
   {
-    files: ["**/*.css"],
-    plugins: { css },
-    language: "css/css",
-    rules: {
-      // Allow only widely available CSS features
-      "css/use-baseline": ["error", { available: BASELINE.WIDELY }],
-    },
-  },
-
-  // HTML
-  {
-    files: ["**/*.html"],
-    plugins: { "@html-eslint": html },
-    languageOptions: { parser: htmlParser },
-    rules: {
-      // Allow only widely available HTML features
-      "@html-eslint/use-baseline": ["error", { available: BASELINE.WIDELY }],
+    ...baselineJs.configs["recommended-ts"]({ available }),
+    plugins: { "baseline-js": baselineJs },
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: ["./tsconfig.json"],
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
   },
 ];
 ```
 
-## Variations (pick what fits)
+The first block covers `.js`, `.cjs`, `.mjs`, and `.jsx`. The second covers `.ts`
+and `.tsx`. Override `files` if your project uses other extensions.
 
-- Year‑based Baseline
-  - JavaScript: `baselineJs.configs['recommended-ts']({ available: 2024 })`
-  - CSS/HTML: `{ available: 2024 }`
-- `newly`
-  - JavaScript: `{ available: BASELINE.NEWLY }`
-  - CSS/HTML: `{ available: 'newly' }`
-- TypeScript (more precise)
-  - Use `recommended-ts` and configure the parser for TS files
-  - See Quick Start → Recommended (TypeScript)
+The JavaScript block runs without type information. Add a parser project for
+JavaScript if you need supported instance-member checks there too.
 
-### Extra: environment globals
+## Change the threshold
 
-`languageOptions.globals` tells ESLint about runtime globals (`window`,
-`document`, …). It’s optional, but helps avoid `no-undef` noise. Set it to match
-your environment.
+Update the shared `available` value:
 
-```ts title="Node / Worker"
-import globals from 'globals';
+- Use `BASELINE.NEWLY` to allow newly and widely available features.
+- Use a year such as `2024` to allow features that became Baseline by that year.
 
-export default [
-  // Node project
-  { languageOptions: { globals: globals.node } },
-  // or Worker
-  // { languageOptions: { globals: globals.worker } },
-];
-```
+## CSS and HTML
 
-## Operational tips
+Use separate plugins for CSS and HTML:
 
-- Review <a href="/docs/concepts">Scope & Terms</a> (JS Syntax / JS Builtins /
-  Web APIs)
-- Use `ignoreFeatures` / `ignoreNodeTypes` for exceptions and phased rollout
-- Check coverage periodically to understand what’s mapped (/docs/meta/coverage)
+- [ESLint CSS](https://github.com/eslint/css) provides `css/use-baseline`.
+- [HTML ESLint](https://html-eslint.org/docs/getting-started) provides `use-baseline`
+  for HTML.
+
+Follow each plugin's setup instructions and version requirements. Scope their
+configuration with `files` so JavaScript parser options do not apply to CSS or HTML.
+
+Pass the same `available` value to each Baseline rule. Each plugin has its own
+data version and detection coverage, so matching thresholds can still produce
+different results.
+
+## Environment globals
+
+Set `languageOptions.globals` in the JavaScript or TypeScript block that needs
+those names. This can prevent `no-undef` reports when that rule is enabled.
+
+Global names do not select compatibility targets. The Baseline rule still uses
+browser data, including when you configure Node.js globals.
+
+## Exceptions
+
+Use `ignoreFeatures` for specific features and `ignoreNodeTypes` for report node
+types. Both accept exact strings or regex patterns written as `'/.../'`.
+
+Document why each exception is safe for your project. The plugin does not verify
+polyfills, fallbacks, or runtime feature checks.
+
+Review the [coverage report](/docs/meta/coverage) when you update the plugin.

@@ -1,345 +1,172 @@
 ---
 title: Config
-description: Key rule options and presets, with copy‑pasteable examples.
+description: Rule options, preset scopes, and detection limits.
 ---
 
-### Options (overview)
+## Rule options
 
-Quick reference (all options)
+Use these options with `baseline-js/use-baseline`.
 
-```ts title="UseBaselineOptions (minimal)"
-type BaselineName = 'widely' | 'newly';
-type BaselineOption = BaselineName | number; // YYYY
-
-type IncludePreset = 'auto' | 'safe' | 'type-aware';
-type Include = boolean | { preset?: IncludePreset };
-
-interface UseBaselineOptions {
-  available?: BaselineOption;
-  baseline?: BaselineOption;
-
-  includeWebApis?: Include;
-  includeJsBuiltins?: Include;
-
-  ignoreFeatures?: string[];  // featureId or /regex/
-  ignoreNodeTypes?: string[]; // ESTree node.type or /regex/
-}
-```
-
-<details>
-  <summary>Advanced options (optional)</summary>
-  <div>
-    <p>Use these only when you need tighter control (forcing types or narrowing targets).</p>
-
-```ts
-type UseTypes = 'off' | 'auto' | 'require';
-interface IncludeAdvanced {
-  preset?: 'auto' | 'safe' | 'type-aware';
-  useTypes?: UseTypes;   // How to use types ('type-aware' effectively means 'require')
-  only?: string[];       // Limit to specific featureIds
-  ignore?: string[];     // Exclude specific featureIds
-}
-```
-  </div>
-</details>
-
-### Core options
-
-| Prop | Type | Default | Description |
+| Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `available` | `widely` / `newly` / `YYYY` | `widely` | Baseline threshold |
+| `available` | `'widely'`, `'newly'`, or a year | `'widely'` | Set the Baseline threshold. |
+| `baseline` | Same as `available` | — | Compatibility alias. `available` takes precedence. |
+| `includeWebApis` | Boolean or an options object | `false` | Enable additional Web API detection. |
+| `includeJsBuiltins` | Boolean or an options object | `false` | Enable additional JavaScript built-in detection. |
+| `ignoreFeatures` | `string[]` | `[]` | Skip feature IDs across all detectors. Supports `/regex/` strings. |
+| `ignoreNodeTypes` | `string[]` | `[]` | Skip reports on matching ESTree node types. Supports `/regex/` strings. |
 
-### Feature detection
+`available: 'widely'` reports features that are not widely available.
+`available: 'newly'` reports features with Limited availability.
+A year reports features that entered Baseline after that year, plus features with Limited availability.
 
-#### includeWebApis
+These checks use the data bundled with the installed plugin. See [Concepts](/docs/concepts) for the policy and coverage limits.
 
-```ts title="Type (common)"
-type Include = boolean | { preset?: 'auto' | 'safe' | 'type-aware' };
+## Feature detection
+
+The rule always checks its mapped features. Additional Web API and built-in detection is off unless you enable it.
+
+Both `includeWebApis` and `includeJsBuiltins` accept the same options:
+
+```ts title="Detection options"
+type IncludePreset = 'safe' | 'auto' | 'type-aware' | 'heuristic';
+
+type Include = boolean | {
+  preset?: IncludePreset;
+  useTypes?: 'off' | 'auto' | 'require';
+  heuristics?: 'off' | 'conservative' | 'aggressive';
+  only?: string[];
+  ignore?: string[];
+};
 ```
 
-- Default: `off` in `configs.baseline`, `'auto'` in `configs.recommended`
-- Purpose: choose how aggressively to detect Web APIs ([see presets](#presets-flat-config))
+| Value | Behavior |
+| --- | --- |
+| `false` or omitted | Disable this additional detector. |
+| `true`, `{}`, or `{ preset: 'safe' }` | Enable patterns that do not need type information. |
+| `{ preset: 'auto' }` | Also use type information when the parser provides it. |
+| `{ preset: 'type-aware' }` | Enable checks that need types when the parser provides them. |
 
-```ts title="Common"
+Without type information, `auto` and `type-aware` skip instance-member and other type-dependent checks. They still run the remaining checks and do not throw an error.
+
+The safe checks include global constructors, static members, and selected literal argument patterns. They do not cover every API or usage pattern.
+
+### Advanced options
+
+`useTypes` overrides the preset's type setting. `safe` defaults to `off`, `auto` to `auto`, and `type-aware` to `require`.
+
+Type information requires a parser service with a TypeScript program. Selecting a preset alone does not create one.
+
+Type use is shared across the two detectors. Enabling types for either detector can enable typed checks for both included feature sets.
+
+The schema also accepts `preset: 'heuristic'` and `heuristics`. These options do not add heuristic detection in the current implementation.
+Use `safe`, `auto`, or `type-aware` for the behavior described above.
+
+### Feature filters
+
+`only` and `ignore` accept exact web-features IDs within that detector. They do not support regular expressions or change the mapped-rule checks.
+An empty `only` array does not limit detection.
+
+```js title="Filter additional built-in checks"
 rules: {
   'baseline-js/use-baseline': ['error', {
     available: 'widely',
-    includeWebApis: { preset: 'auto' },
+    includeJsBuiltins: {
+      preset: 'auto',
+      only: ['iterator-join', 'set-methods'],
+    },
   }],
 }
 ```
 
-#### includeJsBuiltins
+Use `ignoreFeatures` to suppress a feature across all detectors.
 
-```ts title="Type (common)"
-type Include = boolean | { preset?: 'auto' | 'safe' | 'type-aware' };
-```
-
-- Default: `off` in `configs.baseline`, `'auto'` in `configs.recommended`
-- Purpose: choose how aggressively to detect JS Builtins (same shape as `includeWebApis`)
-
-```ts title="Common"
+```js title="Ignore features or report node types"
 rules: {
   'baseline-js/use-baseline': ['error', {
-    available: 'widely',
-    includeJsBuiltins: { preset: 'auto' },
-  }],
-}
-```
-
-#### Filters & suppression
-
-- `ignoreFeatures: string[]` — web‑features featureId or `/regex/`
-- `ignoreNodeTypes: string[]` — ESTree `node.type` (e.g. `WithStatement`)
-
-```ts title="Ignore examples"
-rules: {
-  'baseline-js/use-baseline': ['error', {
-    available: 2020,
+    available: 2018,
     ignoreFeatures: ['nullish-coalescing', '/^optional-/'],
     ignoreNodeTypes: ['WithStatement', '/Expression$/'],
   }],
 }
 ```
 
-#### Preset semantics (overview)
+## Presets (Flat Config)
 
-See below for code examples showing `preset: 'safe' | 'auto' | 'type‑aware'` in action.
+Register the plugin under `baseline-js` before using a preset.
+All helpers accept `available` and `level`. Their defaults are `'widely'` and `'error'`.
+They also accept `baseline` as an alias for `available`.
 
-### includeWebApis / includeJsBuiltins — meaning & examples
+| Helper | Return value | File scope | Additional detection |
+| --- | --- | --- | --- |
+| `configs.baseline()` | Config array | `js`, `cjs`, `mjs`, `jsx`, `ts`, `tsx` | Off |
+| `configs.recommended()` | Config object | `js`, `cjs`, `mjs`, `jsx` | `auto` for Web APIs and built-ins |
+| `configs['recommended-ts']()` | Config object | `ts`, `tsx` | `type-aware` for Web APIs and built-ins |
 
-Both control “what surface to detect and how aggressive it should be”. The three common modes:
+Presets do not install or configure a parser. TypeScript needs a TypeScript parser, and JSX needs parser support.
 
-- `preset: 'safe'` (most conservative)
-  - Detects only literal‑safe patterns (low false positives)
-  - Example:
-    ```ts title="safe preset (JS Builtins)"
-    rules: {
-      'baseline-js/use-baseline': ['error', {
-        available: 'widely',
-        includeJsBuiltins: { preset: 'safe' },
-      }],
-    }
-    ```
+### baseline
 
-- `preset: 'auto'` (recommended)
-  - Uses types when available, otherwise falls back safely
-  - Example:
-    ```ts title="auto preset (Web APIs + JS Builtins)"
-    rules: {
-      'baseline-js/use-baseline': ['error', {
-        available: 'widely',
-        includeWebApis: { preset: 'auto' },
-        includeJsBuiltins: { preset: 'auto' },
-      }],
-    }
-    ```
+Spread the array returned by `configs.baseline()` into your config array.
 
-- `preset: ‘type-aware’` (strictest)
-  - Requires TS types. Resolves the receiver’s actual type before reporting instance members
-  - **Not available under oxlint.** Instance-member checks won't fire. See [FAQ](/docs/meta/faq#using-with-oxlinthttpoxcrs--less-precise-detection).
-  - Example:
-    ```ts title="type-aware preset (TS project)"
-    import tsParser from '@typescript-eslint/parser';
+```js title="eslint.config.mjs"
+import baselineJs from 'eslint-plugin-baseline-js';
 
-    export default [
-      { files: ['**/*.{ts,tsx}'], languageOptions: { parser: tsParser, parserOptions: { project: ['./tsconfig.json'] } } },
-      {
-        rules: {
-          'baseline-js/use-baseline': ['error', {
-            available: 'widely',
-            includeWebApis: { preset: 'type-aware' },
-            includeJsBuiltins: { preset: 'type-aware' },
-          }],
-        },
-      },
-    ]
-    ```
-
-Filtering (optional)
-
-- `only: string[]` — watch only these featureIds
-- `ignore: string[]` — exclude these featureIds
-
-featureId refers to web‑features IDs (e.g. `nullish-coalescing`, `intl-locale-info`).
-
-```ts title="Watch a specific feature (only)"
-rules: {
-  'baseline-js/use-baseline': ['error', {
-    available: 'widely',
-    includeWebApis: { preset: 'safe', only: ['canvas-2d-alpha'] },
-  }],
-}
+export default [
+  { plugins: { 'baseline-js': baselineJs } },
+  ...baselineJs.configs.baseline({ available: 'widely' }),
+];
 ```
 
-### Presets (Flat Config)
+### recommended
 
-We currently provide three presets; start here in most cases.
+This preset enables additional detection for JavaScript files. It does not apply to TypeScript files.
 
-<Callout type="info" title="Available presets">
-`configs.baseline` / `configs.recommended` / `configs['recommended-ts']`
-(Flat Config helpers; accept `available` and `level`)
-</Callout>
+```js title="eslint.config.mjs"
+import baselineJs from 'eslint-plugin-baseline-js';
 
-<Tabs groupId="preset" persist items={["baseline", "recommended", "recommended-ts"]}>
-  <Tab value="baseline">
-    ```ts title="configs.baseline (JS Syntax only; Web APIs/JS Builtins off)"
-    import baselineJs from 'eslint-plugin-baseline-js';
-
-    export default [
-      { plugins: { 'baseline-js': baselineJs } },
-      // opts: { available?: 'widely'|'newly'|YYYY; level?: 'error'|'warn' }
-      baselineJs.configs.baseline({ available: 'widely', level: 'error' }),
-    ]
-    ```
-    ```ts title="Internal: generated rules"
-    rules: { 
-      'baseline-js/use-baseline': [level, { available: baseline }]
-    }
-    ```
-  </Tab>
-  <Tab value="recommended">
-    ```ts title="configs.recommended (enable Web APIs/JS Builtins with 'auto')"
-    import baselineJs from 'eslint-plugin-baseline-js';
-
-    export default [
-      { plugins: { 'baseline-js': baselineJs } },
-      // opts: { available?: 'widely'|'newly'|YYYY; level?: 'error'|'warn' }
-      baselineJs.configs.recommended({ available: 'widely' }),
-    ]
-    ```
-    ```ts title="Internal: generated rules"
-    rules: {
-      'baseline-js/use-baseline': [
-        level,
-        { 
-          available: baseline,
-          includeWebApis: { preset: 'auto' }, 
-          includeJsBuiltins: { preset: 'auto' }
-        },
-      ],
-    }
-    ```
-  </Tab>
-  <Tab value="recommended-ts">
-    ```ts title="configs['recommended-ts'] (TS-aware; strict instance-member detection)"
-    import tsParser from '@typescript-eslint/parser';
-    import baselineJs from 'eslint-plugin-baseline-js';
-
-    export default [
-      { files: ['**/*.{ts,tsx}'], languageOptions: { parser: tsParser, parserOptions: { project: ['./tsconfig.json'] } } },
-      { plugins: { 'baseline-js': baselineJs } },
-      // opts: { available?: 'widely'|'newly'|YYYY; level?: 'error'|'warn' }
-      baselineJs.configs['recommended-ts']({ available: 'widely' }),
-    ]
-    ```
-    ```ts title="Internal: generated rules"
-    rules: {
-      'baseline-js/use-baseline': [
-        level,
-        { 
-          available: baseline,
-          includeWebApis: { preset: 'type-aware' },
-          includeJsBuiltins: { preset: 'type-aware' }
-        },
-      ],
-    }
-    ```
-  </Tab>
-</Tabs>
-
-<Callout type="warn" title="Notes">
-`baseline` remains as a compatibility alias; internally it maps to `available`.
-</Callout>
-
-## Use with .eslintrc.* (non‑Flat Config)
-
-Equivalent setup when not using Flat Config. For consistency, all arguments/options are unified under <code>available</code>.
-
-```js title="baseline equivalent (JS Syntax only)"
-// .eslintrc.js
-module.exports = {
-  plugins: ['baseline-js'],
-  rules: {
-    'baseline-js/use-baseline': ['error', { available: 'widely' }],
-  },
-};
+export default [
+  { plugins: { 'baseline-js': baselineJs } },
+  baselineJs.configs.recommended({ available: 'widely', level: 'warn' }),
+];
 ```
 
-```js title="recommended equivalent (Web APIs/JS Builtins on, auto)"
-// .eslintrc.js
-module.exports = {
-  plugins: ['baseline-js'],
-  rules: {
-    'baseline-js/use-baseline': ['error', {
-      available: 'widely',
-      includeWebApis: { preset: 'auto' },
-      includeJsBuiltins: { preset: 'auto' },
-    }],
-  },
-};
-```
+### recommended-ts
 
-```js title="recommended‑ts equivalent (TypeScript)"
-// .eslintrc.js
-module.exports = {
-  plugins: ['baseline-js'],
-  overrides: [
-    {
-      files: ['**/*.ts', '**/*.tsx'],
-      parser: '@typescript-eslint/parser',
-      parserOptions: { project: ['./tsconfig.json'] },
-      rules: {
-        'baseline-js/use-baseline': ['error', {
-          available: 'widely',
-          includeWebApis: { preset: 'type-aware' },
-          includeJsBuiltins: { preset: 'type-aware' },
-        }],
+Install `typescript` and `@typescript-eslint/parser`. Include the files you lint in your `tsconfig.json`.
+
+```js title="eslint.config.mjs"
+import tsParser from '@typescript-eslint/parser';
+import baselineJs from 'eslint-plugin-baseline-js';
+
+export default [
+  { plugins: { 'baseline-js': baselineJs } },
+  {
+    ...baselineJs.configs['recommended-ts']({ available: 'widely' }),
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-  ],
-};
+  },
+];
 ```
 
-<details>
-  <summary>Use preset helpers in .eslintrc (partial)</summary>
-  <div>
-    <p>You can spread only the <code>rules</code> from a Flat helper into legacy config.</p>
+The receiver's type must resolve to a supported built-in or Web API type. A value typed as `any` can hide an instance-member check.
 
-```js
-// .eslintrc.js
-const baselineJs = require('eslint-plugin-baseline-js');
+## Legacy config (.eslintrc)
 
-module.exports = {
-  plugins: ['baseline-js'],
-  // Use either 'baseline' or 'recommended'
-  baselineJs.configs.recommended({ available: 'widely' }),
-};
-```
+Use Flat Config with this package. Its ESM default export does not load correctly through ESLint 9's legacy plugin loader.
+The legacy setup fails with `Definition for rule 'baseline-js/use-baseline' was not found`.
 
-```js
-// .eslintrc.js (TypeScript: recommended-ts)
-const baselineJs = require('eslint-plugin-baseline-js');
+[ESLint 10 also removes legacy config support](https://eslint.org/docs/latest/use/migrate-to-10.0.0#old-config-format-no-longer-supported).
+See [Examples](/docs/examples) for supported Flat Config setups.
 
-module.exports = {
-  plugins: ['baseline-js'],
-  overrides: [
-    {
-      files: ['**/*.ts', '**/*.tsx'],
-      parser: '@typescript-eslint/parser',
-      parserOptions: { project: ['./tsconfig.json'] },
-      baselineJs.configs['recommended-ts']({ available: 'widely' }),
-    },
-  ],
-};
-```
-  </div>
-</details>
+## Use with oxlint
 
-
-## Use with [oxlint](https://oxc.rs/)
-
-Drop the plugin into your [`.oxlintrc.json`](https://oxc.rs/docs/guide/usage/linter/js-plugins):
+Load the package as an [oxlint JavaScript plugin](https://oxc.rs/docs/guide/usage/linter/js-plugins).
 
 ```jsonc title=".oxlintrc.json"
 {
@@ -357,49 +184,39 @@ Drop the plugin into your [`.oxlintrc.json`](https://oxc.rs/docs/guide/usage/lin
 }
 ```
 
-<Callout type="error" title="No type-aware detection under oxlint">
-Checks that need TypeScript type resolution (e.g., `Set.difference()`, `Iterator.map()`) won't fire. Use ESLint with the `type-aware` preset if you need them. See [FAQ](/docs/meta/faq#using-with-oxlinthttpoxcrs--less-precise-detection).
+<Callout type="warn" title="Type information is required for some checks">
+The plugin's instance-member checks need TypeScript parser services. The oxlint integration does not provide them.
+This skips checks such as `Set.prototype.difference()` and `Iterator.prototype.join()`. Use ESLint with a configured TypeScript parser for these checks.
 </Callout>
 
-### Messages
+See [oxlint](/docs/oxlint) for setup details and the [FAQ](/docs/meta/faq) for detection limits.
 
-#### `widely`
-```ts
-Feature '<id>' is not a widely available Baseline feature. // [!code error]
+## Messages
+
+Messages include the feature name and its web-features ID when a name is available.
+
+```text
+Feature '<name>' (<id>) is not a widely available Baseline feature.
+Feature '<name>' (<id>) is not a newly available Baseline feature.
+Feature '<name>' (<id>) became Baseline in <YYYY> and exceeds <year>.
+Feature '<name>' (<id>) has Limited availability and exceeds <year>.
 ```
 
-#### `newly`
-```ts
-Feature '<id>' is not a newly available Baseline feature. // [!code error]
-```
+An upper-bound date keeps its `≤` prefix in the message, such as `≤2018`. The policy compares the numeric year.
 
-#### Year‑based
-```ts
-Feature '<id>' became Baseline in <YYYY> and exceeds <year>. // [!code error]
-```
+## Standalone rules
 
-When web‑features only records an upper bound for the date a feature entered Baseline (`≤YYYY-MM-DD` in the data), `<YYYY>` keeps that prefix, e.g. `became Baseline in ≤2018`. The policy compares the numeric year, so such a feature is reported under `available: 2017` and allowed under `available: 2018`.
+Most projects should use `baseline-js/use-baseline`. It enables mapped checks based on the selected Baseline threshold.
 
-## Self rules (internal)
+These rules are also exported directly. When enabled directly, they report matching usage without checking a Baseline threshold.
 
-Minimal supplements where community rules don’t exist.
+| Rule | Checks |
+| --- | --- |
+| `baseline-js/no-atomics-pause` | `Atomics.pause` calls and member access. |
+| `baseline-js/no-bigint64array` | `BigInt64Array` and `BigUint64Array` construction, calls, and member access. |
+| `baseline-js/no-function-caller-arguments` | Non-computed `.caller` and `.arguments` access. |
+| `baseline-js/no-math-sum-precise` | `Math.sumPrecise` calls and member access. |
+| `baseline-js/no-temporal` | Direct `Temporal` member access and construction. |
 
-### `baseline-js/no-bigint64array`
-
-- Detects use of `BigInt64Array` / `BigUint64Array` (`new` / calls / member access)
-- Limitation: shadowed identifiers/aliases not handled yet (ReferenceTracker TBD)
-
-### `baseline-js/no-function-caller-arguments`
-
-- Detects `Function#caller` / `Function#arguments`
-- Limitation: type‑unaware; may react to arbitrary objects’ `.caller/.arguments`
-
-### `baseline-js/no-math-sum-precise`
-
-- Detects `Math.sumPrecise()` (proposal tracking)
-- Limitation: alias calls not handled yet
-
-### `baseline-js/no-temporal`
-
-- Detects `Temporal` API usage
-- Limitation: shadowed/aliased `Temporal` not handled yet
+The global-based rules check for shadowed globals and support `window` and `globalThis` prefixes. They do not follow aliases.
+`no-function-caller-arguments` does not check receiver types, so it can report those properties on ordinary objects.

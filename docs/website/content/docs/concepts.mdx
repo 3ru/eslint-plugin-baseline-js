@@ -1,33 +1,57 @@
 ---
 title: Scope & Terms
-description: What this plugin checks and how JS Syntax vs JS Builtins vs Web APIs.
+description: How the plugin checks JavaScript syntax, builtins, and Web APIs.
 ---
 
-<Callout title="Three surfaces of JavaScript" type="info">
-When we say “JavaScript”, we actually mean one of three surfaces. Knowing the
-difference makes configuration and detection much easier.
-</Callout>
+## JS syntax
 
-## JS Syntax
-- Examples: nullish coalescing (`a ?? b`), optional catch binding, top‑level await, template literals
-- What it is: ECMAScript language syntax (operators, statements)
-- How we detect: delegate to community rules (`eslint-plugin-es-x`), ESLint core, and a few internal rules
-- In this plugin: always in scope, even with the “syntax only” setup
+Syntax includes operators and statements, such as nullish coalescing (`a ?? b`)
+and top-level `await`.
 
-## JS Builtins
-- Examples: `BigInt64Array`, `Intl.Segmenter`, `Temporal`, `Math.sumPrecise` (proposal)
-- What it is: the standard library (globals, namespaces, classes, methods)
-- How we detect: data‑driven (web‑features “JSBI” descriptors). Works without types for most patterns
-- In this plugin: enabled in recommended presets (`includeJsBuiltins: { preset: 'auto' }`)
+The plugin maps supported features to `eslint-plugin-es-x`, ESLint core, or local
+rules. These mapped checks run in every preset. The mapping also includes some
+builtins, such as `Temporal` and `Math.sumPrecise`.
+
+The `baseline` preset enables these mapped checks. It leaves the separate Web
+API and JS builtin descriptor checks disabled.
+
+## JS builtins
+
+Builtins are the ECMAScript standard library. Examples include `Intl.Segmenter`,
+`Set.prototype.difference()`, and `Iterator.prototype.join()`.
+
+Set `includeJsBuiltins` to enable descriptor checks generated from web-features.
+Both recommended presets enable them.
+
+Supported constructor calls, static methods, and globals can work without types.
+Instance-member descriptors need TypeScript type information. Some builtins also
+have mapped checks that run without this option.
 
 ## Web APIs
-- Examples: `fetch`, `AbortSignal.any()`, `IntersectionObserver`, `Element.animate()`
-- What it is: browser/host APIs (DOM, WebGL, media, sensors, …)
-- How we detect: data‑driven (web‑features API descriptors). Instance methods benefit from type info
-- In this plugin: enabled in recommended presets (`includeWebApis: { preset: 'auto' }`, or `type‑aware` for TS)
 
-## Extras
-For detection mechanics and overall coverage, see the
-[Coverage](/docs/meta/coverage) report.
-<Card title="Coverage" href="/docs/meta/coverage" description="What’s covered, at a glance" />
+Web APIs include browser features such as `fetch`, `AbortSignal.any()`, and
+`IntersectionObserver`.
 
+Set `includeWebApis` to enable their descriptor checks. Both recommended presets
+enable them. Supported instance members need TypeScript type information.
+
+Descriptors match specific code patterns. They do not cover every way to access
+an API, including arbitrary dynamic property access or aliases.
+
+## Baseline and runtime support
+
+The plugin uses the browser Baseline status stored in its bundled data. It does
+not select Node.js versions, worker environments, or custom browser targets.
+
+ESLint's `languageOptions.globals` controls which global names ESLint knows. It
+does not change this plugin's Baseline policy or filter its feature data.
+
+The plugin does not account for polyfills or transpiler output. Test your app in
+its target environments.
+
+## Coverage
+
+The [coverage report](/docs/meta/coverage) lists mapped features and descriptor
+checks. A mapped feature can still have unsupported access patterns.
+
+<Card title="Coverage" href="/docs/meta/coverage" description="Mapped features and detection limits" />

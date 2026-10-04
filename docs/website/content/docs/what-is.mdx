@@ -1,46 +1,53 @@
 ---
 title: What is eslint-plugin-baseline-js
-description: ✅ ESLint plugin that enforces the JavaScript Baseline across JS (Syntax / Builtins / Web APIs).
+description: Check JavaScript syntax, builtins, and Web APIs against a Baseline policy.
 ---
 
 ## Overview
 
-`eslint-plugin-baseline-js` rethinks compatibility checks (e.g. compared to
-`eslint-plugin-compat`) from the Baseline perspective.
+`eslint-plugin-baseline-js` reports supported JavaScript features that exceed your
+Baseline policy. It uses one rule: `baseline-js/use-baseline`.
 
-- Goal: a "Baseline" take on compat — evaluate JS/CSS/HTML with the same threshold
-- Threshold: set `available` to `'widely' | 'newly' | YYYY`
-- One rule: `baseline-js/use-baseline` (unified message, low noise)
-- Surfaces: see <a href="/docs/concepts">Scope & Terms</a> (JS Syntax / JS Builtins / Web APIs)
+- Set `available` to `'widely'`, `'newly'`, or a year.
+- Use a recommended preset to enable Web API and JS builtin detection.
+- Add TypeScript type information for supported instance-member checks.
 
+The plugin checks JavaScript. Separate plugins can apply the same threshold to
+[CSS and HTML](/docs/best-practices).
 
-## Single source of truth (data‑driven)
+## Baseline data
 
-- Primary dataset: **web‑features** (led by Web Platform DX)
-  - GitHub: https://github.com/web-platform-dx/web-features
+The plugin bundles generated data from
+[web-features](https://github.com/web-platform-dx/web-features).
+Each release uses a fixed data snapshot. Linting does not fetch live browser data
+or change feature status as time passes.
 
-<Callout type="warn" title="Heads up: data‑driven">
-If a feature is missing from web‑features, we won’t detect it. Check the
-<a href="https://github.com/web-platform-dx/web-features/tree/main/features">dataset</a>
-and consider proposing an entry if needed.
-</Callout>
+Detection also needs a matching rule or descriptor. A feature can exist in
+web-features without a detector in this plugin. See the
+[coverage report](/docs/meta/coverage) for mapped features and detection limits.
 
-## High‑precision detection (TypeScript)
+## TypeScript detection
 
-- Beyond vanilla AST scans, we use `@typescript-eslint/parser` **parserServices**
-  and the TypeChecker to resolve the receiver’s **actual type** before reporting.
-  This lets us distinguish real platform methods from user‑defined look‑alikes.
-  - Array by copy (feature: `array-by-copy`)
-    - Verify `a.toReversed()` / `a.toSorted()` are truly Array/TypedArray methods.
-      Same‑named methods on user classes won’t trigger.
-  - Intl.Locale (feature: `intl-locale-info`)
-    - For `new Intl.Locale('ja')`, only report `.maximize()` / `.minimize()` when
-      the receiver is actually `Locale`.
-  - Iterator methods (feature: `iterator-methods`)
-    - Report only when the receiver is an `Iterator` type (union/inheritance supported).
-  - Uint8Array base64/hex (feature: `uint8array-base64-hex`)
-    - Check both static/instance paths (`Uint8Array.fromBase64`, `u8.toBase64()`) and
-      confirm the type is `Uint8Array`.
-- It also works through generics and aliases, e.g.:
-  `function f<T extends Array<number>>(x: T) { x.toReversed() }` — we traverse the
-  **apparent type** and base types to make the right call.
+With `@typescript-eslint/parser` and type information, supported checks inspect
+the receiver's declared or inferred type. This helps distinguish platform methods
+from methods with the same name.
+
+Examples include:
+
+- Array methods such as `toReversed()` and `toSorted()` (`array-by-copy`).
+- `Intl.Locale` methods such as `getCalendars()` (`intl-locale-info`).
+- Iterator helpers such as `map()` (`iterator-methods`) and `join()` (`iterator-join`).
+- `Uint8Array` methods such as `toHex()` (`uint8array-base64-hex`).
+
+These checks depend on the types and members available in your TypeScript
+project. Some unions, aliases, and inherited types work. This does not guarantee
+that every type or access pattern is detected.
+
+The `type-aware` preset skips checks that need types when type information is
+missing. See [Quick Start](/docs) for parser setup.
+
+## Limits
+
+The plugin checks source code against bundled browser data. It does not validate
+your polyfills, build output, Node.js support, or runtime behavior. A clean lint
+result does not guarantee browser compatibility.
