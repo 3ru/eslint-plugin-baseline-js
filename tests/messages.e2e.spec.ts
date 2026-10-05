@@ -11,9 +11,6 @@ const tester = new RuleTester({
   languageOptions: { ecmaVersion: 2022, sourceType: "script" },
 });
 
-// Each case uses a feature that web-features marks as discouraged. Discouraged
-// features never leave Limited availability, so the exact "not a widely
-// available" wording asserted here cannot go stale as the data is refreshed.
 describe("Baseline messages are unified across delegates", () => {
   it("es-x delegate: uses Baseline message", () => {
     tester.run("es-x message", rule, {
@@ -24,8 +21,7 @@ describe("Baseline messages are unified across delegates", () => {
           options: [{ available: "widely" }],
           errors: [
             {
-              message:
-                "Feature 'HTML wrapper methods' (html-wrapper-methods) is not a widely available Baseline feature.",
+              message: "'bold' on String is not Baseline Widely available (html-wrapper-methods).",
             },
           ],
         },
@@ -42,7 +38,7 @@ describe("Baseline messages are unified across delegates", () => {
           options: [{ available: "widely" }],
           errors: [
             {
-              message: "Feature 'with' (with) is not a widely available Baseline feature.",
+              message: "'with' is not Baseline Widely available (with).",
             },
           ],
         },
@@ -60,7 +56,7 @@ describe("Baseline messages are unified across delegates", () => {
           errors: [
             {
               message:
-                "Feature 'Function caller and arguments' (functions-caller-arguments) is not a widely available Baseline feature.",
+                "'Function caller and arguments' is not Baseline Widely available (functions-caller-arguments).",
             },
           ],
         },

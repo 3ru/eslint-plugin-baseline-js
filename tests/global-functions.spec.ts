@@ -53,7 +53,7 @@ describe("global function detection (callGlobal)", () => {
           // a year policy before the Baseline year reports with the year message
           code: "structuredClone({ a: 1 });",
           options: [{ available: policy, includeWebApis: safe }],
-          errors: [{ message: yearPolicyMessage("structured-clone", policy) }],
+          errors: [{ message: yearPolicyMessage("structured-clone", policy, "'structuredClone'") }],
         },
       ],
     });
@@ -84,7 +84,7 @@ describe("global function detection (callGlobal)", () => {
         {
           code: "queueMicrotask(callback);",
           options: [{ available: policy, includeWebApis: safe }],
-          errors: [{ message: yearPolicyMessage("queuemicrotask", policy) }],
+          errors: [{ message: yearPolicyMessage("queuemicrotask", policy, "'queueMicrotask'") }],
         },
       ],
     });
