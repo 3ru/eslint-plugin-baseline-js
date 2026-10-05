@@ -1,3 +1,10 @@
+## [0.7.4](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.3...v0.7.4) (2026-10-05)
+
+
+### Bug Fixes
+
+* identify APIs in Baseline diagnostics ([6af0c42](https://github.com/3ru/eslint-plugin-baseline-js/commit/6af0c42d7c80c21f15523c3670f19e28a8ba0ea0)), closes [#174](https://github.com/3ru/eslint-plugin-baseline-js/issues/174)
+
 ## [0.7.3](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.2...v0.7.3) (2026-10-02)
 
 
