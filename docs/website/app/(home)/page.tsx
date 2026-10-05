@@ -61,19 +61,19 @@ export default function HomePage() {
               {"const date = new Date();\n"}
               {"const year = "}
               <span className="underline decoration-rose-500 decoration-3 underline-offset-4 [text-decoration-style:wavy]">
-                date.getYear
+                date.getYear();
               </span>
-              {"();"}
             </code>
           </pre>
           <div className="demo-footer px-4 py-3 text-xs sm:px-6 sm:text-sm md:text-base">
             <p className="flex items-start gap-2 text-rose-500">
               <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-rose-500 sm:h-3 sm:w-3" />
               <span>
+                Feature{" "}
                 <code className="font-mono rounded border bg-fd-muted px-1.5 py-0.5">
-                  'getYear'
+                  getYear()
                 </code>{" "}
-                on Date is not Baseline Widely available (date-get-year-set-year).
+                is not a widely available Baseline feature.
               </span>
             </p>
           </div>
