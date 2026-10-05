@@ -1,16 +1,5 @@
 import type { Rule } from "eslint";
-import type {
-  CallGlobalDescriptor,
-  CallMemberWithArgsDescriptor,
-  CallStaticDescriptor,
-  Descriptor,
-  InstanceMemberDescriptor,
-  MemberDescriptor,
-  NewIdentDescriptor,
-  NewMemberDescriptor,
-  NewWithOptionsDescriptor,
-  StaticMemberDescriptor,
-} from "../../baseline/types";
+import type { Descriptor } from "../../baseline/types";
 import { mergeRuleListeners } from "../../utils/listeners";
 import { addCallMemberWithArgsDetector, addNewWithOptionsDetector } from "./detectors/safe-args";
 import {
@@ -25,17 +14,12 @@ import { addTypedInstanceMemberDetector } from "./detectors/typed-instance-membe
 
 export interface BuildOptions {
   descriptors: ReadonlyArray<Descriptor>;
-  messages: Record<string, string>;
+  report: (node: Rule.Node, descriptor: Descriptor) => void;
   typed?: boolean;
 }
 
 export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Rule.RuleListener {
   const listeners: Rule.RuleListener = {};
-
-  function report(node: unknown, featureId: string) {
-    const msg = opt.messages[featureId] ?? `Feature '${featureId}' exceeds configured Baseline.`;
-    context.report({ node: node as unknown as Rule.Node, message: msg });
-  }
 
   type ParserServicesLike = {
     program?: { getTypeChecker?: () => unknown };
@@ -52,58 +36,39 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
   const useTyped = !!opt.typed && !!checker && !!services.esTreeNodeToTSNodeMap;
 
   for (const d of opt.descriptors) {
+    function report(node: unknown) {
+      // SAFETY: Every detector reports a node from ESLint's AST.
+      opt.report(node as Rule.Node, d);
+    }
+
     switch (d.kind) {
       case "newIdent":
-        mergeRuleListeners(
-          listeners,
-          addNewIdentDetector(context, d as NewIdentDescriptor, report),
-        );
+        mergeRuleListeners(listeners, addNewIdentDetector(context, d, report));
         break;
       case "newMember":
-        mergeRuleListeners(
-          listeners,
-          addNewMemberDetector(context, d as NewMemberDescriptor, report),
-        );
+        mergeRuleListeners(listeners, addNewMemberDetector(context, d, report));
         break;
       case "callStatic":
-        mergeRuleListeners(
-          listeners,
-          addCallStaticDetector(context, d as CallStaticDescriptor, report),
-        );
+        mergeRuleListeners(listeners, addCallStaticDetector(context, d, report));
         break;
       case "callGlobal":
-        mergeRuleListeners(
-          listeners,
-          addCallGlobalDetector(context, d as CallGlobalDescriptor, report),
-        );
+        mergeRuleListeners(listeners, addCallGlobalDetector(context, d, report));
         break;
       case "member":
-        mergeRuleListeners(listeners, addMemberDetector(context, d as MemberDescriptor, report));
+        mergeRuleListeners(listeners, addMemberDetector(context, d, report));
         break;
       case "staticMember":
-        mergeRuleListeners(
-          listeners,
-          addStaticMemberDetector(context, d as StaticMemberDescriptor, report),
-        );
+        mergeRuleListeners(listeners, addStaticMemberDetector(context, d, report));
         break;
       case "instanceMember":
         if (useTyped)
-          mergeRuleListeners(
-            listeners,
-            addTypedInstanceMemberDetector(context, d as InstanceMemberDescriptor, report),
-          );
+          mergeRuleListeners(listeners, addTypedInstanceMemberDetector(context, d, report));
         break;
       case "callMemberWithArgs":
-        mergeRuleListeners(
-          listeners,
-          addCallMemberWithArgsDetector(context, d as CallMemberWithArgsDescriptor, report),
-        );
+        mergeRuleListeners(listeners, addCallMemberWithArgsDetector(context, d, report));
         break;
       case "newWithOptions":
-        mergeRuleListeners(
-          listeners,
-          addNewWithOptionsDetector(context, d as NewWithOptionsDescriptor, report),
-        );
+        mergeRuleListeners(listeners, addNewWithOptionsDetector(context, d, report));
         break;
       default:
         break;

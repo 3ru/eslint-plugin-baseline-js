@@ -52,12 +52,12 @@ export function reportingPolicyFor(...featureIds: string[]): number {
  * The message use-baseline reports for `id` under the year policy `policy`,
  * with the feature name and Baseline year taken from the bundled record.
  */
-export function yearPolicyMessage(id: string, policy: number): string {
+export function yearPolicyMessage(id: string, policy: number, subject?: string): string {
   const rec = recordOf(id);
-  const label = rec.name ? `${rec.name}' (${id})` : `${id}'`;
+  const label = subject ?? `'${rec.name ?? id}'`;
   const year = baselineYearLabel(rec.status);
   if (year == null) {
     throw new Error(`${id} has no Baseline date; the plugin reports the Limited message instead`);
   }
-  return `Feature '${label} became Baseline in ${year} and exceeds ${policy}.`;
+  return `${label} became Baseline in ${year} and exceeds ${policy} (${id}).`;
 }

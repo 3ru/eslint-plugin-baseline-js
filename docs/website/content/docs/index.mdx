@@ -122,8 +122,8 @@ Switch to **Use instead** to see the change:
 ```js title="Diagnostic preview" noCopy
 const date = new Date();
 const year = date.getYear();
-             ^^^^^^^^^^^^^^^
-Feature 'getYear()' is not a widely available Baseline feature. // [!code error]
+             ^^^^^^^^^^^^
+'Date.prototype.getYear' is not Baseline Widely available. // [!code error]
 ```
 
 </Tab>
@@ -143,7 +143,7 @@ const year = date.getFullYear(); // [!code ++]
 <summary>Full ESLint message</summary>
 
 ```text
-Feature 'getYear() and setYear()' (date-get-year-set-year) is not a widely available Baseline feature.
+'Date.prototype.getYear' is not Baseline Widely available (date-get-year-set-year).
 ```
 
 </details>

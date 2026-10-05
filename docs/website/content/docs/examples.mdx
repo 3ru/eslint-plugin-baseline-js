@@ -132,7 +132,7 @@ left.difference(new Set([2])); // [!code error]
 With `available: 'widely'`, the bundled data produces this report:
 
 ```text title="ESLint report" noCopy
-Feature 'Set methods' (set-methods) is not a widely available Baseline feature.
+'difference' on Set is not Baseline Widely available (set-methods).
 ```
 
 <Callout type="warn" title="No report on an instance method?">
@@ -323,7 +323,7 @@ const fullYear = new Date().getFullYear();
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'getYear() and setYear()' (date-get-year-set-year) is not a widely available Baseline feature.
+'Date.prototype.getYear' is not Baseline Widely available (date-get-year-set-year).
 ```
 
 </Tab>

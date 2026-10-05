@@ -91,7 +91,7 @@ describe("orchestrator (es-x delegates)", () => {
     const policy = reportingPolicyFor("weak-references");
     const code = "const wr = new WeakRef({});";
     const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
-    expect(msgs).toContain(yearPolicyMessage("weak-references", policy));
+    expect(msgs).toContain(yearPolicyMessage("weak-references", policy, "'WeakRef'"));
   });
 
   it("[async-await] year policy: reported with the Baseline year from the record", async () => {
@@ -150,9 +150,7 @@ describe("orchestrator (es-x delegates)", () => {
     const msgs = await lintWithBaseline(code, "widely");
     expect(
       msgs.some((m) =>
-        m.includes(
-          "Feature 'Accessor methods' (accessor-methods) is not a widely available Baseline feature.",
-        ),
+        m.includes("'__defineGetter__' is not Baseline Widely available (accessor-methods)."),
       ),
     ).toBe(true);
   });
@@ -162,7 +160,7 @@ describe("orchestrator (es-x delegates)", () => {
     expect(
       msgs.some((m) =>
         m.includes(
-          "Feature 'toGMTString()' (date-to-gmt-string) is not a widely available Baseline feature.",
+          "'Date.prototype.toGMTString' is not Baseline Widely available (date-to-gmt-string).",
         ),
       ),
     ).toBe(true);
@@ -183,15 +181,13 @@ describe("orchestrator (es-x delegates)", () => {
   it("[object-hasown] year policy: reported with the Baseline year from the record", async () => {
     const policy = reportingPolicyFor("object-hasown");
     const msgs = await lintWithBaseline("Object.hasOwn({a:1}, 'a')", policy);
-    expect(msgs).toContain(yearPolicyMessage("object-hasown", policy));
+    expect(msgs).toContain(yearPolicyMessage("object-hasown", policy, "'Object.hasOwn'"));
   });
 
   it("[proto] widely: __proto__ (limited) should be flagged", async () => {
     const msgs = await lintWithBaseline("const o = {}; o.__proto__", "widely");
     expect(
-      msgs.some((m) =>
-        m.includes("Feature '__proto__' (proto) is not a widely available Baseline feature."),
-      ),
+      msgs.some((m) => m.includes("'__proto__' is not Baseline Widely available (proto).")),
     ).toBe(true);
   });
 
@@ -218,7 +214,7 @@ describe("orchestrator (es-x delegates)", () => {
     const policy = reportingPolicyFor("globalthis");
     const code = "globalThis.x = 1";
     const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
-    expect(msgs).toContain(yearPolicyMessage("globalthis", policy));
+    expect(msgs).toContain(yearPolicyMessage("globalthis", policy, "'globalThis'"));
   });
 
   it("[html-wrapper-methods] (limited) should be flagged on widely", async () => {
@@ -227,7 +223,7 @@ describe("orchestrator (es-x delegates)", () => {
     expect(
       msgs.some((m) =>
         m.includes(
-          "Feature 'HTML wrapper methods' (html-wrapper-methods) is not a widely available Baseline feature.",
+          "'String.prototype.bold' is not Baseline Widely available (html-wrapper-methods).",
         ),
       ),
     ).toBe(true);
@@ -251,14 +247,14 @@ describe("orchestrator (es-x delegates)", () => {
     const policy = reportingPolicyFor("proxy-reflect");
     const code = "new Proxy({}, {}); Reflect.get({}, 'a');";
     const msgs = await lintWithBaseline(code, policy);
-    expect(msgs).toContain(yearPolicyMessage("proxy-reflect", policy));
+    expect(msgs).toContain(yearPolicyMessage("proxy-reflect", policy, "'Proxy'"));
   });
 
   it("[shared-memory] year policy: reported with the Baseline year from the record", async () => {
     const policy = reportingPolicyFor("shared-memory");
     const code = "new SharedArrayBuffer(4); Atomics.add(new Int32Array(4), 0, 1);";
     const msgs = await lintWithBaseline(code, policy, { sourceType: "module" });
-    expect(msgs).toContain(yearPolicyMessage("shared-memory", policy));
+    expect(msgs).toContain(yearPolicyMessage("shared-memory", policy, "'SharedArrayBuffer'"));
   });
 
   it("[spread] year policy: reported with the Baseline year from the record", async () => {
@@ -318,7 +314,7 @@ describe("orchestrator (es-x delegates)", () => {
     expect(
       msgs.some((m) =>
         m.includes(
-          "Feature 'Function caller and arguments' (functions-caller-arguments) is not a widely available Baseline feature.",
+          "'Function caller and arguments' is not Baseline Widely available (functions-caller-arguments).",
         ),
       ),
     ).toBe(true);

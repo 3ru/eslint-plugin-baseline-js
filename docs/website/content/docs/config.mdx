@@ -241,7 +241,8 @@ See [oxlint](/docs/oxlint) for setup details and the [FAQ](/docs/meta/faq) for d
 
 ## Messages
 
-The highlighted line shows the reported usage. Messages include the feature name and its web-features ID when a name is available.
+Messages identify the detected API, relevant options, or feature.
+The web-features ID appears in parentheses. Use it with `ignoreFeatures` to skip the whole feature, which can include several APIs.
 
 <Tabs items={["widely", "newly", "Year"]}>
 <Tab value="widely">
@@ -253,7 +254,7 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'getYear() and setYear()' (date-get-year-set-year) is not a widely available Baseline feature.
+'Date.prototype.getYear' is not Baseline Widely available (date-get-year-set-year).
 ```
 
 </Tab>
@@ -266,7 +267,7 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'getYear() and setYear()' (date-get-year-set-year) is not a newly available Baseline feature.
+'Date.prototype.getYear' is not Baseline Newly available (date-get-year-set-year).
 ```
 
 </Tab>
@@ -279,7 +280,7 @@ const total = 1n; // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'BigInt' (bigint) became Baseline in 2020 and exceeds 2019.
+'BigInt' became Baseline in 2020 and exceeds 2019 (bigint).
 ```
 
 A feature with Limited availability also exceeds a year target:
@@ -289,7 +290,7 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'getYear() and setYear()' (date-get-year-set-year) has Limited availability and exceeds 2019.
+'Date.prototype.getYear' has Limited availability and exceeds 2019 (date-get-year-set-year).
 ```
 
 </Tab>

@@ -46,7 +46,7 @@ describe("use-baseline e2e", () => {
         {
           // with statement is discouraged, so it stays Limited → reported under widely
           code: "with (obj) { const a = 1; }",
-          errors: [{ message: /Feature '.*' \(with\).*Baseline/i }],
+          errors: [{ message: "'with' is not Baseline Widely available (with)." }],
           options: [{ available: "widely" }],
         },
       ],

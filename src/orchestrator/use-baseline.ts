@@ -2,9 +2,9 @@ import type { Rule } from "eslint";
 import { getIncludedDescriptors } from "../baseline/loader";
 import mapping from "../baseline/mapping/syntax";
 import { parseDelegateRuleKey } from "../baseline/plugins";
-import { baselineYearLabel, getFeatureRecord, isBeyondBaseline } from "../baseline/resolve";
+import { isBeyondBaseline } from "../baseline/resolve";
 import { type CommonRuleOptions, getBaselineValue } from "../config";
-import featureUsage from "../rules/feature-usage";
+import { buildListeners } from "../rules/feature-usage/builder";
 import noAtomicsPause from "../rules/no-atomics-pause";
 import noBigint64array from "../rules/no-bigint64array";
 import noFunctionCallerArguments from "../rules/no-function-caller-arguments";
@@ -16,6 +16,7 @@ import {
   resolveDelegateRule,
 } from "../utils/delegate-resolver";
 import { mergeRuleListeners } from "../utils/listeners";
+import { baselineMessage, descriptorSubject } from "./messages";
 
 type ListenerMap = Rule.RuleListener;
 
@@ -53,25 +54,6 @@ const SELF_RULES: Record<string, Rule.RuleModule> = {
   "no-temporal": noTemporal,
 };
 registerSelfRules(SELF_RULES);
-
-function baselineMessage(featureId: string, baseline: ReturnType<typeof getBaselineValue>) {
-  const rec = getFeatureRecord(featureId);
-  const label = rec?.name || featureId;
-  const idSuffix = rec?.name ? ` (${featureId})` : "";
-  if (baseline === "widely") {
-    return `Feature '${label}'${idSuffix} is not a widely available Baseline feature.`;
-  }
-  if (baseline === "newly") {
-    return `Feature '${label}'${idSuffix} is not a newly available Baseline feature.`;
-  }
-  // Year-based messaging
-  const isLimited = rec?.status?.baseline === false;
-  if (isLimited) {
-    return `Feature '${label}'${idSuffix} has Limited availability and exceeds ${baseline}.`;
-  }
-  const year = baselineYearLabel(rec?.status) ?? "unknown";
-  return `Feature '${label}'${idSuffix} became Baseline in ${year} and exceeds ${baseline}.`;
-}
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -219,22 +201,17 @@ const rule: Rule.RuleModule = {
           },
         },
         options: delegateOptions,
-        report(arg: unknown) {
-          const isObj = typeof arg === "object" && arg !== null;
-          const node =
-            isObj && "node" in (arg as Record<string, unknown>)
-              ? (arg as Record<string, unknown>).node
-              : arg;
-          if (matchIgnoreNodeType) {
-            const t = (node as Record<string, unknown> | null | undefined)?.type as
-              | string
-              | undefined;
-            if (t && matchIgnoreNodeType(t)) return;
+        report(arg: Rule.ReportDescriptor) {
+          if ("node" in arg && matchIgnoreNodeType?.(arg.node.type)) return;
+
+          const subject = arg.data?.name ? `'${arg.data.name}'` : undefined;
+          const message = baselineMessage(featureId, baseline, subject);
+
+          if ("node" in arg) {
+            ctx.report({ node: arg.node, message });
+          } else {
+            ctx.report({ loc: arg.loc, message });
           }
-          (ctx as unknown as { report: (d: { node: unknown; message: string }) => void }).report({
-            node,
-            message: baselineMessage(featureId, baseline),
-          });
         },
       });
 
@@ -293,35 +270,18 @@ const rule: Rule.RuleModule = {
       );
     }
     if (descriptors.length > 0) {
-      const messages: Record<string, string> = {};
-      for (const d of descriptors) messages[d.featureId] = baselineMessage(d.featureId, baseline);
-      const delegateCtx = buildDelegateContext(ctx, {
-        options: [
-          typedEnabled ? { descriptors, messages, typed: true } : { descriptors, messages },
-        ],
-        report(arg: unknown) {
-          const isObj = typeof arg === "object" && arg !== null;
-          const node =
-            isObj && "node" in (arg as Record<string, unknown>)
-              ? (arg as Record<string, unknown>).node
-              : arg;
-          if (matchIgnoreNodeType) {
-            const t = (node as Record<string, unknown> | null | undefined)?.type as
-              | string
-              | undefined;
-            if (t && matchIgnoreNodeType(t)) return;
-          }
-          let msg: string | undefined;
-          if (isObj && typeof (arg as { message?: unknown }).message === "string")
-            msg = (arg as { message?: string }).message;
+      const generic = buildListeners(ctx, {
+        descriptors,
+        typed: typedEnabled,
+        report(node, descriptor) {
+          if (matchIgnoreNodeType?.(node.type)) return;
 
-          (ctx as unknown as { report: (d: { node: unknown; message?: string }) => void }).report({
+          ctx.report({
             node,
-            message: msg,
+            message: baselineMessage(descriptor.featureId, baseline, descriptorSubject(descriptor)),
           });
         },
       });
-      const generic = featureUsage.create(delegateCtx as unknown as Rule.RuleContext);
       mergeRuleListeners(listeners, generic);
     }
 

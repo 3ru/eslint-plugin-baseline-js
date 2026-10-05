@@ -115,7 +115,14 @@ export default [
 
 
 ### Demo
-<img width="963" height="192" alt="getYear is deprecated" src="https://github.com/user-attachments/assets/e04e4a5c-c104-4945-96d6-889a47b7bcde" />
+
+Messages identify the detected API, relevant options, or feature. For example, a typed `Set.prototype.difference` check reports:
+
+```text
+'difference' on Set is not Baseline Widely available (set-methods).
+```
+
+The ID in parentheses is used by `ignoreFeatures`. Ignoring `set-methods` skips all detected APIs in that feature, not just `difference`.
 
 
 ## How It Works
