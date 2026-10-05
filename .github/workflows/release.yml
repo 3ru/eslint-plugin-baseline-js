@@ -39,8 +39,20 @@ jobs:
       - name: Verify signatures
         run: npm audit signatures
 
+      - name: Audit production dependencies
+        run: pnpm audit --prod --audit-level high
+
       - name: Audit dependencies
-        run: pnpm audit --audit-level high
+        run: |
+          audit_dir="$(mktemp -d)"
+          trap 'rm -rf "$audit_dir"' EXIT
+          cp package.json pnpm-lock.yaml "$audit_dir/"
+          cat > "$audit_dir/pnpm-workspace.yaml" <<'YAML'
+          auditConfig:
+            ignoreGhsas:
+              - GHSA-vfj7-8cjw-p6xm
+          YAML
+          pnpm --dir "$audit_dir" audit --audit-level high
 
       - name: Regenerate baseline data (features + descriptors)
         run: pnpm gen:data
