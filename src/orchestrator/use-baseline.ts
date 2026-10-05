@@ -16,7 +16,7 @@ import {
   resolveDelegateRule,
 } from "../utils/delegate-resolver";
 import { mergeRuleListeners } from "../utils/listeners";
-import { baselineMessage, descriptorSubject } from "./messages";
+import { baselineMessage, delegateSubject, descriptorSubject } from "./messages";
 
 type ListenerMap = Rule.RuleListener;
 
@@ -204,7 +204,7 @@ const rule: Rule.RuleModule = {
         report(arg: Rule.ReportDescriptor) {
           if ("node" in arg && matchIgnoreNodeType?.(arg.node.type)) return;
 
-          const subject = arg.data?.name ? `'${arg.data.name}'` : undefined;
+          const subject = arg.data?.name ? delegateSubject(String(arg.data.name)) : undefined;
           const message = baselineMessage(featureId, baseline, subject);
 
           if ("node" in arg) {

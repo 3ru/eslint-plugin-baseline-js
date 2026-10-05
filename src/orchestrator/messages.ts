@@ -27,6 +27,16 @@ export function baselineMessage(featureId: string, baseline: BaselineOption, sub
   return `${label} became Baseline in ${year} and exceeds ${baseline} (${featureId}).`;
 }
 
+export function delegateSubject(name: string): string {
+  const separator = name.lastIndexOf(".");
+
+  if (separator === -1) return `'${name}'`;
+
+  const owner = name.slice(0, separator).replace(/\.prototype$/, "");
+
+  return memberSubject(name.slice(separator + 1), owner);
+}
+
 export function descriptorSubject(descriptor: Descriptor): string {
   switch (descriptor.kind) {
     case "newIdent":
@@ -36,13 +46,17 @@ export function descriptorSubject(descriptor: Descriptor): string {
     case "callStatic":
     case "member":
     case "staticMember":
-      return `'${descriptor.prop}' on ${descriptor.base}`;
+      return memberSubject(descriptor.prop, descriptor.base);
     case "instanceMember":
-      return `'${descriptor.prop}' on ${descriptor.iface}`;
+      return memberSubject(descriptor.prop, descriptor.iface);
     case "callMemberWithArgs":
     case "newWithOptions":
       return callSubject(descriptor);
   }
+}
+
+function memberSubject(name: string, owner: string): string {
+  return `'${name}' on ${owner}`;
 }
 
 function callSubject(descriptor: CallMemberWithArgsDescriptor | NewWithOptionsDescriptor) {

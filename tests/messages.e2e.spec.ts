@@ -21,8 +21,7 @@ describe("Baseline messages are unified across delegates", () => {
           options: [{ available: "widely" }],
           errors: [
             {
-              message:
-                "'String.prototype.bold' is not Baseline Widely available (html-wrapper-methods).",
+              message: "'bold' on String is not Baseline Widely available (html-wrapper-methods).",
             },
           ],
         },

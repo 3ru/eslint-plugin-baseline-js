@@ -121,6 +121,17 @@ describe("diagnostic subjects", () => {
     );
   });
 
+  it("does not render scalar properties as calls", async () => {
+    const messages = await lint("window.devicePixelRatio;", {
+      available: reportingPolicyFor("devicepixelratio"),
+      includeWebApis: { preset: "safe", only: ["devicepixelratio"] },
+    });
+
+    expect(messages).toHaveLength(1);
+    expect(messages[0].message.startsWith("'devicePixelRatio' on window ")).toBe(true);
+    expect(messages[0].message.endsWith("(devicepixelratio).")).toBe(true);
+  });
+
   it.each([
     [
       "new Worker('worker.js', { type: 'module' });",
@@ -160,15 +171,49 @@ describe("diagnostic subjects", () => {
   ] as const)("distinguishes deprecated Date methods under %s", async (available, label) => {
     const messages = await lint("new Date().getYear();\nnew Date().setYear(99);", { available });
     expect(messages.map((message) => message.message)).toEqual([
-      `'Date.prototype.getYear' is not Baseline ${label} available (date-get-year-set-year).`,
-      `'Date.prototype.setYear' is not Baseline ${label} available (date-get-year-set-year).`,
+      `'getYear' on Date is not Baseline ${label} available (date-get-year-set-year).`,
+      `'setYear' on Date is not Baseline ${label} available (date-get-year-set-year).`,
     ]);
   });
 
   it("keeps the API subject for Limited availability under a year policy", async () => {
     const messages = await lint("new Date().getYear();", { available: LIMITED_ONLY_YEAR });
     expect(messages.map((message) => message.message)).toEqual([
-      `'Date.prototype.getYear' has Limited availability and exceeds ${LIMITED_ONLY_YEAR} (date-get-year-set-year).`,
+      `'getYear' on Date has Limited availability and exceeds ${LIMITED_ONLY_YEAR} (date-get-year-set-year).`,
+    ]);
+  });
+
+  it("keeps Date subjects and ranges consistent for calls, references, and destructuring", async () => {
+    const code = [
+      "const date = new Date();",
+      "date.getYear();",
+      "const readYear = date.getYear;",
+      "const { getYear } = date;",
+    ].join("\n");
+
+    const messages = await lint(code, { available: "widely" });
+
+    const message = "'getYear' on Date is not Baseline Widely available (date-get-year-set-year).";
+
+    expect(messages).toHaveLength(3);
+    expect(messages).toMatchObject([
+      { message, line: 2, column: 1, endLine: 2, endColumn: 13 },
+      { message, line: 3, column: 18, endLine: 3, endColumn: 30 },
+      { message, line: 4, column: 9, endLine: 4, endColumn: 16 },
+    ]);
+  });
+
+  it("uses the same member format for delegated static APIs", async () => {
+    const policy = reportingPolicyFor("object-hasown");
+
+    const messages = await lint("Object.hasOwn({}, 'key');", {
+      available: policy,
+      includeJsBuiltins: false,
+      includeWebApis: false,
+    });
+
+    expect(messages.map((message) => message.message)).toEqual([
+      `'hasOwn' on Object became Baseline in ${baselineYearOf("object-hasown")} and exceeds ${policy} (object-hasown).`,
     ]);
   });
 

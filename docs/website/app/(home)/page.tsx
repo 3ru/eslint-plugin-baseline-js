@@ -71,9 +71,9 @@ export default function HomePage() {
               <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-rose-500 sm:h-3 sm:w-3" />
               <span>
                 <code className="font-mono rounded border bg-fd-muted px-1.5 py-0.5">
-                  'Date.prototype.getYear'
+                  'getYear'
                 </code>{" "}
-                is not Baseline Widely available (date-get-year-set-year).
+                on Date is not Baseline Widely available (date-get-year-set-year).
               </span>
             </p>
           </div>

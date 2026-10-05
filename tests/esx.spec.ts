@@ -159,9 +159,7 @@ describe("orchestrator (es-x delegates)", () => {
     const msgs = await lintWithBaseline("(new Date()).toGMTString()", "widely");
     expect(
       msgs.some((m) =>
-        m.includes(
-          "'Date.prototype.toGMTString' is not Baseline Widely available (date-to-gmt-string).",
-        ),
+        m.includes("'toGMTString' on Date is not Baseline Widely available (date-to-gmt-string)."),
       ),
     ).toBe(true);
   });
@@ -181,7 +179,7 @@ describe("orchestrator (es-x delegates)", () => {
   it("[object-hasown] year policy: reported with the Baseline year from the record", async () => {
     const policy = reportingPolicyFor("object-hasown");
     const msgs = await lintWithBaseline("Object.hasOwn({a:1}, 'a')", policy);
-    expect(msgs).toContain(yearPolicyMessage("object-hasown", policy, "'Object.hasOwn'"));
+    expect(msgs).toContain(yearPolicyMessage("object-hasown", policy, "'hasOwn' on Object"));
   });
 
   it("[proto] widely: __proto__ (limited) should be flagged", async () => {
@@ -222,9 +220,7 @@ describe("orchestrator (es-x delegates)", () => {
     const msgs = await lintWithBaseline(code, "widely");
     expect(
       msgs.some((m) =>
-        m.includes(
-          "'String.prototype.bold' is not Baseline Widely available (html-wrapper-methods).",
-        ),
+        m.includes("'bold' on String is not Baseline Widely available (html-wrapper-methods)."),
       ),
     ).toBe(true);
   });

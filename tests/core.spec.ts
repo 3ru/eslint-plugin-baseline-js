@@ -30,16 +30,12 @@ describe("orchestrator (ESLint core delegates)", () => {
     const msgs2 = await lintWithBaseline("(new Date()).setYear(99)", "widely");
     expect(
       msgs1.some((m) =>
-        m.includes(
-          "'Date.prototype.getYear' is not Baseline Widely available (date-get-year-set-year).",
-        ),
+        m.includes("'getYear' on Date is not Baseline Widely available (date-get-year-set-year)."),
       ),
     ).toBe(true);
     expect(
       msgs2.some((m) =>
-        m.includes(
-          "'Date.prototype.setYear' is not Baseline Widely available (date-get-year-set-year).",
-        ),
+        m.includes("'setYear' on Date is not Baseline Widely available (date-get-year-set-year)."),
       ),
     ).toBe(true);
   });
