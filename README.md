@@ -115,6 +115,10 @@ export default [
 
 
 ### Demo
+
+Try the [demo](https://github.com/3ru/baseline-checks-demo) to check JavaScript APIs with TypeScript and ESLint in your editor and CI.
+Its [example PR](https://github.com/3ru/baseline-checks-demo/pull/1) changes one line to use `Set.prototype.difference()` and intentionally fails both checks.
+
 <img width="963" height="192" alt="getYear is deprecated" src="https://github.com/user-attachments/assets/e04e4a5c-c104-4945-96d6-889a47b7bcde" />
 
 
