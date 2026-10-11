@@ -27,8 +27,8 @@ and checked 9,493 receiver/descriptor pairs across inherited interfaces;
 2,098 descriptors had no corresponding declaration in that DOM snapshot.
 After correcting mappings, the descriptor inventory is 8,212: 1,792 safe
 patterns and 6,420 typed instance patterns. Declaration absence does not
-establish a detector defect. Runtime behavior,
-receiver provenance, shadowing, and the selected preset still determine
+establish a detector defect. Runtime behavior, receiver provenance, shadowing,
+and the selected preset still determine
 whether a particular use can be reported.
 
 ## Corrected generation gaps
@@ -74,12 +74,24 @@ links beside exceptions. Their corpus is
 
 The regression suites include shadowing, dynamic keys, duplicate reports, and
 option overrides as negative cases. The repeatable
-[`DOM corpus`](../tests/webapi-dom-corpus.spec.ts) compiles and lints 22,468
-fixtures: 4,325 resolvable descriptors on direct, nullable, and constrained
-receivers, plus 9,493 deeply inherited receiver/member combinations. It checks
-TypeScript diagnostics and the expected feature ID on each source line. This
-validates generated instance patterns; the independent generation fixtures
-separately test mappings that were missing or incorrectly classified.
+[`safe corpus`](../tests/webapi-safe-corpus.spec.ts) checks all 1,792 safe API
+descriptors across 28,443 syntax fixtures, plus 3,001 builtin fixtures affected
+by the shared AST helpers. These are detector-shape checks, not evidence that a
+mapping is semantically correct or that an API exists in a browser runtime.
+
+The [`type declaration corpus`](../tests/webapi-dom-corpus.spec.ts) compiles and
+lints separate DOM and Web Worker programs:
+
+| Declaration environment | Resolvable descriptors | Direct/nullable/generic fixtures | Deeply inherited fixtures | Total |
+| --- | ---: | ---: | ---: | ---: |
+| DOM | 4,325 | 12,975 | 9,493 | 22,468 |
+| Web Worker | 1,631 | 4,893 | 7 | 4,900 |
+
+All 27,368 fixtures have zero TypeScript diagnostics and the expected feature ID
+on their source line. This validates generated instance patterns; the independent
+generation fixtures separately test mappings that were missing or incorrectly
+classified. Unavailable declarations are counted and printed for each environment
+rather than treated as detector failures.
 
 ## Remaining boundaries
 

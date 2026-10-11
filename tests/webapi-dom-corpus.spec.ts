@@ -6,7 +6,10 @@ import ts from "typescript";
 import { describe, expect, it } from "vitest";
 import apiDescriptors from "../src/baseline/data/descriptors.api";
 
-describe("Web API DOM declaration corpus", () => {
+describe.each([
+  { name: "DOM", lib: "DOM", declaration: "lib.dom.d.ts" },
+  { name: "Web Worker", lib: "WebWorker", declaration: "lib.webworker.d.ts" },
+])("Web API $name declaration corpus", ({ name, lib, declaration }) => {
   it("detects declared instance members on direct, nullable, generic and inherited receivers", async () => {
     const root = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-dom-corpus-"));
     try {
@@ -15,7 +18,7 @@ describe("Web API DOM declaration corpus", () => {
       const configPath = join(root, "eslint.config.mjs");
       const compilerOptions: ts.CompilerOptions = {
         target: ts.ScriptTarget.ES2023,
-        lib: ["lib.es2023.d.ts", "lib.dom.d.ts"],
+        lib: ["lib.es2023.d.ts", declaration],
         noEmit: true,
         strict: true,
         skipLibCheck: true,
@@ -23,13 +26,13 @@ describe("Web API DOM declaration corpus", () => {
       await fs.writeFile(samplePath, "export {};\n");
       const declarationProgram = ts.createProgram([samplePath], compilerOptions);
       const checker = declarationProgram.getTypeChecker();
-      const dom = declarationProgram
+      const library = declarationProgram
         .getSourceFiles()
-        .find((source) => source.fileName.endsWith("/lib.dom.d.ts"));
-      expect(dom).toBeDefined();
-      if (!dom) return;
+        .find((source) => source.fileName.endsWith(`/${declaration}`));
+      expect(library).toBeDefined();
+      if (!library) return;
       const interfaces = new Map<string, { type: ts.Type; requiredTypeArguments: number }>();
-      for (const statement of dom.statements) {
+      for (const statement of library.statements) {
         if (!ts.isInterfaceDeclaration(statement)) continue;
         const symbol = checker.getSymbolAtLocation(statement.name);
         if (!symbol) continue;
@@ -52,8 +55,8 @@ describe("Web API DOM declaration corpus", () => {
       ).length;
       const missingMember = instanceDescriptors.length - missingInterface - descriptors.length;
       console.info(
-        `Web API DOM corpus: ${descriptors.length} resolvable instance descriptors; ` +
-          `${missingInterface} owners and ${missingMember} members unavailable in lib.dom.`,
+        `Web API ${name} corpus: ${descriptors.length} resolvable instance descriptors; ` +
+          `${missingInterface} owners and ${missingMember} members unavailable in ${declaration}.`,
       );
       expect(descriptors.length).toBeGreaterThan(0);
 
@@ -87,7 +90,9 @@ describe("Web API DOM declaration corpus", () => {
           }
         }
       }
-      console.info(`Web API DOM corpus: ${inheritedRows.length} deeply inherited member cases.`);
+      console.info(
+        `Web API ${name} corpus: ${inheritedRows.length} deeply inherited member cases.`,
+      );
       expect(inheritedRows.length).toBeGreaterThan(0);
       rows.push(...inheritedRows);
       const source = rows.map(({ form, descriptor, receiver }, index) => {
@@ -120,7 +125,7 @@ describe("Web API DOM declaration corpus", () => {
         JSON.stringify({
           compilerOptions: {
             target: "ES2023",
-            lib: ["ES2023", "DOM"],
+            lib: ["ES2023", lib],
             noEmit: true,
             strict: true,
             skipLibCheck: true,
