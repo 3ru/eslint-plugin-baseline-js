@@ -20,6 +20,7 @@ export interface BuildOptions {
 
 export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Rule.RuleListener {
   const listeners: Rule.RuleListener = {};
+  const reportedFeatures = new WeakMap<object, Set<string>>();
 
   type ParserServicesLike = {
     program?: { getTypeChecker?: () => unknown };
@@ -37,8 +38,17 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
 
   for (const d of opt.descriptors) {
     function report(node: unknown) {
-      // SAFETY: Every detector reports a node from ESLint's AST.
-      opt.report(node as Rule.Node, d);
+      // Different descriptors can recognize the same feature at the same AST node.
+      // Keep distinct features while reporting overlapping patterns only once.
+      const reportNode = node as Rule.Node;
+      let features = reportedFeatures.get(reportNode);
+      if (features?.has(d.featureId)) return;
+      if (!features) {
+        features = new Set();
+        reportedFeatures.set(reportNode, features);
+      }
+      features.add(d.featureId);
+      opt.report(reportNode, d);
     }
 
     switch (d.kind) {

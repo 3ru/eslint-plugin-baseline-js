@@ -86,38 +86,57 @@ export function isGlobalNotShadowed(
   return true;
 }
 
+const GLOBAL_OBJECT_NAMES = new Set(["window", "globalThis", "self"]);
+
+function staticPropertyName(node: unknown, computed: boolean): string | null {
+  const key = node as { type?: string; name?: string; value?: unknown } | undefined;
+  if (!computed && key?.type === "Identifier") return key.name ?? null;
+  if (key?.type === "Literal" && typeof key.value === "string") return key.value;
+  return null;
+}
+
 export function isGlobalBase(_context: Rule.RuleContext, node: unknown, baseName: string): boolean {
-  if (!node) return false;
-  const id = node as { type?: string; name?: string };
-  if (id.type === "Identifier" && id.name === baseName) {
-    // Treat matching identifiers as global base by default.
-    // Shadowing avoidance can be added per-rule if needed.
-    return true;
+  return collectGlobalBaseRoots(node, baseName).length > 0;
+}
+
+function globalObjectRoot(node: unknown): string | null {
+  type NodeLike = {
+    type?: string;
+    name?: string;
+    computed?: boolean;
+    object?: unknown;
+    property?: unknown;
+  };
+  let current = stripChain(node) as NodeLike | undefined;
+  while (current?.type === "MemberExpression") {
+    const name = staticPropertyName(current.property, !!current.computed);
+    if (!name || !GLOBAL_OBJECT_NAMES.has(name)) return null;
+    current = stripChain(current.object) as NodeLike | undefined;
   }
-  const me = node as { type?: string; computed?: boolean; object?: unknown; property?: unknown };
-  if (me.type === "MemberExpression" && me.computed === false) {
-    const obj = me.object as { type?: string; name?: string } | undefined;
-    const prop = me.property as { type?: string; name?: string } | undefined;
-    const isWin =
-      obj?.type === "Identifier" && (obj.name === "window" || obj.name === "globalThis");
-    if (!isWin) return false;
-    return prop?.type === "Identifier" && prop.name === baseName;
-  }
-  return false;
+  return current?.type === "Identifier" && GLOBAL_OBJECT_NAMES.has(current.name ?? "")
+    ? (current.name as string)
+    : null;
 }
 
 function collectGlobalBaseRoots(node: unknown, baseName: string): string[] {
-  const id = node as { type?: string; name?: string };
-  if (id.type === "Identifier" && id.name === baseName) return [baseName];
-
-  const me = node as { type?: string; computed?: boolean; object?: unknown; property?: unknown };
-  if (me.type !== "MemberExpression" || me.computed) return [];
-  const obj = me.object as { type?: string; name?: string } | undefined;
-  const prop = me.property as { type?: string; name?: string } | undefined;
-  if (obj?.type !== "Identifier" || prop?.type !== "Identifier") return [];
-  if (prop.name !== baseName) return [];
-  if (obj.name === "window" || obj.name === "globalThis") return [obj.name];
-  return [];
+  const n = stripChain(node) as
+    | {
+        type?: string;
+        name?: string;
+        computed?: boolean;
+        object?: unknown;
+        property?: unknown;
+      }
+    | undefined;
+  if (n?.type === "Identifier" && n.name === baseName) return [baseName];
+  if (baseName === "window") {
+    const root = globalObjectRoot(n);
+    if (root) return [root];
+  }
+  if (n?.type !== "MemberExpression") return [];
+  if (staticPropertyName(n.property, !!n.computed) !== baseName) return [];
+  const root = globalObjectRoot(n.object);
+  return root ? [root] : [];
 }
 
 export function isGlobalBaseNotShadowed(
@@ -126,17 +145,13 @@ export function isGlobalBaseNotShadowed(
   baseName: string,
   parentNode: unknown,
 ): boolean {
-  if (!isGlobalBase(context, node, baseName)) return false;
   const roots = collectGlobalBaseRoots(node, baseName);
   if (!roots.length) return false;
   return roots.every((name) => isGlobalNotShadowed(context, name, parentNode));
 }
 
 export function isMemberWithProperty(node: unknown, propName: string): boolean {
-  const me = node as { type?: string; computed?: boolean; property?: unknown };
-  if (!me || me.type !== "MemberExpression" || me.computed) return false;
-  const prop = me.property as { type?: string; name?: string } | undefined;
-  return prop?.type === "Identifier" && prop.name === propName;
+  return isMemberName(node, propName);
 }
 
 // --- Additional lightweight AST helpers for safe argument-based detection ---
@@ -148,15 +163,12 @@ export function stripChain(node: unknown): unknown {
 }
 
 export function isMemberName(node: unknown, name: string): boolean {
-  const me = node as { type?: string; computed?: boolean; property?: unknown };
-  const prop = me?.property as { type?: string; name?: string; value?: unknown } | undefined;
-  if (!me || me.type !== "MemberExpression") return false;
-  if (!me.computed) return prop?.type === "Identifier" && prop.name === name;
-  return prop?.type === "Literal" && String(prop.value) === name;
+  const me = stripChain(node) as { type?: string; computed?: boolean; property?: unknown };
+  return me?.type === "MemberExpression" && staticPropertyName(me.property, !!me.computed) === name;
 }
 
 export function getMemberPropertyNode(node: unknown): unknown | null {
-  const me = node as { type?: string; property?: unknown };
+  const me = stripChain(node) as { type?: string; property?: unknown };
   return me && me.type === "MemberExpression" ? (me.property ?? null) : null;
 }
 
@@ -179,15 +191,10 @@ export function getCallObjectArg(call: unknown, index: number): unknown | null {
 export function objectHasKey(obj: unknown, key: string): boolean {
   const o = obj as { type?: string; properties?: unknown[] };
   if (!o || o.type !== "ObjectExpression") return false;
-  for (const p of (o.properties as unknown[] | undefined) || []) {
+  return (o.properties ?? []).some((p) => {
     const prop = p as { type?: string; computed?: boolean; key?: unknown };
-    if (prop.type !== "Property") continue;
-    if (prop.computed) continue;
-    const k = prop.key as { type?: string; name?: string; value?: unknown } | undefined;
-    if (k?.type === "Identifier" && k.name === key) return true;
-    if (k?.type === "Literal" && k.value === key) return true;
-  }
-  return false;
+    return prop.type === "Property" && staticPropertyName(prop.key, !!prop.computed) === key;
+  });
 }
 
 export function isMethodKey(prop: unknown): boolean {
@@ -212,12 +219,7 @@ export function objectHasKeyWithValues(
       value?: { type?: string; value?: unknown };
     };
     if (prop.type !== "Property") continue;
-    if (prop.computed) continue;
-    const k = prop.key;
-    const matchKey =
-      (k?.type === "Identifier" && k.name === cfg.key) ||
-      (k?.type === "Literal" && k.value === cfg.key);
-    if (!matchKey) continue;
+    if (staticPropertyName(prop.key, !!prop.computed) !== cfg.key) continue;
     if (!cfg.values || cfg.values.length === 0) return true; // key presence only
     const v = prop.value;
     if (v?.type === "Literal" && cfg.values.includes(String(v.value))) return true;

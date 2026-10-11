@@ -7,7 +7,12 @@ import type {
   NewMemberDescriptor,
   StaticMemberDescriptor,
 } from "../../../baseline/types";
-import { isGlobalBaseNotShadowed, isMemberWithProperty } from "../../../util/ast";
+import {
+  getMemberPropertyNode,
+  isGlobalBaseNotShadowed,
+  isMemberWithProperty,
+  stripChain,
+} from "../../../util/ast";
 export type Reporter = (node: unknown, featureId: string) => void;
 
 export function addNewIdentDetector(
@@ -18,15 +23,9 @@ export function addNewIdentDetector(
   const name = d.name;
   const featureId = d.featureId;
   const handler: Rule.RuleListener["NewExpression"] = (node) => {
-    const callee = (node as unknown as { callee?: unknown }).callee as
-      | { type?: string; name?: string }
-      | undefined;
-    if (
-      callee?.type === "Identifier" &&
-      callee.name === name &&
-      isGlobalBaseNotShadowed(context, callee, name, node)
-    ) {
-      report(callee, featureId);
+    const callee = stripChain((node as unknown as { callee?: unknown }).callee);
+    if (isGlobalBaseNotShadowed(context, callee, name, node)) {
+      report(getMemberPropertyNode(callee) ?? callee, featureId);
     }
   };
   return { NewExpression: handler };
@@ -39,7 +38,7 @@ export function addNewMemberDetector(
 ): Rule.RuleListener {
   const { base, prop, featureId } = d;
   const handler: Rule.RuleListener["NewExpression"] = (node) => {
-    const callee = (node as unknown as { callee?: unknown }).callee;
+    const callee = stripChain((node as unknown as { callee?: unknown }).callee);
     if (
       isMemberWithProperty(callee, prop) &&
       isGlobalBaseNotShadowed(
@@ -62,7 +61,7 @@ export function addCallStaticDetector(
 ): Rule.RuleListener {
   const { base, prop, featureId } = d;
   const handler: Rule.RuleListener["CallExpression"] = (node) => {
-    const callee = (node as unknown as { callee?: unknown }).callee;
+    const callee = stripChain((node as unknown as { callee?: unknown }).callee);
     if (
       isMemberWithProperty(callee, prop) &&
       isGlobalBaseNotShadowed(
@@ -85,15 +84,9 @@ export function addCallGlobalDetector(
 ): Rule.RuleListener {
   const { name, featureId } = d;
   const handler: Rule.RuleListener["CallExpression"] = (node) => {
-    const callee = (node as unknown as { callee?: unknown }).callee as
-      | { type?: string; name?: string }
-      | undefined;
-    if (
-      callee?.type === "Identifier" &&
-      callee.name === name &&
-      isGlobalBaseNotShadowed(context, callee, name, node)
-    ) {
-      report(callee, featureId);
+    const callee = stripChain((node as unknown as { callee?: unknown }).callee);
+    if (isGlobalBaseNotShadowed(context, callee, name, node)) {
+      report(getMemberPropertyNode(callee) ?? callee, featureId);
     }
   };
   return { CallExpression: handler };

@@ -6,10 +6,13 @@ import type {
 import {
   getCallObjectArg,
   getCallStringArg,
+  getMemberPropertyNode,
   isCallOfMember,
   isGlobalBaseNotShadowed,
+  isMemberName,
   objectHasKey,
   objectHasKeyWithValues,
+  stripChain,
 } from "../../../util/ast";
 
 export type Reporter = (node: unknown, featureId: string) => void;
@@ -34,19 +37,11 @@ export function addCallMemberWithArgsDetector(
 ): Rule.RuleListener {
   const handler: Rule.RuleListener["CallExpression"] = (node) => {
     const n = node as { callee?: unknown };
-    const callee = n.callee as { type?: string; object?: unknown; property?: unknown } | undefined;
-    if (!callee || callee.type !== "MemberExpression") return;
-    const propNode = callee.property as
-      | { type?: "Identifier"; name?: string }
-      | { type?: "Literal"; value?: unknown }
+    const callee = stripChain(n.callee) as
+      | { type?: string; object?: unknown; property?: unknown }
       | undefined;
-    const propName =
-      propNode?.type === "Identifier"
-        ? propNode.name
-        : propNode?.type === "Literal"
-          ? String(propNode.value)
-          : undefined;
-    if (propName !== d.prop) return;
+    if (!callee || callee.type !== "MemberExpression") return;
+    if (!isMemberName(callee, d.prop)) return;
 
     if (d.viaCall?.prop) {
       // Receiver must be the result of a call like obj.getSupportedExtensions()
@@ -78,10 +73,7 @@ export function addNewWithOptionsDetector(
   report: Reporter,
 ): Rule.RuleListener {
   const handler: Rule.RuleListener["NewExpression"] = (node) => {
-    const callee = (node as { callee?: unknown }).callee as
-      | { type?: string; name?: string }
-      | undefined;
-    if (callee?.type !== "Identifier" || callee.name !== d.name) return;
+    const callee = stripChain((node as { callee?: unknown }).callee);
     if (!isGlobalBaseNotShadowed(context, callee, d.name, node)) return;
     const obj = getCallObjectArg(node as unknown, d.objectArg.index);
     if (!obj) return;
@@ -92,7 +84,7 @@ export function addNewWithOptionsDetector(
       for (const kv of d.objectArg.keyValues)
         if (!objectHasKeyWithValues(obj as unknown, kv)) return;
     }
-    report(callee, d.featureId);
+    report(getMemberPropertyNode(callee) ?? callee, d.featureId);
   };
   return { NewExpression: handler };
 }
