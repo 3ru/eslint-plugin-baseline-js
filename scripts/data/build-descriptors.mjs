@@ -4,6 +4,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { features as wfFeatures } from "web-features";
 import { classifyJsBuiltinCompatFeature } from "./classify-js-builtins.mjs";
+import { classifyWebApiCompatFeature } from "./classify-web-apis.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -11,11 +12,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  * Heuristics to convert MDN BCD compat_features entries to Descriptor DSL.
  * We only emit patterns we can detect robustly without type information (safe preset).
  */
-
-const LOWER_GLOBAL_INSTANCE = new Map([
-  ["Navigator", "navigator"],
-  ["Window", "window"],
-]);
 
 /** @type {import('../../src/baseline/types').Descriptor[]} */
 const apiDescs = [];
@@ -27,38 +23,9 @@ for (const [id, f] of Object.entries(wfFeatures)) {
   if (cfs.length === 0) continue;
 
   // Web API (api.*)
-  if (cfs.some((k) => k.startsWith("api."))) {
-    for (const k of cfs) {
-      if (!k.startsWith("api.")) continue;
-      const parts = k.split(".");
-      // Global functions: api.functionName (e.g., api.structuredClone, api.queueMicrotask)
-      if (parts.length === 2) {
-        apiDescs.push({ featureId: id, kind: "callGlobal", name: parts[1] });
-        continue;
-      }
-      if (parts.length === 3 && parts[1] === parts[2]) {
-        apiDescs.push({ featureId: id, kind: "newIdent", name: parts[1] });
-        continue;
-      }
-      if (parts.length === 3 && parts[2].endsWith("_static")) {
-        const prop = parts[2].slice(0, -"_static".length);
-        apiDescs.push({ featureId: id, kind: "callStatic", base: parts[1], prop });
-        continue;
-      }
-      if (parts.length === 3) {
-        const iface = parts[1];
-        const prop = parts[2];
-        if (iface === "Navigator" || iface === "Window") {
-          const inst = LOWER_GLOBAL_INSTANCE.get(iface) ?? iface.toLowerCase();
-          apiDescs.push({ featureId: id, kind: "member", base: inst, prop });
-          continue;
-        }
-        if (iface === "CSS") {
-          apiDescs.push({ featureId: id, kind: "callStatic", base: "CSS", prop });
-          continue;
-        }
-        apiDescs.push({ featureId: id, kind: "instanceMember", iface, prop });
-      }
+  for (const key of cfs) {
+    for (const pattern of classifyWebApiCompatFeature(key)) {
+      apiDescs.push({ featureId: id, ...pattern });
     }
   }
 
@@ -86,7 +53,6 @@ for (const [id, f] of Object.entries(wfFeatures)) {
 // Manual safe descriptors
 /** @type {import('../../src/baseline/types').Descriptor[]} */
 const manualApi = [
-  { featureId: "fetchlater", kind: "callGlobal", name: "fetchLater" },
   {
     featureId: "canvas-2d-alpha",
     kind: "callMemberWithArgs",

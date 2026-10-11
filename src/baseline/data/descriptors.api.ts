@@ -340,15 +340,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "alerts",
+    "kind": "callGlobal",
+    "name": "alert"
+  },
+  {
+    "featureId": "alerts",
     "kind": "member",
     "base": "window",
     "prop": "confirm"
   },
   {
     "featureId": "alerts",
+    "kind": "callGlobal",
+    "name": "confirm"
+  },
+  {
+    "featureId": "alerts",
     "kind": "member",
     "base": "window",
     "prop": "prompt"
+  },
+  {
+    "featureId": "alerts",
+    "kind": "callGlobal",
+    "name": "prompt"
   },
   {
     "featureId": "ambient-light",
@@ -1734,9 +1749,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "audio",
-    "kind": "instanceMember",
-    "iface": "HTMLAudioElement",
-    "prop": "Audio"
+    "kind": "newIdent",
+    "name": "Audio"
   },
   {
     "featureId": "audio-session",
@@ -3984,7 +3998,7 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "compute-pressure",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "PressureObserver",
     "prop": "knownSources"
   },
@@ -7181,6 +7195,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "getDigitalGoodsService"
+  },
+  {
+    "featureId": "digital-goods",
+    "kind": "callGlobal",
+    "name": "getDigitalGoodsService"
   },
   {
     "featureId": "dirname",
@@ -11621,6 +11640,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "fetchLater"
   },
   {
+    "featureId": "fetchlater",
+    "kind": "callGlobal",
+    "name": "fetchLater"
+  },
+  {
     "featureId": "fieldset",
     "kind": "callGlobal",
     "name": "HTMLFieldSetElement"
@@ -11952,15 +11976,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "file-system-access",
+    "kind": "callGlobal",
+    "name": "showDirectoryPicker"
+  },
+  {
+    "featureId": "file-system-access",
     "kind": "member",
     "base": "window",
     "prop": "showOpenFilePicker"
   },
   {
     "featureId": "file-system-access",
+    "kind": "callGlobal",
+    "name": "showOpenFilePicker"
+  },
+  {
+    "featureId": "file-system-access",
     "kind": "member",
     "base": "window",
     "prop": "showSaveFilePicker"
+  },
+  {
+    "featureId": "file-system-access",
+    "kind": "callGlobal",
+    "name": "showSaveFilePicker"
   },
   {
     "featureId": "focus-events",
@@ -12665,6 +12704,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "requestResize"
   },
   {
+    "featureId": "frame-sizing",
+    "kind": "callGlobal",
+    "name": "requestResize"
+  },
+  {
     "featureId": "fullscreen",
     "kind": "instanceMember",
     "iface": "Document",
@@ -13215,6 +13259,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "getComputedStyle"
   },
   {
+    "featureId": "get-computed-style",
+    "kind": "callGlobal",
+    "name": "getComputedStyle"
+  },
+  {
     "featureId": "getallrecords",
     "kind": "instanceMember",
     "iface": "IDBIndex",
@@ -13372,7 +13421,7 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "highlight",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "CSS",
     "prop": "highlights"
   },
@@ -14418,9 +14467,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "img",
-    "kind": "instanceMember",
-    "iface": "HTMLImageElement",
-    "prop": "Image"
+    "kind": "newIdent",
+    "name": "Image"
   },
   {
     "featureId": "img",
@@ -16557,6 +16605,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "queryLocalFonts"
   },
   {
+    "featureId": "local-fonts",
+    "kind": "callGlobal",
+    "name": "queryLocalFonts"
+  },
+  {
     "featureId": "local-network-access",
     "kind": "instanceMember",
     "iface": "Request",
@@ -17055,6 +17108,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "matchMedia"
+  },
+  {
+    "featureId": "matchmedia",
+    "kind": "callGlobal",
+    "name": "matchMedia"
   },
   {
     "featureId": "mathml",
@@ -17631,7 +17689,7 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "media-source",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "MediaSource",
     "prop": "canConstructInDedicatedWorker"
   },
@@ -19338,13 +19396,13 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "notifications",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Notification",
     "prop": "maxActions"
   },
   {
     "featureId": "notifications",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "Notification",
     "prop": "permission"
   },
@@ -21120,7 +21178,7 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "paint",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "CSS",
     "prop": "paintWorklet"
   },
@@ -21941,7 +21999,7 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "performance",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "PerformanceObserver",
     "prop": "supportedEntryTypes"
   },
@@ -22738,6 +22796,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "postmessage",
+    "kind": "callGlobal",
+    "name": "postMessage"
+  },
+  {
+    "featureId": "postmessage",
     "kind": "instanceMember",
     "iface": "Worker",
     "prop": "message_event"
@@ -22995,6 +23058,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "print"
   },
   {
+    "featureId": "print",
+    "kind": "callGlobal",
+    "name": "print"
+  },
+  {
     "featureId": "print-events",
     "kind": "member",
     "base": "window",
@@ -23199,7 +23267,7 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "push",
-    "kind": "callStatic",
+    "kind": "staticMember",
     "base": "PushManager",
     "prop": "supportedContentEncodings"
   },
@@ -23767,9 +23835,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "request-animation-frame",
+    "kind": "callGlobal",
+    "name": "cancelAnimationFrame"
+  },
+  {
+    "featureId": "request-animation-frame",
     "kind": "member",
     "base": "window",
     "prop": "requestAnimationFrame"
+  },
+  {
+    "featureId": "request-animation-frame",
+    "kind": "callGlobal",
+    "name": "requestAnimationFrame"
   },
   {
     "featureId": "request-animation-frame-workers",
@@ -23826,9 +23904,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "requestidlecallback",
+    "kind": "callGlobal",
+    "name": "cancelIdleCallback"
+  },
+  {
+    "featureId": "requestidlecallback",
     "kind": "member",
     "base": "window",
     "prop": "requestIdleCallback"
+  },
+  {
+    "featureId": "requestidlecallback",
+    "kind": "callGlobal",
+    "name": "requestIdleCallback"
   },
   {
     "featureId": "resize-observer",
@@ -24627,15 +24715,30 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "scroll-elements",
+    "kind": "callGlobal",
+    "name": "scroll"
+  },
+  {
+    "featureId": "scroll-elements",
     "kind": "member",
     "base": "window",
     "prop": "scrollBy"
   },
   {
     "featureId": "scroll-elements",
+    "kind": "callGlobal",
+    "name": "scrollBy"
+  },
+  {
+    "featureId": "scroll-elements",
     "kind": "member",
     "base": "window",
     "prop": "scrollTo"
+  },
+  {
+    "featureId": "scroll-elements",
+    "kind": "callGlobal",
+    "name": "scrollTo"
   },
   {
     "featureId": "scroll-elements",
@@ -24766,9 +24869,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "select",
-    "kind": "instanceMember",
-    "iface": "HTMLOptionElement",
-    "prop": "Option"
+    "kind": "newIdent",
+    "name": "Option"
   },
   {
     "featureId": "select",
@@ -25409,6 +25511,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "getSelection"
+  },
+  {
+    "featureId": "selection-api",
+    "kind": "callGlobal",
+    "name": "getSelection"
   },
   {
     "featureId": "serial",
@@ -26530,6 +26637,17 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "SharedWorkerGlobalScope",
     "prop": "name"
+  },
+  {
+    "featureId": "shared-workers-extended-lifetime",
+    "kind": "newWithOptions",
+    "name": "SharedWorker",
+    "objectArg": {
+      "index": 1,
+      "hasKeys": [
+        "extendedLifetime"
+      ]
+    }
   },
   {
     "featureId": "show-picker-input",
@@ -46411,6 +46529,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "window",
+    "kind": "callGlobal",
+    "name": "close"
+  },
+  {
+    "featureId": "window",
     "kind": "member",
     "base": "window",
     "prop": "closed"
@@ -46426,6 +46549,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "focus"
+  },
+  {
+    "featureId": "window",
+    "kind": "callGlobal",
+    "name": "focus"
   },
   {
     "featureId": "window",
@@ -46477,9 +46605,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "window",
+    "kind": "callGlobal",
+    "name": "moveBy"
+  },
+  {
+    "featureId": "window",
     "kind": "member",
     "base": "window",
     "prop": "moveTo"
+  },
+  {
+    "featureId": "window",
+    "kind": "callGlobal",
+    "name": "moveTo"
   },
   {
     "featureId": "window",
@@ -46492,6 +46630,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "open"
+  },
+  {
+    "featureId": "window",
+    "kind": "callGlobal",
+    "name": "open"
   },
   {
     "featureId": "window",
@@ -46525,9 +46668,19 @@ const descriptors: ReadonlyArray<Descriptor> = [
   },
   {
     "featureId": "window",
+    "kind": "callGlobal",
+    "name": "resizeBy"
+  },
+  {
+    "featureId": "window",
     "kind": "member",
     "base": "window",
     "prop": "resizeTo"
+  },
+  {
+    "featureId": "window",
+    "kind": "callGlobal",
+    "name": "resizeTo"
   },
   {
     "featureId": "window",
@@ -46576,6 +46729,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "stop"
+  },
+  {
+    "featureId": "window",
+    "kind": "callGlobal",
+    "name": "stop"
   },
   {
     "featureId": "window",
@@ -46745,6 +46903,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "member",
     "base": "window",
     "prop": "getScreenDetails"
+  },
+  {
+    "featureId": "window-management",
+    "kind": "callGlobal",
+    "name": "getScreenDetails"
   },
   {
     "featureId": "writingsuggestions",
@@ -47275,11 +47438,6 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "kind": "instanceMember",
     "iface": "XSLTProcessor",
     "prop": "transformToFragment"
-  },
-  {
-    "featureId": "fetchlater",
-    "kind": "callGlobal",
-    "name": "fetchLater"
   },
   {
     "featureId": "canvas-2d-alpha",
