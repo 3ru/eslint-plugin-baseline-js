@@ -211,18 +211,22 @@ export function objectHasKeyWithValues(
 ): boolean {
   const o = obj as { type?: string; properties?: unknown[] };
   if (!o || o.type !== "ObjectExpression") return false;
-  for (const p of (o.properties as unknown[] | undefined) || []) {
-    const prop = p as {
+  const properties = o.properties ?? [];
+  for (let index = properties.length - 1; index >= 0; index--) {
+    const prop = properties[index] as {
       type?: string;
       computed?: boolean;
       key?: { type?: string; name?: string; value?: unknown };
       value?: { type?: string; value?: unknown };
     };
-    if (prop.type !== "Property") continue;
-    if (staticPropertyName(prop.key, !!prop.computed) !== cfg.key) continue;
+    // A later spread or dynamic key may replace any earlier option value.
+    if (prop.type !== "Property") return false;
+    const key = staticPropertyName(prop.key, !!prop.computed);
+    if (key === null && prop.computed && prop.key?.type !== "Literal") return false;
+    if (key !== cfg.key) continue;
     if (!cfg.values || cfg.values.length === 0) return true; // key presence only
     const v = prop.value;
-    if (v?.type === "Literal" && cfg.values.includes(String(v.value))) return true;
+    return v?.type === "Literal" && cfg.values.includes(String(v.value));
   }
   return false;
 }
