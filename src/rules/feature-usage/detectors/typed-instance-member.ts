@@ -14,6 +14,8 @@ export function addTypedInstanceMemberDetector(
     getTypeAtLocation?: (n: unknown) => unknown;
     getPropertyOfType?: (t: unknown, name: string) => unknown;
     getApparentType?: (t: unknown) => unknown;
+    getBaseConstraintOfType?: (t: unknown) => unknown;
+    getNonNullableType?: (t: unknown) => unknown;
   };
   type ParserServicesLike = {
     program?: { getTypeChecker?: () => TsCheckerLike };
@@ -60,10 +62,11 @@ export function addTypedInstanceMemberDetector(
     );
   }
 
-  function typeMatches(t: unknown): boolean {
-    if (!t) return false;
+  function typeMatches(t: unknown, seen = new Set<unknown>()): boolean {
+    if (!t || seen.has(t)) return false;
+    seen.add(t);
     const withTypes = t as { types?: unknown[] };
-    if (Array.isArray(withTypes.types)) return withTypes.types.some((tt) => typeMatches(tt));
+    if (Array.isArray(withTypes.types)) return withTypes.types.some((tt) => typeMatches(tt, seen));
     const withSym = t as {
       symbol?: { name?: string };
       aliasSymbol?: { name?: string };
@@ -72,21 +75,11 @@ export function addTypedInstanceMemberDetector(
     const sym = withSym.symbol || withSym.aliasSymbol || withSym.getSymbol?.();
     const name = (sym as { name?: string } | undefined)?.name;
     if (name === iface || name?.endsWith(`.${iface}`)) return true;
-    const apparent = checkerOk.getApparentType?.(t) || t;
-    const baseTypes = getBaseTypes(apparent);
-    if (baseTypes?.length) {
-      if (baseTypes.some((bt) => (bt as { symbol?: { name?: string } }).symbol?.name === iface))
-        return true;
-      for (const bt of baseTypes) {
-        const bt2 = getBaseTypes(bt);
-        if (
-          Array.isArray(bt2) &&
-          bt2.some((b2) => (b2 as { symbol?: { name?: string } }).symbol?.name === iface)
-        )
-          return true;
-      }
-    }
-    return false;
+    const apparent = checkerOk.getApparentType?.(t);
+    if (apparent && apparent !== t && typeMatches(apparent, seen)) return true;
+    const constraint = checkerOk.getBaseConstraintOfType?.(t);
+    if (constraint && constraint !== t && typeMatches(constraint, seen)) return true;
+    return getBaseTypes(t).some((base) => typeMatches(base, seen));
   }
 
   const handler: Rule.RuleListener["MemberExpression"] = (node) => {
@@ -94,8 +87,9 @@ export function addTypedInstanceMemberDetector(
     const obj = (node as unknown as { object?: unknown }).object;
     const tsNode = getTsNode(obj);
     if (!tsNode) return;
-    const type = getTypeAtLocation(tsNode);
-    if (!type) return;
+    const receiverType = getTypeAtLocation(tsNode);
+    if (!receiverType) return;
+    const type = checkerOk.getNonNullableType?.(receiverType) || receiverType;
     const hasProp = !!getPropertyOfType(type, prop);
     if (!hasProp) return;
     if (typeMatches(type)) report((node as unknown as { property?: unknown }).property, featureId);
