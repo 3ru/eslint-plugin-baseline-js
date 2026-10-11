@@ -11,7 +11,10 @@ import type { Rule } from "eslint";
 const rule: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "disallow Function#caller and Function#arguments" },
+    docs: {
+      description: "disallow Function#caller and Function#arguments",
+      url: "https://baselinejs.vercel.app/docs/config#standalone-rules",
+    },
     messages: { forbidden: "Function.caller/Function.arguments are forbidden." },
     schema: [],
   },

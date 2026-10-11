@@ -8,7 +8,10 @@ import { isGlobalBaseNotShadowed } from "../../util/ast";
 const rule: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "disallow Math.sumPrecise() usage" },
+    docs: {
+      description: "disallow Math.sumPrecise() usage",
+      url: "https://baselinejs.vercel.app/docs/config#standalone-rules",
+    },
     messages: { forbidden: "Math.sumPrecise is not allowed." },
     schema: [],
   },
