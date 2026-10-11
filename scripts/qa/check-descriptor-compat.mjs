@@ -37,7 +37,7 @@ function matchesApiDescriptor(desc, keys) {
   if (!keys.size) return true;
   switch (desc.kind) {
     case "callGlobal":
-      return keys.has(`api.${desc.name}`);
+      return keys.has(`api.${desc.name}`) || keys.has(`api.Window.${desc.name}`);
     case "newIdent":
       return keys.has(`api.${desc.name}.${desc.name}`) || keys.has(`api.${desc.name}`);
     case "newWithOptions":

@@ -47277,6 +47277,11 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "prop": "transformToFragment"
   },
   {
+    "featureId": "fetchlater",
+    "kind": "callGlobal",
+    "name": "fetchLater"
+  },
+  {
     "featureId": "canvas-2d-alpha",
     "kind": "callMemberWithArgs",
     "prop": "getContext",

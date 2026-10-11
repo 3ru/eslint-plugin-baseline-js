@@ -86,6 +86,7 @@ for (const [id, f] of Object.entries(wfFeatures)) {
 // Manual safe descriptors
 /** @type {import('../../src/baseline/types').Descriptor[]} */
 const manualApi = [
+  { featureId: "fetchlater", kind: "callGlobal", name: "fetchLater" },
   {
     featureId: "canvas-2d-alpha",
     kind: "callMemberWithArgs",
