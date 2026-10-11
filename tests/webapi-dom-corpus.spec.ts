@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
 import apiDescriptors from "../src/baseline/data/descriptors.api";
 
 describe("Web API DOM declaration corpus", () => {
-  it("detects every declared instance member on direct, nullable and generic receivers", async () => {
+  it("detects declared instance members on direct, nullable, generic and inherited receivers", async () => {
     const root = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-dom-corpus-"));
     try {
       const samplePath = join(root, "sample.ts");
@@ -58,14 +58,44 @@ describe("Web API DOM declaration corpus", () => {
       expect(descriptors.length).toBeGreaterThan(0);
 
       const rows = ["direct", "nullable", "generic"].flatMap((form) =>
-        descriptors.map((descriptor) => ({ form, descriptor })),
+        descriptors.map((descriptor) => ({ form, descriptor, receiver: descriptor.iface })),
       );
-      const source = rows.map(({ form, descriptor }, index) => {
-        const owner = interfaces.get(descriptor.iface);
+      const descriptorsByInterface = new Map<string, typeof descriptors>();
+      for (const descriptor of descriptors) {
+        const members = descriptorsByInterface.get(descriptor.iface) ?? [];
+        members.push(descriptor);
+        descriptorsByInterface.set(descriptor.iface, members);
+      }
+      const inheritedRows: typeof rows = [];
+      for (const [receiver, owner] of interfaces) {
+        const pending = [{ type: owner.type, depth: 0 }];
+        const visited = new Set<ts.Type>();
+        for (let index = 0; index < pending.length; index++) {
+          const current = pending[index];
+          if (!current || visited.has(current.type)) continue;
+          visited.add(current.type);
+          if (current.depth > 2) {
+            const name = current.type.getSymbol()?.getName() ?? "";
+            for (const descriptor of descriptorsByInterface.get(name) ?? []) {
+              if (checker.getPropertyOfType(owner.type, descriptor.prop)) {
+                inheritedRows.push({ form: "inherited", descriptor, receiver });
+              }
+            }
+          }
+          for (const base of current.type.getBaseTypes?.() ?? []) {
+            pending.push({ type: base, depth: current.depth + 1 });
+          }
+        }
+      }
+      console.info(`Web API DOM corpus: ${inheritedRows.length} deeply inherited member cases.`);
+      expect(inheritedRows.length).toBeGreaterThan(0);
+      rows.push(...inheritedRows);
+      const source = rows.map(({ form, descriptor, receiver }, index) => {
+        const owner = interfaces.get(receiver);
         const typeArguments = owner?.requiredTypeArguments
           ? `<${Array(owner.requiredTypeArguments).fill("any").join(", ")}>`
           : "";
-        const typeName = `${descriptor.iface}${typeArguments}`;
+        const typeName = `${receiver}${typeArguments}`;
         const property = ts.isIdentifierText(descriptor.prop, ts.ScriptTarget.ESNext)
           ? `.${descriptor.prop}`
           : `[${JSON.stringify(descriptor.prop)}]`;
@@ -141,7 +171,12 @@ describe("Web API DOM declaration corpus", () => {
         featuresByLine.set(message.line, features);
       }
       const missing = rows
-        .map(({ form, descriptor }, index) => ({ form, descriptor, line: index + 1 }))
+        .map(({ form, descriptor, receiver }, index) => ({
+          form,
+          descriptor,
+          receiver,
+          line: index + 1,
+        }))
         .filter(({ descriptor, line }) => !featuresByLine.get(line)?.has(descriptor.featureId));
       expect(missing.slice(0, 20), `${missing.length} missing Web API corpus diagnostics`).toEqual(
         [],
