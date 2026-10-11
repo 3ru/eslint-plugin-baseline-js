@@ -221,20 +221,6 @@ const rule: Rule.RuleModule = {
       const l = impl.create(delegateCtx as unknown as Rule.RuleContext);
       mergeRuleListeners(listeners, l);
     }
-    // Attach generic feature-usage detector (Web API / JS builtins) if enabled and we have descriptors.
-    let descriptors = getIncludedDescriptors({
-      webApis: includeWebApis,
-      jsBuiltins: includeJsBuiltins,
-    });
-    if (matchIgnoreFeature) {
-      descriptors = descriptors.filter((d) => !matchIgnoreFeature(d.featureId));
-    }
-    // Filter to features that actually exceed the configured Baseline
-    descriptors = descriptors
-      .filter((d) => isBeyondBaseline(d.featureId, baseline))
-      // Avoid double-reporting when a feature is covered by mapping delegates
-      .filter((d) => !mappedFeatureIds.has(d.featureId));
-
     // Resolve typed mode
     function resolveUseTypes(opt: unknown): "off" | "auto" | "require" {
       if (!opt) return "off";
@@ -259,19 +245,32 @@ const rule: Rule.RuleModule = {
     const typedAvailable = !!ps?.program && !!ps?.esTreeNodeToTSNodeMap;
     const useTypesWeb = resolveUseTypes(includeWebApis);
     const useTypesJs = resolveUseTypes(includeJsBuiltins);
-    const wantTyped =
-      useTypesWeb === "require" ||
-      useTypesJs === "require" ||
-      useTypesWeb === "auto" ||
-      useTypesJs === "auto";
-    const typedEnabled = wantTyped && typedAvailable;
+    const typedWebEnabled = useTypesWeb !== "off" && typedAvailable;
+    const typedJsEnabled = useTypesJs !== "off" && typedAvailable;
+    const typedEnabled = typedWebEnabled || typedJsEnabled;
 
-    if (!typedEnabled) {
-      // Drop instanceMember descriptors and typedOnly descriptors if we cannot/should not run typed checks
-      descriptors = descriptors.filter(
-        (d) => d.kind !== "instanceMember" && !(d as { typedOnly?: boolean }).typedOnly,
+    function getEnabledDescriptors(
+      options: Parameters<typeof getIncludedDescriptors>[0],
+      useTypes: boolean,
+    ) {
+      return getIncludedDescriptors(options).filter(
+        (descriptor) => useTypes || (descriptor.kind !== "instanceMember" && !descriptor.typedOnly),
       );
     }
+
+    let descriptors = [
+      ...getEnabledDescriptors({ webApis: includeWebApis }, typedWebEnabled),
+      ...getEnabledDescriptors({ jsBuiltins: includeJsBuiltins }, typedJsEnabled),
+    ];
+    if (matchIgnoreFeature) {
+      descriptors = descriptors.filter((d) => !matchIgnoreFeature(d.featureId));
+    }
+    // Filter to features that actually exceed the configured Baseline
+    descriptors = descriptors
+      .filter((d) => isBeyondBaseline(d.featureId, baseline))
+      // Avoid double-reporting when a feature is covered by mapping delegates
+      .filter((d) => !mappedFeatureIds.has(d.featureId));
+
     if (descriptors.length > 0) {
       const generic = buildListeners(ctx, {
         descriptors,
