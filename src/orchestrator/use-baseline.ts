@@ -58,7 +58,10 @@ registerSelfRules(SELF_RULES);
 const rule: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "Enforce JS Baseline by delegating to underlying syntax rules (es-x)" },
+    docs: {
+      description: "Enforce JS Baseline by delegating to underlying syntax rules (es-x)",
+      url: "https://baselinejs.vercel.app/docs/config#rule-options",
+    },
     schema: [
       {
         type: "object",

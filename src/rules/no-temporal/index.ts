@@ -9,7 +9,10 @@ import { isGlobalBaseNotShadowed } from "../../util/ast";
 const rule: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "disallow Temporal API usage" },
+    docs: {
+      description: "disallow Temporal API usage",
+      url: "https://baselinejs.vercel.app/docs/config#standalone-rules",
+    },
     messages: { forbidden: "Temporal API usage is not allowed." },
     schema: [],
   },

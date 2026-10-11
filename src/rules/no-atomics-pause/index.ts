@@ -8,7 +8,10 @@ import { isGlobalBaseNotShadowed } from "../../util/ast";
 const rule: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "disallow Atomics.pause() usage" },
+    docs: {
+      description: "disallow Atomics.pause() usage",
+      url: "https://baselinejs.vercel.app/docs/config#standalone-rules",
+    },
     messages: { forbidden: "Atomics.pause is not allowed." },
     schema: [],
   },

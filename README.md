@@ -116,6 +116,7 @@ export default [
 
 ### Demo
 
+For type-level checks too, pair it with [`typescript-baseline-lib`](https://github.com/3ru/TypeScript-Baseline-lib-generator), which gives TypeScript a built-in lib selected by Baseline data.
 Try the [demo](https://github.com/3ru/baseline-checks-demo) to check JavaScript APIs with TypeScript and ESLint in your editor and CI.
 Its [example PR](https://github.com/3ru/baseline-checks-demo/pull/1) changes one line to use `Set.prototype.difference()` and intentionally fails both checks.
 

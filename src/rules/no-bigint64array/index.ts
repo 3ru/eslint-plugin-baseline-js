@@ -8,7 +8,10 @@ import { isGlobalBaseNotShadowed } from "../../util/ast";
 const rule: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "disallow BigInt64Array/BigUint64Array usage" },
+    docs: {
+      description: "disallow BigInt64Array/BigUint64Array usage",
+      url: "https://baselinejs.vercel.app/docs/config#standalone-rules",
+    },
     messages: { forbidden: "BigInt64Array/BigUint64Array are not allowed." },
     schema: [],
   },
