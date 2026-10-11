@@ -144,7 +144,12 @@ describe("independent Web API and JS builtin type options", () => {
           files: ["**/*.ts"],
           languageOptions: {
             parser,
-            parserOptions: { project: [tsconfigPath], tsconfigRootDir: root },
+            parserOptions: {
+              project: [tsconfigPath],
+              tsconfigRootDir: root,
+              // These repeated config checks are separate lint passes, not an autofix cycle.
+              disallowAutomaticSingleRunInference: true,
+            },
           },
           plugins: { "baseline-js": plugin },
           rules: {
