@@ -45,6 +45,7 @@
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/git": "^11.0.1",
     "@types/eslint": "^9.6.1",
+    "@types/estree": "^1.0.9",
     "@types/node": "^26.6.3",
     "@typescript-eslint/parser": "^8.70.1",
     "eslint": "^10.11.0",

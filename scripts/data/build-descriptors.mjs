@@ -10,7 +10,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * Heuristics to convert MDN BCD compat_features entries to Descriptor DSL.
- * We only emit patterns we can detect robustly without type information (safe preset).
+ * Instance-member patterns require type information; other patterns can run
+ * in the safe preset.
  */
 
 /** @type {import('../../src/baseline/types').Descriptor[]} */

@@ -1,4 +1,5 @@
 import type { Rule } from "eslint";
+import type { Node } from "estree";
 import { isGlobalBaseNotShadowed } from "../../util/ast";
 
 // TODO(improve-detection)
@@ -17,31 +18,33 @@ const rule: Rule.RuleModule = {
     schema: [],
   },
   create(context) {
-    function report(node: unknown) {
-      context.report({ node: node as Rule.Node, messageId: "forbidden" });
+    function report(node: Node) {
+      context.report({ node, messageId: "forbidden" });
     }
     return {
-      MemberExpression(node: unknown) {
-        const m = node as Record<string, unknown> & { parent?: unknown };
-        const parent = m.parent as { type?: string; callee?: unknown } | undefined;
-        if (parent?.type === "NewExpression" && parent.callee === node) return;
-        if (m.computed === false && isGlobalBaseNotShadowed(context, m.object, "Temporal", node)) {
-          report(m.object as unknown);
+      MemberExpression(node) {
+        const parent = node.parent;
+        if (parent.type === "NewExpression" && parent.callee === node) return;
+        if (
+          node.computed === false &&
+          isGlobalBaseNotShadowed(context, node.object, "Temporal", node)
+        ) {
+          report(node.object);
         }
       },
-      NewExpression(node: unknown) {
-        const n = node as { callee?: { type?: string; object?: unknown; name?: string } };
-        if (n.callee?.type === "Identifier") {
-          if (isGlobalBaseNotShadowed(context, n.callee, "Temporal", node)) {
-            report(n.callee as unknown);
+      NewExpression(node) {
+        const callee = node.callee;
+        if (callee.type === "Identifier") {
+          if (isGlobalBaseNotShadowed(context, callee, "Temporal", node)) {
+            report(callee);
           }
           return;
         }
         if (
-          n.callee?.type === "MemberExpression" &&
-          isGlobalBaseNotShadowed(context, n.callee.object, "Temporal", node)
+          callee.type === "MemberExpression" &&
+          isGlobalBaseNotShadowed(context, callee.object, "Temporal", node)
         ) {
-          report(n.callee.object as unknown);
+          report(callee.object);
         }
       },
     };

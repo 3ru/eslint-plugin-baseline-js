@@ -1,4 +1,5 @@
 import type { Rule } from "eslint";
+import type { Node } from "estree";
 import { isGlobalBaseNotShadowed } from "../../util/ast";
 
 // TODO(spec-tracking)
@@ -16,37 +17,34 @@ const rule: Rule.RuleModule = {
     schema: [],
   },
   create(context) {
-    function report(node: unknown) {
-      context.report({ node: node as Rule.Node, messageId: "forbidden" });
+    function report(node: Node) {
+      context.report({ node, messageId: "forbidden" });
     }
 
     return {
-      CallExpression(node: unknown) {
-        const n = node as Record<string, unknown>;
-        const callee = n.callee as Record<string, unknown> | undefined;
+      CallExpression(node) {
+        const callee = node.callee;
         if (
-          callee &&
           callee.type === "MemberExpression" &&
           callee.computed === false &&
           isGlobalBaseNotShadowed(context, callee.object, "Atomics", node) &&
-          (callee.property as Record<string, unknown>)?.type === "Identifier" &&
-          (callee.property as Record<string, unknown>)?.name === "pause"
+          callee.property.type === "Identifier" &&
+          callee.property.name === "pause"
         ) {
           report(callee.property);
         }
       },
-      MemberExpression(node: unknown) {
-        const m = node as Record<string, unknown> & { parent?: unknown };
+      MemberExpression(node) {
         // Avoid duplicate reports when this MemberExpression is the callee of a CallExpression
-        const parent = m.parent as { type?: string; callee?: unknown } | undefined;
-        if (parent?.type === "CallExpression" && parent.callee === node) return;
+        const parent = node.parent;
+        if (parent.type === "CallExpression" && parent.callee === node) return;
         if (
-          m.computed === false &&
-          isGlobalBaseNotShadowed(context, m.object, "Atomics", node) &&
-          (m.property as Record<string, unknown>)?.type === "Identifier" &&
-          (m.property as Record<string, unknown>)?.name === "pause"
+          node.computed === false &&
+          isGlobalBaseNotShadowed(context, node.object, "Atomics", node) &&
+          node.property.type === "Identifier" &&
+          node.property.name === "pause"
         ) {
-          report(m.property);
+          report(node.property);
         }
       },
     };

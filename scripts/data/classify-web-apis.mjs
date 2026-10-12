@@ -1,3 +1,9 @@
+/** @typedef {import("../../src/baseline/types").Descriptor} Descriptor */
+/**
+ * @template Pattern
+ * @typedef {Pattern extends Descriptor ? Omit<Pattern, "featureId"> : never} DescriptorPattern
+ */
+
 // Window operation names require explicit IDL evidence: compat keys do not
 // distinguish operations from attributes or event compatibility labels.
 // HTML: https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-window-object
@@ -5,7 +11,7 @@
 // CSSOM View: https://drafts.csswg.org/cssom-view/#extensions-to-the-window-interface
 // Idle callbacks: https://www.w3.org/TR/requestidlecallback/
 // Selection: https://w3c.github.io/selection-api/#extensions-to-window
-export const WINDOW_OPERATIONS = new Set([
+const WINDOW_OPERATIONS = new Set([
   "alert",
   "confirm",
   "prompt",
@@ -132,6 +138,7 @@ const WINDOW_EVENTS = new Set([
   "resize_event",
 ]);
 
+/** @param {string} prop */
 export function classifyWindowMember(prop) {
   if (WINDOW_OPERATIONS.has(prop)) return "operation";
   if (WINDOW_ATTRIBUTES.has(prop)) return "attribute";
@@ -174,6 +181,7 @@ export const LEGACY_FACTORY_COMPAT_KEYS = new Map([
  * an explicit, auditable rule supports that exact key.
  *
  * @param {string} key
+ * @returns {DescriptorPattern<Descriptor>[]}
  */
 export function classifyWebApiCompatFeature(key) {
   if (!key.startsWith("api.")) return [];
@@ -210,6 +218,7 @@ export function classifyWebApiCompatFeature(key) {
     if (!memberKind) {
       throw new Error(`Unreviewed Window compat key: ${key}; classify it in classify-web-apis.mjs`);
     }
+    /** @type {DescriptorPattern<Descriptor>[]} */
     const patterns = [{ kind: "member", base: "window", prop }];
     if (memberKind === "operation") patterns.push({ kind: "callGlobal", name: prop });
     return patterns;
