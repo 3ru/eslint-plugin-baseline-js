@@ -1,4 +1,5 @@
 import type { Rule } from "eslint";
+import type { Node } from "estree";
 import { isGlobalBaseNotShadowed } from "../../util/ast";
 
 // TODO(improve-detection)
@@ -16,11 +17,11 @@ const rule: Rule.RuleModule = {
     schema: [],
   },
   create(context) {
-    function report(node: unknown) {
-      context.report({ node: node as Rule.Node, messageId: "forbidden" });
+    function report(node: Node) {
+      context.report({ node, messageId: "forbidden" });
     }
 
-    function resolveBigIntArrayBase(node: unknown, parentNode: unknown): string | null {
+    function resolveBigIntArrayBase(node: Node, parentNode: Node): string | null {
       if (isGlobalBaseNotShadowed(context, node, "BigInt64Array", parentNode)) {
         return "BigInt64Array";
       }
@@ -31,25 +32,22 @@ const rule: Rule.RuleModule = {
     }
 
     return {
-      NewExpression(node: unknown) {
-        const n = node as Record<string, unknown>;
-        const name = resolveBigIntArrayBase(n.callee, node);
+      NewExpression(node) {
+        const name = resolveBigIntArrayBase(node.callee, node);
         if (name) {
-          report(n.callee);
+          report(node.callee);
         }
       },
-      CallExpression(node: unknown) {
-        const n = node as Record<string, unknown>;
-        const name = resolveBigIntArrayBase(n.callee, node);
+      CallExpression(node) {
+        const name = resolveBigIntArrayBase(node.callee, node);
         if (name) {
-          report(n.callee);
+          report(node.callee);
         }
       },
-      MemberExpression(node: unknown) {
-        const m = node as Record<string, unknown>;
-        const name = resolveBigIntArrayBase(m.object, node);
+      MemberExpression(node) {
+        const name = resolveBigIntArrayBase(node.object, node);
         if (name) {
-          report(m.object);
+          report(node.object);
         }
       },
     };

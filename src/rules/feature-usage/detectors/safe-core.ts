@@ -1,4 +1,5 @@
 import type { Rule } from "eslint";
+import type { Node } from "estree";
 import type {
   CallGlobalDescriptor,
   CallStaticDescriptor,
@@ -7,119 +8,109 @@ import type {
   NewMemberDescriptor,
   StaticMemberDescriptor,
 } from "../../../baseline/types";
-import { isGlobalBaseNotShadowed, isMemberWithProperty } from "../../../util/ast";
-export type Reporter = (node: unknown, featureId: string) => void;
+import {
+  getMemberPropertyNode,
+  getStaticMemberName,
+  isGlobalBaseNotShadowed,
+  stripChain,
+} from "../../../util/ast";
+
+export type Reporter = (node: Node, featureId: string) => void;
 
 export function addNewIdentDetector(
   context: Rule.RuleContext,
-  d: NewIdentDescriptor,
+  descriptor: NewIdentDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
-  const name = d.name;
-  const featureId = d.featureId;
-  const handler: Rule.RuleListener["NewExpression"] = (node) => {
-    const callee = (node as unknown as { callee?: unknown }).callee as
-      | { type?: string; name?: string }
-      | undefined;
-    if (
-      callee?.type === "Identifier" &&
-      callee.name === name &&
-      isGlobalBaseNotShadowed(context, callee, name, node)
-    ) {
-      report(callee, featureId);
-    }
+  const { name, featureId } = descriptor;
+  return {
+    NewExpression(node) {
+      const callee = stripChain(node.callee);
+      if (isGlobalBaseNotShadowed(context, callee, name, node)) {
+        report(getMemberPropertyNode(callee) ?? callee, featureId);
+      }
+    },
   };
-  return { NewExpression: handler };
 }
 
 export function addNewMemberDetector(
   context: Rule.RuleContext,
-  d: NewMemberDescriptor,
+  descriptor: NewMemberDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
-  const { base, prop, featureId } = d;
-  const handler: Rule.RuleListener["NewExpression"] = (node) => {
-    const callee = (node as unknown as { callee?: unknown }).callee;
-    if (
-      isMemberWithProperty(callee, prop) &&
-      isGlobalBaseNotShadowed(
-        context,
-        (callee as unknown as { object?: unknown }).object,
-        base,
-        node,
-      )
-    ) {
-      report((callee as unknown as { property?: unknown }).property, featureId);
-    }
+  const { base, prop, featureId } = descriptor;
+  return {
+    NewExpression(node) {
+      const callee = stripChain(node.callee);
+      if (
+        callee.type === "MemberExpression" &&
+        getStaticMemberName(callee) === prop &&
+        isGlobalBaseNotShadowed(context, callee.object, base, node)
+      ) {
+        report(callee.property, featureId);
+      }
+    },
   };
-  return { NewExpression: handler };
 }
 
 export function addCallStaticDetector(
   context: Rule.RuleContext,
-  d: CallStaticDescriptor,
+  descriptor: CallStaticDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
-  const { base, prop, featureId } = d;
-  const handler: Rule.RuleListener["CallExpression"] = (node) => {
-    const callee = (node as unknown as { callee?: unknown }).callee;
-    if (
-      isMemberWithProperty(callee, prop) &&
-      isGlobalBaseNotShadowed(
-        context,
-        (callee as unknown as { object?: unknown }).object,
-        base,
-        node,
-      )
-    ) {
-      report((callee as unknown as { property?: unknown }).property, featureId);
-    }
+  const { base, prop, featureId } = descriptor;
+  return {
+    CallExpression(node) {
+      const callee = stripChain(node.callee);
+      if (
+        callee.type === "MemberExpression" &&
+        getStaticMemberName(callee) === prop &&
+        isGlobalBaseNotShadowed(context, callee.object, base, node)
+      ) {
+        report(callee.property, featureId);
+      }
+    },
   };
-  return { CallExpression: handler };
 }
 
 export function addCallGlobalDetector(
   context: Rule.RuleContext,
-  d: CallGlobalDescriptor,
+  descriptor: CallGlobalDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
-  const { name, featureId } = d;
-  const handler: Rule.RuleListener["CallExpression"] = (node) => {
-    const callee = (node as unknown as { callee?: unknown }).callee as
-      | { type?: string; name?: string }
-      | undefined;
-    if (
-      callee?.type === "Identifier" &&
-      callee.name === name &&
-      isGlobalBaseNotShadowed(context, callee, name, node)
-    ) {
-      report(callee, featureId);
-    }
+  const { name, featureId } = descriptor;
+  return {
+    CallExpression(node) {
+      const callee = stripChain(node.callee);
+      if (isGlobalBaseNotShadowed(context, callee, name, node)) {
+        report(getMemberPropertyNode(callee) ?? callee, featureId);
+      }
+    },
   };
-  return { CallExpression: handler };
 }
 
 export function addMemberDetector(
   context: Rule.RuleContext,
-  d: MemberDescriptor | StaticMemberDescriptor,
+  descriptor: MemberDescriptor | StaticMemberDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
-  const { base, prop, featureId } = d;
-  const handler: Rule.RuleListener["MemberExpression"] = (node) => {
-    if (
-      isMemberWithProperty(node, prop) &&
-      isGlobalBaseNotShadowed(context, (node as unknown as { object?: unknown }).object, base, node)
-    ) {
-      report((node as unknown as { property?: unknown }).property, featureId);
-    }
+  const { base, prop, featureId } = descriptor;
+  return {
+    MemberExpression(node) {
+      if (
+        getStaticMemberName(node) === prop &&
+        isGlobalBaseNotShadowed(context, node.object, base, node)
+      ) {
+        report(node.property, featureId);
+      }
+    },
   };
-  return { MemberExpression: handler };
 }
 
 export function addStaticMemberDetector(
   context: Rule.RuleContext,
-  d: StaticMemberDescriptor,
+  descriptor: StaticMemberDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
-  return addMemberDetector(context, d, report);
+  return addMemberDetector(context, descriptor, report);
 }

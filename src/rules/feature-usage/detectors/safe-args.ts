@@ -1,4 +1,5 @@
 import type { Rule } from "eslint";
+import type { ObjectExpression } from "estree";
 import type {
   CallMemberWithArgsDescriptor,
   NewWithOptionsDescriptor,
@@ -6,93 +7,73 @@ import type {
 import {
   getCallObjectArg,
   getCallStringArg,
+  getMemberPropertyNode,
+  getStaticMemberName,
   isCallOfMember,
   isGlobalBaseNotShadowed,
   objectHasKey,
   objectHasKeyWithValues,
+  stripChain,
 } from "../../../util/ast";
+import type { Reporter } from "./safe-core";
 
-export type Reporter = (node: unknown, featureId: string) => void;
-
-function matchesObjectArg(obj: unknown, d: NonNullable<CallMemberWithArgsDescriptor["objectArg"]>) {
-  if (!obj) return false;
-  if (d.hasKeys?.length) {
-    for (const k of d.hasKeys) if (!objectHasKey(obj as unknown, k)) return false;
+function matchesObjectArg(
+  object: ObjectExpression | null,
+  descriptor: NonNullable<CallMemberWithArgsDescriptor["objectArg"]>,
+): boolean {
+  if (!object) return false;
+  for (const key of descriptor.hasKeys ?? []) {
+    if (!objectHasKey(object, key)) return false;
   }
-  if (d.keyValues?.length) {
-    for (const kv of d.keyValues) {
-      if (!objectHasKeyWithValues(obj as unknown, kv)) return false;
-    }
+  for (const keyValue of descriptor.keyValues ?? []) {
+    if (!objectHasKeyWithValues(object, keyValue)) return false;
   }
   return true;
 }
 
 export function addCallMemberWithArgsDetector(
   _context: Rule.RuleContext,
-  d: CallMemberWithArgsDescriptor,
+  descriptor: CallMemberWithArgsDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
-  const handler: Rule.RuleListener["CallExpression"] = (node) => {
-    const n = node as { callee?: unknown };
-    const callee = n.callee as { type?: string; object?: unknown; property?: unknown } | undefined;
-    if (!callee || callee.type !== "MemberExpression") return;
-    const propNode = callee.property as
-      | { type?: "Identifier"; name?: string }
-      | { type?: "Literal"; value?: unknown }
-      | undefined;
-    const propName =
-      propNode?.type === "Identifier"
-        ? propNode.name
-        : propNode?.type === "Literal"
-          ? String(propNode.value)
-          : undefined;
-    if (propName !== d.prop) return;
+  return {
+    CallExpression(node) {
+      const callee = stripChain(node.callee);
+      if (callee.type !== "MemberExpression" || getStaticMemberName(callee) !== descriptor.prop)
+        return;
+      if (descriptor.viaCall?.prop && !isCallOfMember(callee.object, descriptor.viaCall.prop))
+        return;
 
-    if (d.viaCall?.prop) {
-      // Receiver must be the result of a call like obj.getSupportedExtensions()
-      const recv = callee.object;
-      if (!isCallOfMember(recv, d.viaCall.prop)) return;
-    }
+      if (descriptor.stringArg) {
+        const argument = getCallStringArg(node, descriptor.stringArg.index);
+        if (!argument || !descriptor.stringArg.values.includes(argument)) return;
+      }
+      if (
+        descriptor.objectArg &&
+        !matchesObjectArg(getCallObjectArg(node, descriptor.objectArg.index), descriptor.objectArg)
+      )
+        return;
 
-    if (d.stringArg) {
-      const s = getCallStringArg(node as unknown, d.stringArg.index);
-      if (!s || !d.stringArg.values.includes(s)) return;
-    }
-
-    if (d.objectArg) {
-      const obj = getCallObjectArg(node as unknown, d.objectArg.index);
-      if (!obj) return;
-      const ok = matchesObjectArg(obj, d.objectArg);
-      if (!ok) return;
-    }
-
-    // Report on the full CallExpression for stable RuleTester aggregation
-    report(node, d.featureId);
+      // Keep argument-based diagnostics on the complete call.
+      report(node, descriptor.featureId);
+    },
   };
-  return { CallExpression: handler };
 }
 
 export function addNewWithOptionsDetector(
   context: Rule.RuleContext,
-  d: NewWithOptionsDescriptor,
+  descriptor: NewWithOptionsDescriptor,
   report: Reporter,
 ): Rule.RuleListener {
-  const handler: Rule.RuleListener["NewExpression"] = (node) => {
-    const callee = (node as { callee?: unknown }).callee as
-      | { type?: string; name?: string }
-      | undefined;
-    if (callee?.type !== "Identifier" || callee.name !== d.name) return;
-    if (!isGlobalBaseNotShadowed(context, callee, d.name, node)) return;
-    const obj = getCallObjectArg(node as unknown, d.objectArg.index);
-    if (!obj) return;
-    if (d.objectArg.hasKeys?.length) {
-      for (const k of d.objectArg.hasKeys) if (!objectHasKey(obj as unknown, k)) return;
-    }
-    if (d.objectArg.keyValues?.length) {
-      for (const kv of d.objectArg.keyValues)
-        if (!objectHasKeyWithValues(obj as unknown, kv)) return;
-    }
-    report(callee, d.featureId);
+  return {
+    NewExpression(node) {
+      const callee = stripChain(node.callee);
+      if (!isGlobalBaseNotShadowed(context, callee, descriptor.name, node)) return;
+      if (
+        !matchesObjectArg(getCallObjectArg(node, descriptor.objectArg.index), descriptor.objectArg)
+      )
+        return;
+      report(getMemberPropertyNode(callee) ?? callee, descriptor.featureId);
+    },
   };
-  return { NewExpression: handler };
 }

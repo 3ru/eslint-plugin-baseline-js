@@ -1,8 +1,11 @@
 import type { Rule } from "eslint";
+import type { Node } from "estree";
+import type ts from "typescript";
 import type { InstanceMemberDescriptor } from "../../../baseline/types";
 import { isMemberWithProperty } from "../../../util/ast";
+import { getTypedParserServices } from "../../../util/typed-parser-services";
 
-export type Reporter = (node: unknown, featureId: string) => void;
+export type Reporter = (node: Node, featureId: string) => void;
 
 export function addTypedInstanceMemberDetector(
   context: Rule.RuleContext,
@@ -10,95 +13,43 @@ export function addTypedInstanceMemberDetector(
   report: Reporter,
 ): Rule.RuleListener {
   const { iface, prop, featureId } = d;
-  type TsCheckerLike = {
-    getTypeAtLocation?: (n: unknown) => unknown;
-    getPropertyOfType?: (t: unknown, name: string) => unknown;
-    getApparentType?: (t: unknown) => unknown;
-  };
-  type ParserServicesLike = {
-    program?: { getTypeChecker?: () => TsCheckerLike };
-    esTreeNodeToTSNodeMap?: { get(n: unknown): unknown };
-  };
-  type CtxLike = {
-    parserServices?: ParserServicesLike;
-    sourceCode?: { parserServices?: ParserServicesLike };
-  };
-  const ctxLike = context as unknown as CtxLike;
-  const services: ParserServicesLike =
-    ctxLike.parserServices || ctxLike.sourceCode?.parserServices || {};
-  const checker: TsCheckerLike | undefined = services.program?.getTypeChecker?.();
-  if (!checker || !services.esTreeNodeToTSNodeMap) return {};
-  const checkerOk = checker; // non-null assertion helper for narrowing
-  const tsMap = services.esTreeNodeToTSNodeMap; // non-null assertion helper
+  const services = getTypedParserServices(context);
+  if (!services) return {};
+  const checker = services.program.getTypeChecker();
 
-  const tsMapGet = (tsMap as { get?: (node: unknown) => unknown }).get;
-  if (typeof tsMapGet !== "function") return {};
-  const getTsNode = tsMapGet.bind(tsMap);
-
-  const typeAtLocation = checkerOk.getTypeAtLocation;
-  if (typeof typeAtLocation !== "function") return {};
-  const getTypeAtLocation = typeAtLocation.bind(checkerOk);
-
-  const propertyOfType = checkerOk.getPropertyOfType;
-  if (typeof propertyOfType !== "function") return {};
-  const getPropertyOfType = propertyOfType.bind(checkerOk);
-
-  function getBaseTypes(t: unknown): unknown[] {
-    type TypeWithBases = {
-      getBaseTypes?: () => unknown[];
-      baseTypes?: unknown[];
-      target?: TypeWithBases;
-    };
-    const type = t as TypeWithBases;
+  function getBaseTypes(type: ts.Type): readonly ts.BaseType[] {
+    const bases = type.getBaseTypes();
+    if (bases) return bases;
     // Instantiated generic references expose their bases on the target interface.
-    return (
-      type.getBaseTypes?.() ||
-      type.baseTypes ||
-      type.target?.getBaseTypes?.() ||
-      type.target?.baseTypes ||
-      []
-    );
+    if (isTypeReference(type)) return type.target.getBaseTypes() ?? [];
+    return [];
   }
 
-  function typeMatches(t: unknown): boolean {
-    if (!t) return false;
-    const withTypes = t as { types?: unknown[] };
-    if (Array.isArray(withTypes.types)) return withTypes.types.some((tt) => typeMatches(tt));
-    const withSym = t as {
-      symbol?: { name?: string };
-      aliasSymbol?: { name?: string };
-      getSymbol?: () => unknown;
-    };
-    const sym = withSym.symbol || withSym.aliasSymbol || withSym.getSymbol?.();
-    const name = (sym as { name?: string } | undefined)?.name;
+  function typeMatches(type: ts.Type, seen = new Set<ts.Type>()): boolean {
+    if (seen.has(type)) return false;
+    seen.add(type);
+    if (type.isUnionOrIntersection()) return type.types.some((part) => typeMatches(part, seen));
+    const symbol = type.getSymbol() ?? type.aliasSymbol;
+    const name = symbol?.getName();
     if (name === iface || name?.endsWith(`.${iface}`)) return true;
-    const apparent = checkerOk.getApparentType?.(t) || t;
-    const baseTypes = getBaseTypes(apparent);
-    if (baseTypes?.length) {
-      if (baseTypes.some((bt) => (bt as { symbol?: { name?: string } }).symbol?.name === iface))
-        return true;
-      for (const bt of baseTypes) {
-        const bt2 = getBaseTypes(bt);
-        if (
-          Array.isArray(bt2) &&
-          bt2.some((b2) => (b2 as { symbol?: { name?: string } }).symbol?.name === iface)
-        )
-          return true;
-      }
-    }
-    return false;
+    const apparent = checker.getApparentType(type);
+    if (apparent !== type && typeMatches(apparent, seen)) return true;
+    const constraint = checker.getBaseConstraintOfType(type);
+    if (constraint && constraint !== type && typeMatches(constraint, seen)) return true;
+    return getBaseTypes(type).some((base) => typeMatches(base, seen));
   }
 
   const handler: Rule.RuleListener["MemberExpression"] = (node) => {
     if (!isMemberWithProperty(node, prop)) return;
-    const obj = (node as unknown as { object?: unknown }).object;
-    const tsNode = getTsNode(obj);
+    const tsNode = services.esTreeNodeToTSNodeMap.get(node.object);
     if (!tsNode) return;
-    const type = getTypeAtLocation(tsNode);
-    if (!type) return;
-    const hasProp = !!getPropertyOfType(type, prop);
-    if (!hasProp) return;
-    if (typeMatches(type)) report((node as unknown as { property?: unknown }).property, featureId);
+    const type = checker.getNonNullableType(checker.getTypeAtLocation(tsNode));
+    if (!checker.getPropertyOfType(type, prop)) return;
+    if (typeMatches(type)) report(node.property, featureId);
   };
   return { MemberExpression: handler };
+}
+
+function isTypeReference(type: ts.Type): type is ts.TypeReference {
+  return "target" in type;
 }

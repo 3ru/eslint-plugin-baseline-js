@@ -2,6 +2,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { features as wfFeatures } from "web-features";
+import { classifyWindowMember, LEGACY_FACTORY_COMPAT_KEYS } from "../data/classify-web-apis.mjs";
 
 const TYPED_ARRAY_IFACES = new Set([
   "Int8Array",
@@ -37,12 +38,17 @@ function matchesApiDescriptor(desc, keys) {
   if (!keys.size) return true;
   switch (desc.kind) {
     case "callGlobal":
-      return keys.has(`api.${desc.name}`);
+      return keys.has(`api.${desc.name}`) || keys.has(`api.Window.${desc.name}`);
     case "newIdent":
-      return keys.has(`api.${desc.name}.${desc.name}`) || keys.has(`api.${desc.name}`);
+      return (
+        keys.has(`api.${desc.name}.${desc.name}`) ||
+        keys.has(`api.${desc.name}`) ||
+        [...LEGACY_FACTORY_COMPAT_KEYS].some(([key, name]) => name === desc.name && keys.has(key))
+      );
     case "newWithOptions":
       return true;
     case "callStatic":
+    case "staticMember":
       return (
         keys.has(`api.${desc.base}.${desc.prop}_static`) ||
         keys.has(`api.${desc.base}.${desc.prop}`)
@@ -127,6 +133,20 @@ function checkFile(pathFromRoot, matcher, keyPrefix) {
     }
   }
   return problems;
+}
+
+// A future web-features update must review every new Window member's kind.
+for (const feature of Object.values(wfFeatures)) {
+  for (const key of feature.compat_features ?? []) {
+    const parts = key.split(".");
+    if (parts.length === 3 && parts[0] === "api" && parts[1] === "Window") {
+      if (!classifyWindowMember(parts[2])) {
+        throw new Error(
+          `Unreviewed Window compat key: ${key}; classify it in classify-web-apis.mjs`,
+        );
+      }
+    }
+  }
 }
 
 const apiProblems = checkFile("src/baseline/data/descriptors.api.ts", matchesApiDescriptor, "api.");

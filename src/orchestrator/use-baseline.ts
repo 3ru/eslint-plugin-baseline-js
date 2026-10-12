@@ -1,5 +1,5 @@
 import type { Rule } from "eslint";
-import { getIncludedDescriptors } from "../baseline/loader";
+import { getIncludedDescriptors, type IncludeOption } from "../baseline/loader";
 import mapping from "../baseline/mapping/syntax";
 import { parseDelegateRuleKey } from "../baseline/plugins";
 import { isBeyondBaseline } from "../baseline/resolve";
@@ -10,6 +10,7 @@ import noBigint64array from "../rules/no-bigint64array";
 import noFunctionCallerArguments from "../rules/no-function-caller-arguments";
 import noMathSumPrecise from "../rules/no-math-sum-precise";
 import noTemporal from "../rules/no-temporal";
+import { getTypedParserServices } from "../util/typed-parser-services";
 import {
   listResolverPlugins,
   registerSelfRules,
@@ -221,11 +222,33 @@ const rule: Rule.RuleModule = {
       const l = impl.create(delegateCtx as unknown as Rule.RuleContext);
       mergeRuleListeners(listeners, l);
     }
-    // Attach generic feature-usage detector (Web API / JS builtins) if enabled and we have descriptors.
-    let descriptors = getIncludedDescriptors({
-      webApis: includeWebApis,
-      jsBuiltins: includeJsBuiltins,
-    });
+    // Resolve typed mode
+    function resolveUseTypes(option: IncludeOption): "off" | "auto" | "require" {
+      if (option === false || option === true) return "off";
+      if (option.useTypes) return option.useTypes;
+      if (option.preset === "type-aware") return "require";
+      return option.preset === "auto" ? "auto" : "off";
+    }
+    const typedAvailable = getTypedParserServices(ctx) !== undefined;
+    const useTypesWeb = resolveUseTypes(includeWebApis);
+    const useTypesJs = resolveUseTypes(includeJsBuiltins);
+    const typedWebEnabled = useTypesWeb !== "off" && typedAvailable;
+    const typedJsEnabled = useTypesJs !== "off" && typedAvailable;
+    const typedEnabled = typedWebEnabled || typedJsEnabled;
+
+    function getEnabledDescriptors(
+      options: Parameters<typeof getIncludedDescriptors>[0],
+      useTypes: boolean,
+    ) {
+      return getIncludedDescriptors(options).filter(
+        (descriptor) => useTypes || (descriptor.kind !== "instanceMember" && !descriptor.typedOnly),
+      );
+    }
+
+    let descriptors = [
+      ...getEnabledDescriptors({ webApis: includeWebApis }, typedWebEnabled),
+      ...getEnabledDescriptors({ jsBuiltins: includeJsBuiltins }, typedJsEnabled),
+    ];
     if (matchIgnoreFeature) {
       descriptors = descriptors.filter((d) => !matchIgnoreFeature(d.featureId));
     }
@@ -235,43 +258,6 @@ const rule: Rule.RuleModule = {
       // Avoid double-reporting when a feature is covered by mapping delegates
       .filter((d) => !mappedFeatureIds.has(d.featureId));
 
-    // Resolve typed mode
-    function resolveUseTypes(opt: unknown): "off" | "auto" | "require" {
-      if (!opt) return "off";
-      if (opt === true) return "off"; // boolean true defaults to safe
-      if (typeof opt === "object") {
-        const o = opt as Record<string, unknown>;
-        if (o.useTypes === "off" || o.useTypes === "auto" || o.useTypes === "require")
-          return o.useTypes as "off" | "auto" | "require";
-        if (o.preset === "type-aware") return "require";
-        if (o.preset === "auto") return "auto";
-        return "off"; // safe or undefined
-      }
-      return "off";
-    }
-    type ParserServicesLike = { program?: unknown; esTreeNodeToTSNodeMap?: unknown };
-    type CtxLike = {
-      parserServices?: ParserServicesLike;
-      sourceCode?: { parserServices?: ParserServicesLike };
-    };
-    const cx = ctx as unknown as CtxLike;
-    const ps = cx.parserServices || cx.sourceCode?.parserServices;
-    const typedAvailable = !!ps?.program && !!ps?.esTreeNodeToTSNodeMap;
-    const useTypesWeb = resolveUseTypes(includeWebApis);
-    const useTypesJs = resolveUseTypes(includeJsBuiltins);
-    const wantTyped =
-      useTypesWeb === "require" ||
-      useTypesJs === "require" ||
-      useTypesWeb === "auto" ||
-      useTypesJs === "auto";
-    const typedEnabled = wantTyped && typedAvailable;
-
-    if (!typedEnabled) {
-      // Drop instanceMember descriptors and typedOnly descriptors if we cannot/should not run typed checks
-      descriptors = descriptors.filter(
-        (d) => d.kind !== "instanceMember" && !(d as { typedOnly?: boolean }).typedOnly,
-      );
-    }
     if (descriptors.length > 0) {
       const generic = buildListeners(ctx, {
         descriptors,

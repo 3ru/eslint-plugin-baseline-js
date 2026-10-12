@@ -52,7 +52,7 @@ See [Quick Start](/docs#add-typescript) to connect the parser.
 <details>
 <summary>How coverage and runtime targets affect a check</summary>
 
-A mapped feature has a rule or descriptor. It can still have unsupported access patterns, such as dynamic property access or aliases.
+Coverage is measured per feature ID. A mapped feature can still have unsupported access patterns or subfeatures, such as dynamic property access or aliases.
 The [coverage report](/docs/meta/coverage) lists the available checks.
 
 The plugin uses browser Baseline status from its bundled data. It does not select Node.js versions, worker environments, or custom browser targets.
