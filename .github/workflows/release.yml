@@ -39,6 +39,9 @@ jobs:
       - name: Verify signatures
         run: npm audit signatures
 
+      # GHSA-vfj7-8cjw-p6xm is excluded in package.json: release tooling uses
+      # micromatch/isMatch, which call picomatch rather than the affected braces walkers.
+      # Reassess when these dependencies change: https://github.com/micromatch/braces/issues/70
       - name: Audit dependencies
         run: pnpm audit --audit-level high
 

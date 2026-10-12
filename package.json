@@ -63,6 +63,11 @@
   "pnpm": {
     "overrides": {
       "vite": "7.3.6"
+    },
+    "auditConfig": {
+      "ignoreGhsas": [
+        "GHSA-vfj7-8cjw-p6xm"
+      ]
     }
   },
   "engines": {
