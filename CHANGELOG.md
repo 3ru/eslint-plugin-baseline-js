@@ -1,3 +1,12 @@
+## [0.7.5](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.4...v0.7.5) (2026-10-12)
+
+
+### Bug Fixes
+
+* add rule documentation URLs ([#177](https://github.com/3ru/eslint-plugin-baseline-js/issues/177)) ([ce4e154](https://github.com/3ru/eslint-plugin-baseline-js/commit/ce4e1547a616960aedb9bf1c0eccd1367d80b34d))
+* close Web API detection gaps ([#178](https://github.com/3ru/eslint-plugin-baseline-js/issues/178)) ([b780196](https://github.com/3ru/eslint-plugin-baseline-js/commit/b780196d914e3d323a51b2f3525899b11b2a4f18))
+* unblock audited releases ([#179](https://github.com/3ru/eslint-plugin-baseline-js/issues/179)) ([0e5d7e8](https://github.com/3ru/eslint-plugin-baseline-js/commit/0e5d7e866e2fda9c10fc3c065adb032872ab9252))
+
 ## [0.7.4](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.3...v0.7.4) (2026-10-05)
 
 
