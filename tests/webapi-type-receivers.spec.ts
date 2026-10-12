@@ -1,10 +1,8 @@
 import { promises as fs } from "node:fs";
-import os from "node:os";
-import { join } from "node:path";
-import { ESLint } from "eslint";
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 import { reportingPolicyFor } from "./utils/policy";
+import { createTypedFixture, lintTypedFixture } from "./utils/typed-fixture";
 
 const fixtures = [
   {
@@ -92,85 +90,31 @@ describe("typed Web API receivers", () => {
   it.each(fixtures)(
     "handles $name",
     async ({ code, expected }) => {
-      const parser = (await import("@typescript-eslint/parser")).default;
-      const root = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-webapi-receivers-"));
+      const fixture = await createTypedFixture(code);
       try {
-        const samplePath = join(root, "sample.ts");
-        const tsconfigPath = join(root, "tsconfig.json");
-        const configPath = join(root, "eslint.config.mjs");
-        const compilerOptions: ts.CompilerOptions = {
-          target: ts.ScriptTarget.ES2023,
-          module: ts.ModuleKind.ESNext,
-          moduleResolution: ts.ModuleResolutionKind.Bundler,
-          lib: ["lib.es2023.d.ts", "lib.dom.d.ts"],
-          noEmit: true,
-          strict: true,
-          skipLibCheck: true,
-        };
-        await fs.writeFile(samplePath, `${code}\nexport {};\n`);
-        await fs.writeFile(
-          tsconfigPath,
-          JSON.stringify({
-            compilerOptions: {
-              target: "ES2023",
-              module: "ESNext",
-              moduleResolution: "Bundler",
-              lib: ["ES2023", "DOM"],
-              noEmit: true,
-              strict: true,
-              skipLibCheck: true,
-            },
-            include: ["sample.ts"],
-          }),
-        );
-        await fs.writeFile(configPath, "export default [{}];\n");
-        const program = ts.createProgram([samplePath], compilerOptions);
+        const program = ts.createProgram([fixture.samplePath], fixture.compilerOptions);
         expect(
           ts
             .getPreEmitDiagnostics(program)
             .map((diagnostic) => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")),
         ).toEqual([]);
 
-        const plugin = (await import("../dist/index.mjs")).default;
-        const eslint = new ESLint({
-          cwd: root,
-          overrideConfigFile: configPath,
-          overrideConfig: [
-            {
-              files: ["**/*.ts"],
-              languageOptions: {
-                parser,
-                parserOptions: { project: [tsconfigPath], tsconfigRootDir: root },
-              },
-              plugins: { "baseline-js": plugin },
-              rules: {
-                "baseline-js/use-baseline": [
-                  "error",
-                  {
-                    available: reportingPolicyFor("check-visibility", "shadow-dom"),
-                    includeWebApis: {
-                      preset: "type-aware",
-                      only: ["check-visibility", "shadow-dom"],
-                    },
-                    includeJsBuiltins: false,
-                  },
-                ],
-              },
-            },
-          ],
+        const messages = await lintTypedFixture(fixture, {
+          available: reportingPolicyFor("check-visibility", "shadow-dom"),
+          includeWebApis: {
+            preset: "type-aware",
+            only: ["check-visibility", "shadow-dom"],
+          },
+          includeJsBuiltins: false,
         });
-        const results = await eslint.lintFiles([samplePath]);
-        expect(results.flatMap((result) => result.messages).some((message) => message.fatal)).toBe(
-          false,
-        );
-        const messages = results
-          .flatMap((result) => result.messages)
-          .filter((message) => message.ruleId === "baseline-js/use-baseline");
-        expect(messages.map((message) => message.message.match(/\(([^)]+)\)\.$/)?.[1])).toEqual(
-          expected,
-        );
+        expect(messages.some((message) => message.fatal)).toBe(false);
+        expect(
+          messages
+            .filter((message) => message.ruleId === "baseline-js/use-baseline")
+            .map((message) => message.message.match(/\(([^)]+)\)\.$/)?.[1]),
+        ).toEqual(expected);
       } finally {
-        await fs.rm(root, { recursive: true, force: true });
+        await fs.rm(fixture.root, { recursive: true, force: true });
       }
     },
     15000,

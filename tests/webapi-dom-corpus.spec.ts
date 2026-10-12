@@ -1,30 +1,17 @@
 import { promises as fs } from "node:fs";
-import os from "node:os";
-import { join } from "node:path";
-import { ESLint } from "eslint";
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 import apiDescriptors from "../src/baseline/data/descriptors.api";
+import { createTypedFixture, lintTypedFixture } from "./utils/typed-fixture";
 
 describe.each([
   { name: "DOM", lib: "DOM", declaration: "lib.dom.d.ts" },
   { name: "Web Worker", lib: "WebWorker", declaration: "lib.webworker.d.ts" },
 ])("Web API $name declaration corpus", ({ name, lib, declaration }) => {
   it("detects declared instance members on direct, nullable, generic and inherited receivers", async () => {
-    const root = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-dom-corpus-"));
+    const fixture = await createTypedFixture("", { lib: ["ES2023", lib] });
     try {
-      const samplePath = join(root, "sample.ts");
-      const tsconfigPath = join(root, "tsconfig.json");
-      const configPath = join(root, "eslint.config.mjs");
-      const compilerOptions: ts.CompilerOptions = {
-        target: ts.ScriptTarget.ES2023,
-        lib: ["lib.es2023.d.ts", declaration],
-        noEmit: true,
-        strict: true,
-        skipLibCheck: true,
-      };
-      await fs.writeFile(samplePath, "export {};\n");
-      const declarationProgram = ts.createProgram([samplePath], compilerOptions);
+      const declarationProgram = ts.createProgram([fixture.samplePath], fixture.compilerOptions);
       const checker = declarationProgram.getTypeChecker();
       const library = declarationProgram
         .getSourceFiles()
@@ -97,11 +84,12 @@ describe.each([
       rows.push(...inheritedRows);
       const source = rows.map(({ form, descriptor, receiver }, index) => {
         const owner = interfaces.get(receiver);
+        // never satisfies required constraints while preserving the interface receiver.
         const typeArguments = owner?.requiredTypeArguments
-          ? `<${Array(owner.requiredTypeArguments).fill("any").join(", ")}>`
+          ? `<${Array(owner.requiredTypeArguments).fill("never").join(", ")}>`
           : "";
         const typeName = `${receiver}${typeArguments}`;
-        const property = ts.isIdentifierText(descriptor.prop, ts.ScriptTarget.ESNext)
+        const property = /^[A-Za-z_$][\w$]*$/.test(descriptor.prop)
           ? `.${descriptor.prop}`
           : `[${JSON.stringify(descriptor.prop)}]`;
         if (form === "generic") {
@@ -113,58 +101,21 @@ describe.each([
         }
         return `declare const value${index}: ${typeName}; value${index}${property};`;
       });
-      await fs.writeFile(samplePath, `${source.join("\n")}\nexport {};\n`);
-      const program = ts.createProgram([samplePath], compilerOptions);
+      await fs.writeFile(fixture.samplePath, `${source.join("\n")}\nexport {};\n`);
+      const program = ts.createProgram([fixture.samplePath], fixture.compilerOptions);
       expect(
         ts
           .getPreEmitDiagnostics(program)
           .map((diagnostic) => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")),
       ).toEqual([]);
-      await fs.writeFile(
-        tsconfigPath,
-        JSON.stringify({
-          compilerOptions: {
-            target: "ES2023",
-            lib: ["ES2023", lib],
-            noEmit: true,
-            strict: true,
-            skipLibCheck: true,
-          },
-          include: ["sample.ts"],
-        }),
-      );
-      await fs.writeFile(configPath, "export default [{}];\n");
-      const parser = (await import("@typescript-eslint/parser")).default;
-      const plugin = (await import("../dist/index.mjs")).default;
-      const eslint = new ESLint({
-        cwd: root,
-        overrideConfigFile: configPath,
-        overrideConfig: [
-          {
-            files: ["**/*.ts"],
-            languageOptions: {
-              parser,
-              parserOptions: { project: [tsconfigPath], tsconfigRootDir: root },
-            },
-            plugins: { "baseline-js": plugin },
-            rules: {
-              "baseline-js/use-baseline": [
-                "error",
-                {
-                  available: 0,
-                  includeWebApis: {
-                    preset: "type-aware",
-                    only: [...new Set(descriptors.map((descriptor) => descriptor.featureId))],
-                  },
-                  includeJsBuiltins: false,
-                },
-              ],
-            },
-          },
-        ],
+      const messages = await lintTypedFixture(fixture, {
+        available: 0,
+        includeWebApis: {
+          preset: "type-aware",
+          only: [...new Set(descriptors.map((descriptor) => descriptor.featureId))],
+        },
+        includeJsBuiltins: false,
       });
-      const results = await eslint.lintFiles([samplePath]);
-      const messages = results.flatMap((result) => result.messages);
       expect(messages.filter((message) => message.fatal)).toEqual([]);
       const featuresByLine = new Map<number, Set<string>>();
       for (const message of messages) {
@@ -187,7 +138,7 @@ describe.each([
         [],
       );
     } finally {
-      await fs.rm(root, { recursive: true, force: true });
+      await fs.rm(fixture.root, { recursive: true, force: true });
     }
   }, 30000);
 });
