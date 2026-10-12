@@ -35,7 +35,9 @@ For TypeScript, use `recommended-ts` and configure the parser as shown in [Quick
 <summary>The settings look right, but the report is still missing</summary>
 
 Check the [coverage report](/docs/meta/coverage) for a matching rule or descriptor.
-Some dynamic access and alias patterns are not detected.
+Dynamic property names and aliases are not tracked. Bare Window attribute reads and bare Window function references are also outside the current detectors. For example, `window.cookieStore` has a descriptor, while `cookieStore` alone does not.
+
+Event names in `addEventListener(...)` or handler assignments such as `onbeforeunload` do not have general detection. Option values and behavioral subfeatures need their own descriptors.
 
 For typed checks, confirm that the receiver's type contains the member.
 Missing declarations or `any` types can prevent a report.
@@ -59,6 +61,8 @@ Checks that need TypeScript parser services do not run there.
 Use ESLint with a configured TypeScript parser for checks such as `Set.prototype.difference()` and `Iterator.prototype.join()`.
 
 ## How do I handle a false positive or an exception?
+
+Typed instance checks match interface names and inheritance. A project-defined type with the same name as a Web API interface can produce a false positive.
 
 Use `ignoreFeatures` for a specific web-features ID.
 Use `ignoreNodeTypes` when you need to suppress reports on an ESTree node type.

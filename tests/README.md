@@ -5,6 +5,10 @@ Welcome! A quick note on how tests are organized and how to read them.
 - File layout
   - `core.spec.ts`  → scenarios backed by ESLint core rules (e.g., `no-with`, `no-caller`, `no-restricted-*`).
   - `esx.spec.ts`   → scenarios backed by `eslint-plugin-es-x` (newer JS syntax).
+  - Web API regression suites:
+    - `webapi-generation.spec.ts` checks mappings against explicit expected descriptors.
+    - `webapi-safe-corpus.spec.ts` exercises syntax forms for generated safe descriptors.
+    - `webapi-dom-corpus.spec.ts` compiles and lints instance-member fixtures against TypeScript DOM and Web Worker declarations.
   - Rule unit tests for our own custom rules live next to the rule implementation, e.g.:
     - `src/rules/no-foo/__tests__/rule.spec.ts`
 

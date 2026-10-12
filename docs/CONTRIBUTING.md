@@ -8,7 +8,7 @@ Thank you for contributing! This project is data‑driven. We take JavaScript fe
 
 ## How the data flows
 1) Update web‑features version (via Dependabot or a manual bump) in this package.
-2) Run `pnpm gen:features` to regenerate our thin TypeScript mirrors under `src/baseline/data/features.*.ts`.
+2) Run `pnpm gen:data` to regenerate feature data and descriptors under `src/baseline/data/`.
 
 ## Mapping drift and issue automation
 - Workflow: `.github/workflows/mapping-drift.yml`
@@ -23,10 +23,14 @@ Thank you for contributing! This project is data‑driven. We take JavaScript fe
   - Web APIs / JS builtins: most coverage comes from generated descriptors. Only extend detection patterns if the issue demonstrates a gap or a false positive/negative.
 - Always add or update tests that reflect the mapping or detection change.
 
+Classify new direct `api.Window.*` members in `scripts/data/classify-web-apis.mjs` against their Web IDL. Generation fails for unclassified members.
+
 ## Tests and checks
 - Unit/integration tests: `pnpm test`
 - Type check: `pnpm typecheck`
 - Format check (Biome): `pnpm format:check`
+- Descriptor and compat-key consistency: `pnpm check:descriptor-compat`
+- Generated data matches the checked-in files: `pnpm check:generated-data`
 - Coverage report (for docs): `pnpm gen:coverage`
 
 ## Scope
