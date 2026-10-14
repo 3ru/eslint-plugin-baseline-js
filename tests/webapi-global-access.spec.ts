@@ -1,14 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { lintWithBaseline, reportingPolicyFor } from "./helpers";
+import { reportingPolicyForCompat } from "./utils/policy";
 
 async function messages(
   code: string,
   featureId: string,
   sourceType: "module" | "script" = "module",
+  compatKey?: string,
 ) {
   return lintWithBaseline(
     code,
-    reportingPolicyFor(featureId),
+    compatKey ? reportingPolicyForCompat(featureId, compatKey) : reportingPolicyFor(featureId),
     { sourceType },
     {
       includeWebApis: { preset: "safe", only: [featureId] },
@@ -122,7 +124,9 @@ describe("Web API global access forms", () => {
     'window?.["navigator"]?.["clipboard"];',
     "const navigator = {}; globalThis.navigator.clipboard;",
   ])("recognizes a qualified global instance: %s", async (code) => {
-    expect(await messages(code, "async-clipboard")).toHaveLength(1);
+    // The clipboard floor also predates globalThis; count this API's diagnostics only.
+    const result = await messages(code, "async-clipboard", "module", "api.Navigator.clipboard");
+    expect(result.filter((message) => message.includes("(async-clipboard)"))).toHaveLength(1);
   });
 
   it.each([

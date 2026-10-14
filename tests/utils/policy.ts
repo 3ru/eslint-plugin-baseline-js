@@ -1,3 +1,4 @@
+import { features as webFeatures } from "web-features";
 import {
   baselineYear,
   baselineYearLabel,
@@ -60,4 +61,21 @@ export function yearPolicyMessage(id: string, policy: number, subject?: string):
     throw new Error(`${id} has no Baseline date; the plugin reports the Limited message instead`);
   }
   return `${label} became Baseline in ${year} and exceeds ${policy} (${id}).`;
+}
+
+/** Reporting floor for a known API, independently read from the canonical package. */
+export function reportingPolicyForCompat(featureId: string, compatKey: string): number {
+  const feature = webFeatures[featureId as keyof typeof webFeatures];
+  if (
+    !feature ||
+    !("compat_features" in feature) ||
+    !feature.compat_features?.includes(compatKey)
+  ) {
+    throw new Error(`unknown compat key for ${featureId}: ${compatKey}`);
+  }
+  const status = feature.status?.by_compat_key?.[compatKey] ?? feature.status;
+  if (status?.baseline === false) return LIMITED_ONLY_YEAR;
+  const date = status?.baseline_low_date ?? status?.baseline_high_date;
+  if (!date) throw new Error(`${compatKey} has no Baseline date`);
+  return Number(date.replace(/^≤/, "").slice(0, 4)) - 1;
 }

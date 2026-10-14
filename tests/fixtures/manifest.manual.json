@@ -20,6 +20,7 @@
     "weak-references",
     "intl-locale-info",
     "iterator-methods",
+    "iterator-concat",
     "typed-array-iterators",
     "typed-array-iteration-methods"
   ]

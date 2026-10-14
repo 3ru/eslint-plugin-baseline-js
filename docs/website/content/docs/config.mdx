@@ -99,6 +99,8 @@ Use these options with `baseline-js/use-baseline`.
 `available: 'newly'` reports features with Limited availability.
 A year reports features that entered Baseline after that year, plus features with Limited availability.
 
+Additional Web API and built-in checks use the matched API member's Baseline status when available. Members grouped under one feature can have different dates or availability: `URL.parse()`, for example, is newer than the URL interface. Feature-level coverage tables describe the group; `only`, `ignore`, and `ignoreFeatures` continue to use feature IDs.
+
 These checks use the data bundled with the installed plugin. See [Concepts](/docs/concepts) for the policy and coverage limits.
 
 ## Feature detection
