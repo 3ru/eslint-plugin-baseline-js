@@ -42,7 +42,9 @@ describe("atomic compatibility overrides", () => {
     expect(isBeyondBaseline("example", 9999, "api.Example.limited")).toBe(true);
     expect(getFeatureStatus("example", "api.Example.undated")).toEqual({ baseline: "low" });
     expect(isBeyondBaseline("example", 2010, "api.Example.undated")).toBe(false);
-    expect(baselineMessage("example", 2020, "member", "api.Example.limited")).not.toContain("2015");
+    expect(baselineMessage("example", 2020, "member", "api.Example.limited")).toBe(
+      "member has Limited availability and exceeds 2020 (example).",
+    );
   });
 
   it("uses the same exact status for filtering and diagnostic years", () => {

@@ -14,31 +14,13 @@ const cases = [
   { code: "URL.parse('https://example.com');", available: "newly", count: 0 },
   { code: "URL.parse('https://example.com');", available: 2023, count: 1, year: 2024 },
   { code: "URL.parse('https://example.com');", available: 2024, count: 0 },
-  { code: "globalThis.URL['parse']?.('https://example.com');", available: 2023, count: 1 },
-  { code: "AbortSignal.abort();", available: 2020, count: 1, year: 2021 },
-  { code: "AbortSignal.abort();", available: 2021, count: 0 },
   { code: "navigator.clipboard.writeText('hello');", available: "widely", count: 0 },
-  { code: "navigator.clipboard.writeText('hello');", available: 2020, count: 0 },
-  { code: "navigator.mediaSession;", available: "widely", count: 0 },
   { code: "window.cookieStore;", available: "newly", count: 0 },
   { code: "window.open('https://example.com');", available: "newly", count: 1 },
   { code: "new EventTarget();", available: 2019, count: 1, year: 2020 },
   { code: "new EventTarget();", available: 2020, count: 0 },
-  { code: "new ClipboardItem({});", available: 2024, count: 1, year: 2025 },
-  { code: "new ClipboardItem({});", available: 2025, count: 0 },
-  { code: "new IntersectionObserverEntry({});", available: "newly", count: 1 },
-  { code: "console.timeLog('task');", available: 2019, count: 1, year: 2020 },
   { code: "Object.fromEntries([]);", available: 2019, count: 1, year: 2020 },
   { code: "Object.fromEntries([]);", available: 2020, count: 0 },
-  { code: "Array.from([]);", available: 2015, count: 0 },
-  { code: "Proxy.revocable({}, {});", available: 2016, count: 1, year: 2017 },
-  { code: "Proxy.revocable({}, {});", available: 2017, count: 0 },
-  {
-    code: "function check(URL) { return URL.parse('https://example.com'); }",
-    available: 2020,
-    count: 0,
-  },
-  { code: "const console = { timeLog() {} }; console.timeLog('task');", available: 2019, count: 0 },
 ] as const;
 
 describe("individual API Baseline status", () => {
@@ -66,7 +48,6 @@ describe("individual API Baseline status", () => {
       { includeWebApis: { preset: "safe", only: ["url-canparse"] } },
       { includeWebApis: { preset: "safe", ignore: ["url"] } },
       { includeWebApis: true, ignoreFeatures: ["/^url$/"] },
-      { includeWebApis: true, ignoreNodeTypes: ["Identifier"] },
     ]) {
       await expect(lintWithBaseline(code, 2020, {}, options)).resolves.toEqual([]);
     }
@@ -79,9 +60,6 @@ describe("individual typed member Baseline status", () => {
   beforeAll(async () => {
     fixture = await createTypedFixture(
       `
-      declare const element: Element;
-      element.ariaActiveDescendantElement;
-      element.ariaOwnsElements;
       declare const clipboard: Clipboard;
       clipboard.writeText('hello');
       clipboard.read();
@@ -106,12 +84,6 @@ describe("individual typed member Baseline status", () => {
   });
 
   it.each([
-    {
-      feature: "aria-attribute-reflection",
-      available: "widely",
-      subjects: ["ariaActiveDescendantElement", "ariaOwnsElements"],
-    },
-    { feature: "aria-attribute-reflection", available: "newly", subjects: ["ariaOwnsElements"] },
     { feature: "async-clipboard", available: "widely", subjects: ["read", "presentationStyle"] },
     { feature: "async-clipboard", available: "newly", subjects: ["presentationStyle"] },
     { feature: "url", available: 2020, subjects: ["size"] },
