@@ -254,7 +254,7 @@ const rule: Rule.RuleModule = {
     }
     // Filter to features that actually exceed the configured Baseline
     descriptors = descriptors
-      .filter((d) => isBeyondBaseline(d.featureId, baseline))
+      .filter((d) => isBeyondBaseline(d.featureId, baseline, d.compatKey))
       // Avoid double-reporting when a feature is covered by mapping delegates
       .filter((d) => !mappedFeatureIds.has(d.featureId));
 
@@ -267,7 +267,12 @@ const rule: Rule.RuleModule = {
 
           ctx.report({
             node,
-            message: baselineMessage(descriptor.featureId, baseline, descriptorSubject(descriptor)),
+            message: baselineMessage(
+              descriptor.featureId,
+              baseline,
+              descriptorSubject(descriptor),
+              descriptor.compatKey,
+            ),
           });
         },
       });

@@ -9,7 +9,8 @@ import descriptors from "../src/baseline/data/descriptors.jsbi";
 type GeneratedDescriptor = (typeof descriptors)[number];
 
 function keyOf(value: GeneratedDescriptor): string {
-  return JSON.stringify(value);
+  const { compatKey: _, ...pattern } = value;
+  return JSON.stringify(pattern);
 }
 
 function collectAutoClassifiedDescriptors(): GeneratedDescriptor[] {

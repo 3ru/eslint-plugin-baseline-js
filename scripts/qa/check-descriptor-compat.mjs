@@ -29,9 +29,8 @@ function parseGeneratedDescriptorFile(pathFromRoot) {
 function compatKeySetForFeature(featureId) {
   const rec = wfFeatures[featureId];
   if (!rec) return null;
-  const byCompat = Object.keys(rec?.status?.by_compat_key ?? {});
   const compatFeatures = Array.isArray(rec.compat_features) ? rec.compat_features : [];
-  return new Set([...byCompat, ...compatFeatures]);
+  return new Set(compatFeatures);
 }
 
 function matchesApiDescriptor(desc, keys) {
@@ -120,6 +119,30 @@ function checkFile(pathFromRoot, matcher, keyPrefix) {
         featureId: d.featureId,
         descriptor: d,
         reason: "feature-not-found-in-web-features",
+      });
+      continue;
+    }
+    if (typeof d.compatKey !== "string" || !d.compatKey) {
+      problems.push({
+        featureId: d.featureId,
+        descriptor: d,
+        reason: "missing-compat-key",
+      });
+      continue;
+    }
+    if (!d.compatKey.startsWith(keyPrefix)) {
+      problems.push({
+        featureId: d.featureId,
+        descriptor: d,
+        reason: "compat-key-outside-namespace",
+      });
+      continue;
+    }
+    if (!keySet.has(d.compatKey)) {
+      problems.push({
+        featureId: d.featureId,
+        descriptor: d,
+        reason: "compat-key-not-in-feature",
       });
       continue;
     }

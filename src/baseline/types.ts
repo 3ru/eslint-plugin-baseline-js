@@ -2,16 +2,18 @@
 
 export type WebFeaturesBaseline = "high" | "low" | false;
 
+export interface BaselineStatus {
+  baseline?: WebFeaturesBaseline;
+  baseline_low_date?: string;
+  baseline_high_date?: string;
+  support?: Record<string, string>;
+}
+
 export interface MinFeatureRecord {
   id: string;
   name?: string;
   group?: string;
-  status?: {
-    baseline?: WebFeaturesBaseline;
-    baseline_low_date?: string;
-    baseline_high_date?: string;
-    support?: Record<string, string>;
-  };
+  status?: BaselineStatus;
   discouraged?: unknown;
 }
 
@@ -32,6 +34,7 @@ export type DescriptorKind =
 export interface BaseDescriptor {
   featureId: string; // web-features ID (e.g. 'abortsignal-any')
   kind: DescriptorKind;
+  compatKey?: string;
   // When true, only enable this descriptor when typed mode is active
   typedOnly?: boolean;
 }

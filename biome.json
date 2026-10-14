@@ -15,7 +15,8 @@
       "!src/baseline/data/features.javascript.ts",
       "!src/baseline/data/features.jsbi.ts",
       "!src/baseline/data/descriptors.api.ts",
-      "!src/baseline/data/descriptors.jsbi.ts"
+      "!src/baseline/data/descriptors.jsbi.ts",
+      "!src/baseline/data/statuses.compat.ts"
     ],
     "ignoreUnknown": true
   },
