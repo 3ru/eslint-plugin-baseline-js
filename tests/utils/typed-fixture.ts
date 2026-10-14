@@ -10,7 +10,8 @@ export async function createTypedFixture(
   {
     target = "ES2023",
     lib = [target, "DOM"],
-  }: { target?: "ES2023" | "ESNext"; lib?: string[] } = {},
+    libReplacement,
+  }: { target?: "ES2023" | "ESNext"; lib?: string[]; libReplacement?: boolean } = {},
 ) {
   const root = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-typed-fixture-"));
   try {
@@ -22,6 +23,7 @@ export async function createTypedFixture(
         module: "ESNext",
         moduleResolution: "Bundler",
         lib,
+        libReplacement,
         noEmit: true,
         strict: true,
         skipLibCheck: true,
@@ -30,7 +32,7 @@ export async function createTypedFixture(
     };
     await fs.writeFile(samplePath, `${source}\nexport {};\n`);
     await fs.writeFile(tsconfigPath, JSON.stringify(config));
-    const parsed = ts.parseJsonConfigFileContent(config, ts.sys, root);
+    const parsed = ts.parseJsonConfigFileContent(config, ts.sys, root, undefined, tsconfigPath);
     if (parsed.errors.length) {
       throw new Error(
         parsed.errors
