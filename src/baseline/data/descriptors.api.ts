@@ -4,9 +4,9 @@
  * Source: web-features compat_features → descriptor DSL (strict-safe subset).
  */
 
-import type { Descriptor } from "../types";
+import type { GeneratedDescriptor } from "../types";
 
-const descriptors: ReadonlyArray<Descriptor> = [
+const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "a",
     "compatKey": "api.HTMLAnchorElement",

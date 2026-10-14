@@ -6,6 +6,7 @@ import { features as wfFeatures } from "web-features";
 import { classifyJsBuiltinCompatFeature } from "./classify-js-builtins.mjs";
 import { classifyWebApiCompatFeature } from "./classify-web-apis.mjs";
 import { buildCompatStatusOverrides, canonicalizeDescriptors } from "./descriptor-status.mjs";
+import { manualApi, manualJsbi } from "./manual-descriptors.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -15,12 +16,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
  * in the safe preset.
  */
 
-/** @type {import('../../src/baseline/types').Descriptor[]} */
+/** @type {import('../../src/baseline/types').GeneratedDescriptor[]} */
 const apiDescs = [];
-/** @type {import('../../src/baseline/types').Descriptor[]} */
+/** @type {import('../../src/baseline/types').GeneratedDescriptor[]} */
 const jsbiDescs = [];
 
 for (const [id, f] of Object.entries(wfFeatures)) {
+  if (f.kind !== "feature") continue;
   const cfs = Array.isArray(f.compat_features) ? f.compat_features : [];
   if (cfs.length === 0) continue;
 
@@ -58,95 +60,14 @@ for (const [id, f] of Object.entries(wfFeatures)) {
   }
 }
 
-// Manual safe descriptors
-/** @type {import('../../src/baseline/types').Descriptor[]} */
-const manualApi = [
-  {
-    featureId: "canvas-2d-alpha",
-    kind: "callMemberWithArgs",
-    prop: "getContext",
-    stringArg: { index: 0, values: ["2d"] },
-    objectArg: { index: 1, hasKeys: ["alpha"] },
-  },
-  {
-    featureId: "canvas-2d-desynchronized",
-    kind: "callMemberWithArgs",
-    prop: "getContext",
-    stringArg: { index: 0, values: ["2d"] },
-    objectArg: { index: 1, hasKeys: ["desynchronized"] },
-  },
-  {
-    featureId: "canvas-2d-willreadfrequently",
-    kind: "callMemberWithArgs",
-    prop: "getContext",
-    stringArg: { index: 0, values: ["2d"] },
-    objectArg: { index: 1, hasKeys: ["willReadFrequently"] },
-  },
-  {
-    featureId: "canvas-2d-color-management",
-    kind: "callMemberWithArgs",
-    prop: "getContext",
-    stringArg: { index: 0, values: ["2d"] },
-    objectArg: { index: 1, keyValues: [{ key: "colorSpace", values: ["display-p3", "srgb"] }] },
-  },
-  {
-    featureId: "webgl-desynchronized",
-    kind: "callMemberWithArgs",
-    prop: "getContext",
-    stringArg: { index: 0, values: ["webgl", "experimental-webgl"] },
-    objectArg: { index: 1, hasKeys: ["desynchronized"] },
-  },
-  {
-    featureId: "webgl2-desynchronized",
-    kind: "callMemberWithArgs",
-    prop: "getContext",
-    stringArg: { index: 0, values: ["webgl2"] },
-    objectArg: { index: 1, hasKeys: ["desynchronized"] },
-  },
-  {
-    featureId: "js-modules-workers",
-    compatKey: "api.Worker.Worker.ecmascript_modules",
-    kind: "newWithOptions",
-    name: "Worker",
-    objectArg: { index: 1, keyValues: [{ key: "type", values: ["module"] }] },
-  },
-  {
-    featureId: "js-modules-shared-workers",
-    compatKey: "api.SharedWorker.SharedWorker.ecmascript_modules",
-    kind: "newWithOptions",
-    name: "SharedWorker",
-    objectArg: { index: 1, keyValues: [{ key: "type", values: ["module"] }] },
-  },
-  {
-    featureId: "transformstream-transformer-cancel",
-    kind: "newWithOptions",
-    name: "TransformStream",
-    objectArg: { index: 0, hasKeys: ["cancel"] },
-  },
-  {
-    featureId: "ext-srgb",
-    kind: "callMemberWithArgs",
-    prop: "getExtension",
-    stringArg: { index: 0, values: ["EXT_sRGB"] },
-  },
-  {
-    featureId: "ext-srgb",
-    kind: "callMemberWithArgs",
-    prop: "includes",
-    stringArg: { index: 0, values: ["EXT_sRGB"] },
-    viaCall: { prop: "getSupportedExtensions" },
-  },
-];
 for (const d of manualApi) apiDescs.push(d);
 
 // Auto-generate WebGL extension descriptors
 const already = new Set(manualApi.filter((d) => d.featureId).map((d) => d.featureId));
 for (const [id, f] of Object.entries(wfFeatures)) {
+  if (f.kind !== "feature") continue;
   const group = f.group;
-  if (
-    !(group === "webgl-extensions" || (Array.isArray(group) && group.includes("webgl-extensions")))
-  )
-    continue;
+  if (!group?.includes("webgl-extensions")) continue;
   if (already.has(id)) continue;
   const name = String(f.name || "").trim();
   const token = name.split(/\s+/)[0];
@@ -168,212 +89,33 @@ for (const [id, f] of Object.entries(wfFeatures)) {
   });
 }
 
-// Manual JS builtins descriptors
-/** @type {import('../../src/baseline/types').Descriptor[]} */
-const manualJsbi = [
-  {
-    featureId: "error-cause",
-    kind: "newWithOptions",
-    name: "Error",
-    objectArg: { index: 1, hasKeys: ["cause"] },
-  },
-  {
-    featureId: "error-cause",
-    kind: "newWithOptions",
-    name: "AggregateError",
-    objectArg: { index: 2, hasKeys: ["cause"] },
-  },
-  { featureId: "explicit-resource-management", kind: "newIdent", name: "DisposableStack" },
-  { featureId: "explicit-resource-management", kind: "newIdent", name: "AsyncDisposableStack" },
-  { featureId: "explicit-resource-management", kind: "newIdent", name: "SuppressedError" },
-  {
-    featureId: "explicit-resource-management",
-    kind: "staticMember",
-    base: "Symbol",
-    prop: "dispose",
-  },
-  {
-    featureId: "explicit-resource-management",
-    kind: "staticMember",
-    base: "Symbol",
-    prop: "asyncDispose",
-  },
-  { featureId: "is-error", kind: "callStatic", base: "Error", prop: "isError" },
-  {
-    featureId: "resizable-buffers",
-    kind: "newWithOptions",
-    name: "ArrayBuffer",
-    objectArg: { index: 1, hasKeys: ["maxByteLength"] },
-  },
-  {
-    featureId: "resizable-buffers",
-    kind: "newWithOptions",
-    name: "SharedArrayBuffer",
-    objectArg: { index: 1, hasKeys: ["maxByteLength", "growable"] },
-    typedOnly: true,
-  },
-  {
-    featureId: "uint8array-base64-hex",
-    kind: "callStatic",
-    base: "Uint8Array",
-    prop: "fromBase64",
-  },
-  { featureId: "uint8array-base64-hex", kind: "callStatic", base: "Uint8Array", prop: "fromHex" },
-  {
-    featureId: "uint8array-base64-hex",
-    kind: "instanceMember",
-    iface: "Uint8Array",
-    prop: "toBase64",
-  },
-  {
-    featureId: "uint8array-base64-hex",
-    kind: "instanceMember",
-    iface: "Uint8Array",
-    prop: "toHex",
-  },
-  {
-    featureId: "uint8array-base64-hex",
-    kind: "instanceMember",
-    iface: "Uint8Array",
-    prop: "setFromBase64",
-  },
-  {
-    featureId: "uint8array-base64-hex",
-    kind: "instanceMember",
-    iface: "Uint8Array",
-    prop: "setFromHex",
-  },
-  { featureId: "weak-references", kind: "newIdent", name: "WeakRef" },
-  { featureId: "weak-references", kind: "newIdent", name: "FinalizationRegistry" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getCalendars" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getCollations" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getHourCycles" },
-  {
-    featureId: "intl-locale-info",
-    kind: "instanceMember",
-    iface: "Locale",
-    prop: "getNumberingSystems",
-  },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getTextInfo" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getTimeZones" },
-  { featureId: "intl-locale-info", kind: "instanceMember", iface: "Locale", prop: "getWeekInfo" },
-  { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "map" },
-  { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "filter" },
-  { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "take" },
-  { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "drop" },
-  { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "flatMap" },
-  { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "reduce" },
-  { featureId: "iterator-methods", kind: "instanceMember", iface: "Iterator", prop: "toArray" },
-  { featureId: "iterator-methods", kind: "callStatic", base: "Iterator", prop: "from" },
-  { featureId: "iterator-concat", kind: "callStatic", base: "Iterator", prop: "concat" },
-];
 for (const d of manualJsbi) jsbiDescs.push(d);
-for (const prop of ["forEach", "some", "every", "find"]) {
-  jsbiDescs.push({
-    featureId: "iterator-methods",
-    kind: "instanceMember",
-    iface: "Iterator",
-    prop,
-  });
-}
-
-const TYPED_ARRAY_IFACES = [
-  "Int8Array",
-  "Uint8Array",
-  "Uint8ClampedArray",
-  "Int16Array",
-  "Uint16Array",
-  "Int32Array",
-  "Uint32Array",
-  "Float32Array",
-  "Float64Array",
-  "BigInt64Array",
-  "BigUint64Array",
-];
-for (const iface of TYPED_ARRAY_IFACES) {
-  for (const prop of ["entries", "keys", "values"]) {
-    jsbiDescs.push({ featureId: "typed-array-iterators", kind: "instanceMember", iface, prop });
-  }
-}
-const TYPED_ITER_METHODS = [
-  "every",
-  "some",
-  "forEach",
-  "map",
-  "filter",
-  "reduce",
-  "reduceRight",
-  "indexOf",
-  "lastIndexOf",
-];
-for (const iface of TYPED_ARRAY_IFACES) {
-  for (const prop of TYPED_ITER_METHODS) {
-    jsbiDescs.push({
-      featureId: "typed-array-iteration-methods",
-      kind: "instanceMember",
-      iface,
-      prop,
-    });
-  }
-}
-
-function annotateManualDescriptor(descriptor, prefix) {
-  const feature = wfFeatures[descriptor.featureId];
-  const keys = feature?.compat_features ?? [];
-  const { kind, name, base, prop, iface } = descriptor;
-  let candidates = [];
-  if (kind === "newIdent") {
-    candidates = [`${prefix}.${name}.${name}`, `${prefix}.${name}`];
-  } else if (kind === "newMember") {
-    candidates = [`${prefix}.${base}.${prop}.${prop}`, `${prefix}.${base}.${prop}`];
-  } else if (kind === "callStatic" || kind === "staticMember") {
-    candidates = [`${prefix}.${base}.${prop}`];
-  } else if (kind === "instanceMember") {
-    candidates = [
-      `${prefix}.${iface}.${prop}`,
-      `${prefix}.Intl.${iface}.${prop}`,
-      ...(TYPED_ARRAY_IFACES.includes(iface) ? [`${prefix}.TypedArray.${prop}`] : []),
-    ];
-  } else if (kind === "newWithOptions" && descriptor.featureId === "error-cause") {
-    candidates = ["javascript.builtins.Error.Error.options_cause_parameter"];
-  } else if (kind === "newWithOptions" && descriptor.featureId === "resizable-buffers") {
-    candidates = [`javascript.builtins.${name}.${name}.maxByteLength_option`];
-  }
-  const compatKey = candidates.find((key) => keys.includes(key));
-  if (compatKey) return { ...descriptor, compatKey };
-  if (keys.length === 1) return { ...descriptor, compatKey: keys[0] };
-  // Unresolved composite patterns require an explicit key; compatibility QA rejects them.
-  return descriptor;
-}
-
+/**
+ * @param {string} outPath
+ * @param {string} name
+ * @param {import("../../src/baseline/types").GeneratedDescriptor[]} arr
+ */
 function writeTs(outPath, name, arr) {
+  // Checking the 8,000+ element API array exceeds TypeScript union complexity (TS2590).
+  // The producers are checked against GeneratedDescriptor; compatibility QA checks emitted keys.
   const header = `// @ts-nocheck\n/**\n * @fileoverview AUTOGENERATED — Do not edit directly.\n * Source: web-features compat_features → descriptor DSL (strict-safe subset).\n */`;
-  const body = `${header}\n\nimport type { Descriptor } from "../types";\n\nconst ${name}: ReadonlyArray<Descriptor> = ${JSON.stringify(arr, null, 2)};\nexport default ${name};\n`;
+  const body = `${header}\n\nimport type { GeneratedDescriptor } from "../types";\n\nconst ${name}: ReadonlyArray<GeneratedDescriptor> = ${JSON.stringify(arr, null, 2)};\nexport default ${name};\n`;
   mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, body, "utf-8");
 }
 
-const dedupedApiDescs = canonicalizeDescriptors(
-  apiDescs.map((descriptor) =>
-    descriptor.compatKey ? descriptor : annotateManualDescriptor(descriptor, "api"),
-  ),
-);
-const dedupedJsbiDescs = canonicalizeDescriptors(
-  jsbiDescs.map((descriptor) =>
-    descriptor.compatKey ? descriptor : annotateManualDescriptor(descriptor, "javascript.builtins"),
-  ),
-);
+const dedupedApiDescs = canonicalizeDescriptors(apiDescs);
+const dedupedJsbiDescs = canonicalizeDescriptors(jsbiDescs);
 const overrides = buildCompatStatusOverrides([...dedupedApiDescs, ...dedupedJsbiDescs], wfFeatures);
 writeFileSync(
   resolve(__dirname, "..", "..", "src", "baseline", "data", "statuses.compat.ts"),
-  `// @ts-nocheck
-/**
+  `/**
  * AUTOGENERATED — Exact descriptor keys whose bucket or dates differ from the feature headline.
  * Entries are atomic statuses; an empty object is an explicitly unknown status.
  */
-import type { BaselineStatus } from "../types";
+import type { CompatStatusOverrides } from "../types";
 
-const statuses: Readonly<Record<string, Readonly<Record<string, BaselineStatus>>>> = ${JSON.stringify(overrides, null, 2)};
+const statuses: CompatStatusOverrides = ${JSON.stringify(overrides, null, 2)};
 export default statuses;
 `,
 );

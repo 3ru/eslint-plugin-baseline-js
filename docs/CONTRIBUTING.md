@@ -12,7 +12,9 @@ Thank you for contributing! This project is data‑driven. We take JavaScript fe
 
 Descriptors retain the exact `web-features` compatibility key they detect. Generation selects constructor keys before applying any Baseline policy and removes overlapping manual patterns. `statuses.compat.ts` contains only exact-key Baseline statuses that differ from the feature headline; omitted entries use that headline. Status overrides are atomic, including an explicitly unknown status. Browser support tables are not duplicated in this runtime projection.
 
-When adding a manual descriptor, identify its exact compatibility key. Composite patterns require a reviewed key that represents the detected operation; do not borrow an arbitrary member's status. The compatibility check rejects generated patterns with missing or unowned keys.
+Manual patterns live in `scripts/data/manual-descriptors.mjs` and declare their exact compatibility keys. Composite patterns require a reviewed key that represents the detected operation; do not borrow an arbitrary member's status. Generation rejects missing or unowned keys, and the compatibility check validates each selected key against its detection pattern.
+
+The descriptor pipeline remains executable JavaScript on the supported Node versions. `pnpm typecheck` also checks its JSDoc contracts through `tsconfig.scripts.json`, including classifiers and manual mappings. Generated status overrides are checked as TypeScript. The large generated descriptor arrays retain `@ts-nocheck` because the 8,000+ element API array exceeds TypeScript's union complexity limit (TS2590); their producers are checked against the required-key `GeneratedDescriptor` contract and their emitted keys pass compatibility QA.
 
 ## Mapping drift and issue automation
 - Workflow: `.github/workflows/mapping-drift.yml`

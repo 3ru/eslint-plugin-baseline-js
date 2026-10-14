@@ -9,6 +9,15 @@ export interface BaselineStatus {
   support?: Record<string, string>;
 }
 
+export type CompatStatus = Pick<
+  BaselineStatus,
+  "baseline" | "baseline_low_date" | "baseline_high_date"
+>;
+
+export type CompatStatusOverrides = Readonly<
+  Record<string, Readonly<Record<string, CompatStatus>>>
+>;
+
 export interface MinFeatureRecord {
   id: string;
   name?: string;
@@ -111,3 +120,11 @@ export interface NewWithOptionsDescriptor extends BaseDescriptor {
     keyValues?: Array<{ key: string; values?: string[] }>;
   };
 }
+
+/** A classifier pattern before its upstream owner and key are attached. */
+export type DescriptorPattern<T = Descriptor> = T extends Descriptor
+  ? Omit<T, "featureId" | "compatKey">
+  : never;
+
+/** Generated patterns must retain the exact compatibility key they detect. */
+export type GeneratedDescriptor = Descriptor & { compatKey: string };
