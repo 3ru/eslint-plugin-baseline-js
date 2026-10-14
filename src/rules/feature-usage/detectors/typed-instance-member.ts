@@ -15,7 +15,8 @@ export function addTypedInstanceMemberDetector(
   const { iface, prop, featureId } = d;
   const services = getTypedParserServices(context);
   if (!services) return {};
-  const checker = services.program.getTypeChecker();
+  const { program } = services;
+  const checker = program.getTypeChecker();
 
   function getBaseTypes(type: ts.Type): readonly ts.BaseType[] {
     const bases = type.getBaseTypes();
@@ -31,7 +32,15 @@ export function addTypedInstanceMemberDetector(
     if (type.isUnionOrIntersection()) return type.types.some((part) => typeMatches(part, seen));
     const symbol = type.getSymbol() ?? type.aliasSymbol;
     const name = symbol?.getName();
-    if (name === iface || name?.endsWith(`.${iface}`)) return true;
+    // Merged globals and replacement libraries retain compiler-selected library declarations.
+    if (
+      (name === iface || name?.endsWith(`.${iface}`)) &&
+      symbol
+        ?.getDeclarations()
+        ?.some((declaration) => program.isSourceFileDefaultLibrary(declaration.getSourceFile()))
+    ) {
+      return true;
+    }
     const apparent = checker.getApparentType(type);
     if (apparent !== type && typeMatches(apparent, seen)) return true;
     const constraint = checker.getBaseConstraintOfType(type);
