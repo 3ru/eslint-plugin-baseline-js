@@ -7,6 +7,7 @@ const trackedGeneratedFiles = [
   "src/baseline/data/features.jsbi.ts",
   "src/baseline/data/descriptors.api.ts",
   "src/baseline/data/descriptors.jsbi.ts",
+  "src/baseline/data/statuses.compat.ts",
 ];
 
 const out = execFileSync("git", ["diff", "--name-only", "--", ...trackedGeneratedFiles], {

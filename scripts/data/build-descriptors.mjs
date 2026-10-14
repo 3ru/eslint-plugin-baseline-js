@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { features as wfFeatures } from "web-features";
 import { classifyJsBuiltinCompatFeature } from "./classify-js-builtins.mjs";
 import { classifyWebApiCompatFeature } from "./classify-web-apis.mjs";
+import { buildCompatStatusOverrides, canonicalizeDescriptors } from "./descriptor-status.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -26,7 +27,7 @@ for (const [id, f] of Object.entries(wfFeatures)) {
   // Web API (api.*)
   for (const key of cfs) {
     for (const pattern of classifyWebApiCompatFeature(key)) {
-      apiDescs.push({ featureId: id, ...pattern });
+      apiDescs.push({ featureId: id, compatKey: key, ...pattern });
     }
   }
 
@@ -36,7 +37,13 @@ for (const [id, f] of Object.entries(wfFeatures)) {
       if (!k.startsWith("javascript.builtins")) continue;
       const parts = k.split(".");
       if (parts.length === 5 && parts[3] === parts[4]) {
-        jsbiDescs.push({ featureId: id, kind: "newMember", base: parts[2], prop: parts[3] });
+        jsbiDescs.push({
+          featureId: id,
+          compatKey: k,
+          kind: "newMember",
+          base: parts[2],
+          prop: parts[3],
+        });
         continue;
       }
       if (parts.length === 4) {
@@ -44,7 +51,7 @@ for (const [id, f] of Object.entries(wfFeatures)) {
         const prop = parts[3];
         const classified = classifyJsBuiltinCompatFeature(base, prop);
         if (classified) {
-          jsbiDescs.push({ featureId: id, ...classified });
+          jsbiDescs.push({ featureId: id, compatKey: k, ...classified });
         }
       }
     }
@@ -98,12 +105,14 @@ const manualApi = [
   },
   {
     featureId: "js-modules-workers",
+    compatKey: "api.Worker.Worker.ecmascript_modules",
     kind: "newWithOptions",
     name: "Worker",
     objectArg: { index: 1, keyValues: [{ key: "type", values: ["module"] }] },
   },
   {
     featureId: "js-modules-shared-workers",
+    compatKey: "api.SharedWorker.SharedWorker.ecmascript_modules",
     kind: "newWithOptions",
     name: "SharedWorker",
     objectArg: { index: 1, keyValues: [{ key: "type", values: ["module"] }] },
@@ -144,12 +153,14 @@ for (const [id, f] of Object.entries(wfFeatures)) {
   if (!token || !/^[A-Z0-9_]+/.test(token)) continue;
   apiDescs.push({
     featureId: id,
+    compatKey: `api.${token}`,
     kind: "callMemberWithArgs",
     prop: "getExtension",
     stringArg: { index: 0, values: [token] },
   });
   apiDescs.push({
     featureId: id,
+    compatKey: `api.${token}`,
     kind: "callMemberWithArgs",
     prop: "includes",
     stringArg: { index: 0, values: [token] },
@@ -306,16 +317,33 @@ for (const iface of TYPED_ARRAY_IFACES) {
   }
 }
 
-function dedupeDescriptors(arr) {
-  const seen = new Set();
-  const out = [];
-  for (const item of arr) {
-    const key = JSON.stringify(item);
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(item);
+function annotateManualDescriptor(descriptor, prefix) {
+  const feature = wfFeatures[descriptor.featureId];
+  const keys = feature?.compat_features ?? [];
+  const { kind, name, base, prop, iface } = descriptor;
+  let candidates = [];
+  if (kind === "newIdent") {
+    candidates = [`${prefix}.${name}.${name}`, `${prefix}.${name}`];
+  } else if (kind === "newMember") {
+    candidates = [`${prefix}.${base}.${prop}.${prop}`, `${prefix}.${base}.${prop}`];
+  } else if (kind === "callStatic" || kind === "staticMember") {
+    candidates = [`${prefix}.${base}.${prop}`];
+  } else if (kind === "instanceMember") {
+    candidates = [
+      `${prefix}.${iface}.${prop}`,
+      `${prefix}.Intl.${iface}.${prop}`,
+      ...(TYPED_ARRAY_IFACES.includes(iface) ? [`${prefix}.TypedArray.${prop}`] : []),
+    ];
+  } else if (kind === "newWithOptions" && descriptor.featureId === "error-cause") {
+    candidates = ["javascript.builtins.Error.Error.options_cause_parameter"];
+  } else if (kind === "newWithOptions" && descriptor.featureId === "resizable-buffers") {
+    candidates = [`javascript.builtins.${name}.${name}.maxByteLength_option`];
   }
-  return out;
+  const compatKey = candidates.find((key) => keys.includes(key));
+  if (compatKey) return { ...descriptor, compatKey };
+  if (keys.length === 1) return { ...descriptor, compatKey: keys[0] };
+  // Unresolved composite patterns require an explicit key; compatibility QA rejects them.
+  return descriptor;
 }
 
 function writeTs(outPath, name, arr) {
@@ -325,8 +353,30 @@ function writeTs(outPath, name, arr) {
   writeFileSync(outPath, body, "utf-8");
 }
 
-const dedupedApiDescs = dedupeDescriptors(apiDescs);
-const dedupedJsbiDescs = dedupeDescriptors(jsbiDescs);
+const dedupedApiDescs = canonicalizeDescriptors(
+  apiDescs.map((descriptor) =>
+    descriptor.compatKey ? descriptor : annotateManualDescriptor(descriptor, "api"),
+  ),
+);
+const dedupedJsbiDescs = canonicalizeDescriptors(
+  jsbiDescs.map((descriptor) =>
+    descriptor.compatKey ? descriptor : annotateManualDescriptor(descriptor, "javascript.builtins"),
+  ),
+);
+const overrides = buildCompatStatusOverrides([...dedupedApiDescs, ...dedupedJsbiDescs], wfFeatures);
+writeFileSync(
+  resolve(__dirname, "..", "..", "src", "baseline", "data", "statuses.compat.ts"),
+  `// @ts-nocheck
+/**
+ * AUTOGENERATED — Exact descriptor keys whose bucket or dates differ from the feature headline.
+ * Entries are atomic statuses; an empty object is an explicitly unknown status.
+ */
+import type { BaselineStatus } from "../types";
+
+const statuses: Readonly<Record<string, Readonly<Record<string, BaselineStatus>>>> = ${JSON.stringify(overrides, null, 2)};
+export default statuses;
+`,
+);
 
 writeTs(
   resolve(__dirname, "..", "..", "src", "baseline", "data", "descriptors.api.ts"),

@@ -8,7 +8,11 @@ Thank you for contributing! This project is data‑driven. We take JavaScript fe
 
 ## How the data flows
 1) Update web‑features version (via Dependabot or a manual bump) in this package.
-2) Run `pnpm gen:data` to regenerate feature data and descriptors under `src/baseline/data/`.
+2) Run `pnpm gen:data` to regenerate feature data, descriptors, and API status overrides under `src/baseline/data/`.
+
+Descriptors retain the exact `web-features` compatibility key they detect. Generation selects constructor keys before applying any Baseline policy and removes overlapping manual patterns. `statuses.compat.ts` contains only exact-key Baseline statuses that differ from the feature headline; omitted entries use that headline. Status overrides are atomic, including an explicitly unknown status. Browser support tables are not duplicated in this runtime projection.
+
+When adding a manual descriptor, identify its exact compatibility key. Composite patterns require a reviewed key that represents the detected operation; do not borrow an arbitrary member's status. The compatibility check rejects generated patterns with missing or unowned keys.
 
 ## Mapping drift and issue automation
 - Workflow: `.github/workflows/mapping-drift.yml`

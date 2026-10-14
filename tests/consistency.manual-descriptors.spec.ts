@@ -48,7 +48,9 @@ function normalize(value: unknown): unknown {
   if (!value || typeof value !== "object") return value;
   const src = value as Record<string, unknown>;
   const out: Record<string, unknown> = {};
-  for (const key of Object.keys(src).sort()) out[key] = normalize(src[key]);
+  for (const key of Object.keys(src).sort()) {
+    if (key !== "compatKey") out[key] = normalize(src[key]);
+  }
   return out;
 }
 

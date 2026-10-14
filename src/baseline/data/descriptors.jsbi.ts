@@ -9,714 +9,833 @@ import type { Descriptor } from "../types";
 const descriptors: ReadonlyArray<Descriptor> = [
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.concat",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "concat"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.join",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "join"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.length",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "length"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.pop",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "pop"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.push",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "push"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.reverse",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "reverse"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.shift",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "shift"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.slice",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "slice"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.sort",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "sort"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.toString",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "toString"
   },
   {
     "featureId": "array",
+    "compatKey": "javascript.builtins.Array.unshift",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "unshift"
   },
   {
     "featureId": "array-at",
+    "compatKey": "javascript.builtins.Array.at",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "at"
   },
   {
     "featureId": "array-by-copy",
+    "compatKey": "javascript.builtins.Array.toReversed",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "toReversed"
   },
   {
     "featureId": "array-by-copy",
+    "compatKey": "javascript.builtins.Array.toSorted",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "toSorted"
   },
   {
     "featureId": "array-by-copy",
+    "compatKey": "javascript.builtins.Array.toSpliced",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "toSpliced"
   },
   {
     "featureId": "array-by-copy",
+    "compatKey": "javascript.builtins.Array.with",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "with"
   },
   {
     "featureId": "array-copywithin",
+    "compatKey": "javascript.builtins.Array.copyWithin",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "copyWithin"
   },
   {
     "featureId": "array-fill",
+    "compatKey": "javascript.builtins.Array.fill",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "fill"
   },
   {
     "featureId": "array-find",
+    "compatKey": "javascript.builtins.Array.find",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "find"
   },
   {
     "featureId": "array-find",
+    "compatKey": "javascript.builtins.Array.findIndex",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "findIndex"
   },
   {
     "featureId": "array-findlast",
+    "compatKey": "javascript.builtins.Array.findLast",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "findLast"
   },
   {
     "featureId": "array-findlast",
+    "compatKey": "javascript.builtins.Array.findLastIndex",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "findLastIndex"
   },
   {
     "featureId": "array-flat",
+    "compatKey": "javascript.builtins.Array.flat",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "flat"
   },
   {
     "featureId": "array-flat",
+    "compatKey": "javascript.builtins.Array.flatMap",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "flatMap"
   },
   {
     "featureId": "array-from",
+    "compatKey": "javascript.builtins.Array.from",
     "kind": "callStatic",
     "base": "Array",
     "prop": "from"
   },
   {
     "featureId": "array-fromasync",
+    "compatKey": "javascript.builtins.Array.fromAsync",
     "kind": "callStatic",
     "base": "Array",
     "prop": "fromAsync"
   },
   {
     "featureId": "array-group",
+    "compatKey": "javascript.builtins.Map.groupBy",
     "kind": "callStatic",
     "base": "Map",
     "prop": "groupBy"
   },
   {
     "featureId": "array-group",
+    "compatKey": "javascript.builtins.Object.groupBy",
     "kind": "callStatic",
     "base": "Object",
     "prop": "groupBy"
   },
   {
     "featureId": "array-includes",
+    "compatKey": "javascript.builtins.Array.includes",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "includes"
   },
   {
     "featureId": "array-isarray",
+    "compatKey": "javascript.builtins.Array.isArray",
     "kind": "callStatic",
     "base": "Array",
     "prop": "isArray"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.every",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "every"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.filter",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "filter"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.forEach",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "forEach"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.indexOf",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "indexOf"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.lastIndexOf",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "lastIndexOf"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.map",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "map"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.reduce",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "reduce"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.reduceRight",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "reduceRight"
   },
   {
     "featureId": "array-iteration-methods",
+    "compatKey": "javascript.builtins.Array.some",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "some"
   },
   {
     "featureId": "array-iterators",
+    "compatKey": "javascript.builtins.Array.entries",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "entries"
   },
   {
     "featureId": "array-iterators",
+    "compatKey": "javascript.builtins.Array.keys",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "keys"
   },
   {
     "featureId": "array-iterators",
+    "compatKey": "javascript.builtins.Array.values",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "values"
   },
   {
     "featureId": "array-of",
+    "compatKey": "javascript.builtins.Array.of",
     "kind": "callStatic",
     "base": "Array",
     "prop": "of"
   },
   {
     "featureId": "array-splice",
+    "compatKey": "javascript.builtins.Array.splice",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "splice"
   },
   {
     "featureId": "async-generators",
+    "compatKey": "javascript.builtins.AsyncGenerator.next",
     "kind": "instanceMember",
     "iface": "AsyncGenerator",
     "prop": "next"
   },
   {
     "featureId": "async-generators",
+    "compatKey": "javascript.builtins.AsyncGenerator.return",
     "kind": "instanceMember",
     "iface": "AsyncGenerator",
     "prop": "return"
   },
   {
     "featureId": "async-generators",
+    "compatKey": "javascript.builtins.AsyncGenerator.throw",
     "kind": "instanceMember",
     "iface": "AsyncGenerator",
     "prop": "throw"
   },
   {
     "featureId": "async-iterators",
+    "compatKey": "javascript.builtins.Symbol.asyncIterator",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "asyncIterator"
   },
   {
     "featureId": "atomics-pause",
+    "compatKey": "javascript.builtins.Atomics.pause",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "pause"
   },
   {
     "featureId": "atomics-wait-async",
+    "compatKey": "javascript.builtins.Atomics.waitAsync",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "waitAsync"
   },
   {
     "featureId": "bigint",
+    "compatKey": "javascript.builtins.BigInt.asIntN",
     "kind": "callStatic",
     "base": "BigInt",
     "prop": "asIntN"
   },
   {
     "featureId": "bigint",
+    "compatKey": "javascript.builtins.BigInt.asUintN",
     "kind": "callStatic",
     "base": "BigInt",
     "prop": "asUintN"
   },
   {
     "featureId": "bigint",
+    "compatKey": "javascript.builtins.BigInt.toString",
     "kind": "instanceMember",
     "iface": "BigInt",
     "prop": "toString"
   },
   {
     "featureId": "bigint",
+    "compatKey": "javascript.builtins.BigInt.valueOf",
     "kind": "instanceMember",
     "iface": "BigInt",
     "prop": "valueOf"
   },
   {
     "featureId": "bigint64array",
+    "compatKey": "javascript.builtins.DataView.getBigInt64",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getBigInt64"
   },
   {
     "featureId": "bigint64array",
+    "compatKey": "javascript.builtins.DataView.getBigUint64",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getBigUint64"
   },
   {
     "featureId": "bigint64array",
+    "compatKey": "javascript.builtins.DataView.setBigInt64",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setBigInt64"
   },
   {
     "featureId": "bigint64array",
+    "compatKey": "javascript.builtins.DataView.setBigUint64",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setBigUint64"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.UTC",
     "kind": "callStatic",
     "base": "Date",
     "prop": "UTC"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getDate",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getDate"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getDay",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getDay"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getFullYear",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getFullYear"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getHours",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getHours"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getMilliseconds",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getMilliseconds"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getMinutes",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getMinutes"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getMonth",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getMonth"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getSeconds",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getSeconds"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getTime",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getTime"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getTimezoneOffset",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getTimezoneOffset"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getUTCDate",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getUTCDate"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getUTCDay",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getUTCDay"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getUTCFullYear",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getUTCFullYear"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getUTCHours",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getUTCHours"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getUTCMilliseconds",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getUTCMilliseconds"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getUTCMinutes",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getUTCMinutes"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getUTCMonth",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getUTCMonth"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.getUTCSeconds",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getUTCSeconds"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.now",
     "kind": "callStatic",
     "base": "Date",
     "prop": "now"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.parse",
     "kind": "callStatic",
     "base": "Date",
     "prop": "parse"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setDate",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setDate"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setFullYear",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setFullYear"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setHours",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setHours"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setMilliseconds",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setMilliseconds"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setMinutes",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setMinutes"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setMonth",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setMonth"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setSeconds",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setSeconds"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setTime",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setTime"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setUTCDate",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setUTCDate"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setUTCFullYear",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setUTCFullYear"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setUTCHours",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setUTCHours"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setUTCMilliseconds",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setUTCMilliseconds"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setUTCMinutes",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setUTCMinutes"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setUTCMonth",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setUTCMonth"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.setUTCSeconds",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setUTCSeconds"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.toDateString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toDateString"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.toISOString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toISOString"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.toJSON",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toJSON"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.toString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toString"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.toTimeString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toTimeString"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.toUTCString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toUTCString"
   },
   {
     "featureId": "date",
+    "compatKey": "javascript.builtins.Date.valueOf",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "valueOf"
   },
   {
     "featureId": "date-get-year-set-year",
+    "compatKey": "javascript.builtins.Date.getYear",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "getYear"
   },
   {
     "featureId": "date-get-year-set-year",
+    "compatKey": "javascript.builtins.Date.setYear",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "setYear"
   },
   {
     "featureId": "date-to-gmt-string",
+    "compatKey": "javascript.builtins.Date.toGMTString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toGMTString"
   },
   {
     "featureId": "error-cause",
+    "compatKey": "javascript.builtins.Error.cause",
     "kind": "instanceMember",
     "iface": "Error",
     "prop": "cause"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.AsyncDisposableStack.adopt",
     "kind": "instanceMember",
     "iface": "AsyncDisposableStack",
     "prop": "adopt"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.AsyncDisposableStack.defer",
     "kind": "instanceMember",
     "iface": "AsyncDisposableStack",
     "prop": "defer"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.AsyncDisposableStack.disposeAsync",
     "kind": "instanceMember",
     "iface": "AsyncDisposableStack",
     "prop": "disposeAsync"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.AsyncDisposableStack.disposed",
     "kind": "instanceMember",
     "iface": "AsyncDisposableStack",
     "prop": "disposed"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.AsyncDisposableStack.move",
     "kind": "instanceMember",
     "iface": "AsyncDisposableStack",
     "prop": "move"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.AsyncDisposableStack.use",
     "kind": "instanceMember",
     "iface": "AsyncDisposableStack",
     "prop": "use"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.DisposableStack.adopt",
     "kind": "instanceMember",
     "iface": "DisposableStack",
     "prop": "adopt"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.DisposableStack.defer",
     "kind": "instanceMember",
     "iface": "DisposableStack",
     "prop": "defer"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.DisposableStack.dispose",
     "kind": "instanceMember",
     "iface": "DisposableStack",
     "prop": "dispose"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.DisposableStack.disposed",
     "kind": "instanceMember",
     "iface": "DisposableStack",
     "prop": "disposed"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.DisposableStack.move",
     "kind": "instanceMember",
     "iface": "DisposableStack",
     "prop": "move"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.DisposableStack.use",
     "kind": "instanceMember",
     "iface": "DisposableStack",
     "prop": "use"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.SuppressedError.error",
     "kind": "instanceMember",
     "iface": "SuppressedError",
     "prop": "error"
   },
   {
     "featureId": "explicit-resource-management",
+    "compatKey": "javascript.builtins.SuppressedError.suppressed",
     "kind": "instanceMember",
     "iface": "SuppressedError",
     "prop": "suppressed"
@@ -725,334 +844,390 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "explicit-resource-management",
     "kind": "staticMember",
     "base": "Symbol",
-    "prop": "asyncDispose"
+    "prop": "asyncDispose",
+    "compatKey": "javascript.builtins.Symbol.asyncDispose"
   },
   {
     "featureId": "explicit-resource-management",
     "kind": "staticMember",
     "base": "Symbol",
-    "prop": "dispose"
+    "prop": "dispose",
+    "compatKey": "javascript.builtins.Symbol.dispose"
   },
   {
     "featureId": "float16array",
+    "compatKey": "javascript.builtins.DataView.getFloat16",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getFloat16"
   },
   {
     "featureId": "float16array",
+    "compatKey": "javascript.builtins.DataView.setFloat16",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setFloat16"
   },
   {
     "featureId": "float16array",
+    "compatKey": "javascript.builtins.Math.f16round",
     "kind": "callStatic",
     "base": "Math",
     "prop": "f16round"
   },
   {
     "featureId": "functions",
+    "compatKey": "javascript.builtins.Function.apply",
     "kind": "instanceMember",
     "iface": "Function",
     "prop": "apply"
   },
   {
     "featureId": "functions",
+    "compatKey": "javascript.builtins.Function.bind",
     "kind": "instanceMember",
     "iface": "Function",
     "prop": "bind"
   },
   {
     "featureId": "functions",
+    "compatKey": "javascript.builtins.Function.call",
     "kind": "instanceMember",
     "iface": "Function",
     "prop": "call"
   },
   {
     "featureId": "functions",
+    "compatKey": "javascript.builtins.Function.length",
     "kind": "instanceMember",
     "iface": "Function",
     "prop": "length"
   },
   {
     "featureId": "functions",
+    "compatKey": "javascript.builtins.Function.name",
     "kind": "instanceMember",
     "iface": "Function",
     "prop": "name"
   },
   {
     "featureId": "functions",
+    "compatKey": "javascript.builtins.Function.toString",
     "kind": "instanceMember",
     "iface": "Function",
     "prop": "toString"
   },
   {
     "featureId": "functions-caller-arguments",
+    "compatKey": "javascript.builtins.Function.arguments",
     "kind": "instanceMember",
     "iface": "Function",
     "prop": "arguments"
   },
   {
     "featureId": "functions-caller-arguments",
+    "compatKey": "javascript.builtins.Function.caller",
     "kind": "instanceMember",
     "iface": "Function",
     "prop": "caller"
   },
   {
     "featureId": "generators",
+    "compatKey": "javascript.builtins.Generator.next",
     "kind": "instanceMember",
     "iface": "Generator",
     "prop": "next"
   },
   {
     "featureId": "generators",
+    "compatKey": "javascript.builtins.Generator.return",
     "kind": "instanceMember",
     "iface": "Generator",
     "prop": "return"
   },
   {
     "featureId": "generators",
+    "compatKey": "javascript.builtins.Generator.throw",
     "kind": "instanceMember",
     "iface": "Generator",
     "prop": "throw"
   },
   {
     "featureId": "getorinsert",
+    "compatKey": "javascript.builtins.Map.getOrInsert",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "getOrInsert"
   },
   {
     "featureId": "getorinsert",
+    "compatKey": "javascript.builtins.Map.getOrInsertComputed",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "getOrInsertComputed"
   },
   {
     "featureId": "getorinsert",
+    "compatKey": "javascript.builtins.WeakMap.getOrInsert",
     "kind": "instanceMember",
     "iface": "WeakMap",
     "prop": "getOrInsert"
   },
   {
     "featureId": "getorinsert",
+    "compatKey": "javascript.builtins.WeakMap.getOrInsertComputed",
     "kind": "instanceMember",
     "iface": "WeakMap",
     "prop": "getOrInsertComputed"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.anchor",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "anchor"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.big",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "big"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.blink",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "blink"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.bold",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "bold"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.fixed",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "fixed"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.fontcolor",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "fontcolor"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.fontsize",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "fontsize"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.italics",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "italics"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.link",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "link"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.small",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "small"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.strike",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "strike"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.sub",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "sub"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.substr",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "substr"
   },
   {
     "featureId": "html-wrapper-methods",
+    "compatKey": "javascript.builtins.String.sup",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "sup"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Array.toLocaleString",
     "kind": "instanceMember",
     "iface": "Array",
     "prop": "toLocaleString"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.BigInt.toLocaleString",
     "kind": "instanceMember",
     "iface": "BigInt",
     "prop": "toLocaleString"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Date.toLocaleDateString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toLocaleDateString"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Date.toLocaleString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toLocaleString"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Date.toLocaleTimeString",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toLocaleTimeString"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Intl.Collator.Collator",
     "kind": "newMember",
     "base": "Intl",
     "prop": "Collator"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Intl.DateTimeFormat.DateTimeFormat",
     "kind": "newMember",
     "base": "Intl",
     "prop": "DateTimeFormat"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Intl.NumberFormat.NumberFormat",
     "kind": "newMember",
     "base": "Intl",
     "prop": "NumberFormat"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Intl.getCanonicalLocales",
     "kind": "callStatic",
     "base": "Intl",
     "prop": "getCanonicalLocales"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Intl.supportedValuesOf",
     "kind": "callStatic",
     "base": "Intl",
     "prop": "supportedValuesOf"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Number.toLocaleString",
     "kind": "instanceMember",
     "iface": "Number",
     "prop": "toLocaleString"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.Object.toLocaleString",
     "kind": "callStatic",
     "base": "Object",
     "prop": "toLocaleString"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.String.localeCompare",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "localeCompare"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.String.toLocaleLowerCase",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "toLocaleLowerCase"
   },
   {
     "featureId": "intl",
+    "compatKey": "javascript.builtins.String.toLocaleUpperCase",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "toLocaleUpperCase"
   },
   {
     "featureId": "intl-display-names",
+    "compatKey": "javascript.builtins.Intl.DisplayNames.DisplayNames",
     "kind": "newMember",
     "base": "Intl",
     "prop": "DisplayNames"
   },
   {
     "featureId": "intl-duration-format",
+    "compatKey": "javascript.builtins.Intl.DurationFormat.DurationFormat",
     "kind": "newMember",
     "base": "Intl",
     "prop": "DurationFormat"
   },
   {
     "featureId": "intl-list-format",
+    "compatKey": "javascript.builtins.Intl.ListFormat.ListFormat",
     "kind": "newMember",
     "base": "Intl",
     "prop": "ListFormat"
   },
   {
     "featureId": "intl-locale",
+    "compatKey": "javascript.builtins.Intl.Locale.Locale",
     "kind": "newMember",
     "base": "Intl",
     "prop": "Locale"
   },
   {
     "featureId": "intl-plural-rules",
+    "compatKey": "javascript.builtins.Intl.PluralRules.PluralRules",
     "kind": "newMember",
     "base": "Intl",
     "prop": "PluralRules"
   },
   {
     "featureId": "intl-relative-time-format",
+    "compatKey": "javascript.builtins.Intl.RelativeTimeFormat.RelativeTimeFormat",
     "kind": "newMember",
     "base": "Intl",
     "prop": "RelativeTimeFormat"
   },
   {
     "featureId": "intl-segmenter",
+    "compatKey": "javascript.builtins.Intl.Segmenter.Segmenter",
     "kind": "newMember",
     "base": "Intl",
     "prop": "Segmenter"
@@ -1061,10 +1236,12 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "is-error",
     "kind": "callStatic",
     "base": "Error",
-    "prop": "isError"
+    "prop": "isError",
+    "compatKey": "javascript.builtins.Error.isError"
   },
   {
     "featureId": "iterator-join",
+    "compatKey": "javascript.builtins.Iterator.join",
     "kind": "instanceMember",
     "iface": "Iterator",
     "prop": "join"
@@ -1073,1738 +1250,2028 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "drop"
+    "prop": "drop",
+    "compatKey": "javascript.builtins.Iterator.drop"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.Iterator.every"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.Iterator.filter"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "find"
+    "prop": "find",
+    "compatKey": "javascript.builtins.Iterator.find"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "flatMap"
+    "prop": "flatMap",
+    "compatKey": "javascript.builtins.Iterator.flatMap"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.Iterator.forEach"
   },
   {
     "featureId": "iterator-methods",
     "kind": "callStatic",
     "base": "Iterator",
-    "prop": "from"
+    "prop": "from",
+    "compatKey": "javascript.builtins.Iterator.from"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.Iterator.map"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.Iterator.reduce"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.Iterator.some"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "take"
+    "prop": "take",
+    "compatKey": "javascript.builtins.Iterator.take"
   },
   {
     "featureId": "iterator-methods",
     "kind": "instanceMember",
     "iface": "Iterator",
-    "prop": "toArray"
+    "prop": "toArray",
+    "compatKey": "javascript.builtins.Iterator.toArray"
   },
   {
     "featureId": "javascript",
+    "compatKey": "javascript.builtins.Boolean.toString",
     "kind": "instanceMember",
     "iface": "Boolean",
     "prop": "toString"
   },
   {
     "featureId": "javascript",
+    "compatKey": "javascript.builtins.Boolean.valueOf",
     "kind": "instanceMember",
     "iface": "Boolean",
     "prop": "valueOf"
   },
   {
     "featureId": "javascript",
+    "compatKey": "javascript.builtins.Error.message",
     "kind": "instanceMember",
     "iface": "Error",
     "prop": "message"
   },
   {
     "featureId": "javascript",
+    "compatKey": "javascript.builtins.Error.name",
     "kind": "instanceMember",
     "iface": "Error",
     "prop": "name"
   },
   {
     "featureId": "javascript",
+    "compatKey": "javascript.builtins.Error.toString",
     "kind": "instanceMember",
     "iface": "Error",
     "prop": "toString"
   },
   {
     "featureId": "json",
+    "compatKey": "javascript.builtins.JSON.parse",
     "kind": "callStatic",
     "base": "JSON",
     "prop": "parse"
   },
   {
     "featureId": "json",
+    "compatKey": "javascript.builtins.JSON.stringify",
     "kind": "callStatic",
     "base": "JSON",
     "prop": "stringify"
   },
   {
     "featureId": "json-raw",
+    "compatKey": "javascript.builtins.JSON.isRawJSON",
     "kind": "callStatic",
     "base": "JSON",
     "prop": "isRawJSON"
   },
   {
     "featureId": "json-raw",
+    "compatKey": "javascript.builtins.JSON.rawJSON",
     "kind": "callStatic",
     "base": "JSON",
     "prop": "rawJSON"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.clear",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "clear"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.delete",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "delete"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.entries",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "entries"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.forEach",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "forEach"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.get",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "get"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.has",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "has"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.keys",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "keys"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.set",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "set"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.size",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "size"
   },
   {
     "featureId": "map",
+    "compatKey": "javascript.builtins.Map.values",
     "kind": "instanceMember",
     "iface": "Map",
     "prop": "values"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.E",
     "kind": "staticMember",
     "base": "Math",
     "prop": "E"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.LN10",
     "kind": "staticMember",
     "base": "Math",
     "prop": "LN10"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.LN2",
     "kind": "staticMember",
     "base": "Math",
     "prop": "LN2"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.LOG10E",
     "kind": "staticMember",
     "base": "Math",
     "prop": "LOG10E"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.LOG2E",
     "kind": "staticMember",
     "base": "Math",
     "prop": "LOG2E"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.PI",
     "kind": "staticMember",
     "base": "Math",
     "prop": "PI"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.SQRT1_2",
     "kind": "staticMember",
     "base": "Math",
     "prop": "SQRT1_2"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.SQRT2",
     "kind": "staticMember",
     "base": "Math",
     "prop": "SQRT2"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.abs",
     "kind": "callStatic",
     "base": "Math",
     "prop": "abs"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.acos",
     "kind": "callStatic",
     "base": "Math",
     "prop": "acos"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.acosh",
     "kind": "callStatic",
     "base": "Math",
     "prop": "acosh"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.asin",
     "kind": "callStatic",
     "base": "Math",
     "prop": "asin"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.asinh",
     "kind": "callStatic",
     "base": "Math",
     "prop": "asinh"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.atan",
     "kind": "callStatic",
     "base": "Math",
     "prop": "atan"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.atan2",
     "kind": "callStatic",
     "base": "Math",
     "prop": "atan2"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.atanh",
     "kind": "callStatic",
     "base": "Math",
     "prop": "atanh"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.cbrt",
     "kind": "callStatic",
     "base": "Math",
     "prop": "cbrt"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.ceil",
     "kind": "callStatic",
     "base": "Math",
     "prop": "ceil"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.clz32",
     "kind": "callStatic",
     "base": "Math",
     "prop": "clz32"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.cos",
     "kind": "callStatic",
     "base": "Math",
     "prop": "cos"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.cosh",
     "kind": "callStatic",
     "base": "Math",
     "prop": "cosh"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.exp",
     "kind": "callStatic",
     "base": "Math",
     "prop": "exp"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.expm1",
     "kind": "callStatic",
     "base": "Math",
     "prop": "expm1"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.floor",
     "kind": "callStatic",
     "base": "Math",
     "prop": "floor"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.fround",
     "kind": "callStatic",
     "base": "Math",
     "prop": "fround"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.hypot",
     "kind": "callStatic",
     "base": "Math",
     "prop": "hypot"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.imul",
     "kind": "callStatic",
     "base": "Math",
     "prop": "imul"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.log",
     "kind": "callStatic",
     "base": "Math",
     "prop": "log"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.log10",
     "kind": "callStatic",
     "base": "Math",
     "prop": "log10"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.log1p",
     "kind": "callStatic",
     "base": "Math",
     "prop": "log1p"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.log2",
     "kind": "callStatic",
     "base": "Math",
     "prop": "log2"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.max",
     "kind": "callStatic",
     "base": "Math",
     "prop": "max"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.min",
     "kind": "callStatic",
     "base": "Math",
     "prop": "min"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.pow",
     "kind": "callStatic",
     "base": "Math",
     "prop": "pow"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.random",
     "kind": "callStatic",
     "base": "Math",
     "prop": "random"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.round",
     "kind": "callStatic",
     "base": "Math",
     "prop": "round"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.sign",
     "kind": "callStatic",
     "base": "Math",
     "prop": "sign"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.sin",
     "kind": "callStatic",
     "base": "Math",
     "prop": "sin"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.sinh",
     "kind": "callStatic",
     "base": "Math",
     "prop": "sinh"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.sqrt",
     "kind": "callStatic",
     "base": "Math",
     "prop": "sqrt"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.tan",
     "kind": "callStatic",
     "base": "Math",
     "prop": "tan"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.tanh",
     "kind": "callStatic",
     "base": "Math",
     "prop": "tanh"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Math.trunc",
     "kind": "callStatic",
     "base": "Math",
     "prop": "trunc"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.EPSILON",
     "kind": "staticMember",
     "base": "Number",
     "prop": "EPSILON"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.MAX_SAFE_INTEGER",
     "kind": "staticMember",
     "base": "Number",
     "prop": "MAX_SAFE_INTEGER"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.MAX_VALUE",
     "kind": "staticMember",
     "base": "Number",
     "prop": "MAX_VALUE"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.MIN_SAFE_INTEGER",
     "kind": "staticMember",
     "base": "Number",
     "prop": "MIN_SAFE_INTEGER"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.MIN_VALUE",
     "kind": "staticMember",
     "base": "Number",
     "prop": "MIN_VALUE"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.NEGATIVE_INFINITY",
     "kind": "staticMember",
     "base": "Number",
     "prop": "NEGATIVE_INFINITY"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.NaN",
     "kind": "staticMember",
     "base": "Number",
     "prop": "NaN"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.POSITIVE_INFINITY",
     "kind": "staticMember",
     "base": "Number",
     "prop": "POSITIVE_INFINITY"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.isFinite",
     "kind": "callStatic",
     "base": "Number",
     "prop": "isFinite"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.isInteger",
     "kind": "callStatic",
     "base": "Number",
     "prop": "isInteger"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.isNaN",
     "kind": "callStatic",
     "base": "Number",
     "prop": "isNaN"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.isSafeInteger",
     "kind": "callStatic",
     "base": "Number",
     "prop": "isSafeInteger"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.parseFloat",
     "kind": "callStatic",
     "base": "Number",
     "prop": "parseFloat"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.parseInt",
     "kind": "callStatic",
     "base": "Number",
     "prop": "parseInt"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.toExponential",
     "kind": "instanceMember",
     "iface": "Number",
     "prop": "toExponential"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.toFixed",
     "kind": "instanceMember",
     "iface": "Number",
     "prop": "toFixed"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.toPrecision",
     "kind": "instanceMember",
     "iface": "Number",
     "prop": "toPrecision"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.toString",
     "kind": "instanceMember",
     "iface": "Number",
     "prop": "toString"
   },
   {
     "featureId": "number",
+    "compatKey": "javascript.builtins.Number.valueOf",
     "kind": "instanceMember",
     "iface": "Number",
     "prop": "valueOf"
   },
   {
     "featureId": "object-hasown",
+    "compatKey": "javascript.builtins.Object.hasOwn",
     "kind": "callStatic",
     "base": "Object",
     "prop": "hasOwn"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.assign",
     "kind": "callStatic",
     "base": "Object",
     "prop": "assign"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.constructor",
     "kind": "staticMember",
     "base": "Object",
     "prop": "constructor"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.create",
     "kind": "callStatic",
     "base": "Object",
     "prop": "create"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.defineProperties",
     "kind": "callStatic",
     "base": "Object",
     "prop": "defineProperties"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.defineProperty",
     "kind": "callStatic",
     "base": "Object",
     "prop": "defineProperty"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.entries",
     "kind": "callStatic",
     "base": "Object",
     "prop": "entries"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.freeze",
     "kind": "callStatic",
     "base": "Object",
     "prop": "freeze"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.fromEntries",
     "kind": "callStatic",
     "base": "Object",
     "prop": "fromEntries"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.getOwnPropertyDescriptor",
     "kind": "callStatic",
     "base": "Object",
     "prop": "getOwnPropertyDescriptor"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.getOwnPropertyDescriptors",
     "kind": "callStatic",
     "base": "Object",
     "prop": "getOwnPropertyDescriptors"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.getOwnPropertyNames",
     "kind": "callStatic",
     "base": "Object",
     "prop": "getOwnPropertyNames"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.getOwnPropertySymbols",
     "kind": "callStatic",
     "base": "Object",
     "prop": "getOwnPropertySymbols"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.getPrototypeOf",
     "kind": "callStatic",
     "base": "Object",
     "prop": "getPrototypeOf"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.hasOwnProperty",
     "kind": "callStatic",
     "base": "Object",
     "prop": "hasOwnProperty"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.is",
     "kind": "callStatic",
     "base": "Object",
     "prop": "is"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.isExtensible",
     "kind": "callStatic",
     "base": "Object",
     "prop": "isExtensible"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.isFrozen",
     "kind": "callStatic",
     "base": "Object",
     "prop": "isFrozen"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.isPrototypeOf",
     "kind": "callStatic",
     "base": "Object",
     "prop": "isPrototypeOf"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.isSealed",
     "kind": "callStatic",
     "base": "Object",
     "prop": "isSealed"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.keys",
     "kind": "callStatic",
     "base": "Object",
     "prop": "keys"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.preventExtensions",
     "kind": "callStatic",
     "base": "Object",
     "prop": "preventExtensions"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.propertyIsEnumerable",
     "kind": "callStatic",
     "base": "Object",
     "prop": "propertyIsEnumerable"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.seal",
     "kind": "callStatic",
     "base": "Object",
     "prop": "seal"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.setPrototypeOf",
     "kind": "callStatic",
     "base": "Object",
     "prop": "setPrototypeOf"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.toString",
     "kind": "callStatic",
     "base": "Object",
     "prop": "toString"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.valueOf",
     "kind": "callStatic",
     "base": "Object",
     "prop": "valueOf"
   },
   {
     "featureId": "object-object",
+    "compatKey": "javascript.builtins.Object.values",
     "kind": "callStatic",
     "base": "Object",
     "prop": "values"
   },
   {
     "featureId": "promise",
+    "compatKey": "javascript.builtins.Promise.all",
     "kind": "callStatic",
     "base": "Promise",
     "prop": "all"
   },
   {
     "featureId": "promise",
+    "compatKey": "javascript.builtins.Promise.catch",
     "kind": "instanceMember",
     "iface": "Promise",
     "prop": "catch"
   },
   {
     "featureId": "promise",
+    "compatKey": "javascript.builtins.Promise.race",
     "kind": "callStatic",
     "base": "Promise",
     "prop": "race"
   },
   {
     "featureId": "promise",
+    "compatKey": "javascript.builtins.Promise.reject",
     "kind": "callStatic",
     "base": "Promise",
     "prop": "reject"
   },
   {
     "featureId": "promise",
+    "compatKey": "javascript.builtins.Promise.resolve",
     "kind": "callStatic",
     "base": "Promise",
     "prop": "resolve"
   },
   {
     "featureId": "promise",
+    "compatKey": "javascript.builtins.Promise.then",
     "kind": "instanceMember",
     "iface": "Promise",
     "prop": "then"
   },
   {
     "featureId": "promise-allsettled",
+    "compatKey": "javascript.builtins.Promise.allSettled",
     "kind": "callStatic",
     "base": "Promise",
     "prop": "allSettled"
   },
   {
     "featureId": "promise-any",
+    "compatKey": "javascript.builtins.AggregateError.errors",
     "kind": "instanceMember",
     "iface": "AggregateError",
     "prop": "errors"
   },
   {
     "featureId": "promise-any",
+    "compatKey": "javascript.builtins.Promise.any",
     "kind": "callStatic",
     "base": "Promise",
     "prop": "any"
   },
   {
     "featureId": "promise-finally",
+    "compatKey": "javascript.builtins.Promise.finally",
     "kind": "instanceMember",
     "iface": "Promise",
     "prop": "finally"
   },
   {
     "featureId": "promise-try",
+    "compatKey": "javascript.builtins.Promise.try",
     "kind": "callStatic",
     "base": "Promise",
     "prop": "try"
   },
   {
     "featureId": "promise-withresolvers",
+    "compatKey": "javascript.builtins.Promise.withResolvers",
     "kind": "callStatic",
     "base": "Promise",
     "prop": "withResolvers"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Proxy.revocable",
     "kind": "callStatic",
     "base": "Proxy",
     "prop": "revocable"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.apply",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "apply"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.construct",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "construct"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.defineProperty",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "defineProperty"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.deleteProperty",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "deleteProperty"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.get",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "get"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.getOwnPropertyDescriptor",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "getOwnPropertyDescriptor"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.getPrototypeOf",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "getPrototypeOf"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.has",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "has"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.isExtensible",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "isExtensible"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.ownKeys",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "ownKeys"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.preventExtensions",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "preventExtensions"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.set",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "set"
   },
   {
     "featureId": "proxy-reflect",
+    "compatKey": "javascript.builtins.Reflect.setPrototypeOf",
     "kind": "callStatic",
     "base": "Reflect",
     "prop": "setPrototypeOf"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.dotAll",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "dotAll"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.exec",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "exec"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.flags",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "flags"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.global",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "global"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.hasIndices",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "hasIndices"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.ignoreCase",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "ignoreCase"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.lastIndex",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "lastIndex"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.multiline",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "multiline"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.source",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "source"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.sticky",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "sticky"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.test",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "test"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.toString",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "toString"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.unicode",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "unicode"
   },
   {
     "featureId": "regexp",
+    "compatKey": "javascript.builtins.RegExp.unicodeSets",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "unicodeSets"
   },
   {
     "featureId": "regexp-compile",
+    "compatKey": "javascript.builtins.RegExp.compile",
     "kind": "instanceMember",
     "iface": "RegExp",
     "prop": "compile"
   },
   {
     "featureId": "regexp-escape",
+    "compatKey": "javascript.builtins.RegExp.escape",
     "kind": "callStatic",
     "base": "RegExp",
     "prop": "escape"
   },
   {
     "featureId": "regexp-static-properties",
+    "compatKey": "javascript.builtins.RegExp.input",
     "kind": "staticMember",
     "base": "RegExp",
     "prop": "input"
   },
   {
     "featureId": "regexp-static-properties",
+    "compatKey": "javascript.builtins.RegExp.lastMatch",
     "kind": "staticMember",
     "base": "RegExp",
     "prop": "lastMatch"
   },
   {
     "featureId": "regexp-static-properties",
+    "compatKey": "javascript.builtins.RegExp.lastParen",
     "kind": "staticMember",
     "base": "RegExp",
     "prop": "lastParen"
   },
   {
     "featureId": "regexp-static-properties",
+    "compatKey": "javascript.builtins.RegExp.leftContext",
     "kind": "staticMember",
     "base": "RegExp",
     "prop": "leftContext"
   },
   {
     "featureId": "regexp-static-properties",
+    "compatKey": "javascript.builtins.RegExp.rightContext",
     "kind": "staticMember",
     "base": "RegExp",
     "prop": "rightContext"
   },
   {
     "featureId": "resizable-buffers",
+    "compatKey": "javascript.builtins.ArrayBuffer.maxByteLength",
     "kind": "instanceMember",
     "iface": "ArrayBuffer",
     "prop": "maxByteLength"
   },
   {
     "featureId": "resizable-buffers",
+    "compatKey": "javascript.builtins.ArrayBuffer.resizable",
     "kind": "instanceMember",
     "iface": "ArrayBuffer",
     "prop": "resizable"
   },
   {
     "featureId": "resizable-buffers",
+    "compatKey": "javascript.builtins.ArrayBuffer.resize",
     "kind": "instanceMember",
     "iface": "ArrayBuffer",
     "prop": "resize"
   },
   {
     "featureId": "resizable-buffers",
+    "compatKey": "javascript.builtins.SharedArrayBuffer.grow",
     "kind": "instanceMember",
     "iface": "SharedArrayBuffer",
     "prop": "grow"
   },
   {
     "featureId": "resizable-buffers",
+    "compatKey": "javascript.builtins.SharedArrayBuffer.growable",
     "kind": "instanceMember",
     "iface": "SharedArrayBuffer",
     "prop": "growable"
   },
   {
     "featureId": "resizable-buffers",
+    "compatKey": "javascript.builtins.SharedArrayBuffer.maxByteLength",
     "kind": "instanceMember",
     "iface": "SharedArrayBuffer",
     "prop": "maxByteLength"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.add",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "add"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.clear",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "clear"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.delete",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "delete"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.entries",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "entries"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.forEach",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "forEach"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.has",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "has"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.keys",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "keys"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.size",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "size"
   },
   {
     "featureId": "set",
+    "compatKey": "javascript.builtins.Set.values",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "values"
   },
   {
     "featureId": "set-methods",
+    "compatKey": "javascript.builtins.Set.difference",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "difference"
   },
   {
     "featureId": "set-methods",
+    "compatKey": "javascript.builtins.Set.intersection",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "intersection"
   },
   {
     "featureId": "set-methods",
+    "compatKey": "javascript.builtins.Set.isDisjointFrom",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "isDisjointFrom"
   },
   {
     "featureId": "set-methods",
+    "compatKey": "javascript.builtins.Set.isSubsetOf",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "isSubsetOf"
   },
   {
     "featureId": "set-methods",
+    "compatKey": "javascript.builtins.Set.isSupersetOf",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "isSupersetOf"
   },
   {
     "featureId": "set-methods",
+    "compatKey": "javascript.builtins.Set.symmetricDifference",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "symmetricDifference"
   },
   {
     "featureId": "set-methods",
+    "compatKey": "javascript.builtins.Set.union",
     "kind": "instanceMember",
     "iface": "Set",
     "prop": "union"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.add",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "add"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.and",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "and"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.compareExchange",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "compareExchange"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.exchange",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "exchange"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.isLockFree",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "isLockFree"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.load",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "load"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.notify",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "notify"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.or",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "or"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.store",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "store"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.sub",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "sub"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.wait",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "wait"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.Atomics.xor",
     "kind": "callStatic",
     "base": "Atomics",
     "prop": "xor"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.SharedArrayBuffer.byteLength",
     "kind": "instanceMember",
     "iface": "SharedArrayBuffer",
     "prop": "byteLength"
   },
   {
     "featureId": "shared-memory",
+    "compatKey": "javascript.builtins.SharedArrayBuffer.slice",
     "kind": "instanceMember",
     "iface": "SharedArrayBuffer",
     "prop": "slice"
   },
   {
     "featureId": "string-at",
+    "compatKey": "javascript.builtins.String.at",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "at"
   },
   {
     "featureId": "string-codepoint",
+    "compatKey": "javascript.builtins.String.codePointAt",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "codePointAt"
   },
   {
     "featureId": "string-codepoint",
+    "compatKey": "javascript.builtins.String.fromCodePoint",
     "kind": "callStatic",
     "base": "String",
     "prop": "fromCodePoint"
   },
   {
     "featureId": "string-includes",
+    "compatKey": "javascript.builtins.String.includes",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "includes"
   },
   {
     "featureId": "string-matchall",
+    "compatKey": "javascript.builtins.String.matchAll",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "matchAll"
   },
   {
     "featureId": "string-normalize",
+    "compatKey": "javascript.builtins.String.normalize",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "normalize"
   },
   {
     "featureId": "string-pad",
+    "compatKey": "javascript.builtins.String.padEnd",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "padEnd"
   },
   {
     "featureId": "string-pad",
+    "compatKey": "javascript.builtins.String.padStart",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "padStart"
   },
   {
     "featureId": "string-raw",
+    "compatKey": "javascript.builtins.String.raw",
     "kind": "callStatic",
     "base": "String",
     "prop": "raw"
   },
   {
     "featureId": "string-repeat",
+    "compatKey": "javascript.builtins.String.repeat",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "repeat"
   },
   {
     "featureId": "string-replaceall",
+    "compatKey": "javascript.builtins.String.replaceAll",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "replaceAll"
   },
   {
     "featureId": "string-startsends-with",
+    "compatKey": "javascript.builtins.String.endsWith",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "endsWith"
   },
   {
     "featureId": "string-startsends-with",
+    "compatKey": "javascript.builtins.String.startsWith",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "startsWith"
   },
   {
     "featureId": "string-trim-leftright",
+    "compatKey": "javascript.builtins.String.trimLeft",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "trimLeft"
   },
   {
     "featureId": "string-trim-leftright",
+    "compatKey": "javascript.builtins.String.trimRight",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "trimRight"
   },
   {
     "featureId": "string-trim-startend",
+    "compatKey": "javascript.builtins.String.trimEnd",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "trimEnd"
   },
   {
     "featureId": "string-trim-startend",
+    "compatKey": "javascript.builtins.String.trimStart",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "trimStart"
   },
   {
     "featureId": "string-wellformed",
+    "compatKey": "javascript.builtins.String.isWellFormed",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "isWellFormed"
   },
   {
     "featureId": "string-wellformed",
+    "compatKey": "javascript.builtins.String.toWellFormed",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "toWellFormed"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.charAt",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "charAt"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.charCodeAt",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "charCodeAt"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.concat",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "concat"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.fromCharCode",
     "kind": "callStatic",
     "base": "String",
     "prop": "fromCharCode"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.indexOf",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "indexOf"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.lastIndexOf",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "lastIndexOf"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.length",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "length"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.match",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "match"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.replace",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "replace"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.search",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "search"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.slice",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "slice"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.split",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "split"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.substring",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "substring"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.toLowerCase",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "toLowerCase"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.toString",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "toString"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.toUpperCase",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "toUpperCase"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.trim",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "trim"
   },
   {
     "featureId": "strings",
+    "compatKey": "javascript.builtins.String.valueOf",
     "kind": "instanceMember",
     "iface": "String",
     "prop": "valueOf"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.description",
     "kind": "instanceMember",
     "iface": "Symbol",
     "prop": "description"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.for",
     "kind": "callStatic",
     "base": "Symbol",
     "prop": "for"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.hasInstance",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "hasInstance"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.isConcatSpreadable",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "isConcatSpreadable"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.iterator",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "iterator"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.keyFor",
     "kind": "callStatic",
     "base": "Symbol",
     "prop": "keyFor"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.match",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "match"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.matchAll",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "matchAll"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.replace",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "replace"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.search",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "search"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.species",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "species"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.split",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "split"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.toPrimitive",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "toPrimitive"
   },
   {
     "featureId": "symbol",
+    "compatKey": "javascript.builtins.Symbol.toStringTag",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "toStringTag"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Date.toTemporalInstant",
     "kind": "instanceMember",
     "iface": "Date",
     "prop": "toTemporalInstant"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.Duration.Duration",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "Duration"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.Instant.Instant",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "Instant"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.Now",
     "kind": "staticMember",
     "base": "Temporal",
     "prop": "Now"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.PlainDate.PlainDate",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "PlainDate"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.PlainDateTime.PlainDateTime",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "PlainDateTime"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.PlainMonthDay.PlainMonthDay",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "PlainMonthDay"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.PlainTime.PlainTime",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "PlainTime"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.PlainYearMonth.PlainYearMonth",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "PlainYearMonth"
   },
   {
     "featureId": "temporal",
+    "compatKey": "javascript.builtins.Temporal.ZonedDateTime.ZonedDateTime",
     "kind": "newMember",
     "base": "Temporal",
     "prop": "ZonedDateTime"
   },
   {
     "featureId": "transferable-arraybuffer",
+    "compatKey": "javascript.builtins.ArrayBuffer.detached",
     "kind": "instanceMember",
     "iface": "ArrayBuffer",
     "prop": "detached"
   },
   {
     "featureId": "transferable-arraybuffer",
+    "compatKey": "javascript.builtins.ArrayBuffer.transfer",
     "kind": "instanceMember",
     "iface": "ArrayBuffer",
     "prop": "transfer"
   },
   {
     "featureId": "transferable-arraybuffer",
+    "compatKey": "javascript.builtins.ArrayBuffer.transferToFixedLength",
     "kind": "instanceMember",
     "iface": "ArrayBuffer",
     "prop": "transferToFixedLength"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.ArrayBuffer.byteLength",
     "kind": "instanceMember",
     "iface": "ArrayBuffer",
     "prop": "byteLength"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.ArrayBuffer.isView",
     "kind": "callStatic",
     "base": "ArrayBuffer",
     "prop": "isView"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.ArrayBuffer.slice",
     "kind": "instanceMember",
     "iface": "ArrayBuffer",
     "prop": "slice"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.buffer",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "buffer"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.byteLength",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "byteLength"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.byteOffset",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "byteOffset"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.getFloat32",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getFloat32"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.getFloat64",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getFloat64"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.getInt16",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getInt16"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.getInt32",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getInt32"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.getInt8",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getInt8"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.getUint16",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getUint16"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.getUint32",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getUint32"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.getUint8",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "getUint8"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.setFloat32",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setFloat32"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.setFloat64",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setFloat64"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.setInt16",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setInt16"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.setInt32",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setInt32"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.setInt8",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setInt8"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.setUint16",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setUint16"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.setUint32",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setUint32"
   },
   {
     "featureId": "typed-arrays",
+    "compatKey": "javascript.builtins.DataView.setUint8",
     "kind": "instanceMember",
     "iface": "DataView",
     "prop": "setUint8"
@@ -2813,100 +3280,117 @@ const descriptors: ReadonlyArray<Descriptor> = [
     "featureId": "uint8array-base64-hex",
     "kind": "callStatic",
     "base": "Uint8Array",
-    "prop": "fromBase64"
+    "prop": "fromBase64",
+    "compatKey": "javascript.builtins.Uint8Array.fromBase64"
   },
   {
     "featureId": "uint8array-base64-hex",
     "kind": "callStatic",
     "base": "Uint8Array",
-    "prop": "fromHex"
+    "prop": "fromHex",
+    "compatKey": "javascript.builtins.Uint8Array.fromHex"
   },
   {
     "featureId": "uint8array-base64-hex",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "setFromBase64"
+    "prop": "setFromBase64",
+    "compatKey": "javascript.builtins.Uint8Array.setFromBase64"
   },
   {
     "featureId": "uint8array-base64-hex",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "setFromHex"
+    "prop": "setFromHex",
+    "compatKey": "javascript.builtins.Uint8Array.setFromHex"
   },
   {
     "featureId": "uint8array-base64-hex",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "toBase64"
+    "prop": "toBase64",
+    "compatKey": "javascript.builtins.Uint8Array.toBase64"
   },
   {
     "featureId": "uint8array-base64-hex",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "toHex"
+    "prop": "toHex",
+    "compatKey": "javascript.builtins.Uint8Array.toHex"
   },
   {
     "featureId": "weak-references",
+    "compatKey": "javascript.builtins.FinalizationRegistry.register",
     "kind": "instanceMember",
     "iface": "FinalizationRegistry",
     "prop": "register"
   },
   {
     "featureId": "weak-references",
+    "compatKey": "javascript.builtins.FinalizationRegistry.unregister",
     "kind": "instanceMember",
     "iface": "FinalizationRegistry",
     "prop": "unregister"
   },
   {
     "featureId": "weak-references",
+    "compatKey": "javascript.builtins.WeakRef.deref",
     "kind": "instanceMember",
     "iface": "WeakRef",
     "prop": "deref"
   },
   {
     "featureId": "weakmap",
+    "compatKey": "javascript.builtins.WeakMap.delete",
     "kind": "instanceMember",
     "iface": "WeakMap",
     "prop": "delete"
   },
   {
     "featureId": "weakmap",
+    "compatKey": "javascript.builtins.WeakMap.get",
     "kind": "instanceMember",
     "iface": "WeakMap",
     "prop": "get"
   },
   {
     "featureId": "weakmap",
+    "compatKey": "javascript.builtins.WeakMap.has",
     "kind": "instanceMember",
     "iface": "WeakMap",
     "prop": "has"
   },
   {
     "featureId": "weakmap",
+    "compatKey": "javascript.builtins.WeakMap.set",
     "kind": "instanceMember",
     "iface": "WeakMap",
     "prop": "set"
   },
   {
     "featureId": "weakset",
+    "compatKey": "javascript.builtins.WeakSet.add",
     "kind": "instanceMember",
     "iface": "WeakSet",
     "prop": "add"
   },
   {
     "featureId": "weakset",
+    "compatKey": "javascript.builtins.WeakSet.delete",
     "kind": "instanceMember",
     "iface": "WeakSet",
     "prop": "delete"
   },
   {
     "featureId": "weakset",
+    "compatKey": "javascript.builtins.WeakSet.has",
     "kind": "instanceMember",
     "iface": "WeakSet",
     "prop": "has"
   },
   {
     "featureId": "with",
+    "compatKey": "javascript.builtins.Symbol.unscopables",
     "kind": "staticMember",
     "base": "Symbol",
     "prop": "unscopables"
@@ -2920,7 +3404,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
       "hasKeys": [
         "cause"
       ]
-    }
+    },
+    "compatKey": "javascript.builtins.Error.Error.options_cause_parameter"
   },
   {
     "featureId": "error-cause",
@@ -2931,22 +3416,26 @@ const descriptors: ReadonlyArray<Descriptor> = [
       "hasKeys": [
         "cause"
       ]
-    }
+    },
+    "compatKey": "javascript.builtins.Error.Error.options_cause_parameter"
   },
   {
     "featureId": "explicit-resource-management",
     "kind": "newIdent",
-    "name": "DisposableStack"
+    "name": "DisposableStack",
+    "compatKey": "javascript.builtins.DisposableStack.DisposableStack"
   },
   {
     "featureId": "explicit-resource-management",
     "kind": "newIdent",
-    "name": "AsyncDisposableStack"
+    "name": "AsyncDisposableStack",
+    "compatKey": "javascript.builtins.AsyncDisposableStack.AsyncDisposableStack"
   },
   {
     "featureId": "explicit-resource-management",
     "kind": "newIdent",
-    "name": "SuppressedError"
+    "name": "SuppressedError",
+    "compatKey": "javascript.builtins.SuppressedError.SuppressedError"
   },
   {
     "featureId": "resizable-buffers",
@@ -2957,7 +3446,8 @@ const descriptors: ReadonlyArray<Descriptor> = [
       "hasKeys": [
         "maxByteLength"
       ]
-    }
+    },
+    "compatKey": "javascript.builtins.ArrayBuffer.ArrayBuffer.maxByteLength_option"
   },
   {
     "featureId": "resizable-buffers",
@@ -2970,857 +3460,1000 @@ const descriptors: ReadonlyArray<Descriptor> = [
         "growable"
       ]
     },
-    "typedOnly": true
+    "typedOnly": true,
+    "compatKey": "javascript.builtins.SharedArrayBuffer.SharedArrayBuffer.maxByteLength_option"
   },
   {
     "featureId": "weak-references",
     "kind": "newIdent",
-    "name": "WeakRef"
+    "name": "WeakRef",
+    "compatKey": "javascript.builtins.WeakRef.WeakRef"
   },
   {
     "featureId": "weak-references",
     "kind": "newIdent",
-    "name": "FinalizationRegistry"
+    "name": "FinalizationRegistry",
+    "compatKey": "javascript.builtins.FinalizationRegistry.FinalizationRegistry"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "getCalendars"
+    "prop": "getCalendars",
+    "compatKey": "javascript.builtins.Intl.Locale.getCalendars"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "getCollations"
+    "prop": "getCollations",
+    "compatKey": "javascript.builtins.Intl.Locale.getCollations"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "getHourCycles"
+    "prop": "getHourCycles",
+    "compatKey": "javascript.builtins.Intl.Locale.getHourCycles"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "getNumberingSystems"
+    "prop": "getNumberingSystems",
+    "compatKey": "javascript.builtins.Intl.Locale.getNumberingSystems"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "getTextInfo"
+    "prop": "getTextInfo",
+    "compatKey": "javascript.builtins.Intl.Locale.getTextInfo"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "getTimeZones"
+    "prop": "getTimeZones",
+    "compatKey": "javascript.builtins.Intl.Locale.getTimeZones"
   },
   {
     "featureId": "intl-locale-info",
     "kind": "instanceMember",
     "iface": "Locale",
-    "prop": "getWeekInfo"
+    "prop": "getWeekInfo",
+    "compatKey": "javascript.builtins.Intl.Locale.getWeekInfo"
   },
   {
     "featureId": "iterator-concat",
     "kind": "callStatic",
     "base": "Iterator",
-    "prop": "concat"
+    "prop": "concat",
+    "compatKey": "javascript.builtins.Iterator.concat"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "entries"
+    "prop": "entries",
+    "compatKey": "javascript.builtins.TypedArray.entries"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "keys"
+    "prop": "keys",
+    "compatKey": "javascript.builtins.TypedArray.keys"
   },
   {
     "featureId": "typed-array-iterators",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "values"
+    "prop": "values",
+    "compatKey": "javascript.builtins.TypedArray.values"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int8Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint8ClampedArray",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int16Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint16Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Int32Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Uint32Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float32Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "Float64Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigInt64Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "every"
+    "prop": "every",
+    "compatKey": "javascript.builtins.TypedArray.every"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "some"
+    "prop": "some",
+    "compatKey": "javascript.builtins.TypedArray.some"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "forEach"
+    "prop": "forEach",
+    "compatKey": "javascript.builtins.TypedArray.forEach"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "map"
+    "prop": "map",
+    "compatKey": "javascript.builtins.TypedArray.map"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "filter"
+    "prop": "filter",
+    "compatKey": "javascript.builtins.TypedArray.filter"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "reduce"
+    "prop": "reduce",
+    "compatKey": "javascript.builtins.TypedArray.reduce"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "reduceRight"
+    "prop": "reduceRight",
+    "compatKey": "javascript.builtins.TypedArray.reduceRight"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "indexOf"
+    "prop": "indexOf",
+    "compatKey": "javascript.builtins.TypedArray.indexOf"
   },
   {
     "featureId": "typed-array-iteration-methods",
     "kind": "instanceMember",
     "iface": "BigUint64Array",
-    "prop": "lastIndexOf"
+    "prop": "lastIndexOf",
+    "compatKey": "javascript.builtins.TypedArray.lastIndexOf"
   }
 ];
 export default descriptors;
