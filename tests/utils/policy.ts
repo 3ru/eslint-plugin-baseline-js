@@ -63,8 +63,12 @@ export function yearPolicyMessage(id: string, policy: number, subject?: string):
   return `${label} became Baseline in ${year} and exceeds ${policy} (${id}).`;
 }
 
-/** Reporting floor for a known API, independently read from the canonical package. */
-export function reportingPolicyForCompat(featureId: string, compatKey: string): number {
+/**
+ * The exact Baseline status of one compatibility key, independently read from
+ * the canonical package rather than from the plugin's generated data. Keys
+ * without their own entry inherit the feature status, as web-features does.
+ */
+export function compatStatusOf(featureId: string, compatKey: string) {
   const feature = webFeatures[featureId as keyof typeof webFeatures];
   if (
     !feature ||
@@ -73,9 +77,50 @@ export function reportingPolicyForCompat(featureId: string, compatKey: string): 
   ) {
     throw new Error(`unknown compat key for ${featureId}: ${compatKey}`);
   }
-  const status = feature.status?.by_compat_key?.[compatKey] ?? feature.status;
-  if (status?.baseline === false) return LIMITED_ONLY_YEAR;
+  return feature.status?.by_compat_key?.[compatKey] ?? feature.status;
+}
+
+/** The "≤2015" style year label of an exact status, or null when it has no Baseline date. */
+function compatYearLabel(featureId: string, compatKey: string): string | null {
+  const status = compatStatusOf(featureId, compatKey);
   const date = status?.baseline_low_date ?? status?.baseline_high_date;
-  if (!date) throw new Error(`${compatKey} has no Baseline date`);
-  return Number(date.replace(/^≤/, "").slice(0, 4)) - 1;
+  const m = date ? /^(≤?)(\d{4})/.exec(date) : null;
+  return m ? `${m[1]}${m[2]}` : null;
+}
+
+/** Reporting floor for a known API member, independently read from the canonical package. */
+export function reportingPolicyForCompat(featureId: string, compatKey: string): number {
+  if (compatStatusOf(featureId, compatKey)?.baseline === false) return LIMITED_ONLY_YEAR;
+  const year = compatYearLabel(featureId, compatKey);
+  if (year == null) throw new Error(`${compatKey} has no Baseline date`);
+  return Number(year.replace(/^≤/, "")) - 1;
+}
+
+/**
+ * Whether a year policy reports the member on its own status: Limited members
+ * always, dated members when their Baseline year is later than `policy`, and
+ * members without a Baseline date never.
+ */
+export function compatReportedUnder(featureId: string, compatKey: string, policy: number): boolean {
+  if (compatStatusOf(featureId, compatKey)?.baseline === false) return true;
+  const year = compatYearLabel(featureId, compatKey);
+  return year != null && Number(year.replace(/^≤/, "")) > policy;
+}
+
+/**
+ * The message use-baseline reports for a member under the year policy
+ * `policy`, with the member's own Baseline status taken from the canonical package.
+ */
+export function compatYearPolicyMessage(
+  featureId: string,
+  compatKey: string,
+  policy: number,
+  subject: string,
+): string {
+  if (compatStatusOf(featureId, compatKey)?.baseline === false) {
+    return `${subject} has Limited availability and exceeds ${policy} (${featureId}).`;
+  }
+  const year = compatYearLabel(featureId, compatKey);
+  if (year == null) throw new Error(`${compatKey} has no Baseline date`);
+  return `${subject} became Baseline in ${year} and exceeds ${policy} (${featureId}).`;
 }
