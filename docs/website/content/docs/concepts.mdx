@@ -56,6 +56,7 @@ Coverage is measured per feature ID. A mapped feature can still have unsupported
 The [coverage report](/docs/meta/coverage) lists the available checks.
 
 The plugin uses browser Baseline status from its bundled data. It does not select Node.js versions, worker environments, or custom browser targets.
+Web API and built-in checks use the matched member's own status when web-features records one, so a member can be newer or older than the feature that groups it; `only`, `ignore`, and `ignoreFeatures` still take feature IDs.
 ESLint's `languageOptions.globals` controls known global names; it does not change the Baseline policy.
 
 The plugin does not account for polyfills or transpiler output. Test your app in its target environments.
