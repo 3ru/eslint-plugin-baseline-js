@@ -32,6 +32,7 @@ Classify new direct `api.Window.*` members in `scripts/data/classify-web-apis.mj
 - Descriptor and compat-key consistency: `pnpm check:descriptor-compat`
 - Generated data matches the checked-in files: `pnpm check:generated-data`
 - Coverage report (for docs): `pnpm gen:coverage`
+- Linter host checks (ESLint, Oxlint, Bun): `pnpm build && pnpm --dir conformance install --frozen-lockfile --ignore-scripts && pnpm --dir conformance check` compares what the plugin can detect under each host; see [conformance/README.md](../conformance/README.md). Not part of `pnpm test`.
 
 ## Scope
 - Primary scope: JavaScript language features (`group: "javascript"`).
