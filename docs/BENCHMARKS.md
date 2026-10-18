@@ -14,6 +14,7 @@
 | `pnpm bench:profile --manifest bench/corpus.local.json` | Re-extract `bench/profile.json` from real code (local only). |
 | `pnpm bench:snippets` | Re-verify the detection samples in `bench/synth-snippets.json` against the current build. |
 | `pnpm bench:calibrate` | Lint real repositories from the git-ignored local manifest next to the synthetic corpus and compare cost per file and per node (local only). |
+| `pnpm bench:changed --base origin/main` | Say whether a change set would trigger the CI benchmark, and why. |
 
 `--scale n` means about n × 1,000 files: 50% JavaScript, 33% TypeScript, 17% TSX. The pull-request job uses scale 3 (about 3,000 files), three untyped iterations and two type-aware iterations over the TypeScript files.
 
@@ -51,18 +52,24 @@ The synthetic corpus should cost about what real code costs. `pnpm bench:calibra
 
 ## CI
 
-`.github/workflows/perf.yml` runs on pull requests that touch `src/`, the benchmark, or the build: it generates the corpus, compares the PR base commit with the merge commit, writes the table to the job summary and uploads `bench-results.json` (30 days). `.github/workflows/perf-sweep.yml` runs the scale sweep weekly and on demand (timeout 60 minutes). Both are built for the current supply-chain threat model (tags of popular actions repointed to malicious commits in 2026, `pull_request_target` plus cache poisoning in the TanStack compromise, npm install-script worms):
+`.github/workflows/perf.yml` runs on every pull request in three jobs:
+
+1. **needs benchmark?** reads the diff between the PR base and the merge commit with `scripts/bench/changed.mjs` and `bench/perf-triggers.json`. A changed file counts unless it is under an ignored directory (`docs/`, `examples/`, `tests/`, `.github/`, …) or has an ignored extension (`.md`, `.mdx`, images, …); `package.json`, the lockfile, the build config, `bench/` and the workflow itself always count. Documentation-only pull requests stop here. Run `pnpm bench:changed --base origin/main` locally to see the decision for a branch.
+2. **before/after** generates the corpus and runs `pnpm bench:compare` against the PR base commit. The table goes to the job summary and to the `bench-results` artifact (30 days) together with the JSON report.
+3. **pull request comment** posts the same table as one comment that is updated on every measured commit (`marocchino/sticky-pull-request-comment`, pinned to a commit). The comment names the commit it measured and links to the run, so a later documentation-only commit that skips the benchmark leaves it readable. Only this job has `pull-requests: write`, and it runs only for pull requests from this repository: forks and Dependabot get a read-only token, and for them the job summary carries the same table.
+
+`.github/workflows/perf-sweep.yml` runs the scale sweep weekly and on demand (timeout 60 minutes). Both workflows are built for the current supply-chain threat model (tags of popular actions repointed to malicious commits in 2026, `pull_request_target` plus cache poisoning in the TanStack compromise, npm install-script worms):
 
 | Control | Why |
 | --- | --- |
-| `permissions: {}` at the workflow level, `contents: read` on the job, no secrets | A compromised step has nothing to exfiltrate or write. |
-| `pull_request` only; results are not posted to the PR | Fork code never runs with repository privileges. |
+| `permissions: {}` at the workflow level; `contents: read` on the benchmark jobs; `pull-requests: write` only on the comment job, for same-repository pull requests | A compromised step has nothing to exfiltrate or write beyond one comment. |
+| `pull_request` only, never `pull_request_target` | Fork code never runs with repository privileges. |
 | Actions pinned to full commit SHAs with the version in a comment | Mutable tags were the entry point; Dependabot keeps the pins updated. |
 | `actions/checkout` with `persist-credentials: false` | No token left on disk for later steps or artifacts. |
 | No `actions/cache` or `setup-node` cache | Cache poisoning is the second stage of the TanStack chain. |
 | `pnpm install --frozen-lockfile --ignore-scripts` | Lifecycle scripts were the payload of the 2026 npm worms. |
 | Corpus generated locally, nothing downloaded or executed | No third-party code enters the job. |
-| Event data reaches the shell through environment variables | No expression injection into `run:` steps. |
+| Event data reaches the shell through environment variables; the comment body travels as a job output into an action input | No expression injection into `run:` steps. |
 | `concurrency` and timeouts | Bounded cost and queue depth. |
 
 Related hardening worth adopting repository-wide: pin the other workflows the same way (GitHub can enforce SHA pinning per repository), run zizmor over `.github/workflows`, give Dependabot a version-update cooldown, and set pnpm's `minimumReleaseAge`.
