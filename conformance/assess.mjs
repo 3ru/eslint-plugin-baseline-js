@@ -147,7 +147,7 @@ function subtract(left, right) {
 const listFindings = (label, entries) =>
   entries.map(({ featureId, line, column }) => `${label} ${featureId} at ${line}:${column}`);
 
-export function assess(testCase, tool, run, fixes = {}) {
+export function assess(testCase, tool, run, fixes = {}, host = hosts[tool]) {
   const result = {
     caseId: testCase.id,
     suite: testCase.suite,
@@ -188,7 +188,7 @@ export function assess(testCase, tool, run, fixes = {}) {
   result.evidence = probe;
   result.capability = probe.supported ? "supported" : "unavailable";
   const needsTypes = requiresTypes(testCase);
-  const expectedUnavailable = needsTypes && !hosts[tool].typeServices;
+  const expectedUnavailable = needsTypes && !host.typeServices;
   result.expectedCapability = expectedUnavailable ? "unavailable" : "supported";
   if (probe.observed.error) {
     return { ...result, reason: probe.observed.error };

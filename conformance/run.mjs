@@ -301,7 +301,7 @@ try {
         fixes.suggestions = methods;
         fixes.suggestionsMatched = methods.length > 0 && methods.every((entry) => entry.matched);
       }
-      const result = assess(testCase, tool, run, fixes);
+      const result = assess(testCase, tool, run, fixes, host);
       const recordRun = ({ stdout, stderr, ...metadata }) => metadata;
       report.results.push({
         ...result,
