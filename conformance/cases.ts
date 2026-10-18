@@ -1,0 +1,195 @@
+// Expectations are literal contracts, independent of the production detectors and data loaders.
+// All Baseline cases use available: 2019, with Web APIs and JS builtins enabled.
+// Positions and ranges count UTF-16 code units, as ESLint reports them.
+import type { Case } from "./types.ts";
+
+export const cases: readonly Case[] = [
+  {
+    id: "host-plugin-options",
+    suite: "host",
+    code: "const value = 1;\n",
+    extension: "js",
+    check: "options",
+    expected: { configuredCheck: "options", visited: true },
+  },
+  {
+    id: "host-ast-selector",
+    suite: "host",
+    // The plain call comes first: a host that ignores the attribute filter counts two calls.
+    code: "String(1);\nObject.groupBy([], String);\n",
+    extension: "js",
+    check: "selectors",
+    expected: { memberCalls: 1, property: "groupBy", computed: false },
+  },
+  {
+    id: "host-scope-shadowing",
+    suite: "host",
+    code: "Object.groupBy([], String);\nfunction local(Object) {\n  Object.groupBy([], String);\n}\n",
+    extension: "js",
+    check: "scope",
+    expected: { shadowed: [false, true] },
+  },
+  {
+    id: "host-scope-binding",
+    suite: "host",
+    // A top-level binding: ESLint and Bun resolve it in the module scope, Oxlint reads the file
+    // as a script and resolves it in the global scope.
+    code: "const Object = { groupBy() {} };\nObject.groupBy([], String);\n",
+    extension: "js",
+    check: "scope",
+    expected: { shadowed: [true] },
+  },
+  {
+    id: "host-source-tokens",
+    suite: "host",
+    code: "const answer = 1;\n",
+    extension: "js",
+    check: "source",
+    expected: { text: "1", firstToken: "const", tokens: ["const", "answer", "=", "1", ";"] },
+  },
+  {
+    id: "host-diagnostic-location",
+    suite: "host",
+    // Non-ASCII text before the marker: byte and code point columns differ from UTF-16 units.
+    code: 'const value =\n  "é\u{1F600}" + marker;\n',
+    extension: "js",
+    check: "location",
+    expected: { line: 2, column: 11, endLine: 2, endColumn: 17 },
+  },
+  {
+    id: "host-fixes-suggestions",
+    suite: "host",
+    code: "const answer = /* é\u{1F600} */ 1;\n",
+    extension: "js",
+    check: "fixes",
+    expected: { literal: 1, range: [25, 26] },
+    expectedFix: { range: [25, 26], text: "2" },
+    expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [25, 26], text: "3" } }],
+  },
+  {
+    id: "host-ancestry",
+    suite: "host",
+    code: "target();\n",
+    extension: "js",
+    check: "ancestors",
+    expected: {
+      ancestors: ["Program", "ExpressionStatement", "CallExpression"],
+      parentType: "CallExpression",
+    },
+  },
+  {
+    id: "host-typescript-receiver",
+    suite: "host",
+    // `tagName` comes first: a probe that ignores `member` would report that receiver instead.
+    code: "declare const element: Element;\nelement.tagName;\nelement.checkVisibility();\nexport {};\n",
+    extension: "ts",
+    check: "types",
+    member: "checkVisibility",
+    expected: {
+      hasProgram: true,
+      hasNodeMap: true,
+      hasChecker: true,
+      receiverType: "Element",
+      property: "checkVisibility",
+      hasProperty: true,
+      defaultLibrary: true,
+    },
+  },
+  {
+    id: "baseline-logical-assignment",
+    suite: "baseline",
+    code: "let value;\nvalue ||= 1;\n",
+    extension: "js",
+    check: "execution",
+    expected: [{ featureId: "logical-assignments", line: 2, column: 7 }],
+  },
+  {
+    id: "baseline-static-groupby",
+    suite: "baseline",
+    code: "Object.groupBy([], String);\n",
+    extension: "js",
+    check: "execution",
+    expected: [{ featureId: "array-group", line: 1, column: 8 }],
+  },
+  {
+    id: "baseline-computed-groupby",
+    suite: "baseline",
+    code: "Object['groupBy']([], String);\n",
+    extension: "js",
+    check: "execution",
+    expected: [{ featureId: "array-group", line: 1, column: 8 }],
+  },
+  {
+    id: "baseline-shadowed-object",
+    suite: "baseline",
+    code: "function local(Object) {\n  Object.groupBy([], String);\n}\n",
+    extension: "js",
+    check: "execution",
+    expected: [],
+  },
+  {
+    id: "baseline-shadowed-binding",
+    suite: "baseline",
+    code: "const Object = { groupBy() {} };\nObject.groupBy([], String);\n",
+    extension: "js",
+    check: "execution",
+    expected: [],
+  },
+  {
+    id: "baseline-global-fetchlater",
+    suite: "baseline",
+    code: "fetchLater('/beacon');\n",
+    extension: "js",
+    check: "execution",
+    expected: [{ featureId: "fetchlater", line: 1, column: 1 }],
+  },
+  {
+    id: "baseline-ts-static-groupby",
+    suite: "baseline",
+    // A TypeScript file that needs no type information: every host must still report it.
+    code: "declare const input: string[];\nObject.groupBy(input, String);\nexport {};\n",
+    extension: "ts",
+    check: "execution",
+    expected: [{ featureId: "array-group", line: 2, column: 8 }],
+  },
+  {
+    id: "baseline-typed-element",
+    suite: "baseline",
+    code: "declare const element: Element;\nelement.checkVisibility();\nexport {};\n",
+    extension: "ts",
+    check: "types",
+    member: "checkVisibility",
+    expected: [{ featureId: "check-visibility", line: 2, column: 9 }],
+  },
+  {
+    id: "baseline-typed-set-union",
+    suite: "baseline",
+    code: "declare const values: Set<unknown>;\nvalues.union(new Set());\nexport {};\n",
+    extension: "ts",
+    check: "types",
+    member: "union",
+    expected: [{ featureId: "set-methods", line: 2, column: 8 }],
+  },
+  {
+    id: "baseline-typed-lookalike",
+    suite: "baseline",
+    code: "const element = { checkVisibility() { return true; } };\nelement.checkVisibility();\nexport {};\n",
+    extension: "ts",
+    check: "types",
+    member: "checkVisibility",
+    expected: [],
+  },
+  {
+    id: "baseline-typed-nominal-lookalike",
+    suite: "baseline",
+    // Same name as the DOM interface, declared by the file itself: only provenance tells them apart.
+    code: "interface Element { checkVisibility(): boolean }\ndeclare const element: Element;\nelement.checkVisibility();\nexport {};\n",
+    extension: "ts",
+    check: "types",
+    member: "checkVisibility",
+    expected: [],
+  },
+];
+
+// A case needs type information exactly when its probe runs the types check.
+export const requiresTypes = (testCase: Case): boolean => testCase.check === "types";

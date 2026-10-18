@@ -1,0 +1,24 @@
+{
+  "name": "baseline-toolchain-conformance",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "engines": {
+    "node": "^22.18.0 || >=23.6.0"
+  },
+  "scripts": {
+    "check": "node run.ts",
+    "test": "node --test assess.test.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "refresh": "node refresh.ts"
+  },
+  "devDependencies": {
+    "@types/estree": "1.0.9",
+    "@types/node": "22.20.5",
+    "@typescript-eslint/parser": "8.71.2",
+    "bun": "1.4.3-canary.20261017.1",
+    "eslint": "10.13.0",
+    "oxlint": "1.88.0",
+    "typescript": "6.0.3"
+  }
+}

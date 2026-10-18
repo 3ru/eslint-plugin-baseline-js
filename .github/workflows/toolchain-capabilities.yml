@@ -1,0 +1,114 @@
+name: Toolchain Capabilities
+
+on:
+  pull_request:
+    paths:
+      - 'conformance/**'
+      - '.github/workflows/toolchain-capabilities.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'src/**'
+      - 'tsdown.config.ts'
+      - 'tsconfig.json'
+  schedule:
+    - cron: '17 8 * * 1'
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: Dependency profile to check
+        type: choice
+        options:
+          - pinned
+          - latest
+        default: pinned
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toolchain-capabilities-${{ github.event_name }}-${{ github.ref }}-${{ inputs.profile || 'automatic' }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Capabilities (${{ matrix.profile }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: ${{ fromJSON(case(github.event_name == 'schedule', '["pinned","latest"]', inputs.profile == 'latest', '["latest"]', '["pinned"]')) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 10.34.5
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.22.2
+          # The latest profile resolves unpinned releases; keep them out of the store cache
+          # that pinned runs restore.
+          cache: ${{ matrix.profile == 'pinned' && 'pnpm' || '' }}
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            conformance/pnpm-lock.yaml
+
+      - name: Install product build dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Build plugin from this checkout
+        run: pnpm build
+
+      - name: Install pinned conformance dependencies
+        run: pnpm --dir conformance install --frozen-lockfile --ignore-scripts
+
+      - name: Type-check the harness
+        run: pnpm --dir conformance typecheck
+
+      - name: Test harness result handling
+        run: pnpm --dir conformance test
+
+      - name: Refresh isolated toolchain dependencies
+        if: matrix.profile == 'latest'
+        run: pnpm --dir conformance refresh
+
+      - name: Check toolchain capabilities
+        env:
+          CONFORMANCE_PROFILE: ${{ matrix.profile }}
+          # The checkout is GitHub's test merge; the report also records the PR's own commits.
+          CONFORMANCE_PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          CONFORMANCE_PR_BASE: ${{ github.event.pull_request.base.sha }}
+        run: pnpm --dir conformance check
+
+      # always() rather than !cancelled(): a job timeout counts as a cancellation, and a run it
+      # stops should still say so in the summary and upload the raw output it wrote.
+      - name: Publish report to job summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f conformance/results/report.md ]; then
+            cat conformance/results/report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' 'No capability report was produced. Check the setup and run logs.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload reports and raw tool output
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: toolchain-capabilities-${{ matrix.profile }}-${{ github.run_attempt }}
+          path: |
+            conformance/results/report.json
+            conformance/results/report.md
+            conformance/results/raw/**
+            conformance/results/work/**
+            conformance/results/latest-tools/package.json
+            conformance/results/latest-tools/pnpm-lock.yaml
+          if-no-files-found: warn
+          include-hidden-files: true
+          retention-days: 7
