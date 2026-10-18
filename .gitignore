@@ -16,3 +16,9 @@ build/
 # Lockfiles (prefer pnpm)
 package-lock.json
 yarn.lock
+
+# Benchmark cache, local results and the local real-repository manifest
+.bench-cache/
+bench/results/
+bench-results.json
+bench/corpus.local.json
