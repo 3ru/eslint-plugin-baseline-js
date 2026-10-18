@@ -78,27 +78,36 @@ function configFor(testCase, paths, directory, suggestionsOnly = false) {
       },
     ];
   }
-  const globals = Object.fromEntries(
-    ["window", "self", "globalThis", "navigator", "fetchLater"].map((name) => [name, "readonly"]),
-  );
-  const parserOptions = needsTypes
-    ? { project: join(output, "work", "tsconfig.json"), tsconfigRootDir: join(output, "work") }
-    : {};
+  // JavaScript fixtures use each host's own parser and scope analysis. Only TypeScript fixtures
+  // need typescript-eslint, and only typed cases point it at a project.
+  const typescript = testCase.extension === "ts";
+  const languageOptions = { ecmaVersion: "latest", sourceType: "module" };
+  if (needsTypes) {
+    languageOptions.parserOptions = {
+      project: join(output, "work", "tsconfig.json"),
+      tsconfigRootDir: join(output, "work"),
+    };
+  }
   const imports = [
     `import probe from ${JSON.stringify(pathToFileURL(join(here, "probe.mjs")).href)};`,
-    `import parser from ${JSON.stringify(pathToFileURL(paths.parser).href)};`,
   ];
+  if (typescript) {
+    imports.push(`import parser from ${JSON.stringify(pathToFileURL(paths.parser).href)};`);
+  }
   if (testCase.suite === "baseline") {
     imports.push(`import baseline from ${JSON.stringify(pathToFileURL(paths.product).href)};`);
   }
-  const config = {
-    files: ["**/*.{js,ts}"],
-    languageOptions: { ecmaVersion: "latest", sourceType: "module", globals, parserOptions },
-    rules,
-  };
+  const config = { files: ["**/*.{js,ts}"], languageOptions, rules };
   const plugins = [`'${probePluginName}': probe`];
   if (testCase.suite === "baseline") plugins.push(`'${productPluginName}': baseline`);
-  const eslint = `${imports.join("\n")}\nconst config = ${JSON.stringify(config)};\nconfig.languageOptions.parser = parser;\nconfig.plugins = { ${plugins.join(", ")} };\nexport default [config];\n`;
+  const statements = [
+    ...imports,
+    `const config = ${JSON.stringify(config)};`,
+    ...(typescript ? ["config.languageOptions.parser = parser;"] : []),
+    `config.plugins = { ${plugins.join(", ")} };`,
+    "export default [config];",
+  ];
+  const eslint = `${statements.join("\n")}\n`;
   const jsPlugins = [{ name: probePluginName, specifier: join(here, "probe.mjs") }];
   if (testCase.suite === "baseline") {
     jsPlugins.push({ name: productPluginName, specifier: paths.product });
@@ -134,7 +143,15 @@ try {
   const require = createRequire(join(dependencies, "package.json"));
   const bunRequire = createRequire(require.resolve("bun/package.json"));
   const architecture = process.arch === "arm64" ? "aarch64" : process.arch;
-  if (!["darwin", "linux"].includes(process.platform) || !["x64", "arm64"].includes(process.arch)) {
+  // The bun package ships separate musl builds; only glibc Linux is resolved below.
+  const glibc =
+    process.platform !== "linux" ||
+    process.report.getReport().header.glibcVersionRuntime !== undefined;
+  if (
+    !["darwin", "linux"].includes(process.platform) ||
+    !["x64", "arm64"].includes(process.arch) ||
+    !glibc
+  ) {
     throw new Error("This harness supports macOS and glibc Linux on x64/arm64");
   }
   const paths = {
