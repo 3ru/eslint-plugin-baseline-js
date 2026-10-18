@@ -10,6 +10,9 @@ Thank you for contributing! This project is data‑driven. We take JavaScript fe
 1) Update web‑features version (via Dependabot or a manual bump) in this package.
 2) Run `pnpm gen:data` to regenerate feature data and descriptors under `src/baseline/data/`.
 
+## Benchmarks
+- `pnpm bench:compare` measures `use-baseline` before and after a change on a synthetic corpus generated from `bench/profile.json` (aggregate shape of real adopter code) and `bench/synth-snippets.json` (verified detections), and checks that both builds report exactly the injected detections; `.github/workflows/perf.yml` does the same for pull requests. See [BENCHMARKS.md](./BENCHMARKS.md).
+
 ## Mapping drift and issue automation
 - Workflow: `.github/workflows/mapping-drift.yml`
   - When feature data or generator scripts change, the workflow compares web‑features coverage with our mappings.
