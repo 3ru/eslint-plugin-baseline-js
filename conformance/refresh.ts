@@ -3,8 +3,13 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+interface Manifest {
+  packageManager: string;
+  devDependencies: Record<string, string>;
+}
+
 const here = dirname(fileURLToPath(import.meta.url));
-const pinned = JSON.parse(readFileSync(join(here, "package.json"), "utf8"));
+const pinned: Manifest = JSON.parse(readFileSync(join(here, "package.json"), "utf8"));
 const target = join(here, "results", "latest-tools");
 // Start from nothing: pnpm would otherwise reuse node_modules/.pnpm/lock.yaml and keep the
 // versions of the previous run. The committed manifest, lockfile and install stay untouched.
@@ -46,7 +51,9 @@ if (result.error) throw result.error;
 if (result.status !== 0) process.exit(result.status ?? 1);
 // A pnpm that ignores the manifest's packageManager may resolve the aged `canary` tag to a stable
 // release, which has no `bun lint`; a later check would then fail every Bun row.
-const bun = JSON.parse(readFileSync(join(target, "node_modules", "bun", "package.json"), "utf8"));
+const bun: { version: string } = JSON.parse(
+  readFileSync(join(target, "node_modules", "bun", "package.json"), "utf8"),
+);
 if (!bun.version.includes("-canary.")) {
   console.error(
     `bun resolved to ${bun.version}, not a canary; install with ${pinned.packageManager}`,

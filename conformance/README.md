@@ -11,7 +11,7 @@ not imply endorsement by Bun, Oxc, W3C, or the Baseline project.
 
 ## What is being checked
 
-`cases.mjs` holds two groups of examples:
+`cases.ts` holds two groups of examples, checked against the contracts in `types.ts`:
 
 | Group | Examples |
 | --- | --- |
@@ -36,10 +36,10 @@ examples that should produce no Baseline diagnostic. For `values.union(new Set()
 file, ESLint reports `set-methods`; Oxlint and Bun report nothing and the probe sees no program, so
 their rows read `unavailable | unsupported` instead of passing.
 
-`hosts.mjs` records, for each host, the configuration format it reads, how its command line lets
+`hosts.ts` records, for each host, the configuration format it reads, how its command line lets
 suggestions be checked (ESLint's JSON payload, Oxlint's `--fix-suggestions`, both for Bun; every
-available way must match), and what JavaScript rules are expected to get, following the host
-documentation:
+available way must match), how it is invoked, and what JavaScript rules are expected to get,
+following the host documentation:
 
 - [Bun plugin notes](https://bun.sh/docs/lint/plugins#notes): JavaScript rules get no type information.
 - [Oxlint JavaScript plugin API support](https://oxc.rs/docs/guide/usage/linter/js-plugins.html#api-support): type-aware rules are not supported.
@@ -57,6 +57,24 @@ rows run in its default mode, without `--type-aware`: that mode needs the separa
 `oxlint-tsgolint` package and does not reach JavaScript plugins today. Bun's typed rows pass
 `--type-aware`; Bun's notes say JavaScript rules still get no program with it.
 
+## Layout
+
+The harness is TypeScript that Node runs directly. `types.ts` states the contracts; `cases.ts`
+(the examples) and `hosts.ts` (host facts and invocations) are checked against them; `run.ts`
+drives the hosts; `assess.ts` parses each host's output, classifies each row and renders
+`report.md`; `refresh.ts` installs current releases. Node 22.18 or later on the 22 line, or 23.6
+or later, strips the types without a flag, and `pnpm --dir conformance typecheck` checks them with
+the pinned TypeScript and type packages.
+
+Two files stay plain ESM: `probe.mjs`, the rule every host runs, and `protocol.mjs`, which it
+imports. The probe is the measuring instrument, so it loads the way a shipped JavaScript plugin
+does. As `.ts` it would depend on each host's own TypeScript loading: Node's type stripping under
+ESLint and Oxlint, which writes an ExperimentalWarning to the host's stderr on some Node lines, and
+Bun's transpiler. That path would then become part of what every row measures. Both files are
+type-checked through JSDoc. The probe types as optional what a host hands it (SourceCode methods,
+scope objects, parser services and checker methods) and checks each before use; values TypeScript
+returns keep TypeScript's types.
+
 ## Run locally
 
 Use the Node and pnpm versions in
@@ -67,9 +85,13 @@ From the repository root:
 pnpm install --frozen-lockfile --ignore-scripts
 pnpm build
 pnpm --dir conformance install --frozen-lockfile --ignore-scripts
+pnpm --dir conformance typecheck
 pnpm --dir conformance test
 pnpm --dir conformance check
 ```
+
+The install refuses a Node outside the range above instead of failing later on a `.ts` entry
+point.
 
 The harness resolves the pinned Bun executable from the `bun` package's native optional
 dependency. Dependency installation does not execute install scripts or change a global Bun
@@ -95,7 +117,7 @@ Baseline data still come from the current checkout. This is a discovery run, not
 a reproducible pinned run. Return to the pinned profile with `pnpm --dir conformance check`.
 
 The harness supports macOS and glibc Linux on x64 and arm64. To save a report elsewhere, pass
-`--out /absolute/path` to `node conformance/run.mjs`; tool resolution remains unchanged.
+`--out /absolute/path` to `node conformance/run.ts`; tool resolution remains unchanged.
 
 ## Read the results
 
@@ -161,12 +183,14 @@ re-run the pinned check, and keep
 
 - Keep host adapters, probes, fixtures, report logic, and their dependencies inside `conformance/`.
 - Keep product behavior fixes and product regression tests in the existing `src/` and `tests/`.
-- Give every new example an independently justified expectation; a typed example names the member
-  the probe inspects, and without one the probe reports the fixture node as not visited.
-- A new host needs an entry in `hosts.mjs`, a pin in `package.json` and its channel in
-  `refresh.mjs`, its binary, command and version metadata in `run.mjs`, and a parser in
-  `assess.mjs` unless it prints ESLint's JSON format. Let the first run show what it provides, and
-  never normalize an empty result into a pass.
+- Give every new example an independently justified expectation; the `Case` type requires a typed
+  example to name the member the probe inspects, and without one the probe reports the fixture
+  node as not visited.
+- A new host needs its name in `HostName` and its binary in `ToolPaths` in `types.ts`, an entry
+  in `hosts.ts` (facts, format and invocation), a pin in `package.json` and its channel in
+  `refresh.ts`, its binary and version metadata in `run.ts`, and, if it has its own format, a
+  `Format` member, a `configFiles` entry, a `configFor` branch and a parser in `assess.ts`. Let the
+  first run show what it provides, and never normalize an empty result into a pass.
 - Turn actionable host findings into minimal upstream reproductions.
 - Add performance measurements only with a separate design that controls the detection work being
   performed. This suite measures functionality.

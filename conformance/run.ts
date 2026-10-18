@@ -11,33 +11,50 @@ import {
   fixRunProblem,
   renderReport,
   suggestionPayloadProblem,
-} from "./assess.mjs";
-import { cases, requiresTypes } from "./cases.mjs";
-import { configFiles, hostNames, hosts } from "./hosts.mjs";
+} from "./assess.ts";
+import { cases, requiresTypes } from "./cases.ts";
+import { configFiles, hostNames, hosts } from "./hosts.ts";
 import { probePluginName, probeRuleId, productPluginName, productRuleId } from "./protocol.mjs";
+import type {
+  Case,
+  Fixes,
+  Format,
+  HostName,
+  Phase,
+  ProbeOptions,
+  Profile,
+  Report,
+  Run,
+  RunRecord,
+  SuggestionCheck,
+  ToolPaths,
+} from "./types.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repository = dirname(here);
 const { values } = parseArgs({ options: { out: { type: "string" } } });
 const output = resolve(values.out ?? join(here, "results"));
-const profile = process.env.CONFORMANCE_PROFILE ?? "pinned";
-if (!["pinned", "latest"].includes(profile)) throw new Error(`Unknown profile: ${profile}`);
+const profiles: readonly Profile[] = ["pinned", "latest"];
+const requestedProfile = process.env.CONFORMANCE_PROFILE ?? "pinned";
+const profile = profiles.find((name) => name === requestedProfile);
+if (!profile) throw new Error(`Unknown profile: ${requestedProfile}`);
 // Generated output starts empty, so files from an earlier run never pass for this run's.
 for (const directory of ["raw", "work"]) {
   rmSync(join(output, directory), { recursive: true, force: true });
 }
 mkdirSync(join(output, "raw"), { recursive: true });
-const hash = (content) => createHash("sha256").update(content).digest("hex");
-const read = (path) => readFileSync(path, "utf8");
-const report = {
+const hash = (content: string | Buffer): string =>
+  createHash("sha256").update(content).digest("hex");
+const read = (path: string): string => readFileSync(path, "utf8");
+const readPackage = (path: string): { version: string } => JSON.parse(read(path));
+const report: Report = {
   capturedAt: new Date().toISOString(),
   profile,
   policy: { available: 2019, includeWebApis: true, includeJsBuiltins: true },
   results: [],
-  tools: {},
 };
 
-function execute(command, args, cwd, artifact) {
+function execute(command: string, args: readonly string[], cwd: string, artifact?: string): Run {
   const result = spawnSync(command, args, {
     cwd,
     encoding: "utf8",
@@ -45,7 +62,7 @@ function execute(command, args, cwd, artifact) {
     maxBuffer: 8 * 1024 * 1024,
     env: { ...process.env, NO_COLOR: "1", FORCE_COLOR: "0" },
   });
-  const run = {
+  const run: Run = {
     command: [command, ...args],
     cwd,
     exitCode: result.status,
@@ -55,17 +72,14 @@ function execute(command, args, cwd, artifact) {
     stderr: result.stderr ?? "",
   };
   if (artifact) {
-    run.raw = {
-      stdout: `raw/${artifact}.stdout`,
-      stderr: `raw/${artifact}.stderr`,
-    };
+    run.raw = { stdout: `raw/${artifact}.stdout`, stderr: `raw/${artifact}.stderr` };
     writeFileSync(join(output, run.raw.stdout), run.stdout);
     writeFileSync(join(output, run.raw.stderr), run.stderr);
   }
   return run;
 }
 
-function metadataCommand(command, args) {
+function metadataCommand(command: string, args: readonly string[]): string {
   const result = execute(command, args, repository);
   if (result.exitCode !== 0 || result.error) {
     throw new Error(result.error || result.stderr || `Failed: ${command} ${args.join(" ")}`);
@@ -75,12 +89,16 @@ function metadataCommand(command, args) {
 
 // Rule configuration for one case. The suggest phase turns the probe's fix off, so that only its
 // suggestion can change the file.
-function configFor(testCase, paths, suggestionsOnly) {
+function configFor(
+  testCase: Case,
+  paths: ToolPaths,
+  suggestionsOnly: boolean,
+): Record<Format, string> {
   const needsTypes = requiresTypes(testCase);
-  const probeOptions = { check: testCase.check };
-  if (testCase.member) probeOptions.member = testCase.member;
+  const probeOptions: ProbeOptions = { check: testCase.check };
+  if (testCase.member !== undefined) probeOptions.member = testCase.member;
   if (suggestionsOnly) probeOptions.suggestionsOnly = true;
-  const rules = { [probeRuleId]: ["warn", probeOptions] };
+  const rules: Record<string, unknown> = { [probeRuleId]: ["warn", probeOptions] };
   if (testCase.suite === "baseline") {
     const preset = needsTypes ? "type-aware" : "auto";
     rules[productRuleId] = [
@@ -95,7 +113,7 @@ function configFor(testCase, paths, suggestionsOnly) {
   // JavaScript fixtures use each host's own parser and scope analysis. Only TypeScript fixtures
   // need typescript-eslint, and only typed cases point it at a project.
   const typescript = testCase.extension === "ts";
-  const languageOptions = { ecmaVersion: "latest", sourceType: "module" };
+  const languageOptions: Record<string, unknown> = { ecmaVersion: "latest", sourceType: "module" };
   if (needsTypes) {
     languageOptions.parserOptions = {
       project: join(output, "work", "tsconfig.json"),
@@ -134,31 +152,39 @@ function configFor(testCase, paths, suggestionsOnly) {
   return { eslint, oxlint };
 }
 
-function writeConfigs(testCase, paths, directory, format) {
-  const phases = testCase.expectedSuggestions ? ["inspect", "suggest"] : ["inspect"];
+function writeConfigs(testCase: Case, paths: ToolPaths, directory: string, format: Format): void {
+  const suggests = testCase.suite === "host" && testCase.expectedSuggestions !== undefined;
+  const phases = suggests ? (["inspect", "suggest"] as const) : (["inspect"] as const);
   for (const phase of phases) {
     const texts = configFor(testCase, paths, phase === "suggest");
     writeFileSync(join(directory, configFiles[format][phase]), texts[format]);
   }
 }
 
-function lint(tool, paths, testCase, directory, phase = "inspect") {
+const phaseFlags: Record<Phase, readonly string[]> = {
+  inspect: [],
+  fix: ["--fix"],
+  suggest: ["--fix", "--fix-suggestions"],
+};
+
+function lint(
+  tool: HostName,
+  paths: ToolPaths,
+  testCase: Case,
+  directory: string,
+  phase: Phase = "inspect",
+): Run {
+  const host = hosts[tool];
   const file = `input.${testCase.extension}`;
-  const flags = { inspect: [], fix: ["--fix"], suggest: ["--fix", "--fix-suggestions"] }[phase];
-  const common = ["--no-ignore", "-f", "json", ...flags, file];
-  const config = configFiles[hosts[tool].configFormat][phase === "suggest" ? "suggest" : "inspect"];
+  const config = configFiles[host.format][phase === "suggest" ? "suggest" : "inspect"];
+  const typed = requiresTypes(testCase) ? host.typedFlags : [];
+  const args = ["-c", config, ...typed, "--no-ignore", "-f", "json", ...phaseFlags[phase], file];
   const artifact = `${tool}-${testCase.id}-${phase}`;
-  let command = process.execPath;
-  let args = [tool === "eslint" ? paths.eslint : paths.oxlint, "-c", config, ...common];
-  if (tool === "bun") {
-    command = paths.bun;
-    const typeAware = requiresTypes(testCase) ? ["--type-aware"] : [];
-    args = ["lint", "-c", config, ...typeAware, ...common];
-  }
-  const run = execute(command, args, directory, artifact);
+  const { command, args: invocation } = host.invoke(paths, args);
+  const run = execute(command, invocation, directory, artifact);
   run.config = config;
   run.configSha256 = hash(readFileSync(join(directory, config)));
-  if (phase !== "inspect") {
+  if (phase !== "inspect" && run.raw) {
     // Keep the file the host wrote; not every JSON format includes it.
     run.raw.result = `raw/${artifact}.result.${testCase.extension}`;
     writeFileSync(join(output, run.raw.result), readFileSync(join(directory, file)));
@@ -166,17 +192,20 @@ function lint(tool, paths, testCase, directory, phase = "inspect") {
   return run;
 }
 
-const completed = (run) => !run.error && !run.signal && run.exitCode === 0;
+const completed = (run: Run): boolean => !run.error && !run.signal && run.exitCode === 0;
+const recordRun = ({ stdout, stderr, ...metadata }: Run): RunRecord => metadata;
 
 try {
   const dependencies = profile === "latest" ? join(here, "results", "latest-tools") : here;
   const require = createRequire(join(dependencies, "package.json"));
   const bunRequire = createRequire(require.resolve("bun/package.json"));
   const architecture = process.arch === "arm64" ? "aarch64" : process.arch;
-  // The bun package ships separate musl builds; only glibc Linux is resolved below.
+  // The bun package ships separate musl builds; only glibc Linux is resolved below. Node types the
+  // diagnostic report as an opaque object, so its header is read through a local shape.
   const glibc =
     process.platform !== "linux" ||
-    process.report.getReport().header.glibcVersionRuntime !== undefined;
+    (process.report?.getReport() as { header: { glibcVersionRuntime?: string } } | undefined)
+      ?.header.glibcVersionRuntime !== undefined;
   if (
     !["darwin", "linux"].includes(process.platform) ||
     !["x64", "arm64"].includes(process.arch) ||
@@ -184,7 +213,7 @@ try {
   ) {
     throw new Error("This harness supports macOS and glibc Linux on x64/arm64");
   }
-  const paths = {
+  const paths: ToolPaths = {
     parser: require.resolve("@typescript-eslint/parser"),
     eslint: join(dirname(require.resolve("eslint/package.json")), "bin", "eslint.js"),
     oxlint: join(dirname(require.resolve("oxlint/package.json")), "bin", "oxlint"),
@@ -196,13 +225,12 @@ try {
     product: join(repository, "dist", "index.mjs"),
   };
   // On pull requests the checkout is GitHub's test merge; keep the PR's own commits next to it.
-  const pullRequest = process.env.CONFORMANCE_PR_HEAD
-    ? { head: process.env.CONFORMANCE_PR_HEAD, base: process.env.CONFORMANCE_PR_BASE }
-    : undefined;
+  const head = process.env.CONFORMANCE_PR_HEAD;
+  const base = process.env.CONFORMANCE_PR_BASE;
   report.source = {
     commit: metadataCommand("git", ["rev-parse", "HEAD"]),
     dirty: metadataCommand("git", ["status", "--porcelain"]).split("\n").filter(Boolean),
-    pullRequest,
+    pullRequest: head && base ? { head, base } : undefined,
   };
   report.environment = {
     node: process.version,
@@ -222,19 +250,19 @@ try {
   const productRequire = createRequire(paths.product);
   report.product = {
     source: "checkout dist build",
-    version: JSON.parse(read(join(repository, "package.json"))).version,
+    version: readPackage(join(repository, "package.json")).version,
     // dist/index.mjs resolves these from the root install, whichever host loads it.
     imports: Object.fromEntries(
       ["eslint", "eslint-plugin-es-x"].map((name) => [
         name,
-        JSON.parse(read(productRequire.resolve(`${name}/package.json`))).version,
+        readPackage(productRequire.resolve(`${name}/package.json`)).version,
       ]),
     ),
   };
   report.dependencies = Object.fromEntries(
     ["eslint", "@typescript-eslint/parser", "typescript", "oxlint", "bun"].map((name) => [
       name,
-      JSON.parse(read(require.resolve(`${name}/package.json`))).version,
+      readPackage(require.resolve(`${name}/package.json`)).version,
     ]),
   );
   report.dependencyManifestSha256 = hash(readFileSync(join(dependencies, "package.json")));
@@ -244,7 +272,7 @@ try {
     oxlint: {
       // oxlint prints "Version: x.y.z".
       version: metadataCommand(process.execPath, [paths.oxlint, "--version"]).replace(
-        /^Version: /,
+        /^Version: /u,
         "",
       ),
     },
@@ -271,38 +299,36 @@ try {
       const directory = join(work, testCase.id);
       const input = join(directory, `input.${testCase.extension}`);
       writeFileSync(input, testCase.code);
-      writeConfigs(testCase, paths, directory, host.configFormat);
+      writeConfigs(testCase, paths, directory, host.format);
       const run = lint(tool, paths, testCase, directory);
-      const fixes = {};
-      const extraRuns = [];
-      if (testCase.expectedFix && completed(run)) {
+      const fixes: Fixes = {};
+      const extraRuns: Run[] = [];
+      if (testCase.suite === "host" && testCase.expectedFix && completed(run)) {
         const fixed = lint(tool, paths, testCase, directory, "fix");
         extraRuns.push(fixed);
         const expected = applyEdit(testCase.code, testCase.expectedFix);
-        fixes.fixProblem = fixRunProblem(tool, fixed, read(input), expected);
-        fixes.fixMatched = fixes.fixProblem === undefined;
+        fixes.fix = { problem: fixRunProblem(host.format, fixed, read(input), expected) };
         writeFileSync(input, testCase.code);
       }
-      if (testCase.expectedSuggestions && completed(run)) {
-        const methods = [];
+      if (testCase.suite === "host" && testCase.expectedSuggestions && completed(run)) {
+        const methods: SuggestionCheck[] = [];
         if (host.suggestionPayload) {
-          const problem = suggestionPayloadProblem(tool, run, testCase);
-          methods.push({ method: "diagnostic suggestion payload", problem, matched: !problem });
+          const problem = suggestionPayloadProblem(host.format, run, testCase);
+          methods.push({ method: "diagnostic suggestion payload", problem });
         }
         if (host.appliesSuggestions) {
           const suggested = lint(tool, paths, testCase, directory, "suggest");
           extraRuns.push(suggested);
           // Hosts apply the first suggestion of a diagnostic.
-          const expected = applyEdit(testCase.code, testCase.expectedSuggestions[0].fix);
-          const problem = fixRunProblem(tool, suggested, read(input), expected);
-          methods.push({ method: "--fix-suggestions application", problem, matched: !problem });
+          const [first] = testCase.expectedSuggestions;
+          const expected = applyEdit(testCase.code, first.fix);
+          const problem = fixRunProblem(host.format, suggested, read(input), expected);
+          methods.push({ method: "--fix-suggestions application", problem });
           writeFileSync(input, testCase.code);
         }
         fixes.suggestions = methods;
-        fixes.suggestionsMatched = methods.length > 0 && methods.every((entry) => entry.matched);
       }
-      const result = assess(testCase, tool, run, fixes, host);
-      const recordRun = ({ stdout, stderr, ...metadata }) => metadata;
+      const result = assess(testCase, host, run, fixes);
       report.results.push({
         ...result,
         tool,
@@ -317,7 +343,7 @@ try {
     }
   }
 } catch (error) {
-  report.error = error.stack ?? String(error);
+  report.error = error instanceof Error ? (error.stack ?? error.message) : String(error);
   console.error(report.error);
 } finally {
   report.expectationMatched =

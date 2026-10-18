@@ -67,6 +67,9 @@ jobs:
       - name: Install pinned conformance dependencies
         run: pnpm --dir conformance install --frozen-lockfile --ignore-scripts
 
+      - name: Type-check the harness
+        run: pnpm --dir conformance typecheck
+
       - name: Test harness result handling
         run: pnpm --dir conformance test
 

@@ -1,7 +1,9 @@
 // Expectations are literal contracts, independent of the production detectors and data loaders.
 // All Baseline cases use available: 2019, with Web APIs and JS builtins enabled.
 // Positions and ranges count UTF-16 code units, as ESLint reports them.
-export const cases = [
+import type { Case } from "./types.ts";
+
+export const cases: readonly Case[] = [
   {
     id: "host-plugin-options",
     suite: "host",
@@ -190,4 +192,4 @@ export const cases = [
 ];
 
 // A case needs type information exactly when its probe runs the types check.
-export const requiresTypes = (testCase) => testCase.check === "types";
+export const requiresTypes = (testCase: Case): boolean => testCase.check === "types";
