@@ -19,6 +19,7 @@
     "build": "tsdown",
     "bench": "node scripts/bench/run.mts",
     "bench:calibrate": "node scripts/bench/calibrate.mts",
+    "bench:changed": "node scripts/bench/changed.mts",
     "bench:compare": "node scripts/bench/compare.mts",
     "bench:profile": "node scripts/bench/profile.mts",
     "bench:snippets": "node scripts/bench/snippets.mts",
