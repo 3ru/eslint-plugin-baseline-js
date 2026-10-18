@@ -17,6 +17,13 @@
   ],
   "scripts": {
     "build": "tsdown",
+    "bench": "node scripts/bench/run.mjs",
+    "bench:calibrate": "node scripts/bench/calibrate.mjs",
+    "bench:compare": "node scripts/bench/compare.mjs",
+    "bench:profile": "node scripts/bench/profile.mjs",
+    "bench:snippets": "node scripts/bench/snippets.mjs",
+    "bench:sweep": "node scripts/bench/sweep.mjs",
+    "bench:synth": "node scripts/bench/synth.mjs",
     "check:descriptor-compat": "node scripts/qa/check-descriptor-compat.mjs",
     "check:generated-data": "node scripts/qa/check-generated-data-clean.mjs",
     "check:mapping": "node scripts/qa/check-mapping.mjs --out drift-report.json",
