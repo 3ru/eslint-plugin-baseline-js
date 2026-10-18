@@ -36,7 +36,9 @@ examples that should produce no Baseline diagnostic. For `values.union(new Set()
 file, ESLint reports `set-methods`; Oxlint and Bun report nothing and the probe sees no program, so
 their rows read `unavailable | unsupported` instead of passing.
 
-`hosts.mjs` records what each host is expected to give JavaScript rules, following the host
+`hosts.mjs` records, for each host, the configuration format it reads, how its command line lets
+suggestions be checked (ESLint's JSON payload, Oxlint's `--fix-suggestions`, both for Bun; every
+available way must match), and what JavaScript rules are expected to get, following the host
 documentation:
 
 - [Bun plugin notes](https://bun.sh/docs/lint/plugins#notes): JavaScript rules get no type information.
@@ -52,7 +54,8 @@ failure.
 JavaScript fixtures are parsed by each host's own parser. TypeScript fixtures use
 `@typescript-eslint/parser` under ESLint and Bun; Oxlint parses TypeScript itself. Oxlint's typed
 rows run in its default mode, without `--type-aware`: that mode needs the separate
-`oxlint-tsgolint` package and does not reach JavaScript plugins today.
+`oxlint-tsgolint` package and does not reach JavaScript plugins today. Bun's typed rows pass
+`--type-aware`; Bun's notes say JavaScript rules still get no program with it.
 
 ## Run locally
 
@@ -111,12 +114,12 @@ Each row carries the observed host capability and a result:
 | `mismatch` | A host example observed something else; the reason names the part that differed. |
 | `coverage-loss` | A Baseline example on a capable host produced fewer diagnostics than expected. |
 | `incorrect` | A Baseline example produced a diagnostic that was not expected, whatever the host's capability. |
-| `unsupported` | The host lacks the capability. For the documented type gap this is the expected row under Oxlint and Bun, and the Baseline example stays unverified. |
-| `unknown` | The probe did not report, or reported something the harness does not understand. |
-| `execution-error` | The process failed, its output or the fixture could not be parsed, or an unexpected rule or exit code appeared. |
+| `unsupported` | The probe could not use the capability; the reason names the missing host API or the fixture node it never received. For the documented type gap this is the expected row under Oxlint and Bun, and the Baseline example stays unverified. |
+| `unknown` | The probe did not report exactly once, did not receive its options, or reported evidence the harness does not understand. |
+| `execution-error` | The process failed, its output or the fixture could not be parsed, the probe hit an error while using a host API, the product rule ran in a host-only example, or an unexpected rule or exit code appeared. |
 
 "Expected behavior observed" is `yes` when the row matched the declared expectation, including an
-expected `unsupported` row. It never means that every check ran. Check the recorded versions and
+expected `unsupported` row. On its own it does not show that every check ran. Check the recorded versions and
 configuration before comparing runs. A result describes that specific toolchain, configuration,
 fixture set, and plugin build; it is not a permanent statement about a tool.
 
@@ -144,8 +147,11 @@ Installation or setup failures may prevent report generation and remain visible 
 ## Update the pins
 
 `conformance/package.json` pins exact versions, and Dependabot does not cover this directory. To
-move a pin, start from a reviewed latest run: its artifact contains the resolved
-`latest-tools/package.json`. Change one tool at a time, re-run the pinned check, and keep
+move a pin, start from a reviewed latest run. Its report lists the resolved versions (the Package
+column and the Parser line), and its artifact keeps `latest-tools/pnpm-lock.yaml`, whose importers
+section records the exact version each tag resolved to; `latest-tools/package.json` only names the
+`latest` and `canary` tags. Change one tool at a time, regenerate `conformance/pnpm-lock.yaml`,
+re-run the pinned check, and keep
 
 - `bun` on a canary until a stable release ships `bun lint`,
 - `typescript` inside the range `@typescript-eslint/parser` declares as a peer, and
@@ -156,9 +162,11 @@ move a pin, start from a reviewed latest run: its artifact contains the resolved
 - Keep host adapters, probes, fixtures, report logic, and their dependencies inside `conformance/`.
 - Keep product behavior fixes and product regression tests in the existing `src/` and `tests/`.
 - Give every new example an independently justified expectation; a typed example names the member
-  the probe inspects.
-- A new host needs an entry in `hosts.mjs` and its command in `run.mjs`; let the first run show what
-  it provides, and never normalize an empty result into a pass.
+  the probe inspects, and without one the probe reports the fixture node as not visited.
+- A new host needs an entry in `hosts.mjs`, a pin in `package.json` and its channel in
+  `refresh.mjs`, its binary, command and version metadata in `run.mjs`, and a parser in
+  `assess.mjs` unless it prints ESLint's JSON format. Let the first run show what it provides, and
+  never normalize an empty result into a pass.
 - Turn actionable host findings into minimal upstream reproductions.
 - Add performance measurements only with a separate design that controls the detection work being
   performed. This suite measures functionality.

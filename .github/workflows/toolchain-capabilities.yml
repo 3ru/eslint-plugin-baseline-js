@@ -82,8 +82,8 @@ jobs:
           CONFORMANCE_PR_BASE: ${{ github.event.pull_request.base.sha }}
         run: pnpm --dir conformance check
 
-      # always() rather than !cancelled(): a run stopped by the timeout should still publish
-      # whatever report it wrote.
+      # always() rather than !cancelled(): a job timeout counts as a cancellation, and a run it
+      # stops should still say so in the summary and upload the raw output it wrote.
       - name: Publish report to job summary
         if: always()
         shell: bash
