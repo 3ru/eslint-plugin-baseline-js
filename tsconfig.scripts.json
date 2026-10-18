@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "checkJs": true,
+    "lib": ["ES2022"]
+  },
+  "include": [
+    "scripts/data/build-descriptors.mjs",
+    "scripts/data/descriptor-status.mjs",
+    "scripts/data/manual-descriptors.mjs",
+    "scripts/qa/check-descriptor-compat.mjs"
+  ],
+  "exclude": []
+}

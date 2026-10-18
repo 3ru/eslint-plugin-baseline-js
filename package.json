@@ -42,7 +42,7 @@
     "pretest": "pnpm build",
     "test": "vitest run",
     "test:watch": "pnpm build && vitest",
-    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.bench.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.scripts.json && tsc -p tsconfig.bench.json",
     "verify:features": "node scripts/data/verify-features.mjs"
   },
   "dependencies": {
