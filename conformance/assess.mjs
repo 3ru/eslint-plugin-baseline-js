@@ -3,8 +3,14 @@ import { requiresTypes } from "./cases.mjs";
 import { hosts } from "./hosts.mjs";
 import { probeRuleId, productRuleId, reasons, sentinelPrefix } from "./protocol.mjs";
 
+// Oxlint reports byte offsets; ESLint and Bun report lines and UTF-16 columns of the text
+// without its byte order mark. Convert the former into the latter.
 function positionAt(source, offset) {
-  const lines = Buffer.from(source).subarray(0, offset).toString("utf8").split("\n");
+  const prefix = Buffer.from(source)
+    .subarray(0, offset)
+    .toString("utf8")
+    .replace(/^\u{FEFF}/u, "");
+  const lines = prefix.split(/\r\n|[\r\n\u{2028}\u{2029}]/u);
   return { line: lines.length, column: lines.at(-1).length + 1 };
 }
 
@@ -49,8 +55,9 @@ function readProbe(message, check) {
     throw new Error("Unexpected probe diagnostic");
   }
   const probe = JSON.parse(message.message.slice(sentinelPrefix.length));
+  if (probe?.check === undefined) throw new Error(reasons.optionsNotDelivered);
   if (
-    probe?.check !== check ||
+    probe.check !== check ||
     typeof probe.supported !== "boolean" ||
     !probe.observed ||
     typeof probe.observed !== "object" ||
@@ -63,6 +70,17 @@ function readProbe(message, check) {
     throw new Error("Invalid probe evidence");
   }
   return probe;
+}
+
+// Apply edits from the end of the text, so earlier offsets stay valid.
+export function applyEdits(code, edits) {
+  return [...edits]
+    .sort((left, right) => right.range[0] - left.range[0])
+    .reduce(
+      (text, { range: [start, end], text: replacement }) =>
+        `${text.slice(0, start)}${replacement}${text.slice(end)}`,
+      code,
+    );
 }
 
 export function fixRunMatches(tool, run, actualCode, expectedCode) {
@@ -80,6 +98,21 @@ export function fixRunMatches(tool, run, actualCode, expectedCode) {
   } catch {
     return false;
   }
+}
+
+// ESLint-style JSON carries each suggestion's description and edit on the diagnostic.
+export function suggestionPayloadMatches(tool, run, testCase) {
+  let messages;
+  try {
+    messages = parseDiagnostics(tool, run.stdout, testCase.code);
+  } catch {
+    return false;
+  }
+  const sentinel = messages.find((message) => message.ruleId === probeRuleId);
+  return isDeepStrictEqual(
+    sentinel?.suggestions?.map(({ desc, fix }) => ({ desc, fix })),
+    testCase.expectedSuggestions,
+  );
 }
 
 function productDiagnostic(message) {
@@ -121,6 +154,9 @@ export function assess(testCase, tool, run, fixes = {}) {
   } catch (error) {
     return { ...result, reason: error.message };
   }
+  // A file the host could not parse has no rule id on its diagnostic; keep the parser's message.
+  const fatal = messages.find((message) => message.fatal || message.ruleId == null);
+  if (fatal) return { ...result, reason: fatal.message };
   const sentinels = messages.filter(
     (message) => message.ruleId === probeRuleId && message.message.startsWith(sentinelPrefix),
   );
@@ -151,6 +187,11 @@ export function assess(testCase, tool, run, fixes = {}) {
     probe.observed.reason === reasons.typedServicesUnavailable &&
     (!probe.observed.hasProgram || !probe.observed.hasNodeMap);
   const capabilityMatches = expectedUnavailable ? documentedTypeGap : probe.supported;
+  const capabilityReason = () => {
+    if (!expectedUnavailable) return probe.observed.reason;
+    if (probe.supported) return "Host now provides type services; review the expectation";
+    return probe.observed.reason;
+  };
 
   const unexpectedRules = messages.filter(
     (message) => message !== sentinels[0] && message.ruleId !== productRuleId,
@@ -178,19 +219,24 @@ export function assess(testCase, tool, run, fixes = {}) {
         expectationMatched: capabilityMatches,
       };
     }
-    const observationMatches = isDeepStrictEqual(probe.observed, testCase.expected);
-    const positionMatches =
-      testCase.check !== "location" ||
-      ["line", "column", "endLine", "endColumn"].every(
-        (key) => sentinels[0][key] === testCase.expected[key],
-      );
-    const fixMatches = !testCase.expectedFix || fixes.fixMatched === true;
-    const suggestionsMatch = !testCase.expectedSuggestions || fixes.suggestionsMatched === true;
-    const matched = observationMatches && positionMatches && fixMatches && suggestionsMatch;
-    result.correctness = matched ? "matched" : "mismatch";
+    const checks = {
+      observation: isDeepStrictEqual(probe.observed, testCase.expected),
+      position:
+        testCase.check !== "location" ||
+        ["line", "column", "endLine", "endColumn"].every(
+          (key) => sentinels[0][key] === testCase.expected[key],
+        ),
+      fix: !testCase.expectedFix || fixes.fixMatched === true,
+      suggestions: !testCase.expectedSuggestions || fixes.suggestionsMatched === true,
+    };
+    const failed = Object.keys(checks).filter((name) => !checks[name]);
+    result.correctness = failed.length ? "mismatch" : "matched";
     result.status = probe.supported ? result.correctness : "unsupported";
-    result.expectationMatched = capabilityMatches && matched;
-    if (!capabilityMatches) result.reason = `Expected ${result.expectedCapability} capability`;
+    result.expectationMatched = capabilityMatches && failed.length === 0;
+    const problems = [];
+    if (!capabilityMatches) problems.push(capabilityReason());
+    if (failed.length) problems.push(`Mismatch in ${failed.join(", ")}`);
+    if (problems.length) result.reason = problems.join("; ");
     result.fixes = testCase.expectedFix ? fixes : undefined;
     return result;
   }
@@ -217,7 +263,7 @@ export function assess(testCase, tool, run, fixes = {}) {
   result.correctness = missing.length ? "missing" : "matched";
   result.status = probe.supported ? detection : "unsupported";
   result.expectationMatched = capabilityMatches && !missing.length;
-  if (!capabilityMatches) result.reason = `Expected ${result.expectedCapability} capability`;
+  if (!capabilityMatches) result.reason = capabilityReason();
   return result;
 }
 

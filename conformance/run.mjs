@@ -4,8 +4,14 @@ import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { isDeepStrictEqual, parseArgs } from "node:util";
-import { assess, fixRunMatches, parseDiagnostics, renderReport } from "./assess.mjs";
+import { parseArgs } from "node:util";
+import {
+  applyEdits,
+  assess,
+  fixRunMatches,
+  renderReport,
+  suggestionPayloadMatches,
+} from "./assess.mjs";
 import { cases, requiresTypes } from "./cases.mjs";
 import { hostNames, hosts } from "./hosts.mjs";
 import { probePluginName, probeRuleId, productPluginName, productRuleId } from "./protocol.mjs";
@@ -63,9 +69,13 @@ function metadataCommand(command, args) {
   return result.stdout.trimEnd();
 }
 
-function configFor(testCase, paths, directory, suggestionsOnly = false) {
+// Rule configuration for one case. The suggest phase turns the probe's fix off, so that only its
+// suggestion can change the file.
+function configFor(testCase, paths, suggestionsOnly) {
   const needsTypes = requiresTypes(testCase);
-  const probeOptions = { check: testCase.check, ...(suggestionsOnly ? { suggestionsOnly } : {}) };
+  const probeOptions = { check: testCase.check };
+  if (testCase.member) probeOptions.member = testCase.member;
+  if (suggestionsOnly) probeOptions.suggestionsOnly = true;
   const rules = { [probeRuleId]: ["warn", probeOptions] };
   if (testCase.suite === "baseline") {
     const preset = needsTypes ? "type-aware" : "auto";
@@ -108,35 +118,51 @@ function configFor(testCase, paths, directory, suggestionsOnly = false) {
     "export default [config];",
   ];
   const eslint = `${statements.join("\n")}\n`;
-  const jsPlugins = [{ name: probePluginName, specifier: join(here, "probe.mjs") }];
-  if (testCase.suite === "baseline") {
-    jsPlugins.push({ name: productPluginName, specifier: paths.product });
-  }
+  // Plain specifiers, as the README documents them: Oxlint derives the plugin names itself.
+  const jsPlugins = [join(here, "probe.mjs")];
+  if (testCase.suite === "baseline") jsPlugins.push(paths.product);
   const oxlint = JSON.stringify({
     plugins: [],
     categories: { correctness: "off" },
     jsPlugins,
     rules,
   });
-  writeFileSync(join(directory, hosts.eslint.configFile), eslint);
-  writeFileSync(join(directory, hosts.oxlint.configFile), oxlint);
   return { eslint, oxlint };
+}
+
+function writeConfigs(testCase, paths, directory) {
+  for (const phase of ["inspect", "suggest"]) {
+    const texts = configFor(testCase, paths, phase === "suggest");
+    writeFileSync(join(directory, hosts.eslint.configFiles[phase]), texts.eslint);
+    writeFileSync(join(directory, hosts.oxlint.configFiles[phase]), texts.oxlint);
+  }
 }
 
 function lint(tool, paths, testCase, directory, phase = "inspect") {
   const file = `input.${testCase.extension}`;
-  const flags = phase === "inspect" ? [] : ["--fix"];
-  if (phase === "suggest" && tool !== "eslint") flags.push("--fix-suggestions");
+  const flags = { inspect: [], fix: ["--fix"], suggest: ["--fix", "--fix-suggestions"] }[phase];
   const common = ["--no-ignore", "-f", "json", ...flags, file];
-  const config = hosts[tool].configFile;
+  const config = hosts[tool].configFiles[phase === "suggest" ? "suggest" : "inspect"];
   const artifact = `${tool}-${testCase.id}-${phase}`;
+  let command = process.execPath;
+  let args = [tool === "eslint" ? paths.eslint : paths.oxlint, "-c", config, ...common];
   if (tool === "bun") {
+    command = paths.bun;
     const typeAware = requiresTypes(testCase) ? ["--type-aware"] : [];
-    return execute(paths.bun, ["lint", "-c", config, ...typeAware, ...common], directory, artifact);
+    args = ["lint", "-c", config, ...typeAware, ...common];
   }
-  const cli = tool === "eslint" ? paths.eslint : paths.oxlint;
-  return execute(process.execPath, [cli, "-c", config, ...common], directory, artifact);
+  const run = execute(command, args, directory, artifact);
+  run.config = config;
+  run.configSha256 = hash(readFileSync(join(directory, config)));
+  if (phase !== "inspect") {
+    // Keep the file the host wrote; not every JSON format includes it.
+    run.raw.result = `raw/${artifact}.result.${testCase.extension}`;
+    writeFileSync(join(output, run.raw.result), readFileSync(join(directory, file)));
+  }
+  return run;
 }
+
+const completed = (run) => !run.error && !run.signal && run.exitCode === 0;
 
 try {
   const dependencies = profile === "latest" ? join(here, "results", "latest-tools") : here;
@@ -229,56 +255,50 @@ try {
     join(work, "tsconfig.json"),
     `${JSON.stringify({ compilerOptions: { target: "ESNext", lib: ["ESNext", "DOM"], strict: true, noEmit: true, types: [] }, include: ["**/*.ts"] }, null, 2)}\n`,
   );
+  // Every TypeScript fixture exists before the first typed run, so all hosts see one program.
   for (const testCase of cases) {
     const directory = join(work, testCase.id);
     mkdirSync(directory, { recursive: true });
     writeFileSync(join(directory, `input.${testCase.extension}`), testCase.code);
   }
   for (const tool of hostNames) {
+    const host = hosts[tool];
     for (const testCase of cases) {
       const directory = join(work, testCase.id);
       const input = join(directory, `input.${testCase.extension}`);
       writeFileSync(input, testCase.code);
-      const configs = configFor(testCase, paths, directory);
+      writeConfigs(testCase, paths, directory);
       const run = lint(tool, paths, testCase, directory);
       const fixes = {};
       const extraRuns = [];
-      if (testCase.expectedFix && !run.error && !run.signal && run.exitCode === 0) {
+      if (testCase.expectedFix && completed(run)) {
         const fixed = lint(tool, paths, testCase, directory, "fix");
         extraRuns.push(fixed);
-        const expectedCode = `${testCase.code.slice(0, testCase.expectedFix.range[0])}${testCase.expectedFix.text}${testCase.code.slice(testCase.expectedFix.range[1])}`;
-        fixes.fixMatched = fixRunMatches(tool, fixed, read(input), expectedCode);
-        if (tool === "eslint") {
-          try {
-            const sentinel = parseDiagnostics(tool, run.stdout, testCase.code).find(
-              (message) => message.ruleId === probeRuleId,
-            );
-            fixes.suggestionsMatched = isDeepStrictEqual(
-              sentinel?.suggestions?.map(({ desc, fix }) => ({ desc, fix })),
-              testCase.expectedSuggestions,
-            );
-          } catch (error) {
-            fixes.suggestionsMatched = false;
-            fixes.suggestionError = error.message;
-          }
-          fixes.suggestionMethod = "diagnostic suggestion payload";
-        } else {
-          writeFileSync(input, testCase.code);
-          configFor(testCase, paths, directory, true);
+        const expected = applyEdits(testCase.code, [testCase.expectedFix]);
+        fixes.fixMatched = fixRunMatches(tool, fixed, read(input), expected);
+        writeFileSync(input, testCase.code);
+      }
+      if (testCase.expectedSuggestions && completed(run)) {
+        const methods = [];
+        if (host.suggestionPayload) {
+          methods.push({
+            method: "diagnostic suggestion payload",
+            matched: suggestionPayloadMatches(tool, run, testCase),
+          });
+        }
+        if (host.appliesSuggestions) {
           const suggested = lint(tool, paths, testCase, directory, "suggest");
           extraRuns.push(suggested);
-          const suggestion = testCase.expectedSuggestions[0].fix;
-          const expectedSuggestion = `${testCase.code.slice(0, suggestion.range[0])}${suggestion.text}${testCase.code.slice(suggestion.range[1])}`;
-          fixes.suggestionsMatched = fixRunMatches(
-            tool,
-            suggested,
-            read(input),
-            expectedSuggestion,
-          );
-          fixes.suggestionMethod = "isolated --fix-suggestions application";
+          const edits = testCase.expectedSuggestions.map((suggestion) => suggestion.fix);
+          const expected = applyEdits(testCase.code, edits);
+          methods.push({
+            method: "--fix-suggestions application",
+            matched: fixRunMatches(tool, suggested, read(input), expected),
+          });
+          writeFileSync(input, testCase.code);
         }
-        writeFileSync(input, testCase.code);
-        configFor(testCase, paths, directory);
+        fixes.suggestions = methods;
+        fixes.suggestionsMatched = methods.length > 0 && methods.every((entry) => entry.matched);
       }
       const result = assess(testCase, tool, run, fixes);
       const recordRun = ({ stdout, stderr, ...metadata }) => metadata;
@@ -287,7 +307,6 @@ try {
         tool,
         expected: testCase.expected,
         fixtureSha256: hash(testCase.code),
-        configSha256: hash(tool === "oxlint" ? configs.oxlint : configs.eslint),
         run: recordRun(run),
         extraRuns: extraRuns.map(recordRun),
       });

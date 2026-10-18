@@ -12,6 +12,7 @@ function capabilityError(error, observed = {}) {
 }
 
 function scopeObservation(sourceCode, receivers) {
+  if (receivers.length === 0) return unavailable(reasons.fixtureNodeNotVisited);
   if (typeof sourceCode.getScope !== "function") return unavailable("getScope unavailable");
   const shadowed = [];
   for (const receiver of receivers) {
@@ -35,7 +36,7 @@ function scopeObservation(sourceCode, receivers) {
     }
     shadowed.push(isShadowed);
   }
-  return { supported: receivers.length > 0, observed: { shadowed } };
+  return { supported: true, observed: { shadowed } };
 }
 
 function typeObservation(sourceCode, member) {
@@ -50,7 +51,7 @@ function typeObservation(sourceCode, member) {
   if (!observed.hasProgram || !observed.hasNodeMap) {
     return unavailable(reasons.typedServicesUnavailable, observed);
   }
-  if (!member) return unavailable("receiver fixture was not visited", observed);
+  if (!member) return unavailable(reasons.fixtureNodeNotVisited, observed);
   if (typeof program.getTypeChecker !== "function") {
     return unavailable("program.getTypeChecker unavailable", observed);
   }
@@ -71,8 +72,8 @@ function typeObservation(sourceCode, member) {
     observed.receiverType = checker.typeToString(type);
     observed.property = member.property.name;
     observed.hasProperty = Boolean(checker.getPropertyOfType(type, observed.property));
-    if (!observed.hasProperty || ["any", "unknown", "never"].includes(observed.receiverType)) {
-      return unavailable("receiver type is unresolved or has no fixture member", observed);
+    if (!observed.hasProperty) {
+      return unavailable("receiver type has no fixture member", observed);
     }
     const symbol = type.getSymbol?.() ?? type.aliasSymbol;
     const declarations = symbol?.getDeclarations?.() ?? [];
@@ -99,6 +100,8 @@ const inspect = {
         type: "object",
         properties: {
           check: { enum: checks },
+          // The property name of the member expression the types check inspects.
+          member: { type: "string" },
           suggestionsOnly: { type: "boolean" },
         },
         required: ["check"],
@@ -107,7 +110,8 @@ const inspect = {
     ],
   },
   create(context) {
-    const check = context.options[0]?.check;
+    const options = context.options[0];
+    const check = options?.check;
     const { sourceCode } = context;
     const receivers = [];
     let member;
@@ -135,8 +139,8 @@ const inspect = {
         case "scope":
           return scopeObservation(sourceCode, receivers);
         case "source": {
+          if (!literal) return unavailable(reasons.fixtureNodeNotVisited);
           if (
-            !literal ||
             typeof sourceCode.getText !== "function" ||
             typeof sourceCode.getFirstToken !== "function" ||
             typeof sourceCode.getTokens !== "function"
@@ -157,7 +161,8 @@ const inspect = {
           }
         }
         case "location":
-          if (!marker?.loc) return unavailable("identifier location unavailable");
+          if (!marker) return unavailable(reasons.fixtureNodeNotVisited);
+          if (!marker.loc) return unavailable("identifier location unavailable");
           return {
             supported: true,
             observed: {
@@ -168,13 +173,15 @@ const inspect = {
             },
           };
         case "fixes":
-          if (!literal?.range) return unavailable("literal range unavailable");
+          if (!literal) return unavailable(reasons.fixtureNodeNotVisited);
+          if (!literal.range) return unavailable("literal range unavailable");
           return {
             supported: true,
             observed: { literal: literal.value, range: literal.range },
           };
         case "ancestors": {
-          if (!target || typeof sourceCode.getAncestors !== "function") {
+          if (!target) return unavailable(reasons.fixtureNodeNotVisited);
+          if (typeof sourceCode.getAncestors !== "function") {
             return unavailable("getAncestors unavailable");
           }
           try {
@@ -192,6 +199,8 @@ const inspect = {
         }
         case "types":
           return typeObservation(sourceCode, member);
+        case undefined:
+          return unavailable(reasons.optionsNotDelivered);
         default:
           return unavailable("unknown probe check");
       }
@@ -199,7 +208,7 @@ const inspect = {
 
     const listeners = {
       MemberExpression(node) {
-        if (!member) member = node;
+        if (!member && (!options?.member || node.property.name === options.member)) member = node;
         if (node.object.type === "Identifier" && node.object.name === "Object") {
           receivers.push(node.object);
         }
@@ -218,7 +227,7 @@ const inspect = {
           message: `${sentinelPrefix}${JSON.stringify({ check, ...result })}`,
         };
         if (check === "fixes" && result.supported) {
-          if (!context.options[0]?.suggestionsOnly) {
+          if (!options.suggestionsOnly) {
             report.fix = (fixer) => fixer.replaceText(literal, "2");
           }
           report.suggest = [

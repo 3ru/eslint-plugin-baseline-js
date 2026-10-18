@@ -23,4 +23,6 @@ export const checks = [
 // classified, so they live here rather than in the probe and the assessment separately.
 export const reasons = {
   typedServicesUnavailable: "typed parser services unavailable",
+  fixtureNodeNotVisited: "fixture node not visited",
+  optionsNotDelivered: "rule options not delivered",
 };

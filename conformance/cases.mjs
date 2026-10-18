@@ -1,5 +1,6 @@
 // Expectations are literal contracts, independent of the production detectors and data loaders.
 // All Baseline cases use available: 2019, with Web APIs and JS builtins enabled.
+// Positions and ranges count UTF-16 code units, as ESLint reports them.
 export const cases = [
   {
     id: "host-plugin-options",
@@ -12,7 +13,8 @@ export const cases = [
   {
     id: "host-ast-selector",
     suite: "host",
-    code: "Object.groupBy([], String);\n",
+    // The plain call comes first: a host that ignores the attribute filter counts two calls.
+    code: "String(1);\nObject.groupBy([], String);\n",
     extension: "js",
     check: "selectors",
     expected: { memberCalls: 1, property: "groupBy", computed: false },
@@ -26,6 +28,16 @@ export const cases = [
     expected: { shadowed: [false, true] },
   },
   {
+    id: "host-scope-binding",
+    suite: "host",
+    // A top-level binding: ESLint and Bun resolve it in the module scope, Oxlint reads the file
+    // as a script and resolves it in the global scope.
+    code: "const Object = { groupBy() {} };\nObject.groupBy([], String);\n",
+    extension: "js",
+    check: "scope",
+    expected: { shadowed: [true] },
+  },
+  {
     id: "host-source-tokens",
     suite: "host",
     code: "const answer = 1;\n",
@@ -36,20 +48,21 @@ export const cases = [
   {
     id: "host-diagnostic-location",
     suite: "host",
-    code: "const value =\n  marker;\n",
+    // Non-ASCII text before the marker: byte and code point columns differ from UTF-16 units.
+    code: 'const value =\n  "é\u{1F600}" + marker;\n',
     extension: "js",
     check: "location",
-    expected: { line: 2, column: 3, endLine: 2, endColumn: 9 },
+    expected: { line: 2, column: 11, endLine: 2, endColumn: 17 },
   },
   {
     id: "host-fixes-suggestions",
     suite: "host",
-    code: "const answer = 1;\n",
+    code: "const answer = /* é\u{1F600} */ 1;\n",
     extension: "js",
     check: "fixes",
-    expected: { literal: 1, range: [15, 16] },
-    expectedFix: { range: [15, 16], text: "2" },
-    expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [15, 16], text: "3" } }],
+    expected: { literal: 1, range: [25, 26] },
+    expectedFix: { range: [25, 26], text: "2" },
+    expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [25, 26], text: "3" } }],
   },
   {
     id: "host-ancestry",
@@ -68,6 +81,7 @@ export const cases = [
     code: "declare const element: Element;\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
+    member: "checkVisibility",
     expected: {
       hasProgram: true,
       hasNodeMap: true,
@@ -111,6 +125,14 @@ export const cases = [
     expected: [],
   },
   {
+    id: "baseline-shadowed-binding",
+    suite: "baseline",
+    code: "const Object = { groupBy() {} };\nObject.groupBy([], String);\n",
+    extension: "js",
+    check: "execution",
+    expected: [],
+  },
+  {
     id: "baseline-global-fetchlater",
     suite: "baseline",
     code: "fetchLater('/beacon');\n",
@@ -119,11 +141,21 @@ export const cases = [
     expected: [{ featureId: "fetchlater", line: 1, column: 1 }],
   },
   {
+    id: "baseline-ts-static-groupby",
+    suite: "baseline",
+    // A TypeScript file that needs no type information: every host must still report it.
+    code: "declare const input: string[];\nObject.groupBy(input, String);\nexport {};\n",
+    extension: "ts",
+    check: "execution",
+    expected: [{ featureId: "array-group", line: 2, column: 8 }],
+  },
+  {
     id: "baseline-typed-element",
     suite: "baseline",
     code: "declare const element: Element;\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
+    member: "checkVisibility",
     expected: [{ featureId: "check-visibility", line: 2, column: 9 }],
   },
   {
@@ -132,6 +164,7 @@ export const cases = [
     code: "declare const values: Set<unknown>;\nvalues.union(new Set());\nexport {};\n",
     extension: "ts",
     check: "types",
+    member: "union",
     expected: [{ featureId: "set-methods", line: 2, column: 8 }],
   },
   {
@@ -140,6 +173,17 @@ export const cases = [
     code: "const element = { checkVisibility() { return true; } };\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
+    member: "checkVisibility",
+    expected: [],
+  },
+  {
+    id: "baseline-typed-nominal-lookalike",
+    suite: "baseline",
+    // Same name as the DOM interface, declared by the file itself: only provenance tells them apart.
+    code: "interface Element { checkVisibility(): boolean }\ndeclare const element: Element;\nelement.checkVisibility();\nexport {};\n",
+    extension: "ts",
+    check: "types",
+    member: "checkVisibility",
     expected: [],
   },
 ];

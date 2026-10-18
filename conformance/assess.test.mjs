@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { assess, fixRunMatches, parseDiagnostics } from "./assess.mjs";
+import {
+  applyEdits,
+  assess,
+  fixRunMatches,
+  parseDiagnostics,
+  suggestionPayloadMatches,
+} from "./assess.mjs";
 import { probeRuleId, productRuleId, reasons, sentinelPrefix } from "./protocol.mjs";
 
 const typed = {
@@ -26,16 +32,12 @@ const usableTypes = {
   observed: { hasProgram: true, hasNodeMap: true, hasChecker: true },
 };
 
-function run(probe, diagnostics = [], exitCode = diagnostics.length ? 1 : 0) {
-  const messages = [
-    {
-      ruleId: probeRuleId,
-      message: `${sentinelPrefix}${JSON.stringify(probe)}`,
-      line: 1,
-      column: 1,
-    },
-    ...diagnostics,
-  ];
+function sentinel(probe, position = { line: 1, column: 1 }) {
+  return { ruleId: probeRuleId, message: `${sentinelPrefix}${JSON.stringify(probe)}`, ...position };
+}
+
+function run(probe, diagnostics = [], exitCode = diagnostics.length ? 1 : 0, position) {
+  const messages = [sentinel(probe, position), ...diagnostics];
   return { exitCode, signal: null, stdout: JSON.stringify([{ filePath: "input.ts", messages }]) };
 }
 
@@ -68,12 +70,7 @@ test("a known type gap cannot conceal an unexpected report", () => {
     typed,
     "bun",
     run(missingTypes, [
-      {
-        ruleId: productRuleId,
-        message: "Wrong API (array-group).",
-        line: 1,
-        column: 9,
-      },
+      { ruleId: productRuleId, message: "Wrong API (array-group).", line: 1, column: 9 },
     ]),
   );
   assert.equal(result.status, "incorrect");
@@ -86,6 +83,14 @@ test("missing findings on a capable host are coverage loss", () => {
   assert.equal(result.status, "coverage-loss");
   assert.equal(result.expectationMatched, false);
   assert.deepEqual(result.missing, typed.expected);
+});
+
+test("a host expected to have type services cannot claim the documented gap", () => {
+  const hostCase = { ...typed, id: "receiver", suite: "host", expected: usableTypes.observed };
+  const result = assess(hostCase, "eslint", run(missingTypes));
+  assert.equal(result.status, "unsupported");
+  assert.equal(result.expectationMatched, false);
+  assert.equal(result.reason, reasons.typedServicesUnavailable);
 });
 
 test("non-null but unusable parser services are not an accepted missing-types exception", () => {
@@ -104,6 +109,7 @@ test("non-null but unusable parser services are not an accepted missing-types ex
     }),
   );
   assert.equal(result.expectationMatched, false);
+  assert.equal(result.reason, "receiver checker API unavailable");
 });
 
 test("malformed output and process failures remain failures", () => {
@@ -123,9 +129,66 @@ test("malformed output and process failures remain failures", () => {
   }
 });
 
+test("a file the host could not parse keeps the parser's message", () => {
+  const eslintShaped = assess(typed, "eslint", {
+    exitCode: 1,
+    stdout: JSON.stringify([
+      {
+        filePath: "input.ts",
+        messages: [
+          {
+            ruleId: null,
+            fatal: true,
+            severity: 2,
+            message: "Parsing error: Unexpected token",
+            line: 1,
+            column: 1,
+          },
+        ],
+      },
+    ]),
+  });
+  assert.equal(eslintShaped.status, "execution-error");
+  assert.equal(eslintShaped.reason, "Parsing error: Unexpected token");
+  const oxlintShaped = assess(typed, "oxlint", {
+    exitCode: 1,
+    stdout: JSON.stringify({
+      diagnostics: [
+        {
+          message: "Expected a semicolon or an implicit semicolon after a statement",
+          severity: "error",
+          labels: [{ span: { offset: 0, length: 1 } }],
+        },
+      ],
+    }),
+  });
+  assert.equal(oxlintShaped.status, "execution-error");
+  assert.match(oxlintShaped.reason, /^Expected a semicolon/u);
+});
+
+test("a sentinel without a check reports undelivered rule options", () => {
+  const result = assess(typed, "oxlint", {
+    exitCode: 0,
+    stdout: JSON.stringify({
+      diagnostics: [
+        {
+          code: "toolchain-probe(inspect)",
+          message: `${sentinelPrefix}${JSON.stringify({
+            supported: false,
+            observed: { reason: reasons.optionsNotDelivered },
+          })}`,
+          labels: [{ span: { offset: 0, length: 1 } }],
+        },
+      ],
+    }),
+  });
+  assert.equal(result.status, "unknown");
+  assert.equal(result.reason, reasons.optionsNotDelivered);
+});
+
 test("Oxlint byte offsets normalize to ESLint UTF-16 locations", () => {
-  const source = "// 😀\n  marker;";
-  const offset = Buffer.byteLength("// 😀\n  ");
+  const source = '  "\u{1F600}" + marker;';
+  const offset = Buffer.byteLength('  "\u{1F600}" + ');
   const [message] = parseDiagnostics(
     "oxlint",
     JSON.stringify({
@@ -139,11 +202,37 @@ test("Oxlint byte offsets normalize to ESLint UTF-16 locations", () => {
     }),
     source,
   );
-  assert.equal(message.ruleId, probeRuleId);
+  assert.equal(message.ruleId, "toolchain-probe/inspect");
   assert.deepEqual(
     [message.line, message.column, message.endLine, message.endColumn],
-    [2, 3, 2, 9],
+    [1, 10, 1, 16],
   );
+});
+
+test("a byte order mark and every line terminator count as ESLint counts them", () => {
+  const source = "\u{FEFF}a;\r  marker;\u{2028}x;\r\ny;";
+  const positions = ["marker", "x", "y"].map((name) => {
+    const offset = Buffer.byteLength(source.slice(0, source.indexOf(name)));
+    const [message] = parseDiagnostics(
+      "oxlint",
+      JSON.stringify({
+        diagnostics: [
+          {
+            code: "toolchain-probe(inspect)",
+            message: "sentinel",
+            labels: [{ span: { offset, length: name.length } }],
+          },
+        ],
+      }),
+      source,
+    );
+    return [message.line, message.column];
+  });
+  assert.deepEqual(positions, [
+    [2, 3],
+    [3, 1],
+    [4, 1],
+  ]);
 });
 
 test("a newly supported host is surfaced for expectation review", () => {
@@ -162,6 +251,7 @@ test("a newly supported host is surfaced for expectation review", () => {
   assert.equal(result.correctness, "matched");
   assert.equal(result.capability, "supported");
   assert.equal(result.expectationMatched, false);
+  assert.equal(result.reason, "Host now provides type services; review the expectation");
 });
 
 test("extra probe diagnostics cannot hide beside a valid sentinel", () => {
@@ -170,15 +260,7 @@ test("extra probe diagnostics cannot hide beside a valid sentinel", () => {
     "bun",
     run(
       missingTypes,
-      [
-        {
-          ruleId: probeRuleId,
-          message: "Unrelated probe error",
-          severity: 2,
-          line: 1,
-          column: 1,
-        },
-      ],
+      [{ ruleId: probeRuleId, message: "Unrelated probe error", severity: 2, line: 1, column: 1 }],
       0,
     ),
   );
@@ -200,6 +282,16 @@ test("missing capability booleans are malformed evidence rather than a known gap
   assert.equal(result.status, "unknown");
 });
 
+test("a location sentinel reported at the wrong column is a mismatch", () => {
+  const expected = { line: 2, column: 3, endLine: 2, endColumn: 9 };
+  const location = { id: "location", suite: "host", check: "location", code: "", expected };
+  const probe = { check: "location", supported: true, observed: expected };
+  assert.equal(assess(location, "eslint", run(probe, [], 0, expected)).expectationMatched, true);
+  const shifted = assess(location, "eslint", run(probe, [], 0, { ...expected, column: 4 }));
+  assert.equal(shifted.expectationMatched, false);
+  assert.equal(shifted.reason, "Mismatch in position");
+});
+
 test("applied fixes still require clean process and diagnostic output", () => {
   const clean = { exitCode: 0, stdout: JSON.stringify([{ messages: [] }]) };
   assert.equal(fixRunMatches("eslint", clean, "2", "2"), true);
@@ -218,26 +310,54 @@ test("applied fixes still require clean process and diagnostic output", () => {
   assert.equal(fixRunMatches("eslint", clean, "1", "2"), false);
 });
 
+test("edits apply from the end, and suggestion payloads compare description and edit", () => {
+  const edits = [
+    { range: [0, 1], text: "X" },
+    { range: [4, 6], text: "YZ" },
+  ];
+  assert.equal(applyEdits("abcdef", edits), "XbcdYZ");
+  const fixes = {
+    id: "fixes",
+    suite: "host",
+    check: "fixes",
+    code: "const answer = 1;\n",
+    expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [15, 16], text: "3" } }],
+  };
+  const payload = (desc) => ({
+    exitCode: 0,
+    stdout: JSON.stringify([
+      {
+        messages: [
+          {
+            ...sentinel({ check: "fixes", supported: true, observed: {} }),
+            suggestions: [{ desc, fix: { range: [15, 16], text: "3" } }],
+          },
+        ],
+      },
+    ]),
+  });
+  assert.equal(suggestionPayloadMatches("bun", payload("Replace one with three"), fixes), true);
+  assert.equal(suggestionPayloadMatches("bun", payload("Replace one"), fixes), false);
+  assert.equal(suggestionPayloadMatches("bun", { exitCode: 0, stdout: "[]" }, fixes), false);
+});
+
 test("a host probe cannot pass when fix or suggestion behavior is lost", () => {
   const fixture = {
     id: "fixes",
     suite: "host",
     check: "fixes",
-    needsTypes: false,
+    code: "",
     expected: {},
     expectedFix: {},
     expectedSuggestions: [],
   };
-  for (const fixes of [
-    { fixMatched: false, suggestionsMatched: true },
-    { fixMatched: true, suggestionsMatched: false },
+  const probe = { check: "fixes", supported: true, observed: {} };
+  for (const [fixes, reason] of [
+    [{ fixMatched: false, suggestionsMatched: true }, "Mismatch in fix"],
+    [{ fixMatched: true, suggestionsMatched: false }, "Mismatch in suggestions"],
   ]) {
-    const result = assess(
-      fixture,
-      "eslint",
-      run({ check: "fixes", supported: true, observed: {} }),
-      fixes,
-    );
+    const result = assess(fixture, "eslint", run(probe), fixes);
     assert.equal(result.expectationMatched, false);
+    assert.equal(result.reason, reason);
   }
 });
