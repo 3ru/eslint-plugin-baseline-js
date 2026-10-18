@@ -1,19 +1,19 @@
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
 import {
-  applyEdits,
+  applyEdit,
   assess,
   fixRunProblem,
   renderReport,
   suggestionPayloadProblem,
 } from "./assess.mjs";
 import { cases, requiresTypes } from "./cases.mjs";
-import { hostNames, hosts } from "./hosts.mjs";
+import { configFiles, hostNames, hosts } from "./hosts.mjs";
 import { probePluginName, probeRuleId, productPluginName, productRuleId } from "./protocol.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -22,6 +22,10 @@ const { values } = parseArgs({ options: { out: { type: "string" } } });
 const output = resolve(values.out ?? join(here, "results"));
 const profile = process.env.CONFORMANCE_PROFILE ?? "pinned";
 if (!["pinned", "latest"].includes(profile)) throw new Error(`Unknown profile: ${profile}`);
+// Generated output starts empty, so files from an earlier run never pass for this run's.
+for (const directory of ["raw", "work"]) {
+  rmSync(join(output, directory), { recursive: true, force: true });
+}
 mkdirSync(join(output, "raw"), { recursive: true });
 const hash = (content) => createHash("sha256").update(content).digest("hex");
 const read = (path) => readFileSync(path, "utf8");
@@ -118,7 +122,7 @@ function configFor(testCase, paths, suggestionsOnly) {
     "export default [config];",
   ];
   const eslint = `${statements.join("\n")}\n`;
-  // Plain specifiers, as the README documents them: Oxlint derives the plugin names itself.
+  // Plain specifiers, as the root README documents them: Oxlint derives the plugin names itself.
   const jsPlugins = [join(here, "probe.mjs")];
   if (testCase.suite === "baseline") jsPlugins.push(paths.product);
   const oxlint = JSON.stringify({
@@ -130,11 +134,11 @@ function configFor(testCase, paths, suggestionsOnly) {
   return { eslint, oxlint };
 }
 
-function writeConfigs(testCase, paths, directory) {
-  for (const phase of ["inspect", "suggest"]) {
+function writeConfigs(testCase, paths, directory, format) {
+  const phases = testCase.expectedSuggestions ? ["inspect", "suggest"] : ["inspect"];
+  for (const phase of phases) {
     const texts = configFor(testCase, paths, phase === "suggest");
-    writeFileSync(join(directory, hosts.eslint.configFiles[phase]), texts.eslint);
-    writeFileSync(join(directory, hosts.oxlint.configFiles[phase]), texts.oxlint);
+    writeFileSync(join(directory, configFiles[format][phase]), texts[format]);
   }
 }
 
@@ -142,7 +146,7 @@ function lint(tool, paths, testCase, directory, phase = "inspect") {
   const file = `input.${testCase.extension}`;
   const flags = { inspect: [], fix: ["--fix"], suggest: ["--fix", "--fix-suggestions"] }[phase];
   const common = ["--no-ignore", "-f", "json", ...flags, file];
-  const config = hosts[tool].configFiles[phase === "suggest" ? "suggest" : "inspect"];
+  const config = configFiles[hosts[tool].configFormat][phase === "suggest" ? "suggest" : "inspect"];
   const artifact = `${tool}-${testCase.id}-${phase}`;
   let command = process.execPath;
   let args = [tool === "eslint" ? paths.eslint : paths.oxlint, "-c", config, ...common];
@@ -267,14 +271,14 @@ try {
       const directory = join(work, testCase.id);
       const input = join(directory, `input.${testCase.extension}`);
       writeFileSync(input, testCase.code);
-      writeConfigs(testCase, paths, directory);
+      writeConfigs(testCase, paths, directory, host.configFormat);
       const run = lint(tool, paths, testCase, directory);
       const fixes = {};
       const extraRuns = [];
       if (testCase.expectedFix && completed(run)) {
         const fixed = lint(tool, paths, testCase, directory, "fix");
         extraRuns.push(fixed);
-        const expected = applyEdits(testCase.code, [testCase.expectedFix]);
+        const expected = applyEdit(testCase.code, testCase.expectedFix);
         fixes.fixProblem = fixRunProblem(tool, fixed, read(input), expected);
         fixes.fixMatched = fixes.fixProblem === undefined;
         writeFileSync(input, testCase.code);
@@ -288,8 +292,8 @@ try {
         if (host.appliesSuggestions) {
           const suggested = lint(tool, paths, testCase, directory, "suggest");
           extraRuns.push(suggested);
-          const edits = testCase.expectedSuggestions.map((suggestion) => suggestion.fix);
-          const expected = applyEdits(testCase.code, edits);
+          // Hosts apply the first suggestion of a diagnostic.
+          const expected = applyEdit(testCase.code, testCase.expectedSuggestions[0].fix);
           const problem = fixRunProblem(tool, suggested, read(input), expected);
           methods.push({ method: "--fix-suggestions application", problem, matched: !problem });
           writeFileSync(input, testCase.code);

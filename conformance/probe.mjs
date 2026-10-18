@@ -100,7 +100,8 @@ const inspect = {
         type: "object",
         properties: {
           check: { enum: checks },
-          // The property name of the member expression the types check inspects.
+          // The property name of the member expression the types check inspects; without it
+          // the probe reports the fixture node as not visited.
           member: { type: "string" },
           suggestionsOnly: { type: "boolean" },
         },
@@ -211,7 +212,7 @@ const inspect = {
 
     const listeners = {
       MemberExpression(node) {
-        if (!member && (!options?.member || node.property.name === options.member)) member = node;
+        if (!member && !node.computed && node.property.name === options?.member) member = node;
         if (node.object.type === "Identifier" && node.object.name === "Object") {
           receivers.push(node.object);
         }

@@ -78,7 +78,8 @@ export const cases = [
   {
     id: "host-typescript-receiver",
     suite: "host",
-    code: "declare const element: Element;\nelement.checkVisibility();\nexport {};\n",
+    // `tagName` comes first: a probe that ignores `member` would report that receiver instead.
+    code: "declare const element: Element;\nelement.tagName;\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
     member: "checkVisibility",

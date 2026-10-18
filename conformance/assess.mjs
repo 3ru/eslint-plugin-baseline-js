@@ -88,15 +88,8 @@ function readProbe(message, check) {
   return probe;
 }
 
-// Apply edits from the end of the text, so earlier offsets stay valid.
-export function applyEdits(code, edits) {
-  return [...edits]
-    .sort((left, right) => right.range[0] - left.range[0])
-    .reduce(
-      (text, { range: [start, end], text: replacement }) =>
-        `${text.slice(0, start)}${replacement}${text.slice(end)}`,
-      code,
-    );
+export function applyEdit(code, { range: [start, end], text }) {
+  return `${code.slice(0, start)}${text}${code.slice(end)}`;
 }
 
 // Why a --fix or --fix-suggestions run did not produce the expected file, or undefined.

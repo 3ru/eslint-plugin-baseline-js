@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
-  applyEdits,
+  applyEdit,
   assess,
   fixRunProblem,
   parseDiagnostics,
@@ -325,12 +325,8 @@ test("applied fixes still require clean process and diagnostic output", () => {
   assert.equal(fixRunProblem("eslint", clean, "1", "2"), "file differs from the expected edit");
 });
 
-test("edits apply from the end, and suggestion payloads compare description and edit", () => {
-  const edits = [
-    { range: [0, 1], text: "X" },
-    { range: [4, 6], text: "YZ" },
-  ];
-  assert.equal(applyEdits("abcdef", edits), "XbcdYZ");
+test("an edit replaces its range, and suggestion payloads compare description and edit", () => {
+  assert.equal(applyEdit("abcdef", { range: [1, 3], text: "XYZ" }), "aXYZdef");
   const fixes = {
     id: "fixes",
     suite: "host",
@@ -338,14 +334,14 @@ test("edits apply from the end, and suggestion payloads compare description and 
     code: "const answer = 1;\n",
     expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [15, 16], text: "3" } }],
   };
-  const payload = (desc) => ({
+  const payload = (desc, fix = { range: [15, 16], text: "3" }) => ({
     exitCode: 0,
     stdout: JSON.stringify([
       {
         messages: [
           {
             ...sentinel({ check: "fixes", supported: true, observed: {} }),
-            suggestions: [{ desc, fix: { range: [15, 16], text: "3" } }],
+            suggestions: [{ desc, fix }],
           },
         ],
       },
@@ -359,6 +355,8 @@ test("edits apply from the end, and suggestion payloads compare description and 
     suggestionPayloadProblem("bun", payload("Replace one"), fixes),
     /^suggestion payload was/u,
   );
+  const shifted = payload("Replace one with three", { range: [14, 16], text: "3" });
+  assert.match(suggestionPayloadProblem("bun", shifted, fixes), /^suggestion payload was/u);
   assert.match(
     suggestionPayloadProblem("bun", { exitCode: 0, stdout: "[]" }, fixes),
     /^Expected exactly one/u,

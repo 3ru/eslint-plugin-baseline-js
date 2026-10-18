@@ -44,3 +44,12 @@ const result = spawnSync(
 );
 if (result.error) throw result.error;
 if (result.status !== 0) process.exit(result.status ?? 1);
+// A pnpm that ignores the manifest's packageManager may resolve the aged `canary` tag to a stable
+// release, which has no `bun lint`; a later check would then fail every Bun row.
+const bun = JSON.parse(readFileSync(join(target, "node_modules", "bun", "package.json"), "utf8"));
+if (!bun.version.includes("-canary.")) {
+  console.error(
+    `bun resolved to ${bun.version}, not a canary; install with ${pinned.packageManager}`,
+  );
+  process.exit(1);
+}
