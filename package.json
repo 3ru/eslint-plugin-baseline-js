@@ -17,8 +17,12 @@
   ],
   "scripts": {
     "build": "tsdown",
+    "bench": "node scripts/bench/run.mts",
+    "bench:calibrate": "node scripts/bench/calibrate.mts",
+    "bench:compare": "node scripts/bench/compare.mts",
     "bench:profile": "node scripts/bench/profile.mts",
     "bench:snippets": "node scripts/bench/snippets.mts",
+    "bench:sweep": "node scripts/bench/sweep.mts",
     "bench:synth": "node scripts/bench/synth.mts",
     "check:descriptor-compat": "node scripts/qa/check-descriptor-compat.mjs",
     "check:generated-data": "node scripts/qa/check-generated-data-clean.mjs",
