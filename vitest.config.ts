@@ -8,6 +8,7 @@ export default defineConfig({
       "**/.claude/**",
       "**/.codex/**",
       "**/docs/website/**",
+      "**/conformance/**",
     ],
   },
 });

@@ -173,6 +173,14 @@ Runs as an [oxlint JS plugin](https://oxc.rs/docs/guide/usage/linter/js-plugins)
 > [!CAUTION]
 > **No type-aware detection under oxlint.** Checks that need TypeScript type resolution (e.g., `Set.difference()`, `Iterator.map()`) won't fire. Use ESLint with the `type-aware` preset if you need them.
 
+## Toolchain capability checks
+
+The development-only [conformance harness](conformance/README.md) compares ESLint, Oxlint, and
+Bun using independent host capability probes and Baseline detection examples. Its CI reports
+distinguish unavailable coverage from successful checks, and flag unexpected detection gaps.
+Pinned checks run on relevant pull requests; weekly checks also observe current tool releases.
+The harness is isolated from the published plugin and does not measure performance.
+
 ## Baseline for HTML, CSS, and React
 
 Baseline works best when HTML, CSS, JS, and React all align. For markup, styles, and React, enable the "use-baseline" rules from these ESLint plugins:
