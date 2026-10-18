@@ -19,14 +19,16 @@ export function parseDiagnostics(tool, stdout, source) {
   if (tool === "oxlint") {
     if (!Array.isArray(output?.diagnostics)) throw new Error("Missing Oxlint diagnostics array");
     return output.diagnostics.map((diagnostic) => {
+      if (typeof diagnostic.message !== "string") throw new Error("Malformed Oxlint diagnostic");
       const span = diagnostic.labels?.[0]?.span;
+      // Oxlint's own reports, such as a JS plugin that threw, carry neither a code nor a span.
+      if (!diagnostic.code && !span) return { ...diagnostic, ruleId: undefined };
       if (
         !span ||
         !Number.isInteger(span.offset) ||
         !Number.isInteger(span.length) ||
         span.offset < 0 ||
-        span.length < 0 ||
-        typeof diagnostic.message !== "string"
+        span.length < 0
       ) {
         throw new Error("Missing Oxlint diagnostic span");
       }
@@ -48,6 +50,20 @@ export function parseDiagnostics(tool, stdout, source) {
     throw new Error("Malformed diagnostic message");
   }
   return output[0].messages;
+}
+
+// The host's own words, from stderr. ESLint prints a banner before its "Error:" line.
+function hostMessage(run) {
+  const lines = (run.stderr ?? "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  return lines.find((line) => /^error\b/iu.test(line)) ?? lines[0];
+}
+
+function processFailure(run) {
+  const outcome = run.error ?? `Process exited ${run.exitCode} (${run.signal ?? "no signal"})`;
+  return [outcome, hostMessage(run)].filter(Boolean).join(": ");
 }
 
 function readProbe(message, check) {
@@ -83,36 +99,38 @@ export function applyEdits(code, edits) {
     );
 }
 
-export function fixRunMatches(tool, run, actualCode, expectedCode) {
-  if (run.error || run.signal || run.exitCode !== 0 || actualCode !== expectedCode) return false;
+// Why a --fix or --fix-suggestions run did not produce the expected file, or undefined.
+export function fixRunProblem(tool, run, actualCode, expectedCode) {
+  if (run.error || run.signal || run.exitCode !== 0) return processFailure(run);
+  if (actualCode !== expectedCode) return "file differs from the expected edit";
   try {
     const messages = parseDiagnostics(tool, run.stdout, actualCode);
     // Oxlint removes fixed diagnostics; ESLint and Bun re-lint the changed file.
-    return (
-      messages.length <= 1 &&
-      messages.every((message) => {
-        const probe = readProbe(message, "fixes");
-        return !probe.observed.error && [1, "warning"].includes(message.severity);
-      })
-    );
-  } catch {
-    return false;
+    if (messages.length > 1) return `${messages.length} diagnostics after the edit`;
+    for (const message of messages) {
+      const probe = readProbe(message, "fixes");
+      if (probe.observed.error) return probe.observed.error;
+      if (![1, "warning"].includes(message.severity)) return "re-linted probe is not a warning";
+    }
+    return undefined;
+  } catch (error) {
+    return error.message;
   }
 }
 
 // ESLint-style JSON carries each suggestion's description and edit on the diagnostic.
-export function suggestionPayloadMatches(tool, run, testCase) {
+export function suggestionPayloadProblem(tool, run, testCase) {
   let messages;
   try {
     messages = parseDiagnostics(tool, run.stdout, testCase.code);
-  } catch {
-    return false;
+  } catch (error) {
+    return error.message;
   }
   const sentinel = messages.find((message) => message.ruleId === probeRuleId);
-  return isDeepStrictEqual(
-    sentinel?.suggestions?.map(({ desc, fix }) => ({ desc, fix })),
-    testCase.expectedSuggestions,
-  );
+  if (!sentinel) return "probe sentinel missing";
+  const payload = sentinel.suggestions?.map(({ desc, fix }) => ({ desc, fix }));
+  if (isDeepStrictEqual(payload, testCase.expectedSuggestions)) return undefined;
+  return `suggestion payload was ${JSON.stringify(payload)}`;
 }
 
 function productDiagnostic(message) {
@@ -133,6 +151,9 @@ function subtract(left, right) {
   });
 }
 
+const listFindings = (label, entries) =>
+  entries.map(({ featureId, line, column }) => `${label} ${featureId} at ${line}:${column}`);
+
 export function assess(testCase, tool, run, fixes = {}) {
   const result = {
     caseId: testCase.id,
@@ -143,20 +164,18 @@ export function assess(testCase, tool, run, fixes = {}) {
     expectationMatched: false,
   };
   if (run.error || run.signal || ![0, 1].includes(run.exitCode)) {
-    return {
-      ...result,
-      reason: run.error ?? `Process exited ${run.exitCode} (${run.signal ?? "no signal"})`,
-    };
+    return { ...result, reason: processFailure(run) };
   }
   let messages;
   try {
     messages = parseDiagnostics(tool, run.stdout, testCase.code);
   } catch (error) {
-    return { ...result, reason: error.message };
+    return { ...result, reason: [error.message, hostMessage(run)].filter(Boolean).join(": ") };
   }
-  // A file the host could not parse has no rule id on its diagnostic; keep the parser's message.
-  const fatal = messages.find((message) => message.fatal || message.ruleId == null);
-  if (fatal) return { ...result, reason: fatal.message };
+  // A diagnostic with no rule id (a parse error, a JS plugin that threw, a directive problem)
+  // belongs to no rule; keep the host's message.
+  const unattributed = messages.find((message) => message.fatal || message.ruleId == null);
+  if (unattributed) return { ...result, reason: unattributed.message };
   const sentinels = messages.filter(
     (message) => message.ruleId === probeRuleId && message.message.startsWith(sentinelPrefix),
   );
@@ -188,9 +207,10 @@ export function assess(testCase, tool, run, fixes = {}) {
     (!probe.observed.hasProgram || !probe.observed.hasNodeMap);
   const capabilityMatches = expectedUnavailable ? documentedTypeGap : probe.supported;
   const capabilityReason = () => {
-    if (!expectedUnavailable) return probe.observed.reason;
-    if (probe.supported) return "Host now provides type services; review the expectation";
-    return probe.observed.reason;
+    if (expectedUnavailable && probe.supported) {
+      return "Host now provides type services; review the expectation";
+    }
+    return probe.observed.reason ?? "capability unavailable without a reason";
   };
 
   const unexpectedRules = messages.filter(
@@ -201,12 +221,12 @@ export function assess(testCase, tool, run, fixes = {}) {
     .map(productDiagnostic);
   result.diagnostics = product;
   const expectedExit = product.length > 0 ? 1 : 0;
-  if (unexpectedRules.length || run.exitCode !== expectedExit) {
-    return {
-      ...result,
-      reason: "Unexpected rule, parse diagnostic, or exit code",
-      unexpectedRules,
-    };
+  if (unexpectedRules.length) {
+    const ruleIds = unexpectedRules.map((message) => message.ruleId).join(", ");
+    return { ...result, reason: `Unexpected rule ${ruleIds}`, unexpectedRules };
+  }
+  if (run.exitCode !== expectedExit) {
+    return { ...result, reason: `Exit code ${run.exitCode}, expected ${expectedExit}` };
   }
 
   if (testCase.suite === "host") {
@@ -229,7 +249,16 @@ export function assess(testCase, tool, run, fixes = {}) {
       fix: !testCase.expectedFix || fixes.fixMatched === true,
       suggestions: !testCase.expectedSuggestions || fixes.suggestionsMatched === true,
     };
-    const failed = Object.keys(checks).filter((name) => !checks[name]);
+    const causes = {
+      fix: fixes.fixProblem,
+      suggestions: fixes.suggestions
+        ?.filter((entry) => entry.problem)
+        .map((entry) => `${entry.method}: ${entry.problem}`)
+        .join(", "),
+    };
+    const failed = Object.keys(checks)
+      .filter((name) => !checks[name])
+      .map((name) => (causes[name] ? `${name} (${causes[name]})` : name));
     result.correctness = failed.length ? "mismatch" : "matched";
     result.status = probe.supported ? result.correctness : "unsupported";
     result.expectationMatched = capabilityMatches && failed.length === 0;
@@ -237,7 +266,7 @@ export function assess(testCase, tool, run, fixes = {}) {
     if (!capabilityMatches) problems.push(capabilityReason());
     if (failed.length) problems.push(`Mismatch in ${failed.join(", ")}`);
     if (problems.length) result.reason = problems.join("; ");
-    result.fixes = testCase.expectedFix ? fixes : undefined;
+    if (testCase.expectedFix || testCase.expectedSuggestions) result.fixes = fixes;
     return result;
   }
 
@@ -247,7 +276,12 @@ export function assess(testCase, tool, run, fixes = {}) {
   result.unexpected = unexpected;
   // A known host limitation cannot excuse false positives or the wrong diagnostic.
   if (unexpected.length) {
-    return { ...result, correctness: "unexpected", status: "incorrect" };
+    return {
+      ...result,
+      correctness: "unexpected",
+      status: "incorrect",
+      reason: listFindings("Unexpected", unexpected).join("; "),
+    };
   }
   if (documentedTypeGap) {
     return {
@@ -263,15 +297,22 @@ export function assess(testCase, tool, run, fixes = {}) {
   result.correctness = missing.length ? "missing" : "matched";
   result.status = probe.supported ? detection : "unsupported";
   result.expectationMatched = capabilityMatches && !missing.length;
-  if (!capabilityMatches) result.reason = capabilityReason();
+  const problems = [];
+  if (!capabilityMatches) problems.push(capabilityReason());
+  problems.push(...listFindings("Missing", missing));
+  if (problems.length) result.reason = problems.join("; ");
   return result;
 }
 
 export function renderReport(report) {
+  const pullRequest = report.source?.pullRequest;
+  const commits = pullRequest
+    ? ` (pull request head ${pullRequest.head}, base ${pullRequest.base})`
+    : "";
   const lines = [
     "# Toolchain capability report",
     "",
-    `Profile: ${report.profile}. Source: ${report.source?.commit ?? "unavailable"}.`,
+    `Profile: ${report.profile}. Source: ${report.source?.commit ?? "unavailable"}${commits}.`,
     "",
     "This compares external JavaScript plugin capabilities and a small Baseline corpus. It is not a speed benchmark or browser compatibility certification.",
     "",

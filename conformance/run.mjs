@@ -8,9 +8,9 @@ import { parseArgs } from "node:util";
 import {
   applyEdits,
   assess,
-  fixRunMatches,
+  fixRunProblem,
   renderReport,
-  suggestionPayloadMatches,
+  suggestionPayloadProblem,
 } from "./assess.mjs";
 import { cases, requiresTypes } from "./cases.mjs";
 import { hostNames, hosts } from "./hosts.mjs";
@@ -275,26 +275,23 @@ try {
         const fixed = lint(tool, paths, testCase, directory, "fix");
         extraRuns.push(fixed);
         const expected = applyEdits(testCase.code, [testCase.expectedFix]);
-        fixes.fixMatched = fixRunMatches(tool, fixed, read(input), expected);
+        fixes.fixProblem = fixRunProblem(tool, fixed, read(input), expected);
+        fixes.fixMatched = fixes.fixProblem === undefined;
         writeFileSync(input, testCase.code);
       }
       if (testCase.expectedSuggestions && completed(run)) {
         const methods = [];
         if (host.suggestionPayload) {
-          methods.push({
-            method: "diagnostic suggestion payload",
-            matched: suggestionPayloadMatches(tool, run, testCase),
-          });
+          const problem = suggestionPayloadProblem(tool, run, testCase);
+          methods.push({ method: "diagnostic suggestion payload", problem, matched: !problem });
         }
         if (host.appliesSuggestions) {
           const suggested = lint(tool, paths, testCase, directory, "suggest");
           extraRuns.push(suggested);
           const edits = testCase.expectedSuggestions.map((suggestion) => suggestion.fix);
           const expected = applyEdits(testCase.code, edits);
-          methods.push({
-            method: "--fix-suggestions application",
-            matched: fixRunMatches(tool, suggested, read(input), expected),
-          });
+          const problem = fixRunProblem(tool, suggested, read(input), expected);
+          methods.push({ method: "--fix-suggestions application", problem, matched: !problem });
           writeFileSync(input, testCase.code);
         }
         fixes.suggestions = methods;

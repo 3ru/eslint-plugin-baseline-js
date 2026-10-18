@@ -3,9 +3,9 @@ import { test } from "node:test";
 import {
   applyEdits,
   assess,
-  fixRunMatches,
+  fixRunProblem,
   parseDiagnostics,
-  suggestionPayloadMatches,
+  suggestionPayloadProblem,
 } from "./assess.mjs";
 import { probeRuleId, productRuleId, reasons, sentinelPrefix } from "./protocol.mjs";
 
@@ -76,6 +76,7 @@ test("a known type gap cannot conceal an unexpected report", () => {
   assert.equal(result.status, "incorrect");
   assert.equal(result.expectationMatched, false);
   assert.equal(result.unexpected.length, 1);
+  assert.equal(result.reason, "Unexpected array-group at 1:9");
 });
 
 test("missing findings on a capable host are coverage loss", () => {
@@ -83,6 +84,7 @@ test("missing findings on a capable host are coverage loss", () => {
   assert.equal(result.status, "coverage-loss");
   assert.equal(result.expectationMatched, false);
   assert.deepEqual(result.missing, typed.expected);
+  assert.equal(result.reason, "Missing check-visibility at 1:9");
 });
 
 test("a host expected to have type services cannot claim the documented gap", () => {
@@ -109,7 +111,7 @@ test("non-null but unusable parser services are not an accepted missing-types ex
     }),
   );
   assert.equal(result.expectationMatched, false);
-  assert.equal(result.reason, "receiver checker API unavailable");
+  assert.equal(result.reason, "receiver checker API unavailable; Missing check-visibility at 1:9");
 });
 
 test("malformed output and process failures remain failures", () => {
@@ -266,6 +268,7 @@ test("extra probe diagnostics cannot hide beside a valid sentinel", () => {
   );
   assert.equal(result.expectationMatched, false);
   assert.equal(result.status, "execution-error");
+  assert.equal(result.reason, "Unexpected rule toolchain-probe/inspect");
 });
 
 test("missing capability booleans are malformed evidence rather than a known gap", () => {
@@ -294,20 +297,32 @@ test("a location sentinel reported at the wrong column is a mismatch", () => {
 
 test("applied fixes still require clean process and diagnostic output", () => {
   const clean = { exitCode: 0, stdout: JSON.stringify([{ messages: [] }]) };
-  assert.equal(fixRunMatches("eslint", clean, "2", "2"), true);
-  for (const bad of [
-    { ...clean, exitCode: 1 },
-    { ...clean, signal: "SIGTERM" },
-    { ...clean, stdout: "invalid json" },
-    {
-      ...clean,
-      stdout: JSON.stringify([
-        { messages: [{ ruleId: "other/rule", message: "Error", severity: 2, line: 1, column: 1 }] },
-      ]),
-    },
-  ])
-    assert.equal(fixRunMatches("eslint", bad, "2", "2"), false);
-  assert.equal(fixRunMatches("eslint", clean, "1", "2"), false);
+  assert.equal(fixRunProblem("eslint", clean, "2", "2"), undefined);
+  const problems = [
+    [{ ...clean, exitCode: 1 }, "Process exited 1 (no signal)"],
+    [
+      { ...clean, signal: "SIGTERM", stderr: "error: killed" },
+      "Process exited 0 (SIGTERM): error: killed",
+    ],
+    [{ ...clean, stdout: "invalid json" }, /^Unexpected token/u],
+    [
+      {
+        ...clean,
+        stdout: JSON.stringify([
+          {
+            messages: [{ ruleId: "other/rule", message: "Error", severity: 2, line: 1, column: 1 }],
+          },
+        ]),
+      },
+      "Unexpected probe diagnostic",
+    ],
+  ];
+  for (const [bad, expected] of problems) {
+    const problem = fixRunProblem("eslint", bad, "2", "2");
+    if (expected instanceof RegExp) assert.match(problem, expected);
+    else assert.equal(problem, expected);
+  }
+  assert.equal(fixRunProblem("eslint", clean, "1", "2"), "file differs from the expected edit");
 });
 
 test("edits apply from the end, and suggestion payloads compare description and edit", () => {
@@ -336,9 +351,18 @@ test("edits apply from the end, and suggestion payloads compare description and 
       },
     ]),
   });
-  assert.equal(suggestionPayloadMatches("bun", payload("Replace one with three"), fixes), true);
-  assert.equal(suggestionPayloadMatches("bun", payload("Replace one"), fixes), false);
-  assert.equal(suggestionPayloadMatches("bun", { exitCode: 0, stdout: "[]" }, fixes), false);
+  assert.equal(
+    suggestionPayloadProblem("bun", payload("Replace one with three"), fixes),
+    undefined,
+  );
+  assert.match(
+    suggestionPayloadProblem("bun", payload("Replace one"), fixes),
+    /^suggestion payload was/u,
+  );
+  assert.match(
+    suggestionPayloadProblem("bun", { exitCode: 0, stdout: "[]" }, fixes),
+    /^Expected exactly one/u,
+  );
 });
 
 test("a host probe cannot pass when fix or suggestion behavior is lost", () => {

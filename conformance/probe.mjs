@@ -128,12 +128,15 @@ const inspect = {
         case "execution":
           return { supported: true, observed: { visited: true } };
         case "selectors":
+          if (selectorCount === 0) {
+            return unavailable("attribute selector matched no node", { memberCalls: 0 });
+          }
           return {
-            supported: selectorCount > 0,
+            supported: true,
             observed: {
               memberCalls: selectorCount,
-              property: selectorMember?.property.name,
-              computed: selectorMember?.computed,
+              property: selectorMember.property.name,
+              computed: selectorMember.computed,
             },
           };
         case "scope":
@@ -189,10 +192,10 @@ const inspect = {
               ancestors: sourceCode.getAncestors(target).map((node) => node.type),
               parentType: target.parent?.type ?? null,
             };
-            return {
-              supported: observed.ancestors.length > 0 && observed.parentType !== null,
-              observed,
-            };
+            if (observed.ancestors.length === 0 || observed.parentType === null) {
+              return unavailable("getAncestors returned no ancestry", observed);
+            }
+            return { supported: true, observed };
           } catch (error) {
             return capabilityError(error);
           }
