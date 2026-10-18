@@ -1,0 +1,72 @@
+name: Perf sweep
+
+# Weekly scale sweep of baseline-js/use-baseline on the synthetic corpus: does the cost per
+# file and the peak memory stay flat from 1,000 to 16,000 files? Same security posture as
+# perf.yml: no secrets, read-only token, SHA-pinned actions, no caches, no network while
+# benchmarking.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      scales:
+        description: "Untyped scales"
+        type: string
+        default: "1,4,16"
+      typed_scales:
+        description: "Type-aware scales (empty skips)"
+        type: string
+        default: "1,4"
+
+permissions: {}
+
+concurrency:
+  group: perf-sweep
+  cancel-in-progress: false
+
+jobs:
+  sweep:
+    name: scale sweep
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.34.5 --activate
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.22.2
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Scale sweep
+        env:
+          SCALES: ${{ inputs.scales || '1,4,16' }}
+          TYPED_SCALES: ${{ inputs.typed_scales || '1,4' }}
+        run: |
+          node scripts/bench/sweep.mjs \
+            --scales "$SCALES" \
+            --typed-scales "$TYPED_SCALES" \
+            --out bench-sweep.json \
+            --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bench-sweep
+          path: bench-sweep.json
+          retention-days: 90
+          if-no-files-found: ignore

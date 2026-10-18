@@ -1,0 +1,102 @@
+name: Perf
+
+# Before/after benchmark of baseline-js/use-baseline on a synthetic corpus generated from
+# bench/profile.json and bench/synth-snippets.json. No network is used while benchmarking.
+# Security notes (docs/BENCHMARKS.md): no secrets, read-only token, no pull_request_target,
+# no caches, actions pinned to full commit SHAs, checkout credentials not persisted, event
+# data passed through the environment, results in the job summary and an artifact only.
+
+on:
+  pull_request:
+    branches: ["**"]
+    paths:
+      - "src/**"
+      - "scripts/bench/**"
+      - "bench/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "tsdown.config.ts"
+      - ".github/workflows/perf.yml"
+  workflow_dispatch:
+    inputs:
+      scale:
+        description: "Corpus scale (n × 1,000 files)"
+        type: string
+        default: "3"
+      iterations:
+        description: "Untyped iterations"
+        type: string
+        default: "3"
+      typed_iterations:
+        description: "Type-aware iterations (0 skips)"
+        type: string
+        default: "2"
+      base:
+        description: "Base ref (default: previous commit on this branch)"
+        type: string
+        default: ""
+
+permissions: {}
+
+concurrency:
+  group: perf-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    name: before/after
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.34.5 --activate
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.22.2
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Generate the synthetic corpus
+        env:
+          SCALE: ${{ inputs.scale || '3' }}
+        run: node scripts/bench/synth.mjs --scale "$SCALE"
+
+      - name: Benchmark base vs head
+        env:
+          # Event data reaches the shell through the environment, never by interpolation.
+          BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.base || '' }}
+          SCALE: ${{ inputs.scale || '3' }}
+          ITERATIONS: ${{ inputs.iterations || '3' }}
+          TYPED_ITERATIONS: ${{ inputs.typed_iterations || '2' }}
+        run: |
+          base="${BASE_SHA:-$(git rev-parse HEAD~1)}"
+          node scripts/bench/compare.mjs \
+            --base "$base" \
+            --head . \
+            --scale "$SCALE" \
+            --iterations "$ITERATIONS" \
+            --typed-iterations "$TYPED_ITERATIONS" \
+            --out bench-results.json \
+            --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bench-results
+          path: bench-results.json
+          retention-days: 30
+          if-no-files-found: ignore
