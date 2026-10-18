@@ -16,7 +16,7 @@
 | `pnpm bench:calibrate` | Lint real repositories from the git-ignored local manifest next to the synthetic corpus and compare cost per file and per node (local only). |
 | `pnpm bench:changed --base origin/main` | Say whether a change set would trigger the CI benchmark, and why. |
 
-`--scale n` means about n × 1,000 files: 50% JavaScript, 33% TypeScript, 17% TSX. The pull-request job uses scale 3 (about 3,000 files), three untyped iterations and two type-aware iterations over the TypeScript files.
+`--scale n` means about n × 1,000 files: 50% JavaScript, 33% TypeScript, 17% TSX. The pull-request job uses scale 2 (about 2,000 files), three untyped iterations and two type-aware iterations over the TypeScript files: the first run at scale 3 took 9 min 9 s on `ubuntu-latest` against a 10-minute budget, so the CI default stepped down one notch while local runs keep the scale 3 default.
 
 ## How the corpus is made
 

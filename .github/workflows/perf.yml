@@ -19,7 +19,7 @@ on:
       scale:
         description: "Corpus scale (n × 1,000 files)"
         type: string
-        default: "3"
+        default: "2"
       iterations:
         description: "Untyped iterations"
         type: string
@@ -107,14 +107,14 @@ jobs:
 
       - name: Generate the synthetic corpus
         env:
-          SCALE: ${{ inputs.scale || '3' }}
+          SCALE: ${{ inputs.scale || '2' }}
         run: node scripts/bench/synth.mjs --scale "$SCALE"
 
       - name: Benchmark base vs head
         env:
           # Event data reaches the shell through the environment, never by interpolation.
           BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.base || '' }}
-          SCALE: ${{ inputs.scale || '3' }}
+          SCALE: ${{ inputs.scale || '2' }}
           ITERATIONS: ${{ inputs.iterations || '3' }}
           TYPED_ITERATIONS: ${{ inputs.typed_iterations || '2' }}
         run: |
