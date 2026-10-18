@@ -210,7 +210,16 @@ export function deltaPct(base, head) {
 export function fmtDelta(base, head) {
   const pct = deltaPct(base, head);
   if (!Number.isFinite(pct)) return "n/a";
-  return `${pct > 0 ? "+" : ""}${pct.toFixed(1)}%`;
+  const magnitude = Math.abs(pct).toFixed(1);
+  return `${pct > 0 ? "+" : pct < 0 ? "−" : "±"}${magnitude}%`;
+}
+
+export function fmtInt(n) {
+  return Number.isFinite(n) ? n.toLocaleString("en-US") : "n/a";
+}
+
+export function fmtP(p) {
+  return p < 0.001 ? "p < 0.001" : `p = ${p.toFixed(2)}`;
 }
 
 export function git(args, opts = {}) {

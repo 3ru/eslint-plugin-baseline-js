@@ -114,6 +114,7 @@ jobs:
         env:
           # Event data reaches the shell through the environment, never by interpolation.
           BASE_SHA: ${{ github.event.pull_request.base.sha || inputs.base || '' }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           SCALE: ${{ inputs.scale || '2' }}
           ITERATIONS: ${{ inputs.iterations || '3' }}
           TYPED_ITERATIONS: ${{ inputs.typed_iterations || '2' }}
@@ -122,33 +123,33 @@ jobs:
           node scripts/bench/compare.mjs \
             --base "$base" \
             --head . \
+            --base-label "${base:0:7}" \
+            --head-label "${HEAD_SHA:0:7}" \
             --scale "$SCALE" \
             --iterations "$ITERATIONS" \
             --typed-iterations "$TYPED_ITERATIONS" \
             --out bench-results.json \
-            --summary bench-comment.md
+            --summary bench-summary.md \
+            --comment bench-comment.md
 
       - name: Publish the report
         id: report
         if: always()
         env:
-          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           REASON: ${{ needs.changes.outputs.reason }}
         run: |
+          if [ ! -s bench-comment.md ]; then
+            printf '> [!CAUTION]\n> The benchmark did not produce a report; see the [workflow run](%s).\n' "$RUN_URL" > bench-comment.md
+          fi
           {
-            echo "**use-baseline benchmark** for \`${HEAD_SHA:0:12}\` · [workflow run]($RUN_URL) · triggered because $REASON"
+            echo "Triggered because $REASON."
             echo
-            if [ -s bench-comment.md ]; then
-              cat bench-comment.md
-            else
-              echo "The benchmark did not produce a report; see the workflow run for the error."
-            fi
-          } > bench-comment.full.md
-          cat bench-comment.full.md >> "$GITHUB_STEP_SUMMARY"
+            if [ -s bench-summary.md ]; then cat bench-summary.md; else cat bench-comment.md; fi
+          } >> "$GITHUB_STEP_SUMMARY"
           {
             echo "markdown<<__BENCH_EOF__"
-            cat bench-comment.full.md
+            cat bench-comment.md
             echo "__BENCH_EOF__"
           } >> "$GITHUB_OUTPUT"
 
@@ -159,7 +160,8 @@ jobs:
           name: bench-results
           path: |
             bench-results.json
-            bench-comment.full.md
+            bench-summary.md
+            bench-comment.md
           retention-days: 30
           if-no-files-found: ignore
 

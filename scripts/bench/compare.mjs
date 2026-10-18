@@ -16,7 +16,8 @@
 import { appendFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
-import { fmtDelta, fmtMb, fmtMs, fmtMsFine, git, parseArgs, ROOT } from "./lib.mjs";
+import { git, parseArgs, ROOT } from "./lib.mjs";
+import { evaluate, renderComment, renderSummary } from "./report.mjs";
 import {
   buildRef,
   environmentInfo,
@@ -43,7 +44,10 @@ const USAGE = `usage: node scripts/bench/compare.mjs [options]
   --size-mult, --detections-mult, --collisions-mult, --shadow-mult, --lang-mix
                             generator overrides, see scripts/bench/synth.mjs
   --out <file>              write the JSON report here
-  --summary <file>          append the Markdown report here (e.g. $GITHUB_STEP_SUMMARY)`;
+  --summary <file>          append the full Markdown report here (e.g. $GITHUB_STEP_SUMMARY)
+  --comment <file>          write the compact Markdown report for a pull-request comment here
+  --base-label, --head-label
+                            names shown instead of the refs (CI passes the commit SHAs)`;
 
 function defaultBase() {
   try {
@@ -74,10 +78,21 @@ const args = parseArgs(
     langMix: "",
     out: "",
     summary: "",
+    comment: "",
+    baseLabel: "",
+    headLabel: "",
   },
   { usage: USAGE },
 );
 const baseRef = args.base || defaultBase();
+
+function refLabel(ref, build) {
+  if (/^[0-9a-f]{7,40}$/i.test(ref)) return ref.slice(0, 7);
+  if (ref === ".") {
+    return `working tree ${build.sha.slice(0, 7)}${build.sha.endsWith("+dirty") ? "*" : ""}`;
+  }
+  return `${ref} @ ${build.sha.slice(0, 7)}`;
+}
 
 const corpus = prepareSynthetic({
   scale: args.scale,
@@ -182,61 +197,20 @@ try {
 
   // ---- report ---------------------------------------------------------------------------
   const env = environmentInfo();
+  const evaluation = evaluate(passes, results, oracle, { threshold: args.threshold });
+  const ctx = {
+    baseLabel: args.baseLabel || refLabel(baseRef, builds.base),
+    headLabel: args.headLabel || refLabel(args.head, builds.head),
+    corpus,
+    args,
+    env,
+    evaluation,
+  };
+  const summary = renderSummary(ctx);
+  console.log(summary);
+  if (args.summary) appendFileSync(resolve(args.summary), `\n${summary}`);
+  if (args.comment) writeFileSync(resolve(args.comment), renderComment(ctx));
   const t = corpus.manifest.totals;
-  const lines = [];
-  let flagged = 0;
-  let mismatched = 0;
-  lines.push(`### use-baseline benchmark: ${builds.base.label} → ${builds.head.label}`);
-  lines.push("");
-  lines.push(
-    `Synthetic corpus \`${corpus.id}\` at scale ${args.scale} (${t.files} files: ${Object.entries(
-      t.byLang,
-    )
-      .map(([l, n]) => `${l} ${n}`)
-      .join(
-        ", ",
-      )}; ${t.nodes.toLocaleString("en-US")} AST nodes), ${args.shards} shards. Timing under \`available: "widely"\`; medians over iterations. Node ${env.node}, ESLint ${env.eslint}, TypeScript ${env.typescript}, ${env.platform}, ${env.cpu}.`,
-  );
-  lines.push("");
-  lines.push(
-    "| pass | files | use-baseline time | Δ | lint total | Δ | ms/file | ms per 1k nodes | max RSS | Δ | reports expected → base → head | noise | pairs |",
-  );
-  lines.push("|---|---:|---|---:|---|---:|---|---|---|---:|---|---:|---|");
-  for (const pass of passes) {
-    const r = results[pass.name];
-    const o = oracle[pass.name];
-    const regression = r.pairedRatio > 1 + args.threshold / 100 && r.p < 0.05;
-    if (regression) flagged++;
-    let reportsCell = "n/a";
-    if (o) {
-      const headOk = o.head.reports === o.expected && o.head.fatals === 0;
-      const baseOk = o.base.reports === o.expected;
-      if (!headOk) mismatched++;
-      reportsCell = `${o.expected} → ${o.base.reports}${baseOk ? "" : " ⚠️"} → ${o.head.reports}${headOk ? " ✅" : " ❌"}`;
-    }
-    lines.push(
-      `| ${pass.name}${pass.typed ? " (ts+tsx, type-aware)" : ""} | ${r.files} | ${fmtMs(r.base.rule_ms)} → ${fmtMs(r.head.rule_ms)} | ${fmtDelta(r.base.rule_ms, r.head.rule_ms)}${regression ? " ⚠️" : ""} | ${fmtMs(r.base.lint_ms)} → ${fmtMs(r.head.lint_ms)} | ${fmtDelta(r.base.lint_ms, r.head.lint_ms)} | ${fmtMsFine(r.perFile.base)} → ${fmtMsFine(r.perFile.head)} | ${r.perKNodes ? `${fmtMsFine(r.perKNodes.base)} → ${fmtMsFine(r.perKNodes.head)}` : "n/a"} | ${fmtMb(r.base.max_rss_kb)} → ${fmtMb(r.head.max_rss_kb)} | ${fmtDelta(r.base.max_rss_kb, r.head.max_rss_kb)} | ${reportsCell} | ±${(r.noise * 100).toFixed(0)}% | ${r.losses}/${r.pairs} slower, p=${r.p.toFixed(3)} |`,
-    );
-  }
-  lines.push("");
-  lines.push(
-    `"use-baseline time" is the rule's own time from ESLint's \`stats\` (parsing and other rules excluded); "lint total" is wall-clock around \`lintFiles()\`. Δ compares medians; "pairs" counts the (shard, iteration) pairs in which head was slower with a two-sided sign-test p-value, and ⚠️ marks a median slowdown above ${args.threshold}% with p < 0.05. "noise" is the typical run-to-run spread of one shard. Reports are counted under a policy that reports every detection and must equal the number the generator injected; ❌ fails the run.`,
-  );
-  for (const pass of passes) {
-    const o = oracle[pass.name];
-    if (!o) continue;
-    for (const side of ["base", "head"]) {
-      if (o[side].mismatches.length) {
-        lines.push("");
-        lines.push(
-          `${side} ${pass.name} mismatches (first ${o[side].mismatches.length}): ${o[side].mismatches.map((m) => `\`${m.file}\` expected ${m.expected}, got ${m.actual}`).join("; ")}`,
-        );
-      }
-    }
-  }
-  const markdown = `${lines.join("\n")}\n`;
-  console.log(markdown);
-  if (args.summary) appendFileSync(resolve(args.summary), `\n${markdown}`);
   if (args.out) {
     const out = resolve(ROOT, args.out);
     mkdirSync(dirname(out), { recursive: true });
@@ -268,14 +242,14 @@ try {
     );
     console.error(`[bench] report written to ${args.out}`);
   }
-  if (mismatched) {
+  if (evaluation.mismatched) {
     console.error(
-      `[bench] ${mismatched} pass${mismatched === 1 ? "" : "es"} reported a different number of detections than expected`,
+      `[bench] ${evaluation.mismatched} pass${evaluation.mismatched === 1 ? "" : "es"} reported a different number of detections than expected`,
     );
     process.exitCode = 1;
-  } else if (flagged && args.failOnRegression) {
+  } else if (evaluation.regressions && args.failOnRegression) {
     console.error(
-      `[bench] ${flagged} pass${flagged === 1 ? "" : "es"} regressed beyond the threshold`,
+      `[bench] ${evaluation.regressions} pass${evaluation.regressions === 1 ? "" : "es"} regressed beyond the threshold`,
     );
     process.exitCode = 1;
   }
