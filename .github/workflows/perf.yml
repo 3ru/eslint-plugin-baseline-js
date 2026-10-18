@@ -1,0 +1,195 @@
+name: Perf
+
+# Base vs head benchmark of use-baseline on the synthetic corpus.
+
+on:
+  pull_request:
+    branches: ["**"]
+  workflow_dispatch:
+    inputs:
+      scale:
+        description: "Corpus scale (n × 1,000 files)"
+        type: string
+        default: "2"
+      iterations:
+        description: "Untyped iterations"
+        type: string
+        default: "3"
+      typed_iterations:
+        description: "Type-aware iterations (0 skips)"
+        type: string
+        default: "2"
+      base:
+        description: "Base ref (default: previous commit on this branch)"
+        type: string
+        default: ""
+
+permissions: {}
+cache-mode: none
+
+concurrency:
+  group: perf-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    name: needs benchmark?
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      run: ${{ steps.decide.outputs.run }}
+      reason: ${{ steps.decide.outputs.reason }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # The merge commit and its first parent, the base of the pull request.
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.22.2
+          package-manager-cache: false
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Decide from the changed files
+        id: decide
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" != "pull_request" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "reason=manual run" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          node scripts/bench/changed.mts --base HEAD^1 --head HEAD --github-output "$GITHUB_OUTPUT"
+
+  compare:
+    name: base vs head
+    needs: changes
+    if: needs.changes.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    outputs:
+      markdown: ${{ steps.report.outputs.markdown }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.22.2
+          package-manager-cache: false
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Generate the synthetic corpus
+        env:
+          SCALE: ${{ inputs.scale || '2' }}
+        run: node scripts/bench/synth.mts --scale "$SCALE"
+
+      - name: Benchmark base vs head
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_REF: ${{ inputs.base }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          SCALE: ${{ inputs.scale || '2' }}
+          ITERATIONS: ${{ inputs.iterations || '3' }}
+          TYPED_ITERATIONS: ${{ inputs.typed_iterations || '2' }}
+        run: |
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            base="$(git rev-parse HEAD^1)"
+          else
+            base="${BASE_REF:-$(git rev-parse HEAD~1)}"
+          fi
+          node scripts/bench/compare.mts \
+            --base "$base" \
+            --head . \
+            --head-label "${HEAD_SHA:0:7}" \
+            --scale "$SCALE" \
+            --iterations "$ITERATIONS" \
+            --typed-iterations "$TYPED_ITERATIONS" \
+            --out bench-results.json \
+            --summary bench-summary.md \
+            --comment bench-comment.md
+
+      - name: Publish the report
+        id: report
+        if: always()
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          REASON: ${{ needs.changes.outputs.reason }}
+        run: |
+          if [ ! -s bench-comment.md ]; then
+            printf '> [!CAUTION]\n> The benchmark did not produce a report; see the [workflow run](%s).\n' "$RUN_URL" > bench-comment.md
+          fi
+          # GitHub caps a comment at 65,536 characters.
+          if [ "$(wc -c < bench-comment.md)" -gt 60000 ]; then
+            printf '> [!CAUTION]\n> The report is too large for a comment; see the [workflow run](%s).\n' "$RUN_URL" > bench-comment.md
+          fi
+          {
+            echo "Triggered because $REASON."
+            echo
+            if [ -s bench-summary.md ]; then cat bench-summary.md; else cat bench-comment.md; fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          # A random delimiter cannot appear in the report.
+          delimiter="BENCH_EOF_$(openssl rand -hex 16)"
+          {
+            printf 'markdown<<%s\n' "$delimiter"
+            printf '%s\n' "$(cat bench-comment.md)"
+            printf '%s\n' "$delimiter"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: bench-results
+          path: |
+            bench-results.json
+            bench-summary.md
+            bench-comment.md
+          retention-days: 30
+          if-no-files-found: ignore
+
+  comment:
+    name: pull request comment
+    needs: [changes, compare]
+    # Same-repository pull requests only; !cancelled() so a cancelled run never overwrites the last comment.
+    if: >-
+      !cancelled() &&
+      needs.changes.outputs.run == 'true' &&
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write # create or update the benchmark comment
+    steps:
+      - name: Create or update the benchmark comment
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        continue-on-error: true
+        with:
+          header: use-baseline-benchmark
+          ignore_empty: true
+          message: ${{ needs.compare.outputs.markdown }}

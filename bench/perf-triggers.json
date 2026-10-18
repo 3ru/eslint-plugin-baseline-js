@@ -1,0 +1,33 @@
+{
+  "$comment": "Decides whether a pull request runs the perf benchmark (scripts/bench/changed.mts). A changed file triggers it unless it is in ignoreFiles, under an ignoreDirectories entry or ends with an ignoreExtensions entry; alwaysRun paths always trigger it. The decision covers the whole pull request diff.",
+  "ignoreDirectories": ["docs/", "examples/", "tests/", ".github/"],
+  "ignoreExtensions": [
+    ".md",
+    ".mdx",
+    ".txt",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".svg",
+    ".webp",
+    ".ico"
+  ],
+  "ignoreFiles": [
+    "LICENSE",
+    "CHANGELOG.md",
+    "biome.json",
+    ".gitignore",
+    ".releaserc.json",
+    "vitest.config.ts"
+  ],
+  "alwaysRun": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "tsconfig.json",
+    "tsdown.config.ts",
+    ".github/workflows/perf.yml",
+    "bench/",
+    "scripts/bench/"
+  ]
+}

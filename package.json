@@ -17,6 +17,14 @@
   ],
   "scripts": {
     "build": "tsdown",
+    "bench": "node scripts/bench/run.mts",
+    "bench:calibrate": "node scripts/bench/calibrate.mts",
+    "bench:changed": "node scripts/bench/changed.mts",
+    "bench:compare": "node scripts/bench/compare.mts",
+    "bench:profile": "node scripts/bench/profile.mts",
+    "bench:snippets": "node scripts/bench/snippets.mts",
+    "bench:sweep": "node scripts/bench/sweep.mts",
+    "bench:synth": "node scripts/bench/synth.mts",
     "check:descriptor-compat": "node scripts/qa/check-descriptor-compat.mjs",
     "check:generated-data": "node scripts/qa/check-generated-data-clean.mjs",
     "check:mapping": "node scripts/qa/check-mapping.mjs --out drift-report.json",
@@ -34,7 +42,7 @@
     "pretest": "pnpm build",
     "test": "vitest run",
     "test:watch": "pnpm build && vitest",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.bench.json",
     "verify:features": "node scripts/data/verify-features.mjs"
   },
   "dependencies": {
@@ -48,13 +56,16 @@
     "@types/estree": "^1.0.9",
     "@types/node": "^26.6.3",
     "@typescript-eslint/parser": "^8.70.1",
+    "@typescript-eslint/types": "^8.70.1",
+    "@typescript-eslint/typescript-estree": "^8.70.1",
     "eslint": "^10.11.0",
     "semantic-release": "^25.0.9",
     "tsdown": "0.23.0",
     "typescript": "^6.0.3",
     "vitest": "^5.0.2",
     "vue-eslint-parser": "^10.4.1",
-    "web-features": "3.40.0"
+    "web-features": "3.40.0",
+    "zod": "^4.6.7"
   },
   "peerDependencies": {
     "eslint": ">=9.29.0 <11"
