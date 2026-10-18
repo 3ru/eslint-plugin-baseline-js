@@ -1,6 +1,7 @@
 import { isDeepStrictEqual } from "node:util";
-
-const prefix = "toolchain-probe:";
+import { requiresTypes } from "./cases.mjs";
+import { hosts } from "./hosts.mjs";
+import { probeRuleId, productRuleId, reasons, sentinelPrefix } from "./protocol.mjs";
 
 function positionAt(source, offset) {
   const lines = Buffer.from(source).subarray(0, offset).toString("utf8").split("\n");
@@ -44,10 +45,10 @@ export function parseDiagnostics(tool, stdout, source) {
 }
 
 function readProbe(message, check) {
-  if (message.ruleId !== "toolchain-probe/inspect" || !message.message.startsWith(prefix)) {
+  if (message.ruleId !== probeRuleId || !message.message.startsWith(sentinelPrefix)) {
     throw new Error("Unexpected probe diagnostic");
   }
-  const probe = JSON.parse(message.message.slice(prefix.length));
+  const probe = JSON.parse(message.message.slice(sentinelPrefix.length));
   if (
     probe?.check !== check ||
     typeof probe.supported !== "boolean" ||
@@ -121,7 +122,7 @@ export function assess(testCase, tool, run, fixes = {}) {
     return { ...result, reason: error.message };
   }
   const sentinels = messages.filter(
-    (message) => message.ruleId === "toolchain-probe/inspect" && message.message.startsWith(prefix),
+    (message) => message.ruleId === probeRuleId && message.message.startsWith(sentinelPrefix),
   );
   if (sentinels.length !== 1) {
     return {
@@ -138,24 +139,24 @@ export function assess(testCase, tool, run, fixes = {}) {
   }
   result.evidence = probe;
   result.capability = probe.supported ? "supported" : "unavailable";
-  const expectedUnavailable = tool !== "eslint" && testCase.needsTypes;
+  const needsTypes = requiresTypes(testCase);
+  const expectedUnavailable = needsTypes && !hosts[tool].typeServices;
   result.expectedCapability = expectedUnavailable ? "unavailable" : "supported";
   if (probe.observed.error) {
     return { ...result, reason: probe.observed.error };
   }
   const documentedTypeGap =
     !probe.supported &&
-    testCase.needsTypes &&
-    !probe.observed.error &&
-    probe.observed.reason === "typed parser services unavailable" &&
+    needsTypes &&
+    probe.observed.reason === reasons.typedServicesUnavailable &&
     (!probe.observed.hasProgram || !probe.observed.hasNodeMap);
   const capabilityMatches = expectedUnavailable ? documentedTypeGap : probe.supported;
 
   const unexpectedRules = messages.filter(
-    (message) => message !== sentinels[0] && message.ruleId !== "baseline-js/use-baseline",
+    (message) => message !== sentinels[0] && message.ruleId !== productRuleId,
   );
   const product = messages
-    .filter((message) => message.ruleId === "baseline-js/use-baseline")
+    .filter((message) => message.ruleId === productRuleId)
     .map(productDiagnostic);
   result.diagnostics = product;
   const expectedExit = product.length > 0 ? 1 : 0;
@@ -185,12 +186,10 @@ export function assess(testCase, tool, run, fixes = {}) {
       );
     const fixMatches = !testCase.expectedFix || fixes.fixMatched === true;
     const suggestionsMatch = !testCase.expectedSuggestions || fixes.suggestionsMatched === true;
-    result.correctness =
-      observationMatches && positionMatches && fixMatches && suggestionsMatch
-        ? "matched"
-        : "mismatch";
+    const matched = observationMatches && positionMatches && fixMatches && suggestionsMatch;
+    result.correctness = matched ? "matched" : "mismatch";
     result.status = probe.supported ? result.correctness : "unsupported";
-    result.expectationMatched = capabilityMatches && result.correctness === "matched";
+    result.expectationMatched = capabilityMatches && matched;
     if (!capabilityMatches) result.reason = `Expected ${result.expectedCapability} capability`;
     result.fixes = testCase.expectedFix ? fixes : undefined;
     return result;
@@ -214,8 +213,9 @@ export function assess(testCase, tool, run, fixes = {}) {
       expectationMatched: capabilityMatches,
     };
   }
+  const detection = missing.length ? "coverage-loss" : "matched";
   result.correctness = missing.length ? "missing" : "matched";
-  result.status = probe.supported ? (missing.length ? "coverage-loss" : "matched") : "unsupported";
+  result.status = probe.supported ? detection : "unsupported";
   result.expectationMatched = capabilityMatches && !missing.length;
   if (!capabilityMatches) result.reason = `Expected ${result.expectedCapability} capability`;
   return result;
@@ -231,10 +231,11 @@ export function renderReport(report) {
     "",
     "Known missing receiver services remain **unsupported**, including negative cases. An expectation match means the recorded behavior was anticipated; it does not mean all checks ran.",
     "",
-    "| Tool | Version / revision |",
-    "| --- | --- |",
+    "| Tool | Package | Reported version |",
+    "| --- | --- | --- |",
     ...Object.entries(report.tools ?? {}).map(
-      ([tool, metadata]) => `| ${tool} | ${metadata.version} |`,
+      ([tool, metadata]) =>
+        `| ${tool} | ${report.dependencies?.[tool] ?? "unavailable"} | ${metadata.version} |`,
     ),
     "",
     `Parser: ${report.dependencies?.["@typescript-eslint/parser"] ?? "unavailable"}. TypeScript reference: ${report.dependencies?.typescript ?? "unavailable"}.`,
@@ -250,6 +251,6 @@ export function renderReport(report) {
   for (const result of report.results.filter((entry) => !entry.expectationMatched)) {
     lines.push(`- **${result.tool} / ${result.caseId}:** ${result.reason ?? result.correctness}`);
   }
-  if (report.error) lines.push(`Run error: ${report.error}`);
+  if (report.error) lines.push("", "Run error:", "", "```text", report.error, "```");
   return `${lines.join("\n")}\n`;
 }

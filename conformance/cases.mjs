@@ -7,7 +7,6 @@ export const cases = [
     code: "const value = 1;\n",
     extension: "js",
     check: "options",
-    needsTypes: false,
     expected: { configuredCheck: "options", visited: true },
   },
   {
@@ -16,7 +15,6 @@ export const cases = [
     code: "Object.groupBy([], String);\n",
     extension: "js",
     check: "selectors",
-    needsTypes: false,
     expected: { memberCalls: 1, property: "groupBy", computed: false },
   },
   {
@@ -25,7 +23,6 @@ export const cases = [
     code: "Object.groupBy([], String);\nfunction local(Object) {\n  Object.groupBy([], String);\n}\n",
     extension: "js",
     check: "scope",
-    needsTypes: false,
     expected: { shadowed: [false, true] },
   },
   {
@@ -34,7 +31,6 @@ export const cases = [
     code: "const answer = 1;\n",
     extension: "js",
     check: "source",
-    needsTypes: false,
     expected: { text: "1", firstToken: "const", tokens: ["const", "answer", "=", "1", ";"] },
   },
   {
@@ -43,7 +39,6 @@ export const cases = [
     code: "const value =\n  marker;\n",
     extension: "js",
     check: "location",
-    needsTypes: false,
     expected: { line: 2, column: 3, endLine: 2, endColumn: 9 },
   },
   {
@@ -52,7 +47,6 @@ export const cases = [
     code: "const answer = 1;\n",
     extension: "js",
     check: "fixes",
-    needsTypes: false,
     expected: { literal: 1, range: [15, 16] },
     expectedFix: { range: [15, 16], text: "2" },
     expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [15, 16], text: "3" } }],
@@ -63,7 +57,6 @@ export const cases = [
     code: "target();\n",
     extension: "js",
     check: "ancestors",
-    needsTypes: false,
     expected: {
       ancestors: ["Program", "ExpressionStatement", "CallExpression"],
       parentType: "CallExpression",
@@ -75,7 +68,6 @@ export const cases = [
     code: "declare const element: Element;\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
-    needsTypes: true,
     expected: {
       hasProgram: true,
       hasNodeMap: true,
@@ -92,7 +84,6 @@ export const cases = [
     code: "let value;\nvalue ||= 1;\n",
     extension: "js",
     check: "execution",
-    needsTypes: false,
     expected: [{ featureId: "logical-assignments", line: 2, column: 7 }],
   },
   {
@@ -101,7 +92,6 @@ export const cases = [
     code: "Object.groupBy([], String);\n",
     extension: "js",
     check: "execution",
-    needsTypes: false,
     expected: [{ featureId: "array-group", line: 1, column: 8 }],
   },
   {
@@ -110,7 +100,6 @@ export const cases = [
     code: "Object['groupBy']([], String);\n",
     extension: "js",
     check: "execution",
-    needsTypes: false,
     expected: [{ featureId: "array-group", line: 1, column: 8 }],
   },
   {
@@ -119,7 +108,6 @@ export const cases = [
     code: "function local(Object) {\n  Object.groupBy([], String);\n}\n",
     extension: "js",
     check: "execution",
-    needsTypes: false,
     expected: [],
   },
   {
@@ -128,7 +116,6 @@ export const cases = [
     code: "fetchLater('/beacon');\n",
     extension: "js",
     check: "execution",
-    needsTypes: false,
     expected: [{ featureId: "fetchlater", line: 1, column: 1 }],
   },
   {
@@ -137,7 +124,6 @@ export const cases = [
     code: "declare const element: Element;\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
-    needsTypes: true,
     expected: [{ featureId: "check-visibility", line: 2, column: 9 }],
   },
   {
@@ -146,7 +132,6 @@ export const cases = [
     code: "declare const values: Set<unknown>;\nvalues.union(new Set());\nexport {};\n",
     extension: "ts",
     check: "types",
-    needsTypes: true,
     expected: [{ featureId: "set-methods", line: 2, column: 8 }],
   },
   {
@@ -155,7 +140,9 @@ export const cases = [
     code: "const element = { checkVisibility() { return true; } };\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
-    needsTypes: true,
     expected: [],
   },
 ];
+
+// A case needs type information exactly when its probe runs the types check.
+export const requiresTypes = (testCase) => testCase.check === "types";

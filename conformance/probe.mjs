@@ -1,14 +1,4 @@
-const checks = [
-  "options",
-  "selectors",
-  "scope",
-  "source",
-  "location",
-  "fixes",
-  "ancestors",
-  "types",
-  "execution",
-];
+import { checks, probePluginName, reasons, sentinelPrefix } from "./protocol.mjs";
 
 function unavailable(reason, observed = {}) {
   return { supported: false, observed: { ...observed, reason } };
@@ -22,7 +12,7 @@ function capabilityError(error, observed = {}) {
 }
 
 function scopeObservation(sourceCode, receivers) {
-  if (typeof sourceCode?.getScope !== "function") return unavailable("getScope unavailable");
+  if (typeof sourceCode.getScope !== "function") return unavailable("getScope unavailable");
   const shadowed = [];
   for (const receiver of receivers) {
     let scope;
@@ -49,7 +39,7 @@ function scopeObservation(sourceCode, receivers) {
 }
 
 function typeObservation(sourceCode, member) {
-  const services = sourceCode?.parserServices;
+  const services = sourceCode.parserServices;
   const program = services?.program;
   const nodeMap = services?.esTreeNodeToTSNodeMap;
   const observed = {
@@ -58,7 +48,7 @@ function typeObservation(sourceCode, member) {
     hasChecker: false,
   };
   if (!observed.hasProgram || !observed.hasNodeMap) {
-    return unavailable("typed parser services unavailable", observed);
+    return unavailable(reasons.typedServicesUnavailable, observed);
   }
   if (!member) return unavailable("receiver fixture was not visited", observed);
   if (typeof program.getTypeChecker !== "function") {
@@ -118,7 +108,7 @@ const inspect = {
   },
   create(context) {
     const check = context.options[0]?.check;
-    const sourceCode = context.sourceCode ?? context.getSourceCode?.();
+    const { sourceCode } = context;
     const receivers = [];
     let member;
     let literal;
@@ -130,10 +120,7 @@ const inspect = {
     function observation(program) {
       switch (check) {
         case "options":
-          return {
-            supported: check === "options",
-            observed: { configuredCheck: check, visited: true },
-          };
+          return { supported: true, observed: { configuredCheck: check, visited: true } };
         case "execution":
           return { supported: true, observed: { visited: true } };
         case "selectors":
@@ -150,7 +137,7 @@ const inspect = {
         case "source": {
           if (
             !literal ||
-            typeof sourceCode?.getText !== "function" ||
+            typeof sourceCode.getText !== "function" ||
             typeof sourceCode.getFirstToken !== "function" ||
             typeof sourceCode.getTokens !== "function"
           ) {
@@ -187,7 +174,7 @@ const inspect = {
             observed: { literal: literal.value, range: literal.range },
           };
         case "ancestors": {
-          if (!target || typeof sourceCode?.getAncestors !== "function") {
+          if (!target || typeof sourceCode.getAncestors !== "function") {
             return unavailable("getAncestors unavailable");
           }
           try {
@@ -228,7 +215,7 @@ const inspect = {
         const result = observation(program);
         const report = {
           node: check === "location" && marker ? marker : program,
-          message: `toolchain-probe:${JSON.stringify({ check, ...result })}`,
+          message: `${sentinelPrefix}${JSON.stringify({ check, ...result })}`,
         };
         if (check === "fixes" && result.supported) {
           if (!context.options[0]?.suggestionsOnly) {
@@ -257,6 +244,6 @@ const inspect = {
 };
 
 export default {
-  meta: { name: "toolchain-probe", version: "1.0.0" },
+  meta: { name: probePluginName, version: "1.0.0" },
   rules: { inspect },
 };

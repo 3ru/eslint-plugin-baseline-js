@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.34.5",
   "scripts": {
     "check": "node run.mjs",
-    "test": "node --test runner.test.mjs",
+    "test": "node --test assess.test.mjs",
     "refresh": "node refresh.mjs"
   },
   "devDependencies": {

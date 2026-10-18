@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { assess, fixRunMatches, parseDiagnostics } from "./runner.mjs";
+import { assess, fixRunMatches, parseDiagnostics } from "./assess.mjs";
+import { probeRuleId, productRuleId, reasons, sentinelPrefix } from "./protocol.mjs";
 
 const typed = {
   id: "typed",
   suite: "baseline",
   check: "types",
-  needsTypes: true,
   code: "element.checkVisibility();",
   expected: [{ featureId: "check-visibility", line: 1, column: 9 }],
 };
@@ -17,7 +17,7 @@ const missingTypes = {
     hasProgram: false,
     hasNodeMap: true,
     hasChecker: false,
-    reason: "typed parser services unavailable",
+    reason: reasons.typedServicesUnavailable,
   },
 };
 const usableTypes = {
@@ -29,8 +29,8 @@ const usableTypes = {
 function run(probe, diagnostics = [], exitCode = diagnostics.length ? 1 : 0) {
   const messages = [
     {
-      ruleId: "toolchain-probe/inspect",
-      message: `toolchain-probe:${JSON.stringify(probe)}`,
+      ruleId: probeRuleId,
+      message: `${sentinelPrefix}${JSON.stringify(probe)}`,
       line: 1,
       column: 1,
     },
@@ -69,7 +69,7 @@ test("a known type gap cannot conceal an unexpected report", () => {
     "bun",
     run(missingTypes, [
       {
-        ruleId: "baseline-js/use-baseline",
+        ruleId: productRuleId,
         message: "Wrong API (array-group).",
         line: 1,
         column: 9,
@@ -139,7 +139,7 @@ test("Oxlint byte offsets normalize to ESLint UTF-16 locations", () => {
     }),
     source,
   );
-  assert.equal(message.ruleId, "toolchain-probe/inspect");
+  assert.equal(message.ruleId, probeRuleId);
   assert.deepEqual(
     [message.line, message.column, message.endLine, message.endColumn],
     [2, 3, 2, 9],
@@ -152,7 +152,7 @@ test("a newly supported host is surfaced for expectation review", () => {
     "bun",
     run(usableTypes, [
       {
-        ruleId: "baseline-js/use-baseline",
+        ruleId: productRuleId,
         message: "API is too new (check-visibility).",
         line: 1,
         column: 9,
@@ -172,7 +172,7 @@ test("extra probe diagnostics cannot hide beside a valid sentinel", () => {
       missingTypes,
       [
         {
-          ruleId: "toolchain-probe/inspect",
+          ruleId: probeRuleId,
           message: "Unrelated probe error",
           severity: 2,
           line: 1,
@@ -193,7 +193,7 @@ test("missing capability booleans are malformed evidence rather than a known gap
     run({
       check: "types",
       supported: false,
-      observed: { reason: "typed parser services unavailable" },
+      observed: { reason: reasons.typedServicesUnavailable },
     }),
   );
   assert.equal(result.expectationMatched, false);
