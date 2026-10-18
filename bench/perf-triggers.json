@@ -1,0 +1,41 @@
+{
+  "$comment": "Decides whether a pull request needs the perf benchmark. A changed file counts unless it is under an ignored directory or has an ignored extension; files matching alwaysRun count regardless. Evaluated by scripts/bench/changed.mjs.",
+  "ignoreDirectories": [
+    "docs/",
+    "examples/",
+    "tests/",
+    "coverage/",
+    ".github/",
+    ".claude/",
+    ".vscode/"
+  ],
+  "ignoreExtensions": [
+    ".md",
+    ".mdx",
+    ".txt",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".svg",
+    ".webp",
+    ".ico"
+  ],
+  "ignoreFiles": [
+    "LICENSE",
+    "CHANGELOG.md",
+    "biome.json",
+    ".gitignore",
+    ".releaserc.json",
+    "vitest.config.ts"
+  ],
+  "alwaysRun": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "tsconfig.json",
+    "tsdown.config.ts",
+    ".github/workflows/perf.yml",
+    "bench/",
+    "scripts/bench/"
+  ]
+}

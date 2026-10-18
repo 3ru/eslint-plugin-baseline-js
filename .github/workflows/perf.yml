@@ -1,22 +1,19 @@
 name: Perf
 
 # Before/after benchmark of baseline-js/use-baseline on a synthetic corpus generated from
-# bench/profile.json and bench/synth-snippets.json. No network is used while benchmarking.
-# Security notes (docs/BENCHMARKS.md): no secrets, read-only token, no pull_request_target,
-# no caches, actions pinned to full commit SHAs, checkout credentials not persisted, event
-# data passed through the environment, results in the job summary and an artifact only.
+# bench/profile.json and bench/synth-snippets.json. The `changes` job decides from the diff
+# whether the pull request touches the rule or its build (bench/perf-triggers.json); docs,
+# tests and other ignored paths skip the benchmark. Results go to the job summary, an
+# artifact, and one sticky pull-request comment that is updated on every measured commit.
+#
+# Security notes (docs/BENCHMARKS.md): no secrets, read-only token except the comment job
+# (pull-requests: write, same-repository pull requests only), no pull_request_target, no
+# caches, actions pinned to full commit SHAs, checkout credentials not persisted, event data
+# passed through the environment, no network while benchmarking.
 
 on:
   pull_request:
     branches: ["**"]
-    paths:
-      - "src/**"
-      - "scripts/bench/**"
-      - "bench/**"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "tsdown.config.ts"
-      - ".github/workflows/perf.yml"
   workflow_dispatch:
     inputs:
       scale:
@@ -43,12 +40,51 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  changes:
+    name: needs benchmark?
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      run: ${{ steps.decide.outputs.run }}
+      reason: ${{ steps.decide.outputs.reason }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22.22.2
+
+      - name: Decide from the changed files
+        id: decide
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          if [ "$EVENT_NAME" != "pull_request" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "reason=manual run" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          node scripts/bench/changed.mjs --base "$BASE_SHA" --head "$HEAD_SHA" --github-output "$GITHUB_OUTPUT"
+
   compare:
     name: before/after
+    needs: changes
+    if: needs.changes.outputs.run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
       contents: read
+    outputs:
+      markdown: ${{ steps.report.outputs.markdown }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -90,13 +126,63 @@ jobs:
             --iterations "$ITERATIONS" \
             --typed-iterations "$TYPED_ITERATIONS" \
             --out bench-results.json \
-            --summary "$GITHUB_STEP_SUMMARY"
+            --summary bench-comment.md
+
+      - name: Publish the report
+        id: report
+        if: always()
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          REASON: ${{ needs.changes.outputs.reason }}
+        run: |
+          {
+            echo "**use-baseline benchmark** for \`${HEAD_SHA:0:12}\` · [workflow run]($RUN_URL) · triggered because $REASON"
+            echo
+            if [ -s bench-comment.md ]; then
+              cat bench-comment.md
+            else
+              echo "The benchmark did not produce a report; see the workflow run for the error."
+            fi
+          } > bench-comment.full.md
+          cat bench-comment.full.md >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo "markdown<<__BENCH_EOF__"
+            cat bench-comment.full.md
+            echo "__BENCH_EOF__"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: bench-results
-          path: bench-results.json
+          path: |
+            bench-results.json
+            bench-comment.full.md
           retention-days: 30
           if-no-files-found: ignore
+
+  comment:
+    name: pull request comment
+    needs: [changes, compare]
+    # Same-repository pull requests only: forks and Dependabot get a read-only token, and the
+    # job summary carries the same table for them.
+    if: >-
+      always() &&
+      needs.changes.outputs.run == 'true' &&
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Create or update the sticky comment
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        continue-on-error: true
+        with:
+          header: use-baseline-benchmark
+          skip_unchanged: true
+          message: ${{ needs.compare.outputs.markdown }}

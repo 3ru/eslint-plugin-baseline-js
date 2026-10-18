@@ -19,6 +19,7 @@
     "build": "tsdown",
     "bench": "node scripts/bench/run.mjs",
     "bench:calibrate": "node scripts/bench/calibrate.mjs",
+    "bench:changed": "node scripts/bench/changed.mjs",
     "bench:compare": "node scripts/bench/compare.mjs",
     "bench:profile": "node scripts/bench/profile.mjs",
     "bench:snippets": "node scripts/bench/snippets.mjs",
