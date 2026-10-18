@@ -1,7 +1,7 @@
 /** Type-only shared types; each file format is the `z.infer` of its loader's schema. */
 
 import type { z } from "zod";
-import type { Descriptor } from "../../src/baseline/types.ts";
+import type { Descriptor, GeneratedDescriptor } from "../../src/baseline/types.ts";
 import type { CommonRuleOptions } from "../../src/config.ts";
 import type { FeatureMapSchema } from "./descriptors.mts";
 import type { ProfileSchema, SynthManifestSchema } from "./generator.mts";
@@ -30,7 +30,7 @@ export type NameShares = Record<string, number>;
 /** Feature id → number of reports (a multiset). */
 export type FeatureCounts = Record<string, number>;
 
-export type BenchDescriptor = Descriptor & { domain: Domain };
+export type BenchDescriptor = GeneratedDescriptor & { domain: Domain };
 
 export type DescriptorKind = Descriptor["kind"];
 
