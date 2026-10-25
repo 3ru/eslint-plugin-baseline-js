@@ -86,6 +86,9 @@ function jobRecords(input: PublishOptions) {
             run_attempt: source.attempt,
             name,
             conclusion: source.conclusion,
+            created_at: new Date(Date.UTC(2026, 9, 25, 0, source.attempt)).toISOString(),
+            started_at: new Date(Date.UTC(2026, 9, 25, 0, source.attempt)).toISOString(),
+            completed_at: new Date(Date.UTC(2026, 9, 25, 0, source.attempt, 10)).toISOString(),
           },
         ]
       : [],
@@ -406,9 +409,58 @@ test("a failed new collector cannot reuse its old artifact while a collector not
   );
 });
 
+test("a failed-job rerun retains the original prepared input when GitHub copies its successful job", async (t) => {
+  const f = await fixture(t);
+  const input = await f.input(1);
+  const retry = {
+    ...input,
+    run: { ...input.run, attempt: 2, startedAt: "2026-10-25T00:03:00.000Z" },
+    sources: {
+      prepare: { attempt: 1, conclusion: "success" },
+      profiles: {
+        pinned: { attempt: 2, conclusion: "failure" },
+        latest: { attempt: 2, conclusion: "failure" },
+      },
+    },
+  };
+  for (const profile of profiles) {
+    const path = join(input.inputDirectory, profile, "identity.json");
+    const identity = JSON.parse(await readFile(path, "utf8"));
+    identity.run = retry.run;
+    await writeFile(path, json(identity));
+  }
+  const original = jobRecords(input);
+  await f.cli(retry, [
+    ...original,
+    ...original
+      .filter((job) => job.name === "Resolve released plugin")
+      .map((job) => ({
+        ...job,
+        run_attempt: 2,
+        created_at: "2026-10-25T00:03:01.000Z",
+      })),
+    ...jobRecords(retry).filter((job) => job.name !== "Resolve released plugin"),
+  ]);
+  const snapshot = f.readSnapshot(f.manifest().latest.commit, retry.run);
+  assert.equal(snapshot.subject.kind, "npm");
+  for (const profile of profiles) {
+    assert.equal(snapshot.profiles[profile].kind, "measured");
+    const identity = JSON.parse(
+      git(f.remote, "show", `${f.manifest().latest.commit}:runs/101/2/${profile}/identity.json`),
+    );
+    assert.equal(identity.run.attempt, 2);
+  }
+  const context = JSON.parse(
+    git(f.remote, "show", `${f.manifest().latest.commit}:runs/101/2/subject/context.json`),
+  );
+  assert.equal(context.attempt, 1);
+  assert.equal(f.manifest().latest.capturedAt, "2026-10-25T00:01:00.000Z");
+});
+
 test("a retry reuses earlier observations from the same logical run without changing their identity or date", async (t) => {
   const f = await fixture(t);
   const input = await f.input(1);
+  input.sources.profiles.latest = { attempt: 1, conclusion: "failure" };
   await publish(input);
   const retry = {
     ...input,
@@ -436,6 +488,11 @@ test("a retry reuses earlier observations from the same logical run without chan
     await f.cli(retry, [
       ...jobs.map((job) => ({ ...job, run_attempt: 3 })),
       ...jobs.map((job) => ({ ...job, run_id: 999 })),
+      ...jobs.map((job) => ({
+        ...job,
+        run_attempt: 2,
+        created_at: "2026-10-26T00:00:01.000Z",
+      })),
       {
         run_id: Number(input.run.id),
         run_attempt: 2,
@@ -488,7 +545,14 @@ test("missing or skipped trusted jobs cannot certify artifacts left on disk", as
   for (const [index, source] of [null, { attempt: 1, conclusion: "skipped" }].entries()) {
     const input = await f.input(index + 1);
     input.sources.profiles.latest = source;
-    await f.cli(input);
+    await f.cli(
+      input,
+      jobRecords(input).map((job) =>
+        job.conclusion === "skipped"
+          ? { ...job, created_at: null, started_at: null, completed_at: null }
+          : job,
+      ),
+    );
     const snapshot = f.readSnapshot(f.manifest().latest.commit, input.run);
     assert.equal(snapshot.subject.kind, "npm");
     assert.equal(snapshot.profiles.pinned.kind, "measured");
@@ -505,6 +569,30 @@ test("missing or skipped trusted jobs cannot certify artifacts left on disk", as
   assert.equal(snapshot.profiles.pinned.kind, "not-measured");
   assert.equal(snapshot.profiles.latest.kind, "not-measured");
   assert.equal(f.manifest().lastComplete, null);
+  const invalidTimings = [
+    { original: {}, copied: { created_at: null } },
+    {
+      original: {
+        created_at: "2026-02-28T00:00:00Z",
+        started_at: "2026-02-30T00:00:00Z",
+        completed_at: "2026-02-30T00:00:10Z",
+      },
+      copied: { created_at: "2026-03-03T00:00:00Z" },
+    },
+  ];
+  for (const [index, timing] of invalidTimings.entries()) {
+    const input = await f.input(4 + index);
+    const retry = { ...input, run: { ...input.run, attempt: 2 } };
+    const original = jobRecords(input).map((job) => ({ ...job, ...timing.original }));
+    await f.cli(retry, [
+      ...original,
+      ...original.map((job) => ({ ...job, run_attempt: 2, ...timing.copied })),
+    ]);
+    const unverified = f.readSnapshot(f.manifest().latest.commit, retry.run);
+    assert.equal(unverified.subject.kind, "unresolved");
+    assert.equal(unverified.profiles.pinned.kind, "not-measured");
+    assert.equal(unverified.profiles.latest.kind, "not-measured");
+  }
 });
 
 test("malformed, mismatched, linked, binary, and oversized artifacts become explicit profile failures", async (t) => {

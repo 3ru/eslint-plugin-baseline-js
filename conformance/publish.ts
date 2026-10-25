@@ -49,8 +49,25 @@ const problem = (error: unknown): string =>
   error instanceof Error ? error.message : String(error);
 const catalog: PublicCase[] = cases.map(({ id, label, suite }) => ({ id, label, suite }));
 
+function jobTimestamp(value: unknown): number {
+  if (typeof value !== "string" || !value.endsWith("Z")) return Number.NaN;
+  const parsed = Date.parse(value);
+  const canonical = value.length === 20 ? `${value.slice(0, -1)}.000Z` : value;
+  return Number.isFinite(parsed) && new Date(parsed).toISOString() === canonical
+    ? parsed
+    : Number.NaN;
+}
+
 function parseSources(input: unknown, run: RunIdentity): PublishOptions["sources"] {
   if (!Array.isArray(input)) throw new Error("The trusted jobs input must be a JSON array.");
+  const jobs: Array<{
+    name: string;
+    profile: Profile | undefined;
+    source: JobSource;
+    createdAt: number;
+    startedAt: number;
+    completedAt: number;
+  }> = [];
   const sources: PublishOptions["sources"] = {
     prepare: null,
     profiles: { pinned: null, latest: null },
@@ -79,12 +96,39 @@ function parseSources(input: unknown, run: RunIdentity): PublishOptions["sources
     if (!("conclusion" in job) || typeof job.conclusion !== "string" || !job.conclusion) {
       throw new Error("A trusted producer job must have a completed conclusion.");
     }
-    const source = { attempt: job.run_attempt, conclusion: job.conclusion };
-    const previous = profile ? sources.profiles[profile] : sources.prepare;
-    if (!previous || source.attempt > previous.attempt) {
-      if (profile) sources.profiles[profile] = source;
-      else sources.prepare = source;
+    jobs.push({
+      name: String(job.name),
+      profile,
+      source: { attempt: job.run_attempt, conclusion: job.conclusion },
+      createdAt: jobTimestamp("created_at" in job ? job.created_at : undefined),
+      startedAt: jobTimestamp("started_at" in job ? job.started_at : undefined),
+      completedAt: jobTimestamp("completed_at" in job ? job.completed_at : undefined),
+    });
+  }
+  for (const latest of jobs) {
+    if (
+      jobs.some((job) => job.name === latest.name && job.source.attempt > latest.source.attempt)
+    ) {
+      continue;
     }
+    let source = latest.source;
+    // GitHub copies completed jobs into a rerun with a new record creation time.
+    if (latest.startedAt <= latest.completedAt && latest.completedAt < latest.createdAt) {
+      for (const original of jobs) {
+        if (
+          original.name === latest.name &&
+          original.source.conclusion === latest.source.conclusion &&
+          original.source.attempt < source.attempt &&
+          original.startedAt === latest.startedAt &&
+          original.completedAt === latest.completedAt &&
+          original.createdAt <= original.startedAt
+        ) {
+          source = original.source;
+        }
+      }
+    }
+    if (latest.profile) sources.profiles[latest.profile] = source;
+    else sources.prepare = source;
   }
   return sources;
 }
