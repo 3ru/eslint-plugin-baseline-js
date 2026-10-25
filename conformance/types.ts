@@ -6,7 +6,6 @@ import type { checks } from "./protocol.mjs";
 export type Check = (typeof checks)[number];
 export type Extension = "js" | "ts";
 export type HostName = "eslint" | "oxlint" | "bun";
-export type Phase = "inspect" | "fix" | "suggest";
 export type Profile = "pinned" | "latest";
 
 // Configuration files and `-f json` output follow one of two tools' conventions; Bun reads
@@ -15,16 +14,6 @@ export type Format = "eslint" | "oxlint";
 
 // A parse of untrusted host output either yields the value or says why it could not.
 export type Parsed<T> = { ok: true; value: T } | { ok: false; problem: string };
-
-export interface Edit {
-  range: readonly [number, number];
-  text: string;
-}
-
-export interface Suggestion {
-  desc: string;
-  fix: Edit;
-}
 
 // One product diagnostic, reduced to what the expectations compare.
 export interface Finding {
@@ -55,7 +44,6 @@ export interface Observations {
   scope: { shadowed: boolean[] };
   source: { text: string; firstToken: string | undefined; tokens: string[] };
   location: { line: number; column: number; endLine: number; endColumn: number };
-  fixes: { literal: number; range: readonly [number, number] };
   ancestors: { ancestors: string[]; parentType: string | null };
   types: TypeServices & {
     receiverType: string;
@@ -92,7 +80,6 @@ export type ProbeMessage =
 export interface ProbeOptions {
   check: Check;
   member?: string;
-  suggestionsOnly?: true;
 }
 
 // The probe's message as the assessment reads it back from the host's JSON: the observation is
@@ -117,30 +104,21 @@ interface CaseBase {
   extension: Extension;
 }
 
-type NoEdits = { expectedFix?: never; expectedSuggestions?: never };
-
 // A typed case lives in a TypeScript fixture and names the member expression the probe inspects.
 type Member<C extends Check> = C extends "types"
   ? { member: string; extension: "ts" }
   : { member?: never };
 
-// Only the fixes check produces a fix and suggestions; a host applies the first suggestion.
-type Edits<C extends Check> = C extends "fixes"
-  ? { expectedFix?: Edit; expectedSuggestions?: readonly [Suggestion, ...Suggestion[]] }
-  : NoEdits;
-
 type HostCheck = Exclude<Check, "execution">;
 
 export type HostCase = {
-  [C in HostCheck]: CaseBase & { suite: "host"; check: C; expected: Observations[C] } & Member<C> &
-    Edits<C>;
+  [C in HostCheck]: CaseBase & { suite: "host"; check: C; expected: Observations[C] } & Member<C>;
 }[HostCheck];
 
 export type BaselineCase = CaseBase & { suite: "baseline"; expected: readonly Finding[] } & (
     | { check: "types"; member: string; extension: "ts" }
     | { check: "execution"; member?: never }
-  ) &
-  NoEdits;
+  );
 
 export type Case = HostCase | BaselineCase;
 
@@ -163,10 +141,6 @@ export interface Host {
   // Whether typescript-eslint parser services reach JavaScript rules. Sets the expectation a
   // typed row is judged against; the observation is recorded either way.
   typeServices: boolean;
-  // `-f json` carries each suggestion's description and edit on the diagnostic.
-  suggestionPayload: boolean;
-  // The command line can apply suggestions with --fix-suggestions.
-  appliesSuggestions: boolean;
   // Flags added for typed cases.
   typedFlags: readonly string[];
   invoke: (paths: ToolPaths, args: readonly string[]) => Command;
@@ -186,8 +160,6 @@ export interface Diagnostic {
   column?: number;
   endLine?: number;
   endColumn?: number;
-  // Compared as a whole against the expected suggestions; never read field by field.
-  suggestions?: unknown;
 }
 
 export interface Run {
@@ -198,7 +170,7 @@ export interface Run {
   error?: string;
   stdout: string;
   stderr: string;
-  raw?: { stdout: string; stderr: string; result?: string };
+  raw?: { stdout: string; stderr: string };
   config?: string;
   configSha256?: string;
 }
@@ -208,17 +180,6 @@ export type RunOutcome = Pick<Run, "exitCode" | "signal" | "error" | "stdout" | 
 
 // The part of a run the report keeps; stdout and stderr live under raw/.
 export type RunRecord = Omit<Run, "stdout" | "stderr">;
-
-// Why a fix or a suggestion method did not produce the expected file; absent when it did.
-export interface SuggestionCheck {
-  method: string;
-  problem?: string;
-}
-
-export interface Fixes {
-  fix?: { problem?: string };
-  suggestions?: SuggestionCheck[];
-}
 
 export type Capability = "supported" | "unavailable" | "unknown";
 export type Correctness =
@@ -252,7 +213,6 @@ export interface Assessment {
   unexpected?: ObservedFinding[];
   unexpectedRules?: Diagnostic[];
   silentCoverageLoss?: boolean;
-  fixes?: Fixes;
 }
 
 export interface ResultRow extends Assessment {
@@ -260,7 +220,6 @@ export interface ResultRow extends Assessment {
   expected: Case["expected"];
   fixtureSha256: string;
   run: RunRecord;
-  extraRuns: RunRecord[];
 }
 
 export interface ToolVersion {

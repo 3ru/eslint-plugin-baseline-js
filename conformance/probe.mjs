@@ -183,8 +183,6 @@ function typeObservation(sourceCode, member) {
 const inspect = {
   meta: {
     type: "problem",
-    fixable: "code",
-    hasSuggestions: true,
     schema: [
       {
         type: "object",
@@ -193,7 +191,6 @@ const inspect = {
           // The property name of the member expression the types check inspects; without it
           // the probe reports the fixture node as not visited.
           member: { type: "string" },
-          suggestionsOnly: { type: "boolean" },
         },
         required: ["check"],
         additionalProperties: false,
@@ -290,13 +287,6 @@ const inspect = {
             endLine: marker.loc.end.line,
             endColumn: marker.loc.end.column + 1,
           });
-        case "fixes":
-          if (!literal) return unavailable("fixes", reasons.fixtureNodeNotVisited, {});
-          if (!literal.range) return unavailable("fixes", "literal range unavailable", {});
-          if (typeof literal.value !== "number") {
-            return unavailable("fixes", "fixture literal is not a number", {});
-          }
-          return supported("fixes", { literal: literal.value, range: literal.range });
         case "ancestors": {
           if (!target) return unavailable("ancestors", reasons.fixtureNodeNotVisited, {});
           if (typeof sourceCode.getAncestors !== "function") {
@@ -339,24 +329,7 @@ const inspect = {
         const payload = observation(program);
         const node = check === "location" && marker ? marker : program;
         const message = `${sentinelPrefix}${JSON.stringify(payload)}`;
-        const edited = literal;
-        if (payload.check !== "fixes" || !payload.supported || !edited) {
-          context.report({ node, message });
-          return;
-        }
-        /** @param {import("eslint").Rule.RuleFixer} fixer */
-        const replaceWithTwo = (fixer) => fixer.replaceText(edited, "2");
-        context.report({
-          node,
-          message,
-          fix: options?.suggestionsOnly ? undefined : replaceWithTwo,
-          suggest: [
-            {
-              desc: "Replace one with three",
-              fix: (fixer) => fixer.replaceText(edited, "3"),
-            },
-          ],
-        });
+        context.report({ node, message });
       },
     };
     // Register the selector only for its own case, so selector support cannot mask

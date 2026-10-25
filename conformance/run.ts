@@ -5,28 +5,19 @@ import { createRequire } from "node:module";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
-import {
-  applyEdit,
-  assess,
-  fixRunProblem,
-  renderReport,
-  suggestionPayloadProblem,
-} from "./assess.ts";
+import { assess, renderReport } from "./assess.ts";
 import { cases, requiresTypes } from "./cases.ts";
 import { configFiles, hostNames, hosts } from "./hosts.ts";
 import { probePluginName, probeRuleId, productPluginName, productRuleId } from "./protocol.mjs";
 import type {
   Case,
-  Fixes,
   Format,
   HostName,
-  Phase,
   ProbeOptions,
   Profile,
   Report,
   Run,
   RunRecord,
-  SuggestionCheck,
   ToolPaths,
 } from "./types.ts";
 
@@ -87,17 +78,10 @@ function metadataCommand(command: string, args: readonly string[]): string {
   return result.stdout.trimEnd();
 }
 
-// Rule configuration for one case. The suggest phase turns the probe's fix off, so that only its
-// suggestion can change the file.
-function configFor(
-  testCase: Case,
-  paths: ToolPaths,
-  suggestionsOnly: boolean,
-): Record<Format, string> {
+function configFor(testCase: Case, paths: ToolPaths): Record<Format, string> {
   const needsTypes = requiresTypes(testCase);
   const probeOptions: ProbeOptions = { check: testCase.check };
   if (testCase.member !== undefined) probeOptions.member = testCase.member;
-  if (suggestionsOnly) probeOptions.suggestionsOnly = true;
   const rules: Record<string, unknown> = { [probeRuleId]: ["warn", probeOptions] };
   if (testCase.suite === "baseline") {
     const preset = needsTypes ? "type-aware" : "auto";
@@ -152,47 +136,20 @@ function configFor(
   return { eslint, oxlint };
 }
 
-function writeConfigs(testCase: Case, paths: ToolPaths, directory: string, format: Format): void {
-  const suggests = testCase.suite === "host" && testCase.expectedSuggestions !== undefined;
-  const phases = suggests ? (["inspect", "suggest"] as const) : (["inspect"] as const);
-  for (const phase of phases) {
-    const texts = configFor(testCase, paths, phase === "suggest");
-    writeFileSync(join(directory, configFiles[format][phase]), texts[format]);
-  }
-}
-
-const phaseFlags: Record<Phase, readonly string[]> = {
-  inspect: [],
-  fix: ["--fix"],
-  suggest: ["--fix", "--fix-suggestions"],
-};
-
-function lint(
-  tool: HostName,
-  paths: ToolPaths,
-  testCase: Case,
-  directory: string,
-  phase: Phase = "inspect",
-): Run {
+function lint(tool: HostName, paths: ToolPaths, testCase: Case, directory: string): Run {
   const host = hosts[tool];
   const file = `input.${testCase.extension}`;
-  const config = configFiles[host.format][phase === "suggest" ? "suggest" : "inspect"];
+  const config = configFiles[host.format];
   const typed = requiresTypes(testCase) ? host.typedFlags : [];
-  const args = ["-c", config, ...typed, "--no-ignore", "-f", "json", ...phaseFlags[phase], file];
-  const artifact = `${tool}-${testCase.id}-${phase}`;
+  const args = ["-c", config, ...typed, "--no-ignore", "-f", "json", file];
+  const artifact = `${tool}-${testCase.id}-inspect`;
   const { command, args: invocation } = host.invoke(paths, args);
   const run = execute(command, invocation, directory, artifact);
   run.config = config;
   run.configSha256 = hash(readFileSync(join(directory, config)));
-  if (phase !== "inspect" && run.raw) {
-    // Keep the file the host wrote; not every JSON format includes it.
-    run.raw.result = `raw/${artifact}.result.${testCase.extension}`;
-    writeFileSync(join(output, run.raw.result), readFileSync(join(directory, file)));
-  }
   return run;
 }
 
-const completed = (run: Run): boolean => !run.error && !run.signal && run.exitCode === 0;
 const recordRun = ({ stdout, stderr, ...metadata }: Run): RunRecord => metadata;
 
 try {
@@ -299,43 +256,16 @@ try {
       const directory = join(work, testCase.id);
       const input = join(directory, `input.${testCase.extension}`);
       writeFileSync(input, testCase.code);
-      writeConfigs(testCase, paths, directory, host.format);
+      const configs = configFor(testCase, paths);
+      writeFileSync(join(directory, configFiles[host.format]), configs[host.format]);
       const run = lint(tool, paths, testCase, directory);
-      const fixes: Fixes = {};
-      const extraRuns: Run[] = [];
-      if (testCase.suite === "host" && testCase.expectedFix && completed(run)) {
-        const fixed = lint(tool, paths, testCase, directory, "fix");
-        extraRuns.push(fixed);
-        const expected = applyEdit(testCase.code, testCase.expectedFix);
-        fixes.fix = { problem: fixRunProblem(host.format, fixed, read(input), expected) };
-        writeFileSync(input, testCase.code);
-      }
-      if (testCase.suite === "host" && testCase.expectedSuggestions && completed(run)) {
-        const methods: SuggestionCheck[] = [];
-        if (host.suggestionPayload) {
-          const problem = suggestionPayloadProblem(host.format, run, testCase);
-          methods.push({ method: "diagnostic suggestion payload", problem });
-        }
-        if (host.appliesSuggestions) {
-          const suggested = lint(tool, paths, testCase, directory, "suggest");
-          extraRuns.push(suggested);
-          // Hosts apply the first suggestion of a diagnostic.
-          const [first] = testCase.expectedSuggestions;
-          const expected = applyEdit(testCase.code, first.fix);
-          const problem = fixRunProblem(host.format, suggested, read(input), expected);
-          methods.push({ method: "--fix-suggestions application", problem });
-          writeFileSync(input, testCase.code);
-        }
-        fixes.suggestions = methods;
-      }
-      const result = assess(testCase, host, run, fixes);
+      const result = assess(testCase, host, run);
       report.results.push({
         ...result,
         tool,
         expected: testCase.expected,
         fixtureSha256: hash(testCase.code),
         run: recordRun(run),
-        extraRuns: extraRuns.map(recordRun),
       });
       console.log(
         `${tool}: ${testCase.id}: ${result.status}${result.expectationMatched ? "" : " (unexpected)"}`,

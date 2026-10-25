@@ -1,18 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import {
-  applyEdit,
-  assess,
-  fixRunProblem,
-  parseDiagnostics,
-  suggestionPayloadProblem,
-} from "./assess.ts";
+import { assess, parseDiagnostics } from "./assess.ts";
 import { probeRuleId, productRuleId, reasons, sentinelPrefix } from "./protocol.mjs";
 import type {
   BaselineCase,
   Diagnostic,
-  Edit,
-  Fixes,
   HostCase,
   HostFacts,
   Observations,
@@ -408,110 +400,6 @@ test("a location sentinel reported at the wrong column is a mismatch", () => {
     assert.equal(shifted.expectationMatched, false);
     assert.equal(shifted.reason, "Mismatch in position");
   }
-});
-
-test("applied fixes still require clean process and diagnostic output", () => {
-  const clean = outcome({ exitCode: 0, stdout: eslintOutput([]) });
-  assert.equal(fixRunProblem("eslint", clean, "2", "2"), undefined);
-  const stray: Diagnostic = {
-    ruleId: "other/rule",
-    message: "Error",
-    severity: 2,
-    line: 1,
-    column: 1,
-  };
-  const problems: [RunOutcome, string][] = [
-    [{ ...clean, exitCode: 1 }, "Process exited 1 (no signal)"],
-    [
-      { ...clean, signal: "SIGTERM", stderr: "error: killed" },
-      "Process exited 0 (SIGTERM): error: killed",
-    ],
-    [{ ...clean, stdout: eslintOutput([stray]) }, "Unexpected probe diagnostic"],
-  ];
-  for (const [bad, expected] of problems) {
-    assert.equal(fixRunProblem("eslint", bad, "2", "2"), expected);
-  }
-  const garbage = fixRunProblem("eslint", { ...clean, stdout: "invalid json" }, "2", "2");
-  assert.ok(garbage);
-  assert.match(garbage, /^Unexpected token/u);
-  assert.equal(fixRunProblem("eslint", clean, "1", "2"), "file differs from the expected edit");
-});
-
-test("an edit replaces its range, and suggestion payloads compare description and edit", () => {
-  assert.equal(applyEdit("abcdef", { range: [1, 3], text: "XYZ" }), "aXYZdef");
-  const fixes: HostCase = {
-    id: "fixes",
-    suite: "host",
-    check: "fixes",
-    code: "const answer = 1;\n",
-    extension: "js",
-    expected: { literal: 1, range: [15, 16] },
-    expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [15, 16], text: "3" } }],
-  };
-  const payload = (suggestions: unknown): RunOutcome =>
-    outcome({
-      exitCode: 0,
-      stdout: eslintOutput([
-        { ...sentinel({ check: "fixes", supported: true, observed: fixes.expected }), suggestions },
-      ]),
-    });
-  const suggestion = (desc: string, fix: Edit = { range: [15, 16], text: "3" }) => [{ desc, fix }];
-  assert.equal(
-    suggestionPayloadProblem("eslint", payload(suggestion("Replace one with three")), fixes),
-    undefined,
-  );
-  assert.equal(
-    suggestionPayloadProblem("eslint", payload(suggestion("Replace one")), fixes),
-    'suggestion payload was [{"desc":"Replace one","fix":{"range":[15,16],"text":"3"}}]',
-  );
-  const shifted = suggestion("Replace one with three", { range: [14, 16], text: "3" });
-  assert.equal(
-    suggestionPayloadProblem("eslint", payload(shifted), fixes),
-    'suggestion payload was [{"desc":"Replace one with three","fix":{"range":[14,16],"text":"3"}}]',
-  );
-  assert.equal(
-    suggestionPayloadProblem("eslint", payload("garbage"), fixes),
-    'suggestion payload was "garbage"',
-  );
-  assert.equal(
-    suggestionPayloadProblem("eslint", outcome({ exitCode: 0, stdout: "[]" }), fixes),
-    "Expected exactly one linted file with a messages array",
-  );
-});
-
-test("a host probe cannot pass when fix or suggestion behavior is lost", () => {
-  const fixture: HostCase = {
-    id: "fixes",
-    suite: "host",
-    check: "fixes",
-    code: "",
-    extension: "js",
-    expected: { literal: 1, range: [15, 16] },
-    expectedFix: { range: [15, 16], text: "2" },
-    expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [15, 16], text: "3" } }],
-  };
-  const probe: ProbeMessage = { check: "fixes", supported: true, observed: fixture.expected };
-  const applied = { method: "--fix-suggestions application" };
-  const lost: [Fixes, string][] = [
-    [
-      { fix: { problem: "file differs from the expected edit" }, suggestions: [applied] },
-      "Mismatch in fix (file differs from the expected edit)",
-    ],
-    [
-      { fix: {}, suggestions: [{ ...applied, problem: "2 diagnostics after the edit" }] },
-      "Mismatch in suggestions (--fix-suggestions application: 2 diagnostics after the edit)",
-    ],
-    [{ fix: {} }, "Mismatch in suggestions"],
-  ];
-  for (const [fixes, reason] of lost) {
-    const result = assess(fixture, eslintHost, run(probe), fixes);
-    assert.equal(result.expectationMatched, false);
-    assert.equal(result.reason, reason);
-  }
-  assert.equal(
-    assess(fixture, eslintHost, run(probe), { fix: {}, suggestions: [applied] }).status,
-    "matched",
-  );
 });
 
 test("a process failure quotes the host's error line, not its banner", () => {

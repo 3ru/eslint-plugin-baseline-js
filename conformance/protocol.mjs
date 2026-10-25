@@ -14,7 +14,6 @@ export const checks = /** @type {const} */ ([
   "scope",
   "source",
   "location",
-  "fixes",
   "ancestors",
   "types",
   "execution",

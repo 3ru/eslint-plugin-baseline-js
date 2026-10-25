@@ -6,10 +6,7 @@ import type {
   Case,
   Check,
   Diagnostic,
-  Edit,
-  Fixes,
   Format,
-  HostCase,
   HostFacts,
   ObservedFacts,
   ObservedFinding,
@@ -69,7 +66,7 @@ function positionAt(source: string, offset: number): Position {
 // A diagnostic in ESLint's JSON, kept only if every field it may carry has the type it claims.
 function readEslintDiagnostic(entry: unknown): Diagnostic | undefined {
   if (!isRecord(entry) || !isString(entry.message)) return undefined;
-  const { ruleId, severity, fatal, line, column, endLine, endColumn, suggestions } = entry;
+  const { ruleId, severity, fatal, line, column, endLine, endColumn } = entry;
   if (
     !absentOr(isRuleId)(ruleId) ||
     !absentOr(isSeverity)(severity) ||
@@ -90,7 +87,6 @@ function readEslintDiagnostic(entry: unknown): Diagnostic | undefined {
     column,
     endLine,
     endColumn,
-    suggestions,
   };
 }
 
@@ -209,53 +205,6 @@ function readProbe(message: Diagnostic, check: Check): Parsed<ProbeReading> {
   };
 }
 
-export function applyEdit(code: string, { range: [start, end], text }: Edit): string {
-  return `${code.slice(0, start)}${text}${code.slice(end)}`;
-}
-
-// Why a --fix or --fix-suggestions run did not produce the expected file, or undefined.
-export function fixRunProblem(
-  format: Format,
-  run: RunOutcome,
-  actualCode: string,
-  expectedCode: string,
-): string | undefined {
-  if (run.error || run.signal || run.exitCode !== 0) return processFailure(run);
-  if (actualCode !== expectedCode) return "file differs from the expected edit";
-  const parsed = parseDiagnostics(format, run.stdout, actualCode);
-  if (!parsed.ok) return parsed.problem;
-  // Oxlint removes fixed diagnostics; ESLint and Bun re-lint the changed file.
-  if (parsed.value.length > 1) return `${parsed.value.length} diagnostics after the edit`;
-  for (const message of parsed.value) {
-    const probe = readProbe(message, "fixes");
-    if (!probe.ok) return probe.problem;
-    if (probe.value.facts.error) return probe.value.facts.error;
-    if (message.severity !== 1 && message.severity !== "warning") {
-      return "re-linted probe is not a warning";
-    }
-  }
-  return undefined;
-}
-
-// ESLint-style JSON carries each suggestion's description and edit on the diagnostic.
-export function suggestionPayloadProblem(
-  format: Format,
-  run: RunOutcome,
-  testCase: Pick<HostCase, "code" | "expectedSuggestions">,
-): string | undefined {
-  const parsed = parseDiagnostics(format, run.stdout, testCase.code);
-  if (!parsed.ok) return parsed.problem;
-  const sentinel = parsed.value.find((message) => message.ruleId === probeRuleId);
-  if (!sentinel) return "probe sentinel missing";
-  const payload = Array.isArray(sentinel.suggestions)
-    ? sentinel.suggestions.map((entry: unknown) =>
-        isRecord(entry) ? { desc: entry.desc, fix: entry.fix } : entry,
-      )
-    : sentinel.suggestions;
-  if (isDeepStrictEqual(payload, testCase.expectedSuggestions)) return undefined;
-  return `suggestion payload was ${JSON.stringify(payload)}`;
-}
-
 function productDiagnostic(message: Diagnostic): ObservedFinding {
   return {
     featureId: message.message.match(/\(([^()]+)\)\.?$/u)?.[1] ?? null,
@@ -277,12 +226,7 @@ function subtract<Left, Right>(left: readonly Left[], right: readonly Right[]): 
 const listFindings = (label: string, entries: readonly ObservedFinding[]): string[] =>
   entries.map(({ featureId, line, column }) => `${label} ${featureId} at ${line}:${column}`);
 
-export function assess(
-  testCase: Case,
-  host: HostFacts,
-  run: RunOutcome,
-  fixes: Fixes = {},
-): Assessment {
+export function assess(testCase: Case, host: HostFacts, run: RunOutcome): Assessment {
   const result: Assessment = {
     caseId: testCase.id,
     suite: testCase.suite,
@@ -362,7 +306,6 @@ export function assess(
         expectationMatched: capabilityMatches,
       };
     }
-    const suggestions = fixes.suggestions ?? [];
     const checksPassed = {
       observation: isDeepStrictEqual(evidence.observed, testCase.expected),
       position:
@@ -370,21 +313,10 @@ export function assess(
         (["line", "column", "endLine", "endColumn"] as const).every(
           (key) => sentinel[key] === testCase.expected[key],
         ),
-      fix: !testCase.expectedFix || (fixes.fix !== undefined && fixes.fix.problem === undefined),
-      suggestions:
-        !testCase.expectedSuggestions ||
-        (suggestions.length > 0 && suggestions.every((entry) => entry.problem === undefined)),
     };
-    const causes: Partial<Record<keyof typeof checksPassed, string>> = {
-      fix: fixes.fix?.problem,
-      suggestions: suggestions
-        .filter((entry) => entry.problem)
-        .map((entry) => `${entry.method}: ${entry.problem}`)
-        .join(", "),
-    };
-    const failed = (Object.keys(checksPassed) as (keyof typeof checksPassed)[])
-      .filter((name) => !checksPassed[name])
-      .map((name) => (causes[name] ? `${name} (${causes[name]})` : name));
+    const failed = (Object.keys(checksPassed) as (keyof typeof checksPassed)[]).filter(
+      (name) => !checksPassed[name],
+    );
     result.correctness = failed.length ? "mismatch" : "matched";
     result.status = evidence.supported ? result.correctness : "unsupported";
     result.expectationMatched = capabilityMatches && failed.length === 0;
@@ -392,7 +324,6 @@ export function assess(
     if (!capabilityMatches) problems.push(capabilityReason());
     if (failed.length) problems.push(`Mismatch in ${failed.join(", ")}`);
     if (problems.length) result.reason = problems.join("; ");
-    if (testCase.expectedFix || testCase.expectedSuggestions) result.fixes = fixes;
     return result;
   }
 

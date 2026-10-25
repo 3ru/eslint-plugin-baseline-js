@@ -4,6 +4,7 @@ This development-only harness checks which parts of Baseline detection are avail
 `eslint-plugin-baseline-js` runs inside ESLint, Oxlint, or Bun. It lives beside the plugin so
 contributors can reproduce compatibility findings with the exact plugin revision being reviewed.
 It has its own dependencies and lockfile, and is excluded from the published package.
+Reports preserve reproducible evidence of host limitations for upstream improvements.
 
 These are capability and conformance checks, not a performance ranking, a compatibility score, or
 a claim that every ESLint plugin works on a given host. They are maintained by this project and do
@@ -15,7 +16,7 @@ not imply endorsement by Bun, Oxc, W3C, or the Baseline project.
 
 | Group | Examples |
 | --- | --- |
-| Host APIs | Plugin options, AST selectors, scope and shadowing through a parameter and through a top-level binding, source tokens, diagnostic locations after non-ASCII text, fixes and suggestions, ancestry, and TypeScript receiver information. |
+| Host APIs | Plugin options, AST selectors, scope and shadowing through a parameter and through a top-level binding, source tokens, diagnostic locations after non-ASCII text, ancestry, and TypeScript receiver information. |
 | Baseline detection | Logical assignment, static and computed `Object.groupBy`, both shadowed `Object` bindings, global `fetchLater`, `Object.groupBy` in a TypeScript file, native `Element.checkVisibility`, native `Set.union`, and a structural and a nominal lookalike of `Element`. |
 
 Each example has an explicit expectation independent of the output from the three tools.
@@ -36,10 +37,8 @@ examples that should produce no Baseline diagnostic. For `values.union(new Set()
 file, ESLint reports `set-methods`; Oxlint and Bun report nothing and the probe sees no program, so
 their rows read `unavailable | unsupported` instead of passing.
 
-`hosts.ts` records, for each host, the configuration format it reads, how its command line lets
-suggestions be checked (ESLint's JSON payload, Oxlint's `--fix-suggestions`, both for Bun; every
-available way must match), how it is invoked, and what JavaScript rules are expected to get,
-following the host documentation:
+`hosts.ts` records each host's configuration format, invocation, and expected capabilities for JavaScript rules.
+These expectations follow the host documentation:
 
 - [Bun plugin notes](https://bun.sh/docs/lint/plugins#notes): JavaScript rules get no type information.
 - [Oxlint JavaScript plugin API support](https://oxc.rs/docs/guide/usage/linter/js-plugins.html#api-support): type-aware rules are not supported.
@@ -125,8 +124,8 @@ Each run writes ignored local output under `conformance/results/`:
 
 - `report.md`: the comparison and findings for human review.
 - `report.json`: structured observations and run metadata.
-- `raw/`: tool output for every run, and the file a host produced after a fix or suggestion run.
-- `work/`: generated fixtures, the configuration each phase used, and the TypeScript project.
+- `raw/`: tool output for every run.
+- `work/`: generated fixtures, the configuration each host used, and the TypeScript project.
 
 Each row carries the observed host capability and a result:
 

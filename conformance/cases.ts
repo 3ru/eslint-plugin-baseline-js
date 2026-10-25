@@ -57,16 +57,6 @@ export const cases: readonly Case[] = [
     expected: { line: 2, column: 11, endLine: 2, endColumn: 17 },
   },
   {
-    id: "host-fixes-suggestions",
-    suite: "host",
-    code: "const answer = /* é\u{1F600} */ 1;\n",
-    extension: "js",
-    check: "fixes",
-    expected: { literal: 1, range: [25, 26] },
-    expectedFix: { range: [25, 26], text: "2" },
-    expectedSuggestions: [{ desc: "Replace one with three", fix: { range: [25, 26], text: "3" } }],
-  },
-  {
     id: "host-ancestry",
     suite: "host",
     code: "target();\n",
