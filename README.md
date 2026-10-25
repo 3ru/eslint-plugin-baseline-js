@@ -131,6 +131,7 @@ Its [example PR](https://github.com/3ru/baseline-checks-demo/pull/1) changes one
    - Maps web‑features IDs to underlying rules (prefer `eslint-plugin-es-x` / ESLint core; custom rules only when necessary).
 3. Resolution → `src/baseline/resolve.ts`
    - Classifies “beyond baseline” by bucket (`high/low/false → widely/newly/limited`) or year.
+   - Web API and JS builtin checks use the matched API member's own Baseline status from web‑features `status.by_compat_key` when it differs from the feature's, so `URL.parse()` is newer than the `url` feature.
 
 ## Coverage
 

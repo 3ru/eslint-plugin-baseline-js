@@ -1,4 +1,4 @@
-import { baselineYearLabel, getFeatureRecord } from "../baseline/resolve";
+import { baselineYearLabel, getFeatureRecord, getFeatureStatus } from "../baseline/resolve";
 import type {
   CallMemberWithArgsDescriptor,
   Descriptor,
@@ -6,7 +6,12 @@ import type {
 } from "../baseline/types";
 import type { BaselineOption } from "../config";
 
-export function baselineMessage(featureId: string, baseline: BaselineOption, subject?: string) {
+export function baselineMessage(
+  featureId: string,
+  baseline: BaselineOption,
+  subject?: string,
+  compatKey?: string,
+) {
   const feature = getFeatureRecord(featureId);
   const label = subject ?? `'${feature?.name ?? featureId}'`;
 
@@ -18,11 +23,13 @@ export function baselineMessage(featureId: string, baseline: BaselineOption, sub
     return `${label} is not Baseline Newly available (${featureId}).`;
   }
 
-  if (feature?.status?.baseline === false) {
+  const status = getFeatureStatus(featureId, compatKey);
+
+  if (status?.baseline === false) {
     return `${label} has Limited availability and exceeds ${baseline} (${featureId}).`;
   }
 
-  const year = baselineYearLabel(feature?.status) ?? "unknown";
+  const year = baselineYearLabel(status) ?? "unknown";
 
   return `${label} became Baseline in ${year} and exceeds ${baseline} (${featureId}).`;
 }

@@ -2,7 +2,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { z } from "zod";
-import type { Descriptor } from "../../src/baseline/types.ts";
+import type { GeneratedDescriptor } from "../../src/baseline/types.ts";
 import { compareText, type Parser, parseJson, ROOT, sha256, sha256File } from "./lib.mts";
 import type {
   BenchDescriptor,
@@ -27,7 +27,12 @@ const ObjectArgSchema = z.strictObject({
     .exactOptional(),
 });
 
-const common = { featureId: z.string(), typedOnly: z.boolean().exactOptional() };
+// Every generated pattern carries the exact web-features compat key it detects.
+const common = {
+  featureId: z.string(),
+  compatKey: z.string(),
+  typedOnly: z.boolean().exactOptional(),
+};
 
 // Strict, with no catch-all kind: the rule throws on data it does not know, so must the bench.
 const DescriptorSchema = z.discriminatedUnion("kind", [
@@ -62,7 +67,7 @@ const DescriptorSchema = z.discriminatedUnion("kind", [
     name: z.string(),
     objectArg: ObjectArgSchema,
   }),
-]) satisfies z.ZodType<Descriptor>;
+]) satisfies z.ZodType<GeneratedDescriptor>;
 
 const DescriptorsSchema = z.array(DescriptorSchema);
 

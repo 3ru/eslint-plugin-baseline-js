@@ -15,19 +15,19 @@ import {
   stripChain,
 } from "../../../util/ast";
 
-export type Reporter = (node: Node, featureId: string) => void;
+export type MatchReporter = (node: Node, reference: Node) => void;
 
 export function addNewIdentDetector(
   context: Rule.RuleContext,
   descriptor: NewIdentDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
-  const { name, featureId } = descriptor;
+  const { name } = descriptor;
   return {
     NewExpression(node) {
       const callee = stripChain(node.callee);
       if (isGlobalBaseNotShadowed(context, callee, name, node)) {
-        report(getMemberPropertyNode(callee) ?? callee, featureId);
+        onMatch(getMemberPropertyNode(callee) ?? callee, callee);
       }
     },
   };
@@ -36,9 +36,9 @@ export function addNewIdentDetector(
 export function addNewMemberDetector(
   context: Rule.RuleContext,
   descriptor: NewMemberDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
-  const { base, prop, featureId } = descriptor;
+  const { base, prop } = descriptor;
   return {
     NewExpression(node) {
       const callee = stripChain(node.callee);
@@ -47,7 +47,7 @@ export function addNewMemberDetector(
         getStaticMemberName(callee) === prop &&
         isGlobalBaseNotShadowed(context, callee.object, base, node)
       ) {
-        report(callee.property, featureId);
+        onMatch(callee.property, callee);
       }
     },
   };
@@ -56,9 +56,9 @@ export function addNewMemberDetector(
 export function addCallStaticDetector(
   context: Rule.RuleContext,
   descriptor: CallStaticDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
-  const { base, prop, featureId } = descriptor;
+  const { base, prop } = descriptor;
   return {
     CallExpression(node) {
       const callee = stripChain(node.callee);
@@ -67,7 +67,7 @@ export function addCallStaticDetector(
         getStaticMemberName(callee) === prop &&
         isGlobalBaseNotShadowed(context, callee.object, base, node)
       ) {
-        report(callee.property, featureId);
+        onMatch(callee.property, callee);
       }
     },
   };
@@ -76,14 +76,14 @@ export function addCallStaticDetector(
 export function addCallGlobalDetector(
   context: Rule.RuleContext,
   descriptor: CallGlobalDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
-  const { name, featureId } = descriptor;
+  const { name } = descriptor;
   return {
     CallExpression(node) {
       const callee = stripChain(node.callee);
       if (isGlobalBaseNotShadowed(context, callee, name, node)) {
-        report(getMemberPropertyNode(callee) ?? callee, featureId);
+        onMatch(getMemberPropertyNode(callee) ?? callee, callee);
       }
     },
   };
@@ -92,16 +92,16 @@ export function addCallGlobalDetector(
 export function addMemberDetector(
   context: Rule.RuleContext,
   descriptor: MemberDescriptor | StaticMemberDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
-  const { base, prop, featureId } = descriptor;
+  const { base, prop } = descriptor;
   return {
     MemberExpression(node) {
       if (
         getStaticMemberName(node) === prop &&
         isGlobalBaseNotShadowed(context, node.object, base, node)
       ) {
-        report(node.property, featureId);
+        onMatch(node.property, node);
       }
     },
   };
@@ -110,7 +110,7 @@ export function addMemberDetector(
 export function addStaticMemberDetector(
   context: Rule.RuleContext,
   descriptor: StaticMemberDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
-  return addMemberDetector(context, descriptor, report);
+  return addMemberDetector(context, descriptor, onMatch);
 }

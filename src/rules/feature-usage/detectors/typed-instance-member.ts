@@ -1,18 +1,16 @@
 import type { Rule } from "eslint";
-import type { Node } from "estree";
 import type ts from "typescript";
 import type { InstanceMemberDescriptor } from "../../../baseline/types";
 import { isMemberWithProperty } from "../../../util/ast";
 import { getTypedParserServices } from "../../../util/typed-parser-services";
-
-export type Reporter = (node: Node, featureId: string) => void;
+import type { MatchReporter } from "./safe-core";
 
 export function addTypedInstanceMemberDetector(
   context: Rule.RuleContext,
   d: InstanceMemberDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
-  const { iface, prop, featureId } = d;
+  const { iface, prop } = d;
   const services = getTypedParserServices(context);
   if (!services) return {};
   const { program } = services;
@@ -54,7 +52,7 @@ export function addTypedInstanceMemberDetector(
     if (!tsNode) return;
     const type = checker.getNonNullableType(checker.getTypeAtLocation(tsNode));
     if (!checker.getPropertyOfType(type, prop)) return;
-    if (typeMatches(type)) report(node.property, featureId);
+    if (typeMatches(type)) onMatch(node.property, node);
   };
   return { MemberExpression: handler };
 }

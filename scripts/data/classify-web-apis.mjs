@@ -1,8 +1,4 @@
-/** @typedef {import("../../src/baseline/types").Descriptor} Descriptor */
-/**
- * @template Pattern
- * @typedef {Pattern extends Descriptor ? Omit<Pattern, "featureId"> : never} DescriptorPattern
- */
+/** @typedef {import("../../src/baseline/types").DescriptorPattern} DescriptorPattern */
 
 // Window operation names require explicit IDL evidence: compat keys do not
 // distinguish operations from attributes or event compatibility labels.
@@ -181,7 +177,7 @@ export const LEGACY_FACTORY_COMPAT_KEYS = new Map([
  * an explicit, auditable rule supports that exact key.
  *
  * @param {string} key
- * @returns {DescriptorPattern<Descriptor>[]}
+ * @returns {DescriptorPattern[]}
  */
 export function classifyWebApiCompatFeature(key) {
   if (!key.startsWith("api.")) return [];
@@ -218,7 +214,7 @@ export function classifyWebApiCompatFeature(key) {
     if (!memberKind) {
       throw new Error(`Unreviewed Window compat key: ${key}; classify it in classify-web-apis.mjs`);
     }
-    /** @type {DescriptorPattern<Descriptor>[]} */
+    /** @type {DescriptorPattern[]} */
     const patterns = [{ kind: "member", base: "window", prop }];
     if (memberKind === "operation") patterns.push({ kind: "callGlobal", name: prop });
     return patterns;

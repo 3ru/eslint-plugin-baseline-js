@@ -1,8 +1,10 @@
 import type { Rule } from "eslint";
+import type { Node } from "estree";
 import { getIncludedDescriptors, type IncludeOption } from "../baseline/loader";
 import mapping from "../baseline/mapping/syntax";
 import { parseDelegateRuleKey } from "../baseline/plugins";
 import { isBeyondBaseline } from "../baseline/resolve";
+import type { Descriptor } from "../baseline/types";
 import { type CommonRuleOptions, getBaselineValue } from "../config";
 import { buildListeners } from "../rules/feature-usage/builder";
 import noAtomicsPause from "../rules/no-atomics-pause";
@@ -10,6 +12,7 @@ import noBigint64array from "../rules/no-bigint64array";
 import noFunctionCallerArguments from "../rules/no-function-caller-arguments";
 import noMathSumPrecise from "../rules/no-math-sum-precise";
 import noTemporal from "../rules/no-temporal";
+import { stripChain } from "../util/ast";
 import { getTypedParserServices } from "../util/typed-parser-services";
 import {
   listResolverPlugins,
@@ -20,6 +23,46 @@ import { mergeRuleListeners } from "../utils/listeners";
 import { baselineMessage, delegateSubject, descriptorSubject } from "./messages";
 
 type ListenerMap = Rule.RuleListener;
+
+interface DescriptorPlan {
+  readonly descriptors: readonly Descriptor[];
+  readonly beyondBaseline: ReadonlySet<Descriptor>;
+}
+
+interface CachedDescriptorPlans {
+  readonly signature: string;
+  readonly variants: Map<boolean, DescriptorPlan>;
+}
+
+const EMPTY_OPTIONS: CommonRuleOptions = {};
+const descriptorPlans = new WeakMap<CommonRuleOptions, CachedDescriptorPlans>();
+
+function unwrapReportedChain(node: object): object {
+  while (
+    "type" in node &&
+    node.type === "ChainExpression" &&
+    "expression" in node &&
+    typeof node.expression === "object" &&
+    node.expression !== null
+  ) {
+    node = node.expression;
+  }
+  return node;
+}
+
+function delegateReference(node: object): object {
+  const reference = unwrapReportedChain(node);
+  if (
+    "type" in reference &&
+    (reference.type === "CallExpression" || reference.type === "NewExpression") &&
+    "callee" in reference &&
+    typeof reference.callee === "object" &&
+    reference.callee !== null
+  ) {
+    return unwrapReportedChain(reference.callee);
+  }
+  return reference;
+}
 
 function buildDelegateContext(
   ctx: Rule.RuleContext,
@@ -120,27 +163,37 @@ const rule: Rule.RuleModule = {
     const ast = sourceCode.ast as { type?: string } | undefined;
     // Avoid running when the parser did not produce a JS Program (eg, non-ESTree processors)
     if (ast?.type && ast.type !== "Program") return {};
-    const opt = (ctx.options[0] ?? {}) as CommonRuleOptions;
+    const opt = (ctx.options[0] ?? EMPTY_OPTIONS) as CommonRuleOptions;
     const baseline = getBaselineValue(opt);
     const ignoreFeaturePatterns = (opt.ignoreFeatures ?? []) as string[];
     const ignoreNodeTypePatterns = (opt.ignoreNodeTypes ?? []) as string[];
     const includeWebApis = opt.includeWebApis ?? false;
     const includeJsBuiltins = opt.includeJsBuiltins ?? false;
 
-    function makeMatcher(patterns: string[]): ((s: string) => boolean) | null {
+    function makeMatcher(
+      patterns: string[],
+      option: "ignoreFeatures" | "ignoreNodeTypes",
+    ): ((s: string) => boolean) | null {
       if (!patterns.length) return null;
       const compiled = patterns.map((p) => {
         if (p.startsWith("/") && p.endsWith("/") && p.length >= 2) {
           const expr = p.slice(1, -1);
-          return new RegExp(expr);
+          try {
+            return new RegExp(expr);
+          } catch (error) {
+            if (error instanceof SyntaxError) {
+              error.message = `Invalid ${option} pattern ${JSON.stringify(p)}. ${error.message}`;
+            }
+            throw error;
+          }
         }
         return p;
       });
       return (s: string) => compiled.some((m) => (m instanceof RegExp ? m.test(s) : m === s));
     }
 
-    const matchIgnoreFeature = makeMatcher(ignoreFeaturePatterns);
-    const matchIgnoreNodeType = makeMatcher(ignoreNodeTypePatterns);
+    const matchIgnoreFeature = makeMatcher(ignoreFeaturePatterns, "ignoreFeatures");
+    const matchIgnoreNodeType = makeMatcher(ignoreNodeTypePatterns, "ignoreNodeTypes");
 
     const entries: Array<{ featureId: string; delegateRule: string }> = [];
     const map = mapping as Record<
@@ -162,6 +215,34 @@ const rule: Rule.RuleModule = {
 
     const listeners: ListenerMap = {};
     const mappedFeatureIds = new Set(entries.map((e) => e.featureId));
+    const pendingDelegates: Array<{ featureId: string; report: Rule.ReportDescriptor }> = [];
+    const claimedFeatures = new WeakMap<object, Set<string>>();
+    const reportedFeatures = new WeakMap<Node, Set<string>>();
+
+    function addFeature<N extends object>(
+      featuresByNode: WeakMap<N, Set<string>>,
+      node: N,
+      featureId: string,
+    ) {
+      let features = featuresByNode.get(node);
+      if (features?.has(featureId)) return false;
+      if (!features) {
+        features = new Set();
+        featuresByNode.set(node, features);
+      }
+      features.add(featureId);
+      return true;
+    }
+
+    function claimReference(reference: Node, featureId: string) {
+      const node = stripChain(reference);
+      if (node.type !== "Identifier" && node.type !== "MemberExpression") return;
+      addFeature(claimedFeatures, node, featureId);
+      if (node.type === "MemberExpression") {
+        addFeature(claimedFeatures, node.property, featureId);
+        claimReference(node.object, featureId);
+      }
+    }
 
     if (_DEBUG) {
       // eslint-disable-next-line no-console
@@ -207,15 +288,7 @@ const rule: Rule.RuleModule = {
         options: delegateOptions,
         report(arg: Rule.ReportDescriptor) {
           if ("node" in arg && matchIgnoreNodeType?.(arg.node.type)) return;
-
-          const subject = arg.data?.name ? delegateSubject(String(arg.data.name)) : undefined;
-          const message = baselineMessage(featureId, baseline, subject);
-
-          if ("node" in arg) {
-            ctx.report({ node: arg.node, message });
-          } else {
-            ctx.report({ loc: arg.loc, message });
-          }
+          pendingDelegates.push({ featureId, report: arg });
         },
       });
 
@@ -236,43 +309,82 @@ const rule: Rule.RuleModule = {
     const typedJsEnabled = useTypesJs !== "off" && typedAvailable;
     const typedEnabled = typedWebEnabled || typedJsEnabled;
 
-    function getEnabledDescriptors(
-      options: Parameters<typeof getIncludedDescriptors>[0],
-      useTypes: boolean,
-    ) {
-      return getIncludedDescriptors(options).filter(
-        (descriptor) => useTypes || (descriptor.kind !== "instanceMember" && !descriptor.typedOnly),
-      );
-    }
+    const signature = JSON.stringify([String(baseline), opt]);
+    const cachedPlans = descriptorPlans.get(opt);
+    let plan =
+      cachedPlans?.signature === signature ? cachedPlans.variants.get(typedAvailable) : undefined;
+    if (!plan) {
+      function getEnabledDescriptors(
+        options: Parameters<typeof getIncludedDescriptors>[0],
+        useTypes: boolean,
+      ) {
+        return getIncludedDescriptors(options).filter(
+          (descriptor) =>
+            useTypes || (descriptor.kind !== "instanceMember" && !descriptor.typedOnly),
+        );
+      }
 
-    let descriptors = [
-      ...getEnabledDescriptors({ webApis: includeWebApis }, typedWebEnabled),
-      ...getEnabledDescriptors({ jsBuiltins: includeJsBuiltins }, typedJsEnabled),
-    ];
-    if (matchIgnoreFeature) {
-      descriptors = descriptors.filter((d) => !matchIgnoreFeature(d.featureId));
+      let descriptors = [
+        ...getEnabledDescriptors({ webApis: includeWebApis }, typedWebEnabled),
+        ...getEnabledDescriptors({ jsBuiltins: includeJsBuiltins }, typedJsEnabled),
+      ];
+      if (matchIgnoreFeature) {
+        descriptors = descriptors.filter((d) => !matchIgnoreFeature(d.featureId));
+      }
+      const beyondBaseline = new Set(
+        descriptors.filter((d) => isBeyondBaseline(d.featureId, baseline, d.compatKey)),
+      );
+      descriptors = descriptors.filter(
+        (d) => beyondBaseline.has(d) || mappedFeatureIds.has(d.featureId),
+      );
+      plan = { descriptors, beyondBaseline };
+      if (cachedPlans?.signature === signature) {
+        cachedPlans.variants.set(typedAvailable, plan);
+      } else {
+        descriptorPlans.set(opt, { signature, variants: new Map([[typedAvailable, plan]]) });
+      }
     }
-    // Filter to features that actually exceed the configured Baseline
-    descriptors = descriptors
-      .filter((d) => isBeyondBaseline(d.featureId, baseline))
-      // Avoid double-reporting when a feature is covered by mapping delegates
-      .filter((d) => !mappedFeatureIds.has(d.featureId));
+    const { descriptors, beyondBaseline } = plan;
 
     if (descriptors.length > 0) {
       const generic = buildListeners(ctx, {
         descriptors,
         typed: typedEnabled,
-        report(node, descriptor) {
+        onMatch({ node, reference, descriptor }) {
+          if (mappedFeatureIds.has(descriptor.featureId)) {
+            claimReference(reference, descriptor.featureId);
+          }
+          if (!beyondBaseline.has(descriptor)) return;
           if (matchIgnoreNodeType?.(node.type)) return;
+          if (!addFeature(reportedFeatures, node, descriptor.featureId)) return;
 
           ctx.report({
             node,
-            message: baselineMessage(descriptor.featureId, baseline, descriptorSubject(descriptor)),
+            message: baselineMessage(
+              descriptor.featureId,
+              baseline,
+              descriptorSubject(descriptor),
+              descriptor.compatKey,
+            ),
           });
         },
       });
       mergeRuleListeners(listeners, generic);
     }
+
+    mergeRuleListeners(listeners, {
+      "Program:exit"() {
+        for (const { featureId, report } of pendingDelegates.splice(0)) {
+          if ("node" in report) {
+            if (claimedFeatures.get(delegateReference(report.node))?.has(featureId)) continue;
+          }
+          const subject = report.data?.name ? delegateSubject(String(report.data.name)) : undefined;
+          const message = baselineMessage(featureId, baseline, subject);
+          if ("node" in report) ctx.report({ node: report.node, message });
+          else ctx.report({ loc: report.loc, message });
+        }
+      },
+    });
 
     return listeners;
   },

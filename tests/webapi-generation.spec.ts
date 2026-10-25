@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import descriptors from "../src/baseline/data/descriptors.api";
 import { lintWithBaseline, reportingPolicyFor } from "./helpers";
+import { reportingPolicyForCompat } from "./utils/policy";
 
 // Independently audited Web IDL operations, not copied from generator output.
 // HTML/CSSOM: https://html.spec.whatwg.org/multipage/nav-history-apis.html#the-window-object
@@ -59,10 +60,15 @@ const legacyFactories = [
   ["select", "Option"],
 ] as const;
 
-function lint(code: string, featureId: string, preset: "safe" | "auto" = "safe") {
+function lint(
+  code: string,
+  featureId: string,
+  preset: "safe" | "auto" = "safe",
+  compatKey?: string,
+) {
   return lintWithBaseline(
     code,
-    reportingPolicyFor(featureId),
+    compatKey ? reportingPolicyForCompat(featureId, compatKey) : reportingPolicyFor(featureId),
     { sourceType: "module" },
     {
       includeWebApis: { preset, only: [featureId] },
@@ -75,10 +81,17 @@ describe("Web API generation: audited global operations", () => {
   for (const [featureId, name] of windowOperations) {
     it(`detects unqualified ${name}() in safe and auto modes`, async () => {
       for (const preset of ["safe", "auto"] as const) {
-        const messages = await lint(`${name}();`, featureId, preset);
+        const messages = await lint(`${name}();`, featureId, preset, `api.Window.${name}`);
         expect(messages.filter((message) => message.includes(`(${featureId})`))).toHaveLength(1);
       }
-      expect(await lint(`function local(${name}) { ${name}(); }`, featureId)).toEqual([]);
+      expect(
+        await lint(
+          `function local(${name}) { ${name}(); }`,
+          featureId,
+          "safe",
+          `api.Window.${name}`,
+        ),
+      ).toEqual([]);
     });
   }
 
@@ -96,11 +109,21 @@ describe("Web API generation: audited global operations", () => {
 describe("Web API generation: static attributes", () => {
   for (const [featureId, base, prop] of staticAttributes) {
     it(`detects reads of ${base}.${prop}`, async () => {
-      const messages = await lint(`void ${base}.${prop};`, featureId);
-      expect(messages.filter((message) => message.includes(`(${featureId})`))).toHaveLength(1);
-      expect(await lint(`var ${base} = { ${prop}: 0 }; void ${base}.${prop};`, featureId)).toEqual(
-        [],
+      const messages = await lint(
+        `void ${base}.${prop};`,
+        featureId,
+        "safe",
+        `api.${base}.${prop}_static`,
       );
+      expect(messages.filter((message) => message.includes(`(${featureId})`))).toHaveLength(1);
+      expect(
+        await lint(
+          `var ${base} = { ${prop}: 0 }; void ${base}.${prop};`,
+          featureId,
+          "safe",
+          `api.${base}.${prop}_static`,
+        ),
+      ).toEqual([]);
     });
   }
 });

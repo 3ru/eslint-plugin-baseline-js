@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { features as wfFeatures } from "web-features";
 import { classifyWindowMember, LEGACY_FACTORY_COMPAT_KEYS } from "../data/classify-web-apis.mjs";
+
+/** @typedef {import("../../src/baseline/types").GeneratedDescriptor} GeneratedDescriptor */
+/** @typedef {typeof import("web-features").features} SourceFeatures */
 
 const TYPED_ARRAY_IFACES = new Set([
   "Int8Array",
@@ -18,6 +22,7 @@ const TYPED_ARRAY_IFACES = new Set([
   "BigUint64Array",
 ]);
 
+/** @param {string} pathFromRoot @returns {GeneratedDescriptor[]} */
 function parseGeneratedDescriptorFile(pathFromRoot) {
   const abs = resolve(process.cwd(), pathFromRoot);
   const src = readFileSync(abs, "utf8");
@@ -26,14 +31,7 @@ function parseGeneratedDescriptorFile(pathFromRoot) {
   return JSON.parse(m[1]);
 }
 
-function compatKeySetForFeature(featureId) {
-  const rec = wfFeatures[featureId];
-  if (!rec) return null;
-  const byCompat = Object.keys(rec?.status?.by_compat_key ?? {});
-  const compatFeatures = Array.isArray(rec.compat_features) ? rec.compat_features : [];
-  return new Set([...byCompat, ...compatFeatures]);
-}
-
+/** @param {GeneratedDescriptor} desc @param {Set<string>} keys */
 function matchesApiDescriptor(desc, keys) {
   if (!keys.size) return true;
   switch (desc.kind) {
@@ -70,8 +68,10 @@ function matchesApiDescriptor(desc, keys) {
   }
 }
 
+/** @param {GeneratedDescriptor} desc @param {Set<string>} keys */
 function matchesJsbiDescriptor(desc, keys) {
   if (!keys.size) return true;
+  /** @param {string} k */
   const hasKey = (k) => keys.has(k);
   switch (desc.kind) {
     case "newMember":
@@ -80,6 +80,7 @@ function matchesJsbiDescriptor(desc, keys) {
         hasKey(`javascript.builtins.${desc.base}.${desc.prop}.${desc.prop}`)
       );
     case "callStatic":
+    case "staticMember":
     case "member":
       return hasKey(`javascript.builtins.${desc.base}.${desc.prop}`);
     case "newIdent":
@@ -109,13 +110,23 @@ function matchesJsbiDescriptor(desc, keys) {
   }
 }
 
-function checkFile(pathFromRoot, matcher, keyPrefix) {
-  const descs = parseGeneratedDescriptorFile(pathFromRoot);
+/**
+ * Validate ownership and the selected compatibility key, not another member in the same feature.
+ * Composite option patterns are explicit, reviewed mappings in manual-descriptors.mjs.
+ * @param {ReadonlyArray<GeneratedDescriptor>} descs
+ * @param {SourceFeatures} features
+ * @param {"api." | "javascript.builtins."} keyPrefix
+ */
+export function checkDescriptors(descs, features, keyPrefix) {
+  const matcher = keyPrefix === "api." ? matchesApiDescriptor : matchesJsbiDescriptor;
   const problems = [];
   for (const d of descs) {
-    if (!d?.featureId || !d?.kind) continue;
-    const keySet = compatKeySetForFeature(d.featureId);
-    if (!keySet) {
+    if (!d?.featureId || !d?.kind) {
+      problems.push({ featureId: d?.featureId, descriptor: d, reason: "invalid-descriptor" });
+      continue;
+    }
+    const feature = features[d.featureId];
+    if (!feature || !("compat_features" in feature)) {
       problems.push({
         featureId: d.featureId,
         descriptor: d,
@@ -123,8 +134,32 @@ function checkFile(pathFromRoot, matcher, keyPrefix) {
       });
       continue;
     }
-    const scopedKeys = new Set([...keySet].filter((k) => k.startsWith(keyPrefix)));
-    if (!matcher(d, scopedKeys)) {
+    const keySet = new Set(feature.compat_features ?? []);
+    if (typeof d.compatKey !== "string" || !d.compatKey) {
+      problems.push({
+        featureId: d.featureId,
+        descriptor: d,
+        reason: "missing-compat-key",
+      });
+      continue;
+    }
+    if (!d.compatKey.startsWith(keyPrefix)) {
+      problems.push({
+        featureId: d.featureId,
+        descriptor: d,
+        reason: "compat-key-outside-namespace",
+      });
+      continue;
+    }
+    if (!keySet.has(d.compatKey)) {
+      problems.push({
+        featureId: d.featureId,
+        descriptor: d,
+        reason: "compat-key-not-in-feature",
+      });
+      continue;
+    }
+    if (!matcher(d, new Set([d.compatKey]))) {
       problems.push({
         featureId: d.featureId,
         descriptor: d,
@@ -135,39 +170,38 @@ function checkFile(pathFromRoot, matcher, keyPrefix) {
   return problems;
 }
 
-// A future web-features update must review every new Window member's kind.
-for (const feature of Object.values(wfFeatures)) {
-  for (const key of feature.compat_features ?? []) {
-    const parts = key.split(".");
-    if (parts.length === 3 && parts[0] === "api" && parts[1] === "Window") {
-      if (!classifyWindowMember(parts[2])) {
-        throw new Error(
-          `Unreviewed Window compat key: ${key}; classify it in classify-web-apis.mjs`,
-        );
+function main() {
+  // A future web-features update must review every new Window member's kind.
+  for (const feature of Object.values(wfFeatures)) {
+    if (feature.kind !== "feature") continue;
+    for (const key of feature.compat_features ?? []) {
+      const parts = key.split(".");
+      if (parts.length === 3 && parts[0] === "api" && parts[1] === "Window") {
+        if (!classifyWindowMember(parts[2])) {
+          throw new Error(
+            `Unreviewed Window compat key: ${key}; classify it in classify-web-apis.mjs`,
+          );
+        }
       }
     }
   }
+
+  const api = parseGeneratedDescriptorFile("src/baseline/data/descriptors.api.ts");
+  const jsbi = parseGeneratedDescriptorFile("src/baseline/data/descriptors.jsbi.ts");
+  const all = [
+    ...checkDescriptors(api, wfFeatures, "api."),
+    ...checkDescriptors(jsbi, wfFeatures, "javascript.builtins."),
+  ];
+  if (all.length > 0) {
+    console.error("[check:descriptor-compat] Found descriptor/compat mismatches:");
+    for (const p of all.slice(0, 50)) {
+      console.error(`- ${p.featureId} (${p.reason}) :: ${JSON.stringify(p.descriptor)}`);
+    }
+    if (all.length > 50) console.error(`...and ${all.length - 50} more.`);
+    process.exitCode = 1;
+    return;
+  }
+  console.log(`[check:descriptor-compat] OK (api=${api.length}, jsbi=${jsbi.length})`);
 }
 
-const apiProblems = checkFile("src/baseline/data/descriptors.api.ts", matchesApiDescriptor, "api.");
-const jsbiProblems = checkFile(
-  "src/baseline/data/descriptors.jsbi.ts",
-  matchesJsbiDescriptor,
-  "javascript.builtins.",
-);
-const all = [...apiProblems, ...jsbiProblems];
-
-if (all.length > 0) {
-  console.error("[check:descriptor-compat] Found descriptor/compat mismatches:");
-  for (const p of all.slice(0, 50)) {
-    console.error(`- ${p.featureId} (${p.reason}) :: ${JSON.stringify(p.descriptor)}`);
-  }
-  if (all.length > 50) {
-    console.error(`...and ${all.length - 50} more.`);
-  }
-  process.exit(1);
-}
-
-console.log(
-  `[check:descriptor-compat] OK (api=${parseGeneratedDescriptorFile("src/baseline/data/descriptors.api.ts").length}, jsbi=${parseGeneratedDescriptorFile("src/baseline/data/descriptors.jsbi.ts").length})`,
-);
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
