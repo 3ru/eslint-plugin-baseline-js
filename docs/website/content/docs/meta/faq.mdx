@@ -60,6 +60,8 @@ Yes, through its JS plugin support. See [Use with oxlint](/docs/oxlint) for a co
 Checks that need TypeScript parser services do not run there.
 Use ESLint with a configured TypeScript parser for checks such as `Set.prototype.difference()` and `Iterator.prototype.join()`.
 
+The [linter compatibility report](/docs/compatibility) shows observed results for specific releases, with the inputs and output for each case.
+
 ## How do I handle a false positive or an exception?
 
 Typed instance checks match interface names and inheritance. A project-defined type with the same name as a Web API interface can produce a false positive.

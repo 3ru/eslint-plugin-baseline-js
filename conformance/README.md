@@ -1,195 +1,95 @@
-# Toolchain capability checks
+# Linter compatibility measurements
 
-This development-only harness checks which parts of Baseline detection are available when
-`eslint-plugin-baseline-js` runs inside ESLint, Oxlint, or Bun. It lives beside the plugin so
-contributors can reproduce compatibility findings with the exact plugin revision being reviewed.
-It has its own dependencies and lockfile, and is excluded from the published package.
-Reports preserve reproducible evidence of host limitations for upstream improvements.
+This development package measures selected Baseline checks and host plugin APIs under ESLint, Oxlint, and Bun.
+The [linter compatibility page](https://baselinejs.vercel.app/docs/compatibility) shows the published results and their scope.
+The package has its own dependencies and lockfile. It is excluded from the npm release.
 
-These are capability and conformance checks, not a performance ranking, a compatibility score, or
-a claim that every ESLint plugin works on a given host. They are maintained by this project and do
-not imply endorsement by Bun, Oxc, W3C, or the Baseline project.
+## Measure an npm release
 
-## What is being checked
+Use Node 22.18 or later on the 22 line, or Node 23.6 or later, with the pnpm version in `package.json`.
+Run these commands from the repository root:
 
-`cases.ts` holds two groups of examples, checked against the contracts in `types.ts`:
+```sh
+pnpm --dir conformance install --frozen-lockfile --ignore-scripts
+pnpm --dir conformance typecheck
+pnpm --dir conformance test
+node conformance/subject.ts --out conformance/results/subject
+CONFORMANCE_PROFILE=pinned node conformance/run.ts --subject conformance/results/subject --out conformance/results/pinned
+CONFORMANCE_PROFILE=latest node conformance/run.ts --subject conformance/results/subject --out conformance/results/latest
+```
 
-| Group | Examples |
-| --- | --- |
-| Host APIs | Plugin options, AST selectors, scope and shadowing through a parameter and through a top-level binding, source tokens, diagnostic locations after non-ASCII text, ancestry, and TypeScript receiver information. |
-| Baseline detection | Logical assignment, static and computed `Object.groupBy`, both shadowed `Object` bindings, global `fetchLater`, `Object.groupBy` in a TypeScript file, native `Element.checkVisibility`, native `Set.union`, and a structural and a nominal lookalike of `Element`. |
+`subject.ts` resolves the published plugin once and saves its exact version, tarball URL, and integrity.
+Both profiles use that package. Released-package measurements do not need a root install or build.
 
-Each example has an explicit expectation independent of the output from the three tools.
-Agreement between tools is insufficient: all three could miss the same feature.
-The Baseline year is fixed at 2019, so these examples do not change meaning as Widely available
-moves. Positions and ranges count UTF-16 code units, as ESLint reports them; Oxlint's byte
-offsets are converted.
+`pinned` installs the reviewed versions from the committed conformance manifest and lockfile.
+`latest` resolves ESLint, Oxlint, and the TypeScript parser from `latest`, and Bun from `canary`.
+The TypeScript reference stays fixed within the parser's peer range.
+The report records package versions, executable versions, channels, and capture times.
 
-Host examples run only a small dedicated probe rule. Baseline examples run that probe together
-with the locally built product rule. The probe's diagnostic shows that the file was actually
-visited; typed examples also check whether usable TypeScript parser services are available for the
-member the case names. This separates a missing host capability from a problem in Baseline
-detection. Results preserve both the capability observation and the product diagnosis.
+## Diagnose the current checkout
 
-A host that cannot provide the required type information has unavailable coverage for a typed
-example. An empty diagnostic list does not count as successful type-aware detection, including for
-examples that should produce no Baseline diagnostic. For `values.union(new Set())` in a `.ts`
-file, ESLint reports `set-methods`; Oxlint and Bun report nothing and the probe sees no program, so
-their rows read `unavailable | unsupported` instead of passing.
-
-`hosts.ts` records each host's configuration format, invocation, and expected capabilities for JavaScript rules.
-These expectations follow the host documentation:
-
-- [Bun plugin notes](https://bun.sh/docs/lint/plugins#notes): JavaScript rules get no type information.
-- [Oxlint JavaScript plugin API support](https://oxc.rs/docs/guide/usage/linter/js-plugins.html#api-support): type-aware rules are not supported.
-- [typescript-eslint typed linting](https://typescript-eslint.io/getting-started/typed-linting/): how ESLint gets type information.
-
-The harness records actual behavior rather than assuming that documentation applies unchanged to
-every future version. A host that starts providing type services, or stops providing something it
-did, fails its rows with a reason that says so. Missing Baseline diagnostics on a capable host fail
-the check. Expected type-service limitations cannot hide additional diagnostics or an execution
-failure.
-
-JavaScript fixtures are parsed by each host's own parser. TypeScript fixtures use
-`@typescript-eslint/parser` under ESLint and Bun; Oxlint parses TypeScript itself. Oxlint's typed
-rows run in its default mode, without `--type-aware`: that mode needs the separate
-`oxlint-tsgolint` package and does not reach JavaScript plugins today. Bun's typed rows pass
-`--type-aware`; Bun's notes say JavaScript rules still get no program with it.
-
-## Layout
-
-The harness is TypeScript that Node runs directly. `types.ts` states the contracts; `cases.ts`
-(the examples) and `hosts.ts` (host facts and invocations) are checked against them; `run.ts`
-drives the hosts; `assess.ts` parses each host's output, classifies each row and renders
-`report.md`; `refresh.ts` installs current releases. Node 22.18 or later on the 22 line, or 23.6
-or later, strips the types without a flag, and `pnpm --dir conformance typecheck` checks them with
-the pinned TypeScript and type packages.
-
-Two files stay plain ESM: `probe.mjs`, the rule every host runs, and `protocol.mjs`, which it
-imports. The probe is the measuring instrument, so it loads the way a shipped JavaScript plugin
-does. As `.ts` it would depend on each host's own TypeScript loading: Node's type stripping under
-ESLint and Oxlint, which writes an ExperimentalWarning to the host's stderr on some Node lines, and
-Bun's transpiler. That path would then become part of what every row measures. Both files are
-type-checked through JSDoc. The probe types as optional what a host hands it (SourceCode methods,
-scope objects, parser services and checker methods) and checks each before use; values TypeScript
-returns keep TypeScript's types.
-
-## Run locally
-
-Use the Node and pnpm versions in
-[`toolchain-capabilities.yml`](../.github/workflows/toolchain-capabilities.yml) for the CI setup.
-From the repository root:
+For an unpublished plugin change, build the checkout before running without `--subject`:
 
 ```sh
 pnpm install --frozen-lockfile --ignore-scripts
 pnpm build
 pnpm --dir conformance install --frozen-lockfile --ignore-scripts
-pnpm --dir conformance typecheck
-pnpm --dir conformance test
 pnpm --dir conformance check
 ```
 
-The install refuses a Node outside the range above instead of failing later on a `.ts` entry
-point.
+This measures the local `dist/index.mjs`. It does not update the public npm-release report.
+The harness supports macOS and glibc Linux on x64 and arm64.
 
-The harness resolves the pinned Bun executable from the `bun` package's native optional
-dependency. Dependency installation does not execute install scripts or change a global Bun
-installation. The plugin under test is the locally built `dist/index.mjs`; it imports ESLint and
-`eslint-plugin-es-x` from the root install, and the report records both versions.
+## Read and reproduce a measurement
 
-Stable Bun does not include `bun lint` yet, so the pin is a canary. Reports retain the executable's
-own revision next to the npm package version, because the two differ.
+Each profile saves these files below its output directory:
 
-To observe current host and parser releases against the same fixed TypeScript reference, without
-changing either committed lockfile:
+- `report.md` summarizes the observations.
+- `report.json` records capabilities, diagnostics, expectations, and execution metadata.
+- `raw/` contains each process's standard output and standard error.
+- `work/` contains the generated inputs, linter configurations, and TypeScript project.
+- `subject-input/` and `tools/` contain the exact dependency manifests and lockfiles.
+
+Cases have independent expectations. A zero exit code or agreement between linters does not establish that a check ran.
+An expected unsupported result can satisfy the harness expectation while the Baseline check remains unverified.
+Unexpected diagnostics, missing diagnostics on a capable host, and execution failures remain visible.
+
+Public snapshots live on the [`toolchain-reports` branch](https://github.com/3ru/eslint-plugin-baseline-js/tree/toolchain-reports) at `runs/<run-id>/<attempt>/`.
+The latest pointer names an immutable Git commit. Each snapshot keeps both profiles, including failures and missing measurements.
+Published snapshots store the shared package inputs once in `subject/`.
+These records remain available after the workflow's temporary artifacts expire.
+
+The saved Markdown report contains fixed evidence links and reproduction commands.
+To replay a profile, use its harness commit, restore the shared `subject/` directory and that profile's `tools/` directory, and download the subject tarball from `subject.json`.
+Save that tarball as `subject.tgz` in the restored `subject` directory. The runner verifies its integrity.
+Pass the recorded profile and directories:
 
 ```sh
-pnpm --dir conformance refresh
-CONFORMANCE_PROFILE=latest pnpm --dir conformance check
+CONFORMANCE_PROFILE=latest node conformance/run.ts --subject /path/to/subject --tools /path/to/tools --out /tmp/baseline-replay
 ```
 
-`refresh` recreates `conformance/results/latest-tools/` from scratch, resolves `eslint`, `oxlint`
-and `@typescript-eslint/parser` from `latest` and `bun` from `canary`, keeps TypeScript at the
-committed conformance version, and enforces peer compatibility. It skips releases younger than one
-day, so a build that is published and withdrawn the same morning never runs. The plugin and its
-Baseline data still come from the current checkout. This is a discovery run, not a replacement for
-a reproducible pinned run. Return to the pinned profile with `pnpm --dir conformance check`.
+`--tools` installs from the saved lockfile. It does not resolve current release tags.
+Compare the subject, harness revision, inputs, and configurations before attributing a change to a linter.
 
-The harness supports macOS and glibc Linux on x64 and arm64. To save a report elsewhere, pass
-`--out /absolute/path` to `node conformance/run.ts`; tool resolution remains unchanged.
+## Run in GitHub Actions
 
-## Read the results
+The [Linter Compatibility workflow](../.github/workflows/toolchain-capabilities.yml) runs weekly and on manual dispatch.
+Every run measures both profiles against one npm package. Pull requests do not run the full measurement matrix.
+Collectors have read-only repository permissions. A separate publisher validates and saves their evidence.
 
-Each run writes ignored local output under `conformance/results/`:
+The page shows the latest published attempt, separately from the last complete measurement.
+Publisher failure or cancellation can leave an older attempt visible. Reports older than eight days display a stale notice and a workflow link.
+An older run's retry does not move the latest pointer backward.
 
-- `report.md`: the comparison and findings for human review.
-- `report.json`: structured observations and run metadata.
-- `raw/`: tool output for every run.
-- `work/`: generated fixtures, the configuration each host used, and the TypeScript project.
+## Maintain the cases and pins
 
-Each row carries the observed host capability and a result:
+Give each case in `cases.ts` an independently justified expectation and a readable label.
+Typed cases name the member that the probe must inspect. An unavailable program, checker, or node map cannot count as successful type-aware detection.
+Keep product behavior changes and product regression tests in `src/` and `tests/`.
 
-| Result | Meaning |
-| --- | --- |
-| `matched` | The host provided the capability, and the observation or the diagnostics matched the expectation. |
-| `mismatch` | A host example observed something else; the reason names the part that differed. |
-| `coverage-loss` | A Baseline example on a capable host produced fewer diagnostics than expected. |
-| `incorrect` | A Baseline example produced a diagnostic that was not expected, whatever the host's capability. |
-| `unsupported` | The probe could not use the capability; the reason names the missing host API or the fixture node it never received. For the documented type gap this is the expected row under Oxlint and Bun, and the Baseline example stays unverified. |
-| `unknown` | The probe did not report exactly once, did not receive its options, or reported evidence the harness does not understand. |
-| `execution-error` | The process failed, its output or the fixture could not be parsed, the probe hit an error while using a host API, the product rule ran in a host-only example, or an unexpected rule or exit code appeared. |
+To update a pin, start from the exact versions in a reviewed latest report.
+Change one tool at a time in `conformance/package.json`, regenerate its lockfile, and rerun the pinned measurement.
+Keep Bun on a canary until a reviewed stable release provides `bun lint`.
+Keep TypeScript within the parser's peer range and retain strict peer checks in `.npmrc`.
 
-"Expected behavior observed" is `yes` when the row matched the declared expectation, including an
-expected `unsupported` row. On its own it does not show that every check ran. Check the recorded versions and
-configuration before comparing runs. A result describes that specific toolchain, configuration,
-fixture set, and plugin build; it is not a permanent statement about a tool.
-
-## CI profiles
-
-The dedicated [Toolchain Capabilities workflow](../.github/workflows/toolchain-capabilities.yml)
-uses read-only repository permissions and requires no secrets.
-
-| Trigger | Profile | Purpose |
-| --- | --- | --- |
-| Relevant pull request, including drafts | Pinned | Catch changes against committed dependency versions. |
-| Weekly schedule | Pinned and latest | Retain the reference result and discover host or parser changes. |
-| Manual dispatch | Selected pinned or latest | Reproduce a reference result or investigate current releases. |
-
-The latest profile updates the hosts and parser together, so a change is an investigation signal.
-Use pinned versions or update one dependency at a time locally to identify its cause. It does not
-update the product's runtime dependencies or Baseline data, and its downloads stay out of the pnpm
-store cache that pinned runs restore.
-
-The job summary shows the report, and an artifact retains the structured report, raw output and
-generated configuration for seven days. Latest runs also retain their generated dependency manifest
-and lockfile. Report publication runs even if a check fails; a failed check still fails its job.
-Installation or setup failures may prevent report generation and remain visible in the job logs.
-
-## Update the pins
-
-`conformance/package.json` pins exact versions, and Dependabot does not cover this directory. To
-move a pin, start from a reviewed latest run. Its report lists the resolved versions (the Package
-column and the Parser line), and its artifact keeps `latest-tools/pnpm-lock.yaml`, whose importers
-section records the exact version each tag resolved to; `latest-tools/package.json` only names the
-`latest` and `canary` tags. Change one tool at a time, regenerate `conformance/pnpm-lock.yaml`,
-re-run the pinned check, and keep
-
-- `bun` on a canary until a stable release ships `bun lint`,
-- `typescript` inside the range `@typescript-eslint/parser` declares as a peer, and
-- `conformance/.npmrc`, which makes pinned installs fail on peer conflicts instead of warning.
-
-## Maintain the boundary
-
-- Keep host adapters, probes, fixtures, report logic, and their dependencies inside `conformance/`.
-- Keep product behavior fixes and product regression tests in the existing `src/` and `tests/`.
-- Give every new example an independently justified expectation; the `Case` type requires a typed
-  example to name the member the probe inspects, and without one the probe reports the fixture
-  node as not visited.
-- A new host needs its name in `HostName` and its binary in `ToolPaths` in `types.ts`, an entry
-  in `hosts.ts` (facts, format and invocation), a pin in `package.json` and its channel in
-  `refresh.ts`, its binary and version metadata in `run.ts`, and, if it has its own format, a
-  `Format` member, a `configFiles` entry, a `configFor` branch and a parser in `assess.ts`. Let the
-  first run show what it provides, and never normalize an empty result into a pass.
-- Turn actionable host findings into minimal upstream reproductions.
-- Add performance measurements only with a separate design that controls the detection work being
-  performed. This suite measures functionality.
+These cases measure functionality in named configurations. They do not provide a performance ranking, a full ESLint compatibility score, or vendor endorsement.

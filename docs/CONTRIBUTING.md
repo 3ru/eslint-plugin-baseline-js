@@ -38,7 +38,7 @@ Classify new direct `api.Window.*` members in `scripts/data/classify-web-apis.mj
 - Descriptor and compat-key consistency: `pnpm check:descriptor-compat`
 - Generated data matches the checked-in files: `pnpm check:generated-data`
 - Coverage report (for docs): `pnpm gen:coverage`
-- Toolchain capability checks (ESLint, Oxlint, Bun; the Toolchain Capabilities workflow; Node 22.18+ or 23.6+): `pnpm build && pnpm --dir conformance install --frozen-lockfile --ignore-scripts && pnpm --dir conformance typecheck && pnpm --dir conformance test && pnpm --dir conformance check` checks the host plugin APIs the plugin relies on and what it detects under each host; see [conformance/README.md](../conformance/README.md). Not part of `pnpm test` or `pnpm typecheck`.
+- Linter compatibility checks use a separate development package. See [conformance/README.md](../conformance/README.md) for npm-release measurements and local checkout diagnostics. The weekly and manual workflow measures both pinned and latest toolchains. These checks are separate from `pnpm test` and `pnpm typecheck`.
 
 ## Scope
 - Primary scope: JavaScript language features (`group: "javascript"`).
