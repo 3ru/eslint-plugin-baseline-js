@@ -15,7 +15,7 @@ import {
   objectHasKeyWithValues,
   stripChain,
 } from "../../../util/ast";
-import type { Reporter } from "./safe-core";
+import type { MatchReporter } from "./safe-core";
 
 function matchesObjectArg(
   object: ObjectExpression | null,
@@ -34,7 +34,7 @@ function matchesObjectArg(
 export function addCallMemberWithArgsDetector(
   _context: Rule.RuleContext,
   descriptor: CallMemberWithArgsDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
   return {
     CallExpression(node) {
@@ -54,8 +54,7 @@ export function addCallMemberWithArgsDetector(
       )
         return;
 
-      // Keep argument-based diagnostics on the complete call.
-      report(node, descriptor.featureId);
+      onMatch(node, callee);
     },
   };
 }
@@ -63,7 +62,7 @@ export function addCallMemberWithArgsDetector(
 export function addNewWithOptionsDetector(
   context: Rule.RuleContext,
   descriptor: NewWithOptionsDescriptor,
-  report: Reporter,
+  onMatch: MatchReporter,
 ): Rule.RuleListener {
   return {
     NewExpression(node) {
@@ -73,7 +72,7 @@ export function addNewWithOptionsDetector(
         !matchesObjectArg(getCallObjectArg(node, descriptor.objectArg.index), descriptor.objectArg)
       )
         return;
-      report(getMemberPropertyNode(callee) ?? callee, descriptor.featureId);
+      onMatch(getMemberPropertyNode(callee) ?? callee, callee);
     },
   };
 }
