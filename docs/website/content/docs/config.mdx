@@ -163,7 +163,7 @@ type Include = boolean | {
 
 Type information requires a parser service with a TypeScript program. Selecting a preset alone does not create one.
 
-Type use is shared across the two detectors. Enabling types for either detector can enable typed checks for both included feature sets.
+Type settings apply independently to Web API and JavaScript built-in checks. Enabling types for one detector does not enable types for the other.
 
 The schema also accepts `preset: 'heuristic'` and `heuristics`. These options do not add heuristic detection in the current implementation.
 Use `safe`, `auto`, or `type-aware` for the behavior described above.
@@ -243,7 +243,7 @@ See [oxlint](/docs/oxlint) for setup details and the [FAQ](/docs/meta/faq) for d
 
 ## Messages
 
-The highlighted line shows the reported usage. Messages include the feature name and its web-features ID when a name is available.
+The highlighted line shows the reported usage. Messages identify the reported API or feature and include its web-features ID.
 
 <Tabs items={["widely", "newly", "Year"]}>
 <Tab value="widely">
@@ -255,7 +255,7 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'getYear() and setYear()' (date-get-year-set-year) is not a widely available Baseline feature.
+'getYear' on Date is not Baseline Widely available (date-get-year-set-year).
 ```
 
 </Tab>
@@ -268,7 +268,7 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'getYear() and setYear()' (date-get-year-set-year) is not a newly available Baseline feature.
+'getYear' on Date is not Baseline Newly available (date-get-year-set-year).
 ```
 
 </Tab>
@@ -281,7 +281,7 @@ const total = 1n; // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'BigInt' (bigint) became Baseline in 2020 and exceeds 2019.
+'BigInt' became Baseline in 2020 and exceeds 2019 (bigint).
 ```
 
 A feature with Limited availability also exceeds a year target:
@@ -291,7 +291,7 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-Feature 'getYear() and setYear()' (date-get-year-set-year) has Limited availability and exceeds 2019.
+'getYear' on Date has Limited availability and exceeds 2019 (date-get-year-set-year).
 ```
 
 </Tab>
