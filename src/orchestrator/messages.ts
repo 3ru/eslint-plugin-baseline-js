@@ -13,7 +13,6 @@ export function baselineMessage(
   compatKey?: string,
 ) {
   const feature = getFeatureRecord(featureId);
-  const status = getFeatureStatus(featureId, compatKey);
   const label = subject ?? `'${feature?.name ?? featureId}'`;
 
   if (baseline === "widely") {
@@ -23,6 +22,8 @@ export function baselineMessage(
   if (baseline === "newly") {
     return `${label} is not Baseline Newly available (${featureId}).`;
   }
+
+  const status = getFeatureStatus(featureId, compatKey);
 
   if (status?.baseline === false) {
     return `${label} has Limited availability and exceeds ${baseline} (${featureId}).`;
