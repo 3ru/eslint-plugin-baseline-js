@@ -372,10 +372,6 @@ export function assess(testCase: Case, host: HostFacts, run: RunOutcome): Assess
 }
 
 export function renderReport(report: Report): string {
-  const pullRequest = report.source?.pullRequest;
-  const commits = pullRequest
-    ? ` (pull request head ${pullRequest.head}, base ${pullRequest.base})`
-    : "";
   const tools = report.tools
     ? [
         "| Tool | Package | Reported version |",
@@ -391,7 +387,7 @@ export function renderReport(report: Report): string {
     "# Toolchain capability report",
     "",
     `Profile: ${report.profile}. Captured at: ${report.capturedAt}.`,
-    `Harness source: ${report.source?.commit ?? "unavailable"}${commits}.`,
+    `Harness source: ${report.source?.commit ?? "unavailable"}.`,
     `Measured product: ${report.product?.source ?? "unavailable"}. Version: ${report.product?.version ?? "unavailable"}.`,
     "",
     "This compares external JavaScript plugin capabilities and a small Baseline corpus. It is not a speed benchmark or browser compatibility certification.",
@@ -411,6 +407,9 @@ export function renderReport(report: Report): string {
   ];
   for (const result of report.results.filter((entry) => !entry.expectationMatched)) {
     lines.push(`- **${result.tool} / ${result.caseId}:** ${result.reason ?? result.correctness}`);
+  }
+  for (const [tool, reason] of Object.entries(report.hostErrors ?? {})) {
+    lines.push(`- **${tool} not measured:** ${reason}`);
   }
   if (report.error) lines.push("", "Run error:", "", "```text", report.error, "```");
   return `${lines.join("\n")}\n`;

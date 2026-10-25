@@ -1,7 +1,3 @@
-// The rule each host runs. Plain ESM so the instrument loads like a shipped JavaScript plugin,
-// independent of each host's TypeScript loading. The probe types as optional what a host hands it
-// (SourceCode methods, scope objects, parser services and checker methods) and checks each before
-// use; values TypeScript returns keep TypeScript's types.
 import { checks, probePluginName, reasons, sentinelPrefix } from "./protocol.mjs";
 
 /** @typedef {import("./types.ts").Check} Check */
@@ -17,9 +13,6 @@ import { checks, probePluginName, reasons, sentinelPrefix } from "./protocol.mjs
 /** @typedef {Partial<import("eslint").Scope.Scope>} HostScope */
 /** @typedef {MemberExpression & { computed: false, property: Identifier }} NamedMember */
 
-// The slice of TypeScript's API the probe reads through typescript-eslint's parser services.
-// Only ESLint with typescript-eslint supplies a program, and that program is real; what the
-// host hands over stays optional.
 /**
  * @typedef {Partial<Pick<import("typescript").Program, "getTypeChecker" | "isSourceFileDefaultLibrary">>} TsProgram
  */
@@ -64,8 +57,6 @@ function capabilityError(check, error, observed) {
 }
 
 /**
- * The member expression a typed case names: a plain identifier property, so a computed key or a
- * private name is a different member.
  * @param {MemberExpression} node
  * @param {string | undefined} name
  * @returns {node is NamedMember}
@@ -138,7 +129,6 @@ function typeObservation(sourceCode, member) {
   if (typeof program.getTypeChecker !== "function") {
     return unavailable("types", "program.getTypeChecker unavailable", observed);
   }
-  // Probe the actual receiver, rather than accepting a non-null parserServices stub.
   try {
     const checker = program.getTypeChecker();
     observed.hasChecker = Boolean(checker);
@@ -172,7 +162,6 @@ function typeObservation(sourceCode, member) {
         break;
       }
     }
-    // Structural lookalikes are usable types too; provenance is an observation, not a gate.
     return supported("types", { ...observed, receiverType, property, hasProperty, defaultLibrary });
   } catch (error) {
     return capabilityError("types", error, observed);
@@ -188,8 +177,6 @@ const inspect = {
         type: "object",
         properties: {
           check: { enum: [...checks] },
-          // The property name of the member expression the types check inspects; without it
-          // the probe reports the fixture node as not visited.
           member: { type: "string" },
         },
         required: ["check"],
@@ -198,7 +185,6 @@ const inspect = {
     ],
   },
   create(context) {
-    // Hosts may skip schema validation, so the options are read as untrusted input.
     /** @type {Partial<ProbeOptions> | undefined} */
     const options = context.options[0];
     const requested = options?.check;
@@ -332,8 +318,6 @@ const inspect = {
         context.report({ node, message });
       },
     };
-    // Register the selector only for its own case, so selector support cannot mask
-    // unrelated source, scope, or type capabilities in the other cases.
     if (check === "selectors") {
       listeners["CallExpression[callee.type='MemberExpression']"] =
         /** @param {import("estree").CallExpression & WithParent} node */ (node) => {

@@ -1,11 +1,9 @@
-// Expectations are literal contracts, independent of the production detectors and data loaders.
-// All Baseline cases use available: 2019, with Web APIs and JS builtins enabled.
-// Positions and ranges count UTF-16 code units, as ESLint reports them.
 import type { Case } from "./types.ts";
 
-export const cases: readonly Case[] = [
+export const cases: readonly (Case & { label: string })[] = [
   {
     id: "host-plugin-options",
+    label: "Plugin options",
     suite: "host",
     code: "const value = 1;\n",
     extension: "js",
@@ -14,8 +12,8 @@ export const cases: readonly Case[] = [
   },
   {
     id: "host-ast-selector",
+    label: "AST selectors",
     suite: "host",
-    // The plain call comes first: a host that ignores the attribute filter counts two calls.
     code: "String(1);\nObject.groupBy([], String);\n",
     extension: "js",
     check: "selectors",
@@ -23,6 +21,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "host-scope-shadowing",
+    label: "Function scope shadowing",
     suite: "host",
     code: "Object.groupBy([], String);\nfunction local(Object) {\n  Object.groupBy([], String);\n}\n",
     extension: "js",
@@ -31,9 +30,8 @@ export const cases: readonly Case[] = [
   },
   {
     id: "host-scope-binding",
+    label: "Top-level scope binding",
     suite: "host",
-    // A top-level binding: ESLint and Bun resolve it in the module scope, Oxlint reads the file
-    // as a script and resolves it in the global scope.
     code: "const Object = { groupBy() {} };\nObject.groupBy([], String);\n",
     extension: "js",
     check: "scope",
@@ -41,6 +39,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "host-source-tokens",
+    label: "Source text and tokens",
     suite: "host",
     code: "const answer = 1;\n",
     extension: "js",
@@ -49,8 +48,8 @@ export const cases: readonly Case[] = [
   },
   {
     id: "host-diagnostic-location",
+    label: "Diagnostic locations",
     suite: "host",
-    // Non-ASCII text before the marker: byte and code point columns differ from UTF-16 units.
     code: 'const value =\n  "é\u{1F600}" + marker;\n',
     extension: "js",
     check: "location",
@@ -58,6 +57,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "host-ancestry",
+    label: "Node ancestry",
     suite: "host",
     code: "target();\n",
     extension: "js",
@@ -69,8 +69,8 @@ export const cases: readonly Case[] = [
   },
   {
     id: "host-typescript-receiver",
+    label: "TypeScript receiver services",
     suite: "host",
-    // `tagName` comes first: a probe that ignores `member` would report that receiver instead.
     code: "declare const element: Element;\nelement.tagName;\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
@@ -87,6 +87,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-logical-assignment",
+    label: "Logical assignment",
     suite: "baseline",
     code: "let value;\nvalue ||= 1;\n",
     extension: "js",
@@ -95,6 +96,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-static-groupby",
+    label: "Static Object.groupBy",
     suite: "baseline",
     code: "Object.groupBy([], String);\n",
     extension: "js",
@@ -103,6 +105,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-computed-groupby",
+    label: "Computed Object.groupBy",
     suite: "baseline",
     code: "Object['groupBy']([], String);\n",
     extension: "js",
@@ -111,6 +114,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-shadowed-object",
+    label: "Shadowed Object parameter",
     suite: "baseline",
     code: "function local(Object) {\n  Object.groupBy([], String);\n}\n",
     extension: "js",
@@ -119,6 +123,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-shadowed-binding",
+    label: "Shadowed Object binding",
     suite: "baseline",
     code: "const Object = { groupBy() {} };\nObject.groupBy([], String);\n",
     extension: "js",
@@ -127,6 +132,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-global-fetchlater",
+    label: "Global fetchLater",
     suite: "baseline",
     code: "fetchLater('/beacon');\n",
     extension: "js",
@@ -135,8 +141,8 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-ts-static-groupby",
+    label: "TypeScript static Object.groupBy",
     suite: "baseline",
-    // A TypeScript file that needs no type information: every host must still report it.
     code: "declare const input: string[];\nObject.groupBy(input, String);\nexport {};\n",
     extension: "ts",
     check: "execution",
@@ -144,6 +150,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-typed-element",
+    label: "Typed Element.checkVisibility",
     suite: "baseline",
     code: "declare const element: Element;\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
@@ -153,6 +160,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-typed-set-union",
+    label: "Typed Set.union",
     suite: "baseline",
     code: "declare const values: Set<unknown>;\nvalues.union(new Set());\nexport {};\n",
     extension: "ts",
@@ -162,6 +170,7 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-typed-lookalike",
+    label: "Structural lookalike",
     suite: "baseline",
     code: "const element = { checkVisibility() { return true; } };\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
@@ -171,8 +180,8 @@ export const cases: readonly Case[] = [
   },
   {
     id: "baseline-typed-nominal-lookalike",
+    label: "Named interface lookalike",
     suite: "baseline",
-    // Same name as the DOM interface, declared by the file itself: only provenance tells them apart.
     code: "interface Element { checkVisibility(): boolean }\ndeclare const element: Element;\nelement.checkVisibility();\nexport {};\n",
     extension: "ts",
     check: "types",
@@ -181,5 +190,4 @@ export const cases: readonly Case[] = [
   },
 ];
 
-// A case needs type information exactly when its probe runs the types check.
 export const requiresTypes = (testCase: Case): boolean => testCase.check === "types";

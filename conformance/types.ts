@@ -1,36 +1,40 @@
-// The contracts of the harness: what a case promises, what the probe reports, what a host is known
-// to give, what a run produced and how a row is judged. Everything the runner, the probe, the
-// assessment and the tests exchange is one of these shapes.
+import type {
+  Capability,
+  Correctness,
+  HostName,
+  NpmSubject,
+  Profile,
+  Status,
+} from "../docs/website/lib/compatibility-report.ts";
 import type { checks } from "./protocol.mjs";
+
+export type {
+  Capability,
+  Correctness,
+  HostName,
+  Profile,
+  Status,
+} from "../docs/website/lib/compatibility-report.ts";
 
 export type Check = (typeof checks)[number];
 export type Extension = "js" | "ts";
-export type HostName = "eslint" | "oxlint" | "bun";
-export type Profile = "pinned" | "latest";
 
-// Configuration files and `-f json` output follow one of two tools' conventions; Bun reads
-// ESLint configuration and prints ESLint's JSON.
 export type Format = "eslint" | "oxlint";
 
-// A parse of untrusted host output either yields the value or says why it could not.
 export type Parsed<T> = { ok: true; value: T } | { ok: false; problem: string };
 
-// One product diagnostic, reduced to what the expectations compare.
 export interface Finding {
   featureId: string | null;
   line: number;
   column: number;
 }
 
-// The same, as a host reported it; a broken host may omit the position.
 export interface ObservedFinding {
   featureId: string | null;
   line: number | undefined;
   column: number | undefined;
 }
 
-// What the probe observes for each check when the host supports it. Host cases state these same
-// shapes as their expectations.
 export interface TypeServices {
   hasProgram: boolean;
   hasNodeMap: boolean;
@@ -53,8 +57,6 @@ export interface Observations {
   };
 }
 
-// What the probe can still say when a capability is missing: the reason or the error it hit,
-// plus whatever it had observed up to that point.
 export type Unavailable<C extends Check> = Partial<Observations[C]> &
   ({ reason: string } | { error: string });
 
@@ -70,21 +72,15 @@ export interface NotSupported<C extends Check> {
   observed: Unavailable<C>;
 }
 
-// The probe's whole message before it is serialised into the diagnostic. A probe that received
-// no usable options reports without a check.
 export type ProbeMessage =
   | { [C in Check]: Supported<C> | NotSupported<C> }[Check]
   | { check: undefined; supported: false; observed: { reason: string } };
 
-// The rule options the runner writes for the probe.
 export interface ProbeOptions {
   check: Check;
   member?: string;
 }
 
-// The probe's message as the assessment reads it back from the host's JSON: the observation is
-// compared whole against the expectation, and the few facts the assessment acts on are checked
-// for their type.
 export interface ProbeEvidence {
   check: Check;
   supported: boolean;
@@ -104,7 +100,6 @@ interface CaseBase {
   extension: Extension;
 }
 
-// A typed case lives in a TypeScript fixture and names the member expression the probe inspects.
 type Member<C extends Check> = C extends "types"
   ? { member: string; extension: "ts" }
   : { member?: never };
@@ -124,9 +119,7 @@ export type Case = HostCase | BaselineCase;
 
 export interface ToolPaths {
   parser: string;
-  eslint: string;
-  oxlint: string;
-  bun: string;
+  executable: string;
   product: string;
 }
 
@@ -135,22 +128,15 @@ export interface Command {
   args: string[];
 }
 
-// What a host is known to give external JavaScript rules, and how to drive it.
 export interface Host {
   format: Format;
-  // Whether typescript-eslint parser services reach JavaScript rules. Sets the expectation a
-  // typed row is judged against; the observation is recorded either way.
   typeServices: boolean;
-  // Flags added for typed cases.
   typedFlags: readonly string[];
   invoke: (paths: ToolPaths, args: readonly string[]) => Command;
 }
 
-// What the assessment needs to know about a host.
 export type HostFacts = Pick<Host, "format" | "typeServices">;
 
-// A diagnostic after normalisation to ESLint's shape, built from checked fields only. Oxlint rows
-// gain lines and columns from byte offsets; its own reports (no code) keep ruleId undefined.
 export interface Diagnostic {
   ruleId?: string | null;
   message: string;
@@ -175,28 +161,9 @@ export interface Run {
   configSha256?: string;
 }
 
-// The part of a run the assessment reads.
 export type RunOutcome = Pick<Run, "exitCode" | "signal" | "error" | "stdout" | "stderr">;
 
-// The part of a run the report keeps; stdout and stderr live under raw/.
 export type RunRecord = Omit<Run, "stdout" | "stderr">;
-
-export type Capability = "supported" | "unavailable" | "unknown";
-export type Correctness =
-  | "matched"
-  | "mismatch"
-  | "missing"
-  | "unexpected"
-  | "not-verified"
-  | "not-assessed";
-export type Status =
-  | "matched"
-  | "mismatch"
-  | "coverage-loss"
-  | "incorrect"
-  | "unsupported"
-  | "unknown"
-  | "execution-error";
 
 export interface Assessment {
   caseId: string;
@@ -232,11 +199,18 @@ export interface Report {
   profile: Profile;
   policy: { available: number; includeWebApis: boolean; includeJsBuiltins: boolean };
   results: ResultRow[];
-  tools?: Record<HostName, ToolVersion>;
-  source?: { commit: string; dirty: string[]; pullRequest?: { head: string; base: string } };
+  tools?: Partial<Record<HostName, ToolVersion>>;
+  hostErrors?: Partial<Record<HostName, string>>;
+  subject?: NpmSubject;
+  source?: { commit: string; dirty: string[] };
   environment?: { node: string; platform: NodeJS.Platform; architecture: NodeJS.Architecture };
   inputs?: Record<string, string>;
-  product?: { source: string; version: string; imports: Record<string, string> };
+  product?: {
+    source: string;
+    version: string;
+    imports: Record<string, string>;
+    importPaths?: Record<string, string>;
+  };
   dependencies?: Record<string, string>;
   dependencyManifestSha256?: string;
   dependencyLockSha256?: string;

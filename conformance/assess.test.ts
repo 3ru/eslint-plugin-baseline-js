@@ -553,7 +553,7 @@ test("a product diagnostic in a host-only probe is an execution error", () => {
   assert.equal(result.reason, "Product rule ran in a host-only probe");
 });
 
-test("standalone Markdown identifies the measured product and capture time", () => {
+test("standalone Markdown identifies the product, capture time, and unmeasured hosts", () => {
   const report = {
     capturedAt: "2026-10-25T12:34:56Z",
     profile: "pinned",
@@ -564,11 +564,14 @@ test("standalone Markdown identifies the measured product and capture time", () 
       version: "9.9.9-audit-subject",
       imports: {},
     },
+    hostErrors: { bun: "Bun version command failed before measurement." },
     results: [],
   } satisfies Report;
   const markdown = renderReport(report);
   assert.ok(markdown.includes(report.capturedAt));
   assert.ok(markdown.includes(report.product.source));
   assert.ok(markdown.includes(report.product.version));
+  assert.ok(markdown.includes(report.hostErrors.bun));
+  assert.match(markdown, /bun not measured/u);
   assert.match(markdown, /Harness[^\n]*harness-sha/u);
 });

@@ -8,9 +8,10 @@
   },
   "scripts": {
     "check": "node run.ts",
-    "test": "node --test assess.test.ts",
+    "test": "node --test *.test.ts",
     "typecheck": "tsc -p tsconfig.json",
-    "refresh": "node refresh.ts"
+    "refresh": "node refresh.ts",
+    "subject": "node subject.ts"
   },
   "devDependencies": {
     "@types/estree": "1.0.9",

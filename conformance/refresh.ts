@@ -1,62 +1,64 @@
 import { spawnSync } from "node:child_process";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-
-interface Manifest {
-  packageManager: string;
-  devDependencies: Record<string, string>;
-}
+import { parseArgs } from "node:util";
+import { harnessSettings, npmRelease } from "./subject.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const pinned: Manifest = JSON.parse(readFileSync(join(here, "package.json"), "utf8"));
-const target = join(here, "results", "latest-tools");
-// Start from nothing: pnpm would otherwise reuse node_modules/.pnpm/lock.yaml and keep the
-// versions of the previous run. The committed manifest, lockfile and install stay untouched.
-rmSync(target, { recursive: true, force: true });
-mkdirSync(target, { recursive: true });
-writeFileSync(
-  join(target, "package.json"),
-  `${JSON.stringify(
-    {
-      private: true,
-      packageManager: pinned.packageManager,
-      devDependencies: {
-        "@typescript-eslint/parser": "latest",
-        // Stable Bun has no `bun lint` yet; the daily canary is the only channel that does.
-        bun: "canary",
-        eslint: "latest",
-        oxlint: "latest",
-        typescript: pinned.devDependencies.typescript,
-      },
-    },
-    null,
-    2,
-  )}\n`,
-);
-const result = spawnSync(
-  "pnpm",
-  [
-    "install",
-    "--ignore-scripts",
-    "--no-frozen-lockfile",
-    "--strict-peer-dependencies",
-    // Skip anything published in the last day, so a release pulled for a bad build or a
-    // hijacked package is not run in CI the same morning.
-    "--config.minimum-release-age=1440",
-  ],
-  { cwd: target, stdio: "inherit" },
-);
-if (result.error) throw result.error;
-if (result.status !== 0) process.exit(result.status ?? 1);
-// A pnpm that ignores the manifest's packageManager may resolve the aged `canary` tag to a stable
-// release, which has no `bun lint`; a later check would then fail every Bun row.
-const bun: { version: string } = JSON.parse(
-  readFileSync(join(target, "node_modules", "bun", "package.json"), "utf8"),
-);
-if (!bun.version.includes("-canary.")) {
-  console.error(
-    `bun resolved to ${bun.version}, not a canary; install with ${pinned.packageManager}`,
+
+try {
+  const { values } = parseArgs({ options: { out: { type: "string" } } });
+  const target = resolve(values.out ?? join(here, "results", "latest", "tools"));
+  mkdirSync(target, { recursive: true });
+  if (readdirSync(target).length !== 0)
+    throw new Error(`Latest tools output must be empty: ${target}`);
+  const tags = {
+    "@typescript-eslint/parser": "latest",
+    bun: "canary",
+    eslint: "latest",
+    oxlint: "latest",
+  } as const;
+  const versions = await Promise.all(
+    Object.entries(tags).map(async ([name, tag]) => [name, (await npmRelease(name, tag)).version]),
   );
-  process.exit(1);
+  const settings = harnessSettings();
+  const dependencies = Object.fromEntries([...versions, ["typescript", settings.typescript]]);
+  if (!dependencies.bun?.includes("-canary.")) {
+    throw new Error(
+      `npm bun@canary resolved to ${dependencies.bun}; the lint channel must be a canary.`,
+    );
+  }
+  writeFileSync(
+    join(target, "package.json"),
+    `${JSON.stringify(
+      {
+        private: true,
+        type: "module",
+        packageManager: settings.packageManager,
+        devDependencies: dependencies,
+      },
+      null,
+      2,
+    )}\n`,
+  );
+  const result = spawnSync(
+    "pnpm",
+    [
+      "install",
+      "--ignore-scripts",
+      "--no-frozen-lockfile",
+      "--strict-peer-dependencies",
+      "--config.minimum-release-age=0",
+    ],
+    { cwd: target, stdio: "inherit", timeout: 120000 },
+  );
+  if (result.error || result.status !== 0) {
+    throw new Error(
+      `Cannot install latest tools: ${result.error?.message ?? `pnpm exited ${result.status}`}.`,
+    );
+  }
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exitCode = 1;
 }
