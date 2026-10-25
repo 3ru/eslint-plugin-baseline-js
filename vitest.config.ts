@@ -9,6 +9,7 @@ export default defineConfig({
       "**/.codex/**",
       "**/docs/website/**",
       "**/conformance/**",
+      "**/.bench-cache/**",
     ],
   },
 });

@@ -16,7 +16,7 @@ import { addTypedInstanceMemberDetector } from "./detectors/typed-instance-membe
 
 export interface BuildOptions {
   descriptors: ReadonlyArray<Descriptor>;
-  report: (node: Node, descriptor: Descriptor) => void;
+  onMatch: (match: { node: Node; reference: Node; descriptor: Descriptor }) => void;
   typed?: boolean;
 }
 
@@ -36,59 +36,53 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
     const node = stripChain(callee);
     return node.type === "Identifier" ? node.name : getStaticMemberName(node);
   }
-  const reportedFeatures = new WeakMap<Node, Set<string>>();
 
   const useTyped = !!opt.typed && !!getTypedParserServices(context);
 
   for (const d of opt.descriptors) {
-    function report(node: Node) {
-      // Different descriptors can recognize the same feature at the same AST node.
-      // Keep distinct features while reporting overlapping patterns only once.
-      let features = reportedFeatures.get(node);
-      if (features?.has(d.featureId)) return;
-      if (!features) {
-        features = new Set();
-        reportedFeatures.set(node, features);
-      }
-      features.add(d.featureId);
-      opt.report(node, d);
+    function onMatch(node: Node, reference: Node) {
+      opt.onMatch({ node, reference, descriptor: d });
     }
 
     switch (d.kind) {
       case "newIdent":
-        addHandler(constructions, d.name, addNewIdentDetector(context, d, report).NewExpression);
+        addHandler(constructions, d.name, addNewIdentDetector(context, d, onMatch).NewExpression);
         break;
       case "newMember":
-        addHandler(constructions, d.prop, addNewMemberDetector(context, d, report).NewExpression);
+        addHandler(constructions, d.prop, addNewMemberDetector(context, d, onMatch).NewExpression);
         break;
       case "callStatic":
-        addHandler(calls, d.prop, addCallStaticDetector(context, d, report).CallExpression);
+        addHandler(calls, d.prop, addCallStaticDetector(context, d, onMatch).CallExpression);
         break;
       case "callGlobal":
-        addHandler(calls, d.name, addCallGlobalDetector(context, d, report).CallExpression);
+        addHandler(calls, d.name, addCallGlobalDetector(context, d, onMatch).CallExpression);
         break;
       case "member":
-        addHandler(members, d.prop, addMemberDetector(context, d, report).MemberExpression);
+        addHandler(members, d.prop, addMemberDetector(context, d, onMatch).MemberExpression);
         break;
       case "staticMember":
-        addHandler(members, d.prop, addStaticMemberDetector(context, d, report).MemberExpression);
+        addHandler(members, d.prop, addStaticMemberDetector(context, d, onMatch).MemberExpression);
         break;
       case "instanceMember":
         if (useTyped)
           addHandler(
             members,
             d.prop,
-            addTypedInstanceMemberDetector(context, d, report).MemberExpression,
+            addTypedInstanceMemberDetector(context, d, onMatch).MemberExpression,
           );
         break;
       case "callMemberWithArgs":
-        addHandler(calls, d.prop, addCallMemberWithArgsDetector(context, d, report).CallExpression);
+        addHandler(
+          calls,
+          d.prop,
+          addCallMemberWithArgsDetector(context, d, onMatch).CallExpression,
+        );
         break;
       case "newWithOptions":
         addHandler(
           constructions,
           d.name,
-          addNewWithOptionsDetector(context, d, report).NewExpression,
+          addNewWithOptionsDetector(context, d, onMatch).NewExpression,
         );
         break;
       default:

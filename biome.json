@@ -16,7 +16,13 @@
       "!src/baseline/data/features.javascript.ts",
       "!src/baseline/data/features.jsbi.ts",
       "!src/baseline/data/descriptors.api.ts",
-      "!src/baseline/data/descriptors.jsbi.ts"
+      "!src/baseline/data/descriptors.jsbi.ts",
+      "!src/baseline/data/statuses.compat.ts",
+      "!bench/profile.json",
+      "!bench/synth-snippets.json",
+      "!bench/corpus.local.json",
+      "!bench/results/**",
+      "!.bench-cache/**"
     ],
     "ignoreUnknown": true
   },

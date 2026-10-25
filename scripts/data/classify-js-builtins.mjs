@@ -1,5 +1,9 @@
 import ts from "typescript";
 
+/** @typedef {import("../../src/baseline/types").DescriptorPattern} DescriptorPattern */
+/** @typedef {"newMember" | "callStatic" | "staticMember"} ValueKind */
+/** @typedef {{ valueKind: ValueKind | null, instanceKind: "instanceMember" | null }} Classification */
+
 const PREFERRED_STATIC_BASES = new Set(["Atomics", "JSON", "Math", "Object", "Proxy", "Reflect"]);
 
 const PREFERRED_INSTANCE_BASES = new Set([
@@ -23,6 +27,7 @@ const PREFERRED_INSTANCE_BASES = new Set([
 // declarations or are not available across the Node.js versions used during
 // descriptor generation and CI.
 // Keep this table explicit and small so every fallback remains auditable.
+/** @type {{ compatKey: string, descriptor: DescriptorPattern }[]} */
 export const JS_BUILTIN_CLASSIFICATION_FALLBACKS = [
   {
     compatKey: "javascript.builtins.RegExp.escape",
@@ -54,6 +59,7 @@ const jsBuiltinFallbackByCompatKey = new Map(
   JS_BUILTIN_CLASSIFICATION_FALLBACKS.map((entry) => [entry.compatKey, entry.descriptor]),
 );
 
+/** @type {ReturnType<typeof createDummyProgram> | null} */
 let tsLibContextCache = null;
 
 function createDummyProgram() {
@@ -109,6 +115,12 @@ function getTsLibContext() {
   return tsLibContextCache;
 }
 
+/**
+ * @param {ts.Symbol} propSymbol
+ * @param {ts.SourceFile} sourceFile
+ * @param {ts.TypeChecker} checker
+ * @returns {ValueKind}
+ */
 function getTsValueKind(propSymbol, sourceFile, checker) {
   const propType = checker.getTypeOfSymbolAtLocation(propSymbol, sourceFile);
   const constructSigs = checker.getSignaturesOfType(propType, ts.SignatureKind.Construct).length;
@@ -118,6 +130,7 @@ function getTsValueKind(propSymbol, sourceFile, checker) {
   return "staticMember";
 }
 
+/** @param {string} base @param {string} prop @returns {Classification | null} */
 function classifyWithTsLib(base, prop) {
   const { checker, sourceFile, globals } = getTsLibContext();
   const baseSymbol = globals.get(base);
@@ -134,6 +147,7 @@ function classifyWithTsLib(base, prop) {
   };
 }
 
+/** @param {unknown} value */
 function isConstructableRuntimeValue(value) {
   if (typeof value !== "function") return false;
   if (!Object.hasOwn(value, "prototype")) return false;
@@ -141,17 +155,21 @@ function isConstructableRuntimeValue(value) {
   return !!proto && typeof proto === "object";
 }
 
+/** @param {string} base @param {string} prop @returns {Classification | null} */
 function classifyWithRuntime(base, prop) {
-  const target = globalThis[base];
-  if (target == null) return null;
+  /** @type {unknown} */
+  const target = Reflect.get(globalThis, base);
+  if (target === null || (typeof target !== "object" && typeof target !== "function")) return null;
 
   const own = Object.getOwnPropertyDescriptor(target, prop);
-  const prototype = target?.prototype;
+  /** @type {unknown} */
+  const prototype = Reflect.get(target, "prototype");
   const proto =
     prototype && (typeof prototype === "object" || typeof prototype === "function")
       ? Object.getOwnPropertyDescriptor(prototype, prop)
       : undefined;
 
+  /** @type {ValueKind | null} */
   let valueKind = null;
   if (own) {
     if ("value" in own) {
@@ -171,6 +189,7 @@ function classifyWithRuntime(base, prop) {
   };
 }
 
+/** @param {ValueKind} kind @param {string} base @param {string} prop @returns {DescriptorPattern | null} */
 function buildStaticDescriptor(kind, base, prop) {
   if (kind === "newMember" || kind === "callStatic" || kind === "staticMember") {
     return { kind, base, prop };
@@ -178,6 +197,7 @@ function buildStaticDescriptor(kind, base, prop) {
   return null;
 }
 
+/** @param {string} base @param {string} prop */
 function getJsBuiltinClassificationFallback(base, prop) {
   return jsBuiltinFallbackByCompatKey.get(`javascript.builtins.${base}.${prop}`) ?? null;
 }
@@ -194,7 +214,7 @@ function getJsBuiltinClassificationFallback(base, prop) {
  *
  * @param {string} base
  * @param {string} prop
- * @returns {import("../../src/baseline/types").Descriptor | null}
+ * @returns {DescriptorPattern | null}
  */
 export function classifyJsBuiltinCompatFeature(base, prop) {
   if (!base || !prop) return null;

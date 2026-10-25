@@ -2,16 +2,27 @@
 
 export type WebFeaturesBaseline = "high" | "low" | false;
 
+export interface BaselineStatus {
+  baseline?: WebFeaturesBaseline;
+  baseline_low_date?: string;
+  baseline_high_date?: string;
+  support?: Record<string, string>;
+}
+
+export type CompatStatus = Pick<
+  BaselineStatus,
+  "baseline" | "baseline_low_date" | "baseline_high_date"
+>;
+
+export type CompatStatusOverrides = Readonly<
+  Record<string, Readonly<Record<string, CompatStatus>>>
+>;
+
 export interface MinFeatureRecord {
   id: string;
   name?: string;
   group?: string;
-  status?: {
-    baseline?: WebFeaturesBaseline;
-    baseline_low_date?: string;
-    baseline_high_date?: string;
-    support?: Record<string, string>;
-  };
+  status?: BaselineStatus;
   discouraged?: unknown;
 }
 
@@ -32,6 +43,7 @@ export type DescriptorKind =
 export interface BaseDescriptor {
   featureId: string; // web-features ID (e.g. 'abortsignal-any')
   kind: DescriptorKind;
+  compatKey?: string;
   // When true, only enable this descriptor when typed mode is active
   typedOnly?: boolean;
 }
@@ -108,3 +120,11 @@ export interface NewWithOptionsDescriptor extends BaseDescriptor {
     keyValues?: Array<{ key: string; values?: string[] }>;
   };
 }
+
+/** A classifier pattern before its upstream owner and key are attached. */
+export type DescriptorPattern<T = Descriptor> = T extends Descriptor
+  ? Omit<T, "featureId" | "compatKey">
+  : never;
+
+/** Generated patterns must retain the exact compatibility key they detect. */
+export type GeneratedDescriptor = Descriptor & { compatKey: string };

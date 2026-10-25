@@ -123,8 +123,8 @@ describe("safe descriptor AST corpus", () => {
           create(context) {
             return buildListeners(context, {
               descriptors: [descriptor],
-              report(node, d) {
-                context.report({ node, message: d.featureId });
+              onMatch({ node, descriptor }) {
+                context.report({ node, message: descriptor.featureId });
               },
             });
           },

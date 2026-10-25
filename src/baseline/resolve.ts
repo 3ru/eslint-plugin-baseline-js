@@ -2,21 +2,10 @@ import type { BaselineOption } from "../config";
 import apiRaw from "./data/features.api";
 import raw from "./data/features.javascript";
 import jsbiRaw from "./data/features.jsbi";
+import compatStatuses from "./data/statuses.compat";
+import type { MinFeatureRecord, WebFeaturesBaseline } from "./types";
 
-type WebFeaturesBaseline = "high" | "low" | false;
-
-export interface MinFeatureRecord {
-  id: string;
-  name?: string;
-  group?: string;
-  status?: {
-    baseline?: WebFeaturesBaseline;
-    baseline_low_date?: string;
-    baseline_high_date?: string;
-    support?: Record<string, string>;
-  };
-  discouraged?: unknown;
-}
+export type { MinFeatureRecord } from "./types";
 
 const features: Record<string, MinFeatureRecord> = {
   ...(raw as unknown as Record<string, MinFeatureRecord>),
@@ -55,15 +44,23 @@ export function getFeatureRecord(id: string): MinFeatureRecord | null {
   return features[id] ?? null;
 }
 
-export function getFeatureBucket(id: string): BaselineBucket {
-  const rec = getFeatureRecord(id);
-  return mapBaseline(rec?.status?.baseline);
+export function getFeatureStatus(id: string, compatKey?: string): MinFeatureRecord["status"] {
+  return (compatKey ? compatStatuses[id]?.[compatKey] : undefined) ?? getFeatureRecord(id)?.status;
 }
 
-export function isBeyondBaseline(featureId: string, baseline: BaselineOption): boolean {
+export function getFeatureBucket(id: string, compatKey?: string): BaselineBucket {
+  return mapBaseline(getFeatureStatus(id, compatKey)?.baseline);
+}
+
+export function isBeyondBaseline(
+  featureId: string,
+  baseline: BaselineOption,
+  compatKey?: string,
+): boolean {
   const rec = getFeatureRecord(featureId);
   if (!rec) return false;
-  const bucket = mapBaseline(rec.status?.baseline);
+  const status = getFeatureStatus(featureId, compatKey);
+  const bucket = mapBaseline(status?.baseline);
   if (baseline === "widely") {
     return bucket !== "widely";
   }
@@ -74,7 +71,7 @@ export function isBeyondBaseline(featureId: string, baseline: BaselineOption): b
     // Year-based policy: anything that hasn't entered Baseline yet (limited)
     // should be considered beyond the configured year.
     if (bucket === "limited") return true;
-    const y = baselineYear(rec.status);
+    const y = baselineYear(status);
     if (y == null) return false;
     return y > baseline;
   }
