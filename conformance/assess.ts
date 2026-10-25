@@ -4,7 +4,6 @@ import { probeRuleId, productRuleId, reasons, sentinelPrefix } from "./protocol.
 import type {
   Assessment,
   Case,
-  Check,
   Diagnostic,
   Format,
   HostFacts,
@@ -63,7 +62,6 @@ function positionAt(source: string, offset: number): Position {
   return { line: prefix.split(lineBreak).length, column: lastLine.length + 1 };
 }
 
-// A diagnostic in ESLint's JSON, kept only if every field it may carry has the type it claims.
 function readEslintDiagnostic(entry: unknown): Diagnostic | undefined {
   if (!isRecord(entry) || !isString(entry.message)) return undefined;
   const { ruleId, severity, fatal, line, column, endLine, endColumn } = entry;
@@ -158,7 +156,6 @@ export function parseDiagnostics(
   return format === "oxlint" ? parseOxlint(output.value, source) : parseEslint(output.value);
 }
 
-// The host's own words, from stderr. ESLint prints a banner before its "Error:" line.
 function hostMessage(run: RunOutcome): string | undefined {
   const lines = run.stderr
     .split("\n")
@@ -172,7 +169,7 @@ function processFailure(run: RunOutcome): string {
   return [outcome, hostMessage(run)].filter(Boolean).join(": ");
 }
 
-function readProbe(message: Diagnostic, check: Check): Parsed<ProbeReading> {
+function readProbe(message: Diagnostic, testCase: Case): Parsed<ProbeReading> {
   if (message.ruleId !== probeRuleId || !message.message.startsWith(sentinelPrefix)) {
     return fail("Unexpected probe diagnostic");
   }
@@ -185,6 +182,7 @@ function readProbe(message: Diagnostic, check: Check): Parsed<ProbeReading> {
     return fail(isString(observed.reason) ? observed.reason : reasons.optionsNotDelivered);
   }
   const { reason, error, hasProgram, hasNodeMap, hasChecker } = observed;
+  const { check } = testCase;
   if (
     probe.check !== check ||
     !isBoolean(supported) ||
@@ -195,6 +193,21 @@ function readProbe(message: Diagnostic, check: Check): Parsed<ProbeReading> {
     (check === "types" && ![hasProgram, hasNodeMap, hasChecker].every(isBoolean))
   ) {
     return fail("Invalid probe evidence");
+  }
+  if (
+    testCase.check === "types" &&
+    supported &&
+    (hasProgram !== true ||
+      hasNodeMap !== true ||
+      hasChecker !== true ||
+      observed.property !== testCase.member ||
+      observed.hasProperty !== true ||
+      !isString(observed.receiverType) ||
+      !isBoolean(observed.defaultLibrary))
+  ) {
+    return fail(
+      `Type evidence does not verify ${testCase.member} with usable receiver services; inspect the raw probe output`,
+    );
   }
   return {
     ok: true,
@@ -243,8 +256,6 @@ export function assess(testCase: Case, host: HostFacts, run: RunOutcome): Assess
     return { ...result, reason: [parsed.problem, hostMessage(run)].filter(Boolean).join(": ") };
   }
   const messages = parsed.value;
-  // A diagnostic with no rule id (a parse error, a JS plugin that threw, a directive problem)
-  // belongs to no rule; keep the host's message.
   const unattributed = messages.find((message) => message.fatal || message.ruleId == null);
   if (unattributed) return { ...result, reason: unattributed.message };
   const [sentinel, ...extra] = messages.filter(
@@ -258,7 +269,7 @@ export function assess(testCase: Case, host: HostFacts, run: RunOutcome): Assess
       reason: `Expected one probe sentinel; received ${received}`,
     };
   }
-  const probe = readProbe(sentinel, testCase.check);
+  const probe = readProbe(sentinel, testCase);
   if (!probe.ok) return { ...result, status: "unknown", reason: probe.problem };
   const { evidence, facts } = probe.value;
   result.evidence = evidence;
@@ -331,7 +342,6 @@ export function assess(testCase: Case, host: HostFacts, run: RunOutcome): Assess
   const unexpected = subtract(product, testCase.expected);
   result.missing = missing;
   result.unexpected = unexpected;
-  // A known host limitation cannot excuse false positives or the wrong diagnostic.
   if (unexpected.length) {
     return {
       ...result,
@@ -345,7 +355,7 @@ export function assess(testCase: Case, host: HostFacts, run: RunOutcome): Assess
       ...result,
       correctness: "not-verified",
       status: "unsupported",
-      reason: "Required receiver analysis is unavailable; zero findings do not verify this case",
+      reason: "Required receiver analysis is unavailable; this case remains unverified",
       silentCoverageLoss: missing.length > 0 && run.exitCode === 0,
       expectationMatched: capabilityMatches,
     };
@@ -380,7 +390,9 @@ export function renderReport(report: Report): string {
   const lines = [
     "# Toolchain capability report",
     "",
-    `Profile: ${report.profile}. Source: ${report.source?.commit ?? "unavailable"}${commits}.`,
+    `Profile: ${report.profile}. Captured at: ${report.capturedAt}.`,
+    `Harness source: ${report.source?.commit ?? "unavailable"}${commits}.`,
+    `Measured product: ${report.product?.source ?? "unavailable"}. Version: ${report.product?.version ?? "unavailable"}.`,
     "",
     "This compares external JavaScript plugin capabilities and a small Baseline corpus. It is not a speed benchmark or browser compatibility certification.",
     "",

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { assess, parseDiagnostics } from "./assess.ts";
+import { assess, parseDiagnostics, renderReport } from "./assess.ts";
 import { probeRuleId, productRuleId, reasons, sentinelPrefix } from "./protocol.mjs";
 import type {
   BaselineCase,
@@ -9,11 +9,10 @@ import type {
   HostFacts,
   Observations,
   ProbeMessage,
+  Report,
   RunOutcome,
 } from "./types.ts";
 
-// Hosts as the assessment sees them. Each test names only the facet it depends on, so a change
-// to what hosts.ts says about a real host cannot move these tests.
 const eslintHost: HostFacts = { format: "eslint", typeServices: true };
 const untypedHost: HostFacts = { format: "eslint", typeServices: false };
 const oxlintHost: HostFacts = { format: "oxlint", typeServices: false };
@@ -64,7 +63,6 @@ const outcome = (
   ...run,
 });
 
-// A probe diagnostic; a string stands for a deliberately malformed message body.
 function sentinel(
   probe: ProbeMessage | string,
   position: Position = { line: 1, column: 1 },
@@ -107,6 +105,57 @@ test("known missing type information remains unverified even for a negative fixt
   assert.equal(negative.status, "unsupported");
   assert.equal(negative.correctness, "not-verified");
   assert.equal(negative.silentCoverageLoss, false);
+});
+
+test("matching findings do not verify unavailable receiver analysis", () => {
+  const result = assess(typed, untypedHost, run(missingTypes, [finding]));
+  assert.equal(result.status, "unsupported");
+  assert.equal(result.correctness, "not-verified");
+  assert.equal(result.expectationMatched, true);
+  assert.deepEqual(result.diagnostics, typed.expected);
+  assert.equal(result.silentCoverageLoss, false);
+  assert.doesNotMatch(result.reason ?? "", /zero findings/iu);
+});
+
+test("supported typed evidence must verify the named member and its receiver services", () => {
+  const negative: BaselineCase = { ...typed, expected: [] };
+  const invalid = [
+    { ...receiverObserved, hasProgram: false },
+    { ...receiverObserved, hasNodeMap: false },
+    { ...receiverObserved, hasChecker: false },
+    { ...receiverObserved, property: "tagName" },
+    { ...receiverObserved, hasProperty: false },
+    { ...receiverObserved, receiverType: undefined },
+    { ...receiverObserved, receiverType: 42 },
+    { ...receiverObserved, defaultLibrary: undefined },
+    { ...receiverObserved, defaultLibrary: "false" },
+  ];
+  for (const observed of invalid) {
+    const probe = JSON.stringify({ check: "types", supported: true, observed });
+    for (const [testCase, diagnostics] of [
+      [typed, [finding]],
+      [negative, []],
+    ] as const) {
+      const result = assess(testCase, eslintHost, run(probe, [...diagnostics]));
+      assert.equal(result.status, "unknown", probe);
+      assert.equal(result.capability, "unknown");
+      assert.equal(result.correctness, "not-assessed");
+      assert.equal(result.expectationMatched, false);
+    }
+  }
+  const localReceiver: ProbeMessage = {
+    check: "types",
+    supported: true,
+    observed: {
+      ...receiverObserved,
+      receiverType: "{ checkVisibility(): boolean; }",
+      defaultLibrary: false,
+    },
+  };
+  const checked = assess(negative, eslintHost, run(localReceiver));
+  assert.equal(checked.status, "matched");
+  assert.equal(checked.correctness, "matched");
+  assert.equal(checked.expectationMatched, true);
 });
 
 test("a known type gap cannot conceal an unexpected report", () => {
@@ -256,7 +305,20 @@ test("a diagnostic whose field has the wrong type is malformed, not trusted", ()
     oxlintOutput([{ message: "x", severity: 2, labels: [{ span: { offset: 0, length: 1 } }] }]),
     "x",
   );
-  assert.equal(severity.ok, true);
+  assert.deepEqual(severity, {
+    ok: true,
+    value: [
+      {
+        message: "x",
+        severity: 2,
+        line: 1,
+        column: 1,
+        endLine: 1,
+        endColumn: 2,
+        ruleId: undefined,
+      },
+    ],
+  });
 });
 
 test("a sentinel without a check reports why", () => {
@@ -489,4 +551,24 @@ test("a product diagnostic in a host-only probe is an execution error", () => {
   const result = assess(options, eslintHost, run(probe, [product]));
   assert.equal(result.status, "execution-error");
   assert.equal(result.reason, "Product rule ran in a host-only probe");
+});
+
+test("standalone Markdown identifies the measured product and capture time", () => {
+  const report = {
+    capturedAt: "2026-10-25T12:34:56Z",
+    profile: "pinned",
+    policy: { available: 2019, includeWebApis: true, includeJsBuiltins: true },
+    source: { commit: "harness-sha", dirty: [] },
+    product: {
+      source: "npm:eslint-plugin-baseline-js",
+      version: "9.9.9-audit-subject",
+      imports: {},
+    },
+    results: [],
+  } satisfies Report;
+  const markdown = renderReport(report);
+  assert.ok(markdown.includes(report.capturedAt));
+  assert.ok(markdown.includes(report.product.source));
+  assert.ok(markdown.includes(report.product.version));
+  assert.match(markdown, /Harness[^\n]*harness-sha/u);
 });
