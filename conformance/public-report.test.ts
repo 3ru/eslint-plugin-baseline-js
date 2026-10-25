@@ -95,13 +95,16 @@ test("public parsing rejects missing cases, foreign identities, and unknown sche
   );
 });
 
-test("Markdown keeps untrusted reasons inside their table cells", () => {
+test("Markdown preserves untrusted reasons as literal text", () => {
   const input = snapshot();
   input.profiles.latest = {
     kind: "not-measured",
-    reason: "failed | <script>\n[link](javascript:alert(1))",
+    reason: "failed | <script>\n<SCRIPT> [link](javascript:alert(1))",
   };
   const markdown = renderSnapshotMarkdown({ snapshot: input, evidenceBaseUrl: "" });
-  assert.doesNotMatch(markdown, /<script>|\[link\]\(javascript:/);
-  assert.match(markdown, /failed \\?&#124;|failed \\\|/);
+  assert.ok(
+    markdown.includes(
+      "failed &#124; &lt;script&gt; &lt;SCRIPT&gt; \\[link\\]\\(javascript:alert\\(1\\)\\)",
+    ),
+  );
 });
