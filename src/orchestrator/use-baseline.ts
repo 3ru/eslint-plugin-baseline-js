@@ -156,20 +156,30 @@ const rule: Rule.RuleModule = {
     const includeWebApis = opt.includeWebApis ?? false;
     const includeJsBuiltins = opt.includeJsBuiltins ?? false;
 
-    function makeMatcher(patterns: string[]): ((s: string) => boolean) | null {
+    function makeMatcher(
+      patterns: string[],
+      option: "ignoreFeatures" | "ignoreNodeTypes",
+    ): ((s: string) => boolean) | null {
       if (!patterns.length) return null;
       const compiled = patterns.map((p) => {
         if (p.startsWith("/") && p.endsWith("/") && p.length >= 2) {
           const expr = p.slice(1, -1);
-          return new RegExp(expr);
+          try {
+            return new RegExp(expr);
+          } catch (error) {
+            if (error instanceof SyntaxError) {
+              error.message = `Invalid ${option} pattern ${JSON.stringify(p)}. ${error.message}`;
+            }
+            throw error;
+          }
         }
         return p;
       });
       return (s: string) => compiled.some((m) => (m instanceof RegExp ? m.test(s) : m === s));
     }
 
-    const matchIgnoreFeature = makeMatcher(ignoreFeaturePatterns);
-    const matchIgnoreNodeType = makeMatcher(ignoreNodeTypePatterns);
+    const matchIgnoreFeature = makeMatcher(ignoreFeaturePatterns, "ignoreFeatures");
+    const matchIgnoreNodeType = makeMatcher(ignoreNodeTypePatterns, "ignoreNodeTypes");
 
     const entries: Array<{ featureId: string; delegateRule: string }> = [];
     const map = mapping as Record<
