@@ -4,6 +4,7 @@ import { getIncludedDescriptors, type IncludeOption } from "../baseline/loader";
 import mapping from "../baseline/mapping/syntax";
 import { parseDelegateRuleKey } from "../baseline/plugins";
 import { isBeyondBaseline } from "../baseline/resolve";
+import type { Descriptor } from "../baseline/types";
 import { type CommonRuleOptions, getBaselineValue } from "../config";
 import { buildListeners } from "../rules/feature-usage/builder";
 import noAtomicsPause from "../rules/no-atomics-pause";
@@ -22,6 +23,19 @@ import { mergeRuleListeners } from "../utils/listeners";
 import { baselineMessage, delegateSubject, descriptorSubject } from "./messages";
 
 type ListenerMap = Rule.RuleListener;
+
+interface DescriptorPlan {
+  readonly descriptors: readonly Descriptor[];
+  readonly beyondBaseline: ReadonlySet<Descriptor>;
+}
+
+interface CachedDescriptorPlans {
+  readonly signature: string;
+  readonly variants: Map<boolean, DescriptorPlan>;
+}
+
+const EMPTY_OPTIONS: CommonRuleOptions = {};
+const descriptorPlans = new WeakMap<CommonRuleOptions, CachedDescriptorPlans>();
 
 function unwrapReportedChain(node: object): object {
   while (
@@ -149,7 +163,7 @@ const rule: Rule.RuleModule = {
     const ast = sourceCode.ast as { type?: string } | undefined;
     // Avoid running when the parser did not produce a JS Program (eg, non-ESTree processors)
     if (ast?.type && ast.type !== "Program") return {};
-    const opt = (ctx.options[0] ?? {}) as CommonRuleOptions;
+    const opt = (ctx.options[0] ?? EMPTY_OPTIONS) as CommonRuleOptions;
     const baseline = getBaselineValue(opt);
     const ignoreFeaturePatterns = (opt.ignoreFeatures ?? []) as string[];
     const ignoreNodeTypePatterns = (opt.ignoreNodeTypes ?? []) as string[];
@@ -295,28 +309,42 @@ const rule: Rule.RuleModule = {
     const typedJsEnabled = useTypesJs !== "off" && typedAvailable;
     const typedEnabled = typedWebEnabled || typedJsEnabled;
 
-    function getEnabledDescriptors(
-      options: Parameters<typeof getIncludedDescriptors>[0],
-      useTypes: boolean,
-    ) {
-      return getIncludedDescriptors(options).filter(
-        (descriptor) => useTypes || (descriptor.kind !== "instanceMember" && !descriptor.typedOnly),
-      );
-    }
+    const signature = JSON.stringify([String(baseline), opt]);
+    const cachedPlans = descriptorPlans.get(opt);
+    let plan =
+      cachedPlans?.signature === signature ? cachedPlans.variants.get(typedAvailable) : undefined;
+    if (!plan) {
+      function getEnabledDescriptors(
+        options: Parameters<typeof getIncludedDescriptors>[0],
+        useTypes: boolean,
+      ) {
+        return getIncludedDescriptors(options).filter(
+          (descriptor) =>
+            useTypes || (descriptor.kind !== "instanceMember" && !descriptor.typedOnly),
+        );
+      }
 
-    let descriptors = [
-      ...getEnabledDescriptors({ webApis: includeWebApis }, typedWebEnabled),
-      ...getEnabledDescriptors({ jsBuiltins: includeJsBuiltins }, typedJsEnabled),
-    ];
-    if (matchIgnoreFeature) {
-      descriptors = descriptors.filter((d) => !matchIgnoreFeature(d.featureId));
+      let descriptors = [
+        ...getEnabledDescriptors({ webApis: includeWebApis }, typedWebEnabled),
+        ...getEnabledDescriptors({ jsBuiltins: includeJsBuiltins }, typedJsEnabled),
+      ];
+      if (matchIgnoreFeature) {
+        descriptors = descriptors.filter((d) => !matchIgnoreFeature(d.featureId));
+      }
+      const beyondBaseline = new Set(
+        descriptors.filter((d) => isBeyondBaseline(d.featureId, baseline, d.compatKey)),
+      );
+      descriptors = descriptors.filter(
+        (d) => beyondBaseline.has(d) || mappedFeatureIds.has(d.featureId),
+      );
+      plan = { descriptors, beyondBaseline };
+      if (cachedPlans?.signature === signature) {
+        cachedPlans.variants.set(typedAvailable, plan);
+      } else {
+        descriptorPlans.set(opt, { signature, variants: new Map([[typedAvailable, plan]]) });
+      }
     }
-    const beyondBaseline = new Set(
-      descriptors.filter((d) => isBeyondBaseline(d.featureId, baseline, d.compatKey)),
-    );
-    descriptors = descriptors.filter(
-      (d) => beyondBaseline.has(d) || mappedFeatureIds.has(d.featureId),
-    );
+    const { descriptors, beyondBaseline } = plan;
 
     if (descriptors.length > 0) {
       const generic = buildListeners(ctx, {
