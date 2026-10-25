@@ -1,114 +1,177 @@
-name: Toolchain Capabilities
+name: Linter Compatibility
 
 on:
-  pull_request:
-    paths:
-      - 'conformance/**'
-      - '.github/workflows/toolchain-capabilities.yml'
-      - 'package.json'
-      - 'pnpm-lock.yaml'
-      - 'src/**'
-      - 'tsdown.config.ts'
-      - 'tsconfig.json'
   schedule:
     - cron: '17 8 * * 1'
-  workflow_dispatch:
-    inputs:
-      profile:
-        description: Dependency profile to check
-        type: choice
-        options:
-          - pinned
-          - latest
-        default: pinned
+  workflow_dispatch: {}
 
 permissions:
   contents: read
 
-concurrency:
-  group: toolchain-capabilities-${{ github.event_name }}-${{ github.ref }}-${{ inputs.profile || 'automatic' }}
-  cancel-in-progress: true
-
 jobs:
-  check:
-    name: Capabilities (${{ matrix.profile }})
+  prepare:
+    name: Resolve released plugin
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
+        with:
+          version: 10.34.5
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 22.22.2
+      - name: Record run identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p conformance/results/input
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            --jq '{repository: .repository.full_name, id: (.id | tostring), number: .run_number, attempt: .run_attempt, commit: .head_sha, startedAt: (.run_started_at // .created_at)}' \
+            > conformance/results/input/context.json
+      - name: Prepare exact npm artifact and product lock
+        run: node conformance/subject.ts --out conformance/results/input/subject
+      - name: Save shared input
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: compatibility-input
+          path: |
+            conformance/results/input/context.json
+            conformance/results/input/subject/subject.json
+            conformance/results/input/subject/subject.tgz
+            conformance/results/input/subject/package.json
+            conformance/results/input/subject/pnpm-lock.yaml
+          overwrite: true
+          retention-days: 7
+          if-no-files-found: warn
+
+  measure:
+    name: Measure (${{ matrix.profile }})
+    permissions:
+      contents: read
+      actions: read
+    needs: prepare
     runs-on: ubuntu-latest
     timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
-        profile: ${{ fromJSON(case(github.event_name == 'schedule', '["pinned","latest"]', inputs.profile == 'latest', '["latest"]', '["pinned"]')) }}
+        profile: [pinned, latest]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
         with:
           version: 10.34.5
-
-      - name: Setup Node
-        uses: actions/setup-node@v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 22.22.2
-          # The latest profile resolves unpinned releases; keep them out of the store cache
-          # that pinned runs restore.
-          cache: ${{ matrix.profile == 'pinned' && 'pnpm' || '' }}
-          cache-dependency-path: |
-            pnpm-lock.yaml
-            conformance/pnpm-lock.yaml
-
-      - name: Install product build dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
-
-      - name: Build plugin from this checkout
-        run: pnpm build
-
-      - name: Install pinned conformance dependencies
-        run: pnpm --dir conformance install --frozen-lockfile --ignore-scripts
-
-      - name: Type-check the harness
-        run: pnpm --dir conformance typecheck
-
-      - name: Test harness result handling
-        run: pnpm --dir conformance test
-
-      - name: Refresh isolated toolchain dependencies
-        if: matrix.profile == 'latest'
-        run: pnpm --dir conformance refresh
-
-      - name: Check toolchain capabilities
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: compatibility-input
+          path: conformance/results/input
+      - name: Record collector attempt identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            --jq '{repository: .repository.full_name, id: (.id | tostring), number: .run_number, attempt: .run_attempt, commit: .head_sha, startedAt: (.run_started_at // .created_at)}' \
+            > conformance/results/collector-context.json
+      - name: Measure host capabilities and Baseline detection
         env:
           CONFORMANCE_PROFILE: ${{ matrix.profile }}
-          # The checkout is GitHub's test merge; the report also records the PR's own commits.
-          CONFORMANCE_PR_HEAD: ${{ github.event.pull_request.head.sha }}
-          CONFORMANCE_PR_BASE: ${{ github.event.pull_request.base.sha }}
-        run: pnpm --dir conformance check
-
-      # always() rather than !cancelled(): a job timeout counts as a cancellation, and a run it
-      # stops should still say so in the summary and upload the raw output it wrote.
-      - name: Publish report to job summary
+        run: >-
+          node conformance/run.ts
+          --subject conformance/results/input/subject
+          --context conformance/results/collector-context.json
+          --out conformance/results/${{ matrix.profile }}
+      - name: Show measurement
         if: always()
-        shell: bash
+        env:
+          PROFILE: ${{ matrix.profile }}
         run: |
-          if [ -f conformance/results/report.md ]; then
-            cat conformance/results/report.md >> "$GITHUB_STEP_SUMMARY"
+          if [ -f "conformance/results/$PROFILE/report.md" ]; then
+            cat "conformance/results/$PROFILE/report.md" >> "$GITHUB_STEP_SUMMARY"
           else
-            printf '%s\n' 'No capability report was produced. Check the setup and run logs.' >> "$GITHUB_STEP_SUMMARY"
+            printf '%s\n' 'No measurement report was produced. Check the setup and execution logs.' >> "$GITHUB_STEP_SUMMARY"
           fi
-
-      - name: Upload reports and raw tool output
+      - name: Save observations and reproduction inputs
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
-          name: toolchain-capabilities-${{ matrix.profile }}-${{ github.run_attempt }}
+          name: compatibility-${{ matrix.profile }}
           path: |
-            conformance/results/report.json
-            conformance/results/report.md
-            conformance/results/raw/**
-            conformance/results/work/**
-            conformance/results/latest-tools/package.json
-            conformance/results/latest-tools/pnpm-lock.yaml
-          if-no-files-found: warn
+            conformance/results/${{ matrix.profile }}/profile.json
+            conformance/results/${{ matrix.profile }}/identity.json
+            conformance/results/${{ matrix.profile }}/report.json
+            conformance/results/${{ matrix.profile }}/report.md
+            conformance/results/${{ matrix.profile }}/raw/**
+            conformance/results/${{ matrix.profile }}/work/**
+            conformance/results/${{ matrix.profile }}/subject-input/subject.json
+            conformance/results/${{ matrix.profile }}/subject-input/package.json
+            conformance/results/${{ matrix.profile }}/subject-input/pnpm-lock.yaml
+            conformance/results/${{ matrix.profile }}/tools/package.json
+            conformance/results/${{ matrix.profile }}/tools/pnpm-lock.yaml
           include-hidden-files: true
+          overwrite: true
           retention-days: 7
+          if-no-files-found: warn
+
+  publish:
+    name: Publish compatibility snapshot
+    needs: [prepare, measure]
+    if: >-
+      ${{ always() && !cancelled() &&
+          github.repository == '3ru/eslint-plugin-baseline-js' &&
+          github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 22.22.2
+      - name: Record trusted run identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p conformance/results/collected
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            --jq '{repository: .repository.full_name, id: (.id | tostring), number: .run_number, attempt: .run_attempt, commit: .head_sha, startedAt: (.run_started_at // .created_at)}' \
+            > conformance/results/publication-context.json
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?filter=all&per_page=100" \
+            | jq '[.[].jobs[]]' > conformance/results/publication-jobs.json
+      - name: Download shared input
+        continue-on-error: true
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: compatibility-input
+          path: conformance/results/collected
+      - name: Download pinned observations
+        continue-on-error: true
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: compatibility-pinned
+          path: conformance/results/collected/pinned
+      - name: Download latest observations
+        continue-on-error: true
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: compatibility-latest
+          path: conformance/results/collected/latest
+      - name: Publish both outcomes atomically
+        run: >-
+          node conformance/publish.ts
+          --input conformance/results/collected
+          --context conformance/results/publication-context.json
+          --jobs conformance/results/publication-jobs.json
