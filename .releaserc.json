@@ -18,7 +18,7 @@
         "changelogFile": "CHANGELOG.md"
       }
     ],
-    "./scripts/release/exec.mjs",
+    "@semantic-release/npm",
     [
       "@semantic-release/git",
       {
