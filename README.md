@@ -174,7 +174,7 @@ Runs as an [oxlint JS plugin](https://oxc.rs/docs/guide/usage/linter/js-plugins)
 ```
 
 > [!CAUTION]
-> **No type-aware detection under oxlint.** Checks that need TypeScript type resolution (e.g., `Set.difference()`, `Iterator.map()`) won't fire. Use ESLint with the `type-aware` preset if you need them.
+> **No type-aware plugin checks under Oxlint or Bun.** This plugin skips checks that need TypeScript type information, such as `Set.prototype.difference()` and `Iterator.prototype.map()`. Use the [ESLint TypeScript setup](https://baselinejs.vercel.app/docs#add-typescript) for these checks.
 
 ## Baseline for HTML, CSS, and React
 
