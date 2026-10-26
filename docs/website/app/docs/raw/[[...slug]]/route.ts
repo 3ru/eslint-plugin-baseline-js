@@ -50,23 +50,22 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
         snapshot = report.snapshot;
         evidenceBaseUrl = report.evidenceBaseUrl;
       }
-      const markdown = `${await page.data.getText("raw")}\n\n${renderSnapshotMarkdown({ snapshot, evidenceBaseUrl })}`;
-      return new Response(markdown, {
-        headers: {
-          ...headers,
-          ...(query.get("download") === "1"
-            ? {
-                "Content-Disposition": `attachment; filename="linter-compatibility-${snapshot.run.id}-${snapshot.run.attempt}.md"`,
-              }
-            : {}),
-        },
-      });
+      const markdown = `${await page.data.getText("processed")}\n\n${renderSnapshotMarkdown({ snapshot, evidenceBaseUrl })}`;
+      return new Response(markdown, { headers });
     } catch {
       return new Response(`${reportUnavailableMessage}\n`, { status: 503, headers });
     }
   }
 
-  return new Response(await page.data.getText("raw"), {
+  const markdown = [
+    `# ${page.data.title}`,
+    page.data.description,
+    await page.data.getText("processed"),
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  return new Response(markdown, {
     headers: { "Content-Type": "text/plain; charset=utf-8" },
   });
 }

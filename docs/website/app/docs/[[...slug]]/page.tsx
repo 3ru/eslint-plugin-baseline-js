@@ -36,14 +36,6 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
       {(!report || report.kind === "available") && (
         <div className="flex flex-wrap items-center gap-2 border-b pb-4 mb-4">
           <CopyMarkdownButton markdownUrl={report?.markdownUrl ?? slugPath} />
-          {report?.kind === "available" && (
-            <a
-              href={`${report.markdownUrl}&download=1`}
-              className="text-sm underline underline-offset-4"
-            >
-              Download Markdown
-            </a>
-          )}
         </div>
       )}
       <DocsBody>

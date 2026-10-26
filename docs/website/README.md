@@ -49,7 +49,7 @@ Production metadata uses `https://baselinejs.vercel.app` by default. Set `NEXT_P
 - Add `// [!code ++]`, `// [!code --]`, `// [!code highlight]`, `// [!code focus]`, or `// [!code error]` to mark important code. Use `// [!code word:available]` to highlight a word.
 - Add `tab-group="package-manager"` to the first code fence in each package-manager tab group to keep the reader's choice across pages. For explicit `<Tabs>`, use `groupId="package-manager" persist`.
 
-The source loader imports the generated `collections/server` entry. The raw Markdown route uses `page.data.getText("raw")` to keep Copy Markdown working with the current Fumadocs MDX API.
+The source loader imports the generated `collections/server` entry. The Markdown route uses `page.data.getText("processed")` with `includeProcessedMarkdown` enabled, so Copy Markdown works without source files on the deployed server.
 
 ## Coverage page
 
