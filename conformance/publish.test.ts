@@ -235,6 +235,24 @@ test("publishes an immutable paired snapshot and reuses an identical attempt thr
   const snapshot = f.readSnapshot(result.snapshotCommit, input.run);
   assert.equal(snapshot.profiles.pinned.kind, "measured");
   assert.equal(snapshot.profiles.latest.kind, "measured");
+  assert.deepEqual(
+    snapshot.cases.find(({ id }) => id === "baseline-static-groupby"),
+    {
+      id: "baseline-static-groupby",
+      label: "Static Object.groupBy",
+      suite: "baseline",
+      example: {
+        code: "Object.groupBy([], String);\n",
+        language: "js",
+        expected: [{ featureId: "array-group", line: 1, column: 8 }],
+      },
+    },
+  );
+  assert.ok(
+    snapshot.cases
+      .filter(({ suite }) => suite === "host")
+      .every((testCase) => !("example" in testCase)),
+  );
   assert.equal(
     git(
       f.remote,

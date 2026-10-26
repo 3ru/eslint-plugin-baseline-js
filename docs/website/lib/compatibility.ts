@@ -1,9 +1,13 @@
 import "server-only";
 
+import { createHash } from "node:crypto";
 import {
   type Manifest,
+  parseCaseExample,
+  parseExampleEvidence,
   parseManifest,
   parseSnapshot,
+  profiles,
   type Reference,
   reportBranch,
   repository,
@@ -50,7 +54,7 @@ export function snapshotEvidenceUrl(selection: SnapshotSelection): string {
   return `${rawOrigin}/${snapshotPath(selection)}`;
 }
 
-async function readJson(path: string): Promise<unknown> {
+async function readResponse(path: string): Promise<Response> {
   const response = await fetch(`${reportOrigin()}/${path}`, {
     cache: "no-store",
     redirect: "error",
@@ -58,7 +62,11 @@ async function readJson(path: string): Promise<unknown> {
   });
   if (!response.ok)
     throw new Error(`Published report request failed with HTTP ${response.status}.`);
-  return response.json();
+  return response;
+}
+
+async function readJson(path: string): Promise<unknown> {
+  return (await readResponse(path)).json();
 }
 
 export async function loadCompatibilitySnapshot(selection: SnapshotSelection): Promise<Snapshot> {
@@ -66,6 +74,60 @@ export async function loadCompatibilitySnapshot(selection: SnapshotSelection): P
   if (snapshot.run.id !== selection.runId || snapshot.run.attempt !== selection.attempt) {
     throw new Error("The report does not match the selected workflow attempt.");
   }
+  if (!snapshot.cases.some((testCase) => testCase.suite === "baseline" && !testCase.example)) {
+    return snapshot;
+  }
+  const path = snapshotPath(selection);
+  const evidence = await Promise.all(
+    profiles.map(async (profile) => {
+      if (snapshot.profiles[profile].kind === "not-measured") return { profile, input: null };
+      try {
+        return { profile, input: await readJson(`${path}/${profile}/report.json`) };
+      } catch {
+        return { profile, input: null };
+      }
+    }),
+  );
+  snapshot.cases = await Promise.all(
+    snapshot.cases.map(async (testCase) => {
+      if (testCase.suite !== "baseline" || testCase.example) return testCase;
+      try {
+        const examples = evidence.flatMap(({ profile, input }) => {
+          const measurement = snapshot.profiles[profile];
+          if (
+            input === null ||
+            measurement.kind === "not-measured" ||
+            !Object.values(measurement.hosts).some(
+              (host) => host.kind === "measured" && host.cases[testCase.id]?.kind === "observed",
+            )
+          ) {
+            return [];
+          }
+          return [
+            { profile, example: parseExampleEvidence({ input, snapshot, profile, testCase }) },
+          ];
+        });
+        const first = examples[0];
+        if (
+          !first ||
+          examples.some(({ example }) => JSON.stringify(example) !== JSON.stringify(first.example))
+        ) {
+          return testCase;
+        }
+        const response = await readResponse(
+          `${path}/${first.profile}/work/${testCase.id}/input.${first.example.language}`,
+        );
+        const bytes = new Uint8Array(await response.arrayBuffer());
+        if (createHash("sha256").update(bytes).digest("hex") !== first.example.fixtureSha256) {
+          return testCase;
+        }
+        const code = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(bytes);
+        return { ...testCase, example: parseCaseExample({ ...first.example, code }) };
+      } catch {
+        return testCase;
+      }
+    }),
+  );
   return snapshot;
 }
 

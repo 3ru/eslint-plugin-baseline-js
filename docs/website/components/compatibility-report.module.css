@@ -1,0 +1,175 @@
+.report {
+  min-inline-size: 0;
+}
+
+.metadata {
+  color: var(--color-fd-muted-foreground);
+  font-size: 0.875rem;
+}
+
+.caseList {
+  display: grid;
+  gap: 1rem;
+}
+
+.caseCard {
+  container-type: inline-size;
+  min-inline-size: 0;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 0.625rem;
+  padding: 1rem;
+}
+
+.caseCard .caseTitle {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.caseCard .code {
+  max-inline-size: 100%;
+  overflow: auto;
+  margin: 0;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  background: var(--color-fd-muted);
+  color: var(--color-fd-foreground);
+  font-size: 0.8rem;
+  line-height: 1.65;
+  white-space: pre;
+}
+
+.code code {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+
+.code pre {
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.caseCard .expected {
+  margin: 0.75rem 0;
+  color: var(--color-fd-muted-foreground);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.caseCard .results {
+  inline-size: 100%;
+  table-layout: fixed;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.results th,
+.results td {
+  border: 0;
+  padding: 0.35rem 0.25rem;
+  text-align: start;
+  vertical-align: top;
+}
+
+.results thead {
+  border-block-start: 1px solid var(--color-fd-border);
+}
+
+.results th + th,
+.results td + td {
+  border-inline-start: 1px solid var(--color-fd-border);
+  padding-inline-start: 0.5rem;
+}
+
+.outcome {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  line-height: 1.5;
+}
+
+.success,
+.failure {
+  color: var(--color-fd-foreground);
+}
+
+.neutral,
+.warning {
+  color: var(--color-fd-muted-foreground);
+}
+
+@container (width < 25rem) {
+  .results .outcome {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+  }
+}
+
+.disclosure {
+  margin-block: 1.25rem;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 0.625rem;
+  padding-inline: 1rem;
+}
+
+.disclosure > summary {
+  cursor: pointer;
+  padding-block: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.disclosure > section:last-child {
+  margin-block-end: 1rem;
+}
+
+.tableRegion {
+  max-inline-size: 100%;
+  max-block-size: 32rem;
+  overflow: auto;
+}
+
+.tableRegion .apiTable {
+  min-inline-size: 34rem;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.apiTable thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  background: var(--color-fd-background);
+}
+
+.apiTable tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  background: var(--color-fd-background);
+  text-align: start;
+}
+
+.problemList > li {
+  margin-block: 1rem;
+}
+
+.problemList p {
+  margin-block: 0.25rem;
+}
+
+.code:focus-visible,
+.tableRegion:focus-visible,
+.disclosure > summary:focus-visible {
+  outline: 2px solid var(--color-fd-primary);
+  outline-offset: 3px;
+}
