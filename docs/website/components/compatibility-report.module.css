@@ -9,53 +9,49 @@
 
 .caseList {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.caseCard {
+.caseComparison {
   container-type: inline-size;
   min-inline-size: 0;
-  border: 1px solid var(--color-fd-border);
-  border-radius: 0.625rem;
-  padding: 1rem;
 }
 
-.caseCard .caseTitle {
+.caseComparison + .caseComparison {
+  border-block-start: 1px solid var(--color-fd-border);
+  padding-block-start: 1.5rem;
+}
+
+.caseComparison .caseTitle {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
-.caseCard .codeBlock {
+.caseComparison .codeBlock {
   margin: 0 0 0.75rem;
 }
 
-.expectedDiagnostic {
-  margin: 0.5rem 0 0;
-  border-inline: 0;
-  border-block-end: 0;
-  border-radius: 0;
-  padding: 0.75rem 1rem;
-  background: color-mix(in oklab, var(--color-fd-error) 5%, transparent);
+.diagnostic {
+  margin: 0.75rem 1rem 0;
+  color: var(--color-fd-muted-foreground);
   font-size: 0.8rem;
-  box-shadow: none;
+  line-height: 1.5;
 }
 
-.expectedDiagnostic p {
-  margin: 0;
-}
-
-.caseCard .expected {
+.caseComparison .expected {
   margin: 0.75rem 0;
   color: var(--color-fd-muted-foreground);
   font-size: 0.8rem;
   line-height: 1.6;
 }
 
-.caseCard .results {
+.caseComparison .results {
   inline-size: 100%;
   table-layout: fixed;
   margin: 0;
+  border: 0;
+  border-radius: 0;
   font-size: 0.8rem;
 }
 
@@ -67,8 +63,8 @@
   vertical-align: top;
 }
 
-.results thead {
-  border-block-start: 1px solid var(--color-fd-border);
+.results thead th {
+  border-block-end: 1px solid var(--color-fd-border);
 }
 
 .results th + th,

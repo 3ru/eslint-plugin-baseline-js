@@ -1,4 +1,3 @@
-import { Callout } from "fumadocs-ui/components/callout";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { ServerCodeBlock } from "fumadocs-ui/components/codeblock.rsc";
 import type { CompatibilityReport as Report } from "@/lib/compatibility";
@@ -49,7 +48,7 @@ function Result({
   );
 }
 
-function CaseCard({
+function CaseComparison({
   testCase,
   profile,
   measurement,
@@ -61,7 +60,7 @@ function CaseCard({
   const example = testCase.example;
   const expectedLines = new Set(example?.expected.map(({ line }) => line));
   return (
-    <article className={styles.caseCard} data-case={testCase.id}>
+    <article className={styles.caseComparison} data-case={testCase.id}>
       <h3 className={styles.caseTitle}>{testCase.label}</h3>
       {example ? (
         <ServerCodeBlock
@@ -84,17 +83,10 @@ function CaseCard({
               >
                 <Pre>{props.children}</Pre>
                 {example.expected.length > 0 && (
-                  <Callout type="error" className={styles.expectedDiagnostic}>
-                    <p>
-                      {example.expected.length === 1 ? "This feature is" : "These features are"}{" "}
-                      outside the Baseline 2019 target.
-                    </p>
-                    {example.expected.map(({ featureId, line, column }) => (
-                      <p key={`${featureId}-${line}-${column}`}>
-                        <code>{featureId}</code> at line {line}, column {column}.
-                      </p>
-                    ))}
-                  </Callout>
+                  <p className={styles.diagnostic}>
+                    Not in Baseline 2019.
+                    <span className="sr-only">{` ${expectedResultText(example)}`}</span>
+                  </p>
                 )}
               </CodeBlock>
             ),
@@ -165,7 +157,7 @@ function ProfileComparison({ snapshot, profile }: { snapshot: Snapshot; profile:
           <div className={styles.caseList}>
             {snapshot.cases.map((testCase) =>
               testCase.suite === "baseline" ? (
-                <CaseCard
+                <CaseComparison
                   key={testCase.id}
                   testCase={testCase}
                   profile={profile}
