@@ -1,3 +1,6 @@
+import { Callout } from "fumadocs-ui/components/callout";
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
+import { ServerCodeBlock } from "fumadocs-ui/components/codeblock.rsc";
 import type { CompatibilityReport as Report } from "@/lib/compatibility";
 import { snapshotEvidenceUrl, workflowUrl } from "@/lib/compatibility";
 import {
@@ -55,22 +58,51 @@ function CaseCard({
   profile: Profile;
   measurement: ProfileMeasurement;
 }) {
+  const example = testCase.example;
+  const expectedLines = new Set(example?.expected.map(({ line }) => line));
   return (
     <article className={styles.caseCard} data-case={testCase.id}>
       <h3 className={styles.caseTitle}>{testCase.label}</h3>
-      {testCase.example && (
-        <section
-          aria-label={`${testCase.label} source code`}
-          // biome-ignore lint/a11y/noNoninteractiveTabindex: Focus enables keyboard scrolling. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow#accessibility
-          tabIndex={0}
-          className={`not-prose ${styles.code}`}
-        >
-          <pre>
-            <code className={`language-${testCase.example.language}`}>{testCase.example.code}</code>
-          </pre>
-        </section>
+      {example ? (
+        <ServerCodeBlock
+          code={example.code}
+          lang={example.language}
+          transformers={[
+            {
+              line(node, line) {
+                if (expectedLines.has(line)) this.addClassToHast(node, ["highlighted", "error"]);
+              },
+            },
+          ]}
+          components={{
+            pre: (props) => (
+              <CodeBlock
+                className={[styles.codeBlock, props.className].join(" ")}
+                style={props.style}
+                title={example.expected.length > 0 ? "Expected warning" : "No warning expected"}
+                viewportProps={{ "aria-label": `${testCase.label} source code` }}
+              >
+                <Pre>{props.children}</Pre>
+                {example.expected.length > 0 && (
+                  <Callout type="error" className={styles.expectedDiagnostic}>
+                    <p>
+                      {example.expected.length === 1 ? "This feature is" : "These features are"}{" "}
+                      outside the Baseline 2019 target.
+                    </p>
+                    {example.expected.map(({ featureId, line, column }) => (
+                      <p key={`${featureId}-${line}-${column}`}>
+                        <code>{featureId}</code> at line {line}, column {column}.
+                      </p>
+                    ))}
+                  </Callout>
+                )}
+              </CodeBlock>
+            ),
+          }}
+        />
+      ) : (
+        <p className={styles.expected}>{expectedResultText(example)}</p>
       )}
-      <p className={styles.expected}>{expectedResultText(testCase.example)}</p>
       <table className={styles.results}>
         <caption className="sr-only">
           {testCase.label}, {profile} toolchain results
@@ -318,7 +350,8 @@ export function CompatibilityReport({ report }: { report: Report }) {
         </p>
       )}
       <p className={styles.metadata}>
-        Baseline 2019. ✅ Correct result. ❌ Unsupported checks could not be verified.
+        Baseline 2019. Red lines show expected warnings. Tables show actual toolchain results. ✅
+        Correct result. ❌ Unsupported checks could not be verified.
       </p>
       <ProfileComparison snapshot={snapshot} profile="latest" />
       <details className={styles.disclosure}>

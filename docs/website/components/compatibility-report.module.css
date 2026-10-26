@@ -26,36 +26,23 @@
   line-height: 1.5;
 }
 
-.caseCard .code {
-  max-inline-size: 100%;
-  overflow: auto;
-  margin: 0;
-  border-radius: 0.375rem;
-  padding: 0.75rem;
-  background: var(--color-fd-muted);
-  color: var(--color-fd-foreground);
+.caseCard .codeBlock {
+  margin: 0 0 0.75rem;
+}
+
+.expectedDiagnostic {
+  margin: 0.5rem 0 0;
+  border-inline: 0;
+  border-block-end: 0;
+  border-radius: 0;
+  padding: 0.75rem 1rem;
+  background: color-mix(in oklab, var(--color-fd-error) 5%, transparent);
   font-size: 0.8rem;
-  line-height: 1.65;
-  white-space: pre;
+  box-shadow: none;
 }
 
-.code code {
-  border: 0;
-  padding: 0;
-  background: none;
-  color: inherit;
-  font-size: inherit;
-  text-decoration: none;
-}
-
-.code pre {
+.expectedDiagnostic p {
   margin: 0;
-  overflow: visible;
-  padding: 0;
-  background: none;
-  color: inherit;
-  font-size: inherit;
-  line-height: inherit;
 }
 
 .caseCard .expected {
@@ -167,7 +154,6 @@
   margin-block: 0.25rem;
 }
 
-.code:focus-visible,
 .tableRegion:focus-visible,
 .disclosure > summary:focus-visible {
   outline: 2px solid var(--color-fd-primary);
