@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "strict": true,
+    "noEmit": true,
+    "types": []
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}
