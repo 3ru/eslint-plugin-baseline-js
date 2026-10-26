@@ -1,23 +1,25 @@
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
+import { ServerCodeBlock } from "fumadocs-ui/components/codeblock.rsc";
 import type { CompatibilityReport as Report } from "@/lib/compatibility";
 import { snapshotEvidenceUrl, workflowUrl } from "@/lib/compatibility";
 import {
-  type HostMeasurement,
-  type HostName,
+  caseObservation,
+  caseOutcome,
+  expectedResultText,
+  type Failure,
+  hostNames,
   hosts,
   type Profile,
+  type ProfileMeasurement,
   type PublicCase,
+  type PublicObservation,
   profiles,
   repository,
-  statusText,
+  type Snapshot,
 } from "@/lib/compatibility-report";
+import styles from "./compatibility-report.module.css";
 
-const hostNames = { eslint: "ESLint", oxlint: "Oxlint", bun: "Bun" } satisfies Record<
-  HostName,
-  string
->;
 const maxAgeMs = 8 * 24 * 60 * 60 * 1000;
-const scrollClass =
-  "max-w-full overflow-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fd-primary";
 
 function timestamp(value: string) {
   return (
@@ -30,107 +32,258 @@ function timestamp(value: string) {
   );
 }
 
-function observations(measurement: HostMeasurement): string {
-  if (measurement.kind === "not-measured") return `Not measured. ${measurement.reason}`;
-  const counts = new Map<string, number>();
-  for (const result of Object.values(measurement.cases)) {
-    const label = result.kind === "not-measured" ? "Not measured" : statusText[result.status];
-    counts.set(label, (counts.get(label) ?? 0) + 1);
-  }
-  const unexpected = Object.values(measurement.cases).filter(
-    (result) => result.kind === "observed" && !result.expectationMatched,
-  ).length;
-  const summary = Array.from(counts, ([label, count]) => `${count} ${label}`).join(", ");
-  return unexpected ? `${summary}. ${unexpected} unexpected.` : summary;
+function Result({
+  testCase,
+  observation,
+}: {
+  testCase: PublicCase;
+  observation: PublicObservation | Failure | undefined;
+}) {
+  const result = caseOutcome({ testCase, observation });
+  return (
+    <span className={`${styles.outcome} ${styles[result.tone]}`}>
+      <span aria-hidden="true">{result.icon}</span>
+      <span>{result.label}</span>
+    </span>
+  );
 }
 
-function CaseResults({
+function CaseComparison({
+  testCase,
   profile,
-  host,
   measurement,
-  cases,
+}: {
+  testCase: Extract<PublicCase, { suite: "baseline" }>;
+  profile: Profile;
+  measurement: ProfileMeasurement;
+}) {
+  const example = testCase.example;
+  const expectedLines = new Set(example?.expected.map(({ line }) => line));
+  return (
+    <article className={styles.caseComparison} data-case={testCase.id}>
+      <h3 className={styles.caseTitle}>{testCase.label}</h3>
+      {example ? (
+        <ServerCodeBlock
+          code={example.code}
+          lang={example.language}
+          transformers={[
+            {
+              line(node, line) {
+                if (expectedLines.has(line)) this.addClassToHast(node, ["highlighted", "error"]);
+              },
+            },
+          ]}
+          components={{
+            pre: (props) => (
+              <CodeBlock
+                className={[styles.codeBlock, props.className].join(" ")}
+                style={props.style}
+                title={example.expected.length > 0 ? "Expected warning" : "No warning expected"}
+                viewportProps={{ "aria-label": `${testCase.label} source code` }}
+              >
+                <Pre>{props.children}</Pre>
+                {example.expected.length > 0 && (
+                  <p className={styles.diagnostic}>
+                    Not in Baseline 2019.
+                    <span className="sr-only">{` ${expectedResultText(example)}`}</span>
+                  </p>
+                )}
+              </CodeBlock>
+            ),
+          }}
+        />
+      ) : (
+        <p className={styles.expected}>{expectedResultText(example)}</p>
+      )}
+      <table className={styles.results}>
+        <caption className="sr-only">
+          {testCase.label}, {profile} toolchain results
+        </caption>
+        <thead>
+          <tr>
+            {hosts.map((host) => (
+              <th key={host} scope="col">
+                {hostNames[host]}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {hosts.map((host) => (
+              <td key={host}>
+                <Result
+                  testCase={testCase}
+                  observation={caseObservation({ measurement, host, caseId: testCase.id })}
+                />
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  );
+}
+
+function ProfileComparison({ snapshot, profile }: { snapshot: Snapshot; profile: Profile }) {
+  const measurement = snapshot.profiles[profile];
+  const captionId = `${profile}-host-api`;
+  return (
+    <section>
+      <h2 id={`${profile}-results`}>
+        {profile === "latest" ? "Latest toolchain" : "Pinned toolchain"}
+      </h2>
+      {measurement.kind === "not-measured" ? (
+        <p>
+          <strong>Not measured.</strong> {measurement.reason}
+        </p>
+      ) : (
+        <>
+          <p className={styles.metadata}>
+            Captured {timestamp(measurement.capturedAt)}.
+            <span className="block">
+              {hosts.map((host, index) => {
+                const result = measurement.hosts[host];
+                return (
+                  <span key={host}>
+                    {index > 0 && " · "}
+                    {hostNames[host]}{" "}
+                    {result.kind === "measured" ? result.packageVersion : "not measured"}
+                  </span>
+                );
+              })}
+            </span>
+          </p>
+          <div className={styles.caseList}>
+            {snapshot.cases.map((testCase) =>
+              testCase.suite === "baseline" ? (
+                <CaseComparison
+                  key={testCase.id}
+                  testCase={testCase}
+                  profile={profile}
+                  measurement={measurement}
+                />
+              ) : null,
+            )}
+          </div>
+          <details className={styles.disclosure}>
+            <summary>Host API checks</summary>
+            {/* biome-ignore lint/a11y/noNoninteractiveTabindex: Focus enables keyboard scrolling. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow#accessibility */}
+            <section aria-labelledby={captionId} tabIndex={0} className={styles.tableRegion}>
+              <table className={styles.apiTable}>
+                <caption id={captionId} className="sr-only">
+                  {profile} toolchain host API checks
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Host API</th>
+                    {hosts.map((host) => (
+                      <th key={host} scope="col">
+                        {hostNames[host]}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {snapshot.cases
+                    .filter(({ suite }) => suite === "host")
+                    .map((testCase) => (
+                      <tr key={testCase.id}>
+                        <th scope="row">{testCase.label}</th>
+                        {hosts.map((host) => (
+                          <td key={host}>
+                            <Result
+                              testCase={testCase}
+                              observation={caseObservation({
+                                measurement,
+                                host,
+                                caseId: testCase.id,
+                              })}
+                            />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </section>
+          </details>
+        </>
+      )}
+    </section>
+  );
+}
+
+function ProfileEvidence({
+  snapshot,
+  profile,
   evidenceBaseUrl,
 }: {
+  snapshot: Snapshot;
   profile: Profile;
-  host: HostName;
-  measurement: Extract<HostMeasurement, { kind: "measured" }>;
-  cases: PublicCase[];
   evidenceBaseUrl: string;
 }) {
-  const captionId = `${profile}-${host}-cases`;
+  const measurement = snapshot.profiles[profile];
+  if (measurement.kind === "not-measured") return null;
+  const problems = snapshot.cases.flatMap((testCase) =>
+    hosts.flatMap((host) => {
+      const observation = caseObservation({ measurement, host, caseId: testCase.id });
+      return caseOutcome({ testCase, observation }).tone === "success"
+        ? []
+        : [{ testCase, host, observation }];
+    }),
+  );
   return (
-    <details className="my-4 rounded-lg border px-4">
-      <summary className="cursor-pointer py-3 focus-visible:outline-2 focus-visible:outline-offset-2">
-        {hostNames[host]} case results and evidence
-      </summary>
-      {/* biome-ignore lint/a11y/noNoninteractiveTabindex: Focus enables keyboard scrolling. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow#accessibility */}
-      <section aria-labelledby={captionId} tabIndex={0} className={`${scrollClass} max-h-[32rem]`}>
-        <table className="min-w-[40rem]">
-          <caption id={captionId} className="text-start font-medium">
-            {profile} toolchain, {hostNames[host]} case observations
-          </caption>
-          <thead className="sticky top-0 z-10 bg-fd-background">
-            <tr>
-              <th scope="col">Case</th>
-              <th scope="col">Observed result</th>
-              <th scope="col">Matches expectation</th>
-              <th scope="col">Evidence</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cases.map((testCase) => {
-              const result = measurement.cases[testCase.id];
-              const raw = `${evidenceBaseUrl}/${profile}/raw/${host}-${testCase.id}-inspect`;
-              return (
-                <tr key={testCase.id}>
-                  <th
-                    scope="row"
-                    className="sticky start-0 bg-fd-background text-start font-normal"
-                  >
-                    {testCase.label}
-                    <span className="block text-xs text-fd-muted-foreground">
-                      {testCase.suite === "host" ? "Host API" : "Baseline check"}
-                    </span>
-                  </th>
-                  <td>
-                    {result.kind === "not-measured" ? "Not measured" : statusText[result.status]}
-                    {result.kind === "observed" && (
-                      <span className="block text-xs text-fd-muted-foreground">
-                        Capability {result.capability}. Correctness {result.correctness}.
-                      </span>
-                    )}
-                    {result.reason && <p className="my-1 text-sm">{result.reason}</p>}
-                  </td>
-                  <td>
-                    {result.kind === "not-measured"
-                      ? "Not assessed"
-                      : result.expectationMatched
-                        ? "Yes"
-                        : "No, unexpected"}
-                  </td>
-                  <td>
-                    {result.kind === "observed" ? (
-                      <>
-                        <a href={`${raw}.stdout`}>Standard output</a>
-                        {" · "}
-                        <a href={`${raw}.stderr`}>Standard error</a>
-                      </>
-                    ) : (
-                      "No complete evidence"
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </section>
+    <section>
+      <h3>{profile === "latest" ? "Latest" : "Pinned"} execution evidence</h3>
       <p>
-        <a href={`${evidenceBaseUrl}/${profile}/report.json`}>
-          Full execution evidence for {profile}
-        </a>
+        Parser {measurement.parser}. TypeScript {measurement.typescript}.{" "}
+        <a href={`${evidenceBaseUrl}/${profile}/report.json`}>Execution report</a>
+        {" · "}
+        <a href={`${evidenceBaseUrl}/${profile}/identity.json`}>Collection identity</a>.
       </p>
-    </details>
+      <ul>
+        {hosts.map((host) => {
+          const result = measurement.hosts[host];
+          return (
+            <li key={host}>
+              {hostNames[host]}{" "}
+              {result.kind === "measured" ? (
+                <>
+                  package {result.packageVersion}, {result.channel} channel. Executable{" "}
+                  {result.reportedVersion}.
+                </>
+              ) : (
+                <>not measured. {result.reason}</>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+      {problems.length > 0 && (
+        <ul className={styles.problemList}>
+          {problems.map(({ testCase, host, observation }) => {
+            const raw = `${evidenceBaseUrl}/${profile}/raw/${host}-${testCase.id}-inspect`;
+            return (
+              <li key={`${host}-${testCase.id}`}>
+                <strong>
+                  {testCase.label}, {hostNames[host]}.
+                </strong>{" "}
+                <Result testCase={testCase} observation={observation} />
+                {observation?.reason && <p>{observation.reason}</p>}
+                {observation?.kind === "observed" && (
+                  <p>
+                    <a href={`${raw}.stdout`}>Standard output</a>
+                    {" · "}
+                    <a href={`${raw}.stderr`}>Standard error</a>
+                  </p>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
   );
 }
 
@@ -146,37 +299,31 @@ export function CompatibilityReport({ report }: { report: Report }) {
       </div>
     );
   }
-
   const { snapshot, manifest, evidenceBaseUrl } = report;
   const { run, subject } = snapshot;
   const stale = Date.now() - Date.parse(manifest.latest.capturedAt) > maxAgeMs;
   const lastComplete = manifest.lastComplete;
   const runUrl = `https://github.com/${repository}/actions/runs/${run.id}/attempts/${run.attempt}`;
-
   return (
-    <>
-      <h2 id="published-measurement">Published measurement</h2>
-      {subject.kind === "npm" ? (
-        <p>
-          Selected npm release <strong>eslint-plugin-baseline-js {subject.version}</strong> for this
-          attempt.
-        </p>
-      ) : (
-        <p>
-          <strong>Package not resolved.</strong> {subject.reason}
-        </p>
-      )}
+    <div className={styles.report}>
       <p>
-        Latest published attempt{" "}
-        <a href={runUrl}>
-          run {run.number}, attempt {run.attempt}
-        </a>
-        . Recorded {timestamp(manifest.latest.capturedAt)}.
+        {subject.kind === "npm" ? (
+          <>
+            <strong>eslint-plugin-baseline-js {subject.version}</strong> from npm.
+          </>
+        ) : (
+          <>
+            <strong>Package not resolved.</strong> {subject.reason}
+          </>
+        )}
+        <span className={`block ${styles.metadata}`}>
+          Recorded {timestamp(manifest.latest.capturedAt)}.
+        </span>
       </p>
       {stale && (
         <p className="rounded-lg border p-3">
-          <strong>Stale report.</strong> This published attempt is more than 8 days old.{" "}
-          <a href={workflowUrl}>Check the measurement workflow</a> for newer or failed attempts.
+          <strong>Stale report.</strong> This measurement is more than 8 days old.{" "}
+          <a href={workflowUrl}>Check the measurement workflow</a>.
         </p>
       )}
       {lastComplete?.commit !== manifest.latest.commit && (
@@ -194,122 +341,53 @@ export function CompatibilityReport({ report }: { report: Report }) {
           )}
         </p>
       )}
-      <p>
-        <a href={`${evidenceBaseUrl}/report.json`}>Snapshot JSON</a>
-        {" · "}
-        <a
-          href={`https://github.com/${repository}/tree/${manifest.latest.commit}/runs/${run.id}/${run.attempt}`}
-        >
-          Saved inputs and lockfiles
-        </a>
+      <p className={styles.metadata}>
+        Baseline 2019. Red lines show expected warnings. Tables show actual toolchain results. ✅
+        Correct result. ❌ Unsupported checks could not be verified.
       </p>
-      <p>
-        <strong>Unsupported</strong> checks could not be verified, even when expected. Unexpected
-        results differ from the case expectation.
-      </p>
-      {profiles.map((profile) => {
-        const measurement = snapshot.profiles[profile];
-        const title = profile === "pinned" ? "Pinned toolchain" : "Latest toolchain";
-        const captionId = `${profile}-versions`;
-        return (
-          <section key={profile}>
-            <h2 id={`${profile}-results`}>{title}</h2>
-            {measurement.kind === "not-measured" ? (
-              <p>
-                <strong>Not measured.</strong> {measurement.reason}
-              </p>
-            ) : (
-              <>
-                <p>
-                  Captured {timestamp(measurement.capturedAt)}. TypeScript parser{" "}
-                  {measurement.parser}. TypeScript {measurement.typescript}.
-                </p>
-                {/* biome-ignore lint/a11y/noNoninteractiveTabindex: Focus enables keyboard scrolling. https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow#accessibility */}
-                <section aria-labelledby={captionId} tabIndex={0} className={scrollClass}>
-                  <table>
-                    <caption id={captionId} className="text-start font-medium">
-                      {title} versions and observations
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Linter</th>
-                        <th scope="col">Version</th>
-                        <th scope="col">Channel</th>
-                        <th scope="col">Observed results</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {hosts.map((host) => {
-                        const result = measurement.hosts[host];
-                        return (
-                          <tr key={host}>
-                            <th scope="row" className="text-start">
-                              {hostNames[host]}
-                            </th>
-                            <td>
-                              {result.kind === "not-measured"
-                                ? "Not measured"
-                                : result.packageVersion}
-                              {result.kind === "measured" &&
-                                result.reportedVersion !== result.packageVersion && (
-                                  <span className="block text-xs">
-                                    Executable {result.reportedVersion}
-                                  </span>
-                                )}
-                            </td>
-                            <td>
-                              {result.kind === "not-measured" ? "Not measured" : result.channel}
-                            </td>
-                            <td>{observations(result)}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </section>
-                {hosts.map((host) => {
-                  const result = measurement.hosts[host];
-                  return result.kind === "measured" ? (
-                    <CaseResults
-                      key={host}
-                      profile={profile}
-                      host={host}
-                      measurement={result}
-                      cases={snapshot.cases}
-                      evidenceBaseUrl={evidenceBaseUrl}
-                    />
-                  ) : null;
-                })}
-              </>
-            )}
-          </section>
-        );
-      })}
-      <details className="my-4 rounded-lg border px-4">
-        <summary className="cursor-pointer py-3 focus-visible:outline-2 focus-visible:outline-offset-2">
-          Measurement scope and reproduction
-        </summary>
+      <ProfileComparison snapshot={snapshot} profile="latest" />
+      <details className={styles.disclosure}>
+        <summary>Pinned toolchain comparison</summary>
+        <ProfileComparison snapshot={snapshot} profile="pinned" />
+      </details>
+      <details className={styles.disclosure}>
+        <summary>Versions, evidence, and reproduction</summary>
         <p>
-          Results describe the listed cases, configurations, package, and tool versions. The fixed
-          Baseline year is 2019. A complete measurement has observations for every case, including
-          expected unsupported cases. Unknown, execution error, and not measured results prevent a
-          complete measurement.
+          The latest toolchain follows host and parser releases, including Bun canary. The pinned
+          comparison uses reviewed, exact versions. Both test the same npm release with a fixed
+          TypeScript version within the parser's supported range.
         </p>
         <p>
-          Unknown means the probe could not establish the observation. Execution error means the
-          check failed to run correctly. Not measured means no usable observation is available. A
-          failed or canceled publication can leave an older result here; check its date and the
-          workflow. Copy and download links keep the snapshot displayed on this page. A retry can
-          reuse completed observations from the same workflow run; capture dates and saved
-          identities retain their origin.
+          These measurements cover the saved code, configuration, npm release, and tool versions.
+          They do not establish full compatibility. Unknown means the observation could not be
+          established. Run error means the check failed to run. Not measured means no usable
+          observation is available. A false positive is a warning where none is expected.
         </p>
         <p>
-          Harness revision{" "}
+          A failed or canceled publication can leave an older result here. Copy and download keep
+          the snapshot displayed on this page. A retry can reuse completed observations from the
+          same workflow run. Capture dates and collection identities retain their origin.
+        </p>
+        <p>
+          <a href={runUrl}>
+            Run {run.number}, attempt {run.attempt}
+          </a>
+          . Harness revision{" "}
           <a href={`https://github.com/${repository}/commit/${run.commit}`}>
             <code>{run.commit}</code>
           </a>
-          . This revision identifies the measurement code, separately from the npm package under
-          test.
+          .
+        </p>
+        <p>
+          <a href={`${evidenceBaseUrl}/report.json`}>Snapshot JSON</a>
+          {" · "}
+          <a
+            href={`https://github.com/${repository}/tree/${manifest.latest.commit}/runs/${run.id}/${run.attempt}`}
+          >
+            Saved inputs and lockfiles
+          </a>
+          {" · "}
+          <a href={`${evidenceBaseUrl}/report.md`}>Reproduction commands</a>
         </p>
         {subject.kind === "npm" && (
           <>
@@ -322,12 +400,15 @@ export function CompatibilityReport({ report }: { report: Report }) {
             </p>
           </>
         )}
-        <p>
-          The <a href={`${evidenceBaseUrl}/report.md`}>saved report and reproduction commands</a>{" "}
-          use this same snapshot. These measurements do not imply endorsement by the linter
-          maintainers or the Baseline project.
-        </p>
+        {profiles.map((profile) => (
+          <ProfileEvidence
+            key={profile}
+            snapshot={snapshot}
+            profile={profile}
+            evidenceBaseUrl={evidenceBaseUrl}
+          />
+        ))}
       </details>
-    </>
+    </div>
   );
 }

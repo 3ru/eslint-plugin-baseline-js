@@ -103,7 +103,9 @@ async function fixture(t: TestContext) {
   await mkdir(remote);
   await mkdir(caller);
   git(remote, "init", "--bare", "--quiet");
+  git(remote, "config", "maintenance.auto", "false");
   git(caller, "init", "--quiet");
+  git(caller, "config", "maintenance.auto", "false");
   git(caller, "config", "user.name", "Test");
   git(caller, "config", "user.email", "test@example.test");
   git(caller, "remote", "add", "origin", remote);
@@ -233,6 +235,24 @@ test("publishes an immutable paired snapshot and reuses an identical attempt thr
   const snapshot = f.readSnapshot(result.snapshotCommit, input.run);
   assert.equal(snapshot.profiles.pinned.kind, "measured");
   assert.equal(snapshot.profiles.latest.kind, "measured");
+  assert.deepEqual(
+    snapshot.cases.find(({ id }) => id === "baseline-static-groupby"),
+    {
+      id: "baseline-static-groupby",
+      label: "Static Object.groupBy",
+      suite: "baseline",
+      example: {
+        code: "Object.groupBy([], String);\n",
+        language: "js",
+        expected: [{ featureId: "array-group", line: 1, column: 8 }],
+      },
+    },
+  );
+  assert.ok(
+    snapshot.cases
+      .filter(({ suite }) => suite === "host")
+      .every((testCase) => !("example" in testCase)),
+  );
   assert.equal(
     git(
       f.remote,

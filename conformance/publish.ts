@@ -11,6 +11,7 @@ import {
   type Profile,
   type ProfileMeasurement,
   type PublicCase,
+  parseCaseExample,
   parseManifest,
   parseNpmSubject,
   parseProfileMeasurement,
@@ -47,7 +48,21 @@ const fileLimit = 512;
 const json = (value: unknown): string => `${JSON.stringify(value, null, 2)}\n`;
 const problem = (error: unknown): string =>
   error instanceof Error ? error.message : String(error);
-const catalog: PublicCase[] = cases.map(({ id, label, suite }) => ({ id, label, suite }));
+const catalog: PublicCase[] = cases.map((testCase) => {
+  const { id, label, suite } = testCase;
+  return suite === "host"
+    ? { id, label, suite }
+    : {
+        id,
+        label,
+        suite,
+        example: parseCaseExample({
+          code: testCase.code,
+          language: testCase.extension,
+          expected: testCase.expected,
+        }),
+      };
+});
 
 function jobTimestamp(value: unknown): number {
   if (typeof value !== "string" || !value.endsWith("Z")) return Number.NaN;

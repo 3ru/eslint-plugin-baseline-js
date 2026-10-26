@@ -2,6 +2,7 @@ export const repository = "3ru/eslint-plugin-baseline-js";
 export const reportBranch = "toolchain-reports";
 export const profiles = ["pinned", "latest"] as const;
 export const hosts = ["eslint", "oxlint", "bun"] as const;
+export const hostNames = { eslint: "ESLint", oxlint: "Oxlint", bun: "Bun" };
 export type Profile = (typeof profiles)[number];
 export type HostName = (typeof hosts)[number];
 export type Capability = "supported" | "unavailable" | "unknown";
@@ -45,11 +46,16 @@ export interface Failure {
   reason: string;
 }
 
-export interface PublicCase {
+export interface CaseExample {
+  code: string;
+  language: "js" | "ts";
+  expected: readonly { featureId: string; line: number; column: number }[];
+}
+
+export type PublicCase = {
   id: string;
   label: string;
-  suite: "host" | "baseline";
-}
+} & ({ suite: "host"; example?: never } | { suite: "baseline"; example?: CaseExample });
 
 export interface PublicObservation {
   kind: "observed";
@@ -163,6 +169,29 @@ function failure(value: Record<string, unknown>, path: string): Failure {
   return { kind: "not-measured", reason: string(value.reason, `${path}.reason`) };
 }
 
+function expectedFindings(input: unknown, path: string): CaseExample["expected"] {
+  if (!Array.isArray(input) || input.length > 100) {
+    throw new Error(`${path} must be an array of at most 100 findings.`);
+  }
+  return input.map((input: unknown) => {
+    const finding = object(input, path);
+    return {
+      featureId: string(finding.featureId, `${path}.featureId`),
+      line: positiveInteger(finding.line, `${path}.line`),
+      column: positiveInteger(finding.column, `${path}.column`),
+    };
+  });
+}
+
+export function parseCaseExample(input: unknown): CaseExample {
+  const value = object(input, "example");
+  return {
+    code: string(value.code, "example.code"),
+    language: member(value.language, ["js", "ts"], "example.language"),
+    expected: expectedFindings(value.expected, "example.expected"),
+  };
+}
+
 export function parseRunIdentity(input: unknown): RunIdentity {
   const value = object(input, "run");
   if (value.repository !== repository) throw new Error(`run.repository must be ${repository}.`);
@@ -267,11 +296,18 @@ export function parseSnapshot(input: unknown): Snapshot {
   }
   const cases = value.cases.map((input: unknown): PublicCase => {
     const testCase = object(input, "case");
-    return {
+    const base = {
       id: string(testCase.id, "case.id", /^[a-z][a-z0-9-]*$/),
       label: string(testCase.label, "case.label"),
-      suite: member(testCase.suite, ["host", "baseline"], "case.suite"),
     };
+    const suite = member(testCase.suite, ["host", "baseline"], "case.suite");
+    if (suite === "host") {
+      if (testCase.example !== undefined) throw new Error("A host case cannot have an example.");
+      return { ...base, suite };
+    }
+    return testCase.example === undefined
+      ? { ...base, suite }
+      : { ...base, suite, example: parseCaseExample(testCase.example) };
   });
   if (new Set(cases.map(({ id }) => id)).size !== cases.length)
     throw new Error("snapshot.cases has duplicate IDs.");
@@ -291,6 +327,155 @@ export function parseSnapshot(input: unknown): Snapshot {
       latest: parseProfileMeasurement(profileValues.latest, cases),
     },
   };
+}
+
+export function parseExampleEvidence({
+  input,
+  snapshot,
+  profile,
+  testCase,
+}: {
+  input: unknown;
+  snapshot: Snapshot;
+  profile: Profile;
+  testCase: Extract<PublicCase, { suite: "baseline" }>;
+}): Omit<CaseExample, "code"> & { fixtureSha256: string } {
+  const value = object(input, "evidence");
+  const measurement = snapshot.profiles[profile];
+  if (
+    measurement.kind !== "measured" ||
+    value.profile !== profile ||
+    value.capturedAt !== measurement.capturedAt ||
+    object(value.source, "evidence.source").commit !== snapshot.run.commit ||
+    snapshot.subject.kind !== "npm"
+  ) {
+    throw new Error("Example evidence does not match the measured profile and harness revision.");
+  }
+  const subject = parseNpmSubject(value.subject);
+  if (
+    Object.entries(snapshot.subject).some(([key, value]) => Reflect.get(subject, key) !== value)
+  ) {
+    throw new Error("Example evidence does not match the measured npm release.");
+  }
+  if (!Array.isArray(value.results)) throw new Error("Example evidence has no result rows.");
+  const observedHosts = hosts.filter((host) => {
+    const result = measurement.hosts[host];
+    return result.kind === "measured" && result.cases[testCase.id]?.kind === "observed";
+  });
+  const rows = value.results
+    .filter(
+      (row: unknown) =>
+        typeof row === "object" && row !== null && "caseId" in row && row.caseId === testCase.id,
+    )
+    .map((row: unknown) => object(row, "evidence.result"));
+  if (rows.length === 0 || rows.length !== observedHosts.length) {
+    throw new Error("Example evidence must include each observed host exactly once.");
+  }
+  const examples = observedHosts.map((host) => {
+    const matches = rows.filter((row) => row.tool === host && row.suite === "baseline");
+    const row = matches[0];
+    if (matches.length !== 1 || !row) {
+      throw new Error("Example evidence must include each observed host exactly once.");
+    }
+    const command = object(row.run, "evidence.result.run").command;
+    if (!Array.isArray(command) || !command.every((part) => typeof part === "string")) {
+      throw new Error("Example evidence has an invalid command.");
+    }
+    const filename: unknown = command.at(-1);
+    if (filename !== "input.js" && filename !== "input.ts") {
+      throw new Error("The measured command must end with input.js or input.ts.");
+    }
+    return {
+      language: filename === "input.js" ? ("js" as const) : ("ts" as const),
+      expected: expectedFindings(row.expected, "evidence.result.expected"),
+      fixtureSha256: string(row.fixtureSha256, "evidence.result.fixtureSha256", /^[0-9a-f]{64}$/),
+    };
+  });
+  const example = examples[0];
+  if (!example || examples.some((value) => JSON.stringify(value) !== JSON.stringify(example))) {
+    throw new Error("The observed hosts disagree about the measured example.");
+  }
+  return example;
+}
+
+export function caseOutcome({
+  testCase,
+  observation,
+}: {
+  testCase: PublicCase;
+  observation: PublicObservation | Failure | undefined;
+}): {
+  icon: "✅" | "❌" | "⚠️";
+  label: string;
+  tone: "success" | "failure" | "neutral" | "warning";
+} {
+  if (!observation || observation.kind === "not-measured") {
+    return { icon: "⚠️", label: "Not measured", tone: "warning" };
+  }
+  if (observation.status === "execution-error") {
+    return { icon: "⚠️", label: "Run error", tone: "warning" };
+  }
+  if (observation.status === "unknown" || observation.capability === "unknown") {
+    return { icon: "⚠️", label: "Unknown", tone: "warning" };
+  }
+  if (observation.status === "unsupported" || observation.capability === "unavailable") {
+    return { icon: "❌", label: "Unsupported", tone: "neutral" };
+  }
+  if (
+    observation.capability === "supported" &&
+    observation.status === "matched" &&
+    observation.correctness === "matched"
+  ) {
+    return {
+      icon: "✅",
+      label:
+        testCase.suite === "host"
+          ? "Works"
+          : testCase.example
+            ? testCase.example.expected.length > 0
+              ? "Warns"
+              : "No warning"
+            : "Correct",
+      tone: "success",
+    };
+  }
+  if (observation.status === "coverage-loss" || observation.correctness === "missing") {
+    return { icon: "❌", label: "Missed warning", tone: "failure" };
+  }
+  if (
+    observation.status === "incorrect" &&
+    testCase.suite === "baseline" &&
+    testCase.example?.expected.length === 0
+  ) {
+    return { icon: "❌", label: "False positive", tone: "failure" };
+  }
+  return { icon: "❌", label: "Wrong result", tone: "failure" };
+}
+
+export function expectedResultText(example: CaseExample | undefined): string {
+  if (!example) return "Recorded example unavailable. See the saved execution evidence.";
+  return example.expected.length === 0
+    ? "Expected no warning."
+    : example.expected
+        .map(
+          ({ featureId, line, column }) =>
+            `Expected warning for ${featureId} at line ${line}, column ${column}.`,
+        )
+        .join(" ");
+}
+
+export function caseObservation({
+  measurement,
+  host,
+  caseId,
+}: {
+  measurement: ProfileMeasurement;
+  host: HostName;
+  caseId: string;
+}): PublicObservation | Failure | undefined {
+  if (measurement.kind === "not-measured") return measurement;
+  const result = measurement.hosts[host];
+  return result.kind === "not-measured" ? result : result.cases[caseId];
 }
 
 export function parseManifest(input: unknown): Manifest {
@@ -323,6 +508,12 @@ function markdown(text: string): string {
     .replace(/\r?\n/g, " ");
 }
 
+function fencedExample(example: CaseExample): string {
+  const longest = Math.max(0, ...Array.from(example.code.matchAll(/`+/g), ([run]) => run.length));
+  const fence = "`".repeat(Math.max(3, longest + 1));
+  return `${fence}${example.language}\n${example.code}${example.code.endsWith("\n") ? "" : "\n"}${fence}`;
+}
+
 export function renderSnapshotMarkdown({
   snapshot,
   evidenceBaseUrl,
@@ -335,65 +526,126 @@ export function renderSnapshotMarkdown({
   const lines = [
     "# Linter compatibility",
     "",
-    `Run [${run.id}, attempt ${run.attempt}](https://github.com/${repository}/actions/runs/${run.id}/attempts/${run.attempt}) started ${run.startedAt}.`,
-    `Harness commit [${run.commit}](https://github.com/${repository}/commit/${run.commit}).`,
-    "",
     subject.kind === "npm"
-      ? `Selected npm release **eslint-plugin-baseline-js ${markdown(subject.version)}**. [Exact package](${subject.tarball}) resolved ${subject.resolvedAt}. Integrity \`${subject.integrity}\`.`
+      ? `Measured **eslint-plugin-baseline-js ${markdown(subject.version)}** from npm.`
       : `Package not resolved. ${markdown(subject.reason)}`,
+    `Run [${run.number}, attempt ${run.attempt}](https://github.com/${repository}/actions/runs/${run.id}/attempts/${run.attempt}) started ${run.startedAt}.`,
     "",
-    "These fixtures measure specific plugin and host behavior. An expected unsupported result is still unsupported. Expected result describes the harness expectation, not full compatibility.",
-    "",
-    "A retry can reuse completed observations from earlier attempts of the same workflow run. Each profile's capture date and collection identity retain the original provenance.",
+    "These cases use Baseline 2019. Results cover the code, configuration, and versions shown. They do not establish full compatibility.",
+    "Expected result refers to each recorded example. ✅ means the host ran the check and returned the correct result. ❌ Unsupported means the check could not be verified. A false positive is a warning where none is expected.",
     "",
   ];
+  const outcomeText = (profile: Profile, testCase: PublicCase, host: HostName): string => {
+    const result = caseOutcome({
+      testCase,
+      observation: caseObservation({
+        measurement: snapshot.profiles[profile],
+        host,
+        caseId: testCase.id,
+      }),
+    });
+    return `${result.icon} ${result.label}`;
+  };
+  for (const profile of ["latest", "pinned"] as const) {
+    const title = profile === "latest" ? "Latest toolchain" : "Pinned toolchain";
+    if (profile === "pinned") lines.push("<details>", `<summary>${title}</summary>`, "");
+    lines.push(`## ${title}`, "");
+    const measurement = snapshot.profiles[profile];
+    if (measurement.kind === "not-measured") {
+      lines.push(`⚠️ Not measured. ${markdown(measurement.reason)}`, "");
+    } else {
+      lines.push(`Captured ${measurement.capturedAt}.`, "");
+      lines.push(
+        `${hosts
+          .map((host) => {
+            const result = measurement.hosts[host];
+            return `${hostNames[host]} ${result.kind === "measured" ? markdown(result.packageVersion) : "not measured"}`;
+          })
+          .join(" · ")}.`,
+        "",
+      );
+      for (const testCase of snapshot.cases) {
+        if (testCase.suite !== "baseline") continue;
+        lines.push(`### ${markdown(testCase.label)}`, "");
+        if (testCase.example) lines.push(fencedExample(testCase.example), "");
+        lines.push(
+          markdown(expectedResultText(testCase.example)),
+          "",
+          "| ESLint | Oxlint | Bun |",
+          "| --- | --- | --- |",
+          `| ${hosts.map((host) => outcomeText(profile, testCase, host)).join(" | ")} |`,
+          "",
+        );
+      }
+      const hostCases = snapshot.cases.filter(({ suite }) => suite === "host");
+      if (hostCases.length > 0) {
+        lines.push(
+          "<details>",
+          "<summary>Host API checks</summary>",
+          "",
+          "| Host API | ESLint | Oxlint | Bun |",
+          "| --- | --- | --- | --- |",
+          ...hostCases.map(
+            (testCase) =>
+              `| ${markdown(testCase.label)} | ${hosts.map((host) => outcomeText(profile, testCase, host)).join(" | ")} |`,
+          ),
+          "",
+          "</details>",
+          "",
+        );
+      }
+    }
+    if (profile === "pinned") lines.push("</details>", "");
+  }
+  lines.push(
+    "<details>",
+    "<summary>Versions, evidence, and reproduction</summary>",
+    "",
+    `Harness commit [${run.commit}](https://github.com/${repository}/commit/${run.commit}).`,
+    `[Snapshot JSON](${base}report.json).`,
+    "A retry can reuse completed observations from the same workflow run. Capture dates and saved collection identities retain their origin.",
+    "",
+  );
   for (const profile of profiles) {
     const measurement = snapshot.profiles[profile];
-    lines.push(`## ${profile}`, "");
-    if (measurement.kind === "not-measured") {
-      lines.push(`Not measured. ${markdown(measurement.reason)}`, "");
-      continue;
-    }
-    const evidence = `${base}${profile}/report.json`;
+    if (measurement.kind === "not-measured") continue;
     lines.push(
-      `Captured ${measurement.capturedAt}. Parser ${markdown(measurement.parser)}. TypeScript ${markdown(measurement.typescript)}. [Collection identity](${base}${profile}/identity.json).`,
+      `### ${profile} execution evidence`,
+      "",
+      `Parser ${markdown(measurement.parser)}. TypeScript ${markdown(measurement.typescript)}. [Collection identity](${base}${profile}/identity.json). [Execution report](${base}${profile}/report.json).`,
       "",
     );
     for (const host of hosts) {
       const result = measurement.hosts[host];
-      lines.push(`### ${host}`, "");
-      if (result.kind === "not-measured") {
-        lines.push(`Not measured. ${markdown(result.reason)}`, "");
-        continue;
-      }
       lines.push(
-        `Package ${markdown(result.packageVersion)}, ${result.channel} channel. Reported version ${markdown(result.reportedVersion)}. [Execution evidence](${evidence}).`,
-        "",
-        "| Case | Capability | Correctness | Status | Expected result | Reason | Evidence |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        result.kind === "measured"
+          ? `${hostNames[host]} package ${markdown(result.packageVersion)}, ${result.channel} channel. Executable ${markdown(result.reportedVersion)}.`
+          : `${hostNames[host]} not measured. ${markdown(result.reason)}`,
       );
-      for (const testCase of snapshot.cases) {
-        const row = result.cases[testCase.id];
-        if (!row || row.kind === "not-measured") {
-          lines.push(
-            `| ${markdown(testCase.label)} | Not measured | Not assessed | Not measured | Not assessed | ${markdown(row?.reason ?? "No observation.")} | |`,
-          );
-        } else {
-          const raw = `${base}${profile}/raw/${host}-${testCase.id}-inspect`;
-          lines.push(
-            `| ${markdown(testCase.label)} | ${row.capability} | ${row.correctness} | ${statusText[row.status]} | ${row.expectationMatched ? "Yes" : "No"} | ${markdown(row.reason ?? "")} | [stdout](${raw}.stdout), [stderr](${raw}.stderr) |`,
-          );
-        }
-      }
-      lines.push("");
     }
+    lines.push("", "| Case | Linter | Observation | Evidence |", "| --- | --- | --- | --- |");
+    for (const testCase of snapshot.cases) {
+      for (const host of hosts) {
+        const row = caseObservation({ measurement, host, caseId: testCase.id });
+        if (caseOutcome({ testCase, observation: row }).tone === "success") continue;
+        const raw = `${base}${profile}/raw/${host}-${testCase.id}-inspect`;
+        const observed = row?.kind === "observed";
+        const detail = observed
+          ? markdown(row.reason ?? "")
+          : markdown(row?.reason ?? "No observation.");
+        lines.push(
+          `| ${markdown(testCase.label)} | ${hostNames[host]} | ${outcomeText(profile, testCase, host)}. ${detail} | ${observed ? `[stdout](${raw}.stdout), [stderr](${raw}.stderr)` : "No complete evidence"} |`,
+        );
+      }
+    }
+    lines.push("");
   }
   if (subject.kind === "npm") {
     lines.push(
-      "## Reproduce the measurement",
+      "### Reproduce the measurement",
       "",
-      `Check out harness commit \`${run.commit}\`. Use the Node version recorded in the profile's execution evidence.`,
-      "",
+      `[Exact npm package](${subject.tarball}), resolved ${subject.resolvedAt}. Integrity \`${subject.integrity}\`.`,
+      `Check out harness commit \`${run.commit}\`. Use the Node version recorded in the execution report.`,
       `Save [subject.json](${base}subject/subject.json), [package.json](${base}subject/package.json), and [pnpm-lock.yaml](${base}subject/pnpm-lock.yaml) together in a subject directory.`,
       `Download the [exact npm package](${subject.tarball}) into that directory as \`subject.tgz\`. The collector checks its SHA-512 integrity before installation.`,
       "",
@@ -414,5 +666,6 @@ export function renderSnapshotMarkdown({
       "",
     );
   }
+  lines.push("</details>", "");
   return `${lines.join("\n")}\n`;
 }
