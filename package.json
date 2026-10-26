@@ -62,7 +62,7 @@
     "semantic-release": "^25.0.9",
     "tsdown": "0.23.0",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.2",
+    "vitest": "^5.0.5",
     "vue-eslint-parser": "^10.4.1",
     "web-features": "3.40.0",
     "zod": "^4.6.7"
@@ -71,16 +71,6 @@
     "eslint": ">=9.29.0 <11"
   },
   "packageManager": "pnpm@10.34.5",
-  "pnpm": {
-    "overrides": {
-      "vite": "7.3.6"
-    },
-    "auditConfig": {
-      "ignoreGhsas": [
-        "GHSA-vfj7-8cjw-p6xm"
-      ]
-    }
-  },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
