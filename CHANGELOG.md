@@ -1,3 +1,12 @@
+## [0.7.6](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.5...v0.7.6) (2026-10-26)
+
+
+### Bug Fixes
+
+* distinguish native and shadowed typed receivers ([#180](https://github.com/3ru/eslint-plugin-baseline-js/issues/180)) ([cc11feb](https://github.com/3ru/eslint-plugin-baseline-js/commit/cc11febbbdfca257dca872ca48f3aa988aef6403))
+* unblock releases and remove obsolete workarounds ([#186](https://github.com/3ru/eslint-plugin-baseline-js/issues/186)) ([7a321b2](https://github.com/3ru/eslint-plugin-baseline-js/commit/7a321b2e130ab25ae4b3508bc49fd640ff652efc))
+* use member-level Baseline status for API checks ([#181](https://github.com/3ru/eslint-plugin-baseline-js/issues/181)) ([1e7d22a](https://github.com/3ru/eslint-plugin-baseline-js/commit/1e7d22aca9a0a2dcde92f8615691d0abc1d278fb))
+
 ## [0.7.5](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.4...v0.7.5) (2026-10-12)
 
 
