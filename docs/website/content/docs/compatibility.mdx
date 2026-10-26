@@ -1,0 +1,10 @@
+---
+title: Linter compatibility
+description: Baseline checks observed under ESLint, Oxlint, and Bun.
+---
+
+Compare selected Baseline checks under ESLint, Oxlint, and Bun. Both toolchains test the same npm release of `eslint-plugin-baseline-js`. Results update weekly and on manual dispatch.
+
+`pinned` uses reviewed, exact versions. `latest` follows current host and parser releases, including Bun canary. Both keep a fixed TypeScript reference within the parser's supported range.
+
+For instance-member checks, use the [ESLint TypeScript setup](/docs#add-typescript). The [Oxlint setup](/docs/oxlint) explains its type-information limitation. The [coverage report](/docs/meta/coverage) lists the browser features this plugin can detect.

@@ -152,6 +152,8 @@ and shows which ones are currently mapped by this plugin.
 
 ## Use with [oxlint](https://oxc.rs/)
 
+See [Linter compatibility](https://baselinejs.vercel.app/docs/compatibility) for versioned Baseline check results under ESLint, Oxlint, and Bun.
+
 Runs as an [oxlint JS plugin](https://oxc.rs/docs/guide/usage/linter/js-plugins). Just drop it into `.oxlintrc.json`:
 
 ```jsonc

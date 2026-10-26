@@ -10,6 +10,7 @@
       "!.codex",
       "!docs/website/.next",
       "!docs/website/.source",
+      "!conformance/results",
       "!src/baseline/features.ts",
       "!src/baseline/data/features.api.ts",
       "!src/baseline/data/features.javascript.ts",

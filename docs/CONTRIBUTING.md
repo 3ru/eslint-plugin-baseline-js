@@ -38,6 +38,7 @@ Classify new direct `api.Window.*` members in `scripts/data/classify-web-apis.mj
 - Descriptor and compat-key consistency: `pnpm check:descriptor-compat`
 - Generated data matches the checked-in files: `pnpm check:generated-data`
 - Coverage report (for docs): `pnpm gen:coverage`
+- Linter compatibility checks use a separate development package. See [conformance/README.md](../conformance/README.md) for npm-release measurements and local checkout diagnostics. The weekly and manual workflow measures both pinned and latest toolchains. These checks are separate from `pnpm test` and `pnpm typecheck`.
 
 ## Scope
 - Primary scope: JavaScript language features (`group: "javascript"`).
