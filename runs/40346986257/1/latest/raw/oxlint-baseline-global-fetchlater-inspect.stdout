@@ -1,0 +1,8 @@
+{ "diagnostics": [{"message": "'fetchLater' has Limited availability and exceeds 2019 (fetchlater).","code": "baseline-js(use-baseline)","severity": "error","filename": "input.js","labels": [{"span": {"offset": 0,"length": 10,"line": 1,"column": 1}}]},
+{"message": "toolchain-probe:{\"check\":\"execution\",\"supported\":true,\"observed\":{\"visited\":true}}","code": "toolchain-probe(inspect)","severity": "warning","filename": "input.js","labels": [{"span": {"offset": 0,"length": 23,"line": 1,"column": 1}}]}],
+              "number_of_files": 1,
+              "number_of_rules": 2,
+              "threads_count": 4,
+              "start_time": 0.377258634
+            }
+            

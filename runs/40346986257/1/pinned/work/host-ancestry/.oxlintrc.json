@@ -1,0 +1,1 @@
+{"plugins":[],"categories":{"correctness":"off"},"jsPlugins":["<repository>/conformance/probe.mjs"],"rules":{"toolchain-probe/inspect":["warn",{"check":"ancestors"}]}}

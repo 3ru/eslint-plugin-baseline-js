@@ -1,0 +1,24 @@
+{
+  "run": {
+    "repository": "3ru/eslint-plugin-baseline-js",
+    "id": "40346986257",
+    "number": 9,
+    "attempt": 1,
+    "commit": "99db547e724cb9cec409bce7c0329b57800f040d",
+    "startedAt": "2026-10-26T15:12:10Z"
+  },
+  "profile": "latest",
+  "subject": {
+    "kind": "npm",
+    "version": "0.7.6",
+    "tarball": "https://registry.npmjs.org/eslint-plugin-baseline-js/-/eslint-plugin-baseline-js-0.7.6.tgz",
+    "integrity": "sha512-z2PEC/N6WSrcmYunFVutSKRqWURnXbdkyDboal4dztiYdC8OjaiaaJ1xDtWCV1lXR8VWbcxosICzPNz0N9enPQ==",
+    "resolvedAt": "2026-10-26T15:12:28.253Z"
+  },
+  "paths": {
+    "repository": "<repository>",
+    "output": "<profile>",
+    "home": "<home>",
+    "node": "<node>"
+  }
+}

@@ -1,0 +1,8 @@
+{ "diagnostics": [{"message": "'groupBy' on Object became Baseline in 2024 and exceeds 2019 (array-group).","code": "baseline-js(use-baseline)","severity": "error","filename": "input.ts","labels": [{"span": {"offset": 38,"length": 7,"line": 2,"column": 8}}]},
+{"message": "toolchain-probe:{\"check\":\"execution\",\"supported\":true,\"observed\":{\"visited\":true}}","code": "toolchain-probe(inspect)","severity": "warning","filename": "input.ts","labels": [{"span": {"offset": 0,"length": 73,"line": 1,"column": 1}}]}],
+              "number_of_files": 1,
+              "number_of_rules": 2,
+              "threads_count": 4,
+              "start_time": 0.400881705
+            }
+            
