@@ -1,0 +1,18 @@
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +98
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 98, reused 77, downloaded 19, added 96
+Progress: resolved 98, reused 77, downloaded 20, added 97
+Progress: resolved 98, reused 77, downloaded 21, added 98, done
+
+devDependencies:
++ @types/estree 1.0.9
++ @types/node 22.20.5
++ @typescript-eslint/parser 8.71.2
++ bun 1.4.3-canary.20261017.1
++ eslint 10.13.0
++ oxlint 1.88.0
++ typescript 6.0.3
+
+Done in 2.7s using pnpm v10.34.5

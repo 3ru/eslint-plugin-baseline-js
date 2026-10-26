@@ -1,0 +1,7 @@
+{ "diagnostics": [{"message": "toolchain-probe:{\"check\":\"selectors\",\"supported\":true,\"observed\":{\"memberCalls\":1,\"property\":\"groupBy\",\"computed\":false}}","code": "toolchain-probe(inspect)","severity": "warning","filename": "input.js","labels": [{"span": {"offset": 0,"length": 39,"line": 1,"column": 1}}]}],
+              "number_of_files": 1,
+              "number_of_rules": 1,
+              "threads_count": 4,
+              "start_time": 0.073660249
+            }
+            

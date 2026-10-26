@@ -1,0 +1,7 @@
+{ "diagnostics": [{"message": "toolchain-probe:{\"check\":\"types\",\"supported\":false,\"observed\":{\"hasProgram\":false,\"hasNodeMap\":false,\"hasChecker\":false,\"reason\":\"typed parser services unavailable\"}}","code": "toolchain-probe(inspect)","severity": "warning","filename": "input.ts","labels": [{"span": {"offset": 0,"length": 70,"line": 1,"column": 1}}]}],
+              "number_of_files": 1,
+              "number_of_rules": 2,
+              "threads_count": 4,
+              "start_time": 0.257987633
+            }
+            

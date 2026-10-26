@@ -1,0 +1,2 @@
+const value =
+  "é😀" + marker;

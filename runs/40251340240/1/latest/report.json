@@ -1,0 +1,3047 @@
+{
+  "capturedAt": "2026-10-26T00:52:08.487Z",
+  "profile": "latest",
+  "policy": {
+    "available": 2019,
+    "includeWebApis": true,
+    "includeJsBuiltins": true
+  },
+  "results": [
+    {
+      "caseId": "host-plugin-options",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "options",
+        "supported": true,
+        "observed": {
+          "configuredCheck": "options",
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "eslint",
+      "expected": {
+        "configuredCheck": "options",
+        "visited": true
+      },
+      "fixtureSha256": "8de5c07db8deb3b75dedd9b5bc999669936cea181ae0033c27c4e2071a6e434d",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-plugin-options",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-host-plugin-options-inspect.stdout",
+          "stderr": "raw/eslint-host-plugin-options-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "aeb3f45de87942a2509b466e6f96c8c8cb0952ebb508f85d29971d3d1f78f28c"
+      }
+    },
+    {
+      "caseId": "host-ast-selector",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "selectors",
+        "supported": true,
+        "observed": {
+          "memberCalls": 1,
+          "property": "groupBy",
+          "computed": false
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "eslint",
+      "expected": {
+        "memberCalls": 1,
+        "property": "groupBy",
+        "computed": false
+      },
+      "fixtureSha256": "dfe6cde7ae860ba11ee0b0a57dd24ec16893eb69770ee11d843d1f9c83b77e4e",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-ast-selector",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-host-ast-selector-inspect.stdout",
+          "stderr": "raw/eslint-host-ast-selector-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "22d9d48c4a13769b27efcf77895b7a95de59fd7a5922fc58103e5748bcb8f0a2"
+      }
+    },
+    {
+      "caseId": "host-scope-shadowing",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "scope",
+        "supported": true,
+        "observed": {
+          "shadowed": [
+            false,
+            true
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "eslint",
+      "expected": {
+        "shadowed": [
+          false,
+          true
+        ]
+      },
+      "fixtureSha256": "5d4125114ce1b37297f2648c494b4251f14933b4f612a91a506c14c4dd9875ed",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-scope-shadowing",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-host-scope-shadowing-inspect.stdout",
+          "stderr": "raw/eslint-host-scope-shadowing-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "55d768cff69340cb9ae378fbfbce1ba003446eb43379860dc821702482291ffb"
+      }
+    },
+    {
+      "caseId": "host-scope-binding",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "scope",
+        "supported": true,
+        "observed": {
+          "shadowed": [
+            true
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "eslint",
+      "expected": {
+        "shadowed": [
+          true
+        ]
+      },
+      "fixtureSha256": "b170cc5ccff8263dbb1bf1061c075fe8fdf3bac7cc46ce9d9a1ab92b5a5a0551",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-scope-binding",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-host-scope-binding-inspect.stdout",
+          "stderr": "raw/eslint-host-scope-binding-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "55d768cff69340cb9ae378fbfbce1ba003446eb43379860dc821702482291ffb"
+      }
+    },
+    {
+      "caseId": "host-source-tokens",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "source",
+        "supported": true,
+        "observed": {
+          "text": "1",
+          "firstToken": "const",
+          "tokens": [
+            "const",
+            "answer",
+            "=",
+            "1",
+            ";"
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "eslint",
+      "expected": {
+        "text": "1",
+        "firstToken": "const",
+        "tokens": [
+          "const",
+          "answer",
+          "=",
+          "1",
+          ";"
+        ]
+      },
+      "fixtureSha256": "1e413d4b834cd1d0acaa1ba10a526623a667dc393d514ebd41820a7da44e9e08",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-source-tokens",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-host-source-tokens-inspect.stdout",
+          "stderr": "raw/eslint-host-source-tokens-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "e7d24982c37069c587664050195b294be581b35fe2f817a853db42150cc4487c"
+      }
+    },
+    {
+      "caseId": "host-diagnostic-location",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "location",
+        "supported": true,
+        "observed": {
+          "line": 2,
+          "column": 11,
+          "endLine": 2,
+          "endColumn": 17
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "eslint",
+      "expected": {
+        "line": 2,
+        "column": 11,
+        "endLine": 2,
+        "endColumn": 17
+      },
+      "fixtureSha256": "c7dcfdca1adc7174e971d09f6518766ba733d9d2c34409795372ace7e6248591",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-diagnostic-location",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-host-diagnostic-location-inspect.stdout",
+          "stderr": "raw/eslint-host-diagnostic-location-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0101c9b8123c642c5cb9c90d05b5b13b225b4224137290b750351f664287ebb2"
+      }
+    },
+    {
+      "caseId": "host-ancestry",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "ancestors",
+        "supported": true,
+        "observed": {
+          "ancestors": [
+            "Program",
+            "ExpressionStatement",
+            "CallExpression"
+          ],
+          "parentType": "CallExpression"
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "eslint",
+      "expected": {
+        "ancestors": [
+          "Program",
+          "ExpressionStatement",
+          "CallExpression"
+        ],
+        "parentType": "CallExpression"
+      },
+      "fixtureSha256": "4896c6b90e8fff66433f1cd35a476c13b9cc85c0a7e61ef76e49dc1ec8dcb2f9",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-ancestry",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-host-ancestry-inspect.stdout",
+          "stderr": "raw/eslint-host-ancestry-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "6a85ae9abcf48dcb09f62664c20ffd6a687536b4e29bcbc49f27f4845314aee3"
+      }
+    },
+    {
+      "caseId": "host-typescript-receiver",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": true,
+        "observed": {
+          "hasProgram": true,
+          "hasNodeMap": true,
+          "hasChecker": true,
+          "receiverType": "Element",
+          "property": "checkVisibility",
+          "hasProperty": true,
+          "defaultLibrary": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "eslint",
+      "expected": {
+        "hasProgram": true,
+        "hasNodeMap": true,
+        "hasChecker": true,
+        "receiverType": "Element",
+        "property": "checkVisibility",
+        "hasProperty": true,
+        "defaultLibrary": true
+      },
+      "fixtureSha256": "66babf14412ec77d25b66de4310b4072e45f545eb4d83052225311e0c8fbcf81",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/host-typescript-receiver",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-host-typescript-receiver-inspect.stdout",
+          "stderr": "raw/eslint-host-typescript-receiver-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "3b079da050e1275c8ee2289968b83ac33629954d17a2b890e35f2b1480b5c592"
+      }
+    },
+    {
+      "caseId": "baseline-logical-assignment",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "logical-assignments",
+          "line": 2,
+          "column": 7
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [
+        {
+          "featureId": "logical-assignments",
+          "line": 2,
+          "column": 7
+        }
+      ],
+      "fixtureSha256": "41cabdd1d83b626ceac869b54c11dca752a1e5d6c1bdf0f8e56545ecf877307e",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-logical-assignment",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-logical-assignment-inspect.stdout",
+          "stderr": "raw/eslint-baseline-logical-assignment-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-static-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "70208e875612f30a1b9688589c2b0063f85c16970b2c4bb3e71e0da726416cc5",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-static-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-static-groupby-inspect.stdout",
+          "stderr": "raw/eslint-baseline-static-groupby-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-computed-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "a9cf0bd21c5c4092a51510fc45c901fa49f81188744631009462c09e92741c78",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-computed-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-computed-groupby-inspect.stdout",
+          "stderr": "raw/eslint-baseline-computed-groupby-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-shadowed-object",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [],
+      "fixtureSha256": "f7c1177e675044ed485ebe92819f7d643c4bf21533c1dcbf1a80153be90d1ba1",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-shadowed-object",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-shadowed-object-inspect.stdout",
+          "stderr": "raw/eslint-baseline-shadowed-object-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-shadowed-binding",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [],
+      "fixtureSha256": "b170cc5ccff8263dbb1bf1061c075fe8fdf3bac7cc46ce9d9a1ab92b5a5a0551",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-shadowed-binding",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-shadowed-binding-inspect.stdout",
+          "stderr": "raw/eslint-baseline-shadowed-binding-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-global-fetchlater",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "fetchlater",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [
+        {
+          "featureId": "fetchlater",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "fixtureSha256": "86fd4c3874d0d6e298575b2ed33c86443cfe1d1370547588a850aa1e577ed8d8",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-global-fetchlater",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-global-fetchlater-inspect.stdout",
+          "stderr": "raw/eslint-baseline-global-fetchlater-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-ts-static-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "4ca656923b9795ac25e8baab08e9ec2221d83f4cae62ac5187f6be93562e9e2c",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-ts-static-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-ts-static-groupby-inspect.stdout",
+          "stderr": "raw/eslint-baseline-ts-static-groupby-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "d3fe50fb1ebc8f02958cfb1495b9f319af9fefc3a4db5d50241499054fb39782"
+      }
+    },
+    {
+      "caseId": "baseline-typed-element",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": true,
+        "observed": {
+          "hasProgram": true,
+          "hasNodeMap": true,
+          "hasChecker": true,
+          "receiverType": "Element",
+          "property": "checkVisibility",
+          "hasProperty": true,
+          "defaultLibrary": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "check-visibility",
+          "line": 2,
+          "column": 9
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [
+        {
+          "featureId": "check-visibility",
+          "line": 2,
+          "column": 9
+        }
+      ],
+      "fixtureSha256": "de50fbe49bf09006e757d0f0a331b651ba33fd23ab1060937d38ed68147e1b8f",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-element",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-typed-element-inspect.stdout",
+          "stderr": "raw/eslint-baseline-typed-element-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "ad493a841c7290d8b3ffe7c0f8990b60806f81745bfc5fb7d513d976ceb8bccd"
+      }
+    },
+    {
+      "caseId": "baseline-typed-set-union",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": true,
+        "observed": {
+          "hasProgram": true,
+          "hasNodeMap": true,
+          "hasChecker": true,
+          "receiverType": "Set<unknown>",
+          "property": "union",
+          "hasProperty": true,
+          "defaultLibrary": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "set-methods",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [
+        {
+          "featureId": "set-methods",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "8ec2ffd25c9e06af851f0b4f320aae5460e3f29e8705c7450db56c13626fd956",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-set-union",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-typed-set-union-inspect.stdout",
+          "stderr": "raw/eslint-baseline-typed-set-union-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "124b0132b208bc100396f8f6841fd7adec87b9917968a27abf21e1aefaec71bf"
+      }
+    },
+    {
+      "caseId": "baseline-typed-lookalike",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": true,
+        "observed": {
+          "hasProgram": true,
+          "hasNodeMap": true,
+          "hasChecker": true,
+          "receiverType": "{ checkVisibility(): boolean; }",
+          "property": "checkVisibility",
+          "hasProperty": true,
+          "defaultLibrary": false
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "tool": "eslint",
+      "expected": [],
+      "fixtureSha256": "5e646d1d6bda21b2778c5444ec55f600a8587bd9f3ab0855e395aae221851658",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-lookalike",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-typed-lookalike-inspect.stdout",
+          "stderr": "raw/eslint-baseline-typed-lookalike-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "ad493a841c7290d8b3ffe7c0f8990b60806f81745bfc5fb7d513d976ceb8bccd"
+      }
+    },
+    {
+      "caseId": "baseline-typed-nominal-lookalike",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "unexpected",
+      "status": "incorrect",
+      "expectationMatched": false,
+      "evidence": {
+        "check": "types",
+        "supported": true,
+        "observed": {
+          "hasProgram": true,
+          "hasNodeMap": true,
+          "hasChecker": true,
+          "receiverType": "Element",
+          "property": "checkVisibility",
+          "hasProperty": true,
+          "defaultLibrary": false
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "check-visibility",
+          "line": 3,
+          "column": 9
+        }
+      ],
+      "missing": [],
+      "unexpected": [
+        {
+          "featureId": "check-visibility",
+          "line": 3,
+          "column": 9
+        }
+      ],
+      "reason": "Unexpected check-visibility at 3:9",
+      "tool": "eslint",
+      "expected": [],
+      "fixtureSha256": "4801254f1cf42a9307416bb78860e77c393a82423a9aa7ffc09c72fa2f9d0445",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/bin/eslint.js",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-nominal-lookalike",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/eslint-baseline-typed-nominal-lookalike-inspect.stdout",
+          "stderr": "raw/eslint-baseline-typed-nominal-lookalike-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "ad493a841c7290d8b3ffe7c0f8990b60806f81745bfc5fb7d513d976ceb8bccd"
+      }
+    },
+    {
+      "caseId": "host-plugin-options",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "options",
+        "supported": true,
+        "observed": {
+          "configuredCheck": "options",
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "oxlint",
+      "expected": {
+        "configuredCheck": "options",
+        "visited": true
+      },
+      "fixtureSha256": "8de5c07db8deb3b75dedd9b5bc999669936cea181ae0033c27c4e2071a6e434d",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-plugin-options",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-host-plugin-options-inspect.stdout",
+          "stderr": "raw/oxlint-host-plugin-options-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "d53741abe140cd33dd9d87147b4c726e8e9a2d9793dc01cf64f00e672a91a739"
+      }
+    },
+    {
+      "caseId": "host-ast-selector",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "selectors",
+        "supported": true,
+        "observed": {
+          "memberCalls": 1,
+          "property": "groupBy",
+          "computed": false
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "oxlint",
+      "expected": {
+        "memberCalls": 1,
+        "property": "groupBy",
+        "computed": false
+      },
+      "fixtureSha256": "dfe6cde7ae860ba11ee0b0a57dd24ec16893eb69770ee11d843d1f9c83b77e4e",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-ast-selector",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-host-ast-selector-inspect.stdout",
+          "stderr": "raw/oxlint-host-ast-selector-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "c2ee9b46161d43f8defb58b7e051bfbda50297aa68b3f6ab6320de7a183712b7"
+      }
+    },
+    {
+      "caseId": "host-scope-shadowing",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "scope",
+        "supported": true,
+        "observed": {
+          "shadowed": [
+            false,
+            true
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "oxlint",
+      "expected": {
+        "shadowed": [
+          false,
+          true
+        ]
+      },
+      "fixtureSha256": "5d4125114ce1b37297f2648c494b4251f14933b4f612a91a506c14c4dd9875ed",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-scope-shadowing",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-host-scope-shadowing-inspect.stdout",
+          "stderr": "raw/oxlint-host-scope-shadowing-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "dda8a3193a92f536be700869a79594f226f17e6071dfb581011e3cf9daa28222"
+      }
+    },
+    {
+      "caseId": "host-scope-binding",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "scope",
+        "supported": true,
+        "observed": {
+          "shadowed": [
+            true
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "oxlint",
+      "expected": {
+        "shadowed": [
+          true
+        ]
+      },
+      "fixtureSha256": "b170cc5ccff8263dbb1bf1061c075fe8fdf3bac7cc46ce9d9a1ab92b5a5a0551",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-scope-binding",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-host-scope-binding-inspect.stdout",
+          "stderr": "raw/oxlint-host-scope-binding-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "dda8a3193a92f536be700869a79594f226f17e6071dfb581011e3cf9daa28222"
+      }
+    },
+    {
+      "caseId": "host-source-tokens",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "source",
+        "supported": true,
+        "observed": {
+          "text": "1",
+          "firstToken": "const",
+          "tokens": [
+            "const",
+            "answer",
+            "=",
+            "1",
+            ";"
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "oxlint",
+      "expected": {
+        "text": "1",
+        "firstToken": "const",
+        "tokens": [
+          "const",
+          "answer",
+          "=",
+          "1",
+          ";"
+        ]
+      },
+      "fixtureSha256": "1e413d4b834cd1d0acaa1ba10a526623a667dc393d514ebd41820a7da44e9e08",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-source-tokens",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-host-source-tokens-inspect.stdout",
+          "stderr": "raw/oxlint-host-source-tokens-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "5f42bfd0674a4600bbb0d95cbbe7e74f561ee6585bfb7160cda9526f03bd8629"
+      }
+    },
+    {
+      "caseId": "host-diagnostic-location",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "location",
+        "supported": true,
+        "observed": {
+          "line": 2,
+          "column": 11,
+          "endLine": 2,
+          "endColumn": 17
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "oxlint",
+      "expected": {
+        "line": 2,
+        "column": 11,
+        "endLine": 2,
+        "endColumn": 17
+      },
+      "fixtureSha256": "c7dcfdca1adc7174e971d09f6518766ba733d9d2c34409795372ace7e6248591",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-diagnostic-location",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-host-diagnostic-location-inspect.stdout",
+          "stderr": "raw/oxlint-host-diagnostic-location-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "3b1332dccda75aac80624ffbbb118bc1264984c9a42237110a0e262b5afa18ce"
+      }
+    },
+    {
+      "caseId": "host-ancestry",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "ancestors",
+        "supported": true,
+        "observed": {
+          "ancestors": [
+            "Program",
+            "ExpressionStatement",
+            "CallExpression"
+          ],
+          "parentType": "CallExpression"
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "oxlint",
+      "expected": {
+        "ancestors": [
+          "Program",
+          "ExpressionStatement",
+          "CallExpression"
+        ],
+        "parentType": "CallExpression"
+      },
+      "fixtureSha256": "4896c6b90e8fff66433f1cd35a476c13b9cc85c0a7e61ef76e49dc1ec8dcb2f9",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-ancestry",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-host-ancestry-inspect.stdout",
+          "stderr": "raw/oxlint-host-ancestry-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "9482e22254bc0ce10504c672ad473c60b8194b2bd5ca14606f12bdc83248feee"
+      }
+    },
+    {
+      "caseId": "host-typescript-receiver",
+      "suite": "host",
+      "capability": "unavailable",
+      "correctness": "not-assessed",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": false,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "reason": "typed parser services unavailable",
+      "tool": "oxlint",
+      "expected": {
+        "hasProgram": true,
+        "hasNodeMap": true,
+        "hasChecker": true,
+        "receiverType": "Element",
+        "property": "checkVisibility",
+        "hasProperty": true,
+        "defaultLibrary": true
+      },
+      "fixtureSha256": "66babf14412ec77d25b66de4310b4072e45f545eb4d83052225311e0c8fbcf81",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/host-typescript-receiver",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-host-typescript-receiver-inspect.stdout",
+          "stderr": "raw/oxlint-host-typescript-receiver-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "cf640f009d3928edc8e63c3bb5bf36d53f55dc47dc1d3d34065582112f622050"
+      }
+    },
+    {
+      "caseId": "baseline-logical-assignment",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "logical-assignments",
+          "line": 2,
+          "column": 7
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "oxlint",
+      "expected": [
+        {
+          "featureId": "logical-assignments",
+          "line": 2,
+          "column": 7
+        }
+      ],
+      "fixtureSha256": "41cabdd1d83b626ceac869b54c11dca752a1e5d6c1bdf0f8e56545ecf877307e",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-logical-assignment",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-logical-assignment-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-logical-assignment-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "63058e0871208220b8d0d883b97a0b78ed7aa2a08fd4da4230647f21310a30c8"
+      }
+    },
+    {
+      "caseId": "baseline-static-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "oxlint",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "70208e875612f30a1b9688589c2b0063f85c16970b2c4bb3e71e0da726416cc5",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-static-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-static-groupby-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-static-groupby-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "63058e0871208220b8d0d883b97a0b78ed7aa2a08fd4da4230647f21310a30c8"
+      }
+    },
+    {
+      "caseId": "baseline-computed-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "oxlint",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "a9cf0bd21c5c4092a51510fc45c901fa49f81188744631009462c09e92741c78",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-computed-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-computed-groupby-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-computed-groupby-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "63058e0871208220b8d0d883b97a0b78ed7aa2a08fd4da4230647f21310a30c8"
+      }
+    },
+    {
+      "caseId": "baseline-shadowed-object",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "tool": "oxlint",
+      "expected": [],
+      "fixtureSha256": "f7c1177e675044ed485ebe92819f7d643c4bf21533c1dcbf1a80153be90d1ba1",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-shadowed-object",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-shadowed-object-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-shadowed-object-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "63058e0871208220b8d0d883b97a0b78ed7aa2a08fd4da4230647f21310a30c8"
+      }
+    },
+    {
+      "caseId": "baseline-shadowed-binding",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "tool": "oxlint",
+      "expected": [],
+      "fixtureSha256": "b170cc5ccff8263dbb1bf1061c075fe8fdf3bac7cc46ce9d9a1ab92b5a5a0551",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-shadowed-binding",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-shadowed-binding-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-shadowed-binding-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "63058e0871208220b8d0d883b97a0b78ed7aa2a08fd4da4230647f21310a30c8"
+      }
+    },
+    {
+      "caseId": "baseline-global-fetchlater",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "fetchlater",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "oxlint",
+      "expected": [
+        {
+          "featureId": "fetchlater",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "fixtureSha256": "86fd4c3874d0d6e298575b2ed33c86443cfe1d1370547588a850aa1e577ed8d8",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-global-fetchlater",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-global-fetchlater-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-global-fetchlater-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "63058e0871208220b8d0d883b97a0b78ed7aa2a08fd4da4230647f21310a30c8"
+      }
+    },
+    {
+      "caseId": "baseline-ts-static-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "oxlint",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "4ca656923b9795ac25e8baab08e9ec2221d83f4cae62ac5187f6be93562e9e2c",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-ts-static-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-ts-static-groupby-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-ts-static-groupby-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "63058e0871208220b8d0d883b97a0b78ed7aa2a08fd4da4230647f21310a30c8"
+      }
+    },
+    {
+      "caseId": "baseline-typed-element",
+      "suite": "baseline",
+      "capability": "unavailable",
+      "correctness": "not-verified",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": false,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "missing": [
+        {
+          "featureId": "check-visibility",
+          "line": 2,
+          "column": 9
+        }
+      ],
+      "unexpected": [],
+      "reason": "Required receiver analysis is unavailable; this case remains unverified",
+      "silentCoverageLoss": true,
+      "tool": "oxlint",
+      "expected": [
+        {
+          "featureId": "check-visibility",
+          "line": 2,
+          "column": 9
+        }
+      ],
+      "fixtureSha256": "de50fbe49bf09006e757d0f0a331b651ba33fd23ab1060937d38ed68147e1b8f",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-element",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-typed-element-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-typed-element-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "4be25487520065390898001c1edfdc2120879e8dc47a1345c68b64ae94ea172d"
+      }
+    },
+    {
+      "caseId": "baseline-typed-set-union",
+      "suite": "baseline",
+      "capability": "unavailable",
+      "correctness": "not-verified",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": false,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "missing": [
+        {
+          "featureId": "set-methods",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "unexpected": [],
+      "reason": "Required receiver analysis is unavailable; this case remains unverified",
+      "silentCoverageLoss": true,
+      "tool": "oxlint",
+      "expected": [
+        {
+          "featureId": "set-methods",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "8ec2ffd25c9e06af851f0b4f320aae5460e3f29e8705c7450db56c13626fd956",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-set-union",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-typed-set-union-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-typed-set-union-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "d6273213383f725ba952f16029e3660adb839b266dc1ee98d60eee5970b33c50"
+      }
+    },
+    {
+      "caseId": "baseline-typed-lookalike",
+      "suite": "baseline",
+      "capability": "unavailable",
+      "correctness": "not-verified",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": false,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "reason": "Required receiver analysis is unavailable; this case remains unverified",
+      "silentCoverageLoss": false,
+      "tool": "oxlint",
+      "expected": [],
+      "fixtureSha256": "5e646d1d6bda21b2778c5444ec55f600a8587bd9f3ab0855e395aae221851658",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-lookalike",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-typed-lookalike-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-typed-lookalike-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "4be25487520065390898001c1edfdc2120879e8dc47a1345c68b64ae94ea172d"
+      }
+    },
+    {
+      "caseId": "baseline-typed-nominal-lookalike",
+      "suite": "baseline",
+      "capability": "unavailable",
+      "correctness": "not-verified",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": false,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "reason": "Required receiver analysis is unavailable; this case remains unverified",
+      "silentCoverageLoss": false,
+      "tool": "oxlint",
+      "expected": [],
+      "fixtureSha256": "4801254f1cf42a9307416bb78860e77c393a82423a9aa7ffc09c72fa2f9d0445",
+      "run": {
+        "command": [
+          "<node>",
+          "<profile>/tools/node_modules/.pnpm/oxlint@1.89.0/node_modules/oxlint/bin/oxlint",
+          "-c",
+          ".oxlintrc.json",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-nominal-lookalike",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/oxlint-baseline-typed-nominal-lookalike-inspect.stdout",
+          "stderr": "raw/oxlint-baseline-typed-nominal-lookalike-inspect.stderr"
+        },
+        "config": ".oxlintrc.json",
+        "configSha256": "4be25487520065390898001c1edfdc2120879e8dc47a1345c68b64ae94ea172d"
+      }
+    },
+    {
+      "caseId": "host-plugin-options",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "options",
+        "supported": true,
+        "observed": {
+          "configuredCheck": "options",
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "bun",
+      "expected": {
+        "configuredCheck": "options",
+        "visited": true
+      },
+      "fixtureSha256": "8de5c07db8deb3b75dedd9b5bc999669936cea181ae0033c27c4e2071a6e434d",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-plugin-options",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-host-plugin-options-inspect.stdout",
+          "stderr": "raw/bun-host-plugin-options-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "aeb3f45de87942a2509b466e6f96c8c8cb0952ebb508f85d29971d3d1f78f28c"
+      }
+    },
+    {
+      "caseId": "host-ast-selector",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "selectors",
+        "supported": true,
+        "observed": {
+          "memberCalls": 1,
+          "property": "groupBy",
+          "computed": false
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "bun",
+      "expected": {
+        "memberCalls": 1,
+        "property": "groupBy",
+        "computed": false
+      },
+      "fixtureSha256": "dfe6cde7ae860ba11ee0b0a57dd24ec16893eb69770ee11d843d1f9c83b77e4e",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-ast-selector",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-host-ast-selector-inspect.stdout",
+          "stderr": "raw/bun-host-ast-selector-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "22d9d48c4a13769b27efcf77895b7a95de59fd7a5922fc58103e5748bcb8f0a2"
+      }
+    },
+    {
+      "caseId": "host-scope-shadowing",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "scope",
+        "supported": true,
+        "observed": {
+          "shadowed": [
+            false,
+            true
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "bun",
+      "expected": {
+        "shadowed": [
+          false,
+          true
+        ]
+      },
+      "fixtureSha256": "5d4125114ce1b37297f2648c494b4251f14933b4f612a91a506c14c4dd9875ed",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-scope-shadowing",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-host-scope-shadowing-inspect.stdout",
+          "stderr": "raw/bun-host-scope-shadowing-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "55d768cff69340cb9ae378fbfbce1ba003446eb43379860dc821702482291ffb"
+      }
+    },
+    {
+      "caseId": "host-scope-binding",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "scope",
+        "supported": true,
+        "observed": {
+          "shadowed": [
+            true
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "bun",
+      "expected": {
+        "shadowed": [
+          true
+        ]
+      },
+      "fixtureSha256": "b170cc5ccff8263dbb1bf1061c075fe8fdf3bac7cc46ce9d9a1ab92b5a5a0551",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-scope-binding",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-host-scope-binding-inspect.stdout",
+          "stderr": "raw/bun-host-scope-binding-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "55d768cff69340cb9ae378fbfbce1ba003446eb43379860dc821702482291ffb"
+      }
+    },
+    {
+      "caseId": "host-source-tokens",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "source",
+        "supported": true,
+        "observed": {
+          "text": "1",
+          "firstToken": "const",
+          "tokens": [
+            "const",
+            "answer",
+            "=",
+            "1",
+            ";"
+          ]
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "bun",
+      "expected": {
+        "text": "1",
+        "firstToken": "const",
+        "tokens": [
+          "const",
+          "answer",
+          "=",
+          "1",
+          ";"
+        ]
+      },
+      "fixtureSha256": "1e413d4b834cd1d0acaa1ba10a526623a667dc393d514ebd41820a7da44e9e08",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-source-tokens",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-host-source-tokens-inspect.stdout",
+          "stderr": "raw/bun-host-source-tokens-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "e7d24982c37069c587664050195b294be581b35fe2f817a853db42150cc4487c"
+      }
+    },
+    {
+      "caseId": "host-diagnostic-location",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "location",
+        "supported": true,
+        "observed": {
+          "line": 2,
+          "column": 11,
+          "endLine": 2,
+          "endColumn": 17
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "bun",
+      "expected": {
+        "line": 2,
+        "column": 11,
+        "endLine": 2,
+        "endColumn": 17
+      },
+      "fixtureSha256": "c7dcfdca1adc7174e971d09f6518766ba733d9d2c34409795372ace7e6248591",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-diagnostic-location",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-host-diagnostic-location-inspect.stdout",
+          "stderr": "raw/bun-host-diagnostic-location-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0101c9b8123c642c5cb9c90d05b5b13b225b4224137290b750351f664287ebb2"
+      }
+    },
+    {
+      "caseId": "host-ancestry",
+      "suite": "host",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "ancestors",
+        "supported": true,
+        "observed": {
+          "ancestors": [
+            "Program",
+            "ExpressionStatement",
+            "CallExpression"
+          ],
+          "parentType": "CallExpression"
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "tool": "bun",
+      "expected": {
+        "ancestors": [
+          "Program",
+          "ExpressionStatement",
+          "CallExpression"
+        ],
+        "parentType": "CallExpression"
+      },
+      "fixtureSha256": "4896c6b90e8fff66433f1cd35a476c13b9cc85c0a7e61ef76e49dc1ec8dcb2f9",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/host-ancestry",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-host-ancestry-inspect.stdout",
+          "stderr": "raw/bun-host-ancestry-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "6a85ae9abcf48dcb09f62664c20ffd6a687536b4e29bcbc49f27f4845314aee3"
+      }
+    },
+    {
+      "caseId": "host-typescript-receiver",
+      "suite": "host",
+      "capability": "unavailable",
+      "correctness": "not-assessed",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": true,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "reason": "typed parser services unavailable",
+      "tool": "bun",
+      "expected": {
+        "hasProgram": true,
+        "hasNodeMap": true,
+        "hasChecker": true,
+        "receiverType": "Element",
+        "property": "checkVisibility",
+        "hasProperty": true,
+        "defaultLibrary": true
+      },
+      "fixtureSha256": "66babf14412ec77d25b66de4310b4072e45f545eb4d83052225311e0c8fbcf81",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--type-aware",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/host-typescript-receiver",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-host-typescript-receiver-inspect.stdout",
+          "stderr": "raw/bun-host-typescript-receiver-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "3b079da050e1275c8ee2289968b83ac33629954d17a2b890e35f2b1480b5c592"
+      }
+    },
+    {
+      "caseId": "baseline-logical-assignment",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "logical-assignments",
+          "line": 2,
+          "column": 7
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "bun",
+      "expected": [
+        {
+          "featureId": "logical-assignments",
+          "line": 2,
+          "column": 7
+        }
+      ],
+      "fixtureSha256": "41cabdd1d83b626ceac869b54c11dca752a1e5d6c1bdf0f8e56545ecf877307e",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-logical-assignment",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-logical-assignment-inspect.stdout",
+          "stderr": "raw/bun-baseline-logical-assignment-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-static-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "bun",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "70208e875612f30a1b9688589c2b0063f85c16970b2c4bb3e71e0da726416cc5",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-static-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-static-groupby-inspect.stdout",
+          "stderr": "raw/bun-baseline-static-groupby-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-computed-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "bun",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 1,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "a9cf0bd21c5c4092a51510fc45c901fa49f81188744631009462c09e92741c78",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-computed-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-computed-groupby-inspect.stdout",
+          "stderr": "raw/bun-baseline-computed-groupby-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-shadowed-object",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "tool": "bun",
+      "expected": [],
+      "fixtureSha256": "f7c1177e675044ed485ebe92819f7d643c4bf21533c1dcbf1a80153be90d1ba1",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-shadowed-object",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-shadowed-object-inspect.stdout",
+          "stderr": "raw/bun-baseline-shadowed-object-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-shadowed-binding",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "tool": "bun",
+      "expected": [],
+      "fixtureSha256": "b170cc5ccff8263dbb1bf1061c075fe8fdf3bac7cc46ce9d9a1ab92b5a5a0551",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-shadowed-binding",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-shadowed-binding-inspect.stdout",
+          "stderr": "raw/bun-baseline-shadowed-binding-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-global-fetchlater",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "fetchlater",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "bun",
+      "expected": [
+        {
+          "featureId": "fetchlater",
+          "line": 1,
+          "column": 1
+        }
+      ],
+      "fixtureSha256": "86fd4c3874d0d6e298575b2ed33c86443cfe1d1370547588a850aa1e577ed8d8",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.js"
+        ],
+        "cwd": "<profile>/work/baseline-global-fetchlater",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-global-fetchlater-inspect.stdout",
+          "stderr": "raw/bun-baseline-global-fetchlater-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "0ebf42b7436c6eaeaae6c55f102bc8cac09cfb7c7b5182270112ad147e80e60f"
+      }
+    },
+    {
+      "caseId": "baseline-ts-static-groupby",
+      "suite": "baseline",
+      "capability": "supported",
+      "correctness": "matched",
+      "status": "matched",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "execution",
+        "supported": true,
+        "observed": {
+          "visited": true
+        }
+      },
+      "expectedCapability": "supported",
+      "diagnostics": [
+        {
+          "featureId": "array-group",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "tool": "bun",
+      "expected": [
+        {
+          "featureId": "array-group",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "4ca656923b9795ac25e8baab08e9ec2221d83f4cae62ac5187f6be93562e9e2c",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-ts-static-groupby",
+        "exitCode": 1,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-ts-static-groupby-inspect.stdout",
+          "stderr": "raw/bun-baseline-ts-static-groupby-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "d3fe50fb1ebc8f02958cfb1495b9f319af9fefc3a4db5d50241499054fb39782"
+      }
+    },
+    {
+      "caseId": "baseline-typed-element",
+      "suite": "baseline",
+      "capability": "unavailable",
+      "correctness": "not-verified",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": true,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "missing": [
+        {
+          "featureId": "check-visibility",
+          "line": 2,
+          "column": 9
+        }
+      ],
+      "unexpected": [],
+      "reason": "Required receiver analysis is unavailable; this case remains unverified",
+      "silentCoverageLoss": true,
+      "tool": "bun",
+      "expected": [
+        {
+          "featureId": "check-visibility",
+          "line": 2,
+          "column": 9
+        }
+      ],
+      "fixtureSha256": "de50fbe49bf09006e757d0f0a331b651ba33fd23ab1060937d38ed68147e1b8f",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--type-aware",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-element",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-typed-element-inspect.stdout",
+          "stderr": "raw/bun-baseline-typed-element-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "ad493a841c7290d8b3ffe7c0f8990b60806f81745bfc5fb7d513d976ceb8bccd"
+      }
+    },
+    {
+      "caseId": "baseline-typed-set-union",
+      "suite": "baseline",
+      "capability": "unavailable",
+      "correctness": "not-verified",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": true,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "missing": [
+        {
+          "featureId": "set-methods",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "unexpected": [],
+      "reason": "Required receiver analysis is unavailable; this case remains unverified",
+      "silentCoverageLoss": true,
+      "tool": "bun",
+      "expected": [
+        {
+          "featureId": "set-methods",
+          "line": 2,
+          "column": 8
+        }
+      ],
+      "fixtureSha256": "8ec2ffd25c9e06af851f0b4f320aae5460e3f29e8705c7450db56c13626fd956",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--type-aware",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-set-union",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-typed-set-union-inspect.stdout",
+          "stderr": "raw/bun-baseline-typed-set-union-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "124b0132b208bc100396f8f6841fd7adec87b9917968a27abf21e1aefaec71bf"
+      }
+    },
+    {
+      "caseId": "baseline-typed-lookalike",
+      "suite": "baseline",
+      "capability": "unavailable",
+      "correctness": "not-verified",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": true,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "reason": "Required receiver analysis is unavailable; this case remains unverified",
+      "silentCoverageLoss": false,
+      "tool": "bun",
+      "expected": [],
+      "fixtureSha256": "5e646d1d6bda21b2778c5444ec55f600a8587bd9f3ab0855e395aae221851658",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--type-aware",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-lookalike",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-typed-lookalike-inspect.stdout",
+          "stderr": "raw/bun-baseline-typed-lookalike-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "ad493a841c7290d8b3ffe7c0f8990b60806f81745bfc5fb7d513d976ceb8bccd"
+      }
+    },
+    {
+      "caseId": "baseline-typed-nominal-lookalike",
+      "suite": "baseline",
+      "capability": "unavailable",
+      "correctness": "not-verified",
+      "status": "unsupported",
+      "expectationMatched": true,
+      "evidence": {
+        "check": "types",
+        "supported": false,
+        "observed": {
+          "hasProgram": false,
+          "hasNodeMap": true,
+          "hasChecker": false,
+          "reason": "typed parser services unavailable"
+        }
+      },
+      "expectedCapability": "unavailable",
+      "diagnostics": [],
+      "missing": [],
+      "unexpected": [],
+      "reason": "Required receiver analysis is unavailable; this case remains unverified",
+      "silentCoverageLoss": false,
+      "tool": "bun",
+      "expected": [],
+      "fixtureSha256": "4801254f1cf42a9307416bb78860e77c393a82423a9aa7ffc09c72fa2f9d0445",
+      "run": {
+        "command": [
+          "<profile>/tools/node_modules/.pnpm/@oven+bun-linux-x64@1.4.4-canary.20261025.1/node_modules/@oven/bun-linux-x64/bin/bun",
+          "lint",
+          "-c",
+          "eslint.config.mjs",
+          "--type-aware",
+          "--no-ignore",
+          "-f",
+          "json",
+          "input.ts"
+        ],
+        "cwd": "<profile>/work/baseline-typed-nominal-lookalike",
+        "exitCode": 0,
+        "signal": null,
+        "raw": {
+          "stdout": "raw/bun-baseline-typed-nominal-lookalike-inspect.stdout",
+          "stderr": "raw/bun-baseline-typed-nominal-lookalike-inspect.stderr"
+        },
+        "config": "eslint.config.mjs",
+        "configSha256": "ad493a841c7290d8b3ffe7c0f8990b60806f81745bfc5fb7d513d976ceb8bccd"
+      }
+    }
+  ],
+  "tools": {
+    "eslint": {
+      "version": "v10.13.0"
+    },
+    "oxlint": {
+      "version": "1.89.0"
+    },
+    "bun": {
+      "version": "1.4.4-canary.1+a8fcd319b",
+      "binarySha256": "14f268816e1b6a412d3715d8b9820bdb3030386ffdd35c46da1446898e0091c4"
+    }
+  },
+  "hostErrors": {},
+  "expectationMatched": false,
+  "source": {
+    "commit": "3eba8c91fdbd5bb12002f9415a14b487745fa08e",
+    "dirty": []
+  },
+  "environment": {
+    "node": "v22.22.2",
+    "platform": "linux",
+    "architecture": "x64"
+  },
+  "subject": {
+    "kind": "npm",
+    "version": "0.7.5",
+    "tarball": "https://registry.npmjs.org/eslint-plugin-baseline-js/-/eslint-plugin-baseline-js-0.7.5.tgz",
+    "integrity": "sha512-AQ0Z24q/ZVwceC6m09D3HVD7Gi/+EgIzPjLOBONai5W6Jl2Gl0TA7dgwhtD/YuNIQAfn1Dr3GrQEqfT4hNKwAA==",
+    "resolvedAt": "2026-10-26T00:51:38.278Z"
+  },
+  "product": {
+    "source": "npm release",
+    "version": "0.7.5",
+    "imports": {
+      "eslint": "10.13.0",
+      "eslint-plugin-es-x": "9.7.0"
+    },
+    "importPaths": {
+      "eslint": "<profile>/subject-input/node_modules/.pnpm/eslint@10.13.0/node_modules/eslint/lib/api.js",
+      "eslint-plugin-es-x": "<profile>/subject-input/node_modules/.pnpm/eslint-plugin-es-x@9.7.0_eslint@10.13.0/node_modules/eslint-plugin-es-x/dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "8.72.0",
+    "typescript": "6.0.3",
+    "eslint": "10.13.0",
+    "oxlint": "1.89.0",
+    "bun": "1.4.4-canary.20261025.1+179664e"
+  },
+  "dependencyManifestSha256": "8182db4aefede8795c1fc95b7504aca2f6baa22a62f7caee259026a88ab2beb8",
+  "dependencyLockSha256": "bf7ce4b5fdf3e25b418490b0812a2de6215cdefef5231e20704c808539721f8a",
+  "inputs": {
+    "conformance/.npmrc": "b77191e3b6bc49f243230d28691063d87f6da757bc8852d5c7f04f0ff96ddbaf",
+    "conformance/README.md": "fd23903c5be88f8014c6ced56d20b192e8fcc754cc6b54422dc6e46c35a44115",
+    "conformance/assess.test.ts": "6ccb5fd98487cec094b817c65c522b119914c323db8ee67d7368def205405a05",
+    "conformance/assess.ts": "6abc2b97b2eaf342119ffe626c50e5bd98b9843b9ce5595521cf11718be566f8",
+    "conformance/cases.ts": "ac0e9db21492d31c64b571f796b2b9f2d1c4449424a0e758ecf9f86a99b72d9b",
+    "conformance/hosts.ts": "5434ab98721ef1c62fc31d94b4916583fce28d51d9a10fa69483cad8293a56d3",
+    "conformance/package.json": "f20c80d7de6175db9157f9ed68e409dc2a5e720fbd4c94d8a425961e5828d8ad",
+    "conformance/pnpm-lock.yaml": "a69eb4e585857a221787b9a5f2dac7cbf2ebaa69178209140b790b12a3ec8a24",
+    "conformance/probe.mjs": "53f6cb0d6465a016d221671b9619aa170c5efb78cbac909ce94ac5fdd3de7e70",
+    "conformance/protocol.mjs": "d8fcdf0f6a939b97729f8cbbbdd583681259c261de67a3b7fa1c2c5d6c089e83",
+    "conformance/public-report.test.ts": "9ff200b9f3b8b2495310bfe90c4b756bc89b40e478b6b3156d66c85ebfec1a3a",
+    "conformance/publish.test.ts": "fa282ce761be72c5fcb1124f530e9ef4a96e0dc435e39d15033b9924412991fa",
+    "conformance/publish.ts": "be44a9d9db43800741f8566897b2fc4c27cdf17dfd7b9716dd40539cf0f64a63",
+    "conformance/refresh.ts": "fe3fc833fd3d61e54f20d1773ae97ce000ffa658bbd5ca0795b0e86176ba62f6",
+    "conformance/run.ts": "367228f404f5303561931ae955c448781742c72fa780a0ae75eb2d10bdd9ffd4",
+    "conformance/subject.ts": "a48507063c53b66561de4244482ec60e376bbb42cf6ef4b69efcc5b9a8bf77ce",
+    "conformance/tsconfig.json": "f52411cb80b337d437eea65859969bcd6fbccc139e18cd9f287b9b1ad8bcba7d",
+    "conformance/types.ts": "5a0f6525019d8fff2ded511d0deb14c735ee0af3ebd6aa3b8961f8d51082f9e8",
+    "docs/website/lib/compatibility-report.ts": "0c63bd642c6a73aae8baddce3762f1fea980206e0e6351d97d262e9e3e69ac13",
+    "product-entry": "b741e086547234b37792dd867323a7b8dd2da951e73c64ce8b6c30e9dbe4820b",
+    "subject-input/package.json": "a18e61bebc85b1ab706e5667000fe42a4651a1190f07f5f7129e3cac3948c53c",
+    "subject-input/pnpm-lock.yaml": "ba88bacde40af65630906d1e5fcdcc2de7d711e4523adf610862c0912509a326"
+  }
+}
