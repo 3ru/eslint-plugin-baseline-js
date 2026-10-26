@@ -103,7 +103,9 @@ async function fixture(t: TestContext) {
   await mkdir(remote);
   await mkdir(caller);
   git(remote, "init", "--bare", "--quiet");
+  git(remote, "config", "maintenance.auto", "false");
   git(caller, "init", "--quiet");
+  git(caller, "config", "maintenance.auto", "false");
   git(caller, "config", "user.name", "Test");
   git(caller, "config", "user.email", "test@example.test");
   git(caller, "remote", "add", "origin", remote);
