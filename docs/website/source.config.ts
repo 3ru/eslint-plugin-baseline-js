@@ -5,7 +5,14 @@ import lastModified from "fumadocs-mdx/plugins/last-modified";
 import { transformerTwoslash } from "fumadocs-twoslash";
 import { createFileSystemTypesCache } from "fumadocs-twoslash/cache-fs";
 
-export const docs = defineDocs({ dir: "content/docs" });
+export const docs = defineDocs({
+  dir: "content/docs",
+  docs: {
+    postprocess: {
+      includeProcessedMarkdown: true,
+    },
+  },
+});
 
 export default defineConfig({
   plugins: [lastModified()],

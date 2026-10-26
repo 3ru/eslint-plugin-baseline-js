@@ -364,9 +364,9 @@ export function CompatibilityReport({ report }: { report: Report }) {
           observation is available. A false positive is a warning where none is expected.
         </p>
         <p>
-          A failed or canceled publication can leave an older result here. Copy and download keep
-          the snapshot displayed on this page. A retry can reuse completed observations from the
-          same workflow run. Capture dates and collection identities retain their origin.
+          A failed or canceled publication can leave an older result here. Copy keeps the snapshot
+          displayed on this page. A retry can reuse completed observations from the same workflow
+          run. Capture dates and collection identities retain their origin.
         </p>
         <p>
           <a href={runUrl}>
