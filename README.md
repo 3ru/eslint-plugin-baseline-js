@@ -174,7 +174,7 @@ Runs as an [oxlint JS plugin](https://oxc.rs/docs/guide/usage/linter/js-plugins)
 ```
 
 > [!CAUTION]
-> **No type-aware plugin checks under Oxlint or Bun.** This plugin skips checks that need TypeScript type information, such as `Set.prototype.difference()` and `Iterator.prototype.map()`. Use the [ESLint TypeScript setup](https://baselinejs.vercel.app/docs#add-typescript) for these checks.
+> **Oxlint and Bun do not currently expose TypeScript type information through their JavaScript plugin APIs.** Type-aware Baseline checks, such as `Set.prototype.difference()` and `Iterator.prototype.map()`, therefore cannot run in these hosts. Use the [ESLint TypeScript setup](https://baselinejs.vercel.app/docs#add-typescript) to enable these checks.
 
 ## Baseline for HTML, CSS, and React
 
