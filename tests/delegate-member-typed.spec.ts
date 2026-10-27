@@ -35,7 +35,7 @@ describe("typed member ownership", () => {
         featureId,
         "javascript.builtins.WeakRef.deref",
         available,
-        "'deref' on WeakRef",
+        "The 'deref' member of WeakRef instances",
       ),
     ]);
   });

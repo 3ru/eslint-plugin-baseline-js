@@ -44,6 +44,20 @@ const workDir = join(TMP_DIR, `generator-spec-${process.pid}`);
 
 afterAll(() => rmSync(workDir, { recursive: true, force: true }));
 
+describe("diagnostic feature IDs", () => {
+  it.each([
+    ["API. Feature ID: array-group.", "array-group"],
+    ["API (array-group).", "array-group"],
+    ["API. Feature ID: .", null],
+    ["API ().", null],
+    ["API. Feature ID: array-group. extra text", null],
+    ["API (array-group). extra text", null],
+    ["API Feature ID: array-group.", null],
+  ] as const)("reads only a complete feature suffix in %s", (message, expected) => {
+    expect(featureIdFromMessage(message)).toBe(expected);
+  });
+});
+
 describe("node counts", () => {
   it("equal what ESLint visits in every generated file", () => {
     for (const seed of [1, 2]) {

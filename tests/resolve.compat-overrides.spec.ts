@@ -43,7 +43,7 @@ describe("atomic compatibility overrides", () => {
     expect(getFeatureStatus("example", "api.Example.undated")).toEqual({ baseline: "low" });
     expect(isBeyondBaseline("example", 2010, "api.Example.undated")).toBe(false);
     expect(baselineMessage("example", 2020, "member", "api.Example.limited")).toBe(
-      "member has Limited availability and exceeds 2020 (example).",
+      "member does not meet your Baseline 2020 target. It has Limited availability. Feature ID: example.",
     );
   });
 
@@ -51,8 +51,24 @@ describe("atomic compatibility overrides", () => {
     expect(isBeyondBaseline("example", 2023, "api.Example.recent")).toBe(true);
     expect(isBeyondBaseline("example", 2024, "api.Example.recent")).toBe(false);
     expect(baselineMessage("example", 2023, "member", "api.Example.recent")).toBe(
-      "member became Baseline in 2024 and exceeds 2023 (example).",
+      "member does not meet your Baseline 2023 target. Its Baseline year is 2024. Feature ID: example.",
     );
+  });
+
+  it("describes the exact availability for string targets", () => {
+    expect(baselineMessage("example", "widely", "member", "api.Example.unknown")).toBe(
+      "member does not meet your Baseline Widely available target. Its Baseline status is unknown. Feature ID: example.",
+    );
+    expect(baselineMessage("example", "widely", "member", "api.Example.recent")).toBe(
+      "member does not meet your Baseline Widely available target. It is Baseline Newly available. Feature ID: example.",
+    );
+  });
+
+  it("does not invent a Baseline year for a directly formatted undated status", () => {
+    expect(baselineMessage("example", 2020, "member", "api.Example.undated")).toBe(
+      "member does not meet your Baseline 2020 target. Its Baseline year is unknown. Feature ID: example.",
+    );
+    expect(isBeyondBaseline("example", 2020, "api.Example.undated")).toBe(false);
   });
 
   it("falls back as a whole when no exact override exists", () => {

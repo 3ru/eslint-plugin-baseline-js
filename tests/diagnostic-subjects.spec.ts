@@ -6,7 +6,13 @@ import { ESLint } from "eslint";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import plugin from "../dist/index.mjs";
 import type { CommonRuleOptions } from "../src/config";
-import { baselineYearOf, LIMITED_ONLY_YEAR, reportingPolicyFor } from "./utils/policy";
+import {
+  baselineYearOf,
+  compatYearPolicyMessage,
+  LIMITED_ONLY_YEAR,
+  reportingPolicyFor,
+  reportingPolicyForCompat,
+} from "./utils/policy";
 
 const setCode = [
   "const left = new Set([1, 2]);",
@@ -79,21 +85,21 @@ describe("diagnostic subjects", () => {
     expect(messages).toHaveLength(3);
     expect(messages).toMatchObject([
       {
-        message: `'difference' on Set became Baseline in ${baselineYearOf("set-methods")} and exceeds ${policy} (set-methods).`,
+        message: `The 'difference' member of Set instances does not meet your Baseline ${policy} target. Its Baseline year is ${baselineYearOf("set-methods")}. Feature ID: set-methods.`,
         line: 3,
         column: 6,
         endLine: 3,
         endColumn: 16,
       },
       {
-        message: `'union' on Set became Baseline in ${baselineYearOf("set-methods")} and exceeds ${policy} (set-methods).`,
+        message: `The 'union' member of Set instances does not meet your Baseline ${policy} target. Its Baseline year is ${baselineYearOf("set-methods")}. Feature ID: set-methods.`,
         line: 4,
         column: 6,
         endLine: 4,
         endColumn: 11,
       },
       {
-        message: `'difference' on Set became Baseline in ${baselineYearOf("set-methods")} and exceeds ${policy} (set-methods).`,
+        message: `The 'difference' member of Set instances does not meet your Baseline ${policy} target. Its Baseline year is ${baselineYearOf("set-methods")}. Feature ID: set-methods.`,
         line: 5,
         column: 6,
         endLine: 5,
@@ -103,7 +109,7 @@ describe("diagnostic subjects", () => {
   });
 
   it.each([
-    ["Promise.try(() => 42);", "promise-try", "'try' on Promise"],
+    ["Promise.try(() => 42);", "promise-try", "'Promise.try'"],
     ["structuredClone({});", "structured-clone", "'structuredClone'"],
     ["new BroadcastChannel('events');", "broadcast-channel", "'BroadcastChannel'"],
   ])("names the API in %s", async (code, id, subject) => {
@@ -117,7 +123,7 @@ describe("diagnostic subjects", () => {
 
     expect(messages).toHaveLength(1);
     expect(messages[0].message).toBe(
-      `${subject} became Baseline in ${baselineYearOf(id)} and exceeds ${policy} (${id}).`,
+      `${subject} does not meet your Baseline ${policy} target. Its Baseline year is ${baselineYearOf(id)}. Feature ID: ${id}.`,
     );
   });
 
@@ -128,8 +134,48 @@ describe("diagnostic subjects", () => {
     });
 
     expect(messages).toHaveLength(1);
-    expect(messages[0].message.startsWith("'devicePixelRatio' on window ")).toBe(true);
-    expect(messages[0].message.endsWith("(devicepixelratio).")).toBe(true);
+    expect(messages[0].message.startsWith("'window.devicePixelRatio' ")).toBe(true);
+    expect(messages[0].message.endsWith("Feature ID: devicepixelratio.")).toBe(true);
+  });
+
+  it("names typed own properties and methods without claiming prototype ownership", async () => {
+    const code = ["var pattern = /value/g;", "pattern.lastIndex;", "pattern.exec('value');"].join(
+      "\n",
+    );
+    const policy = reportingPolicyForCompat("regexp", "javascript.builtins.RegExp.lastIndex");
+    const messages = await lint(
+      code,
+      { available: policy, includeJsBuiltins: { preset: "type-aware", only: ["regexp"] } },
+      true,
+    );
+
+    expect(messages).toHaveLength(2);
+    expect(messages).toMatchObject([
+      {
+        message: compatYearPolicyMessage(
+          "regexp",
+          "javascript.builtins.RegExp.lastIndex",
+          policy,
+          "The 'lastIndex' member of RegExp instances",
+        ),
+        line: 2,
+        column: 9,
+        endLine: 2,
+        endColumn: 18,
+      },
+      {
+        message: compatYearPolicyMessage(
+          "regexp",
+          "javascript.builtins.RegExp.exec",
+          policy,
+          "The 'exec' member of RegExp instances",
+        ),
+        line: 3,
+        column: 9,
+        endLine: 3,
+        endColumn: 13,
+      },
+    ]);
   });
 
   it.each([
@@ -162,7 +208,7 @@ describe("diagnostic subjects", () => {
 
     expect(messages).toHaveLength(1);
     expect(messages[0].message.startsWith(`${subject} `)).toBe(true);
-    expect(messages[0].message.endsWith(`(${id}).`)).toBe(true);
+    expect(messages[0].message.endsWith(`Feature ID: ${id}.`)).toBe(true);
   });
 
   it.each([
@@ -171,15 +217,15 @@ describe("diagnostic subjects", () => {
   ] as const)("distinguishes deprecated Date methods under %s", async (available, label) => {
     const messages = await lint("new Date().getYear();\nnew Date().setYear(99);", { available });
     expect(messages.map((message) => message.message)).toEqual([
-      `'getYear' on Date is not Baseline ${label} available (date-get-year-set-year).`,
-      `'setYear' on Date is not Baseline ${label} available (date-get-year-set-year).`,
+      `'Date.prototype.getYear' does not meet your Baseline ${label} available target. It has Limited availability. Feature ID: date-get-year-set-year.`,
+      `'Date.prototype.setYear' does not meet your Baseline ${label} available target. It has Limited availability. Feature ID: date-get-year-set-year.`,
     ]);
   });
 
   it("keeps the API subject for Limited availability under a year policy", async () => {
     const messages = await lint("new Date().getYear();", { available: LIMITED_ONLY_YEAR });
     expect(messages.map((message) => message.message)).toEqual([
-      `'getYear' on Date has Limited availability and exceeds ${LIMITED_ONLY_YEAR} (date-get-year-set-year).`,
+      `'Date.prototype.getYear' does not meet your Baseline ${LIMITED_ONLY_YEAR} target. It has Limited availability. Feature ID: date-get-year-set-year.`,
     ]);
   });
 
@@ -193,7 +239,8 @@ describe("diagnostic subjects", () => {
 
     const messages = await lint(code, { available: "widely" });
 
-    const message = "'getYear' on Date is not Baseline Widely available (date-get-year-set-year).";
+    const message =
+      "'Date.prototype.getYear' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: date-get-year-set-year.";
 
     expect(messages).toHaveLength(3);
     expect(messages).toMatchObject([
@@ -213,14 +260,14 @@ describe("diagnostic subjects", () => {
     });
 
     expect(messages.map((message) => message.message)).toEqual([
-      `'hasOwn' on Object became Baseline in ${baselineYearOf("object-hasown")} and exceeds ${policy} (object-hasown).`,
+      `'Object.hasOwn' does not meet your Baseline ${policy} target. Its Baseline year is ${baselineYearOf("object-hasown")}. Feature ID: object-hasown.`,
     ]);
   });
 
   it("keeps a meaningful feature name when syntax has no API subject", async () => {
     const messages = await lint("with (object) {}", { available: "widely" });
     expect(messages.map((message) => message.message)).toEqual([
-      "'with' is not Baseline Widely available (with).",
+      "'with' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: with.",
     ]);
   });
 

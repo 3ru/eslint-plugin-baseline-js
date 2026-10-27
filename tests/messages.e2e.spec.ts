@@ -21,7 +21,8 @@ describe("Baseline messages are unified across delegates", () => {
           options: [{ available: "widely" }],
           errors: [
             {
-              message: "'bold' on String is not Baseline Widely available (html-wrapper-methods).",
+              message:
+                "'String.prototype.bold' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: html-wrapper-methods.",
             },
           ],
         },
@@ -38,7 +39,8 @@ describe("Baseline messages are unified across delegates", () => {
           options: [{ available: "widely" }],
           errors: [
             {
-              message: "'with' is not Baseline Widely available (with).",
+              message:
+                "'with' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: with.",
             },
           ],
         },
@@ -56,7 +58,7 @@ describe("Baseline messages are unified across delegates", () => {
           errors: [
             {
               message:
-                "'Function caller and arguments' is not Baseline Widely available (functions-caller-arguments).",
+                "'Function caller and arguments' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: functions-caller-arguments.",
             },
           ],
         },

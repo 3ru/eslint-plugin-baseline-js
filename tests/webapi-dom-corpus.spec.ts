@@ -120,7 +120,7 @@ describe.each([
       const featuresByLine = new Map<number, Set<string>>();
       for (const message of messages) {
         if (message.ruleId !== "baseline-js/use-baseline") continue;
-        const featureId = message.message.match(/\(([^)]+)\)\.$/)?.[1];
+        const featureId = message.message.match(/\. Feature ID: ([a-z0-9-]+)\.$/)?.[1];
         if (!featureId) continue;
         const features = featuresByLine.get(message.line) ?? new Set<string>();
         features.add(featureId);

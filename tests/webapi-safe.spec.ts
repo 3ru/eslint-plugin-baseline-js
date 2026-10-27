@@ -58,7 +58,7 @@ describe("use-baseline: Web API safe arg-based patterns", () => {
               includeJsBuiltins: false,
             },
           ],
-          errors: [{ message: /\(canvas-2d-alpha\)/ }],
+          errors: [{ message: /Feature ID: canvas-2d-alpha\./ }],
         },
         // TODO(restore): The following representative cases are valid, but currently
         // fail intermittently in RuleTester due to pending coverage or scoping nuance.

@@ -85,6 +85,49 @@ function run(
 
 const oxlintOutput = (diagnostics: unknown[]): string => JSON.stringify({ diagnostics });
 
+for (const [format, message, wrong, missing] of [
+  [
+    "labeled",
+    "API. Feature ID: check-visibility.",
+    "API. Feature ID: array-group.",
+    "API. Feature ID: .",
+  ],
+  ["legacy", "API (check-visibility).", "API (array-group).", "API ()."],
+  ["dotless legacy", "API (check-visibility)", "API (array-group)", "API ()"],
+] as const) {
+  test(`${format} findings match their feature ID, position, and multiplicity`, () => {
+    const diagnostic = { ...finding, message };
+    const result = assess(typed, eslintHost, run(usableTypes, [diagnostic]));
+    assert.equal(result.status, "matched");
+    assert.equal(result.expectationMatched, true);
+    assert.deepEqual(result.diagnostics, typed.expected);
+
+    const shifted = assess(typed, eslintHost, run(usableTypes, [{ ...diagnostic, column: 10 }]));
+    assert.equal(shifted.status, "incorrect");
+    assert.equal(shifted.expectationMatched, false);
+
+    const duplicate = assess(typed, eslintHost, run(usableTypes, [diagnostic, diagnostic]));
+    assert.equal(duplicate.status, "incorrect");
+    assert.equal(duplicate.unexpected?.length, 1);
+  });
+
+  test(`${format} findings with a wrong feature ID remain incorrect`, () => {
+    const result = assess(typed, eslintHost, run(usableTypes, [{ ...finding, message: wrong }]));
+    assert.equal(result.status, "incorrect");
+    assert.equal(result.expectationMatched, false);
+    assert.deepEqual(result.diagnostics, [{ featureId: "array-group", line: 1, column: 9 }]);
+  });
+
+  test(`${format} findings without a feature ID cannot inherit the expectation`, () => {
+    for (const text of [missing, `${message} extra text`]) {
+      const result = assess(typed, eslintHost, run(usableTypes, [{ ...finding, message: text }]));
+      assert.equal(result.status, "incorrect");
+      assert.equal(result.expectationMatched, false);
+      assert.deepEqual(result.diagnostics, [{ featureId: null, line: 1, column: 9 }]);
+    }
+  });
+}
+
 test("a successful exit without a probe cannot become a passing result", () => {
   const result = assess(typed, untypedHost, outcome({ exitCode: 0, stdout: "[]" }));
   assert.equal(result.expectationMatched, false);

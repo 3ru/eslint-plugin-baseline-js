@@ -41,8 +41,10 @@ describe("Web API global access forms", () => {
       },
     );
     expect(result).toHaveLength(2);
-    expect(result.some((message) => message.includes("(dedicated-workers)"))).toBe(true);
-    expect(result.some((message) => message.includes("(js-modules-workers)"))).toBe(true);
+    expect(result.some((message) => message.includes("Feature ID: dedicated-workers."))).toBe(true);
+    expect(result.some((message) => message.includes("Feature ID: js-modules-workers."))).toBe(
+      true,
+    );
   });
 
   it.each([
@@ -73,7 +75,7 @@ describe("Web API global access forms", () => {
   ])("reports a global function once: %s", async (code) => {
     const result = await messages(code, "structured-clone");
     expect(result).toHaveLength(1);
-    expect(result[0]).toContain("(structured-clone)");
+    expect(result[0]).toContain("Feature ID: structured-clone.");
   });
 
   it.each([
@@ -126,7 +128,9 @@ describe("Web API global access forms", () => {
   ])("recognizes a qualified global instance: %s", async (code) => {
     // The clipboard floor also predates globalThis; count this API's diagnostics only.
     const result = await messages(code, "async-clipboard", "module", "api.Navigator.clipboard");
-    expect(result.filter((message) => message.includes("(async-clipboard)"))).toHaveLength(1);
+    expect(
+      result.filter((message) => message.includes("Feature ID: async-clipboard.")),
+    ).toHaveLength(1);
   });
 
   it.each([

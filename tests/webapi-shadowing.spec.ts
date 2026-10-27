@@ -27,7 +27,7 @@ describe("use-baseline: Web API shadowing safety", () => {
       { sourceType: "module" },
       webApis,
     );
-    expect(direct.some((m) => m.includes("(abortsignal-any)"))).toBe(true);
+    expect(direct.some((m) => m.includes("Feature ID: abortsignal-any."))).toBe(true);
 
     const qualified = await lintWithBaseline(
       "globalThis.AbortSignal.any([]);",
@@ -35,6 +35,6 @@ describe("use-baseline: Web API shadowing safety", () => {
       { sourceType: "module" },
       webApis,
     );
-    expect(qualified.some((m) => m.includes("(abortsignal-any)"))).toBe(true);
+    expect(qualified.some((m) => m.includes("Feature ID: abortsignal-any."))).toBe(true);
   });
 });

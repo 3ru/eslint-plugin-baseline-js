@@ -23,6 +23,27 @@ vi.mock("../src/baseline/data/descriptors.jsbi", () => ({
       prop: "revocable",
       compatKey: "fixture.recent",
     },
+    {
+      featureId: "proxy-reflect",
+      kind: "callStatic",
+      base: "Reflect",
+      prop: "has",
+      compatKey: "fixture.unknown",
+    },
+    {
+      featureId: "proxy-reflect",
+      kind: "callStatic",
+      base: "Reflect",
+      prop: "ownKeys",
+      compatKey: "fixture.datedUnknown",
+    },
+    {
+      featureId: "proxy-reflect",
+      kind: "callStatic",
+      base: "Reflect",
+      prop: "deleteProperty",
+      compatKey: "fixture.upperBound",
+    },
   ],
 }));
 vi.mock("../src/baseline/data/statuses.compat", () => ({
@@ -30,6 +51,9 @@ vi.mock("../src/baseline/data/statuses.compat", () => ({
     "proxy-reflect": {
       "fixture.supported": { baseline: "high", baseline_low_date: "2010-01-01" },
       "fixture.recent": { baseline: "low", baseline_low_date: "2030-01-01" },
+      "fixture.unknown": {},
+      "fixture.datedUnknown": { baseline_low_date: "2030-01-01" },
+      "fixture.upperBound": { baseline: "high", baseline_low_date: "≤2030-01-01" },
     },
   },
 }));
@@ -50,7 +74,36 @@ describe("delegate ownership with controlled member statuses", () => {
     await expect(
       lintWithBaseline("Proxy.revocable({}, {});", available, {}, include),
     ).resolves.toEqual([
-      `'revocable' on Proxy became Baseline in 2030 and exceeds ${available} (proxy-reflect).`,
+      `'Proxy.revocable' does not meet your Baseline ${available} target. Its Baseline year is 2030. Feature ID: proxy-reflect.`,
     ]);
+  });
+
+  it("reports an exact unknown status under widely without inheriting its headline", async () => {
+    await expect(
+      lintWithBaseline("Reflect.has({}, 'key');", "widely", {}, include),
+    ).resolves.toEqual([
+      "'Reflect.has' does not meet your Baseline Widely available target. Its Baseline status is unknown. Feature ID: proxy-reflect.",
+    ]);
+    await expect(
+      lintWithBaseline("Reflect.has({}, 'key');", "newly", {}, include),
+    ).resolves.toEqual([]);
+  });
+
+  it("reports a known year when the exact status flag is unknown", async () => {
+    await expect(lintWithBaseline("Reflect.ownKeys({});", 2029, {}, include)).resolves.toEqual([
+      "'Reflect.ownKeys' does not meet your Baseline 2029 target. Its Baseline year is 2030. Feature ID: proxy-reflect.",
+    ]);
+    await expect(lintWithBaseline("Reflect.ownKeys({});", 2030, {}, include)).resolves.toEqual([]);
+  });
+
+  it("preserves an upper-bound date in the diagnostic year", async () => {
+    await expect(
+      lintWithBaseline("Reflect.deleteProperty({}, 'key');", 2029, {}, include),
+    ).resolves.toEqual([
+      "'Reflect.deleteProperty' does not meet your Baseline 2029 target. Its Baseline year is ≤2030. Feature ID: proxy-reflect.",
+    ]);
+    await expect(
+      lintWithBaseline("Reflect.deleteProperty({}, 'key');", 2030, {}, include),
+    ).resolves.toEqual([]);
   });
 });

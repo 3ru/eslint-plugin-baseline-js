@@ -92,7 +92,9 @@ describe("typed Web API detection", () => {
 
     const messages = await lint();
     expect(messages).toHaveLength(2);
-    expect(messages.every((message) => message.message.includes("(heading-offset)"))).toBe(true);
+    expect(
+      messages.every((message) => message.message.includes("Feature ID: heading-offset.")),
+    ).toBe(true);
     await expect(lint(["heading-offset"])).resolves.toHaveLength(0);
   }, 15000);
 });

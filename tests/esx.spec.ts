@@ -68,7 +68,7 @@ describe("orchestrator (es-x delegates)", () => {
       reportingPolicyFor("top-level-await"),
       { filePath: "mod.mjs", sourceType: "module" },
     );
-    expect(msgs.some((m) => m.includes("(top-level-await)"))).toBe(true);
+    expect(msgs.some((m) => m.includes("Feature ID: top-level-await."))).toBe(true);
   });
 
   it("[numeric-separators] year policy: reported with the Baseline year from the record", async () => {
@@ -114,7 +114,7 @@ describe("orchestrator (es-x delegates)", () => {
     const msgs = await lintWithBaseline(code, reportingPolicyFor("atomics-wait-async"), {
       sourceType: "module",
     });
-    expect(msgs.some((m) => m.includes("(atomics-wait-async)"))).toBe(true);
+    expect(msgs.some((m) => m.includes("Feature ID: atomics-wait-async."))).toBe(true);
   });
 
   it("[bigint] year policy: reported with the Baseline year from the record", async () => {
@@ -150,7 +150,9 @@ describe("orchestrator (es-x delegates)", () => {
     const msgs = await lintWithBaseline(code, "widely");
     expect(
       msgs.some((m) =>
-        m.includes("'__defineGetter__' is not Baseline Widely available (accessor-methods)."),
+        m.includes(
+          "'__defineGetter__' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: accessor-methods.",
+        ),
       ),
     ).toBe(true);
   });
@@ -159,7 +161,9 @@ describe("orchestrator (es-x delegates)", () => {
     const msgs = await lintWithBaseline("(new Date()).toGMTString()", "widely");
     expect(
       msgs.some((m) =>
-        m.includes("'toGMTString' on Date is not Baseline Widely available (date-to-gmt-string)."),
+        m.includes(
+          "'Date.prototype.toGMTString' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: date-to-gmt-string.",
+        ),
       ),
     ).toBe(true);
   });
@@ -173,19 +177,23 @@ describe("orchestrator (es-x delegates)", () => {
 
   it("[is-error] is detected whatever its Baseline status", async () => {
     const msgs = await lintWithBaseline("Error.isError('x')", reportingPolicyFor("is-error"));
-    expect(msgs.some((m) => m.includes("(is-error)"))).toBe(true);
+    expect(msgs.some((m) => m.includes("Feature ID: is-error."))).toBe(true);
   });
 
   it("[object-hasown] year policy: reported with the Baseline year from the record", async () => {
     const policy = reportingPolicyFor("object-hasown");
     const msgs = await lintWithBaseline("Object.hasOwn({a:1}, 'a')", policy);
-    expect(msgs).toContain(yearPolicyMessage("object-hasown", policy, "'hasOwn' on Object"));
+    expect(msgs).toContain(yearPolicyMessage("object-hasown", policy, "'Object.hasOwn'"));
   });
 
   it("[proto] widely: __proto__ (limited) should be flagged", async () => {
     const msgs = await lintWithBaseline("const o = {}; o.__proto__", "widely");
     expect(
-      msgs.some((m) => m.includes("'__proto__' is not Baseline Widely available (proto).")),
+      msgs.some((m) =>
+        m.includes(
+          "'__proto__' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: proto.",
+        ),
+      ),
     ).toBe(true);
   });
 
@@ -196,7 +204,7 @@ describe("orchestrator (es-x delegates)", () => {
       "(new ArrayBuffer(8)).transfer(4)",
       reportingPolicyFor("transferable-arraybuffer"),
     );
-    expect(msgs.some((m) => m.includes("(transferable-arraybuffer)"))).toBe(true);
+    expect(msgs.some((m) => m.includes("Feature ID: transferable-arraybuffer."))).toBe(true);
   });
 
   // iterators: feature id no longer in JavaScript group — mapping entry removed.
@@ -220,7 +228,9 @@ describe("orchestrator (es-x delegates)", () => {
     const msgs = await lintWithBaseline(code, "widely");
     expect(
       msgs.some((m) =>
-        m.includes("'bold' on String is not Baseline Widely available (html-wrapper-methods)."),
+        m.includes(
+          "'String.prototype.bold' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: html-wrapper-methods.",
+        ),
       ),
     ).toBe(true);
   });
@@ -310,7 +320,7 @@ describe("orchestrator (es-x delegates)", () => {
     expect(
       msgs.some((m) =>
         m.includes(
-          "'Function caller and arguments' is not Baseline Widely available (functions-caller-arguments).",
+          "'Function caller and arguments' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: functions-caller-arguments.",
         ),
       ),
     ).toBe(true);
@@ -319,19 +329,19 @@ describe("orchestrator (es-x delegates)", () => {
   it("[math-sum-precise] is detected whatever its Baseline status", async () => {
     const code = "Math.sumPrecise(1,2)";
     const msgs = await lintWithBaseline(code, reportingPolicyFor("math-sum-precise"));
-    expect(msgs.some((m) => m.includes("(math-sum-precise)"))).toBe(true);
+    expect(msgs.some((m) => m.includes("Feature ID: math-sum-precise."))).toBe(true);
   });
 
   it("[math-sum-precise] should not produce duplicate reports", async () => {
     const code = "Math.sumPrecise(1,2)";
     const msgs = await lintWithBaseline(code, reportingPolicyFor("math-sum-precise"));
-    const count = msgs.filter((m) => m.includes("(math-sum-precise)")).length;
+    const count = msgs.filter((m) => m.includes("Feature ID: math-sum-precise.")).length;
     expect(count).toBe(1);
   });
 
   it("[temporal] is detected whatever its Baseline status", async () => {
     const code = "Temporal.Now.instant()";
     const msgs = await lintWithBaseline(code, reportingPolicyFor("temporal"));
-    expect(msgs.some((m) => m.includes("(temporal)"))).toBe(true);
+    expect(msgs.some((m) => m.includes("Feature ID: temporal."))).toBe(true);
   });
 });

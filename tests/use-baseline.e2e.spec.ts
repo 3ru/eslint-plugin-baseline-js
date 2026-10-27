@@ -34,19 +34,24 @@ describe("use-baseline e2e", () => {
         {
           // self delegate (Temporal), reported whatever its current Baseline status is
           code: "Temporal.Now.instant();",
-          errors: [{ message: /\(temporal\)/ }],
+          errors: [{ message: /Feature ID: temporal\./ }],
           options: [{ available: reportingPolicyFor("temporal") }],
         },
         {
           // es-x delegate (Atomics.waitAsync), reported whatever its current Baseline status is
           code: "Atomics.waitAsync();",
-          errors: [{ message: /\(atomics-wait-async\)/ }],
+          errors: [{ message: /Feature ID: atomics-wait-async\./ }],
           options: [{ available: reportingPolicyFor("atomics-wait-async") }],
         },
         {
           // with statement is discouraged, so it stays Limited → reported under widely
           code: "with (obj) { const a = 1; }",
-          errors: [{ message: "'with' is not Baseline Widely available (with)." }],
+          errors: [
+            {
+              message:
+                "'with' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: with.",
+            },
+          ],
           options: [{ available: "widely" }],
         },
       ],
@@ -71,7 +76,7 @@ describe("use-baseline e2e", () => {
               includeWebApis: { preset: "safe" },
             },
           ],
-          errors: [{ message: /\(abortsignal-any\)/ }],
+          errors: [{ message: /Feature ID: abortsignal-any\./ }],
         },
       ],
     });

@@ -63,7 +63,7 @@ it("selects descriptors for each file's type availability with shared options", 
           "set-methods",
           "javascript.builtins.Set.union",
           policy,
-          "'union' on Set",
+          "The 'union' member of Set instances",
         ),
       },
     ]);
