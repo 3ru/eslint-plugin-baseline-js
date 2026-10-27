@@ -243,7 +243,9 @@ See [oxlint](/docs/oxlint) for setup details and the [FAQ](/docs/meta/faq) for d
 
 ## Messages
 
-The highlighted line shows the reported usage. Messages identify the reported API or feature and include its web-features ID.
+The highlighted line shows the reported usage. Messages name the API or feature, your configured Baseline target, and the reason it does not meet that target. Each message ends with a `Feature ID` for use in `ignoreFeatures`.
+
+Static APIs use canonical paths such as `'Object.groupBy'`. Additional instance-member checks use descriptions such as `The 'union' member of Set instances`. These members can be methods or properties.
 
 <Tabs items={["widely", "newly", "Year"]}>
 <Tab value="widely">
@@ -255,7 +257,7 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-'getYear' on Date is not Baseline Widely available (date-get-year-set-year).
+'Date.prototype.getYear' does not meet your Baseline Widely available target. It has Limited availability. Feature ID: date-get-year-set-year.
 ```
 
 </Tab>
@@ -268,7 +270,7 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-'getYear' on Date is not Baseline Newly available (date-get-year-set-year).
+'Date.prototype.getYear' does not meet your Baseline Newly available target. It has Limited availability. Feature ID: date-get-year-set-year.
 ```
 
 </Tab>
@@ -281,7 +283,7 @@ const total = 1n; // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-'BigInt' became Baseline in 2020 and exceeds 2019 (bigint).
+'BigInt' does not meet your Baseline 2019 target. Its Baseline year is 2020. Feature ID: bigint.
 ```
 
 A feature with Limited availability also exceeds a year target:
@@ -291,11 +293,13 @@ const year = new Date().getYear(); // [!code error]
 ```
 
 ```text title="ESLint report" noCopy
-'getYear' on Date has Limited availability and exceeds 2019 (date-get-year-set-year).
+'Date.prototype.getYear' does not meet your Baseline 2019 target. It has Limited availability. Feature ID: date-get-year-set-year.
 ```
 
 </Tab>
 </Tabs>
+
+When diagnostic text changes, tests that snapshot it need updated expectations.
 
 <details>
 <summary>Why does a message contain a date such as ≤2018?</summary>

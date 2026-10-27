@@ -14,34 +14,32 @@ export function baselineMessage(
 ) {
   const feature = getFeatureRecord(featureId);
   const label = subject ?? `'${feature?.name ?? featureId}'`;
-
-  if (baseline === "widely") {
-    return `${label} is not Baseline Widely available (${featureId}).`;
-  }
-
-  if (baseline === "newly") {
-    return `${label} is not Baseline Newly available (${featureId}).`;
-  }
-
   const status = getFeatureStatus(featureId, compatKey);
+  const target =
+    baseline === "widely"
+      ? "Widely available"
+      : baseline === "newly"
+        ? "Newly available"
+        : baseline;
+  let reason: string;
 
   if (status?.baseline === false) {
-    return `${label} has Limited availability and exceeds ${baseline} (${featureId}).`;
+    reason = "It has Limited availability.";
+  } else if (typeof baseline === "number") {
+    reason = `Its Baseline year is ${baselineYearLabel(status) ?? "unknown"}.`;
+  } else if (status?.baseline === "low") {
+    reason = "It is Baseline Newly available.";
+  } else if (status?.baseline === "high") {
+    reason = "It is Baseline Widely available.";
+  } else {
+    reason = "Its Baseline status is unknown.";
   }
 
-  const year = baselineYearLabel(status) ?? "unknown";
-
-  return `${label} became Baseline in ${year} and exceeds ${baseline} (${featureId}).`;
+  return `${label} does not meet your Baseline ${target} target. ${reason} Feature ID: ${featureId}.`;
 }
 
 export function delegateSubject(name: string): string {
-  const separator = name.lastIndexOf(".");
-
-  if (separator === -1) return `'${name}'`;
-
-  const owner = name.slice(0, separator).replace(/\.prototype$/, "");
-
-  return memberSubject(name.slice(separator + 1), owner);
+  return `'${name}'`;
 }
 
 export function descriptorSubject(descriptor: Descriptor): string {
@@ -53,17 +51,13 @@ export function descriptorSubject(descriptor: Descriptor): string {
     case "callStatic":
     case "member":
     case "staticMember":
-      return memberSubject(descriptor.prop, descriptor.base);
+      return `'${descriptor.base}.${descriptor.prop}'`;
     case "instanceMember":
-      return memberSubject(descriptor.prop, descriptor.iface);
+      return `The '${descriptor.prop}' member of ${descriptor.iface} instances`;
     case "callMemberWithArgs":
     case "newWithOptions":
       return callSubject(descriptor);
   }
-}
-
-function memberSubject(name: string, owner: string): string {
-  return `'${name}' on ${owner}`;
 }
 
 function callSubject(descriptor: CallMemberWithArgsDescriptor | NewWithOptionsDescriptor) {

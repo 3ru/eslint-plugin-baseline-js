@@ -72,7 +72,8 @@ Use `ignoreNodeTypes` when you need to suppress reports on an ESTree node type.
 <details>
 <summary>Add a feature exception</summary>
 
-Copy the feature ID from the report. Keep your existing options and add it to `ignoreFeatures`:
+Copy the value after `Feature ID:` from the report, without the final period. For example, `Feature ID: iterator-join.` identifies `iterator-join`.
+Keep your existing options and add the ID to `ignoreFeatures`:
 
 ```js title="Inside your rule options"
 {
