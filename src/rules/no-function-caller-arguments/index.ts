@@ -13,6 +13,15 @@ const rule: Rule.RuleModule = {
     schema: [],
   },
   create(context) {
+    function isWithScopeActive(scope: Scope.Scope, node: Node): boolean {
+      if (scope.type !== "with") return false;
+      if (scope.block.type !== "WithStatement") return true;
+      return (
+        scope.block.object !== node &&
+        !context.sourceCode.getAncestors(node).includes(scope.block.object)
+      );
+    }
+
     function isFunctionObject(node: Node): boolean {
       const receiver = stripChain(node);
       switch (receiver.type) {
@@ -25,7 +34,7 @@ const rule: Rule.RuleModule = {
             scope;
             scope = scope.upper
           ) {
-            if (scope.type === "with") return false;
+            if (isWithScopeActive(scope, receiver)) return false;
           }
           return (
             getStaticMemberName(receiver) === "prototype" &&
@@ -39,7 +48,7 @@ const rule: Rule.RuleModule = {
 
       let scope: Scope.Scope | null = context.sourceCode.getScope(receiver);
       while (scope) {
-        if (scope.type === "with") return false;
+        if (isWithScopeActive(scope, receiver)) return false;
         const variable = scope.set.get(receiver.name);
         if (variable) {
           if (
