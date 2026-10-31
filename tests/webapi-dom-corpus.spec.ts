@@ -67,8 +67,17 @@ describe.each([
           if (current.depth > 2) {
             const name = current.type.getSymbol()?.getName() ?? "";
             for (const descriptor of descriptorsByInterface.get(name) ?? []) {
-              if (checker.getPropertyOfType(owner.type, descriptor.prop)) {
-                inheritedRows.push({ form: "inherited", descriptor, receiver });
+              if (!checker.getPropertyOfType(owner.type, descriptor.prop)) continue;
+              const represented = pending.flatMap(({ type, depth }) =>
+                (descriptorsByInterface.get(type.getSymbol()?.getName() ?? "") ?? [])
+                  .filter((candidate) => candidate.prop === descriptor.prop)
+                  .map((candidate) => ({ descriptor: candidate, depth })),
+              );
+              const nearestDepth = Math.min(...represented.map(({ depth }) => depth));
+              const nearest = represented.filter(({ depth }) => depth === nearestDepth);
+              if (new Set(nearest.map(({ descriptor }) => descriptor.iface)).size !== 1) continue;
+              for (const { descriptor: exact } of nearest) {
+                inheritedRows.push({ form: "inherited", descriptor: exact, receiver });
               }
             }
           }

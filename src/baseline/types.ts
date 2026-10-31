@@ -101,6 +101,8 @@ export interface InstanceMemberDescriptor extends BaseDescriptor {
 
 export interface CallMemberWithArgsDescriptor extends BaseDescriptor {
   kind: "callMemberWithArgs";
+  iface: string;
+  typedOnly: true;
   prop: string; // method name on the receiver, e.g. 'getContext', 'includes'
   stringArg?: { index: number; values: string[] };
   objectArg?: {

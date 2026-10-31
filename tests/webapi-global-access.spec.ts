@@ -148,8 +148,8 @@ describe("Web API global access forms", () => {
     "canvas['getContext']('2d', { ['alpha']: true });",
     "canvas?.['getContext']?.('2d', { ['alpha']: true });",
     "(canvas?.['getContext'])('2d', { ['alpha']: true });",
-  ])("recognizes static computed option names: %s", async (code) => {
-    expect(await messages(code, "canvas-2d-alpha")).toHaveLength(1);
+  ])("skips instance options without type services: %s", async (code) => {
+    expect(await messages(code, "canvas-2d-alpha")).toEqual([]);
   });
 
   it.each([
@@ -157,8 +157,8 @@ describe("Web API global access forms", () => {
     "gl['getSupportedExtensions']()['includes']('EXT_sRGB');",
     "gl?.['getSupportedExtensions']?.()?.['includes']?.('EXT_sRGB');",
     "(gl?.['getSupportedExtensions'])()['includes']('EXT_sRGB');",
-  ])("recognizes static computed calls in a receiver chain: %s", async (code) => {
-    expect(await messages(code, "ext-srgb")).toHaveLength(1);
+  ])("skips instance call chains without type services: %s", async (code) => {
+    expect(await messages(code, "ext-srgb")).toEqual([]);
   });
 
   it.each([

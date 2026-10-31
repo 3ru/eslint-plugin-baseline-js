@@ -4,13 +4,11 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { formatBaselineYear, readGeneratedFeatures } from "./parse-generated-features.mjs";
 
-// Lightweight parser for descriptors.*.ts arrays
 function parseDescriptorsArray(tsPath) {
   const src = readFileSync(tsPath, "utf8");
-  const arr = [];
-  const re = /(?:"featureId"|featureId):\s*"([^"]+)"[\s\S]*?(?:"kind"|kind):\s*"([^"]+)"/g;
-  for (const m of src.matchAll(re)) arr.push({ featureId: m[1], kind: m[2] });
-  return arr;
+  const match = src.match(/=\s*(\[[\s\S]*\]);\s*export default /m);
+  if (!match) throw new Error(`Cannot read descriptor array: ${tsPath}`);
+  return JSON.parse(match[1]);
 }
 
 function readJson(jsonPath) {
@@ -103,14 +101,13 @@ try {
   // no config, proceed with defaults
 }
 
-// Section 2: Web APIs (api.*) – classify patterns: safe (AST), typed (instanceMember), heuristic (future)
 const rowsApi = [];
 const apiIds = Object.keys(apiFeatures);
 const seenApi = new Set();
 const apiPatternMap = new Map(); // id -> {safe:number, typed:number, heuristic:number}
 for (const d of descApi) {
   const rec = apiPatternMap.get(d.featureId) || { safe: 0, typed: 0, heuristic: 0 };
-  if (d.kind === "instanceMember") rec.typed++;
+  if (d.kind === "instanceMember" || d.typedOnly) rec.typed++;
   else rec.safe++;
   apiPatternMap.set(d.featureId, rec);
 }
@@ -159,7 +156,7 @@ const seenJsbi = new Set();
 const jsbiPatternMap = new Map();
 for (const d of descJsbi) {
   const rec = jsbiPatternMap.get(d.featureId) || { safe: 0, typed: 0, heuristic: 0 };
-  if (d.kind === "instanceMember") rec.typed++;
+  if (d.kind === "instanceMember" || d.typedOnly) rec.typed++;
   else rec.safe++;
   jsbiPatternMap.set(d.featureId, rec);
 }

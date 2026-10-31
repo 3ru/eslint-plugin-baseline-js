@@ -5,6 +5,8 @@ export const manualApi = [
   {
     featureId: "canvas-2d-alpha",
     kind: "callMemberWithArgs",
+    iface: "HTMLCanvasElement",
+    typedOnly: true,
     prop: "getContext",
     stringArg: {
       index: 0,
@@ -19,6 +21,8 @@ export const manualApi = [
   {
     featureId: "canvas-2d-desynchronized",
     kind: "callMemberWithArgs",
+    iface: "HTMLCanvasElement",
+    typedOnly: true,
     prop: "getContext",
     stringArg: {
       index: 0,
@@ -33,6 +37,8 @@ export const manualApi = [
   {
     featureId: "canvas-2d-willreadfrequently",
     kind: "callMemberWithArgs",
+    iface: "HTMLCanvasElement",
+    typedOnly: true,
     prop: "getContext",
     stringArg: {
       index: 0,
@@ -47,6 +53,8 @@ export const manualApi = [
   {
     featureId: "canvas-2d-color-management",
     kind: "callMemberWithArgs",
+    iface: "HTMLCanvasElement",
+    typedOnly: true,
     prop: "getContext",
     stringArg: {
       index: 0,
@@ -66,6 +74,8 @@ export const manualApi = [
   {
     featureId: "webgl-desynchronized",
     kind: "callMemberWithArgs",
+    iface: "HTMLCanvasElement",
+    typedOnly: true,
     prop: "getContext",
     stringArg: {
       index: 0,
@@ -80,6 +90,8 @@ export const manualApi = [
   {
     featureId: "webgl2-desynchronized",
     kind: "callMemberWithArgs",
+    iface: "HTMLCanvasElement",
+    typedOnly: true,
     prop: "getContext",
     stringArg: {
       index: 0,
@@ -134,6 +146,8 @@ export const manualApi = [
   {
     featureId: "ext-srgb",
     kind: "callMemberWithArgs",
+    iface: "WebGLRenderingContextBase",
+    typedOnly: true,
     prop: "getExtension",
     stringArg: {
       index: 0,
@@ -144,6 +158,8 @@ export const manualApi = [
   {
     featureId: "ext-srgb",
     kind: "callMemberWithArgs",
+    iface: "WebGLRenderingContextBase",
+    typedOnly: true,
     prop: "includes",
     stringArg: {
       index: 0,

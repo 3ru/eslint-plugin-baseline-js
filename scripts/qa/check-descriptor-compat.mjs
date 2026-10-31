@@ -31,8 +31,8 @@ function parseGeneratedDescriptorFile(pathFromRoot) {
   return JSON.parse(m[1]);
 }
 
-/** @param {GeneratedDescriptor} desc @param {Set<string>} keys */
-function matchesApiDescriptor(desc, keys) {
+/** @param {GeneratedDescriptor} desc @param {Set<string>} keys @param {SourceFeatures[string]} feature */
+function matchesApiDescriptor(desc, keys, feature) {
   if (!keys.size) return true;
   switch (desc.kind) {
     case "callGlobal":
@@ -62,7 +62,20 @@ function matchesApiDescriptor(desc, keys) {
     case "instanceMember":
       return keys.has(`api.${desc.iface}.${desc.prop}`);
     case "callMemberWithArgs":
-      return true;
+      if (!desc.iface || desc.typedOnly !== true) return false;
+      if ("group" in feature && feature.group?.includes("webgl-extensions")) {
+        return (
+          desc.iface === "WebGLRenderingContextBase" &&
+          ((desc.prop === "getExtension" && !desc.viaCall) ||
+            (desc.prop === "includes" && desc.viaCall?.prop === "getSupportedExtensions")) &&
+          desc.stringArg?.index === 0 &&
+          desc.stringArg.values.length === 1 &&
+          keys.has(`api.${desc.stringArg.values[0]}`)
+        );
+      }
+      return [...keys].some((key) =>
+        key.startsWith(`api.${desc.iface}.${desc.viaCall?.prop ?? desc.prop}.`),
+      );
     default:
       return true;
   }
@@ -159,7 +172,7 @@ export function checkDescriptors(descs, features, keyPrefix) {
       });
       continue;
     }
-    if (!matcher(d, new Set([d.compatKey]))) {
+    if (!matcher(d, new Set([d.compatKey]), feature)) {
       problems.push({
         featureId: d.featureId,
         descriptor: d,

@@ -6,7 +6,7 @@ import builtinDescriptors from "../src/baseline/data/descriptors.jsbi";
 import type { Descriptor } from "../src/baseline/types";
 import { buildListeners } from "../src/rules/feature-usage/builder";
 
-type SafeDescriptor = Exclude<Descriptor, { kind: "instanceMember" }>;
+type SafeDescriptor = Exclude<Descriptor, { kind: "instanceMember" | "callMemberWithArgs" }>;
 const roots = ["window", "globalThis", "self"];
 
 function argumentsFor(descriptor: SafeDescriptor, computed = false): string {
@@ -33,20 +33,7 @@ function casesFor(d: SafeDescriptor): { code: string; report: boolean }[] {
   const positive: string[] = [];
   const negative: string[] = [];
   const args = argumentsFor(d);
-  if (d.kind === "callMemberWithArgs") {
-    const receiver = d.viaCall ? `object.${d.viaCall.prop}()` : "object";
-    positive.push(
-      `${receiver}.${d.prop}(${args});`,
-      `${receiver}[${JSON.stringify(d.prop)}](${argumentsFor(d, true)});`,
-      `${receiver}?.[${JSON.stringify(d.prop)}]?.(${args});`,
-    );
-    if (d.viaCall)
-      positive.push(
-        `object[${JSON.stringify(d.viaCall.prop)}]()[${JSON.stringify(d.prop)}](${args});`,
-      );
-    negative.push(`${receiver}[${d.prop}](${args});`);
-    if (d.viaCall) negative.push(`object[${d.viaCall.prop}]().${d.prop}(${args});`);
-  } else if ("name" in d) {
+  if ("name" in d) {
     const invoke = (callee: string, options = args) =>
       `${d.kind === "callGlobal" ? "" : "new "}${callee}(${options});`;
     positive.push(invoke(d.name));
@@ -113,7 +100,8 @@ describe("safe descriptor AST corpus", () => {
     (_name, descriptors) => {
       const linter = new Linter();
       const safe = descriptors.filter(
-        (d): d is SafeDescriptor => d.kind !== "instanceMember" && !d.typedOnly,
+        (d): d is SafeDescriptor =>
+          d.kind !== "instanceMember" && d.kind !== "callMemberWithArgs" && !d.typedOnly,
       );
       expect(safe.length).toBeGreaterThan(0);
       for (const descriptor of safe) {

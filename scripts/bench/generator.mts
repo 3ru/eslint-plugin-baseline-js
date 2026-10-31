@@ -532,7 +532,6 @@ function buildPluginTables(profile: Profile): PluginTables {
       throw new Error(`top name "${name}" looks like a generated tail name`);
   }
 
-  // callMemberWithArgs matches any receiver by its literal arguments and keys; filler avoids them.
   const argumentStrings = new Set<string>();
 
   for (const d of descriptors) {
