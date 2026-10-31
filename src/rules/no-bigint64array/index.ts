@@ -17,8 +17,8 @@ const rule: Rule.RuleModule = {
     schema: [],
   },
   create(context) {
-    function report(node: Node) {
-      context.report({ node, messageId: "forbidden" });
+    function report(node: Node, name: string) {
+      context.report({ node, messageId: "forbidden", data: { name } });
     }
 
     function resolveBigIntArrayBase(node: Node, parentNode: Node): string | null {
@@ -35,19 +35,19 @@ const rule: Rule.RuleModule = {
       NewExpression(node) {
         const name = resolveBigIntArrayBase(node.callee, node);
         if (name) {
-          report(node.callee);
+          report(node.callee, name);
         }
       },
       CallExpression(node) {
         const name = resolveBigIntArrayBase(node.callee, node);
         if (name) {
-          report(node.callee);
+          report(node.callee, name);
         }
       },
       MemberExpression(node) {
         const name = resolveBigIntArrayBase(node.object, node);
         if (name) {
-          report(node.object);
+          report(node.object, name);
         }
       },
     };
