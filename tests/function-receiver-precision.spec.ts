@@ -3,11 +3,15 @@ import { describe, expect, it } from "vitest";
 import plugin from "../dist/index.mjs";
 import type { CommonRuleOptions } from "../src/config";
 
-async function lint(code: string, options: CommonRuleOptions = {}) {
+async function lint(
+  code: string,
+  options: CommonRuleOptions = {},
+  sourceType: "module" | "script" = "module",
+) {
   const eslint = new ESLint({
     overrideConfigFile: true,
     overrideConfig: {
-      languageOptions: { ecmaVersion: "latest", sourceType: "module" },
+      languageOptions: { ecmaVersion: "latest", sourceType },
       plugins: { "baseline-js": plugin },
       rules: { "baseline-js/use-baseline": ["error", { available: "widely", ...options }] },
     },
@@ -102,5 +106,48 @@ describe("Function receiver precision through use-baseline", () => {
     { ignoreNodeTypes: ["Identifier"] },
   ])("preserves the delegate ignore option %j", async (options) => {
     await expect(lint("function f() {} f.caller; f.arguments;", options)).resolves.toEqual([]);
+  });
+
+  it.each([
+    "function f() {} with ({ f: { caller: 1, arguments: [] } }) { f.caller; f.arguments; }",
+    "with ({ Function: { prototype: { caller: 1, arguments: [] } } }) { Function.prototype.caller; Function.prototype.arguments; }",
+    "with ({ globalThis: { Function: { prototype: { caller: 1 } } } }) { globalThis.Function.prototype.caller; }",
+  ])("does not attribute a with-provided receiver to Function", async (code) => {
+    const messages = await lint(code, {}, "script");
+    expect(
+      messages.filter((message) =>
+        message.message.endsWith("Feature ID: functions-caller-arguments."),
+      ),
+    ).toEqual([]);
+  });
+
+  it("keeps proven local and direct functions inside a with scope", async () => {
+    const messages = await lint(
+      "with ({ f: { caller: 1 } }) {\n  const f = () => {};\n  f.caller;\n  (() => {}).arguments;\n}",
+      {},
+      "script",
+    );
+    const functions = messages.filter((message) =>
+      message.message.endsWith("Feature ID: functions-caller-arguments."),
+    );
+    expect(functions).toHaveLength(2);
+    expect(functions).toMatchObject([
+      {
+        ruleId: "baseline-js/use-baseline",
+        severity: 2,
+        line: 3,
+        column: 5,
+        endLine: 3,
+        endColumn: 11,
+      },
+      {
+        ruleId: "baseline-js/use-baseline",
+        severity: 2,
+        line: 4,
+        column: 14,
+        endLine: 4,
+        endColumn: 23,
+      },
+    ]);
   });
 });

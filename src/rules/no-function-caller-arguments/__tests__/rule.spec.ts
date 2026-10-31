@@ -2,11 +2,11 @@ import { ESLint } from "eslint";
 import { describe, expect, it } from "vitest";
 import plugin from "../../../index";
 
-async function run(code: string) {
+async function run(code: string, sourceType: "module" | "script" = "module") {
   const eslint = new ESLint({
     overrideConfigFile: true,
     overrideConfig: {
-      languageOptions: { ecmaVersion: 2022, sourceType: "module" },
+      languageOptions: { ecmaVersion: 2022, sourceType },
       plugins: { "baseline-js": plugin as unknown as ESLint.Plugin },
       rules: { "baseline-js/no-function-caller-arguments": "error" },
     },
@@ -88,5 +88,41 @@ describe("no-function-caller-arguments", () => {
     ["computed properties", "function f() {} f['caller']; f['arguments'];"],
   ])("does not flag %s", async (_name, code) => {
     await expect(run(code)).resolves.toEqual([]);
+  });
+
+  it.each([
+    "function f() {} with ({ f: { caller: 1, arguments: [] } }) { f.caller; f.arguments; }",
+    "with ({ Function: { prototype: { caller: 1, arguments: [] } } }) { Function.prototype.caller; Function.prototype.arguments; }",
+    "with ({ globalThis: { Function: { prototype: { caller: 1 } } } }) { globalThis.Function.prototype.caller; }",
+  ])("does not infer functions across a with scope", async (code) => {
+    await expect(run(code, "script")).resolves.toEqual([]);
+  });
+
+  it("preserves local and direct functions inside a with scope", async () => {
+    const messages = await run(
+      "with ({ f: { caller: 1 } }) {\n  const f = () => {};\n  f.caller;\n  (() => {}).arguments;\n}",
+      "script",
+    );
+    expect(messages).toHaveLength(2);
+    expect(messages).toMatchObject([
+      {
+        ruleId: "baseline-js/no-function-caller-arguments",
+        messageId: "forbidden",
+        severity: 2,
+        line: 3,
+        column: 5,
+        endLine: 3,
+        endColumn: 11,
+      },
+      {
+        ruleId: "baseline-js/no-function-caller-arguments",
+        messageId: "forbidden",
+        severity: 2,
+        line: 4,
+        column: 14,
+        endLine: 4,
+        endColumn: 23,
+      },
+    ]);
   });
 });
