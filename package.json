@@ -58,7 +58,7 @@
     "@typescript-eslint/parser": "^8.70.1",
     "@typescript-eslint/types": "^8.70.1",
     "@typescript-eslint/typescript-estree": "^8.70.1",
-    "eslint": "^10.11.0",
+    "eslint": "^10.14.0",
     "semantic-release": "^25.0.9",
     "tsdown": "0.23.4",
     "typescript": "^6.0.3",
