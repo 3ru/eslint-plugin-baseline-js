@@ -17,6 +17,7 @@ function argumentsFor(descriptor: SafeDescriptor, computed = false): string {
     const options = descriptor.objectArg;
     const entries = [
       ...(options.hasKeys ?? []).map((key) => [key, "true"]),
+      ...(options.knownDefinedKeys ?? []).map((key) => [key, "16"]),
       ...(options.keyValues ?? []).map(({ key, values }) => [
         key,
         JSON.stringify(values?.[0] ?? true),

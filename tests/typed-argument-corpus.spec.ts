@@ -25,6 +25,7 @@ function callFor(
   if (descriptor.objectArg) {
     const entries = [
       ...(descriptor.objectArg.hasKeys ?? []).map((key) => [key, true]),
+      ...(descriptor.objectArg.knownDefinedKeys ?? []).map((key) => [key, 16]),
       ...(descriptor.objectArg.keyValues ?? []).map(({ key, values }) => [
         key,
         values?.[0] ?? true,
