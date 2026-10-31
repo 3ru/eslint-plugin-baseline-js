@@ -1066,13 +1066,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "html-wrapper-methods",
-    "compatKey": "javascript.builtins.String.substr",
-    "kind": "instanceMember",
-    "iface": "String",
-    "prop": "substr"
-  },
-  {
-    "featureId": "html-wrapper-methods",
     "compatKey": "javascript.builtins.String.sup",
     "kind": "instanceMember",
     "iface": "String",
@@ -2764,6 +2757,13 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "String",
     "prop": "startsWith"
+  },
+  {
+    "featureId": "string-substr",
+    "compatKey": "javascript.builtins.String.substr",
+    "kind": "instanceMember",
+    "iface": "String",
+    "prop": "substr"
   },
   {
     "featureId": "string-trim-leftright",

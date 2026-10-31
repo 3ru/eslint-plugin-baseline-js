@@ -87,8 +87,9 @@ export default {
     "id": "abortsignal-timeout",
     "name": "AbortSignal.timeout()",
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-04-18",
+      "baseline_high_date": "2026-10-18",
       "support": {
         "chrome": "124",
         "chrome_android": "124",
@@ -237,6 +238,27 @@ export default {
         "firefox_android": "16",
         "safari": "9",
         "safari_ios": "9"
+      }
+    }
+  },
+  "animations-css-animation-accessors": {
+    "id": "animations-css-animation-accessors",
+    "name": "Animation accessors",
+    "group": [
+      "animation",
+      "css"
+    ],
+    "status": {
+      "baseline": "low",
+      "baseline_low_date": "2026-09-14",
+      "support": {
+        "chrome": "151",
+        "chrome_android": "151",
+        "edge": "151",
+        "firefox": "152",
+        "firefox_android": "152",
+        "safari": "27",
+        "safari_ios": "27"
       }
     }
   },
@@ -1774,6 +1796,21 @@ export default {
       }
     }
   },
+  "css-object-model-csspseudoelement": {
+    "id": "css-object-model-csspseudoelement",
+    "name": "CSSPseudoElement",
+    "group": [
+      "cssom"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "149",
+        "chrome_android": "149",
+        "edge": "149"
+      }
+    }
+  },
   "css-object-model-discouraged": {
     "id": "css-object-model-discouraged",
     "name": "CSS object model (DOM level 2)",
@@ -2167,6 +2204,24 @@ export default {
       "support": {
         "chrome_android": "101",
         "edge": "134"
+      }
+    }
+  },
+  "dir": {
+    "id": "dir",
+    "name": "dir",
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "3",
+        "safari_ios": "1"
       }
     }
   },
@@ -2877,9 +2932,9 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "116",
-        "chrome_android": "116",
-        "edge": "116"
+        "chrome": "136",
+        "chrome_android": "136",
+        "edge": "136"
       }
     }
   },
@@ -2903,9 +2958,7 @@ export default {
     "name": "<fencedframe>",
     "status": {
       "baseline": false,
-      "support": {
-        "edge": "128"
-      }
+      "support": {}
     },
     "discouraged": {
       "according_to": [
@@ -3241,7 +3294,8 @@ export default {
       "baseline": false,
       "support": {
         "chrome": "154",
-        "chrome_android": "154"
+        "chrome_android": "154",
+        "edge": "154"
       }
     }
   },
@@ -4666,9 +4720,9 @@ export default {
     "status": {
       "baseline": false,
       "support": {
-        "chrome": "142",
-        "chrome_android": "142",
-        "edge": "142"
+        "chrome": "145",
+        "chrome_android": "145",
+        "edge": "145"
       }
     }
   },
@@ -6236,7 +6290,7 @@ export default {
         "firefox": "6",
         "firefox_android": "6",
         "safari": "6",
-        "safari_ios": "7"
+        "safari_ios": "8"
       }
     }
   },
@@ -6508,7 +6562,9 @@ export default {
       "support": {
         "chrome": "96",
         "chrome_android": "96",
-        "edge": "96"
+        "edge": "96",
+        "safari": "16.4",
+        "safari_ios": "16.4"
       }
     }
   },
@@ -6867,7 +6923,8 @@ export default {
         "chrome": "72",
         "edge": "79",
         "firefox": "33",
-        "safari": "13"
+        "safari": "13",
+        "safari_ios": "27"
       }
     }
   },
@@ -7062,6 +7119,22 @@ export default {
         "firefox_android": "131",
         "safari": "16.1",
         "safari_ios": "16.1"
+      }
+    }
+  },
+  "scroll-triggered-animations": {
+    "id": "scroll-triggered-animations",
+    "name": "Scroll-triggered animations",
+    "group": [
+      "scrolling",
+      "animation"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "146",
+        "chrome_android": "146",
+        "edge": "146"
       }
     }
   },
@@ -7534,6 +7607,28 @@ export default {
         "chrome": "151",
         "chrome_android": "151",
         "edge": "151"
+      }
+    }
+  },
+  "source": {
+    "id": "source",
+    "name": "<source>",
+    "group": [
+      "media-elements",
+      "html-elements"
+    ],
+    "status": {
+      "baseline": "high",
+      "baseline_low_date": "2015-07-29",
+      "baseline_high_date": "2018-01-29",
+      "support": {
+        "chrome": "3",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "3.5",
+        "firefox_android": "4",
+        "safari": "3.1",
+        "safari_ios": "2"
       }
     }
   },
@@ -9587,6 +9682,18 @@ export default {
         "firefox": "17",
         "firefox_android": "17",
         "safari": "7"
+      }
+    }
+  },
+  "wheel-events-momentum": {
+    "id": "wheel-events-momentum",
+    "name": "Wheel events momentum",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "151",
+        "chrome_android": "151",
+        "edge": "151"
       }
     }
   },

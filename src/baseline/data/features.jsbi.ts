@@ -1009,8 +1009,9 @@ export default {
       "intl"
     ],
     "status": {
-      "baseline": "low",
+      "baseline": "high",
       "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16",
       "support": {
         "chrome": "87",
         "chrome_android": "87",
@@ -1059,6 +1060,23 @@ export default {
       }
     }
   },
+  "iterator-includes": {
+    "id": "iterator-includes",
+    "name": "Iterator includes()",
+    "group": [
+      "iterators"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "154",
+        "chrome_android": "154",
+        "edge": "154",
+        "firefox": "154",
+        "firefox_android": "154"
+      }
+    }
+  },
   "iterator-join": {
     "id": "iterator-join",
     "name": "Iterator join()",
@@ -1093,6 +1111,23 @@ export default {
         "firefox_android": "131",
         "safari": "18.4",
         "safari_ios": "18.4"
+      }
+    }
+  },
+  "iterator-zip-zipkeyed": {
+    "id": "iterator-zip-zipkeyed",
+    "name": "Iterator.zip() and Iterator.zipKeyed()",
+    "group": [
+      "iterators"
+    ],
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "153",
+        "chrome_android": "153",
+        "edge": "153",
+        "firefox": "148",
+        "firefox_android": "148"
       }
     }
   },
@@ -1873,6 +1908,29 @@ export default {
         "safari": "9",
         "safari_ios": "9"
       }
+    }
+  },
+  "string-substr": {
+    "id": "string-substr",
+    "name": "String substr()",
+    "status": {
+      "baseline": false,
+      "support": {
+        "chrome": "1",
+        "chrome_android": "18",
+        "edge": "12",
+        "firefox": "1",
+        "firefox_android": "4",
+        "safari": "1",
+        "safari_ios": "1"
+      }
+    },
+    "discouraged": {
+      "according_to": [
+        "https://tc39.es/ecma262/multipage/additional-ecmascript-features-for-web-browsers.html#sec-additional-ecmascript-features-for-web-browsers"
+      ],
+      "reason": "TC39 included substr() in Annex B of the ECMAScript specification, which covers JavaScript features with \"one or more undesirable characteristics and in the absence of legacy usage would be removed.\"",
+      "reason_html": "TC39 included <code>substr()</code> in Annex B of the ECMAScript specification, which covers JavaScript features with \"one or more undesirable characteristics and in the absence of legacy usage would be removed.\""
     }
   },
   "string-trim-leftright": {

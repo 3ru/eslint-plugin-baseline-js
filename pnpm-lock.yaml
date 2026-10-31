@@ -58,8 +58,8 @@ importers:
         specifier: ^10.4.1
         version: 10.4.1(eslint@10.14.0(jiti@2.6.1))
       web-features:
-        specifier: 3.40.0
-        version: 3.40.0
+        specifier: 3.44.0
+        version: 3.44.0
       zod:
         specifier: ^4.6.7
         version: 4.6.7
@@ -2290,8 +2290,8 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
 
-  web-features@3.40.0:
-    resolution: {integrity: sha512-3AzfKxVv7hWTRZSubYBVu1LHk62mdGg+vIpVAf6+nNC3pC7g455nKSry5OlwsaSYMzuzL2DxSTwlyb5z0+XZdQ==}
+  web-features@3.44.0:
+    resolution: {integrity: sha512-K/+YJI7uVE/b4G8SU67/F/4j81/ajJ6MfBCZyuQaqyuPlVXF8cd6dLqBznXIWJI9nwnvuY2dapKK08OHzTjYww==}
 
   web-worker@1.5.0:
     resolution: {integrity: sha512-RiMReJrTAiA+mBjGONMnjVDP2u3p9R1vkcGz6gDIrOMT3oGuYwX2WRMYI9ipkphSuE5XKEhydbhNEJh4NY9mlw==}
@@ -4338,7 +4338,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  web-features@3.40.0: {}
+  web-features@3.44.0: {}
 
   web-worker@1.5.0: {}
 
