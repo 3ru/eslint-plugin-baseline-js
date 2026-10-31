@@ -98,6 +98,50 @@ describe("no-function-caller-arguments", () => {
     await expect(run(code, "script")).resolves.toEqual([]);
   });
 
+  it.each([
+    ["declarations", "function f() {}\nwith ({ value: f.caller }) {}", 2, 18, 24],
+    ["Function.prototype", "with ({ value: Function.prototype.caller }) {}", 1, 35, 41],
+    [
+      "qualified Function.prototype",
+      "with ({ value: globalThis.Function.prototype.arguments }) {}",
+      1,
+      46,
+      55,
+    ],
+    ["closures", "function f() {}\nwith ({ value: () => f.arguments }) {}", 2, 24, 33],
+    [
+      "local bindings before an inner with",
+      "with ({ f: { caller: 1 } }) {\n  const f = () => {};\n  with ({ value: f.caller }) {}\n}",
+      3,
+      20,
+      26,
+    ],
+  ])("preserves %s in a with object expression", async (_name, code, line, column, endColumn) => {
+    const messages = await run(code, "script");
+    expect(messages).toHaveLength(1);
+    expect(messages).toMatchObject([
+      {
+        ruleId: "baseline-js/no-function-caller-arguments",
+        messageId: "forbidden",
+        message: "Function.caller/Function.arguments are forbidden.",
+        severity: 2,
+        line,
+        column,
+        endLine: line,
+        endColumn,
+      },
+    ]);
+  });
+
+  it.each([
+    "function f() {} with ({ f: { caller: 1 } }) { (() => f.caller)(); }",
+    "function f() {} with ({ f: { caller: 1 } }) { with ({ value: f.caller }) {} }",
+    "with ({ Function: { prototype: { caller: 1 } } }) { with ({ value: Function.prototype.caller }) {} }",
+    "with ({ globalThis: { Function: { prototype: { arguments: [] } } } }) { with ({ value: () => globalThis.Function.prototype.arguments }) {} }",
+  ])("does not infer functions across an active outer with scope", async (code) => {
+    await expect(run(code, "script")).resolves.toEqual([]);
+  });
+
   it("preserves local and direct functions inside a with scope", async () => {
     const messages = await run(
       "with ({ f: { caller: 1 } }) {\n  const f = () => {};\n  f.caller;\n  (() => {}).arguments;\n}",
