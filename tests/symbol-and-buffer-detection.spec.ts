@@ -178,19 +178,29 @@ describe("well-known Symbol instance members", () => {
     ).toEqual([]);
   });
 
-  it("retains independent domain activation, target and ignore boundaries", async () => {
-    const source = "declare const stream: ReadableStream; stream[Symbol.asyncIterator];";
-    expect(
-      await lintTyped(source, { ...streamOptions, ignoreFeatures: ["async-iterable-streams"] }),
-    ).toEqual([]);
-    expect(await lintTyped(source, { ...streamOptions, available: 2026 })).toEqual([]);
-    expect(
-      await lintTyped(source, {
+  it.each<{ name: string; options: CommonRuleOptions }>([
+    {
+      name: "the feature is ignored",
+      options: { ...streamOptions, ignoreFeatures: ["async-iterable-streams"] },
+    },
+    {
+      name: "the target includes Baseline 2026",
+      options: { ...streamOptions, available: 2026 },
+    },
+    {
+      name: "only JS builtins use type information",
+      options: {
         ...streamOptions,
         includeWebApis: { preset: "safe", only: ["async-iterable-streams"] },
         includeJsBuiltins: { preset: "type-aware" },
-      }),
-    ).toEqual([]);
+      },
+    },
+  ])("does not report Symbol instance members when $name", async ({ options }) => {
+    const source = "declare const stream: ReadableStream; stream[Symbol.asyncIterator];";
+    expect(await lintTyped(source, options)).toEqual([]);
+  });
+
+  it("keeps Symbol instance members typed-only", async () => {
     expect(await lintUntyped("stream[Symbol.asyncIterator];", streamOptions)).toEqual([]);
   });
 });
@@ -259,26 +269,41 @@ describe("buffer maxByteLength options", () => {
     expect(messages.map((message) => message.line)).toEqual([1, 2, 6, 7]);
   });
 
-  it("keeps SharedArrayBuffer typed-only, ignores shadows and honors reporting policy", async () => {
+  it("keeps SharedArrayBuffer options typed-only", async () => {
     const source = "new SharedArrayBuffer(8, { maxByteLength: 16 });";
     expect(await lintUntyped(source, bufferOptions)).toEqual([]);
-    expect(
-      await lintTyped(source, {
-        ...bufferOptions,
-        includeJsBuiltins: { preset: "safe", only: ["resizable-buffers"] },
-        includeWebApis: { preset: "type-aware" },
-      }),
-    ).toEqual([]);
+  });
+
+  it("ignores shadowed SharedArrayBuffer constructors", async () => {
+    const source = "new SharedArrayBuffer(8, { maxByteLength: 16 });";
     expect(
       await lintTyped(
         `class SharedArrayBuffer { constructor(length: number, options: { maxByteLength: number }) {} } ${source}`,
         bufferOptions,
       ),
     ).toEqual([]);
-    expect(await lintTyped(source, { ...bufferOptions, available: 2024 })).toEqual([]);
-    expect(
-      await lintTyped(source, { ...bufferOptions, ignoreFeatures: ["resizable-buffers"] }),
-    ).toEqual([]);
+  });
+
+  it.each<{ name: string; options: CommonRuleOptions }>([
+    {
+      name: "only Web APIs use type information",
+      options: {
+        ...bufferOptions,
+        includeJsBuiltins: { preset: "safe", only: ["resizable-buffers"] },
+        includeWebApis: { preset: "type-aware" },
+      },
+    },
+    {
+      name: "the target includes Baseline 2024",
+      options: { ...bufferOptions, available: 2024 },
+    },
+    {
+      name: "the feature is ignored",
+      options: { ...bufferOptions, ignoreFeatures: ["resizable-buffers"] },
+    },
+  ])("does not report SharedArrayBuffer options when $name", async ({ options }) => {
+    const source = "new SharedArrayBuffer(8, { maxByteLength: 16 });";
+    expect(await lintTyped(source, options)).toEqual([]);
   });
 
   it("preserves Error cause presence when its value is undefined", async () => {
