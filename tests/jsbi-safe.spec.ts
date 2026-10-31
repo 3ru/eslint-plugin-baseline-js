@@ -49,6 +49,15 @@ describe("use-baseline: JS builtins safe arg-based patterns", () => {
             },
           ],
         },
+        {
+          code: "Iterator.from([1, 2]).includes(1); [1, 2].includes(1); 'ab'.includes('a'); const custom = { includes() {} }; custom.includes();",
+          options: [
+            {
+              available: reportingPolicyFor("iterator-includes"),
+              includeJsBuiltins: { preset: "safe", only: ["iterator-includes"] },
+            },
+          ],
+        },
       ],
       invalid: [
         {
@@ -77,6 +86,16 @@ describe("use-baseline: JS builtins safe arg-based patterns", () => {
             { available: reportingPolicyFor("uint8array-base64-hex"), includeJsBuiltins: safe },
           ],
           errors: [{ message: /Feature ID: uint8array-base64-hex\./ }],
+        },
+        {
+          code: "Iterator.zip([[1], [2]]); Iterator.zipKeyed({ a: [1] });",
+          options: [
+            { available: reportingPolicyFor("iterator-zip-zipkeyed"), includeJsBuiltins: safe },
+          ],
+          errors: [
+            { message: /Feature ID: iterator-zip-zipkeyed\./ },
+            { message: /Feature ID: iterator-zip-zipkeyed\./ },
+          ],
         },
         {
           code: "new WeakRef({}); new FinalizationRegistry(()=>{});",
