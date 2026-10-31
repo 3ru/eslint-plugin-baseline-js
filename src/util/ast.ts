@@ -1,5 +1,5 @@
 import type { Rule, Scope } from "eslint";
-import type { CallExpression, NewExpression, Node, ObjectExpression } from "estree";
+import type { CallExpression, NewExpression, Node, ObjectExpression, Property } from "estree";
 
 /** Built-in globals have no definitions; explicit declarations shadow them. */
 export function isGlobalNotShadowed(
@@ -100,17 +100,28 @@ export function objectHasKeyWithValues(
   object: ObjectExpression,
   config: { key: string; values?: string[] },
 ): boolean {
+  const property = finalObjectProperty(object, config.key);
+  if (!property) return false;
+  if (!config.values?.length) return true;
+  return property.value.type === "Literal" && config.values.includes(String(property.value.value));
+}
+
+export function objectHasKnownDefinedKey(object: ObjectExpression, key: string): boolean {
+  const property = finalObjectProperty(object, key);
+  return (
+    property?.kind === "init" &&
+    !property.method &&
+    property.value.type === "Literal" &&
+    !("regex" in property.value)
+  );
+}
+
+function finalObjectProperty(object: ObjectExpression, name: string): Property | undefined {
   for (let index = object.properties.length - 1; index >= 0; index--) {
     const property = object.properties[index];
-    // A later spread or dynamic key may replace any earlier option value.
-    if (property.type !== "Property") return false;
+    if (property.type !== "Property") return;
     const key = staticPropertyName(property.key, property.computed);
-    if (key === null && property.computed && property.key.type !== "Literal") return false;
-    if (key !== config.key) continue;
-    if (!config.values?.length) return true;
-    return (
-      property.value.type === "Literal" && config.values.includes(String(property.value.value))
-    );
+    if (key === null && property.computed && property.key.type !== "Literal") return;
+    if (key === name) return property;
   }
-  return false;
 }

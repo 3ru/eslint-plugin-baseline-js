@@ -3443,7 +3443,7 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "name": "ArrayBuffer",
     "objectArg": {
       "index": 1,
-      "hasKeys": [
+      "knownDefinedKeys": [
         "maxByteLength"
       ]
     },
@@ -3455,9 +3455,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "name": "SharedArrayBuffer",
     "objectArg": {
       "index": 1,
-      "hasKeys": [
-        "maxByteLength",
-        "growable"
+      "knownDefinedKeys": [
+        "maxByteLength"
       ]
     },
     "typedOnly": true,

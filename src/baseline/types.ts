@@ -105,22 +105,21 @@ export interface CallMemberWithArgsDescriptor extends BaseDescriptor {
   typedOnly: true;
   prop: string; // method name on the receiver, e.g. 'getContext', 'includes'
   stringArg?: { index: number; values: string[] };
-  objectArg?: {
-    index: number;
-    hasKeys?: string[];
-    keyValues?: Array<{ key: string; values?: string[] }>;
-  };
+  objectArg?: ObjectArg;
   viaCall?: { prop: string }; // receiver is a call result like obj.getSupportedExtensions()
 }
 
 export interface NewWithOptionsDescriptor extends BaseDescriptor {
   kind: "newWithOptions";
   name: string; // e.g. 'Worker', 'SharedWorker', 'TransformStream'
-  objectArg: {
-    index: number;
-    hasKeys?: string[];
-    keyValues?: Array<{ key: string; values?: string[] }>;
-  };
+  objectArg: ObjectArg;
+}
+
+export interface ObjectArg {
+  index: number;
+  hasKeys?: string[];
+  knownDefinedKeys?: string[];
+  keyValues?: Array<{ key: string; values?: string[] }>;
 }
 
 /** A classifier pattern before its upstream owner and key are attached. */

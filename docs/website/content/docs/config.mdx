@@ -148,6 +148,10 @@ The safe checks include global constructors, static members, and selected constr
 
 Typed checks use members declared in the program's standard libraries, including compiler-selected replacement libraries. A member added only by a user declaration does not establish native API usage.
 
+Typed instance checks recognize well-known Symbol keys such as `stream[Symbol.asyncIterator]`. The key must retain its unique symbol type from the standard library. Custom keys, aliases widened to `symbol`, and custom member overrides do not establish native API usage. The string `'@@iterator'` is not a Symbol key.
+
+Buffer constructor checks require an object literal with a known final `maxByteLength` value. An explicit non-undefined primitive literal qualifies. An unresolved value, getter, or later spread does not. `ArrayBuffer` options work in `safe` mode. `SharedArrayBuffer` options require type information for JavaScript built-in checks. Options variables remain outside these checks.
+
 <details>
 <summary>Advanced options: type overrides and accepted compatibility settings</summary>
 

@@ -130,8 +130,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 2), "utf8");
 
     const code = `
-      // SharedArrayBuffer options (newWithOptions) → resizable-buffers, typed only
-      new SharedArrayBuffer(8, { maxByteLength: 16, growable: true });
+      new SharedArrayBuffer(8, { maxByteLength: 16 });
     `;
     await fs.writeFile(samplePath, code, "utf8");
 

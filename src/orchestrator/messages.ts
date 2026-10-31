@@ -52,8 +52,12 @@ export function descriptorSubject(descriptor: Descriptor): string {
     case "member":
     case "staticMember":
       return `'${descriptor.base}.${descriptor.prop}'`;
-    case "instanceMember":
-      return `The '${descriptor.prop}' member of ${descriptor.iface} instances`;
+    case "instanceMember": {
+      const member = descriptor.prop.startsWith("@@")
+        ? `[Symbol.${descriptor.prop.slice(2)}]`
+        : descriptor.prop;
+      return `The '${member}' member of ${descriptor.iface} instances`;
+    }
     case "callMemberWithArgs":
     case "newWithOptions":
       return callSubject(descriptor);
@@ -73,7 +77,7 @@ function callSubject(descriptor: CallMemberWithArgsDescriptor | NewWithOptionsDe
   if (objectArg) {
     const properties = new Map<string, string>();
 
-    for (const key of objectArg.hasKeys ?? []) {
+    for (const key of [...(objectArg.hasKeys ?? []), ...(objectArg.knownDefinedKeys ?? [])]) {
       properties.set(key, "...");
     }
 

@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
+import descriptors from "../src/baseline/data/descriptors.jsbi";
 
 function readDescriptorsJsbi(): string {
   const p = resolve(process.cwd(), "src/baseline/data/descriptors.jsbi.ts");
@@ -20,12 +21,25 @@ describe("descriptors.jsbi generation (manual JS builtins)", () => {
     );
   });
 
-  it("contains ArrayBuffer resizable option (maxByteLength)", () => {
-    const src = readDescriptorsJsbi();
-    expect(src).toMatch(
-      /(?:"featureId"|featureId):\s*"resizable-buffers"[\s\S]*?(?:"kind"|kind):\s*"newWithOptions"[\s\S]*?(?:"name"|name):\s*"ArrayBuffer"[\s\S]*?(?:"index"|index):\s*1[\s\S]*?(?:"hasKeys"|hasKeys):\s*\[\s*"maxByteLength"\s*\]/,
-    );
-  });
+  it.each(["ArrayBuffer", "SharedArrayBuffer"])(
+    "requires a defined maxByteLength option for %s",
+    (name) => {
+      expect(
+        descriptors.filter(
+          (descriptor) => descriptor.kind === "newWithOptions" && descriptor.name === name,
+        ),
+      ).toEqual([
+        {
+          featureId: "resizable-buffers",
+          kind: "newWithOptions",
+          name,
+          objectArg: { index: 1, knownDefinedKeys: ["maxByteLength"] },
+          ...(name === "SharedArrayBuffer" ? { typedOnly: true } : {}),
+          compatKey: `javascript.builtins.${name}.${name}.maxByteLength_option`,
+        },
+      ]);
+    },
+  );
 
   it("contains Uint8Array base64/hex (static + instance)", () => {
     const src = readDescriptorsJsbi();
