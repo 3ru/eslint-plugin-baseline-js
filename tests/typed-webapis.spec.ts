@@ -1,100 +1,52 @@
 import { promises as fs } from "node:fs";
-import os from "node:os";
 import { join } from "node:path";
-import { ESLint } from "eslint";
+import ts from "typescript";
 import { describe, expect, it } from "vitest";
 import { reportingPolicyFor } from "./utils/policy";
+import { createTypedFixture, lintTypedFixture } from "./utils/typed-fixture";
+
+const declarations =
+  "interface HTMLElement { headingOffset: number; headingReset: boolean; id: string; }";
+const usage =
+  "declare const element: HTMLElement; element.headingOffset; element.headingReset; element.id;";
 
 describe("typed Web API detection", () => {
-  it("reports and ignores heading offset properties", async () => {
-    // web-features: https://github.com/web-platform-dx/web-features/blob/v3.39.0/features/heading-offset.yml
-    // spec: https://html.spec.whatwg.org/multipage/sections.html#heading-levels-&-offsets
-    const parser = (await import("@typescript-eslint/parser")).default;
-    const root = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-heading-offset-"));
-    const srcDir = join(root, "src");
-    const tsconfigPath = join(root, "tsconfig.json");
-    const samplePath = join(srcDir, "sample.ts");
-    await fs.mkdir(srcDir);
-    await fs.writeFile(
-      tsconfigPath,
-      JSON.stringify({
-        compilerOptions: {
-          target: "ES2023",
-          module: "ESNext",
-          moduleResolution: "Bundler",
-          lib: ["ES2023", "DOM"],
-          noEmit: true,
-          strict: true,
-          skipLibCheck: true,
-        },
-        include: ["src/**/*.ts"],
-      }),
-      "utf8",
-    );
-    await fs.writeFile(
-      join(srcDir, "ambient.d.ts"),
-      `
-        declare global {
-          interface HTMLElement {
-            headingOffset: number;
-            headingReset: boolean;
-          }
+  it.each([true, false])(
+    "requires a standard-library member for heading offsets, library = %s",
+    async (library) => {
+      const source = library ? usage : `declare global { ${declarations} }\n${usage}`;
+      const fixture = await createTypedFixture(source, { libReplacement: library });
+      try {
+        const libraryRoot = join(fixture.root, "node_modules/@typescript/lib-dom");
+        if (library) {
+          await fs.mkdir(libraryRoot, { recursive: true });
+          await fs.writeFile(
+            join(libraryRoot, "package.json"),
+            JSON.stringify({ name: "@typescript/lib-dom", version: "1.0.0", types: "index.d.ts" }),
+          );
+          await fs.writeFile(join(libraryRoot, "index.d.ts"), declarations);
         }
-        export {};
-      `,
-      "utf8",
-    );
-    await fs.writeFile(
-      samplePath,
-      `
-        const element = document.createElement("div");
-        element.headingOffset;
-        element.headingReset;
-        element.id;
-      `,
-      "utf8",
-    );
-    const configPath = join(root, "eslint.config.mjs");
-    await fs.writeFile(configPath, "export default [{}]\n", "utf8");
-    const plugin = (await import("../dist/index.mjs")).default;
-
-    async function lint(ignoreFeatures: string[] = []) {
-      const eslint = new ESLint({
-        cwd: root,
-        overrideConfigFile: configPath,
-        overrideConfig: [
-          {
-            files: ["**/*.ts"],
-            languageOptions: {
-              parser,
-              parserOptions: { project: [tsconfigPath], tsconfigRootDir: root },
-            },
-            plugins: { "baseline-js": plugin },
-            rules: {
-              "baseline-js/use-baseline": [
-                "error",
-                {
-                  available: reportingPolicyFor("heading-offset"),
-                  includeWebApis: { preset: "type-aware", only: ["heading-offset"] },
-                  includeJsBuiltins: false,
-                  ignoreFeatures,
-                },
-              ],
-            },
-          },
-        ],
-      });
-      const results = await eslint.lintFiles([samplePath]);
-      return results
-        .flatMap((result) => result.messages)
-        .filter((message) => message.ruleId === "baseline-js/use-baseline");
-    }
-
-    const messages = await lint();
-    expect(messages).toHaveLength(2);
-    expect(
-      messages.every((message) => message.message.includes("Feature ID: heading-offset.")),
-    ).toBe(true);
-    await expect(lint(["heading-offset"])).resolves.toHaveLength(0);
-  }, 15000);
+        const program = ts.createProgram([fixture.samplePath], fixture.compilerOptions);
+        expect(ts.getPreEmitDiagnostics(program)).toEqual([]);
+        if (library) {
+          const source = program.getSourceFile(await fs.realpath(join(libraryRoot, "index.d.ts")));
+          expect(source && program.isSourceFileDefaultLibrary(source)).toBe(true);
+        }
+        const options = {
+          available: reportingPolicyFor("heading-offset"),
+          includeWebApis: { preset: "type-aware" as const, only: ["heading-offset"] },
+        };
+        const messages = await lintTypedFixture(fixture, options);
+        expect(messages.some((message) => message.fatal)).toBe(false);
+        expect(
+          messages.map((message) => message.message.match(/Feature ID: ([\w-]+)\./)?.[1]),
+        ).toEqual(library ? ["heading-offset", "heading-offset"] : []);
+        expect(
+          await lintTypedFixture(fixture, { ...options, ignoreFeatures: ["heading-offset"] }),
+        ).toEqual([]);
+      } finally {
+        await fs.rm(fixture.root, { recursive: true, force: true });
+      }
+    },
+  );
 });

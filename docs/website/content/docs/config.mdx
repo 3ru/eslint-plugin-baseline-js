@@ -144,7 +144,9 @@ type Include = boolean | {
 
 Without type information, `auto` and `type-aware` skip instance-member and other type-dependent checks. They still run the remaining checks and do not throw an error.
 
-The safe checks include global constructors, static members, and selected literal argument patterns. They do not cover every API or usage pattern.
+The safe checks include global constructors, static members, and selected constructor options. Instance method arguments, such as Canvas context options and WebGL extension names, require type information and `auto` or `type-aware` mode. These checks verify the receiver's standard-library member before reporting a literal argument. They do not cover every API or usage pattern.
+
+Typed checks use members declared in the program's standard libraries, including compiler-selected replacement libraries. A member added only by a user declaration does not establish native API usage.
 
 <details>
 <summary>Advanced options: type overrides and accepted compatibility settings</summary>
@@ -321,9 +323,9 @@ These rules are also exported directly. When enabled directly, they report match
 | --- | --- |
 | `baseline-js/no-atomics-pause` | `Atomics.pause` calls and member access. |
 | `baseline-js/no-bigint64array` | `BigInt64Array` and `BigUint64Array` construction, calls, and member access. |
-| `baseline-js/no-function-caller-arguments` | Non-computed `.caller` and `.arguments` access. |
+| `baseline-js/no-function-caller-arguments` | Non-computed `.caller` and `.arguments` access on known function objects. |
 | `baseline-js/no-math-sum-precise` | `Math.sumPrecise` calls and member access. |
 | `baseline-js/no-temporal` | Direct `Temporal` member access and construction. |
 
 The global-based rules check for shadowed globals and support `window` and `globalThis` prefixes. They do not follow aliases.
-`no-function-caller-arguments` does not check receiver types, so it can report those properties on ordinary objects.
+`no-function-caller-arguments` recognizes function expressions, function declarations and function initializers without reassignment, and unshadowed `Function.prototype`. It skips unknown receivers, parameters, imports, aliases, and reassigned bindings.

@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import parser from "@typescript-eslint/parser";
 import { ESLint } from "eslint";
+import ts from "typescript";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import plugin from "../dist/index.mjs";
 import type { CommonRuleOptions } from "../src/config";
@@ -13,6 +14,7 @@ import {
   reportingPolicyFor,
   reportingPolicyForCompat,
 } from "./utils/policy";
+import { createTypedFixture, lintTypedFixture } from "./utils/typed-fixture";
 
 const setCode = [
   "const left = new Set([1, 2]);",
@@ -226,7 +228,7 @@ describe("diagnostic subjects", () => {
       'getContext("2d", { alpha: ... })',
     ],
     [
-      "gl.getSupportedExtensions().includes('EXT_sRGB');",
+      "gl.getSupportedExtensions()?.includes('EXT_sRGB');",
       "ext-srgb",
       'getSupportedExtensions().includes("EXT_sRGB")',
     ],
@@ -236,11 +238,22 @@ describe("diagnostic subjects", () => {
       'getContext("webgl" | "experimental-webgl", { desynchronized: ... })',
     ],
   ])("identifies the call pattern in %s", async (code, id, subject) => {
-    const messages = await lint(code, {
+    const options: CommonRuleOptions = {
       available: reportingPolicyFor(id),
       includeJsBuiltins: false,
-      includeWebApis: { preset: "safe", only: [id] },
-    });
+      includeWebApis: { preset: "type-aware", only: [id] },
+    };
+    const fixture = await createTypedFixture(
+      `declare const canvas: HTMLCanvasElement; declare const gl: WebGLRenderingContext;\n${code}`,
+    );
+    let messages;
+    try {
+      const program = ts.createProgram([fixture.samplePath], fixture.compilerOptions);
+      expect(ts.getPreEmitDiagnostics(program)).toEqual([]);
+      messages = await lintTypedFixture(fixture, options);
+    } finally {
+      await rm(fixture.root, { recursive: true, force: true });
+    }
 
     expect(messages).toHaveLength(1);
     expect(messages[0].message.startsWith(`${subject} `)).toBe(true);

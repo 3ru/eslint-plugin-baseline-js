@@ -56,6 +56,8 @@ const DescriptorSchema = z.discriminatedUnion("kind", [
   z.strictObject({
     ...common,
     kind: z.literal("callMemberWithArgs"),
+    iface: z.string(),
+    typedOnly: z.literal(true),
     prop: z.string(),
     stringArg: z.strictObject({ index: z.number(), values: z.array(z.string()) }).exactOptional(),
     objectArg: ObjectArgSchema.exactOptional(),

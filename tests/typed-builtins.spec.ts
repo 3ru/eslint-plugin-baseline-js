@@ -2,8 +2,10 @@ import { promises as fs } from "node:fs";
 import os from "node:os";
 import { join } from "node:path";
 import { ESLint } from "eslint";
+import ts from "typescript";
 import { describe, expect, it } from "vitest";
 import { reportingPolicyFor } from "./utils/policy";
+import { createTypedFixture, lintTypedFixture } from "./utils/typed-fixture";
 
 async function ensureTsParser(): Promise<unknown | null> {
   try {
@@ -15,130 +17,90 @@ async function ensureTsParser(): Promise<unknown | null> {
 }
 
 describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)", () => {
-  it("reports Intl.Locale and Iterator members only on their typed receivers", async () => {
-    const tsParser = await ensureTsParser();
-    if (!tsParser) {
-      expect(true).toBe(true);
-      return;
-    }
-
-    const tmp = await fs.mkdtemp(join(os.tmpdir(), "baseline-js-typed-builtins-"));
-    const tsconfigPath = join(tmp, "tsconfig.json");
-    const srcDir = join(tmp, "src");
-    await fs.mkdir(srcDir);
-    const samplePath = join(srcDir, "sample.ts");
-    const ambientPath = join(srcDir, "ambient.d.ts");
-
-    const tsconfig = {
-      compilerOptions: {
-        target: "ES2023",
-        module: "ESNext",
-        moduleResolution: "Bundler",
-        lib: ["ES2023", "ESNext", "DOM"],
-        noEmit: true,
-        strict: true,
-        skipLibCheck: true,
-      },
-      include: ["src/**/*.ts"],
-    };
-    await fs.writeFile(tsconfigPath, JSON.stringify(tsconfig, null, 2), "utf8");
-
-    const code = `
-      // Intl.Locale info → getCalendars() maps to intl-locale-info
-      const lc = new Intl.Locale('en-US');
-      const cals = lc.getCalendars();
-      // Iterator helpers → using ambient Iterator type below
-      declare function getIter(): Iterator<number>;
-      const it = getIter();
-      const it2 = it.map(x => x + 1);
-      it.join(',');
+  it("reports standard builtins and skips user-added iterator members", async () => {
+    const fixture = await createTypedFixture(
+      `
+      new Intl.Locale('en-US').getCalendars();
+      Iterator.from([1, 2]).map(x => x + 1);
+      new Uint8Array([1, 2, 3]).toHex();
+      declare global {
+        interface IteratorObject<T, TReturn, TNext> { join(separator?: string): string; }
+      }
       Iterator.from([1, 2]).join(',');
       [1, 2].values().join(',');
-      // Other join methods must not be mistaken for Iterator.prototype.join.
       [1, 2].join(',');
       const custom = { join: (separator: string) => separator };
       custom.join(',');
-      // Uint8Array instance toHex → uint8array-base64-hex
-      const u = new Uint8Array([1,2,3]);
-      const hex = u.toHex();
-    `;
-    await fs.writeFile(samplePath, code, "utf8");
-
-    const ambient = `
-      declare global {
-        namespace Intl {
-          interface Locale {
-            getCalendars(): string[];
-            getCollations(): string[];
-            getHourCycles(): string[];
-            getNumberingSystems(): string[];
-            getTextInfo(): { direction: string };
-            getTimeZones(): string[];
-            getWeekInfo(): { firstDay: number };
-          }
-        }
-        interface Iterator<T, TReturn = any, TNext = any> {
-          map<U>(fn: (v: T) => U): Iterator<U, TReturn, TNext>;
-          join(separator?: string): string;
-        }
-        interface Uint8Array {
-          toHex(): string;
-        }
-      }
-      export {};
-    `;
-    await fs.writeFile(ambientPath, ambient, "utf8");
-
-    const plugin = (await import("../dist/index.mjs")).default;
-
-    // ESLint v9 requires a config file path when using overrideConfig arrays.
-    const flatConfigPath = join(tmp, "eslint.config.mjs");
-    await fs.writeFile(flatConfigPath, "export default [{}]\n", "utf8");
-
-    const eslint = new ESLint({
-      cwd: tmp,
-      overrideConfigFile: flatConfigPath,
-      overrideConfig: [
-        {
-          files: ["**/*.ts"],
-          languageOptions: {
-            parser: tsParser,
-            parserOptions: { project: [tsconfigPath], tsconfigRootDir: tmp },
-          },
-          plugins: { "baseline-js": plugin },
-          rules: {
-            "baseline-js/use-baseline": [
-              "error",
-              {
-                available: reportingPolicyFor(
-                  "intl-locale-info",
-                  "iterator-methods",
-                  "iterator-join",
-                  "uint8array-base64-hex",
-                ),
-                includeJsBuiltins: { preset: "type-aware" },
-              },
-            ],
-          },
-        },
-      ],
-    });
-
-    const results = await eslint.lintFiles([samplePath]);
-    const msgs = results
-      .flatMap((r) => r.messages)
-      .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"))
-      .map((m) => m.message);
-    for (const id of ["intl-locale-info", "iterator-methods", "uint8array-base64-hex"]) {
-      expect(
-        msgs.some((m) => m.includes(`Feature ID: ${id}.`)),
-        id,
-      ).toBe(true);
-    }
-    expect(msgs.filter((message) => message.includes("Feature ID: iterator-join."))).toHaveLength(
-      3,
+    `,
+      { target: "ESNext" },
     );
-  }, 15000);
+    try {
+      const program = ts.createProgram([fixture.samplePath], fixture.compilerOptions);
+      expect(ts.getPreEmitDiagnostics(program)).toEqual([]);
+      const messages = await lintTypedFixture(fixture, {
+        available: reportingPolicyFor(
+          "intl-locale-info",
+          "iterator-methods",
+          "iterator-join",
+          "uint8array-base64-hex",
+        ),
+        includeJsBuiltins: {
+          preset: "type-aware",
+          only: ["intl-locale-info", "iterator-methods", "iterator-join", "uint8array-base64-hex"],
+        },
+      });
+      expect(messages.some((message) => message.fatal)).toBe(false);
+      expect(
+        messages.map((message) => [
+          message.line,
+          message.message.match(/Feature ID: ([\w-]+)\./)?.[1],
+        ]),
+      ).toEqual([
+        [2, "intl-locale-info"],
+        [3, "iterator-methods"],
+        [3, "iterator-methods"],
+        [4, "uint8array-base64-hex"],
+        [8, "iterator-methods"],
+      ]);
+    } finally {
+      await fs.rm(fixture.root, { recursive: true, force: true });
+    }
+  });
+
+  it("detects iterator members supplied by a compiler-selected replacement library", async () => {
+    const fixture = await createTypedFixture(
+      "declare const iterator: Iterator<number>; iterator.join(',');",
+      {
+        target: "ESNext",
+        lib: ["ES2023", "ESNext"],
+        libReplacement: true,
+      },
+    );
+    try {
+      const libraryRoot = join(fixture.root, "node_modules/@typescript/lib-esnext");
+      await fs.mkdir(libraryRoot, { recursive: true });
+      await fs.writeFile(
+        join(libraryRoot, "package.json"),
+        JSON.stringify({ name: "@typescript/lib-esnext", version: "1.0.0", types: "index.d.ts" }),
+      );
+      await fs.writeFile(
+        join(libraryRoot, "index.d.ts"),
+        "interface Iterator<T, TReturn = any, TNext = any> { join(separator?: string): string; }",
+      );
+      const program = ts.createProgram([fixture.samplePath], fixture.compilerOptions);
+      expect(ts.getPreEmitDiagnostics(program)).toEqual([]);
+      const library = program.getSourceFile(await fs.realpath(join(libraryRoot, "index.d.ts")));
+      expect(library && program.isSourceFileDefaultLibrary(library)).toBe(true);
+      const messages = await lintTypedFixture(fixture, {
+        available: reportingPolicyFor("iterator-join"),
+        includeJsBuiltins: { preset: "type-aware", only: ["iterator-join"] },
+      });
+      expect(messages).toHaveLength(1);
+      expect(messages[0].message).toContain("Feature ID: iterator-join.");
+    } finally {
+      await fs.rm(fixture.root, { recursive: true, force: true });
+    }
+  });
 
   it("reports resizable-buffers (SharedArrayBuffer options) only when typed is available", async () => {
     const tsParser = await ensureTsParser();

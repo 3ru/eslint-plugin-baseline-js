@@ -12,7 +12,7 @@ import {
   addNewMemberDetector,
   addStaticMemberDetector,
 } from "./detectors/safe-core";
-import { addTypedInstanceMemberDetector } from "./detectors/typed-instance-member";
+import { createTypedMemberResolver } from "./typed-members";
 
 export interface BuildOptions {
   descriptors: ReadonlyArray<Descriptor>;
@@ -37,7 +37,10 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
     return node.type === "Identifier" ? node.name : getStaticMemberName(node);
   }
 
-  const useTyped = !!opt.typed && !!getTypedParserServices(context);
+  const services = opt.typed ? getTypedParserServices(context) : undefined;
+  const typedMembers = services ? createTypedMemberResolver(services) : undefined;
+  const enabledDescriptors = new Set(opt.descriptors);
+  const typedProperties = new Set<string>();
 
   for (const d of opt.descriptors) {
     function onMatch(node: Node, reference: Node) {
@@ -64,19 +67,16 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
         addHandler(members, d.prop, addStaticMemberDetector(context, d, onMatch).MemberExpression);
         break;
       case "instanceMember":
-        if (useTyped)
-          addHandler(
-            members,
-            d.prop,
-            addTypedInstanceMemberDetector(context, d, onMatch).MemberExpression,
-          );
+        if (typedMembers) typedProperties.add(d.prop);
         break;
       case "callMemberWithArgs":
-        addHandler(
-          calls,
-          d.prop,
-          addCallMemberWithArgsDetector(context, d, onMatch).CallExpression,
-        );
+        if (typedMembers) {
+          addHandler(
+            calls,
+            d.prop,
+            addCallMemberWithArgsDetector(typedMembers, d, onMatch).CallExpression,
+          );
+        }
         break;
       case "newWithOptions":
         addHandler(
@@ -105,6 +105,13 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
       const name = getStaticMemberName(node);
       if (name === null) return;
       for (const handler of members.get(name) ?? []) handler(node);
+      if (typedProperties.has(name)) {
+        for (const descriptor of typedMembers?.selectInstanceDescriptors(node) ?? []) {
+          if (enabledDescriptors.has(descriptor)) {
+            opt.onMatch({ node: node.property, reference: node, descriptor });
+          }
+        }
+      }
     },
   };
 }

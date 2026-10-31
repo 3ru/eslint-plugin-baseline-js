@@ -68,10 +68,6 @@ export function isGlobalBaseNotShadowed(
   return root !== null && isGlobalNotShadowed(context, root, reference);
 }
 
-export function isMemberWithProperty(node: Node, name: string): boolean {
-  return getStaticMemberName(node) === name;
-}
-
 export function getMemberPropertyNode(node: Node): Node | null {
   const member = stripChain(node);
   return member.type === "MemberExpression" ? member.property : null;
@@ -117,9 +113,4 @@ export function objectHasKeyWithValues(
     );
   }
   return false;
-}
-
-export function isCallOfMember(node: Node, property: string): boolean {
-  const call = stripChain(node);
-  return call.type === "CallExpression" && getStaticMemberName(call.callee) === property;
 }

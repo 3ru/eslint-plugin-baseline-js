@@ -119,39 +119,13 @@ function renderObject(
   return `{ ${properties.join(", ")} }`;
 }
 
-function renderArgs(d: Extract<BenchDescriptor, { kind: "callMemberWithArgs" }>): string | null {
-  const length = Math.max((d.stringArg?.index ?? -1) + 1, (d.objectArg?.index ?? -1) + 1, 1);
-  const args = Array.from({ length }, () => "0");
-
-  if (d.stringArg) {
-    const value = d.stringArg.values[0];
-
-    if (value === undefined) return null;
-    args[d.stringArg.index] = JSON.stringify(value);
-  }
-
-  if (d.objectArg) {
-    const object = renderObject(d.objectArg);
-
-    if (object === null) return null;
-    args[d.objectArg.index] = object;
-  }
-
-  return args.join(", ");
-}
-
 function untypedCandidate(d: BenchDescriptor): Candidate | null {
-  const of = (
-    kind: UntypedKind,
-    code: string,
-    globals: string[],
-    needsLocal = false,
-  ): Candidate => ({
+  const of = (kind: UntypedKind, code: string, globals: string[]): Candidate => ({
     kind,
     featureId: d.featureId,
     code,
     globals,
-    needsLocal,
+    needsLocal: false,
   });
 
   switch (d.kind) {
@@ -167,15 +141,6 @@ function untypedCandidate(d: BenchDescriptor): Candidate | null {
       return of(d.kind, `${d.base}.${d.prop}(0);`, [d.base]);
     case "newMember":
       return of(d.kind, `new ${d.base}.${d.prop}(0);`, [d.base]);
-    case "callMemberWithArgs": {
-      const args = renderArgs(d);
-
-      if (args === null) return null;
-      const receiver = d.viaCall?.prop === undefined ? "x" : `x.${d.viaCall.prop}()`;
-
-      return of(d.kind, `${receiver}.${d.prop}(${args});`, [], true);
-    }
-
     case "newWithOptions": {
       const parts = Array.from({ length: d.objectArg.index + 1 }, () => "0");
       const object = renderObject(d.objectArg);
@@ -187,6 +152,7 @@ function untypedCandidate(d: BenchDescriptor): Candidate | null {
     }
 
     case "instanceMember":
+    case "callMemberWithArgs":
       return null;
     default:
       throw new Error(`unsupported descriptor ${JSON.stringify(d satisfies never)}`);

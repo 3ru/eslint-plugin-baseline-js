@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { features as webFeatures } from "web-features";
 import { checkDescriptors } from "../scripts/qa/check-descriptor-compat.mjs";
+import apiDescriptors from "../src/baseline/data/descriptors.api";
 
 const urlParse = {
   featureId: "url",
@@ -10,6 +11,27 @@ const urlParse = {
 };
 
 describe("descriptor compatibility validation", () => {
+  it("requires the declared owner and type services for argument member patterns", () => {
+    const patterns = apiDescriptors.filter(
+      (descriptor) => descriptor.kind === "callMemberWithArgs",
+    );
+    expect(patterns.length).toBeGreaterThan(0);
+    expect(checkDescriptors(patterns, webFeatures, "api.")).toEqual([]);
+    for (const pattern of patterns) {
+      for (const mutation of [
+        { ...pattern, iface: "CustomReceiver" },
+        { ...pattern, iface: undefined },
+        { ...pattern, typedOnly: false },
+        { ...pattern, typedOnly: undefined },
+      ]) {
+        expect(
+          checkDescriptors([mutation], webFeatures, "api."),
+          JSON.stringify(mutation),
+        ).toHaveLength(1);
+      }
+    }
+  });
+
   it("rejects an owned key that describes the wrong API", () => {
     const descriptor = { ...urlParse, compatKey: "api.URL" };
     expect(checkDescriptors([descriptor], webFeatures, "api.")).toEqual([

@@ -55571,6 +55571,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "canvas-2d-alpha",
     "kind": "callMemberWithArgs",
+    "iface": "HTMLCanvasElement",
+    "typedOnly": true,
     "prop": "getContext",
     "stringArg": {
       "index": 0,
@@ -55589,6 +55591,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "canvas-2d-desynchronized",
     "kind": "callMemberWithArgs",
+    "iface": "HTMLCanvasElement",
+    "typedOnly": true,
     "prop": "getContext",
     "stringArg": {
       "index": 0,
@@ -55607,6 +55611,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "canvas-2d-willreadfrequently",
     "kind": "callMemberWithArgs",
+    "iface": "HTMLCanvasElement",
+    "typedOnly": true,
     "prop": "getContext",
     "stringArg": {
       "index": 0,
@@ -55625,6 +55631,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "canvas-2d-color-management",
     "kind": "callMemberWithArgs",
+    "iface": "HTMLCanvasElement",
+    "typedOnly": true,
     "prop": "getContext",
     "stringArg": {
       "index": 0,
@@ -55649,6 +55657,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "webgl-desynchronized",
     "kind": "callMemberWithArgs",
+    "iface": "HTMLCanvasElement",
+    "typedOnly": true,
     "prop": "getContext",
     "stringArg": {
       "index": 0,
@@ -55668,6 +55678,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "webgl2-desynchronized",
     "kind": "callMemberWithArgs",
+    "iface": "HTMLCanvasElement",
+    "typedOnly": true,
     "prop": "getContext",
     "stringArg": {
       "index": 0,
@@ -55732,6 +55744,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "ext-srgb",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55744,6 +55758,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   {
     "featureId": "ext-srgb",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55760,6 +55776,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "angle-instanced-arrays",
     "compatKey": "api.ANGLE_instanced_arrays",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55772,6 +55790,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "angle-instanced-arrays",
     "compatKey": "api.ANGLE_instanced_arrays",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55787,6 +55807,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-blend-minmax",
     "compatKey": "api.EXT_blend_minmax",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55799,6 +55821,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-blend-minmax",
     "compatKey": "api.EXT_blend_minmax",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55814,6 +55838,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-color-buffer-float",
     "compatKey": "api.EXT_color_buffer_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55826,6 +55852,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-color-buffer-float",
     "compatKey": "api.EXT_color_buffer_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55841,6 +55869,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-color-buffer-half-float",
     "compatKey": "api.EXT_color_buffer_half_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55853,6 +55883,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-color-buffer-half-float",
     "compatKey": "api.EXT_color_buffer_half_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55868,6 +55900,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-disjoint-timer-query",
     "compatKey": "api.EXT_disjoint_timer_query",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55880,6 +55914,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-disjoint-timer-query",
     "compatKey": "api.EXT_disjoint_timer_query",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55895,6 +55931,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-float-blend",
     "compatKey": "api.EXT_float_blend",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55907,6 +55945,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-float-blend",
     "compatKey": "api.EXT_float_blend",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55922,6 +55962,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-frag-depth",
     "compatKey": "api.EXT_frag_depth",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55934,6 +55976,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-frag-depth",
     "compatKey": "api.EXT_frag_depth",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55949,6 +55993,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-shader-texture-lod",
     "compatKey": "api.EXT_shader_texture_lod",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55961,6 +56007,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-shader-texture-lod",
     "compatKey": "api.EXT_shader_texture_lod",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -55976,6 +56024,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-texture-compression-bptc",
     "compatKey": "api.EXT_texture_compression_bptc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -55988,6 +56038,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-texture-compression-bptc",
     "compatKey": "api.EXT_texture_compression_bptc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56003,6 +56055,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-texture-compression-rgtc",
     "compatKey": "api.EXT_texture_compression_rgtc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56015,6 +56069,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-texture-compression-rgtc",
     "compatKey": "api.EXT_texture_compression_rgtc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56030,6 +56086,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-texture-filter-anisotropic",
     "compatKey": "api.EXT_texture_filter_anisotropic",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56042,6 +56100,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-texture-filter-anisotropic",
     "compatKey": "api.EXT_texture_filter_anisotropic",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56057,6 +56117,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-texture-norm16",
     "compatKey": "api.EXT_texture_norm16",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56069,6 +56131,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ext-texture-norm16",
     "compatKey": "api.EXT_texture_norm16",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56084,6 +56148,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "khr-parallel-shader-compile",
     "compatKey": "api.KHR_parallel_shader_compile",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56096,6 +56162,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "khr-parallel-shader-compile",
     "compatKey": "api.KHR_parallel_shader_compile",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56111,6 +56179,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-element-index-uint",
     "compatKey": "api.OES_element_index_uint",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56123,6 +56193,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-element-index-uint",
     "compatKey": "api.OES_element_index_uint",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56138,6 +56210,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-fbo-render-mipmap",
     "compatKey": "api.OES_fbo_render_mipmap",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56150,6 +56224,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-fbo-render-mipmap",
     "compatKey": "api.OES_fbo_render_mipmap",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56165,6 +56241,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-standard-derivatives",
     "compatKey": "api.OES_standard_derivatives",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56177,6 +56255,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-standard-derivatives",
     "compatKey": "api.OES_standard_derivatives",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56192,6 +56272,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-texture-float",
     "compatKey": "api.OES_texture_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56204,6 +56286,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-texture-float",
     "compatKey": "api.OES_texture_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56219,6 +56303,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-texture-float-linear",
     "compatKey": "api.OES_texture_float_linear",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56231,6 +56317,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-texture-float-linear",
     "compatKey": "api.OES_texture_float_linear",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56246,6 +56334,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-texture-half-float",
     "compatKey": "api.OES_texture_half_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56258,6 +56348,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-texture-half-float",
     "compatKey": "api.OES_texture_half_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56273,6 +56365,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-texture-half-float-linear",
     "compatKey": "api.OES_texture_half_float_linear",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56285,6 +56379,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-texture-half-float-linear",
     "compatKey": "api.OES_texture_half_float_linear",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56300,6 +56396,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-vertex-array-object",
     "compatKey": "api.OES_vertex_array_object",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56312,6 +56410,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "oes-vertex-array-object",
     "compatKey": "api.OES_vertex_array_object",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56327,6 +56427,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ovr-multiview2",
     "compatKey": "api.OVR_multiview2",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56339,6 +56441,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "ovr-multiview2",
     "compatKey": "api.OVR_multiview2",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56354,6 +56458,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-color-buffer-float",
     "compatKey": "api.WEBGL_color_buffer_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56366,6 +56472,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-color-buffer-float",
     "compatKey": "api.WEBGL_color_buffer_float",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56381,6 +56489,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-astc",
     "compatKey": "api.WEBGL_compressed_texture_astc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56393,6 +56503,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-astc",
     "compatKey": "api.WEBGL_compressed_texture_astc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56408,6 +56520,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-etc",
     "compatKey": "api.WEBGL_compressed_texture_etc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56420,6 +56534,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-etc",
     "compatKey": "api.WEBGL_compressed_texture_etc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56435,6 +56551,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-etc1",
     "compatKey": "api.WEBGL_compressed_texture_etc1",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56447,6 +56565,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-etc1",
     "compatKey": "api.WEBGL_compressed_texture_etc1",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56462,6 +56582,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-pvrtc",
     "compatKey": "api.WEBGL_compressed_texture_pvrtc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56474,6 +56596,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-pvrtc",
     "compatKey": "api.WEBGL_compressed_texture_pvrtc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56489,6 +56613,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-s3tc",
     "compatKey": "api.WEBGL_compressed_texture_s3tc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56501,6 +56627,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-s3tc",
     "compatKey": "api.WEBGL_compressed_texture_s3tc",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56516,6 +56644,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-s3tc-srgb",
     "compatKey": "api.WEBGL_compressed_texture_s3tc_srgb",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56528,6 +56658,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-compressed-texture-s3tc-srgb",
     "compatKey": "api.WEBGL_compressed_texture_s3tc_srgb",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56543,6 +56675,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-debug-renderer-info",
     "compatKey": "api.WEBGL_debug_renderer_info",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56555,6 +56689,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-debug-renderer-info",
     "compatKey": "api.WEBGL_debug_renderer_info",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56570,6 +56706,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-debug-shaders",
     "compatKey": "api.WEBGL_debug_shaders",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56582,6 +56720,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-debug-shaders",
     "compatKey": "api.WEBGL_debug_shaders",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56597,6 +56737,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-depth-texture",
     "compatKey": "api.WEBGL_depth_texture",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56609,6 +56751,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-depth-texture",
     "compatKey": "api.WEBGL_depth_texture",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56624,6 +56768,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-draw-buffers",
     "compatKey": "api.WEBGL_draw_buffers",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56636,6 +56782,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-draw-buffers",
     "compatKey": "api.WEBGL_draw_buffers",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56651,6 +56799,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-lose-context",
     "compatKey": "api.WEBGL_lose_context",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56663,6 +56813,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-lose-context",
     "compatKey": "api.WEBGL_lose_context",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56678,6 +56830,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-multi-draw",
     "compatKey": "api.WEBGL_multi_draw",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56690,6 +56844,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-multi-draw",
     "compatKey": "api.WEBGL_multi_draw",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,
@@ -56705,6 +56861,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-oes-draw-buffers-indexed",
     "compatKey": "api.OES_draw_buffers_indexed",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "getExtension",
     "stringArg": {
       "index": 0,
@@ -56717,6 +56875,8 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "featureId": "webgl-oes-draw-buffers-indexed",
     "compatKey": "api.OES_draw_buffers_indexed",
     "kind": "callMemberWithArgs",
+    "iface": "WebGLRenderingContextBase",
+    "typedOnly": true,
     "prop": "includes",
     "stringArg": {
       "index": 0,

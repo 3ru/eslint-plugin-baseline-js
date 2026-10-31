@@ -10,12 +10,6 @@ import { manualApi, manualJsbi } from "./manual-descriptors.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-/**
- * Heuristics to convert MDN BCD compat_features entries to Descriptor DSL.
- * Instance-member patterns require type information; other patterns can run
- * in the safe preset.
- */
-
 /** @type {import('../../src/baseline/types').GeneratedDescriptor[]} */
 const apiDescs = [];
 /** @type {import('../../src/baseline/types').GeneratedDescriptor[]} */
@@ -76,6 +70,8 @@ for (const [id, f] of Object.entries(wfFeatures)) {
     featureId: id,
     compatKey: `api.${token}`,
     kind: "callMemberWithArgs",
+    iface: "WebGLRenderingContextBase",
+    typedOnly: true,
     prop: "getExtension",
     stringArg: { index: 0, values: [token] },
   });
@@ -83,6 +79,8 @@ for (const [id, f] of Object.entries(wfFeatures)) {
     featureId: id,
     compatKey: `api.${token}`,
     kind: "callMemberWithArgs",
+    iface: "WebGLRenderingContextBase",
+    typedOnly: true,
     prop: "includes",
     stringArg: { index: 0, values: [token] },
     viaCall: { prop: "getSupportedExtensions" },
