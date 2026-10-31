@@ -103,9 +103,10 @@ export function buildListeners(context: Rule.RuleContext, opt: BuildOptions): Ru
     },
     MemberExpression(node) {
       const name = getStaticMemberName(node);
-      if (name === null) return;
-      for (const handler of members.get(name) ?? []) handler(node);
-      if (typedProperties.has(name)) {
+      if (name !== null) {
+        for (const handler of members.get(name) ?? []) handler(node);
+      }
+      if (name === null ? node.computed && typedProperties.size > 0 : typedProperties.has(name)) {
         for (const descriptor of typedMembers?.selectInstanceDescriptors(node) ?? []) {
           if (enabledDescriptors.has(descriptor)) {
             opt.onMatch({ node: node.property, reference: node, descriptor });

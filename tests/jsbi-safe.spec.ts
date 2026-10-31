@@ -37,7 +37,7 @@ describe("use-baseline: JS builtins safe arg-based patterns", () => {
           options: [resizableBuffers],
         },
         {
-          code: "new SharedArrayBuffer(8, { maxByteLength: 16, growable: true });",
+          code: "new SharedArrayBuffer(8, { maxByteLength: 16 });",
           options: [resizableBuffers],
         },
         {

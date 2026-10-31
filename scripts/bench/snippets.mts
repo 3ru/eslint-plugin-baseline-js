@@ -107,7 +107,9 @@ function eligible(descriptors: readonly BenchDescriptor[]): BenchDescriptor[] {
 function renderObject(
   objectArg: NonNullable<Extract<BenchDescriptor, { kind: "newWithOptions" }>["objectArg"]>,
 ): string | null {
-  const properties = (objectArg.hasKeys ?? []).map((key) => `${JSON.stringify(key)}: 0`);
+  const properties = [...(objectArg.hasKeys ?? []), ...(objectArg.knownDefinedKeys ?? [])].map(
+    (key) => `${JSON.stringify(key)}: 0`,
+  );
 
   for (const { key, values } of objectArg.keyValues ?? []) {
     const value = values?.[0];

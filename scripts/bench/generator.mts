@@ -541,6 +541,8 @@ function buildPluginTables(profile: Profile): PluginTables {
 
     for (const key of d.objectArg?.hasKeys ?? []) argumentStrings.add(key);
 
+    for (const key of d.objectArg?.knownDefinedKeys ?? []) argumentStrings.add(key);
+
     for (const { key } of d.objectArg?.keyValues ?? []) argumentStrings.add(key);
   }
 

@@ -23,6 +23,10 @@ export interface TypedMemberResolver {
   provesOwner(member: MemberExpression, iface: string): boolean;
 }
 
+type MemberKey =
+  | { kind: "string"; prop: string }
+  | { kind: "symbol"; prop: string; escapedName: ts.__String };
+
 export function createTypedMemberResolver(services: TypedParserServices): TypedMemberResolver {
   const { program, esTreeNodeToTSNodeMap } = services;
   const checker = program.getTypeChecker();
@@ -31,6 +35,29 @@ export function createTypedMemberResolver(services: TypedParserServices): TypedM
     return !!symbol
       .getDeclarations()
       ?.some((declaration) => program.isSourceFileDefaultLibrary(declaration.getSourceFile()));
+  }
+
+  function memberKey(member: MemberExpression): MemberKey | undefined {
+    const prop = getStaticMemberName(member);
+    if (prop !== null) {
+      return prop.startsWith("@@") ? undefined : { kind: "string", prop };
+    }
+    if (!member.computed) return;
+    const node = esTreeNodeToTSNodeMap.get(member.property);
+    if (!node) return;
+    const type = checker.getTypeAtLocation(node);
+    if (!isUniqueSymbolType(type)) return;
+    const symbol = type.symbol;
+    const isWellKnown = symbol
+      .getDeclarations()
+      ?.some(
+        (declaration) =>
+          program.isSourceFileDefaultLibrary(declaration.getSourceFile()) &&
+          checker.getTypeAtLocation(declaration.parent).getSymbol()?.getName() ===
+            "SymbolConstructor",
+      );
+    if (!isWellKnown) return;
+    return { kind: "symbol", prop: `@@${symbol.getName()}`, escapedName: type.escapedName };
   }
 
   function receiverBranches(member: MemberExpression): readonly ts.Type[] {
@@ -47,15 +74,20 @@ export function createTypedMemberResolver(services: TypedParserServices): TypedM
     return type.isUnion() ? type.types : [type];
   }
 
-  function hasLibraryMember(type: ts.Type, prop: string): boolean {
-    const symbol = checker.getPropertyOfType(type, prop);
+  function hasLibraryMember(type: ts.Type, key: MemberKey): boolean {
+    const symbol =
+      key.kind === "string"
+        ? checker.getPropertyOfType(type, key.prop)
+        : checker
+            .getPropertiesOfType(type)
+            .find((symbol) => symbol.escapedName === key.escapedName);
     if (!symbol) return false;
     const roots = checker.getRootSymbols(symbol);
     return roots.length === 1 && roots.every(isLibrarySymbol);
   }
 
-  function* ownerLevels(type: ts.Type, prop: string): Generator<ReadonlyMap<string, ts.Type>> {
-    if (!hasLibraryMember(type, prop)) return;
+  function* ownerLevels(type: ts.Type, key: MemberKey): Generator<ReadonlyMap<string, ts.Type>> {
+    if (!hasLibraryMember(type, key)) return;
     const seen = new Set<ts.Type>();
     let level = [type];
     while (level.length) {
@@ -84,12 +116,13 @@ export function createTypedMemberResolver(services: TypedParserServices): TypedM
 
   return {
     selectInstanceDescriptors(member) {
-      const prop = getStaticMemberName(member);
-      const candidates = prop === null ? undefined : instanceDescriptors.get(prop);
-      if (!candidates || prop === null) return [];
+      const key = memberKey(member);
+      if (!key) return [];
+      const candidates = instanceDescriptors.get(key.prop);
+      if (!candidates) return [];
       const selected = new Set<InstanceMemberDescriptor>();
       for (const branch of receiverBranches(member)) {
-        for (const owners of ownerLevels(branch, prop)) {
+        for (const owners of ownerLevels(branch, key)) {
           const matches = [...owners.keys()].filter((owner) => candidates.has(owner));
           if (!matches.length) continue;
           if (matches.length === 1) {
@@ -101,15 +134,15 @@ export function createTypedMemberResolver(services: TypedParserServices): TypedM
       return [...selected];
     },
     provesOwner(member, iface) {
-      const prop = getStaticMemberName(member);
-      if (prop === null) return false;
+      const key = memberKey(member);
+      if (!key) return false;
       const branches = receiverBranches(member);
       return (
         branches.length > 0 &&
         branches.every((branch) => {
-          for (const owners of ownerLevels(branch, prop)) {
+          for (const owners of ownerLevels(branch, key)) {
             const owner = owners.get(iface);
-            if (owner && hasLibraryMember(owner, prop)) return true;
+            if (owner && hasLibraryMember(owner, key)) return true;
           }
           return false;
         })
@@ -120,4 +153,8 @@ export function createTypedMemberResolver(services: TypedParserServices): TypedM
 
 function isTypeReference(type: ts.Type): type is ts.TypeReference {
   return "target" in type;
+}
+
+function isUniqueSymbolType(type: ts.Type): type is ts.UniqueESSymbolType {
+  return "escapedName" in type;
 }
