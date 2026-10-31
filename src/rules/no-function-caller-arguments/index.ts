@@ -1,12 +1,6 @@
-import type { Rule } from "eslint";
-
-// TODO(improve-precision)
-// - Narrow to function objects only using scope/defs or type info (TS-aware).
-// - Avoid false positives on arbitrary `.caller`/`.arguments` on non-function objects.
-// - Consider ReferenceTracker to detect Function.prototype aliases.
-
-// NOTE: Currently, this rule reports any `.caller`/`.arguments` member access;
-//       type-aware narrowing is planned and not implemented yet.
+import type { Rule, Scope } from "eslint";
+import type { Node } from "estree";
+import { getStaticMemberName, isGlobalBaseNotShadowed, stripChain } from "../../util/ast";
 
 const rule: Rule.RuleModule = {
   meta: {
@@ -19,19 +13,55 @@ const rule: Rule.RuleModule = {
     schema: [],
   },
   create(context) {
-    function report(node: unknown) {
-      context.report({ node: node as Rule.Node, messageId: "forbidden" });
+    function isFunctionObject(node: Node): boolean {
+      const receiver = stripChain(node);
+      switch (receiver.type) {
+        case "FunctionExpression":
+        case "ArrowFunctionExpression":
+          return true;
+        case "MemberExpression":
+          return (
+            getStaticMemberName(receiver) === "prototype" &&
+            isGlobalBaseNotShadowed(context, receiver.object, "Function", receiver)
+          );
+        case "Identifier":
+          break;
+        default:
+          return false;
+      }
+
+      let scope: Scope.Scope | null = context.sourceCode.getScope(receiver);
+      while (scope) {
+        const variable = scope.set.get(receiver.name);
+        if (variable) {
+          if (
+            variable.defs.length !== 1 ||
+            variable.references.some((reference) => reference.isWrite() && !reference.init)
+          ) {
+            return false;
+          }
+          const definition = variable.defs[0];
+          if (definition.type === "FunctionName") return true;
+          if (definition.type !== "Variable" || definition.node.id.type !== "Identifier") {
+            return false;
+          }
+          const initializer = definition.node.init;
+          return (
+            initializer?.type === "FunctionExpression" ||
+            initializer?.type === "ArrowFunctionExpression"
+          );
+        }
+        scope = scope.upper;
+      }
+      return false;
     }
     return {
-      MemberExpression(node: unknown) {
-        const m = node as Record<string, unknown>;
-        const prop = m.property as Record<string, unknown> | undefined;
-        if (!prop || m.computed) return;
-        if (prop.type !== "Identifier") return;
-        const pname = prop.name as string | undefined;
-        if (pname !== "caller" && pname !== "arguments") return;
-        // Heuristic: report any `.caller`/`.arguments` access; refine with type info in future
-        report(prop as unknown);
+      MemberExpression(node) {
+        if (node.computed || node.property.type !== "Identifier") return;
+        const name = node.property.name;
+        if (name !== "caller" && name !== "arguments") return;
+        if (!isFunctionObject(node.object)) return;
+        context.report({ node: node.property, messageId: "forbidden" });
       },
     };
   },
