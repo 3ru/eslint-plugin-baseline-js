@@ -97,12 +97,15 @@ export function createBenchESLint({
 }
 
 /**
- * Every use-baseline message ends with "(feature-id)." (src/orchestrator/messages.ts).
  * @param {string} message
  * @returns {string | null}
  */
 export function featureIdFromMessage(message) {
-  return /\(([a-z0-9-]+)\)\.$/.exec(message)?.[1] ?? null;
+  return (
+    /\. Feature ID: ([a-z0-9-]+)\.$/.exec(message)?.[1] ??
+    /\(([a-z0-9-]+)\)\.$/.exec(message)?.[1] ??
+    null
+  );
 }
 
 /**

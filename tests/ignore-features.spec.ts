@@ -8,7 +8,7 @@ describe("ignoreFeatures across descriptor-based detection", () => {
     const code = "const dpr = window.devicePixelRatio;";
     const policy = reportingPolicyFor("devicepixelratio");
     const msgs = await lintWithBaseline(code, policy, {}, { includeWebApis: { preset: "auto" } });
-    expect(msgs.some((m) => m.includes("(devicepixelratio)"))).toBe(true);
+    expect(msgs.some((m) => m.includes("Feature ID: devicepixelratio."))).toBe(true);
 
     const ignored = await lintWithBaseline(
       code,
@@ -28,7 +28,7 @@ describe("ignoreFeatures across descriptor-based detection", () => {
       {},
       { includeJsBuiltins: { preset: "auto" } },
     );
-    expect(msgs.some((m) => m.includes("(array-fromasync)"))).toBe(true);
+    expect(msgs.some((m) => m.includes("Feature ID: array-fromasync."))).toBe(true);
 
     const ignored = await lintWithBaseline(
       code,

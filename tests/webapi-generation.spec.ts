@@ -82,7 +82,9 @@ describe("Web API generation: audited global operations", () => {
     it(`detects unqualified ${name}() in safe and auto modes`, async () => {
       for (const preset of ["safe", "auto"] as const) {
         const messages = await lint(`${name}();`, featureId, preset, `api.Window.${name}`);
-        expect(messages.filter((message) => message.includes(`(${featureId})`))).toHaveLength(1);
+        expect(
+          messages.filter((message) => message.includes(`Feature ID: ${featureId}.`)),
+        ).toHaveLength(1);
       }
       expect(
         await lint(
@@ -115,7 +117,9 @@ describe("Web API generation: static attributes", () => {
         "safe",
         `api.${base}.${prop}_static`,
       );
-      expect(messages.filter((message) => message.includes(`(${featureId})`))).toHaveLength(1);
+      expect(
+        messages.filter((message) => message.includes(`Feature ID: ${featureId}.`)),
+      ).toHaveLength(1);
       expect(
         await lint(
           `var ${base} = { ${prop}: 0 }; void ${base}.${prop};`,
@@ -132,7 +136,9 @@ describe("Web API generation: legacy factories and constructor options", () => {
   for (const [featureId, name] of legacyFactories) {
     it(`detects new ${name}()`, async () => {
       const messages = await lint(`new ${name}();`, featureId);
-      expect(messages.filter((message) => message.includes(`(${featureId})`))).toHaveLength(1);
+      expect(
+        messages.filter((message) => message.includes(`Feature ID: ${featureId}.`)),
+      ).toHaveLength(1);
       expect(await lint(`function ${name}() {} new ${name}();`, featureId)).toEqual([]);
     });
   }
@@ -144,7 +150,9 @@ describe("Web API generation: legacy factories and constructor options", () => {
       "new SharedWorker('worker.js', { extendedLifetime: false });",
     ]) {
       const messages = await lint(code, featureId);
-      expect(messages.filter((message) => message.includes(`(${featureId})`))).toHaveLength(1);
+      expect(
+        messages.filter((message) => message.includes(`Feature ID: ${featureId}.`)),
+      ).toHaveLength(1);
     }
     for (const code of [
       "new SharedWorker('worker.js');",

@@ -54,34 +54,37 @@ describe("use-baseline: JS builtins safe arg-based patterns", () => {
         {
           code: "new Error('x', { cause: err });",
           options: [errorCause],
-          errors: [{ message: /\(error-cause\)/ }],
+          errors: [{ message: /Feature ID: error-cause\./ }],
         },
         {
           code: "new AggregateError([], 'x', { cause: err });",
           options: [errorCause],
-          errors: [{ message: /\(error-cause\)/ }],
+          errors: [{ message: /Feature ID: error-cause\./ }],
         },
         {
           code: "new ArrayBuffer(10, { maxByteLength: 20 });",
           options: [resizableBuffers],
-          errors: [{ message: /\(resizable-buffers\)/ }],
+          errors: [{ message: /Feature ID: resizable-buffers\./ }],
         },
         {
           code: "Error.isError({});",
           options: [{ available: reportingPolicyFor("is-error"), includeJsBuiltins: safe }],
-          errors: [{ message: /\(is-error\)/ }],
+          errors: [{ message: /Feature ID: is-error\./ }],
         },
         {
           code: "Uint8Array.fromBase64('');",
           options: [
             { available: reportingPolicyFor("uint8array-base64-hex"), includeJsBuiltins: safe },
           ],
-          errors: [{ message: /\(uint8array-base64-hex\)/ }],
+          errors: [{ message: /Feature ID: uint8array-base64-hex\./ }],
         },
         {
           code: "new WeakRef({}); new FinalizationRegistry(()=>{});",
           options: [{ available: reportingPolicyFor("weak-references"), includeJsBuiltins: safe }],
-          errors: [{ message: /\(weak-references\)/ }, { message: /\(weak-references\)/ }],
+          errors: [
+            { message: /Feature ID: weak-references\./ },
+            { message: /Feature ID: weak-references\./ },
+          ],
         },
       ],
     });

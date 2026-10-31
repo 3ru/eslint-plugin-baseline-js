@@ -111,7 +111,7 @@ describe("typed Web API receivers", () => {
         expect(
           messages
             .filter((message) => message.ruleId === "baseline-js/use-baseline")
-            .map((message) => message.message.match(/\(([^)]+)\)\.$/)?.[1]),
+            .map((message) => message.message.match(/\. Feature ID: ([a-z0-9-]+)\.$/)?.[1]),
         ).toEqual(expected);
       } finally {
         await fs.rm(fixture.root, { recursive: true, force: true });

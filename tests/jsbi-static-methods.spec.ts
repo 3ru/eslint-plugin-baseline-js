@@ -47,7 +47,7 @@ describe("use-baseline: JS builtins static methods (preset: safe)", () => {
           { sourceType: "module" },
           safe,
         );
-        expect(msgs.some((m) => m.includes(`(${featureId})`))).toBe(true);
+        expect(msgs.some((m) => m.includes(`Feature ID: ${featureId}.`))).toBe(true);
       });
     }
   });
@@ -122,7 +122,7 @@ describe("use-baseline: JS builtins static methods (preset: safe)", () => {
           { sourceType: "module" },
           safe,
         );
-        expect(msgs.filter((m) => m.includes(`(${featureId})`))).toEqual([]);
+        expect(msgs.filter((m) => m.includes(`Feature ID: ${featureId}.`))).toEqual([]);
       });
     }
   });

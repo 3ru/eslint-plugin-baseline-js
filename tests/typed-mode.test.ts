@@ -172,6 +172,8 @@ describe("typed mode (TypeScript-aware) integration", () => {
     const results = await eslint.lintFiles([samplePath]);
     const messages = results.flatMap((r) => r.messages);
     const msg = messages.find((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
-    expect(msg?.message).toBe(yearPolicyMessage("array-by-copy", policy, "'toReversed' on Array"));
+    expect(msg?.message).toBe(
+      yearPolicyMessage("array-by-copy", policy, "The 'toReversed' member of Array instances"),
+    );
   }, 15000);
 });

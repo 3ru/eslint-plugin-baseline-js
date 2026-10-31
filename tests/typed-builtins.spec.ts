@@ -131,11 +131,13 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
       .map((m) => m.message);
     for (const id of ["intl-locale-info", "iterator-methods", "uint8array-base64-hex"]) {
       expect(
-        msgs.some((m) => m.includes(`(${id})`)),
+        msgs.some((m) => m.includes(`Feature ID: ${id}.`)),
         id,
       ).toBe(true);
     }
-    expect(msgs.filter((message) => message.includes("(iterator-join)"))).toHaveLength(3);
+    expect(msgs.filter((message) => message.includes("Feature ID: iterator-join."))).toHaveLength(
+      3,
+    );
   }, 15000);
 
   it("reports resizable-buffers (SharedArrayBuffer options) only when typed is available", async () => {
@@ -203,7 +205,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     const msgsTyped = resultsTyped
       .flatMap((r) => r.messages)
       .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
-    expect(msgsTyped.some((m) => /\(resizable-buffers\)/.test(m.message))).toBe(true);
+    expect(msgsTyped.some((m) => /Feature ID: resizable-buffers\./.test(m.message))).toBe(true);
 
     // Non-typed (safe preset) run → should not report due to typedOnly gating
     const eslintUntyped = new ESLint({
@@ -338,7 +340,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
     const msgsTyped = resultsTyped
       .flatMap((r) => r.messages)
       .filter((m) => (m.ruleId || "").includes("baseline-js/use-baseline"));
-    expect(msgsTyped.filter((m) => /\(getorinsert\)/.test(m.message))).toHaveLength(4);
+    expect(msgsTyped.filter((m) => /Feature ID: getorinsert\./.test(m.message))).toHaveLength(4);
 
     const eslintUntyped = new ESLint({
       cwd: tmp,

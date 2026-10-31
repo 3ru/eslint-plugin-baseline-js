@@ -24,7 +24,7 @@ const members = [
     code: "URL.parse('https://example.com');",
     featureId: "url",
     compatKey: "api.URL.parse_static",
-    subject: "'parse' on URL",
+    subject: "'URL.parse'",
   },
   {
     code: "new URL('https://example.com');",
@@ -36,13 +36,13 @@ const members = [
     code: "navigator.clipboard.writeText('hello');",
     featureId: "async-clipboard",
     compatKey: "api.Navigator.clipboard",
-    subject: "'clipboard' on navigator",
+    subject: "'navigator.clipboard'",
   },
   {
     code: "window.cookieStore;",
     featureId: "cookie-store",
     compatKey: "api.Window.cookieStore",
-    subject: "'cookieStore' on window",
+    subject: "'window.cookieStore'",
   },
   {
     code: "window.open('https://example.com');",
@@ -60,12 +60,12 @@ const members = [
     code: "Object.fromEntries([]);",
     featureId: "object-object",
     compatKey: "javascript.builtins.Object.fromEntries",
-    subject: "'fromEntries' on Object",
+    subject: "'Object.fromEntries'",
   },
 ] as const;
 
 function ownMessages(messages: string[], featureId: string) {
-  return messages.filter((message) => message.endsWith(`(${featureId}).`));
+  return messages.filter((message) => message.endsWith(`Feature ID: ${featureId}.`));
 }
 
 describe("individual API Baseline status", () => {
@@ -121,7 +121,7 @@ describe("individual API Baseline status", () => {
     await expect(
       lintWithBaseline(code, policy, {}, { includeWebApis: { preset: "safe", only: ["url"] } }),
     ).resolves.toEqual([
-      compatYearPolicyMessage("url", "api.URL.parse_static", policy, "'parse' on URL"),
+      compatYearPolicyMessage("url", "api.URL.parse_static", policy, "'URL.parse'"),
     ]);
     for (const options of [
       { includeWebApis: { preset: "safe", only: ["url-canparse"] } },
@@ -189,7 +189,9 @@ describe("individual typed member Baseline status", () => {
           (m) => m.featureId === featureId && compatReportedUnder(featureId, m.compatKey, policy),
         )
         .map((m) => m.subject);
-      expect(messages.map((message) => message.message.match(/^'([^']+)'/)?.[1])).toEqual(expected);
+      expect(
+        messages.map((message) => message.message.match(/^The '([^']+)' member of /)?.[1]),
+      ).toEqual(expected);
     },
   );
 });

@@ -16,7 +16,7 @@ describe("member status across delegated features", () => {
       await expect(
         lintWithBaseline("Proxy.revocable({}, {});", available, {}, include),
       ).resolves.toEqual([
-        compatYearPolicyMessage(proxyFeature, proxyKey, available, "'revocable' on Proxy"),
+        compatYearPolicyMessage(proxyFeature, proxyKey, available, "'Proxy.revocable'"),
       ]);
     },
   );
@@ -28,7 +28,7 @@ describe("member status across delegated features", () => {
   ])("keeps exact member status for %s", async (code) => {
     const messages = await lintWithBaseline(code, belowProxyGroup, {}, include);
     const expected = [
-      compatYearPolicyMessage(proxyFeature, proxyKey, belowProxyGroup, "'revocable' on Proxy"),
+      compatYearPolicyMessage(proxyFeature, proxyKey, belowProxyGroup, "'Proxy.revocable'"),
     ];
     if (code.startsWith("globalThis")) {
       expected.unshift(yearPolicyMessage("globalthis", belowProxyGroup, "'globalThis'"));
@@ -46,7 +46,7 @@ describe("member status across delegated features", () => {
     expect(messages).toHaveLength(2);
     expect(messages).toEqual(
       expect.arrayContaining([
-        compatYearPolicyMessage(proxyFeature, proxyKey, belowProxyGroup, "'revocable' on Proxy"),
+        compatYearPolicyMessage(proxyFeature, proxyKey, belowProxyGroup, "'Proxy.revocable'"),
         yearPolicyMessage(proxyFeature, belowProxyGroup, "'Proxy'"),
       ]),
     );
@@ -125,7 +125,7 @@ describe("member status across delegated features", () => {
     await expect(
       lintWithBaseline("void Symbol.unscopables;", available, {}, include),
     ).resolves.toEqual([
-      compatYearPolicyMessage("with", symbolKey, available, "'unscopables' on Symbol"),
+      compatYearPolicyMessage("with", symbolKey, available, "'Symbol.unscopables'"),
     ]);
   });
 
@@ -139,7 +139,7 @@ describe("member status across delegated features", () => {
     );
     expect(messages).toHaveLength(2);
     expect(messages).toContain(
-      compatYearPolicyMessage("with", symbolKey, available, "'unscopables' on Symbol"),
+      compatYearPolicyMessage("with", symbolKey, available, "'Symbol.unscopables'"),
     );
     expect(messages.some((message) => message.startsWith("'with' "))).toBe(true);
   });
@@ -159,7 +159,7 @@ describe("member status across delegated features", () => {
         "bigint",
         "javascript.builtins.BigInt.asIntN",
         available,
-        "'asIntN' on BigInt",
+        "'BigInt.asIntN'",
       ),
       yearPolicyMessage("bigint", available, "'BigInt'"),
     ]);
@@ -172,7 +172,7 @@ describe("member status across delegated features", () => {
         "temporal",
         "javascript.builtins.Temporal.Now",
         available,
-        "'Now' on Temporal",
+        "'Temporal.Now'",
       ),
     ]);
   });
@@ -194,6 +194,6 @@ describe("member status across delegated features", () => {
         "new Error(..., { cause: ... })",
       ),
     );
-    expect(messages[1]).toMatch(/\(error-cause\)\.$/);
+    expect(messages[1]).toMatch(/Feature ID: error-cause\.$/);
   });
 });

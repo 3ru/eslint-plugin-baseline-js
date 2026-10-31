@@ -29,18 +29,26 @@ describe("Window global APIs", () => {
         { code: "fetchLater('/collect');", options: [{ available: "widely" }] },
       ],
       invalid: [
-        { code: "fetchLater('/collect');", options, errors: [{ message: /\(fetchlater\)/ }] },
-        { code: "fetchLater?.('/collect');", options, errors: [{ message: /\(fetchlater\)/ }] },
+        {
+          code: "fetchLater('/collect');",
+          options,
+          errors: [{ message: /Feature ID: fetchlater\./ }],
+        },
+        {
+          code: "fetchLater?.('/collect');",
+          options,
+          errors: [{ message: /Feature ID: fetchlater\./ }],
+        },
         {
           code: "window.fetchLater('/collect');",
           options,
-          errors: [{ message: /\(fetchlater\)/ }],
+          errors: [{ message: /Feature ID: fetchlater\./ }],
         },
         {
           code: "fetchLater('/collect');",
           options,
           languageOptions: { globals: { fetchLater: "readonly" } },
-          errors: [{ message: /\(fetchlater\)/ }],
+          errors: [{ message: /Feature ID: fetchlater\./ }],
         },
       ],
     });

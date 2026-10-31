@@ -60,7 +60,7 @@ export function yearPolicyMessage(id: string, policy: number, subject?: string):
   if (year == null) {
     throw new Error(`${id} has no Baseline date; the plugin reports the Limited message instead`);
   }
-  return `${label} became Baseline in ${year} and exceeds ${policy} (${id}).`;
+  return `${label} does not meet your Baseline ${policy} target. Its Baseline year is ${year}. Feature ID: ${id}.`;
 }
 
 /**
@@ -118,9 +118,9 @@ export function compatYearPolicyMessage(
   subject: string,
 ): string {
   if (compatStatusOf(featureId, compatKey)?.baseline === false) {
-    return `${subject} has Limited availability and exceeds ${policy} (${featureId}).`;
+    return `${subject} does not meet your Baseline ${policy} target. It has Limited availability. Feature ID: ${featureId}.`;
   }
   const year = compatYearLabel(featureId, compatKey);
   if (year == null) throw new Error(`${compatKey} has no Baseline date`);
-  return `${subject} became Baseline in ${year} and exceeds ${policy} (${featureId}).`;
+  return `${subject} does not meet your Baseline ${policy} target. Its Baseline year is ${year}. Feature ID: ${featureId}.`;
 }

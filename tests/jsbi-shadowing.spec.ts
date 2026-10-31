@@ -55,7 +55,7 @@ describe("use-baseline: JS builtins shadowing safety", () => {
         safe,
       );
       expect(
-        msgs.some((m) => m.includes(`(${featureId})`)),
+        msgs.some((m) => m.includes(`Feature ID: ${featureId}.`)),
         code,
       ).toBe(true);
     }

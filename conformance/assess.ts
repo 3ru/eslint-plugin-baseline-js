@@ -220,7 +220,10 @@ function readProbe(message: Diagnostic, testCase: Case): Parsed<ProbeReading> {
 
 function productDiagnostic(message: Diagnostic): ObservedFinding {
   return {
-    featureId: message.message.match(/\(([^()]+)\)\.?$/u)?.[1] ?? null,
+    featureId:
+      message.message.match(/\. Feature ID: ([a-z0-9-]+)\.$/u)?.[1] ??
+      message.message.match(/\(([^()]+)\)\.?$/u)?.[1] ??
+      null,
     line: message.line,
     column: message.column,
   };

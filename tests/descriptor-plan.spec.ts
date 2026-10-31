@@ -40,7 +40,7 @@ describe("descriptor selection across files", () => {
     "url",
     "api.URL.parse_static",
     urlPolicy,
-    "'parse' on URL",
+    "'URL.parse'",
   );
 
   it("uses the current available option across files", async () => {
