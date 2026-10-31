@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-31",
   "plugin": "0.7.6",
   "typescript": "6.0.3",
-  "inputs": {"data":"3e957310c60fdb7a0cbb55341c5a841913cf0d1c29ed9903fa0f9e17464b5f63"},
+  "inputs": {"data":"bdd2247f28bf2d526f39419b83993132e51f721fd0fe3bff8f161d99cd63fd07"},
   "untyped": [
     ["callGlobal","a","HTMLAnchorElement(0);",4,["HTMLAnchorElement"],0,1],
     ["callGlobal","aborting","AbortController(0);",4,["AbortController"],0,1],

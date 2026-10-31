@@ -12,6 +12,7 @@ import {
   isGlobalBaseNotShadowed,
   objectHasKey,
   objectHasKeyWithValues,
+  objectHasKnownDefinedKey,
   stripChain,
 } from "../../../util/ast";
 import type { TypedMemberResolver } from "../typed-members";
@@ -24,6 +25,9 @@ function matchesObjectArg(
   if (!object) return false;
   for (const key of descriptor.hasKeys ?? []) {
     if (!objectHasKey(object, key)) return false;
+  }
+  for (const key of descriptor.knownDefinedKeys ?? []) {
+    if (!objectHasKnownDefinedKey(object, key)) return false;
   }
   for (const keyValue of descriptor.keyValues ?? []) {
     if (!objectHasKeyWithValues(object, keyValue)) return false;

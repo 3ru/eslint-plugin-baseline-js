@@ -27,6 +27,7 @@ export async function createTypedFixture(
         noEmit: true,
         strict: true,
         skipLibCheck: true,
+        types: [],
       },
       include: ["sample.ts"],
     };

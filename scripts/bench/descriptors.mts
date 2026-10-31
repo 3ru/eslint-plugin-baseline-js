@@ -22,6 +22,7 @@ const SYNTAX_MAPPING = join(ROOT, "src", "baseline", "mapping", "syntax.ts");
 const ObjectArgSchema = z.strictObject({
   index: z.number(),
   hasKeys: z.array(z.string()).exactOptional(),
+  knownDefinedKeys: z.array(z.string()).exactOptional(),
   keyValues: z
     .array(z.strictObject({ key: z.string(), values: z.array(z.string()).exactOptional() }))
     .exactOptional(),

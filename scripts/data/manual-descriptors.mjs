@@ -239,7 +239,7 @@ export const manualJsbi = [
     name: "ArrayBuffer",
     objectArg: {
       index: 1,
-      hasKeys: ["maxByteLength"],
+      knownDefinedKeys: ["maxByteLength"],
     },
     compatKey: "javascript.builtins.ArrayBuffer.ArrayBuffer.maxByteLength_option",
   },
@@ -249,7 +249,7 @@ export const manualJsbi = [
     name: "SharedArrayBuffer",
     objectArg: {
       index: 1,
-      hasKeys: ["maxByteLength", "growable"],
+      knownDefinedKeys: ["maxByteLength"],
     },
     typedOnly: true,
     compatKey: "javascript.builtins.SharedArrayBuffer.SharedArrayBuffer.maxByteLength_option",
