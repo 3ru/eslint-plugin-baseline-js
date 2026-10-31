@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-31",
   "plugin": "0.7.6",
   "typescript": "6.0.3",
-  "inputs": {"data":"5b9dfaf70826f28d3d23061f166e8e6751ec5621b36738ff339ed2ec94833360"},
+  "inputs": {"data":"4b13cd39d43cd283059ede54a2fdff22beb42bd0897652a7bcfae7c442e29619"},
   "untyped": [
     ["callGlobal","a","HTMLAnchorElement(0);",4,["HTMLAnchorElement"],0,1],
     ["callGlobal","aborting","AbortController(0);",4,["AbortController"],0,1],
@@ -593,6 +593,8 @@
     ["callGlobal","is-secure-context","isSecureContext(0);",4,["isSecureContext"],0,1],
     ["callStatic","iterator-concat","Iterator.concat(0);",6,["Iterator"],0,1],
     ["callStatic","iterator-methods","Iterator.from(0);",6,["Iterator"],0,1],
+    ["callStatic","iterator-zip-zipkeyed","Iterator.zip(0);",6,["Iterator"],0,1],
+    ["callStatic","iterator-zip-zipkeyed","Iterator.zipKeyed(0);",6,["Iterator"],0,1],
     ["callStatic","json","JSON.parse(0);",6,["JSON"],0,1],
     ["callStatic","json","JSON.stringify(0);",6,["JSON"],0,1],
     ["callStatic","json-raw","JSON.isRawJSON(0);",6,["JSON"],0,1],

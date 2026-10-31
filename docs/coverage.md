@@ -627,8 +627,8 @@
 - total: `106`
 - excluded (out-of-scope): `9`
 - included (in-scope): `97`
-- mapped: `95`
-- coverage: `97.9%`
+- mapped: `97`
+- coverage: `100.0%`
 
 | Feature ID | Name | Baseline | Year | Mapped | Patterns | Descriptors | Memo |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -681,10 +681,10 @@
 | intl-segmenter | ` Intl.Segmenter ` | widely | 2024 | ✅ | ` safe ` | 1 | - |
 | is-error | ` Error.isError() ` | limited | - | ✅ | ` safe ` | 1 | - |
 | iterator-concat | ` Iterator.concat() ` | newly | 2026 | ✅ | ` safe ` | 1 | - |
-| iterator-includes | ` Iterator includes() ` | limited | - | ❌ | - | - | - |
+| iterator-includes | ` Iterator includes() ` | limited | - | ✅ | ` typed ` | 1 | - |
 | iterator-join | ` Iterator join() ` | limited | - | ✅ | ` typed ` | 1 | - |
 | iterator-methods | ` Iterator methods ` | newly | 2025 | ✅ | ` safe `, ` typed ` | 12 | - |
-| iterator-zip-zipkeyed | ` Iterator.zip() and Iterator.zipKeyed() ` | limited | - | ❌ | - | - | - |
+| iterator-zip-zipkeyed | ` Iterator.zip() and Iterator.zipKeyed() ` | limited | - | ✅ | ` safe ` | 2 | - |
 | iterators | ` Iterators and the for...of loop ` | widely | 2015 | ❌ | - | - | Meta feature |
 | javascript | ` JavaScript (initial core language support) ` | widely | 2015 | ✅ | ` typed ` | 5 | - |
 | json | ` JSON ` | widely | 2015 | ✅ | ` safe ` | 2 | - |

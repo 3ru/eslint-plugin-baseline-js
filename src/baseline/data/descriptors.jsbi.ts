@@ -1233,6 +1233,13 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "compatKey": "javascript.builtins.Error.isError"
   },
   {
+    "featureId": "iterator-includes",
+    "compatKey": "javascript.builtins.Iterator.includes",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "includes"
+  },
+  {
     "featureId": "iterator-join",
     "compatKey": "javascript.builtins.Iterator.join",
     "kind": "instanceMember",
@@ -1322,6 +1329,20 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "iface": "Iterator",
     "prop": "toArray",
     "compatKey": "javascript.builtins.Iterator.toArray"
+  },
+  {
+    "featureId": "iterator-zip-zipkeyed",
+    "compatKey": "javascript.builtins.Iterator.zip",
+    "kind": "callStatic",
+    "base": "Iterator",
+    "prop": "zip"
+  },
+  {
+    "featureId": "iterator-zip-zipkeyed",
+    "compatKey": "javascript.builtins.Iterator.zipKeyed",
+    "kind": "callStatic",
+    "base": "Iterator",
+    "prop": "zipKeyed"
   },
   {
     "featureId": "javascript",
