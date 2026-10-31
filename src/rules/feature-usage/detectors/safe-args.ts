@@ -9,12 +9,12 @@ import {
   getCallStringArg,
   getMemberPropertyNode,
   getStaticMemberName,
-  isCallOfMember,
   isGlobalBaseNotShadowed,
   objectHasKey,
   objectHasKeyWithValues,
   stripChain,
 } from "../../../util/ast";
+import type { TypedMemberResolver } from "../typed-members";
 import type { MatchReporter } from "./safe-core";
 
 function matchesObjectArg(
@@ -32,7 +32,7 @@ function matchesObjectArg(
 }
 
 export function addCallMemberWithArgsDetector(
-  _context: Rule.RuleContext,
+  typedMembers: TypedMemberResolver,
   descriptor: CallMemberWithArgsDescriptor,
   onMatch: MatchReporter,
 ): Rule.RuleListener {
@@ -41,8 +41,18 @@ export function addCallMemberWithArgsDetector(
       const callee = stripChain(node.callee);
       if (callee.type !== "MemberExpression" || getStaticMemberName(callee) !== descriptor.prop)
         return;
-      if (descriptor.viaCall?.prop && !isCallOfMember(callee.object, descriptor.viaCall.prop))
-        return;
+      let ownedMember = callee;
+      if (descriptor.viaCall) {
+        const call = stripChain(callee.object);
+        if (call.type !== "CallExpression") return;
+        const member = stripChain(call.callee);
+        if (
+          member.type !== "MemberExpression" ||
+          getStaticMemberName(member) !== descriptor.viaCall.prop
+        )
+          return;
+        ownedMember = member;
+      }
 
       if (descriptor.stringArg) {
         const argument = getCallStringArg(node, descriptor.stringArg.index);
@@ -53,6 +63,8 @@ export function addCallMemberWithArgsDetector(
         !matchesObjectArg(getCallObjectArg(node, descriptor.objectArg.index), descriptor.objectArg)
       )
         return;
+
+      if (!typedMembers.provesOwner(ownedMember, descriptor.iface)) return;
 
       onMatch(node, callee);
     },

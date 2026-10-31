@@ -118,8 +118,3 @@ export function objectHasKeyWithValues(
   }
   return false;
 }
-
-export function isCallOfMember(node: Node, property: string): boolean {
-  const call = stripChain(node);
-  return call.type === "CallExpression" && getStaticMemberName(call.callee) === property;
-}

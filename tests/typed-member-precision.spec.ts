@@ -153,6 +153,71 @@ describe("typed member compatibility ownership", () => {
     expect(messages).toHaveLength(1);
     expect(messages[0].message).toContain("Feature ID: check-visibility.");
   });
+
+  it("retains native overloads and narrowed inherited properties", async () => {
+    const messages = await lint(
+      "declare var anchor: HTMLAnchorElement;\nanchor.addEventListener;\ndeclare var data: CDATASection;\ndata.ownerDocument;\ndata.textContent;",
+      {
+        available: 0,
+        includeWebApis: { preset: "type-aware", only: ["events", "dom"] },
+      },
+    );
+    expect(
+      messages.map((message) => [
+        message.line,
+        message.message.match(/Feature ID: ([\w-]+)\./)?.[1],
+      ]),
+    ).toEqual([
+      [2, "events"],
+      [4, "dom"],
+      [5, "dom"],
+    ]);
+  });
+
+  it("detects native iterator methods independently of the Iterator.from call", async () => {
+    const messages = await lint(
+      "var iterator = Iterator.from([1, 2]);\niterator.map(value => value + 1);\n[1, 2].values().map(value => value + 1);",
+      {
+        available: reportingPolicyFor("iterator-methods"),
+        includeJsBuiltins: { preset: "type-aware", only: ["iterator-methods"] },
+      },
+    );
+    expect(messages.map((message) => message.line)).toEqual([1, 2, 3]);
+    expect(
+      messages
+        .slice(1)
+        .every((message) => message.message.startsWith("The 'map' member of Iterator instances")),
+    ).toBe(true);
+  });
+
+  it("uses closer native histories without falling back to excluded or ignored ancestors", async () => {
+    const code =
+      "declare var script: HTMLScriptElement;\nscript.textContent;\ndeclare var link: SVGAElement;\nlink.className;";
+    const options: CommonRuleOptions = {
+      available: 0,
+      includeWebApis: { preset: "type-aware", only: ["dom", "script", "svg-discouraged"] },
+    };
+    const messages = await lint(code, options);
+    expect(
+      messages.map((message) => [
+        message.line,
+        message.message.match(/Feature ID: ([\w-]+)\./)?.[1],
+      ]),
+    ).toEqual([
+      [2, "script"],
+      [4, "svg-discouraged"],
+    ]);
+    expect(messages[0].message).toContain(
+      "The 'textContent' member of HTMLScriptElement instances",
+    );
+    expect(messages[1].message).toContain("The 'className' member of SVGElement instances");
+    expect(
+      await lint(code, { ...options, includeWebApis: { preset: "type-aware", only: ["dom"] } }),
+    ).toEqual([]);
+    expect(await lint(code, { ...options, ignoreFeatures: ["script", "svg-discouraged"] })).toEqual(
+      [],
+    );
+  });
 });
 
 describe("argument pattern receiver ownership", () => {
