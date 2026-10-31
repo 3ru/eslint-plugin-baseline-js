@@ -127,6 +127,42 @@ describe("diagnostic subjects", () => {
     );
   });
 
+  it.each([false, true])(
+    "preserves BigInt array subjects and ranges with safe built-ins %s",
+    async (safe) => {
+      const cases = [
+        ["new BigInt64Array(8);", "BigInt64Array", 5, 18],
+        ["BigInt64Array(8);", "BigInt64Array", 1, 14],
+        ["BigInt64Array.BYTES_PER_ELEMENT;", "BigInt64Array", 1, 14],
+        ["new BigUint64Array(8);", "BigUint64Array", 5, 19],
+        ["BigUint64Array(8);", "BigUint64Array", 1, 15],
+        ["BigUint64Array.BYTES_PER_ELEMENT;", "BigUint64Array", 1, 15],
+        ["new globalThis.BigUint64Array(8);", "BigUint64Array", 5, 30],
+        ["globalThis.BigUint64Array(8);", "BigUint64Array", 1, 26],
+        ["globalThis.BigUint64Array.BYTES_PER_ELEMENT;", "BigUint64Array", 1, 26],
+      ] as const;
+      const policy = reportingPolicyFor("bigint64array");
+
+      const messages = await lint(cases.map(([code]) => code).join("\n"), {
+        available: policy,
+        includeJsBuiltins: safe ? { preset: "safe" } : false,
+        includeWebApis: false,
+      });
+
+      expect(messages).toHaveLength(9);
+      expect(messages).toMatchObject(
+        cases.map(([, name, column, endColumn], index) => ({
+          message: `'${name}' does not meet your Baseline ${policy} target. Its Baseline year is ${baselineYearOf("bigint64array")}. Feature ID: bigint64array.`,
+          severity: 2,
+          line: index + 1,
+          column,
+          endLine: index + 1,
+          endColumn,
+        })),
+      );
+    },
+  );
+
   it("does not render scalar properties as calls", async () => {
     const messages = await lint("window.devicePixelRatio;", {
       available: reportingPolicyFor("devicepixelratio"),

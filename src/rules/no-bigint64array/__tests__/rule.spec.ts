@@ -22,7 +22,9 @@ async function run(code: string) {
 describe("no-bigint64array", () => {
   it("flags BigInt64Array constructor usage", async () => {
     const msgs = await run("new BigInt64Array(8)");
-    expect(msgs.length).toBeGreaterThan(0);
+    expect(msgs.map(({ message }) => message)).toEqual([
+      "BigInt64Array/BigUint64Array are not allowed.",
+    ]);
   });
 
   it("does not duplicate on BigInt64Array constructor", async () => {
@@ -32,7 +34,9 @@ describe("no-bigint64array", () => {
 
   it("flags BigUint64Array constructor usage", async () => {
     const msgs = await run("new BigUint64Array(8)");
-    expect(msgs.length).toBeGreaterThan(0);
+    expect(msgs.map(({ message }) => message)).toEqual([
+      "BigInt64Array/BigUint64Array are not allowed.",
+    ]);
   });
 
   it("does not duplicate on BigUint64Array constructor", async () => {
@@ -42,7 +46,9 @@ describe("no-bigint64array", () => {
 
   it("flags static member access on BigInt64Array", async () => {
     const msgs = await run("const n = BigInt64Array.BYTES_PER_ELEMENT");
-    expect(msgs.length).toBeGreaterThan(0);
+    expect(msgs.map(({ message }) => message)).toEqual([
+      "BigInt64Array/BigUint64Array are not allowed.",
+    ]);
   });
 
   it("does not duplicate on BigInt64Array member access", async () => {
