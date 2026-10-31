@@ -20,6 +20,13 @@ const rule: Rule.RuleModule = {
         case "ArrowFunctionExpression":
           return true;
         case "MemberExpression":
+          for (
+            let scope: Scope.Scope | null = context.sourceCode.getScope(receiver);
+            scope;
+            scope = scope.upper
+          ) {
+            if (scope.type === "with") return false;
+          }
           return (
             getStaticMemberName(receiver) === "prototype" &&
             isGlobalBaseNotShadowed(context, receiver.object, "Function", receiver)
@@ -32,6 +39,7 @@ const rule: Rule.RuleModule = {
 
       let scope: Scope.Scope | null = context.sourceCode.getScope(receiver);
       while (scope) {
+        if (scope.type === "with") return false;
         const variable = scope.set.get(receiver.name);
         if (variable) {
           if (
