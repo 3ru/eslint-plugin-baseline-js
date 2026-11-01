@@ -11,25 +11,32 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "next": "16.3.8",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
-    "lucide-react": "^1.52.0",
-    "fumadocs-ui": "16.16.0",
+    "@codemirror/commands": "^6.11.1",
+    "@codemirror/lang-javascript": "^6.2.5",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.15",
+    "@lezer/highlight": "^1.2.5",
+    "@shikijs/transformers": "^4.5.0",
+    "eslint": "10.14.0",
     "fumadocs-core": "16.16.0",
     "fumadocs-mdx": "15.4.6",
     "fumadocs-twoslash": "^4.0.1",
-    "@shikijs/transformers": "^4.5.0",
+    "fumadocs-ui": "16.16.0",
+    "lucide-react": "^1.52.0",
+    "next": "16.3.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "shiki": "^4.5.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/mdx": "^2.0.14",
     "@types/node": "26.6.4",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "typescript": "^7.0.2",
-    "@types/mdx": "^2.0.14",
-    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.28",
     "tailwindcss": "^4.3.3",
-    "postcss": "^8.5.28"
+    "typescript": "^7.0.2"
   }
 }

@@ -10,7 +10,7 @@ const config = {
   turbopack: {
     root: process.cwd(),
   },
-  serverExternalPackages: ["typescript"],
+  serverExternalPackages: ["typescript", "eslint", "eslint-plugin-es-x"],
 };
 
 export default withMDX(config);

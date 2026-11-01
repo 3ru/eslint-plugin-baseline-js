@@ -382,3 +382,122 @@ html:not(.dark) .panel-royal {
 .shiki .line.highlighted.error * {
   color: #f43f5e;
 }
+
+/* Landing page. Scoped so docs routes keep their own chrome. */
+.lp-root {
+  --lp-bg: #f7f8f7;
+  --lp-fg: #171c19;
+  --lp-muted: #5c675f;
+  --lp-line: rgba(23, 28, 25, 0.12);
+  --lp-card: #ffffff;
+  --lp-button: #17211b;
+  --lp-button-text: #f7f8f7;
+  --lp-error: #7f1d1d;
+  --lp-error-line: rgba(127, 29, 29, 0.07);
+  --lp-syn-keyword: #1b4332;
+  --lp-syn-string: #6b3a1f;
+  --lp-syn-number: #1d4f73;
+  background: var(--lp-bg);
+  color: var(--lp-fg);
+}
+
+.dark .lp-root {
+  --lp-bg: #101412;
+  --lp-fg: #eef2ef;
+  --lp-muted: #a7b2ab;
+  --lp-line: rgba(238, 242, 239, 0.14);
+  --lp-card: #171c19;
+  --lp-button: #eef2ef;
+  --lp-button-text: #17211b;
+  --lp-error: #ffd2d2;
+  --lp-error-line: rgba(255, 210, 210, 0.08);
+  --lp-syn-keyword: #9ddec0;
+  --lp-syn-string: #f0d0b4;
+  --lp-syn-number: #b7d4ea;
+}
+
+.lp-root :is(a, button, input):focus-visible {
+  outline: 2px solid #1ea446;
+  outline-offset: 2px;
+}
+
+.lp-root .cm-editor {
+  background: transparent;
+  color: var(--lp-fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14.5px;
+}
+
+.lp-root .cm-scroller {
+  max-height: 34rem;
+  overflow: auto;
+  font-family: inherit;
+  line-height: 1.55;
+}
+
+.lp-root .cm-content {
+  padding: 0.85rem 0 1rem;
+  caret-color: var(--lp-fg);
+}
+
+.lp-root .cm-line {
+  padding: 0 1rem 0 0.35rem;
+}
+
+.lp-root .cm-gutters {
+  background: transparent;
+  color: var(--lp-muted);
+  border-right: 1px solid var(--lp-line);
+}
+
+.lp-root .cm-lineNumbers .cm-gutterElement {
+  padding: 0 0.7rem 0 0.85rem;
+  min-width: 2.4rem;
+}
+
+.lp-root .cm-activeLineGutter,
+.lp-root .cm-activeLine {
+  background: transparent;
+}
+
+.lp-root .cm-baseline-line {
+  background: var(--lp-error-line);
+}
+
+.lp-root .cm-baseline-squiggle {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--lp-error);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.lp-root .cm-baseline-lens {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.15rem 1rem 0.45rem 0.35rem;
+  color: var(--lp-error);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.lp-root .cm-editor.cm-focused {
+  outline: none;
+}
+
+.lp-root .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

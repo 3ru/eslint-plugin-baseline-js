@@ -1,84 +1,128 @@
-import { buttonVariants } from "fumadocs-ui/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { BaselineEditor } from "@/components/baseline-editor";
 import { GithubIcon } from "@/components/github-icon";
+import { InstallCommand } from "@/components/install-command";
+
+export const metadata: Metadata = {
+  title: { absolute: "eslint-plugin-baseline-js" },
+  description:
+    "One ESLint rule for the JavaScript Baseline. Set a target of widely, newly, or a year, and check code against web-features data.",
+};
+
+const flatConfig = `import baselineJs from "eslint-plugin-baseline-js";
+
+export default [
+  { plugins: { "baseline-js": baselineJs } },
+  baselineJs.configs.recommended({ available: "widely" }),
+];
+`;
 
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col items-center px-6 py-20 md:py-28 bg-page-surface">
-      {/* Hero */}
-      <section className="relative z-0 w-full max-w-5xl text-center">
-        <h1 className="hero-heading mx-auto max-w-4xl text-4xl tracking-tight sm:text-5xl md:text-6xl">
-          ESLint Plugin for <span className="text-royal-texture">Baseline</span> JavaScript
+    <>
+      <header className="border-b border-[var(--lp-line)]">
+        <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-6">
+          <Link href="/" className="text-sm font-medium tracking-tight">
+            eslint-plugin-baseline-js
+          </Link>
+          <nav className="flex items-center gap-5 text-sm text-[var(--lp-muted)]">
+            <Link href="/docs" className="hover:text-[var(--lp-fg)]">
+              Docs
+            </Link>
+            <a
+              href="https://github.com/3ru/eslint-plugin-baseline-js"
+              className="hover:text-[var(--lp-fg)]"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              GitHub
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-6 pt-8 pb-16">
+        <h1 className="max-w-3xl text-4xl leading-[1.15] font-medium tracking-tight sm:text-[2.75rem]">
+          One ESLint rule for the JavaScript Baseline.
         </h1>
-        <p className="text-pretty mx-auto mt-4 max-w-2xl text-sm text-fd-muted-foreground sm:text-base md:text-lg">
-          Default to the Web Platform Baseline, the cross‑browser compatibility standard. Ship code
-          that works for everyone.
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--lp-muted)]">
+          Set the target to widely, newly, or a year, and the rule checks JavaScript against
+          web-features data, delegating detection to eslint-plugin-es-x and ESLint core, with small
+          gap-filling rules.
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Link
-            href="/docs"
-            className={buttonVariants({
-              variant: "outline",
-              className:
-                "btn-outline-noise group gap-2 px-5 py-2.5 md:px-6 hover:bg-transparent text-[#0b1215]",
-            })}
-          >
-            Get Started
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <InstallCommand />
           <a
             href="https://github.com/3ru/eslint-plugin-baseline-js"
             target="_blank"
             rel="noreferrer noopener"
-            className={buttonVariants({
-              variant: "outline",
-              className: "gap-2 px-5 py-2.5 md:px-6",
-            })}
+            className="inline-flex h-10 shrink-0 items-center gap-2 rounded-md border border-[var(--lp-line)] px-3 text-sm"
           >
-            <GithubIcon className="h-4 w-4" /> GitHub
+            <GithubIcon className="h-4 w-4" />
+            GitHub
           </a>
         </div>
-      </section>
+        <p className="mt-3 text-xs text-[var(--lp-muted)]">
+          Version 0.7.7, before 1.0. The rule and its options can still change. Requires ESLint 9.29
+          through 10.
+        </p>
 
-      {/* Code demo */}
-      <section className="relative mt-10 w-full max-w-3xl">
-        <div className="panel-royal baseline-lined mx-auto overflow-hidden rounded-lg ring-1 ring-white/5">
-          <div className="baseline-rails" />
-          {/* Header bar */}
-          <div className="demo-header px-4 sm:px-6 text-xs sm:text-sm">
-            <div className="flex items-center gap-2">
-              <span className="demo-dot bg-rose-500" />
-              <span className="demo-dot bg-amber-500" />
-              <span className="demo-dot bg-emerald-500" />
-            </div>
-            <span className="font-mono">example.js</span>
-          </div>
+        <section className="mt-8" aria-label="Live Baseline editor">
+          <BaselineEditor />
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--lp-muted)]">
+            The sample is linted by{" "}
+            <code className="font-mono text-[13px]">baseline-js/use-baseline</code> with the
+            recommended Web API and built-in detectors. On Widely,{" "}
+            <code className="font-mono text-[13px]">getYear()</code> is reported because it has
+            Limited availability, and <code className="font-mono text-[13px]">URL.parse()</code> is
+            reported because that member is only Newly available.{" "}
+            <code className="font-mono text-[13px]">1n</code> and{" "}
+            <code className="font-mono text-[13px]">??</code> are Widely available and are not
+            reported. Newly keeps <code className="font-mono text-[13px]">getYear()</code> only.
+            Year 2020 also reports{" "}
+            <code className="font-mono text-[13px]">Promise.withResolvers()</code>, whose Baseline
+            year is 2024.
+          </p>
+        </section>
 
-          <pre className="overflow-auto p-4 text-sm leading-7 sm:px-6 sm:py-7 sm:text-base md:text-lg md:leading-8 bg-transparent">
-            <code>
-              {"const date = new Date();\n"}
-              {"const year = "}
-              <span className="underline decoration-rose-500 decoration-3 underline-offset-4 [text-decoration-style:wavy]">
-                date.getYear();
-              </span>
-            </code>
+        <section className="mt-16 max-w-3xl">
+          <h2 className="text-lg font-medium">Flat config</h2>
+          <p className="mt-2 text-sm leading-relaxed text-[var(--lp-muted)]">
+            ESLint 9 flat config. <code className="font-mono text-[13px]">available</code> is{" "}
+            <code className="font-mono text-[13px]">&quot;widely&quot;</code>,{" "}
+            <code className="font-mono text-[13px]">&quot;newly&quot;</code>, or a year such as{" "}
+            <code className="font-mono text-[13px]">2020</code>. The editor sends that value to the
+            same rule, with <code className="font-mono text-[13px]">includeWebApis</code> and{" "}
+            <code className="font-mono text-[13px]">includeJsBuiltins</code> set to{" "}
+            <code className="font-mono text-[13px]">{`{ preset: "auto" }`}</code>.
+          </p>
+          <pre className="mt-4 overflow-x-auto rounded-lg border border-[var(--lp-line)] bg-[var(--lp-card)] p-4 font-mono text-[13px] leading-6">
+            <code>{flatConfig}</code>
           </pre>
-          <div className="demo-footer px-4 py-3 text-xs sm:px-6 sm:text-sm md:text-base">
-            <p className="flex items-start gap-2 text-rose-500">
-              <span className="mt-1.5 inline-block h-2.5 w-2.5 rounded-full bg-rose-500 sm:h-3 sm:w-3" />
-              <span>
-                Feature{" "}
-                <code className="font-mono rounded border bg-fd-muted px-1.5 py-0.5">
-                  getYear()
-                </code>{" "}
-                is not a widely available Baseline feature.
-              </span>
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
+          <p className="mt-4 text-sm leading-relaxed text-[var(--lp-muted)]">
+            Type-aware checks, such as{" "}
+            <code className="font-mono text-[13px]">Set.prototype.difference()</code>, need ESLint
+            with typescript-eslint and a TypeScript program. They do not run in this editor.
+          </p>
+          <p className="mt-4 text-sm">
+            <Link
+              href="/docs/config"
+              className="underline decoration-[var(--lp-line)] underline-offset-4"
+            >
+              Config reference
+            </Link>
+          </p>
+        </section>
+      </main>
+
+      <footer className="mt-auto border-t border-[var(--lp-line)]">
+        <p className="mx-auto max-w-5xl px-6 py-6 text-xs leading-relaxed text-[var(--lp-muted)]">
+          MIT license. Baseline is a trademark of Google LLC. This project is not sponsored by or
+          affiliated with Google.
+        </p>
+      </footer>
+    </>
   );
 }
