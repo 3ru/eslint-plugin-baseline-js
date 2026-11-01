@@ -1111,6 +1111,20 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "prop": "name"
   },
   {
+    "featureId": "animations-css-animation-accessors",
+    "compatKey": "api.AnimationEvent.animation",
+    "kind": "instanceMember",
+    "iface": "AnimationEvent",
+    "prop": "animation"
+  },
+  {
+    "featureId": "animations-css-animation-accessors",
+    "compatKey": "api.TransitionEvent.animation",
+    "kind": "instanceMember",
+    "iface": "TransitionEvent",
+    "prop": "animation"
+  },
+  {
     "featureId": "app-file-handlers",
     "compatKey": "api.LaunchParams.files",
     "kind": "instanceMember",
@@ -2047,6 +2061,348 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "compatKey": "api.HTMLAudioElement.Audio",
     "kind": "newIdent",
     "name": "Audio"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement",
+    "kind": "callGlobal",
+    "name": "HTMLMediaElement"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.abort_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "abort_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.autoplay",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "autoplay"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.buffered",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "buffered"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.canPlayType",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "canPlayType"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.canplay_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "canplay_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.canplaythrough_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "canplaythrough_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.controls",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "controls"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.crossOrigin",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "crossOrigin"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.currentSrc",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "currentSrc"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.currentTime",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "currentTime"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.defaultMuted",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "defaultMuted"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.defaultPlaybackRate",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "defaultPlaybackRate"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.duration",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "duration"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.durationchange_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "durationchange_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.emptied_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "emptied_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.ended",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "ended"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.ended_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "ended_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.error",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "error"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.error_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "error_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.load",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "load"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.loadeddata_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "loadeddata_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.loadedmetadata_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "loadedmetadata_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.loadstart_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "loadstart_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.loop",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "loop"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.muted",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "muted"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.networkState",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "networkState"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.pause",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "pause"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.pause_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "pause_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.paused",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "paused"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.play",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "play"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.play_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "play_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.playbackRate",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "playbackRate"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.played",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "played"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.playing_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "playing_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.preload",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "preload"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.progress_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "progress_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.ratechange_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "ratechange_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.readyState",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "readyState"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.seekable",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "seekable"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.seeked_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "seeked_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.seeking",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "seeking"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.seeking_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "seeking_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.src",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "src"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.stalled_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "stalled_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.suspend_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "suspend_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.timeupdate_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "timeupdate_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.volumechange_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "volumechange_event"
+  },
+  {
+    "featureId": "audio",
+    "compatKey": "api.HTMLMediaElement.waiting_event",
+    "kind": "instanceMember",
+    "iface": "HTMLMediaElement",
+    "prop": "waiting_event"
   },
   {
     "featureId": "audio-session",
@@ -6368,26 +6724,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "css-object-model",
-    "compatKey": "api.CSSPseudoElement",
-    "kind": "callGlobal",
-    "name": "CSSPseudoElement"
-  },
-  {
-    "featureId": "css-object-model",
-    "compatKey": "api.CSSPseudoElement.element",
-    "kind": "instanceMember",
-    "iface": "CSSPseudoElement",
-    "prop": "element"
-  },
-  {
-    "featureId": "css-object-model",
-    "compatKey": "api.CSSPseudoElement.type",
-    "kind": "instanceMember",
-    "iface": "CSSPseudoElement",
-    "prop": "type"
-  },
-  {
-    "featureId": "css-object-model",
     "compatKey": "api.CSSRule",
     "kind": "callGlobal",
     "name": "CSSRule"
@@ -6720,6 +7056,47 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "StyleSheetList",
     "prop": "length"
+  },
+  {
+    "featureId": "css-object-model-csspseudoelement",
+    "compatKey": "api.CSSPseudoElement",
+    "kind": "callGlobal",
+    "name": "CSSPseudoElement"
+  },
+  {
+    "featureId": "css-object-model-csspseudoelement",
+    "compatKey": "api.CSSPseudoElement.element",
+    "kind": "instanceMember",
+    "iface": "CSSPseudoElement",
+    "prop": "element"
+  },
+  {
+    "featureId": "css-object-model-csspseudoelement",
+    "compatKey": "api.CSSPseudoElement.parent",
+    "kind": "instanceMember",
+    "iface": "CSSPseudoElement",
+    "prop": "parent"
+  },
+  {
+    "featureId": "css-object-model-csspseudoelement",
+    "compatKey": "api.CSSPseudoElement.pseudo",
+    "kind": "instanceMember",
+    "iface": "CSSPseudoElement",
+    "prop": "pseudo"
+  },
+  {
+    "featureId": "css-object-model-csspseudoelement",
+    "compatKey": "api.CSSPseudoElement.type",
+    "kind": "instanceMember",
+    "iface": "CSSPseudoElement",
+    "prop": "type"
+  },
+  {
+    "featureId": "css-object-model-csspseudoelement",
+    "compatKey": "api.Element.pseudo",
+    "kind": "instanceMember",
+    "iface": "Element",
+    "prop": "pseudo"
   },
   {
     "featureId": "css-object-model-discouraged",
@@ -8438,6 +8815,13 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "name": "getDigitalGoodsService"
   },
   {
+    "featureId": "dir",
+    "compatKey": "api.HTMLElement.dir",
+    "kind": "instanceMember",
+    "iface": "HTMLElement",
+    "prop": "dir"
+  },
+  {
     "featureId": "dirname",
     "compatKey": "api.HTMLInputElement.dirName",
     "kind": "instanceMember",
@@ -9938,13 +10322,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "compatKey": "api.HTMLElement",
     "kind": "callGlobal",
     "name": "HTMLElement"
-  },
-  {
-    "featureId": "dom",
-    "compatKey": "api.HTMLElement.dir",
-    "kind": "instanceMember",
-    "iface": "HTMLElement",
-    "prop": "dir"
   },
   {
     "featureId": "dom",
@@ -16134,48 +16511,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "html-setters",
-    "compatKey": "api.DocumentType.afterHTML",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "afterHTML"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.DocumentType.afterHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "afterHTMLUnsafe"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.DocumentType.beforeHTML",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "beforeHTML"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.DocumentType.beforeHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "beforeHTMLUnsafe"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.DocumentType.replaceWithHTML",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "replaceWithHTML"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.DocumentType.replaceWithHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "replaceWithHTMLUnsafe"
-  },
-  {
-    "featureId": "html-setters",
     "compatKey": "api.Element.afterHTML",
     "kind": "instanceMember",
     "iface": "Element",
@@ -16253,20 +16588,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "html-setters",
-    "compatKey": "api.ShadowRoot.afterHTML",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "afterHTML"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.ShadowRoot.afterHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "afterHTMLUnsafe"
-  },
-  {
-    "featureId": "html-setters",
     "compatKey": "api.ShadowRoot.appendHTML",
     "kind": "instanceMember",
     "iface": "ShadowRoot",
@@ -16278,20 +16599,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "ShadowRoot",
     "prop": "appendHTMLUnsafe"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.ShadowRoot.beforeHTML",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "beforeHTML"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.ShadowRoot.beforeHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "beforeHTMLUnsafe"
   },
   {
     "featureId": "html-setters",
@@ -16309,20 +16616,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "html-setters",
-    "compatKey": "api.ShadowRoot.replaceWithHTML",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "replaceWithHTML"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.ShadowRoot.replaceWithHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "replaceWithHTMLUnsafe"
-  },
-  {
-    "featureId": "html-setters",
     "compatKey": "api.ShadowRoot.setHTMLUnsafe",
     "kind": "instanceMember",
     "iface": "ShadowRoot",
@@ -16333,20 +16626,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "compatKey": "api.TrustedHTMLParserOptions",
     "kind": "callGlobal",
     "name": "TrustedHTMLParserOptions"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.TrustedHTMLParserOptions.runScripts",
-    "kind": "instanceMember",
-    "iface": "TrustedHTMLParserOptions",
-    "prop": "runScripts"
-  },
-  {
-    "featureId": "html-setters",
-    "compatKey": "api.TrustedHTMLParserOptions.sanitizer",
-    "kind": "instanceMember",
-    "iface": "TrustedHTMLParserOptions",
-    "prop": "sanitizer"
   },
   {
     "featureId": "html-streaming-setters",
@@ -16395,48 +16674,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "compatKey": "api.CharacterData.streamReplaceWithHTMLUnsafe",
     "kind": "instanceMember",
     "iface": "CharacterData",
-    "prop": "streamReplaceWithHTMLUnsafe"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.DocumentType.streamAfterHTML",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "streamAfterHTML"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.DocumentType.streamAfterHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "streamAfterHTMLUnsafe"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.DocumentType.streamBeforeHTML",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "streamBeforeHTML"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.DocumentType.streamBeforeHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "streamBeforeHTMLUnsafe"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.DocumentType.streamReplaceWithHTML",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
-    "prop": "streamReplaceWithHTML"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.DocumentType.streamReplaceWithHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "DocumentType",
     "prop": "streamReplaceWithHTMLUnsafe"
   },
   {
@@ -16539,20 +16776,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "html-streaming-setters",
-    "compatKey": "api.ShadowRoot.streamAfterHTML",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "streamAfterHTML"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.ShadowRoot.streamAfterHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "streamAfterHTMLUnsafe"
-  },
-  {
-    "featureId": "html-streaming-setters",
     "compatKey": "api.ShadowRoot.streamAppendHTML",
     "kind": "instanceMember",
     "iface": "ShadowRoot",
@@ -16564,20 +16787,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "ShadowRoot",
     "prop": "streamAppendHTMLUnsafe"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.ShadowRoot.streamBeforeHTML",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "streamBeforeHTML"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.ShadowRoot.streamBeforeHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "streamBeforeHTMLUnsafe"
   },
   {
     "featureId": "html-streaming-setters",
@@ -16606,20 +16815,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "ShadowRoot",
     "prop": "streamPrependHTMLUnsafe"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.ShadowRoot.streamReplaceWithHTML",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "streamReplaceWithHTML"
-  },
-  {
-    "featureId": "html-streaming-setters",
-    "compatKey": "api.ShadowRoot.streamReplaceWithHTMLUnsafe",
-    "kind": "instanceMember",
-    "iface": "ShadowRoot",
-    "prop": "streamReplaceWithHTMLUnsafe"
   },
   {
     "featureId": "idle-detection",
@@ -19455,10 +19650,17 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "local-network-access",
-    "compatKey": "api.Request.targetAddressSpace",
+    "compatKey": "api.Permissions.permission_local-network",
     "kind": "instanceMember",
-    "iface": "Request",
-    "prop": "targetAddressSpace"
+    "iface": "Permissions",
+    "prop": "permission_local-network"
+  },
+  {
+    "featureId": "local-network-access",
+    "compatKey": "api.Permissions.permission_local-network-access",
+    "kind": "instanceMember",
+    "iface": "Permissions",
+    "prop": "permission_local-network-access"
   },
   {
     "featureId": "localstorage",
@@ -21559,6 +21761,20 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "mouse-events",
+    "compatKey": "api.MouseEvent.layerX",
+    "kind": "instanceMember",
+    "iface": "MouseEvent",
+    "prop": "layerX"
+  },
+  {
+    "featureId": "mouse-events",
+    "compatKey": "api.MouseEvent.layerY",
+    "kind": "instanceMember",
+    "iface": "MouseEvent",
+    "prop": "layerY"
+  },
+  {
+    "featureId": "mouse-events",
     "compatKey": "api.MouseEvent.metaKey",
     "kind": "instanceMember",
     "iface": "MouseEvent",
@@ -22791,13 +23007,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "Notification",
     "prop": "title"
-  },
-  {
-    "featureId": "notifications",
-    "compatKey": "api.Notification.vibrate",
-    "kind": "instanceMember",
-    "iface": "Notification",
-    "prop": "vibrate"
   },
   {
     "featureId": "notifications",
@@ -29082,6 +29291,12 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "name": "FragmentDirective"
   },
   {
+    "featureId": "scroll-triggered-animations",
+    "compatKey": "api.AnimationTrigger",
+    "kind": "callGlobal",
+    "name": "AnimationTrigger"
+  },
+  {
     "featureId": "scrollend",
     "compatKey": "api.Document.scrollend_event",
     "kind": "instanceMember",
@@ -31764,6 +31979,47 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "prop": "toJSON"
   },
   {
+    "featureId": "source",
+    "compatKey": "api.HTMLSourceElement",
+    "kind": "callGlobal",
+    "name": "HTMLSourceElement"
+  },
+  {
+    "featureId": "source",
+    "compatKey": "api.HTMLSourceElement.height",
+    "kind": "instanceMember",
+    "iface": "HTMLSourceElement",
+    "prop": "height"
+  },
+  {
+    "featureId": "source",
+    "compatKey": "api.HTMLSourceElement.media",
+    "kind": "instanceMember",
+    "iface": "HTMLSourceElement",
+    "prop": "media"
+  },
+  {
+    "featureId": "source",
+    "compatKey": "api.HTMLSourceElement.src",
+    "kind": "instanceMember",
+    "iface": "HTMLSourceElement",
+    "prop": "src"
+  },
+  {
+    "featureId": "source",
+    "compatKey": "api.HTMLSourceElement.type",
+    "kind": "instanceMember",
+    "iface": "HTMLSourceElement",
+    "prop": "type"
+  },
+  {
+    "featureId": "source",
+    "compatKey": "api.HTMLSourceElement.width",
+    "kind": "instanceMember",
+    "iface": "HTMLSourceElement",
+    "prop": "width"
+  },
+  {
     "featureId": "span",
     "compatKey": "api.HTMLSpanElement",
     "kind": "callGlobal",
@@ -34196,6 +34452,27 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "compatKey": "api.SVGPathElement",
     "kind": "callGlobal",
     "name": "SVGPathElement"
+  },
+  {
+    "featureId": "svg",
+    "compatKey": "api.SVGPathElement.getPointAtLength",
+    "kind": "instanceMember",
+    "iface": "SVGPathElement",
+    "prop": "getPointAtLength"
+  },
+  {
+    "featureId": "svg",
+    "compatKey": "api.SVGPathElement.getTotalLength",
+    "kind": "instanceMember",
+    "iface": "SVGPathElement",
+    "prop": "getTotalLength"
+  },
+  {
+    "featureId": "svg",
+    "compatKey": "api.SVGPathElement.pathLength",
+    "kind": "instanceMember",
+    "iface": "SVGPathElement",
+    "prop": "pathLength"
   },
   {
     "featureId": "svg",
@@ -48712,10 +48989,38 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "webnn",
+    "compatKey": "api.MLContext.createConstantTensor",
+    "kind": "instanceMember",
+    "iface": "MLContext",
+    "prop": "createConstantTensor"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLContext.createTensor",
+    "kind": "instanceMember",
+    "iface": "MLContext",
+    "prop": "createTensor"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLContext.destroy",
+    "kind": "instanceMember",
+    "iface": "MLContext",
+    "prop": "destroy"
+  },
+  {
+    "featureId": "webnn",
     "compatKey": "api.MLContext.dispatch",
     "kind": "instanceMember",
     "iface": "MLContext",
     "prop": "dispatch"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLContext.lost",
+    "kind": "instanceMember",
+    "iface": "MLContext",
+    "prop": "lost"
   },
   {
     "featureId": "webnn",
@@ -48726,9 +49031,30 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "webnn",
+    "compatKey": "api.MLContext.readTensor",
+    "kind": "instanceMember",
+    "iface": "MLContext",
+    "prop": "readTensor"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLContext.writeTensor",
+    "kind": "instanceMember",
+    "iface": "MLContext",
+    "prop": "writeTensor"
+  },
+  {
+    "featureId": "webnn",
     "compatKey": "api.MLGraph",
     "kind": "callGlobal",
     "name": "MLGraph"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLGraph.destroy",
+    "kind": "instanceMember",
+    "iface": "MLGraph",
+    "prop": "destroy"
   },
   {
     "featureId": "webnn",
@@ -48933,6 +49259,13 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "webnn",
+    "compatKey": "api.MLGraphBuilder.gelu",
+    "kind": "instanceMember",
+    "iface": "MLGraphBuilder",
+    "prop": "gelu"
+  },
+  {
+    "featureId": "webnn",
     "compatKey": "api.MLGraphBuilder.gemm",
     "kind": "instanceMember",
     "iface": "MLGraphBuilder",
@@ -49000,6 +49333,20 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "MLGraphBuilder",
     "prop": "instanceNormalization"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLGraphBuilder.isInfinite",
+    "kind": "instanceMember",
+    "iface": "MLGraphBuilder",
+    "prop": "isInfinite"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLGraphBuilder.isNaN",
+    "kind": "instanceMember",
+    "iface": "MLGraphBuilder",
+    "prop": "isNaN"
   },
   {
     "featureId": "webnn",
@@ -49136,6 +49483,13 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "webnn",
+    "compatKey": "api.MLGraphBuilder.notEqual",
+    "kind": "instanceMember",
+    "iface": "MLGraphBuilder",
+    "prop": "notEqual"
+  },
+  {
+    "featureId": "webnn",
     "compatKey": "api.MLGraphBuilder.pad",
     "kind": "instanceMember",
     "iface": "MLGraphBuilder",
@@ -49259,6 +49613,20 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "MLGraphBuilder",
     "prop": "reshape"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLGraphBuilder.reverse",
+    "kind": "instanceMember",
+    "iface": "MLGraphBuilder",
+    "prop": "reverse"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLGraphBuilder.roundEven",
+    "kind": "instanceMember",
+    "iface": "MLGraphBuilder",
+    "prop": "roundEven"
   },
   {
     "featureId": "webnn",
@@ -49391,6 +49759,68 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "compatKey": "api.MLOperand",
     "kind": "callGlobal",
     "name": "MLOperand"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLOperand.dataType",
+    "kind": "instanceMember",
+    "iface": "MLOperand",
+    "prop": "dataType"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLOperand.shape",
+    "kind": "instanceMember",
+    "iface": "MLOperand",
+    "prop": "shape"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLTensor",
+    "kind": "callGlobal",
+    "name": "MLTensor"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLTensor.constant",
+    "kind": "instanceMember",
+    "iface": "MLTensor",
+    "prop": "constant"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLTensor.dataType",
+    "kind": "instanceMember",
+    "iface": "MLTensor",
+    "prop": "dataType"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLTensor.destroy",
+    "kind": "instanceMember",
+    "iface": "MLTensor",
+    "prop": "destroy"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLTensor.readable",
+    "kind": "instanceMember",
+    "iface": "MLTensor",
+    "prop": "readable"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLTensor.shape",
+    "kind": "instanceMember",
+    "iface": "MLTensor",
+    "prop": "shape"
+  },
+  {
+    "featureId": "webnn",
+    "compatKey": "api.MLTensor.writable",
+    "kind": "instanceMember",
+    "iface": "MLTensor",
+    "prop": "writable"
   },
   {
     "featureId": "webnn",
@@ -52514,10 +52944,10 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "webvr",
-    "compatKey": "api.VRStageParameters.sizeY",
+    "compatKey": "api.VRStageParameters.sizeZ",
     "kind": "instanceMember",
     "iface": "VRStageParameters",
-    "prop": "sizeY"
+    "prop": "sizeZ"
   },
   {
     "featureId": "webvr",
@@ -54478,6 +54908,13 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "WheelEvent",
     "prop": "pinch_to_zoom_support"
+  },
+  {
+    "featureId": "wheel-events-momentum",
+    "compatKey": "api.WheelEvent.momentum",
+    "kind": "instanceMember",
+    "iface": "WheelEvent",
+    "prop": "momentum"
   },
   {
     "featureId": "window",

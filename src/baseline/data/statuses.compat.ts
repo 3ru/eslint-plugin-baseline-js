@@ -548,8 +548,9 @@ const statuses: CompatStatusOverrides = {
       "baseline_high_date": "2022-09-24"
     },
     "api.Clipboard.readText": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.Clipboard.writeText": {
       "baseline": "high",
@@ -570,6 +571,13 @@ const statuses: CompatStatusOverrides = {
     },
     "api.Permissions.permission_clipboard-write": {
       "baseline": false
+    }
+  },
+  "audio": {
+    "api.HTMLMediaElement.crossOrigin": {
+      "baseline": "high",
+      "baseline_low_date": "2016-09-20",
+      "baseline_high_date": "2019-03-20"
     }
   },
   "audio-worklet": {
@@ -1595,15 +1603,6 @@ const statuses: CompatStatusOverrides = {
       "baseline": "high",
       "baseline_low_date": "2015-07-29",
       "baseline_high_date": "2018-01-29"
-    },
-    "api.CSSPseudoElement": {
-      "baseline": false
-    },
-    "api.CSSPseudoElement.element": {
-      "baseline": false
-    },
-    "api.CSSPseudoElement.type": {
-      "baseline": false
     },
     "api.CSSRule": {
       "baseline": "high",
@@ -4101,8 +4100,7 @@ const statuses: CompatStatusOverrides = {
       "baseline_high_date": "2023-09-23"
     },
     "api.InputEvent.isComposing": {
-      "baseline": "low",
-      "baseline_low_date": "2026-09-14"
+      "baseline": false
     }
   },
   "input-file-multiple": {
@@ -4154,8 +4152,7 @@ const statuses: CompatStatusOverrides = {
       "baseline_high_date": "2019-09-27"
     },
     "api.KeyboardEvent.isComposing": {
-      "baseline": "low",
-      "baseline_low_date": "2026-09-14"
+      "baseline": false
     },
     "api.KeyboardEvent.key": {
       "baseline": "high",
@@ -5076,36 +5073,44 @@ const statuses: CompatStatusOverrides = {
   },
   "popover": {
     "api.HTMLButtonElement.popoverTargetAction": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.HTMLButtonElement.popoverTargetElement": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.HTMLElement.beforetoggle_event": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.HTMLElement.hidePopover": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.HTMLElement.showPopover": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.HTMLElement.togglePopover": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.HTMLInputElement.popoverTargetAction": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.HTMLInputElement.popoverTargetElement": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.ToggleEvent": {
       "baseline": "high",
@@ -5267,7 +5272,8 @@ const statuses: CompatStatusOverrides = {
       "baseline": false
     },
     "api.PerformanceResourceTiming.deliveryType": {
-      "baseline": false
+      "baseline": "low",
+      "baseline_low_date": "2026-10-13"
     },
     "api.PerformanceResourceTiming.firstInterimResponseStart": {
       "baseline": "low",
@@ -5996,8 +6002,9 @@ const statuses: CompatStatusOverrides = {
   },
   "shadow-dom": {
     "api.ShadowRoot.clonable": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-18"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-18",
+      "baseline_high_date": "2026-10-18"
     },
     "api.ShadowRoot.delegatesFocus": {
       "baseline": "high",
@@ -6240,6 +6247,18 @@ const statuses: CompatStatusOverrides = {
     },
     "api.TimeEvent.view": {
       "baseline": false
+    }
+  },
+  "source": {
+    "api.HTMLSourceElement.height": {
+      "baseline": "high",
+      "baseline_low_date": "2022-12-13",
+      "baseline_high_date": "2025-06-13"
+    },
+    "api.HTMLSourceElement.width": {
+      "baseline": "high",
+      "baseline_low_date": "2022-12-13",
+      "baseline_high_date": "2025-06-13"
     }
   },
   "speech-synthesis": {
@@ -8825,7 +8844,8 @@ const statuses: CompatStatusOverrides = {
       "baseline_high_date": "2022-09-24"
     },
     "api.Element.animationcancel_event": {
-      "baseline": false
+      "baseline": "low",
+      "baseline_low_date": "2026-02-14"
     },
     "api.Element.animationend_event": {
       "baseline": "high",
@@ -9800,8 +9820,9 @@ const statuses: CompatStatusOverrides = {
       "baseline_low_date": "2026-07-21"
     },
     "api.RTCDtlsTransport.iceTransport": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.RTCDtlsTransport.state": {
       "baseline": "high",
@@ -9935,16 +9956,19 @@ const statuses: CompatStatusOverrides = {
       "baseline_high_date": "2023-10-26"
     },
     "api.RTCIceTransport": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.RTCIceTransport.gatheringState": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.RTCIceTransport.gatheringstatechange_event": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.RTCIceTransport.getLocalCandidates": {
       "baseline": false
@@ -9970,12 +9994,14 @@ const statuses: CompatStatusOverrides = {
       "baseline_low_date": "2026-08-18"
     },
     "api.RTCIceTransport.state": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.RTCIceTransport.statechange_event": {
-      "baseline": "low",
-      "baseline_low_date": "2024-04-16"
+      "baseline": "high",
+      "baseline_low_date": "2024-04-16",
+      "baseline_high_date": "2026-10-16"
     },
     "api.RTCPeerConnection": {
       "baseline": "high",
@@ -10787,13 +10813,6 @@ const statuses: CompatStatusOverrides = {
       "baseline": "high",
       "baseline_low_date": "2017-03-27",
       "baseline_high_date": "2019-09-27"
-    }
-  },
-  "proxy-reflect": {
-    "javascript.builtins.Proxy.revocable": {
-      "baseline": "high",
-      "baseline_low_date": "2017-12-06",
-      "baseline_high_date": "2020-06-06"
     }
   },
   "regexp": {

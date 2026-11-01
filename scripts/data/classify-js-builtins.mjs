@@ -38,6 +38,18 @@ export const JS_BUILTIN_CLASSIFICATION_FALLBACKS = [
     descriptor: { kind: "instanceMember", iface: "Iterator", prop: "join" },
   },
   {
+    compatKey: "javascript.builtins.Iterator.includes",
+    descriptor: { kind: "instanceMember", iface: "Iterator", prop: "includes" },
+  },
+  {
+    compatKey: "javascript.builtins.Iterator.zip",
+    descriptor: { kind: "callStatic", base: "Iterator", prop: "zip" },
+  },
+  {
+    compatKey: "javascript.builtins.Iterator.zipKeyed",
+    descriptor: { kind: "callStatic", base: "Iterator", prop: "zipKeyed" },
+  },
+  {
     compatKey: "javascript.builtins.Map.getOrInsert",
     descriptor: { kind: "instanceMember", iface: "Map", prop: "getOrInsert" },
   },

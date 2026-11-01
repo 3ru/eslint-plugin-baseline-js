@@ -1066,13 +1066,6 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
   },
   {
     "featureId": "html-wrapper-methods",
-    "compatKey": "javascript.builtins.String.substr",
-    "kind": "instanceMember",
-    "iface": "String",
-    "prop": "substr"
-  },
-  {
-    "featureId": "html-wrapper-methods",
     "compatKey": "javascript.builtins.String.sup",
     "kind": "instanceMember",
     "iface": "String",
@@ -1240,6 +1233,13 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "compatKey": "javascript.builtins.Error.isError"
   },
   {
+    "featureId": "iterator-includes",
+    "compatKey": "javascript.builtins.Iterator.includes",
+    "kind": "instanceMember",
+    "iface": "Iterator",
+    "prop": "includes"
+  },
+  {
     "featureId": "iterator-join",
     "compatKey": "javascript.builtins.Iterator.join",
     "kind": "instanceMember",
@@ -1329,6 +1329,20 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "iface": "Iterator",
     "prop": "toArray",
     "compatKey": "javascript.builtins.Iterator.toArray"
+  },
+  {
+    "featureId": "iterator-zip-zipkeyed",
+    "compatKey": "javascript.builtins.Iterator.zip",
+    "kind": "callStatic",
+    "base": "Iterator",
+    "prop": "zip"
+  },
+  {
+    "featureId": "iterator-zip-zipkeyed",
+    "compatKey": "javascript.builtins.Iterator.zipKeyed",
+    "kind": "callStatic",
+    "base": "Iterator",
+    "prop": "zipKeyed"
   },
   {
     "featureId": "javascript",
@@ -2764,6 +2778,13 @@ const descriptors: ReadonlyArray<GeneratedDescriptor> = [
     "kind": "instanceMember",
     "iface": "String",
     "prop": "startsWith"
+  },
+  {
+    "featureId": "string-substr",
+    "compatKey": "javascript.builtins.String.substr",
+    "kind": "instanceMember",
+    "iface": "String",
+    "prop": "substr"
   },
   {
     "featureId": "string-trim-leftright",

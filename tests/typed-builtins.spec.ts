@@ -24,13 +24,16 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
       Iterator.from([1, 2]).map(x => x + 1);
       new Uint8Array([1, 2, 3]).toHex();
       declare global {
-        interface IteratorObject<T, TReturn, TNext> { join(separator?: string): string; }
+        interface IteratorObject<T, TReturn, TNext> { join(separator?: string): string; includes(value: T): boolean; }
       }
       Iterator.from([1, 2]).join(',');
       [1, 2].values().join(',');
       [1, 2].join(',');
       const custom = { join: (separator: string) => separator };
       custom.join(',');
+      [1, 2].values().includes(1);
+      [1, 2].includes(1);
+      'ab'.includes('a');
     `,
       { target: "ESNext" },
     );
@@ -42,11 +45,18 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
           "intl-locale-info",
           "iterator-methods",
           "iterator-join",
+          "iterator-includes",
           "uint8array-base64-hex",
         ),
         includeJsBuiltins: {
           preset: "type-aware",
-          only: ["intl-locale-info", "iterator-methods", "iterator-join", "uint8array-base64-hex"],
+          only: [
+            "intl-locale-info",
+            "iterator-methods",
+            "iterator-join",
+            "iterator-includes",
+            "uint8array-base64-hex",
+          ],
         },
       });
       expect(messages.some((message) => message.fatal)).toBe(false);
@@ -69,7 +79,7 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
 
   it("detects iterator members supplied by a compiler-selected replacement library", async () => {
     const fixture = await createTypedFixture(
-      "declare const iterator: Iterator<number>; iterator.join(',');",
+      "declare const iterator: Iterator<number>; iterator.join(','); [1, 2].values().includes(1);",
       {
         target: "ESNext",
         lib: ["ES2023", "ESNext"],
@@ -85,18 +95,19 @@ describe("typed builtins detection (Intl.Locale, Iterator, Uint8Array instance)"
       );
       await fs.writeFile(
         join(libraryRoot, "index.d.ts"),
-        "interface Iterator<T, TReturn = any, TNext = any> { join(separator?: string): string; }",
+        "interface Iterator<T, TReturn = any, TNext = any> { join(separator?: string): string; }\ninterface IteratorObject<T, TReturn = unknown, TNext = unknown> { includes(value: T): boolean; }",
       );
       const program = ts.createProgram([fixture.samplePath], fixture.compilerOptions);
       expect(ts.getPreEmitDiagnostics(program)).toEqual([]);
       const library = program.getSourceFile(await fs.realpath(join(libraryRoot, "index.d.ts")));
       expect(library && program.isSourceFileDefaultLibrary(library)).toBe(true);
       const messages = await lintTypedFixture(fixture, {
-        available: reportingPolicyFor("iterator-join"),
-        includeJsBuiltins: { preset: "type-aware", only: ["iterator-join"] },
+        available: reportingPolicyFor("iterator-join", "iterator-includes"),
+        includeJsBuiltins: { preset: "type-aware", only: ["iterator-join", "iterator-includes"] },
       });
-      expect(messages).toHaveLength(1);
-      expect(messages[0].message).toContain("Feature ID: iterator-join.");
+      expect(
+        messages.map((message) => message.message.match(/Feature ID: ([\w-]+)\./)?.[1]),
+      ).toEqual(["iterator-join", "iterator-includes"]);
     } finally {
       await fs.rm(fixture.root, { recursive: true, force: true });
     }
