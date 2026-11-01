@@ -244,15 +244,11 @@ export function BaselineEditor() {
   }, [available, code, policy, yearText]);
 
   return (
-    <div className="baseline-editor overflow-hidden rounded-lg border border-[var(--lp-line)] bg-[var(--lp-card)]">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--lp-line)] px-3 py-2">
-        <span className="font-mono text-xs text-[var(--lp-muted)]">example.js</span>
-        <div className="flex flex-wrap items-center gap-2">
-          <div
-            className="inline-flex rounded-md border border-[var(--lp-line)] p-0.5"
-            role="radiogroup"
-            aria-label="Baseline target"
-          >
+    <div className="baseline-editor">
+      <div className="baseline-editor-bar">
+        <span className="baseline-editor-name">example.js</span>
+        <div className="baseline-editor-controls">
+          <div role="radiogroup" aria-label="Baseline target">
             {(
               [
                 ["widely", "Widely"],
@@ -262,14 +258,7 @@ export function BaselineEditor() {
             ).map(([id, label]) => {
               const selected = policy === id;
               return (
-                <label
-                  key={id}
-                  className={`cursor-pointer rounded px-2.5 py-1 text-sm ${
-                    selected
-                      ? "bg-[var(--lp-button)] text-[var(--lp-button-text)]"
-                      : "text-[var(--lp-muted)]"
-                  }`}
-                >
+                <label key={id} data-selected={selected ? "true" : "false"}>
                   <input
                     type="radio"
                     name="baseline-target"
@@ -293,17 +282,13 @@ export function BaselineEditor() {
               value={yearText}
               aria-label="Baseline year"
               spellCheck={false}
-              className="w-[5.5rem] rounded-md border border-[var(--lp-line)] bg-transparent px-2 py-1 font-mono text-sm text-[var(--lp-fg)]"
               onChange={(event) => setYearText(event.target.value)}
             />
           ) : null}
         </div>
       </div>
       <div ref={hostRef} />
-      <p
-        className="border-t border-[var(--lp-line)] px-3 py-2 font-mono text-xs text-[var(--lp-muted)]"
-        aria-live="polite"
-      >
+      <p className="baseline-editor-status" aria-live="polite">
         {available === null
           ? `Enter a year from ${MIN_BASELINE_YEAR} to ${MAX_BASELINE_YEAR}.`
           : note}
