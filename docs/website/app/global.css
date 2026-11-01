@@ -476,7 +476,7 @@ html:not(.dark) .panel-royal {
   display: block;
   box-sizing: border-box;
   margin: 0;
-  padding: 0.15rem 1rem 0.45rem 0.35rem;
+  padding: 0.4rem 1rem 0.45rem 0.35rem;
   color: var(--lp-error);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 14px;

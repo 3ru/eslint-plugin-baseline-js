@@ -7,7 +7,7 @@ import { InstallCommand } from "@/components/install-command";
 export const metadata: Metadata = {
   title: { absolute: "eslint-plugin-baseline-js" },
   description:
-    "One ESLint rule for the JavaScript Baseline. Set a target of widely, newly, or a year, and check code against web-features data.",
+    "Catch the JavaScript your visitors cannot run. One ESLint rule checks widely, newly, or a Baseline year against web-features.",
 };
 
 const flatConfig = `import baselineJs from "eslint-plugin-baseline-js";
@@ -44,12 +44,18 @@ export default function HomePage() {
 
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-6 pt-8 pb-16">
         <h1 className="max-w-3xl text-4xl leading-[1.15] font-medium tracking-tight sm:text-[2.75rem]">
-          One ESLint rule for the JavaScript Baseline.
+          Catch the JavaScript your visitors cannot run.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--lp-muted)]">
-          Set the target to widely, newly, or a year, and the rule checks JavaScript against
-          web-features data, delegating detection to eslint-plugin-es-x and ESLint core, with small
-          gap-filling rules.
+          Baseline is a public line for the web platform, maintained by the W3C WebDX Community
+          Group. Newly available means the core browsers have shipped a feature. Widely available is
+          30 months later. A year keeps features from that Baseline year or earlier.
+        </p>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--lp-muted)]">
+          An API can work in your browser and be missing in a visitor&apos;s, so the call throws and
+          they never reach the feature. This one rule shows that gap while you type. It reads
+          web-features and delegates detection to eslint-plugin-es-x and ESLint core, with small
+          gap-filling rules. The target is widely, newly, or a year.
         </p>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -72,18 +78,19 @@ export default function HomePage() {
         <section className="mt-8" aria-label="Live Baseline editor">
           <BaselineEditor />
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--lp-muted)]">
-            The sample is linted by{" "}
-            <code className="font-mono text-[13px]">baseline-js/use-baseline</code> with the
-            recommended Web API and built-in detectors. On Widely,{" "}
-            <code className="font-mono text-[13px]">getYear()</code> is reported because it has
-            Limited availability, and <code className="font-mono text-[13px]">URL.parse()</code> is
-            reported because that member is only Newly available.{" "}
+            <code className="font-mono text-[13px]">URL.parse()</code> and{" "}
+            <code className="font-mono text-[13px]">Promise.withResolvers()</code> are absent until
+            a browser ships them, so the call throws there.{" "}
+            <code className="font-mono text-[13px]">getYear()</code> is different: browsers still
+            implement it, and it is Limited, outside Baseline Widely. The rule reports both. It
+            does not catch every runtime error. On Widely the sample reports{" "}
+            <code className="font-mono text-[13px]">getYear()</code> and{" "}
+            <code className="font-mono text-[13px]">URL.parse()</code>.{" "}
             <code className="font-mono text-[13px]">1n</code> and{" "}
-            <code className="font-mono text-[13px]">??</code> are Widely available and are not
-            reported. Newly keeps <code className="font-mono text-[13px]">getYear()</code> only.
-            Year 2020 also reports{" "}
-            <code className="font-mono text-[13px]">Promise.withResolvers()</code>, whose Baseline
-            year is 2024.
+            <code className="font-mono text-[13px]">??</code> stay quiet. Newly keeps{" "}
+            <code className="font-mono text-[13px]">getYear()</code> only. Year 2020 also reports{" "}
+            <code className="font-mono text-[13px]">Promise.withResolvers()</code>, Baseline year
+            2024.
           </p>
         </section>
 
