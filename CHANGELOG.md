@@ -1,3 +1,13 @@
+## [0.7.7](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.6...v0.7.7) (2026-11-01)
+
+
+### Bug Fixes
+
+* clarify Baseline diagnostic messages ([#188](https://github.com/3ru/eslint-plugin-baseline-js/issues/188)) ([a62618c](https://github.com/3ru/eslint-plugin-baseline-js/commit/a62618cf0b533302399b58dc09a37b7aa6c07e2e))
+* detect well-known Symbol members and buffer options ([#190](https://github.com/3ru/eslint-plugin-baseline-js/issues/190)) ([2149645](https://github.com/3ru/eslint-plugin-baseline-js/commit/2149645388edc0c8a5f45c1baac4b0516197cdb7))
+* **docs:** restore markdown copying in production ([#187](https://github.com/3ru/eslint-plugin-baseline-js/issues/187)) ([99db547](https://github.com/3ru/eslint-plugin-baseline-js/commit/99db547e724cb9cec409bce7c0329b57800f040d))
+* resolve canonical API receivers before reporting ([#189](https://github.com/3ru/eslint-plugin-baseline-js/issues/189)) ([73503ac](https://github.com/3ru/eslint-plugin-baseline-js/commit/73503ac6361598edeb10bfb133192ee663885ed0))
+
 ## [0.7.6](https://github.com/3ru/eslint-plugin-baseline-js/compare/v0.7.5...v0.7.6) (2026-10-26)
 
 
