@@ -1,0 +1,488 @@
+{
+  "kind": "measured",
+  "capturedAt": "2026-11-02T18:24:04.034Z",
+  "parser": "8.72.1",
+  "typescript": "6.0.3",
+  "hosts": {
+    "eslint": {
+      "kind": "measured",
+      "packageVersion": "10.14.0",
+      "reportedVersion": "v10.14.0",
+      "channel": "latest",
+      "cases": {
+        "host-plugin-options": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-ast-selector": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-scope-shadowing": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-scope-binding": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-source-tokens": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-diagnostic-location": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-ancestry": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-typescript-receiver": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-logical-assignment": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-static-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-computed-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-shadowed-object": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-shadowed-binding": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-global-fetchlater": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-ts-static-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-typed-element": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-typed-set-union": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-typed-lookalike": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-typed-nominal-lookalike": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        }
+      }
+    },
+    "oxlint": {
+      "kind": "measured",
+      "packageVersion": "1.90.0",
+      "reportedVersion": "1.90.0",
+      "channel": "latest",
+      "cases": {
+        "host-plugin-options": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-ast-selector": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-scope-shadowing": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-scope-binding": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-source-tokens": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-diagnostic-location": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-ancestry": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-typescript-receiver": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-assessed",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "typed parser services unavailable"
+        },
+        "baseline-logical-assignment": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-static-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-computed-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-shadowed-object": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-shadowed-binding": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-global-fetchlater": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-ts-static-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-typed-element": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-verified",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "Required receiver analysis is unavailable; this case remains unverified"
+        },
+        "baseline-typed-set-union": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-verified",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "Required receiver analysis is unavailable; this case remains unverified"
+        },
+        "baseline-typed-lookalike": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-verified",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "Required receiver analysis is unavailable; this case remains unverified"
+        },
+        "baseline-typed-nominal-lookalike": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-verified",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "Required receiver analysis is unavailable; this case remains unverified"
+        }
+      }
+    },
+    "bun": {
+      "kind": "measured",
+      "packageVersion": "1.4.4-canary.20261102.1+271b65e",
+      "reportedVersion": "1.4.4-canary.1+271b65ec6",
+      "channel": "canary",
+      "cases": {
+        "host-plugin-options": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-ast-selector": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-scope-shadowing": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-scope-binding": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-source-tokens": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-diagnostic-location": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-ancestry": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "host-typescript-receiver": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-assessed",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "typed parser services unavailable"
+        },
+        "baseline-logical-assignment": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-static-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-computed-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-shadowed-object": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-shadowed-binding": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-global-fetchlater": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-ts-static-groupby": {
+          "kind": "observed",
+          "capability": "supported",
+          "correctness": "matched",
+          "status": "matched",
+          "expectationMatched": true,
+          "reason": null
+        },
+        "baseline-typed-element": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-verified",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "Required receiver analysis is unavailable; this case remains unverified"
+        },
+        "baseline-typed-set-union": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-verified",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "Required receiver analysis is unavailable; this case remains unverified"
+        },
+        "baseline-typed-lookalike": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-verified",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "Required receiver analysis is unavailable; this case remains unverified"
+        },
+        "baseline-typed-nominal-lookalike": {
+          "kind": "observed",
+          "capability": "unavailable",
+          "correctness": "not-verified",
+          "status": "unsupported",
+          "expectationMatched": true,
+          "reason": "Required receiver analysis is unavailable; this case remains unverified"
+        }
+      }
+    }
+  }
+}
