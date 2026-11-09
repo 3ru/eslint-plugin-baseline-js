@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "devDependencies": {
+    "@typescript-eslint/parser": "8.72.2",
+    "bun": "1.4.4-canary.20261109.1",
+    "eslint": "10.14.0",
+    "oxlint": "1.93.0",
+    "typescript": "6.0.3"
+  }
+}
