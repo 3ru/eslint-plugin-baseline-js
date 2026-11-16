@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "dependencies": {
+    "eslint-plugin-baseline-js": "file:./subject.tgz",
+    "eslint": "10.13.0"
+  }
+}

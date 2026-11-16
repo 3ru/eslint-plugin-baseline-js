@@ -1,0 +1,11 @@
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +82
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 82, reused 0, downloaded 82, added 82, done
+
+dependencies:
++ eslint 10.13.0
++ eslint-plugin-baseline-js 0.7.7
+
+Done in 771ms using pnpm v10.34.5
