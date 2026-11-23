@@ -1,0 +1,16 @@
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 33, reused 20, downloaded 5, added 0
+Progress: resolved 106, reused 68, downloaded 8, added 0
+Packages: +95
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 124, reused 77, downloaded 17, added 94
+Progress: resolved 124, reused 77, downloaded 18, added 95, done
+
+devDependencies:
++ @typescript-eslint/parser 8.74.0
++ bun 1.4.5-canary.20261123.1 (1.4.5 is available)
++ eslint 10.15.0
++ oxlint 1.95.0
++ typescript 6.0.3 (7.0.2 is available)
+
+Done in 3.8s using pnpm v10.34.5
